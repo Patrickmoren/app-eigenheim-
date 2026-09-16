@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "style": {
+    "color": "=if(@currentField == '', '#85939C', if(@currentField < @now, '#A3312B', '#1A1A1A'))",
+    "font-weight": "=if(@currentField != '' && @currentField < @now, '600', '400')"
+  },
+  "txtContent": "=if(@currentField == '', '–', toLocaleDateString(@currentField))"
+}

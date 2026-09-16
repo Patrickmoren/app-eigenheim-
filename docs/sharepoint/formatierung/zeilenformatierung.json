@@ -1,0 +1,4 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/row-formatting.schema.json",
+  "additionalRowClass": "=if([$Abgeschlossen] != '', 'sp-css-backgroundColor-successBackground50', if([$Ueberfaellig] == true, 'sp-css-backgroundColor-errorBackground50', if([$ZurueckBis] >= @now, 'sp-css-backgroundColor-neutralLighterAlt', '')))"
+}

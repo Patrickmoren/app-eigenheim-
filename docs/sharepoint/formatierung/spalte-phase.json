@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "style": {
+    "display": "inline-block",
+    "padding": "2px 10px",
+    "border-radius": "12px",
+    "font-size": "12px",
+    "font-weight": "600",
+    "background-color": "=if(startsWith(@currentField,'6'),'#E3F0E8',if(startsWith(@currentField,'5'),'#17657A',if(startsWith(@currentField,'4'),'#3D8B9D',if(startsWith(@currentField,'3'),'#6FAEBC',if(startsWith(@currentField,'2'),'#A3CBD4','#CFE3E8')))))",
+    "color": "=if(startsWith(@currentField,'6'),'#2F6B45',if(or(startsWith(@currentField,'5'),startsWith(@currentField,'4')),'#FFFFFF','#0B4655'))"
+  },
+  "txtContent": "@currentField"
+}
