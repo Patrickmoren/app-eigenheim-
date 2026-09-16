@@ -296,7 +296,7 @@ Drei Verschiebungen gegenüber Excel:
 | Phase | aus Excel | Abschlusskriterium (automatisch) |
 |---|---|---|
 | **1 Erfassung** | A–H + I/J/K/N | Objekt, ex-Mieter, gekündigt per, Haftungsdatum erfasst |
-| **2 Abnahme & Vermarktung** | L–V | WA durchgeführt + Zustimmungserklärung + Instandstellung beauftragt |
+| **2 Abnahme & Vermarktung** (Sollfrist: 30 Tage vor Wohnungsabgabe für Abnahmetermin und Handwerkeraufgebot) | L–V | WA durchgeführt + Zustimmungserklärung + Instandstellung beauftragt |
 | **3 Neuvermietung** | W–Z | neuer Mieter + Vertrag retour + Vermietet per |
 | **4 Übergabe** | AA–AE | Schlüsselübergabe, Reinigung, Namensschilder, Kaution/G-Rem erledigt |
 | **5 Schlussabrechnung** | AF–AH | Instandstellungs-RG + SA erhalten + Zahlungseingang |
@@ -348,7 +348,8 @@ endet die Haftung am 31.08., ist es ein September-Fall.
 | Phase im Kopf des Bearbeiters | Phase aus Daten abgeleitet, im Fall und in jeder Liste sichtbar |
 | `Monat` von Hand wählen | aus dem Leerstandsbeginn abgeleitet (Monat + Jahr) |
 | Farbe im Masterfile, muss gefiltert werden | **Aufgabenliste**: überfällig, fällig in 7 Tagen, unvollständig – pro Benutzer priorisiert |
-| Überfälligkeit nur für WA-Termin | Fristenmonitor für alle datierten Schritte (WA-Termin, Vertrag retour, Schlüsselübergabe, Zahlungseingang) |
+| Überfälligkeit nur für WA-Termin | Fristenmonitor für alle datierten Schritte (WA-Termin, Vertrag retour, Schlüsselübergabe) |
+| niemand erinnert an die Vorbereitung der Abnahme | **Sollfristen aus dem Haftungsdatum**: 30 Tage vor der Wohnungsabgabe werden «Abnahmetermin vereinbaren» und «Handwerker aufbieten» fällig, ohne dass jemand daran denken muss |
 | Datumsfehler werden nie bemerkt | Plausibilitätsprüfung bei der Eingabe: Format, Reihenfolge der Daten, Pflichtfelder der Phase |
 | Doppelerfassung fällt orange auf, wenn jemand hinschaut | Warnung **beim Anlegen**: „Zu Obj. 4711 ist bereits ein offener Fall vorhanden – öffnen oder trotzdem neu anlegen?“ |
 | `Fall abgeschlossen` frei setzbar | Abschluss nur bei vollständiger Phase 5, sonst Hinweis, was fehlt |
@@ -529,6 +530,7 @@ IT-Governance eine Eigenentwicklung ausschliesst.
 | Datumsfelder ungeprüft → `#WERT!`, Warnungen fallen lautlos aus | Kalenderfeld + Plausibilitätsprüfung | Fehler werden bei der Eingabe verhindert |
 | `Tage offen` ab Kündigungsdatum | Leerstandstage ab dem Tag nach dem Haftungsdatum, Vorlauf getrennt | **fachlich richtige Kennzahl**, Warnungen werden wieder ernst genommen |
 | Überfälligkeit nur für WA-Termin, sichtbar als Farbe | Fristenmonitor über alle Termine, als Aufgabenliste | nichts wird übersehen |
+| Vorbereitung der Abnahme nur aus dem Gedächtnis | Sollfrist 30 Tage vor der Wohnungsabgabe, automatisch aus dem Haftungsdatum | Termin und Handwerker sind rechtzeitig gesichert |
 | Warnung = Farbe, muss gefiltert werden | Aufgabenliste priorisiert auf der Startseite | der Nutzer sucht nicht, er bekommt |
 | Duplikatswarnung über alle Fälle → Fehlalarme | Warnung nur bei zwei offenen Fällen je Objekt, beim Anlegen | Warnung bleibt glaubwürdig |
 | `Fall abgeschlossen` frei setzbar | Abschluss nur bei vollständiger Schlussabrechnung | keine verlorenen Pendenzen |

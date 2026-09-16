@@ -15,9 +15,19 @@ Veröffentlicht als Artifact: https://claude.ai/artifact/5wVJyvkUxngzAxzMJD4qUA
 | Suche & Filter | Volltextsuche (Obj.-Nr., Liegenschaft, Mieter, Eigentümer), Filter nach Bewirtschafter, Phase, Status, Überfälligkeit |
 | Berechnungen | Leerstandstage, Vorlauftage, Tage in Phase, Berichtsmonat, Kennzahlen, Durchlaufzeiten – alle abgeleitet |
 | Statusanzeigen | Phasenbalken, Statuschips, Schrittzustände offen/erledigt/nicht erforderlich |
-| Warnungen | verstrichene Termine, doppelte offene Fälle, unplausible Daten, fehlende Pflichtangaben, Langläufer |
+| Warnungen | verstrichene Termine, **überschrittene Sollfristen (30 Tage vor Wohnungsabgabe)**, doppelte offene Fälle, unplausible Daten, fehlende Pflichtangaben, Langläufer |
 | Hilfe | Feldhilfe über das ⓘ-Symbol, Kasten «Nächster Schritt» je Fall, Ansicht «Hilfe & Prinzipien» mit vollständiger Spaltenzuordnung |
 | Auswertungen | Kennzahlen je Bewirtschafter inkl. Methodenvergleich, drei Diagramme, Export |
+
+## Abgeleitete Sollfristen
+
+Sobald das Haftungsdatum erfasst ist, rechnet die Anwendung rückwärts: `VORLAUF_ABNAHME`
+(Standard 30 Tage) vor der Wohnungsabgabe werden **«Abnahmetermin vereinbaren»** und
+**«Handwerker aufbieten»** fällig. Solange kein eigener Termin gesetzt ist, heisst der Schritt
+nach der Handlung, die ansteht; ein manuell gesetzter Termin überschreibt die Sollfrist.
+Ohne Haftungsdatum entsteht keine Sollfrist und damit auch kein Fehlalarm.
+
+Die Frist steht als einzelne Konstante im Abschnitt «Prozessmodell» und ist dort änderbar.
 
 ## Technische Hinweise
 
