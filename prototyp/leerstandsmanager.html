@@ -355,13 +355,32 @@ tfoot td{font-weight:600;border-top:1.5px solid var(--line-strong);border-bottom
 .seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-ink)}
 .note{font-size:12.5px;color:var(--ink-3);line-height:1.5}
 .excel{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);background:var(--sunken);padding:1px 5px;border-radius:3px;white-space:nowrap}
+.sys{font-family:Archivo,system-ui,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.02em;
+  padding:1px 7px;border-radius:20px;white-space:nowrap;border:1px solid transparent;cursor:help}
+.sys.s-grem{background:var(--accent-soft);color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+.sys.s-vmz{background:var(--warn-soft);color:var(--warn)}
+.sys.s-dokument{background:var(--sunken);color:var(--ink-2)}
+.sys.s-vorort{background:var(--ok-soft);color:var(--ok)}
+.sys.s-extern{background:var(--sunken);color:var(--ink-2)}
+.gegen{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.gegen>div{background:var(--surface);padding:13px 15px}
+.gegen ul{margin:8px 0 0;padding-left:17px;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.gegen li{margin-bottom:5px}
+.gegen .ja{border-left:3px solid var(--ok)}
+.gegen .nein{border-left:3px solid var(--ink-3)}
+.gegen .nein li{color:var(--ink-3)}
+.syslist{display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 12px;margin:13px 0 0;
+  align-items:baseline;font-size:13px}
+.syslist dt{justify-self:start}
+.syslist dd{margin:0;color:var(--ink-2)}
 </style>
 
 <div class="shell">
   <div class="topbar">
     <div class="brand">
       <b>Leerstandsmanager</b>
-      <span class="sub">Schäppi Grundstücke · Bewirtschaftung</span>
+      <span class="sub">Pendenzen zu Mieterwechseln · Datenführung bleibt in Garaio REM</span>
     </div>
     <div class="gsearch">
       <label for="gq" class="lbl" style="position:absolute;left:-9999px">Suche</label>
@@ -484,6 +503,24 @@ BEREICHE.forEach(b=>b.phasen.forEach(n=>BEREICH_VON_PHASE[n]=b.k));
 const BEREICH = k => BEREICHE.find(b=>b.k===k);
 function bereichVonFall(f){ return BEREICH_VON_PHASE[aktuellePhase(f)]; }
 
+// Wo ein Schritt ausgeführt wird. Dieses Tool überwacht nur, dass er passiert –
+// die Daten selbst liegen im jeweiligen System. Die Zuordnung ist eine Annahme
+// aus den Excel-Spaltentexten und gehört später in die Stammdaten.
+const SYSTEME = {
+  grem:     {t:"Garaio REM", h:"Wird in Garaio REM ausgeführt. Hier wird nur festgehalten, dass es erledigt ist."},
+  vmz:      {t:"VMZ",        h:"Wird in der Vermietungszentrale bzw. auf den Portalen ausgeführt."},
+  dokument: {t:"Dossier",    h:"Dokument im Objektdossier auf SharePoint."},
+  vorort:   {t:"vor Ort",    h:"Termin am Objekt, mit Mieter oder Nachmieter."},
+  extern:   {t:"extern",     h:"Auftrag oder Meldung an Dritte (Werke/EGT, Handwerker, Reinigung)."}
+};
+const SCHRITT_SYSTEM = {
+  kue_best:"grem", meldung_werke:"extern", vorbesicht:"vorort", vmz:"vmz", inserat:"vmz",
+  wa:"vorort", handwerker:"extern", zustimmung:"dokument", instandst:"extern",
+  vertrag_vers:"grem", vertrag_ret:"dokument", info_werke:"extern", schluessel:"vorort",
+  reinigung:"extern", namensschild:"extern", kaution:"grem",
+  rg:"grem", sa:"grem", zahlung:"grem"
+};
+
 const SCHRITTE = [
   {k:"kue_best",      p:2, sp:"L",     t:"Kündigung bestätigt / Mutation G-Rem",
    h:"Kündigungsbestätigung an den Vormieter versendet und die Mutation in G-Rem erfasst. Erster Schritt nach Eingang der Kündigung."},
@@ -526,6 +563,7 @@ const SCHRITTE = [
   {k:"zahlung",       p:5, sp:"AH",    t:"Zahlungseingang erhalten",
    h:"Saldo der Schlussabrechnung beglichen. Erst danach ist der Fall abschliessbar."}
 ];
+SCHRITTE.forEach(s=>{ s.sys = SCHRITT_SYSTEM[s.k] || null; });
 const SCHRITT = Object.fromEntries(SCHRITTE.map(s=>[s.k,s]));
 const SCHRITTE_P = n => SCHRITTE.filter(s=>s.p===n);
 
@@ -1509,7 +1547,9 @@ function schrittZeile(f,s){
   return `<div class="step ${cls}">
     <span class="mark">${st.status==="erledigt"?"✓":st.status==="na"?"–":ueber?"!":""}</span>
     <div>
-      <div class="sl">${esc(schrittTitel(f,s))} <span class="excel" title="Spalte im Excel">${esc(s.sp)}</span> ${hilfeBtn("s_"+s.k)}</div>
+      <div class="sl">${esc(schrittTitel(f,s))}
+        ${s.sys?`<span class="sys s-${s.sys}" title="${esc(SYSTEME[s.sys].h)}">${esc(SYSTEME[s.sys].t)}</span>`:""}
+        <span class="excel" title="Spalte im Excel">${esc(s.sp)}</span> ${hilfeBtn("s_"+s.k)}</div>
       <div class="meta">${meta}</div>
       <div class="helptext" id="hlp_s_${s.k}" hidden style="margin-top:6px">${esc(s.h)}</div>
     </div>
@@ -1591,9 +1631,10 @@ function viewFall(){
 
   ${n?`<div class="next ${n.art==="abschluss"?"done":""}" style="margin-bottom:14px">
     <div style="min-width:0">
-      <span class="k">Nächster Schritt · Phase ${n.phase}</span>
-      <h3>${esc(n.titel)}</h3>
+      <span class="k">Nächster Schritt · ${esc(BEREICH(bereichVonFall(f)).titel)}</span>
+      <h3>${esc(n.titel)}${n.art==="schritt"&&n.schritt.sys?` <span class="sys s-${n.schritt.sys}">${esc(SYSTEME[n.schritt.sys].t)}</span>`:""}</h3>
       <p>${n.text}</p>
+      ${n.art==="schritt"&&n.schritt.sys?`<p class="note" style="margin-top:6px">${esc(SYSTEME[n.schritt.sys].h)}</p>`:""}
     </div>
     <div class="acts">
       ${!bearbeitbar?"":`
@@ -1817,7 +1858,12 @@ function viewStammdaten(){
   const eig=[...new Set(LIEGENSCHAFTEN.map(l=>l.eig))];
   return `
   <h1>Stammdaten</h1>
-  <p class="tiny muted" style="margin:3px 0 16px">Einmal gepflegt statt in jeder Zeile neu getippt.</p>
+  <p class="tiny muted" style="margin:3px 0 12px">Aus Garaio REM übernommen. Hier wird nichts gepflegt –
+    Objekte, Liegenschaften und Eigentümer bleiben dort, wo sie hingehören.</p>
+  <div class="banner info" style="margin-bottom:16px"><span>ℹ</span><div>
+    Diese Angaben dienen nur dazu, einen Fall eindeutig zu erkennen und die richtigen
+    Informationen zur Hand zu haben. Änderungen an Objekt- oder Eigentümerdaten erfolgen in
+    Garaio REM und werden von dort übernommen.</div></div>
 
   <div class="panel" style="margin-bottom:16px">
     <header><span class="lbl">Bewirtschafter</span><span class="tiny muted">${BEWIRTSCHAFTER.length} aktiv</span></header>
@@ -1828,12 +1874,8 @@ function viewStammdaten(){
         <td class="n" ${k.ueber?'style="color:var(--crit);font-weight:600"':""}>${k.ueber}</td></tr>`;}).join("")}</tbody>
     </table></div>
     <div class="pad" style="border-top:1px solid var(--line)">
-      <div class="row">
-        <div class="field" style="flex:1 1 210px"><label for="newBew">Neuen Bewirtschafter aufnehmen</label>
-          <input id="newBew" type="text" placeholder="Nachname"></div>
-        <button class="btn" id="btnAddBew" style="align-self:flex-end">Hinzufügen</button>
-      </div>
-      <p class="note" style="margin-top:9px">Im Excel bedeutete ein zehnter Bewirtschafter, 35 Spalten × 1314 Zeilen
+      <p class="note" style="margin:0">Die Zuständigkeit je Fall wird in der Fallakte gesetzt, die Personen kommen
+        aus der Benutzerverwaltung. Im Excel bedeutete ein zehnter Bewirtschafter, 35 Spalten × 1314 Zeilen
         Konsolidierungsformeln und zwei geschützte Blätter umzubauen – das leere Blatt «Reserve 2» ist davon übrig geblieben.</p>
     </div>
   </div>
@@ -1916,9 +1958,49 @@ const MAPPING = [
 function viewHilfe(){
   return `
   <h1>Hilfe &amp; Prinzipien</h1>
-  <p class="tiny muted" style="margin:3px 0 16px">Wie diese Anwendung gedacht ist – und wo jede Excel-Spalte geblieben ist.</p>
+  <p class="tiny muted" style="margin:3px 0 16px">Wozu diese Anwendung da ist – und wo jede Excel-Spalte geblieben ist.</p>
 
-  <div class="grid2" style="margin-bottom:16px">
+  <div class="panel" style="margin-bottom:16px">
+    <header><span class="lbl">Wozu dieses Tool da ist</span></header>
+    <div class="pad">
+      <p style="margin:0 0 12px;font-size:15px;max-width:62ch">
+        Dieses Tool stellt sicher, dass <b>keine Kündigung, keine Abnahme und keine Schlussabrechnung
+        vergessen geht</b>. Es ist eine Pendenzen- und Fristenüberwachung für Mieterwechsel – mehr nicht,
+        aber das vollständig.</p>
+      <div class="gegen">
+        <div class="ja">
+          <span class="lbl">Das macht es</span>
+          <ul>
+            <li>jeden Mieterwechsel vom Kündigungseingang bis zum Zahlungseingang verfolgen</li>
+            <li>Fristen aus dem Haftungsdatum und aus erledigten Schritten selbst errechnen</li>
+            <li>zeigen, was als Nächstes dran ist – und führen, bis der Stapel leer ist</li>
+            <li>warnen bei verstrichenen Fristen, fehlenden Angaben und doppelten Fällen</li>
+            <li>der Leitung auf einen Blick zeigen, wo es klemmt und bei wem</li>
+            <li>festhalten, wer wann was erledigt hat</li>
+          </ul>
+        </div>
+        <div class="nein">
+          <span class="lbl">Das macht es nicht</span>
+          <ul>
+            <li>Mieter-, Objekt- und Eigentümerdaten führen — das bleibt <b>Garaio REM</b></li>
+            <li>Mietverträge, Abrechnungen oder Buchungen erzeugen</li>
+            <li>Dokumente ablegen — die liegen im Objektdossier auf SharePoint</li>
+            <li>Inserate schalten — das läuft über die VMZ</li>
+            <li>Garaio REM ersetzen oder doppelt führen</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note" style="margin:13px 0 0">Jeder Schritt trägt deshalb eine Kennzeichnung, <b>wo</b> er
+        auszuführen ist. Ein Haken hier bedeutet nie, dass die Anwendung etwas gebucht hat – er bedeutet,
+        dass es im richtigen System erledigt wurde.</p>
+      <dl class="syslist">
+        ${Object.keys(SYSTEME).map(k=>`<dt><span class="sys s-${k}">${esc(SYSTEME[k].t)}</span></dt>
+          <dd>${esc(SYSTEME[k].h)}</dd>`).join("")}
+      </dl>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
     <div class="flat pad"><h3>Der nächste Schritt wird angezeigt</h3>
       <p class="tiny muted" style="margin:6px 0 0">Jeder Fall sagt selbst, was als Nächstes dran ist und warum.
       Sie müssen nicht wissen, in welcher Spalte etwas steht – das Dashboard bringt die Aufgaben nach Dringlichkeit zu Ihnen.</p></div>
@@ -2013,7 +2095,9 @@ function dialogNeuerFall(){
           <div class="helptext" id="hlp_haftungsdatum" hidden>${esc(FELDHILFE.haftungsdatum)}</div></div>
       </div>
       <div id="nfErr"></div>
-      <p class="note">Mehr braucht es zum Anlegen nicht. Alles Weitere fragt die Anwendung im Verlauf der fünf Phasen ab.</p>
+      <p class="note">Mehr braucht es zum Anlegen nicht – dieses Tool führt keine Mieter- oder Objektdaten,
+        es überwacht nur die Pendenzen. Im Betrieb entsteht der Fall automatisch, sobald die Kündigung in
+        Garaio REM erfasst ist; die Handerfassung bleibt als Rückfallebene.</p>
     </div>
     <footer><button class="btn" data-cancel>Abbrechen</button>
       <button class="btn pri" id="nfSave">Fall anlegen</button></footer>

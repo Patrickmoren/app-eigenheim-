@@ -1,5 +1,11 @@
 # Prototyp – Leerstandsmanager
 
+**Zweck:** sicherstellen, dass keine Kündigung, keine Abnahme und keine Schlussabrechnung
+vergessen geht. Das Tool ist eine Pendenzen- und Fristenüberwachung für Mieterwechsel und
+**ersetzt keine Datenhaltung** – Mieter-, Objekt- und Eigentümerdaten, Verträge und Buchungen
+bleiben in Garaio REM, Dokumente auf SharePoint, Inserate in der VMZ. Jeder Schritt ist deshalb
+gekennzeichnet, **wo** er auszuführen ist; ein Haken hier bedeutet nur, dass es dort erledigt wurde.
+
 `leerstandsmanager.html` ist der lauffähige Prototyp aus Phase 6.
 
 Veröffentlicht als Artifact: https://claude.ai/artifact/5wVJyvkUxngzAxzMJD4qUA

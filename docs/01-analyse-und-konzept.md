@@ -277,6 +277,34 @@ weg, Sortierung ist alphabetisch (April, August, Dezember…), und das Feld ist 
 
 ## 4. Die Applikation: „Leerstandsmanager“
 
+### 4.0 Abgrenzung: was dieses Tool ist und was nicht
+
+**Das Tool ersetzt keine Datenhaltung.** Mieter-, Objekt- und Eigentümerdaten, Mietverträge,
+Abrechnungen und Buchungen bleiben in **Garaio REM**; Dokumente liegen im Objektdossier auf
+SharePoint, Inserate laufen über die VMZ. Der Zweck ist ein anderer und ein enger:
+
+> Es soll sicherstellen, dass **keine Kündigung, keine Abnahme und keine Schlussabrechnung
+> vergessen geht.**
+
+Das ist genau der Zweck, den das Excel heute erfüllt – es ist eine Pendenzenliste, keine Datenbank
+(20 der 35 Felder sind reine Ja/Nein-Haken über Arbeitsschritte, siehe 1.3). Die Applikation bleibt
+in diesem Rahmen, erfüllt ihn dafür vollständig und übersichtlich.
+
+Daraus folgt für den Entwurf:
+
+| Grundsatz | Konsequenz |
+|---|---|
+| Kein Feld, das nur in Garaio REM gepflegt gehört | Objekt-, Liegenschafts- und Eigentümerdaten werden **gespiegelt**, nicht erfasst |
+| Ein Haken bedeutet nie eine Buchung | Er hält fest, dass der Schritt **im richtigen System** erledigt wurde |
+| Der Benutzer muss wissen, wohin | Jeder Schritt ist gekennzeichnet mit dem Ort der Ausführung: Garaio REM · VMZ · Dossier · vor Ort · extern |
+| Keine Doppelerfassung | Im Betrieb entsteht ein Fall automatisch, sobald die Kündigung in Garaio REM erfasst ist; Handerfassung nur als Rückfallebene |
+| Minimaler eigener Datenbestand | Eigene Daten sind nur: Fall, Prozessschritte mit Datum und Benutzer, Fristen, Zuständigkeit, Historie |
+
+Die Zuordnung der Schritte zu den Systemen ist aus den Excel-Spaltentexten abgeleitet
+(«Mut. G-Rem», «G-Rem mutiert», «VMZ») und im Übrigen eine Annahme, die vor der Umsetzung
+zu bestätigen ist.
+
+
 **Kein digitales Excel, sondern ein Fall-Assistent.** Leitidee:
 
 > Der Excel-Nutzer fragt: *„In welche Zelle muss ich jetzt was schreiben?“*
