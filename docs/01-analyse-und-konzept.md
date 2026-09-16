@@ -203,7 +203,8 @@ Tage offen        = heute − gekündigt per
 Auszug liegen typischerweise die Kündigungsfrist (oft 3 Monate). Beide Kennzahlen zählen diese
 Vorlaufzeit als Leerstand mit und überzeichnen ihn systematisch – die 60-Tage-Warnung schlägt
 deshalb auch bei völlig planmässigen Fällen an und wird zwangsläufig ignoriert.
-Das fachlich richtige Startdatum (`Haftungsdatum`) steht in Spalte K und wird nirgends verwendet.
+Das fachlich richtige Bezugsdatum steht ungenutzt in Spalte K: `Haftungsdatum` ist der **letzte Tag,
+für den der Vormieter haftet** – der Leerstand beginnt am Folgetag.
 
 ### 3.6 Datumsfelder ohne jede Prüfung
 
@@ -304,15 +305,31 @@ Drei Verschiebungen gegenüber Excel:
 Die Phase wird **aus den Daten abgeleitet, nicht eingegeben.** Damit fällt `Fall abgeschlossen`
 als Fehlerquelle weg (Problem 3.8).
 
-### 4.2 Fachliche Korrekturen, die die App vornimmt
+### 4.2 Definition der Leerstandsdauer
+
+```
+Leerstandsbeginn  = Haftungsdatum + 1 Tag
+letzter leerer Tag = Vermietet per − 1 Tag   (laufender Fall: heute)
+Leerstandstage     = Anzahl Kalendertage von Beginn bis letztem leerem Tag, beide eingeschlossen
+```
+
+Das `Haftungsdatum` ist der letzte Tag, für den der Vormieter haftet; dieser Tag zählt selbst
+noch nicht als Leerstand. Haftung bis 31.08. und Vermietung ab 01.09. ergeben deshalb **0
+Leerstandstage**, nicht einen. Liegt der Leerstandsbeginn in der Zukunft, steht der Fall im
+Vorlauf und die Zählung beginnt erst.
+
+Der **Berichtsmonat** richtet sich nach dem Leerstandsbeginn, nicht nach dem Haftungsdatum:
+endet die Haftung am 31.08., ist es ein September-Fall.
+
+### 4.3 Fachliche Korrekturen, die die App vornimmt
 
 | Excel | App | warum |
 |---|---|---|
-| `Tage offen` = heute − **gekündigt per** | **Leerstandstage** = heute − **Haftungsdatum**, zusätzlich getrennt ausgewiesen: **Vorlauftage** = Haftungsdatum − gekündigt per | misst den echten Leerstand (3.5) |
-| `Ø Leerstandsdauer` = vermietet per − gekündigt per | = **vermietet per − Haftungsdatum**, nur abgeschlossene Fälle | dito |
+| `Tage offen` = heute − **gekündigt per** | **Leerstandstage** = leere Kalendertage ab **Haftungsdatum + 1 Tag**, einschliesslich heute; zusätzlich getrennt ausgewiesen: **Vorlauftage** = Haftungsdatum − gekündigt per | misst den echten Leerstand (3.5) |
+| `Ø Leerstandsdauer` = vermietet per − gekündigt per | = **vermietet per − Haftungsdatum − 1**, nur abgeschlossene Fälle | dito |
 | Duplikat = Obj.-Nr. mehrfach im ganzen Bestand | Warnung nur bei **zwei gleichzeitig offenen** Fällen zum selben Objekt; ein Folgefall nach Abschluss ist normal und wird als **Fallhistorie** verlinkt | beseitigt Fehlalarme (3.9) |
 | `Nein` = mehrdeutig | drei klare Zustände: **offen · erledigt · nicht erforderlich** (mit Begründung) | (3.7) |
-| `Monat` (Text) | entfällt als Eingabe, wird aus `Haftungsdatum` abgeleitet (Monat **und Jahr**) | (3.13) |
+| `Monat` (Text) | entfällt als Eingabe, wird aus dem **Leerstandsbeginn** abgeleitet (Monat **und Jahr**) | (3.13) |
 | `Bewirtschafter` frei wählbar | Zuständigkeit ist eine echte Zuweisung; Umhängen ist eine bewusste Aktion mit Protokolleintrag | (3.4) |
 | 146-Zeilen-Grenze | keine Grenze | (3.1) |
 | 9 fest verdrahtete Namen, `Reserve 2` | Bewirtschafter sind Stammdaten, jederzeit anlegbar | (3.2 / 3.3) |
@@ -329,7 +346,7 @@ als Fehlerquelle weg (Problem 3.8).
 | `Tage offen` = HEUTE()−J, teilweise `#WERT!` | Leerstandstage, Vorlauftage, Tage in aktueller Phase – laufend, fehlerfrei |
 | Kennzahlen als 40 SUMMENPRODUKT-Formeln | Kennzahlen live, zusätzlich Durchlaufzeit je Phase (aus der Ereignishistorie) |
 | Phase im Kopf des Bearbeiters | Phase aus Daten abgeleitet, im Fall und in jeder Liste sichtbar |
-| `Monat` von Hand wählen | aus Haftungsdatum abgeleitet (Monat + Jahr) |
+| `Monat` von Hand wählen | aus dem Leerstandsbeginn abgeleitet (Monat + Jahr) |
 | Farbe im Masterfile, muss gefiltert werden | **Aufgabenliste**: überfällig, fällig in 7 Tagen, unvollständig – pro Benutzer priorisiert |
 | Überfälligkeit nur für WA-Termin | Fristenmonitor für alle datierten Schritte (WA-Termin, Vertrag retour, Schlüsselübergabe, Zahlungseingang) |
 | Datumsfehler werden nie bemerkt | Plausibilitätsprüfung bei der Eingabe: Format, Reihenfolge der Daten, Pflichtfelder der Phase |
@@ -344,8 +361,8 @@ als Fehlerquelle weg (Problem 3.8).
 
 Kein allgemeines Handbuch, sondern Hilfe **am Feld und am Fall**:
 
-- **pro Feld** eine Kurzerklärung („Haftungsdatum: ab hier trägt die Eigentümerschaft den
-  Leerstand – Grundlage der Leerstandsberechnung“) plus Hinweis auf abhängige Felder
+- **pro Feld** eine Kurzerklärung („Haftungsdatum: letzter Tag, für den der Vormieter haftet –
+  der Leerstand beginnt am Folgetag“) plus Hinweis auf abhängige Felder
 - **pro Fall** ein Kasten *„Nächster Schritt“*: der fachlich nächste offene Schritt, warum er
   jetzt dran ist, und die Schaltfläche, ihn zu erledigen
 - **pro Phase** eine Checkliste mit dem, was zum Weiterkommen noch fehlt
@@ -379,7 +396,7 @@ ab, ohne die versehentliche Fremdänderung.
 - Objekt *(Referenz, Pflicht)* · zuständiger Bewirtschafter *(Pflicht)*
 - ex Mieter · gekündigt per *(Pflicht)* · Haftungsdatum *(Pflicht)* · Mieter seit
 - neuer Mieter · Vermietet per
-- abgeleitet: Phase · Leerstandstage · Vorlauftage · Berichtsmonat · Status
+- abgeleitet: Phase · Leerstandsbeginn (Haftungsdatum + 1 Tag) · Leerstandstage · Vorlauftage · Berichtsmonat · Status
 - angelegt von / am, geändert von / am, abgeschlossen von / am
 
 **`Prozessschritt`** – ersetzt die 20 Ja/Nein-Spalten, je Fall ein Satz Schritte
@@ -510,13 +527,13 @@ IT-Governance eine Eigenentwicklung ausschliesst.
 | `Ja`/`Nein` ohne Datum | Schritt erledigt mit Datum, Benutzer, Zeitstempel | Historie und Durchlaufzeiten ohne Mehraufwand |
 | `Nein` heisst mal „entfällt“, mal „offen“ | offen / erledigt / nicht erforderlich | eindeutig auswertbar |
 | Datumsfelder ungeprüft → `#WERT!`, Warnungen fallen lautlos aus | Kalenderfeld + Plausibilitätsprüfung | Fehler werden bei der Eingabe verhindert |
-| `Tage offen` ab Kündigungsdatum | Leerstandstage ab Haftungsdatum, Vorlauf getrennt | **fachlich richtige Kennzahl**, Warnungen werden wieder ernst genommen |
+| `Tage offen` ab Kündigungsdatum | Leerstandstage ab dem Tag nach dem Haftungsdatum, Vorlauf getrennt | **fachlich richtige Kennzahl**, Warnungen werden wieder ernst genommen |
 | Überfälligkeit nur für WA-Termin, sichtbar als Farbe | Fristenmonitor über alle Termine, als Aufgabenliste | nichts wird übersehen |
 | Warnung = Farbe, muss gefiltert werden | Aufgabenliste priorisiert auf der Startseite | der Nutzer sucht nicht, er bekommt |
 | Duplikatswarnung über alle Fälle → Fehlalarme | Warnung nur bei zwei offenen Fällen je Objekt, beim Anlegen | Warnung bleibt glaubwürdig |
 | `Fall abgeschlossen` frei setzbar | Abschluss nur bei vollständiger Schlussabrechnung | keine verlorenen Pendenzen |
 | Objekt-, Eigentümer-, Liegenschaftsdaten je Zeile neu tippen | Stammdaten mit Vorschlag | weniger Tippen, keine Schreibvarianten |
-| `Monat` als Text ohne Jahr | aus Haftungsdatum abgeleitet | korrekte Sortierung über Jahre |
+| `Monat` als Text ohne Jahr | aus dem Leerstandsbeginn abgeleitet | korrekte Sortierung über Jahre |
 | Sharepoint-Link als Text | klickbarer Link | direkter Dokumentzugriff |
 | Suchen = filtern und scrollen | Volltextsuche über alles | Sekunden statt Minuten |
 | eine Datei, einer arbeitet | Mehrbenutzerbetrieb | keine Versionskonflikte |
@@ -534,4 +551,4 @@ erzwungene Vollständigkeit beim Abschluss, eindeutige Zuständigkeit, richtige 
 
 ## Nächster Schritt
 
-Phase 5–8 (UI/UX, Prototyp, Test anhand echter Fälle, Verbesserung) nach Freigabe dieses Konzepts.
+Phase 5–8 umgesetzt: der Prototyp liegt unter `prototyp/leerstandsmanager.html`.

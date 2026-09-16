@@ -442,7 +442,7 @@ const FELDHILFE = {
   bewirtschafter:"Zuständigkeit für diesen Fall. Im Excel war das eine freie Dropdown-Spalte, die das Masterfile ignoriert hat – hier ist es eine echte Zuweisung.",
   exMieter:      "Name des kündigenden Mieters.",
   gekuendigtPer: "Datum, auf das die Kündigung ausgesprochen wurde – der Zeitpunkt des Kündigungseingangs, nicht der Auszug.",
-  haftungsdatum: "Ab diesem Datum trägt die Eigentümerschaft den Leerstand. Grundlage der Leerstandsberechnung – im Excel wurde dafür fälschlich «gekündigt per» verwendet.",
+  haftungsdatum: "Letzter Tag, für den der Vormieter haftet. Der Leerstand beginnt am Folgetag – dieser Tag zählt selbst noch nicht als Leerstand. Grundlage der Leerstandsberechnung; im Excel wurde dafür «gekündigt per» verwendet.",
   mieterSeit:    "Seit wann der kündigende Mieter im Objekt wohnt. Relevant für die Beurteilung der Abnutzung bei der Abnahme.",
   neuerMieter:   "Name des Nachmieters, sobald die Zusage vorliegt.",
   vermietetPer:  "Datum, ab dem das Objekt wieder vermietet ist. Beendet die Leerstandszählung."
@@ -451,17 +451,22 @@ const FELDHILFE = {
 /* ============================================================
    3 · HILFSFUNKTIONEN
    ============================================================ */
-const HEUTE = (()=>{ const d=new Date(); d.setHours(0,0,0,0); return d; })();
+// Alle Daten werden als UTC-Mitternacht geführt. Würde lokale Mitternacht mit
+// toISOString() kombiniert, ergäbe das in MEZ/MESZ durchgehend den Vortag.
+const HEUTE = (()=>{ const n=new Date(); return new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate())); })();
 const TAG = 86400000;
 function iso(d){ return d.toISOString().slice(0,10); }
-function tage(n){ const d=new Date(HEUTE.getTime()+n*TAG); return iso(d); }
-function parse(s){ if(!s) return null; const d=new Date(s+"T00:00:00"); return isNaN(d)?null:d; }
+function tage(n){ return iso(new Date(HEUTE.getTime()+n*TAG)); }
+function parse(s){ if(!s) return null; const d=new Date(s+"T00:00:00Z"); return isNaN(d)?null:d; }
+function plus(s,n){ const d=parse(s); return d?iso(new Date(d.getTime()+n*TAG)):null; }
 function diffT(a,b){ const x=parse(a), y=parse(b); if(!x||!y) return null; return Math.round((y-x)/TAG); }
 function seitHeute(s){ const d=parse(s); if(!d) return null; return Math.round((HEUTE-d)/TAG); }
 const MONATE=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
-function fmt(s){ const d=parse(s); if(!d) return "–"; return String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0")+"."+d.getFullYear(); }
-function fmtKurz(s){ const d=parse(s); if(!d) return "–"; return String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0")+"."; }
-function berichtsmonat(s){ const d=parse(s); if(!d) return "–"; return MONATE[d.getMonth()]+" "+d.getFullYear(); }
+function fmt(s){ const d=parse(s); if(!d) return "–"; return String(d.getUTCDate()).padStart(2,"0")+"."+String(d.getUTCMonth()+1).padStart(2,"0")+"."+d.getUTCFullYear(); }
+function fmtKurz(s){ const d=parse(s); if(!d) return "–"; return String(d.getUTCDate()).padStart(2,"0")+"."+String(d.getUTCMonth()+1).padStart(2,"0")+"."; }
+// Berichtsmonat richtet sich nach dem Leerstandsbeginn, nicht nach dem Haftungsdatum:
+// endet die Haftung am 31.08., ist der Leerstand ein September-Fall.
+function berichtsmonat(haft){ const b=plus(haft,1); const d=parse(b); if(!d) return "–"; return MONATE[d.getUTCMonth()]+" "+d.getUTCFullYear(); }
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function objekt(id){ return OBJEKTE.find(o=>o.id===id); }
 function lig(id){ return LIEGENSCHAFTEN.find(l=>l.id===id); }
@@ -655,12 +660,21 @@ function naechsterSchritt(f){
   return null;
 }
 
+// Das Haftungsdatum ist der letzte Tag der Mieterhaftung – der Leerstand beginnt
+// am Folgetag. Gezählt werden die leeren Kalendertage einschliesslich des ersten
+// und des letzten: bei Haftung bis 31.08. und Vermietung ab 01.09. sind das 0 Tage.
 function leerstand(f){
   const start = ST.basis==="haftung" ? f.haftungsdatum : f.gekuendigtPer;
   if(!start) return null;
-  const ende = f.vermietetPer || iso(HEUTE);
-  const t = diffT(start, ende);
-  return {tage: Math.max(0,t), roh:t, laufend: !f.vermietetPer, kuenftig: t<0, start, ende};
+  const beginn = plus(start,1);
+  if(f.vermietetPer){
+    const t = diffT(start, f.vermietetPer) - 1;   // letzter leerer Tag = Vermietet per minus 1
+    return {tage:Math.max(0,t), roh:t, laufend:false, kuenftig:false, bisBeginn:0,
+            start, beginn, ende:plus(f.vermietetPer,-1)};
+  }
+  const t = diffT(start, iso(HEUTE));             // heute wird mitgezählt
+  return {tage:Math.max(0,t), roh:t, laufend:true, kuenftig:t<=0, bisBeginn:1-t,
+          start, beginn, ende:iso(HEUTE)};
 }
 function vorlauftage(f){
   if(!f.gekuendigtPer || !f.haftungsdatum) return null;
@@ -812,7 +826,7 @@ function statusChip(f){
 function leerstandText(f){
   const ls=leerstand(f);
   if(!ls) return "–";
-  if(ls.kuenftig) return "in "+(-ls.roh)+" T.";
+  if(ls.kuenftig) return "in "+ls.bisBeginn+" T.";
   return ls.tage+" T."+(ls.laufend?"":"");
 }
 function hilfeBtn(key){ return '<button class="ihelp" data-hilfe="'+key+'" aria-label="Erklärung anzeigen" type="button">i</button>'; }
@@ -854,8 +868,8 @@ function viewDashboard(){
   const ueber=offen.filter(istUeberfaellig);
   const laufend=offen.map(leerstand).filter(l=>l&&l.laufend&&!l.kuenftig);
   const avg=laufend.length? Math.round(laufend.reduce((s,l)=>s+l.tage,0)/laufend.length) : null;
-  const mon=basis.filter(f=>f.abgeschlossen && parse(f.abgeschlossen.am).getMonth()===HEUTE.getMonth()
-                            && parse(f.abgeschlossen.am).getFullYear()===HEUTE.getFullYear());
+  const mon=basis.filter(f=>f.abgeschlossen && parse(f.abgeschlossen.am).getUTCMonth()===HEUTE.getUTCMonth()
+                            && parse(f.abgeschlossen.am).getUTCFullYear()===HEUTE.getUTCFullYear());
   const auf=aufgaben(basis);
   const warnRows=[];
   offen.forEach(f=>warnungen(f).filter(w=>w.stufe!=="info").forEach(w=>warnRows.push({f,w})));
@@ -883,9 +897,9 @@ function viewDashboard(){
     <div class="kpi ${ueber.length?"is-crit":""}"><span class="lbl">Überfällig</span><span class="v">${ueber.length}</span>
       <span class="foot">${ueber.length?"Termin verstrichen, Schritt offen":"keine verstrichenen Termine"}</span></div>
     <div class="kpi"><span class="lbl">Ø Leerstandstage</span><span class="v">${avg==null?"–":avg}</span>
-      <span class="foot">laufende Leerstände, ab ${ST.basis==="haftung"?"Haftungsdatum":"gekündigt per"}</span></div>
+      <span class="foot">laufende Leerstände, ab dem Tag nach ${ST.basis==="haftung"?"dem Haftungsdatum":"«gekündigt per»"}</span></div>
     <div class="kpi is-ok"><span class="lbl">Abgeschlossen</span><span class="v">${mon.length}</span>
-      <span class="foot">im ${MONATE[HEUTE.getMonth()]} ${HEUTE.getFullYear()}</span></div>
+      <span class="foot">im ${MONATE[HEUTE.getUTCMonth()]} ${HEUTE.getUTCFullYear()}</span></div>
   </div>
 
   <div class="panel" style="margin-bottom:16px">
@@ -1082,13 +1096,13 @@ function viewFall(){
   <div class="metrics" style="margin-bottom:14px">
     <div class="metric"><span class="lbl">Leerstandstage</span>
       <div class="v ${ls&&ls.laufend&&!ls.kuenftig&&ls.tage>60?"crit":""}">${ls?(ls.kuenftig?"0":ls.tage):"–"}</div>
-      <div class="tiny muted">${ls? (ls.kuenftig? "beginnt in "+(-ls.roh)+" Tagen" : (ls.laufend?"laufend":"bis "+fmtKurz(f.vermietetPer))) : "Haftungsdatum fehlt"}</div></div>
+      <div class="tiny muted">${ls? (ls.kuenftig? (ls.bisBeginn===1?"beginnt morgen":"beginnt in "+ls.bisBeginn+" Tagen") : (ls.laufend?"leer seit "+fmtKurz(ls.beginn):fmtKurz(ls.beginn)+"–"+fmtKurz(ls.ende))) : "Haftungsdatum fehlt"}</div></div>
     <div class="metric"><span class="lbl">Vorlauftage</span>
       <div class="v">${vl==null?"–":vl}</div>
-      <div class="tiny muted">Kündigung → Haftungsdatum</div></div>
+      <div class="tiny muted">Kündigung → Ende Mieterhaftung</div></div>
     <div class="metric"><span class="lbl">Berichtsmonat</span>
       <div class="v" style="font-size:15px;padding-top:4px">${esc(berichtsmonat(f.haftungsdatum))}</div>
-      <div class="tiny muted">aus Haftungsdatum</div></div>
+      <div class="tiny muted">aus Leerstandsbeginn</div></div>
     <div class="metric"><span class="lbl">Tage in Phase ${f.abgeschlossen?"–":cur}</span>
       <div class="v">${f.abgeschlossen?"–":tageInPhase(f)}</div>
       <div class="tiny muted">${f.abgeschlossen?"abgeschlossen "+fmtKurz(f.abgeschlossen.am):esc(PHASEN[cur-1].titel)}</div></div>
@@ -1207,18 +1221,20 @@ function kennzahlen(bew){
   const offen=alle.filter(f=>!f.abgeschlossen);
   const ueber=offen.filter(istUeberfaellig).length;
   const zu=alle.filter(f=>f.abgeschlossen && f.vermietetPer && f.haftungsdatum && f.gekuendigtPer);
-  const mit=(start)=>{ if(!zu.length) return null;
-    const v=zu.map(f=>diffT(f[start],f.vermietetPer)).filter(x=>x!=null);
+  const mit=(start,abzug)=>{ if(!zu.length) return null;
+    const v=zu.map(f=>diffT(f[start],f.vermietetPer)-abzug).filter(x=>x!=null).map(x=>Math.max(0,x));
     return v.length? Math.round(v.reduce((a,b)=>a+b,0)/v.length) : null; };
   return {bew, gesamt:alle.length, offen:offen.length, ueber,
-          avgNeu:mit("haftungsdatum"), avgExcel:mit("gekuendigtPer"), zuAnz:zu.length};
+          avgNeu:mit("haftungsdatum",1),    // leere Tage ab Folgetag des Haftungsdatums
+          avgExcel:mit("gekuendigtPer",0),  // wörtlich wie im Excel: Vermietet per minus gekündigt per
+          zuAnz:zu.length};
 }
 function viewAuswertung(){
   const rows=BEWIRTSCHAFTER.map(kennzahlen);
   const tot={gesamt:rows.reduce((s,r)=>s+r.gesamt,0), offen:rows.reduce((s,r)=>s+r.offen,0),
              ueber:rows.reduce((s,r)=>s+r.ueber,0)};
   const zuAlle=FAELLE.filter(f=>f.abgeschlossen && f.vermietetPer && f.haftungsdatum);
-  const avgT=zuAlle.length?Math.round(zuAlle.map(f=>diffT(f.haftungsdatum,f.vermietetPer)).reduce((a,b)=>a+b,0)/zuAlle.length):null;
+  const avgT=zuAlle.length?Math.round(zuAlle.map(f=>Math.max(0,diffT(f.haftungsdatum,f.vermietetPer)-1)).reduce((a,b)=>a+b,0)/zuAlle.length):null;
   const avgX=zuAlle.length?Math.round(zuAlle.map(f=>diffT(f.gekuendigtPer,f.vermietetPer)).reduce((a,b)=>a+b,0)/zuAlle.length):null;
   const maxOffen=Math.max(1,...rows.map(r=>r.offen));
 
@@ -1259,14 +1275,15 @@ function viewAuswertung(){
     </table></div>
     <div class="pad" style="border-top:1px solid var(--line)">
       <div class="banner info"><span>ℹ</span><div><b>Methodenvergleich.</b>
-        «Ø Leerstand» rechnet ab Haftungsdatum – dem Tag, ab dem die Eigentümerschaft den Leerstand trägt.
-        «Ø nach Excel» rechnet wie bisher ab «gekündigt per» und zählt damit die Kündigungsfrist mit.
+        «Ø Leerstand» zählt die leeren Kalendertage ab dem Tag nach dem Haftungsdatum bis zum Tag vor der Neuvermietung.
+        «Ø nach Excel» ist die bisherige Formel «Vermietet per − gekündigt per»: sie zählt die Kündigungsfrist mit
+        und rechnet den Haftungstag als Leerstand.
         Über alle abgeschlossenen Fälle liegt die alte Methode um <b>${avgT!=null&&avgX!=null?(avgX-avgT):"–"} Tage</b> höher.</div></div>
       <div class="row" style="margin-top:11px">
-        <span class="tiny muted">Berechnungsbasis in der ganzen App:</span>
+        <span class="tiny muted">Startdatum der Zählung in der ganzen App:</span>
         <div class="seg" role="group" aria-label="Berechnungsbasis">
-          <button data-basis="haftung" aria-pressed="${ST.basis==="haftung"}">ab Haftungsdatum</button>
-          <button data-basis="kuendigung" aria-pressed="${ST.basis==="kuendigung"}">ab gekündigt per</button>
+          <button data-basis="haftung" aria-pressed="${ST.basis==="haftung"}">ab Haftungsdatum + 1</button>
+          <button data-basis="kuendigung" aria-pressed="${ST.basis==="kuendigung"}">ab gekündigt per + 1</button>
         </div>
       </div>
     </div>
@@ -1383,7 +1400,7 @@ const MAPPING = [
   ["H","Sharepoint Link:","Stammdaten → Objekt, als klickbarer Link in der Fallakte."],
   ["I","ex Mieter","Phase 1 · Erfassung."],
   ["J","gekündigt per","Phase 1 · Erfassung. Datumsfeld mit Plausibilitätsprüfung."],
-  ["K","Haftungsdatum","Phase 1 · Erfassung. Neu die Grundlage der Leerstandsberechnung."],
+  ["K","Haftungsdatum","Phase 1 · Erfassung. Neu die Grundlage der Leerstandsberechnung – der Leerstand beginnt am Folgetag."],
   ["N","Mieter seit","Phase 1 · Erfassung, neben dem ex-Mieter statt mitten im Abnahmeblock."],
   ["L","Kü bestätigt / Mut. G-Rem","Phase 2 · Schritt."],
   ["M","Meldung Werke / EGT","Phase 2 · Schritt."],
@@ -1407,7 +1424,7 @@ const MAPPING = [
   ["AG","SA erhalten","Phase 5 · Schritt."],
   ["AH","Zahlungseingang erhalten","Phase 5 · Schritt."],
   ["AI","Fall bgeschlossen","Abgeleitet: nur möglich, wenn Phase 5 vollständig ist. Kein freier Haken mehr."],
-  ["AJ","Tage offen","Ersetzt durch Leerstandstage (ab Haftungsdatum) und Vorlauftage, getrennt ausgewiesen."],
+  ["AJ","Tage offen","Ersetzt durch Leerstandstage (ab dem Tag nach dem Haftungsdatum) und Vorlauftage, getrennt ausgewiesen."],
   ["AK–AR","Hilfsspalten","Entfallen – die Konsolidierung über neun Blätter wird nicht mehr gebraucht."]
 ];
 function viewHilfe(){
@@ -1425,9 +1442,10 @@ function viewHilfe(){
     <div class="flat pad"><h3>Drei Zustände statt Ja/Nein</h3>
       <p class="tiny muted" style="margin:6px 0 0">Ein Schritt ist <b>offen</b>, <b>erledigt</b> oder <b>nicht erforderlich</b>.
       Damit ist «bewusst übersprungen» von «noch nicht angefasst» unterscheidbar – im Excel hiess beides «Nein».</p></div>
-    <div class="flat pad"><h3>Leerstand ab Haftungsdatum</h3>
-      <p class="tiny muted" style="margin:6px 0 0">Gezählt wird ab dem Tag, ab dem die Eigentümerschaft den Leerstand trägt.
-      Die Kündigungsfrist davor wird als Vorlaufzeit getrennt ausgewiesen, nicht als Leerstand.</p></div>
+    <div class="flat pad"><h3>Leerstand ab dem Tag nach der Haftung</h3>
+      <p class="tiny muted" style="margin:6px 0 0">Das Haftungsdatum ist der letzte Tag des Vormieters; gezählt wird ab dem Folgetag,
+      einschliesslich des letzten leeren Tages. Haftung bis 31.08. und Vermietung ab 01.09. ergeben 0 Leerstandstage.
+      Die Kündigungsfrist davor erscheint getrennt als Vorlaufzeit.</p></div>
   </div>
 
   <div class="panel" style="margin-bottom:16px">
@@ -1537,7 +1555,7 @@ function speichereNeu(){
   if(seit&&kue&&diffT(seit,kue)<0) errs.push("«Mieter seit» liegt nach dem Kündigungsdatum. Bitte prüfen.");
   const box=document.getElementById("nfErr");
   if(errs.length){ box.innerHTML='<div class="banner warn"><span>▲</span><div>'+errs.map(esc).join("<br>")+'</div></div>'; return; }
-  const jahr=HEUTE.getFullYear();
+  const jahr=HEUTE.getUTCFullYear();
   const nrs=FAELLE.map(f=>parseInt((f.id.split("-")[2]||"0"),10)).filter(n=>!isNaN(n));
   const id="F-"+jahr+"-"+String(Math.max(0,...nrs)+1).padStart(3,"0");
   const schritte={};
@@ -1625,7 +1643,7 @@ document.addEventListener("click", e=>{
   if(t.dataset.open){ geheZu("fall", t.dataset.open); return; }
   if(t.dataset.sicht){ ST.sicht=t.dataset.sicht; speichern(); render(); return; }
   if(t.dataset.basis){ ST.basis=t.dataset.basis; speichern(); render();
-    toast("Berechnungsbasis: "+(ST.basis==="haftung"?"ab Haftungsdatum":"ab gekündigt per")); return; }
+    toast("Zählung ab dem Tag nach "+(ST.basis==="haftung"?"dem Haftungsdatum":"«gekündigt per»")); return; }
   if(t.dataset.do){ erledigen(t.dataset.fall, t.dataset.do); return; }
   if(t.dataset.na){ const s=SCHRITT[t.dataset.na];
     nichtErforderlich(t.dataset.fall, t.dataset.na, s.naGrund||"Entscheid: nicht erforderlich"); return; }
