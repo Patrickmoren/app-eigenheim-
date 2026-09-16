@@ -9,7 +9,7 @@ Veröffentlicht als Artifact: https://claude.ai/artifact/5wVJyvkUxngzAxzMJD4qUA
 | Geforderter Bereich | Umsetzung |
 |---|---|
 | Startseite | Dashboard mit 4 Kennzahlen, Aufgabenliste nach Dringlichkeit, Warnungen, Schnellzugriffe |
-| Navigation | vier Punkte (Dashboard, Fälle, Auswertung, Stammdaten) plus Hilfe, ohne Untermenüs |
+| Navigation | Dashboard, drei Arbeitsbereiche (Kündigung & Abnahme · Wiedervermietung · Schlussabrechnung) mit Zähler, dann Alle Fälle, Auswertung, Stammdaten, Hilfe |
 | Eingabemasken | Dialog «Neuer Fall» mit Pflichtfeldern, Dublettenprüfung und Klartext-Fehlermeldungen; Felder in der Fallakte |
 | Datenübersichten | Fallliste mit Phasenbalken, Fallakte mit fünf Phasen, Stammdaten-Übersichten |
 | Suche & Filter | Volltextsuche (Obj.-Nr., Liegenschaft, Mieter, Eigentümer), Filter nach Bewirtschafter, Phase, Status, Überfälligkeit |
@@ -18,6 +18,29 @@ Veröffentlicht als Artifact: https://claude.ai/artifact/5wVJyvkUxngzAxzMJD4qUA
 | Warnungen | verstrichene Termine, **überschrittene Sollfristen (30 Tage vor Wohnungsabgabe)**, doppelte offene Fälle, unplausible Daten, fehlende Pflichtangaben, Langläufer |
 | Hilfe | Feldhilfe über das ⓘ-Symbol, Kasten «Nächster Schritt» je Fall, Ansicht «Hilfe & Prinzipien» mit vollständiger Spaltenzuordnung |
 | Auswertungen | Kennzahlen je Bewirtschafter inkl. Methodenvergleich, drei Diagramme, Export |
+
+## Rollen
+
+Oben rechts wird der angemeldete Benutzer gewechselt – im Prototyp ohne Passwort, damit sich die
+Sichten vergleichen lassen.
+
+| Rolle | Startseite | Rechte |
+|---|---|---|
+| A. Leitner (Teamleitung) | Teamübersicht mit Mitarbeitertabelle | alles bearbeiten, Zuständigkeit übergeben |
+| die neun Bewirtschafter | «Mein Arbeitstag» | eigene Fälle bearbeiten, fremde lesen |
+| K. Weber (Buchhaltung) | Teamübersicht ohne Aktionen | nur lesen |
+
+Die Rechte hängen nicht an ausgeblendeten Schaltflächen: jede ändernde Funktion prüft sie selbst
+und lehnt ab, auch wenn sie direkt aufgerufen wird.
+
+## Durcharbeiten
+
+«Aufgaben durcharbeiten» führt Fall für Fall durch den Arbeitsvorrat – vom Dashboard über alle
+Aufgaben, aus einem Arbeitsbereich nur über dessen Aufgaben, aus einer Mitarbeiteransicht über
+deren Aufgaben. Die Leiste zeigt den Fortschritt und bietet Zurück, Später und Beenden.
+Nach einer Aktion springt die Anwendung selbst weiter, sobald an diesem Fall nichts Dringendes
+mehr offen ist. «Später» stellt den Fall mit Datum zurück, protokolliert das und nimmt ihn am
+Stichtag wieder auf.
 
 ## Abgeleitete Sollfristen
 

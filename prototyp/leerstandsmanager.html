@@ -93,6 +93,44 @@ a{color:var(--accent-ink)}
   .view{padding:18px 16px 56px}
 }
 
+.userbox{display:flex;flex-direction:column;gap:2px;min-width:0}
+.userbox select{padding:4px 7px;font-size:12.5px;max-width:230px;
+  font-family:Archivo,system-ui,sans-serif;font-weight:600}
+.railgrp{font-family:Archivo,system-ui,sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);padding:12px 10px 4px}
+.rail .cnt{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+.rail .cnt.crit{color:var(--crit);font-weight:600}
+@media (max-width:880px){ .railgrp{display:none} }
+
+.brcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.brcard{display:flex;flex-direction:column;gap:3px;text-align:left;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:var(--r);padding:13px 15px;color:inherit;box-shadow:var(--shadow)}
+.brcard:hover{border-color:var(--accent);border-left-color:var(--accent-ink);background:var(--surface-2)}
+.brcard.is-crit{border-left-color:var(--crit)}
+.brcard .v{font-family:Archivo,system-ui,sans-serif;font-size:26px;font-weight:600;line-height:1.05;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.brcard .foot{font-size:12px;color:var(--ink-3)}
+.brcard .lbl{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+
+.qbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px 14px;border-radius:var(--r);background:var(--accent-soft);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.qtxt{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--accent-ink);
+  font-family:Archivo,system-ui,sans-serif;flex-wrap:wrap}
+.qprog{display:block;width:120px;height:5px;border-radius:3px;background:var(--surface);overflow:hidden}
+.qprog span{display:block;height:100%;background:var(--accent)}
+.qacts{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+@media (max-width:620px){ .qacts{margin-left:0;width:100%} }
+
+.chipx{border:0;background:none;padding:0 0 0 5px;color:inherit;cursor:pointer;font-size:13px;line-height:1}
+.chipx:hover{opacity:.6}
+tr.klick{cursor:pointer}
+tr.klick:hover{background:var(--surface-2)}
+.zuw{display:inline-flex;align-items:center;gap:6px}
+.zuw select{width:auto;padding:3px 7px;font-size:12.5px;font-family:Archivo,system-ui,sans-serif;font-weight:600}
+
 /* ---------- controls ---------- */
 input,select,textarea,button{font-family:inherit;font-size:14px;color:inherit}
 input[type=text],input[type=date],input[type=number],select,textarea{
@@ -329,13 +367,22 @@ tfoot td{font-weight:600;border-top:1.5px solid var(--line-strong);border-bottom
       <label for="gq" class="lbl" style="position:absolute;left:-9999px">Suche</label>
       <input id="gq" type="text" placeholder="Obj.-Nr., Liegenschaft, Mieter …" autocomplete="off">
     </div>
+    <div class="userbox">
+      <label for="userSel" class="lbl">Angemeldet als</label>
+      <select id="userSel" aria-label="Angemeldeten Benutzer wechseln"></select>
+    </div>
     <button class="btn pri" id="btnNeu">+ Neuer Fall</button>
   </div>
 
   <div class="main">
     <nav class="rail" id="rail" aria-label="Hauptnavigation">
       <button data-nav="dashboard" aria-current="page">Dashboard <span class="dot" id="railBadge" hidden>0</span></button>
-      <button data-nav="faelle">Fälle</button>
+      <span class="railgrp">Arbeitsbereiche</span>
+      <button data-bereich="abnahme">Kündigung &amp; Abnahme <span class="cnt" data-cnt="abnahme"></span></button>
+      <button data-bereich="vermietung">Wiedervermietung <span class="cnt" data-cnt="vermietung"></span></button>
+      <button data-bereich="abrechnung">Schlussabrechnung <span class="cnt" data-cnt="abrechnung"></span></button>
+      <hr>
+      <button data-nav="faelle">Alle Fälle</button>
       <button data-nav="auswertung">Auswertung</button>
       <button data-nav="stammdaten">Stammdaten</button>
       <hr>
@@ -354,7 +401,23 @@ tfoot td{font-weight:600;border-top:1.5px solid var(--line-strong);border-bottom
    1 · STAMMDATEN  (im Excel als Freitext in jeder Zeile wiederholt)
    ============================================================ */
 const BEWIRTSCHAFTER = ["Moren","Ryser","Scherb","Ademi","Fazliu","Brandenburger","Breitmeier","Loa","Sivanesan"];
-const ICH = "Moren";
+
+
+const ROLLEN = {
+  leitung:       {t:"Teamleitung",    h:"sieht und bearbeitet alle Fälle, kann Zuständigkeiten ändern"},
+  bewirtschafter:{t:"Bewirtschaftung",h:"bearbeitet die eigenen Fälle, sieht die übrigen"},
+  lesend:        {t:"Leseberechtigt", h:"sieht alles, ändert nichts"}
+};
+const ZUSATZBENUTZER = [
+  {name:"A. Leitner", rolle:"leitung", funktion:"Leitung Bewirtschaftung"},
+  {name:"K. Weber",   rolle:"lesend",  funktion:"Buchhaltung"}
+];
+function benutzerliste(){
+  return ZUSATZBENUTZER.slice(0,1)
+    .concat(BEWIRTSCHAFTER.map(b=>({name:b, rolle:"bewirtschafter", funktion:"Bewirtschaftung"})))
+    .concat(ZUSATZBENUTZER.slice(1));
+}
+function benutzer(name){ return benutzerliste().find(b=>b.name===name); }
 
 const LIEGENSCHAFTEN = [
   {id:"L01", name:"Seestrasse 118",            ort:"8002 Zürich",     eig:"PK Helvetia Immobilien"},
@@ -408,6 +471,19 @@ const SOLL_ABNAHME    = {anker:"haftungsdatum", offset:-VORLAUF_ABNAHME,
 const SOLL_HANDWERKER = {anker:"schritt:wa", offset:FRIST_HANDWERKER,
                          txt:FRIST_HANDWERKER+" Tage nach der Wohnungsabnahme"};
 
+const BEREICHE = [
+  {k:"abnahme",    titel:"Kündigung & Abnahme", phasen:[1,2], excel:"A–V",
+   zweck:"Kündigung abwickeln, Objekt vermarkten, abnehmen und instand stellen."},
+  {k:"vermietung", titel:"Wiedervermietung",    phasen:[3,4], excel:"W–AE",
+   zweck:"Nachmieter gewinnen, Vertrag abschliessen und das Objekt übergeben."},
+  {k:"abrechnung", titel:"Schlussabrechnung",   phasen:[5],   excel:"AF–AH",
+   zweck:"Mit dem Vormieter abrechnen und den Zahlungseingang kontrollieren."}
+];
+const BEREICH_VON_PHASE = {};
+BEREICHE.forEach(b=>b.phasen.forEach(n=>BEREICH_VON_PHASE[n]=b.k));
+const BEREICH = k => BEREICHE.find(b=>b.k===k);
+function bereichVonFall(f){ return BEREICH_VON_PHASE[aktuellePhase(f)]; }
+
 const SCHRITTE = [
   {k:"kue_best",      p:2, sp:"L",     t:"Kündigung bestätigt / Mutation G-Rem",
    h:"Kündigungsbestätigung an den Vormieter versendet und die Mutation in G-Rem erfasst. Erster Schritt nach Eingang der Kündigung."},
@@ -420,7 +496,7 @@ const SCHRITTE = [
   {k:"inserat",       p:2, sp:"Q",     t:"Inserat online",
    h:"Inserat publiziert. Je früher das Inserat läuft, desto kürzer der spätere Leerstand – deshalb steht dieser Schritt vor der Wohnungsabnahme."},
   {k:"wa",            p:2, sp:"R + T", t:"Wohnungsabnahme durchgeführt", termin:true, tl:"WA-Termin",
-   tOffen:"Abnahmetermin vereinbaren", soll:SOLL_ABNAHME,
+   tOffen:"Abnahmetermin vereinbaren", soll:SOLL_ABNAHME, terminIstAufgabe:true,
    h:"Im Excel zwei getrennte Spalten: R «WA-Termin» (Datum) und T «WA durchgeführt» (Ja/Nein). Hier ein Schritt mit Termin – genau daraus entsteht die Überfälligkeitsprüfung. Solange kein Termin steht, meldet die Anwendung den Schritt als «Abnahmetermin vereinbaren», fällig "+VORLAUF_ABNAHME+" Tage vor der Wohnungsabgabe. Ist die Abnahme erledigt, startet sie die Frist für das Handwerkeraufgebot."},
   {k:"handwerker",    p:2, sp:"S",     t:"Handwerker aufgeboten", termin:true, tl:"aufbieten bis",
    tOffen:"Handwerker aufbieten", soll:SOLL_HANDWERKER,
@@ -684,7 +760,8 @@ function naechsterSchritt(f){
            : d===0 ? frist+" – heute fällig."
            : frist+" – in "+tgD(-d)+".";
     }
-    return {art:"schritt", phase:p, schritt:s, titel:schrittTitel(f,s), text, soll};
+    return {art:"schritt", phase:p, schritt:s, titel:schrittTitel(f,s), text,
+            soll, terminSetzen: !!(soll && s.terminIstAufgabe)};
   }
   const fehltP3 = fehlendeFelder(f,3);
   if(p===3 && fehltP3.length) return {art:"feld", phase:3, felder:fehltP3,
@@ -791,10 +868,32 @@ function warnungen(f){
 const KEY="leerstandsmanager.demo.v1";
 let FAELLE = [];
 let ST = {basis:"haftung", sicht:"meine", nav:"dashboard", fallId:null,
+          ich:"Moren", rolle:"bewirtschafter",
+          bereich:null, mitarbeiter:null,
+          queue:null, qIdx:0, qHerkunft:null,
           q:"", fBew:"", fPhase:"", fStatus:"offen", fUeber:false};
 
+/* ---------- Rechte ---------- */
+function darfBearbeiten(f){
+  if(ST.rolle==="lesend") return false;
+  if(ST.rolle==="leitung") return true;
+  return f.bewirtschafter===ST.ich;
+}
+function darfAnlegen(){ return ST.rolle!=="lesend"; }
+function darfZuweisen(){ return ST.rolle==="leitung"; }
+function istLeitung(){ return ST.rolle==="leitung"; }
+function anmelden(name){
+  const b=benutzer(name); if(!b) return;
+  ST.ich=b.name; ST.rolle=b.rolle;
+  ST.queue=null; ST.qIdx=0; ST.mitarbeiter=null; ST.bereich=null;
+  ST.nav="dashboard"; ST.sicht = b.rolle==="bewirtschafter" ? "meine" : "team";
+  speichern(); render();
+  toast("Angemeldet als "+b.name+" · "+ROLLEN[b.rolle].t);
+}
+
 function speichern(){
-  try{ localStorage.setItem(KEY, JSON.stringify({faelle:FAELLE, basis:ST.basis, sicht:ST.sicht})); }
+  try{ localStorage.setItem(KEY, JSON.stringify({faelle:FAELLE, basis:ST.basis, sicht:ST.sicht,
+        ich:ST.ich, rolle:ST.rolle})); }
   catch(e){ /* privates Fenster o. Ä. – der Prototyp läuft auch ohne Speicherung */ }
 }
 function laden(){
@@ -802,18 +901,27 @@ function laden(){
     const raw = localStorage.getItem(KEY);
     if(raw){ const d=JSON.parse(raw);
       if(d && Array.isArray(d.faelle) && d.faelle.length){
-        FAELLE=d.faelle; if(d.basis) ST.basis=d.basis; if(d.sicht) ST.sicht=d.sicht; return; }
+        FAELLE=d.faelle; if(d.basis) ST.basis=d.basis; if(d.sicht) ST.sicht=d.sicht;
+        if(d.ich) ST.ich=d.ich; if(d.rolle) ST.rolle=d.rolle; return; }
     }
   }catch(e){}
   FAELLE = demodaten();
 }
 function fall(id){ return FAELLE.find(f=>f.id===id); }
-function protokoll(f,txt){ f.historie.unshift({d:iso(HEUTE), von:ICH, txt}); }
+// Jede ändernde Aktion prüft selbst – eine ausgeblendete Schaltfläche ist keine Berechtigung.
+function gesperrt(id){
+  const f=fall(id);
+  if(f && darfBearbeiten(f)) return false;
+  toast("Keine Berechtigung, diesen Fall zu ändern.");
+  return true;
+}
+function protokoll(f,txt){ f.historie.unshift({d:iso(HEUTE), von:ST.ich, txt}); }
 
 /* ---------- Aktionen ---------- */
 function erledigen(id,k){
+  if(gesperrt(id)) return;
   const f=fall(id), s=f.schritte[k];
-  s.status="erledigt"; s.datum=iso(HEUTE); s.von=ICH; s.grund=null;
+  s.status="erledigt"; s.datum=iso(HEUTE); s.von=ST.ich; s.grund=null;
   protokoll(f,"Schritt erledigt: "+SCHRITT[k].t);
   // Schritte, deren Frist an genau diesem Schritt hängt, bekommen jetzt eine.
   const folge = SCHRITTE.filter(x=>x.soll && x.soll.anker==="schritt:"+k
@@ -827,24 +935,28 @@ function erledigen(id,k){
   nach(f,msg);
 }
 function nichtErforderlich(id,k,grund){
+  if(gesperrt(id)) return;
   const f=fall(id), s=f.schritte[k];
-  s.status="na"; s.datum=iso(HEUTE); s.von=ICH; s.grund=grund||"nicht erforderlich";
+  s.status="na"; s.datum=iso(HEUTE); s.von=ST.ich; s.grund=grund||"nicht erforderlich";
   protokoll(f,"Als nicht erforderlich markiert: "+SCHRITT[k].t+(grund?" ("+grund+")":""));
   nach(f,"«"+SCHRITT[k].t+"» als nicht erforderlich markiert");
 }
 function zuruecksetzen(id,k){
+  if(gesperrt(id)) return;
   const f=fall(id), s=f.schritte[k];
   s.status="offen"; s.datum=null; s.von=null; s.grund=null;
   protokoll(f,"Schritt wieder geöffnet: "+SCHRITT[k].t);
   nach(f,"«"+SCHRITT[k].t+"» wieder offen");
 }
 function setTermin(id,k,d){
+  if(gesperrt(id)) return;
   const f=fall(id), s=f.schritte[k], alt=s.termin;
   s.termin = d||null;
   protokoll(f,"Termin "+SCHRITT[k].t+": "+(alt?fmt(alt)+" → ":"")+(d?fmt(d):"entfernt"));
-  speichern(); render();
+  nach(f, d ? (SCHRITT[k].tl||"Termin")+" auf "+fmt(d)+" gesetzt" : "Termin entfernt");
 }
 function setFeld(id,feld,wert){
+  if(gesperrt(id)) return;
   const f=fall(id); if(f[feld]===wert) return;
   const alt=f[feld];
   f[feld]=wert;
@@ -853,8 +965,7 @@ function setFeld(id,feld,wert){
   protokoll(f, lab+": "+zeig(alt)+" → "+zeig(wert));
   const wirkung = feld==="haftungsdatum" ? haftungsdatumVerschoben(f,alt,wert) : null;
   if(wirkung) protokoll(f, wirkung.protokoll);
-  speichern(); render();
-  toast(wirkung ? wirkung.meldung : lab+" auf "+zeig(wert)+" gesetzt");
+  nach(f, wirkung ? wirkung.meldung : lab+" auf "+zeig(wert)+" gesetzt");
 }
 
 // Ein nachträglich verschobenes Haftungsdatum – etwa bei ausserordentlicher Kündigung
@@ -879,18 +990,78 @@ function haftungsdatumVerschoben(f,alt,neu){
   return {meldung:"Haftungsdatum "+richtung+"."+zusatz, protokoll:proto};
 }
 function abschliessen(id){
+  if(gesperrt(id)) return;
   const f=fall(id);
   if(!abschliessbar(f)){ toast("Abschluss nicht möglich – es sind noch Schritte offen."); return; }
-  f.abgeschlossen={am:iso(HEUTE), von:ICH};
+  f.abgeschlossen={am:iso(HEUTE), von:ST.ich};
   protokoll(f,"Fall abgeschlossen");
   nach(f,"Fall "+f.id+" abgeschlossen");
 }
 function wiederOeffnen(id){
+  if(gesperrt(id)) return;
   const f=fall(id); f.abgeschlossen=null;
   protokoll(f,"Fall wieder geöffnet");
   nach(f,"Fall "+f.id+" wieder geöffnet");
 }
-function nach(f,msg){ speichern(); render(); toast(msg); }
+function zurueckstellen(id,n){
+  if(gesperrt(id)) return;
+  const f=fall(id);
+  f.wiedervorlage={datum:tage(n), von:ST.ich};
+  protokoll(f,"Zurückgestellt bis "+fmt(f.wiedervorlage.datum));
+  speichern();
+  toast("Zurückgestellt bis "+fmt(f.wiedervorlage.datum));
+  if(ST.queue && ST.queue[ST.qIdx]===id) queueSpringe(1); else render();
+}
+function zuweisen(id,name){
+  if(!darfZuweisen()){ toast("Zuständigkeiten ändert die Teamleitung."); return; }
+  const f=fall(id), alt=f.bewirtschafter;
+  if(alt===name) return;
+  f.bewirtschafter=name;
+  protokoll(f,"Zuständigkeit: "+alt+" → "+name);
+  speichern(); render(); toast("Zuständigkeit an "+name+" übergeben");
+}
+function wiedervorlageAufheben(id){
+  if(gesperrt(id)) return;
+  const f=fall(id); if(!f.wiedervorlage) return;
+  f.wiedervorlage=null; protokoll(f,"Zurückstellung aufgehoben");
+  speichern(); render(); toast("Zurückstellung aufgehoben");
+}
+
+/* ---------- Durcharbeiten: Aufgaben der Reihe nach abarbeiten ---------- */
+function starteQueue(liste, herkunft){
+  const a=liste.filter(x=>!x.zurueck);
+  if(!a.length){ toast("Keine offenen Aufgaben."); return; }
+  ST.queue=a.map(x=>x.f.id); ST.qIdx=0; ST.qHerkunft=herkunft;
+  geheZu("fall", ST.queue[0]);
+}
+function queueBeenden(msg){
+  const h=ST.qHerkunft||{nav:"dashboard"};
+  ST.queue=null; ST.qIdx=0; ST.qHerkunft=null; ST.fallId=null;
+  ST.nav=h.nav; ST.bereich=h.bereich||null; ST.mitarbeiter=h.mitarbeiter||null;
+  render(); if(msg) toast(msg);
+}
+function queueSpringe(d){
+  if(!ST.queue) return;
+  const i=ST.qIdx+d;
+  if(i<0) return;
+  if(i>=ST.queue.length){ queueBeenden("Alle Aufgaben durchgearbeitet."); return; }
+  ST.qIdx=i; geheZu("fall", ST.queue[i]);
+}
+// Weiterspringen, sobald an diesem Fall nichts Dringendes mehr offen ist.
+function nochDringend(f){
+  const n=naechsterSchritt(f);
+  if(!n) return false;
+  if(n.art!=="schritt") return true;               // fehlende Angabe oder Abschluss: dranbleiben
+  const t=terminVon(f,n.schritt);
+  return t ? seitHeute(t)>=0 : false;              // überfällig oder heute fällig
+}
+function nach(f,msg){
+  speichern();
+  if(ST.queue && ST.nav==="fall" && ST.queue[ST.qIdx]===f.id && !nochDringend(f)){
+    toast(msg); queueSpringe(1); return;
+  }
+  render(); toast(msg);
+}
 
 let toastT=null;
 function toast(msg){
@@ -911,6 +1082,8 @@ function phaseBar(f){
 }
 function statusChip(f){
   if(f.abgeschlossen) return '<span class="chip ok"><span class="ic">✓</span>abgeschlossen</span>';
+  if(f.wiedervorlage && seitHeute(f.wiedervorlage.datum)<0)
+    return '<span class="chip n">zurückgestellt bis '+fmtKurz(f.wiedervorlage.datum)+'</span>';
   if(istUeberfaellig(f)) return '<span class="chip crit"><span class="ic">!</span>überfällig</span>';
   const ls=leerstand(f);
   if(ls && ls.laufend && !ls.kuenftig && ls.tage>60) return '<span class="chip warn"><span class="ic">▲</span>Langläufer</span>';
@@ -924,20 +1097,27 @@ function leerstandText(f){
   return ls.tage+" T."+(ls.laufend?"":"");
 }
 function aendern(f,feld){
-  if(f.abgeschlossen) return "";
+  if(!darfBearbeiten(f)) return "";
   return '<button class="edit" data-feld-edit="'+feld+'" type="button">ändern</button>';
 }
 function hilfeBtn(key){ return '<button class="ihelp" data-hilfe="'+key+'" aria-label="Erklärung anzeigen" type="button">i</button>'; }
 
 function sichtFaelle(){
-  return ST.sicht==="meine" ? FAELLE.filter(f=>f.bewirtschafter===ICH) : FAELLE;
+  if(ST.rolle!=="bewirtschafter") return FAELLE;
+  return ST.sicht==="meine" ? FAELLE.filter(f=>f.bewirtschafter===ST.ich) : FAELLE;
 }
+function faelleVon(name){ return FAELLE.filter(f=>f.bewirtschafter===name); }
 
 /* Aufgabenliste: was der Benutzer als Nächstes tun muss, nach Dringlichkeit */
-function aufgaben(basis){
+function aufgaben(basis, opt){
+  opt=opt||{};
   const out=[];
   basis.filter(f=>!f.abgeschlossen).forEach(f=>{
     const n=naechsterSchritt(f); if(!n) return;
+    const br=bereichVonFall(f);
+    if(opt.bereich && br!==opt.bereich) return;
+    const zurueck = !!(f.wiedervorlage && seitHeute(f.wiedervorlage.datum)<0);
+    if(zurueck && opt.ohneZurueckgestellt) return;
     let stufe="acc", frist=null, sort=3, fristTxt="";
     if(n.art==="schritt"){
       const t=terminVon(f,n.schritt);
@@ -948,8 +1128,10 @@ function aufgaben(basis){
       } else fristTxt="Phase "+n.phase;
     } else if(n.art==="feld"){ stufe="warn"; sort=1; fristTxt="unvollständig"; }
     else if(n.art==="abschluss"){ stufe="acc"; sort=2; fristTxt="bereit"; }
+    if(zurueck){ stufe="n"; sort=4; frist=null;
+      fristTxt="zurückgestellt bis "+fmtKurz(f.wiedervorlage.datum); }
     const ls=leerstand(f);
-    out.push({f, n, stufe, frist, fristTxt, sort, ls});
+    out.push({f, n, stufe, frist, fristTxt, sort, ls, bereich:br, zurueck});
   });
   out.sort((a,b)=> a.sort-b.sort ||
     (a.frist&&b.frist ? (a.frist<b.frist?-1:1) : 0) ||
@@ -958,75 +1140,237 @@ function aufgaben(basis){
 }
 
 /* ============================================================
-   8 · ANSICHT: DASHBOARD
+   7b · GEMEINSAME BAUSTEINE FÜR AUFGABEN UND BEREICHE
    ============================================================ */
-function viewDashboard(){
-  const basis=sichtFaelle();
+function aufgabenZeilen(liste, zeigeName){
+  if(!liste.length) return '<div class="empty">Keine offenen Aufgaben.</div>';
+  return liste.map(a=>`
+    <div class="task ${a.stufe}">
+      <span class="stripe"></span>
+      <div class="body">
+        <div class="t1">
+          <b>${esc(a.n.titel)}</b>
+          ${a.n.art==="abschluss"?'<span class="chip ok">bereit</span>':''}
+          <span class="chip n">${esc(BEREICH(a.bereich).titel)}</span>
+        </div>
+        <div class="t2">
+          <span class="nr">${esc(objekt(a.f.objektId).nr)}</span> ·
+          ${esc(objLabel(a.f.objektId))} · ex ${esc(a.f.exMieter||"—")}
+          ${zeigeName?" · <b>"+esc(a.f.bewirtschafter)+"</b>":""}
+        </div>
+      </div>
+      <div class="side">
+        <span class="due"><b>${esc(a.fristTxt||"—")}</b>${a.frist?fmtKurz(a.frist):""}</span>
+        <button class="btn sm" data-open="${a.f.id}">Öffnen</button>
+      </div>
+    </div>`).join("");
+}
+function bereichZahlen(basis,k){
+  const a=aufgaben(basis,{bereich:k});
+  return {faelle: basis.filter(f=>!f.abgeschlossen && bereichVonFall(f)===k).length,
+          aufgaben:a.length,
+          dringend:a.filter(x=>x.stufe==="crit").length,
+          bald:a.filter(x=>x.stufe==="warn").length};
+}
+function bereichKacheln(basis,herkunft){
+  return `<div class="brcards">${BEREICHE.map(b=>{
+    const z=bereichZahlen(basis,b.k);
+    return `<button class="brcard ${z.dringend?"is-crit":""}" data-bereich="${b.k}">
+      <span class="lbl">${esc(b.titel)} <span class="excel">${esc(b.excel)}</span></span>
+      <span class="v">${z.faelle}</span>
+      <span class="foot">${z.faelle===1?"offener Fall":"offene Fälle"}${z.dringend?" · <b style=\"color:var(--crit)\">"+z.dringend+" dringend</b>":z.bald?" · "+z.bald+" bald fällig":""}</span>
+    </button>`;}).join("")}</div>`;
+}
+function kpiBlock(basis){
   const offen=basis.filter(f=>!f.abgeschlossen);
   const ueber=offen.filter(istUeberfaellig);
   const laufend=offen.map(leerstand).filter(l=>l&&l.laufend&&!l.kuenftig);
   const avg=laufend.length? Math.round(laufend.reduce((s,l)=>s+l.tage,0)/laufend.length) : null;
   const mon=basis.filter(f=>f.abgeschlossen && parse(f.abgeschlossen.am).getUTCMonth()===HEUTE.getUTCMonth()
                             && parse(f.abgeschlossen.am).getUTCFullYear()===HEUTE.getUTCFullYear());
+  return `<div class="kpis">
+    <div class="kpi"><span class="lbl">Offene Fälle</span><span class="v">${offen.length}</span>
+      <span class="foot">von ${basis.length} insgesamt</span></div>
+    <div class="kpi ${ueber.length?"is-crit":""}"><span class="lbl">Überfällig</span><span class="v">${ueber.length}</span>
+      <span class="foot">${ueber.length?"Frist verstrichen, Schritt offen":"keine verstrichenen Fristen"}</span></div>
+    <div class="kpi"><span class="lbl">Ø Leerstandstage</span><span class="v">${avg==null?"–":avg}</span>
+      <span class="foot">laufende Leerstände</span></div>
+    <div class="kpi is-ok"><span class="lbl">Abgeschlossen</span><span class="v">${mon.length}</span>
+      <span class="foot">im ${MONATE[HEUTE.getUTCMonth()]} ${HEUTE.getUTCFullYear()}</span></div>
+  </div>`;
+}
+function durcharbeitenBtn(anz,label){
+  return `<button class="btn pri" id="btnQueue" ${anz?"":"disabled"}>▸ ${esc(label||"Aufgaben durcharbeiten")}${anz?" ("+anz+")":""}</button>`;
+}
+
+/* ============================================================
+   7c · ANSICHT: TEAMÜBERSICHT (Teamleitung)
+   ============================================================ */
+function teamZeile(name){
+  const f=faelleVon(name), offen=f.filter(x=>!x.abgeschlossen);
+  const a=aufgaben(f);
+  const crit=a.filter(x=>x.stufe==="crit");
+  const aeltest=crit.reduce((m,x)=>{ const d=x.frist?seitHeute(x.frist):0; return d>m?d:m; },0);
+  const zu=f.filter(x=>x.abgeschlossen && x.vermietetPer && x.haftungsdatum);
+  const avg=zu.length? Math.round(zu.map(x=>Math.max(0,diffT(x.haftungsdatum,x.vermietetPer)-1))
+             .reduce((p,q)=>p+q,0)/zu.length) : null;
+  return {name, gesamt:f.length, offen:offen.length, aufgaben:a.length,
+          crit:crit.length, aeltest, avg,
+          zurueck:a.filter(x=>x.zurueck).length};
+}
+function viewLeitung(){
+  const zeilen=BEWIRTSCHAFTER.map(teamZeile).sort((a,b)=> b.crit-a.crit || b.offen-a.offen);
+  const alleAufgaben=aufgaben(FAELLE);
+  const dringend=alleAufgaben.filter(a=>a.stufe==="crit"||a.stufe==="warn").slice(0,8);
+  return `
+  <div class="spread" style="margin-bottom:16px">
+    <div><h1>Teamübersicht</h1>
+      <p class="tiny muted" style="margin:3px 0 0">${esc(ST.ich)} · ${esc(ROLLEN[ST.rolle].t)} · Stand ${fmt(iso(HEUTE))}</p></div>
+    <div class="row">${darfAnlegen()?durcharbeitenBtn(alleAufgaben.filter(a=>!a.zurueck).length,"Team-Aufgaben durcharbeiten"):""}</div>
+  </div>
+
+  ${kpiBlock(FAELLE)}
+
+  <h2 style="margin:20px 0 9px">Arbeitsbereiche</h2>
+  ${bereichKacheln(FAELLE)}
+
+  <div class="panel" style="margin-top:18px">
+    <header><span class="lbl">Mitarbeiter</span>
+      <span class="tiny muted">Zeile anklicken, um den Arbeitsvorrat zu öffnen</span></header>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Bewirtschafter</th><th class="n">Offene Fälle</th><th class="n">Aufgaben</th>
+        <th class="n">Dringend</th><th class="n">Längste Überschreitung</th>
+        <th class="n">Ø Leerstand</th><th></th></tr></thead>
+      <tbody>${zeilen.map(z=>`<tr class="klick" data-mitarbeiter="${esc(z.name)}">
+        <td><b>${esc(z.name)}</b>${z.zurueck?' <span class="chip n">'+z.zurueck+' zurückgestellt</span>':""}</td>
+        <td class="n">${z.offen}</td>
+        <td class="n">${z.aufgaben}</td>
+        <td class="n" ${z.crit?'style="color:var(--crit);font-weight:600"':""}>${z.crit}</td>
+        <td class="n">${z.aeltest?z.aeltest+" T.":"–"}</td>
+        <td class="n">${z.avg==null?"–":z.avg}</td>
+        <td class="n"><span class="muted">öffnen →</span></td></tr>`).join("")}</tbody>
+    </table></div>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <header><span class="lbl">Handlungsbedarf im Team</span>
+      <span class="tiny muted">${dringend.length} von ${alleAufgaben.length} Aufgaben</span></header>
+    <div class="tasks">${aufgabenZeilen(dringend, true)}</div>
+  </div>`;
+}
+
+/* ============================================================
+   7d · ANSICHT: EINZELNER MITARBEITER
+   ============================================================ */
+function viewMitarbeiter(){
+  const name=ST.mitarbeiter;
+  const basis=faelleVon(name);
+  const a=aufgaben(basis);
+  return `
+  <button class="crumb" data-nav-to="dashboard" style="margin-bottom:10px">← Teamübersicht</button>
+  <div class="spread" style="margin-bottom:16px">
+    <div><h1>${esc(name)}</h1>
+      <p class="tiny muted" style="margin:3px 0 0">Bewirtschaftung · ${basis.length} Fälle insgesamt</p></div>
+    <div class="row">
+      ${darfAnlegen()?durcharbeitenBtn(a.filter(x=>!x.zurueck).length,"Aufgaben durcharbeiten"):""}
+      <button class="btn" data-setbew="${esc(name)}">Fälle filtern</button>
+    </div>
+  </div>
+
+  ${kpiBlock(basis)}
+
+  <h2 style="margin:20px 0 9px">Arbeitsbereiche</h2>
+  ${bereichKacheln(basis)}
+
+  <div class="panel" style="margin-top:18px">
+    <header><span class="lbl">Aufgaben</span><span class="tiny muted">nach Dringlichkeit</span></header>
+    <div class="tasks">${aufgabenZeilen(a, false)}</div>
+  </div>`;
+}
+
+/* ============================================================
+   7e · ANSICHT: ARBEITSBEREICH
+   ============================================================ */
+function viewBereich(){
+  const b=BEREICH(ST.bereich)||BEREICHE[0];
+  const basis=ST.mitarbeiter?faelleVon(ST.mitarbeiter):sichtFaelle();
+  const a=aufgaben(basis,{bereich:b.k});
+  const faelle=basis.filter(f=>!f.abgeschlossen && bereichVonFall(f)===b.k);
+  const zeigeName = ST.rolle!=="bewirtschafter" || ST.sicht==="team";
+  return `
+  <div class="spread" style="margin-bottom:6px">
+    <div>
+      <h1>${esc(b.titel)}</h1>
+      <p class="tiny muted" style="margin:3px 0 0">${esc(b.zweck)}
+        <span class="excel">Excel ${esc(b.excel)}</span></p>
+    </div>
+    <div class="row">${darfAnlegen()?durcharbeitenBtn(a.filter(x=>!x.zurueck).length):""}</div>
+  </div>
+  <div class="row" style="margin:12px 0 16px">
+    ${ST.mitarbeiter?`<span class="chip acc">nur ${esc(ST.mitarbeiter)}
+      <button class="chipx" data-mitarbeiter-weg>×</button></span>`:""}
+    ${ST.rolle==="bewirtschafter"?`<div class="seg" role="group" aria-label="Sicht">
+      <button data-sicht="meine" aria-pressed="${ST.sicht==="meine"}">Meine Fälle</button>
+      <button data-sicht="team" aria-pressed="${ST.sicht==="team"}">Team</button></div>`:""}
+    <span class="tiny muted">${faelle.length} ${faelle.length===1?"Fall":"Fälle"} in diesem Bereich ·
+      ${a.filter(x=>x.stufe==="crit").length} dringend</span>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <header><span class="lbl">Aufgaben in diesem Bereich</span>
+      <span class="tiny muted">nach Dringlichkeit</span></header>
+    <div class="tasks">${aufgabenZeilen(a, zeigeName)}</div>
+  </div>
+
+  <div class="panel">
+    <header><span class="lbl">Fälle in diesem Bereich</span><span class="tiny muted">${faelle.length}</span></header>
+    <div class="cases">${faelle.length?faelle.map(f=>fallZeile(f)).join(""):'<div class="empty">Keine Fälle in diesem Bereich.</div>'}</div>
+  </div>`;
+}
+
+/* ============================================================
+   8 · ANSICHT: DASHBOARD
+   ============================================================ */
+function viewDashboard(){
+  if(istLeitung() || ST.rolle==="lesend") return viewLeitung();
+  const basis=sichtFaelle();
   const auf=aufgaben(basis);
+  const aktiv=auf.filter(a=>!a.zurueck);
+  const offen=basis.filter(f=>!f.abgeschlossen);
   const warnRows=[];
   offen.forEach(f=>warnungen(f).filter(w=>w.stufe!=="info").forEach(w=>warnRows.push({f,w})));
   const seen=new Set();
   const warnU=warnRows.filter(r=>{ const k=r.f.id+"|"+r.w.titel; if(seen.has(k))return false; seen.add(k); return true; });
   warnU.sort((a,b)=> (a.w.stufe==="crit"?0:1)-(b.w.stufe==="crit"?0:1));
+  const nurLesen = ST.rolle==="lesend";
 
   return `
   <div class="spread" style="margin-bottom:16px">
     <div>
-      <h1>Dashboard</h1>
-      <p class="tiny muted" style="margin:3px 0 0">Stand ${fmt(iso(HEUTE))} · ${ST.sicht==="meine"?"meine Fälle ("+ICH+")":"alle Bewirtschafter"}</p>
+      <h1>${nurLesen?"Übersicht":"Mein Arbeitstag"}</h1>
+      <p class="tiny muted" style="margin:3px 0 0">${esc(ST.ich)} · ${esc(ROLLEN[ST.rolle].t)} ·
+        Stand ${fmt(iso(HEUTE))} · ${ST.sicht==="meine"?"meine Fälle":"alle Bewirtschafter"}</p>
     </div>
     <div class="row">
-      <div class="seg" role="group" aria-label="Sicht">
+      ${ST.rolle==="bewirtschafter"?`<div class="seg" role="group" aria-label="Sicht">
         <button data-sicht="meine" aria-pressed="${ST.sicht==="meine"}">Meine Fälle</button>
         <button data-sicht="team" aria-pressed="${ST.sicht==="team"}">Team</button>
-      </div>
+      </div>`:""}
+      ${nurLesen?"":durcharbeitenBtn(aktiv.length)}
     </div>
   </div>
 
-  <div class="kpis" style="margin-bottom:18px">
-    <div class="kpi"><span class="lbl">Offene Fälle</span><span class="v">${offen.length}</span>
-      <span class="foot">von ${basis.length} insgesamt</span></div>
-    <div class="kpi ${ueber.length?"is-crit":""}"><span class="lbl">Überfällig</span><span class="v">${ueber.length}</span>
-      <span class="foot">${ueber.length?"Termin verstrichen, Schritt offen":"keine verstrichenen Termine"}</span></div>
-    <div class="kpi"><span class="lbl">Ø Leerstandstage</span><span class="v">${avg==null?"–":avg}</span>
-      <span class="foot">laufende Leerstände, ab dem Tag nach ${ST.basis==="haftung"?"dem Haftungsdatum":"«gekündigt per»"}</span></div>
-    <div class="kpi is-ok"><span class="lbl">Abgeschlossen</span><span class="v">${mon.length}</span>
-      <span class="foot">im ${MONATE[HEUTE.getUTCMonth()]} ${HEUTE.getUTCFullYear()}</span></div>
-  </div>
+  ${kpiBlock(basis)}
 
-  <div class="panel" style="margin-bottom:16px">
+  <h2 style="margin:20px 0 9px">Arbeitsbereiche</h2>
+  ${bereichKacheln(basis)}
+
+  <div class="panel" style="margin:18px 0 16px">
     <header>
-      <span class="lbl">Meine Aufgaben</span>
-      <span class="tiny muted">${auf.length} offen · nach Dringlichkeit</span>
+      <span class="lbl">${nurLesen?"Offene Aufgaben":"Meine Aufgaben"}</span>
+      <span class="tiny muted">${aktiv.length} offen${auf.length-aktiv.length?" · "+(auf.length-aktiv.length)+" zurückgestellt":""} · nach Dringlichkeit</span>
     </header>
-    <div class="tasks">
-      ${auf.length? auf.slice(0,9).map(a=>`
-      <div class="task ${a.stufe}">
-        <span class="stripe"></span>
-        <div class="body">
-          <div class="t1">
-            <b>${esc(a.n.titel)}</b>
-            ${a.n.art==="abschluss"?'<span class="chip ok">bereit</span>':''}
-          </div>
-          <div class="t2">
-            <span class="nr">${esc(objekt(a.f.objektId).nr)}</span> ·
-            ${esc(objLabel(a.f.objektId))} · ex ${esc(a.f.exMieter||"—")}
-            ${ST.sicht==="team"?" · "+esc(a.f.bewirtschafter):""}
-          </div>
-        </div>
-        <div class="side">
-          <span class="due"><b>${esc(a.fristTxt||"—")}</b>${a.frist?fmtKurz(a.frist):""}</span>
-          <button class="btn sm" data-open="${a.f.id}">Öffnen</button>
-        </div>
-      </div>`).join("")
-      : '<div class="empty">Keine offenen Aufgaben.</div>'}
-    </div>
+    <div class="tasks">${aufgabenZeilen(auf.slice(0,9), ST.sicht==="team")}</div>
     ${auf.length>9?`<div class="pad" style="padding:10px 15px;border-top:1px solid var(--line)">
       <button class="btn ghost sm" data-nav-to="faelle">Alle ${auf.length} Aufgaben in der Fallliste ansehen →</button></div>`:""}
   </div>
@@ -1042,12 +1386,12 @@ function viewDashboard(){
           <div class="w2">${esc(objekt(r.f.objektId).nr)} · ${esc(objLabel(r.f.objektId))} — ${esc(r.w.text)}</div></div>
         <button class="btn sm" data-open="${r.f.id}">Prüfen</button>
       </div>`).join("")
-      : '<div class="wrow ok"><span class="ic">✓</span><div><b class="f-ui" style="font-size:13.5px">Keine Auffälligkeiten</b><div class="w2">Alle Daten plausibel, keine Termine verstrichen.</div></div><span></span></div>'}
+      : '<div class="wrow ok"><span class="ic">✓</span><div><b class="f-ui" style="font-size:13.5px">Keine Auffälligkeiten</b><div class="w2">Alle Daten plausibel, keine Fristen verstrichen.</div></div><span></span></div>'}
     </div>
   </div>
 
   <div class="row" style="margin-top:16px">
-    <button class="btn pri" id="btnNeu2">+ Neuer Fall</button>
+    ${darfAnlegen()?'<button class="btn pri" id="btnNeu2">+ Neuer Fall</button>':""}
     <button class="btn" data-nav-to="faelle">Alle Fälle</button>
     <button class="btn" data-nav-to="auswertung">Auswertung</button>
   </div>`;
@@ -1076,6 +1420,21 @@ function gefiltert(){
     const la=leerstand(a), lb=leerstand(b);
     return (lb?lb.tage:0)-(la?la.tage:0);
   });
+}
+function fallZeile(f){
+  const o=objekt(f.objektId), l=lig(o.lig), n=naechsterSchritt(f);
+  const br=bereichVonFall(f);
+  return `<button class="case" data-open="${f.id}">
+    <div class="c-obj"><div class="nr">${esc(o.nr)}</div><div class="s2">${esc(f.id)}</div></div>
+    <div class="c-lig"><div class="ln">${esc(l.name)}, ${esc(o.stock)}</div>
+      <div class="s2">${esc(l.ort)} · ${o.zi.toFixed(1).replace(".",",")} Zi. · ${esc(f.bewirtschafter)}</div></div>
+    <div class="c-mieter"><div class="s2" style="color:var(--ink)">ex ${esc(f.exMieter||"—")}</div>
+      <div class="s2">${f.neuerMieter?"neu "+esc(f.neuerMieter):(n?esc(n.titel):"—")}</div></div>
+    <div class="c-phase">${phaseBar(f)}<div class="s2" style="margin-top:4px">${f.abgeschlossen
+        ?"abgeschlossen "+fmtKurz(f.abgeschlossen.am)
+        :esc(BEREICH(br).titel)+" · Phase "+aktuellePhase(f)}</div></div>
+    <div class="rt"><div class="nr num">${leerstandText(f)}</div><div style="margin-top:4px">${statusChip(f)}</div></div>
+  </button>`;
 }
 function viewFaelle(){
   const list=gefiltert();
@@ -1112,17 +1471,7 @@ function viewFaelle(){
 
   <div class="panel">
     <div class="cases">
-      ${list.length? list.map(f=>{
-        const o=objekt(f.objektId), l=lig(o.lig), n=naechsterSchritt(f);
-        return `<button class="case" data-open="${f.id}">
-          <div class="c-obj"><div class="nr">${esc(o.nr)}</div><div class="s2">${esc(f.id)}</div></div>
-          <div class="c-lig"><div class="ln">${esc(l.name)}, ${esc(o.stock)}</div>
-            <div class="s2">${esc(l.ort)} · ${o.zi.toFixed(1).replace(".",",")} Zi. · ${esc(f.bewirtschafter)}</div></div>
-          <div class="c-mieter"><div class="s2" style="color:var(--ink)">ex ${esc(f.exMieter||"—")}</div>
-            <div class="s2">${f.neuerMieter?"neu "+esc(f.neuerMieter):(n?esc(n.titel):"—")}</div></div>
-          <div class="c-phase">${phaseBar(f)}<div class="s2" style="margin-top:4px">${f.abgeschlossen?"abgeschlossen "+fmtKurz(f.abgeschlossen.am):"Phase "+aktuellePhase(f)+" · "+PHASEN[aktuellePhase(f)-1].titel}</div></div>
-          <div class="rt"><div class="nr num">${leerstandText(f)}</div><div style="margin-top:4px">${statusChip(f)}</div></div>
-        </button>`;}).join("")
+      ${list.length? list.map(fallZeile).join("")
       : '<div class="empty">Keine Fälle für diese Filter. <button class="btn ghost sm" id="btnFilterReset">Filter zurücksetzen</button></div>'}
     </div>
   </div>
@@ -1137,13 +1486,13 @@ function feldZeile(f,feld,label,typ){
   return `<div class="field">
     <label for="fl_${feld}">${esc(label)} ${hilfeBtn(feld)}</label>
     <input id="fl_${feld}" type="${typ}" value="${esc(v)}" data-feld="${feld}" data-fall="${f.id}"
-      ${f.abgeschlossen?"disabled":""}>
+      ${darfBearbeiten(f)?"":"disabled"}>
     <div class="helptext" id="hlp_${feld}" hidden>${esc(FELDHILFE[feld]||"")}</div>
   </div>`;
 }
 function schrittZeile(f,s){
   const st=f.schritte[s.k];
-  const zu=!!f.abgeschlossen;
+  const zu=!!f.abgeschlossen || !darfBearbeiten(f);
   const tv=terminVon(f,s), soll=istSoll(f,s);
   const rest = st.status==="offen" && tv ? seitHeute(tv) : null;
   const ueber = rest!==null && rest>0;
@@ -1181,8 +1530,32 @@ function viewFall(){
   const o=objekt(f.objektId), l=lig(o.lig);
   const n=naechsterSchritt(f), ws=warnungen(f), ls=leerstand(f), vl=vorlauftage(f), cur=aktuellePhase(f);
 
+  const inQueue = !!(ST.queue && ST.queue[ST.qIdx]===f.id);
+  const bearbeitbar = darfBearbeiten(f);
+  const wv = f.wiedervorlage && seitHeute(f.wiedervorlage.datum)<0 ? f.wiedervorlage : null;
+
   return `
-  <button class="crumb" data-nav-to="faelle" style="margin-bottom:10px">← Fälle</button>
+  ${inQueue?`<div class="qbar">
+    <div class="qtxt"><b>Durcharbeiten</b> · Aufgabe ${ST.qIdx+1} von ${ST.queue.length}
+      <span class="qprog"><span style="width:${Math.round((ST.qIdx+1)/ST.queue.length*100)}%"></span></span></div>
+    <div class="qacts">
+      <button class="btn sm" data-q="-1" ${ST.qIdx===0?"disabled":""}>← Zurück</button>
+      ${bearbeitbar?`<button class="btn sm" data-defer="${f.id}">Später · 3 Tage</button>`:""}
+      <button class="btn sm" data-q="1">Weiter →</button>
+      <button class="btn sm ghost" data-qend>Beenden</button>
+    </div>
+  </div>`:`<button class="crumb" data-nav-to="faelle" style="margin-bottom:10px">← Fälle</button>`}
+
+  ${bearbeitbar?"":`<div class="banner warn" style="margin-bottom:12px"><span>▲</span><div>
+    ${ST.rolle==="lesend"
+      ? "Sie sind leseberechtigt. Fälle lassen sich ansehen und exportieren, aber nicht ändern."
+      : "Zuständig ist <b>"+esc(f.bewirtschafter)+"</b>. Sie sehen den Fall, bearbeiten kann ihn die zuständige Person oder die Teamleitung."}
+  </div></div>`}
+
+  ${wv?`<div class="banner info" style="margin-bottom:12px"><span>ℹ</span><div>
+    Zurückgestellt bis <b>${fmt(wv.datum)}</b> durch ${esc(wv.von)}.
+    ${bearbeitbar?'<button class="btn sm ghost" data-wvweg="'+f.id+'" style="margin-left:8px">Jetzt wieder aufnehmen</button>':""}
+  </div></div>`:""}
   <div class="spread" style="margin-bottom:14px">
     <div style="min-width:0">
       <h1>${esc(l.name)}, ${esc(o.stock)}</h1>
@@ -1191,7 +1564,12 @@ function viewFall(){
     </div>
     <div class="row">
       ${statusChip(f)}
-      <span class="chip n">${esc(f.bewirtschafter)}</span>
+      <span class="chip acc">${esc(BEREICH(bereichVonFall(f)).titel)}</span>
+      ${darfZuweisen()&&!f.abgeschlossen
+        ? `<span class="zuw"><label for="zustaendig" class="lbl">Zuständig</label>
+           <select id="zustaendig" data-fall="${f.id}">${BEWIRTSCHAFTER.map(b=>
+             `<option ${b===f.bewirtschafter?"selected":""}>${esc(b)}</option>`).join("")}</select></span>`
+        : `<span class="chip n">${esc(f.bewirtschafter)}</span>`}
       <span class="chip n">${esc(f.id)}</span>
     </div>
   </div>
@@ -1218,15 +1596,16 @@ function viewFall(){
       <p>${n.text}</p>
     </div>
     <div class="acts">
-      ${n.art==="schritt"&&n.soll?`<button class="btn pri" data-termin-focus="${n.schritt.k}">Termin setzen</button>`:""}
-      ${n.art==="schritt"&&!n.soll?`<button class="btn pri" data-do="${n.schritt.k}" data-fall="${f.id}">Erledigen</button>`:""}
+      ${!bearbeitbar?"":`
+      ${n.art==="schritt"&&n.terminSetzen?`<button class="btn pri" data-termin-focus="${n.schritt.k}">Termin vereinbaren</button>`:""}
+      ${n.art==="schritt"&&!n.terminSetzen?`<button class="btn pri" data-do="${n.schritt.k}" data-fall="${f.id}">Erledigen</button>`:""}
       ${n.art==="abschluss"?`<button class="btn pri" data-close="${f.id}">Fall abschliessen</button>`:""}
-      ${n.art==="feld"?`<button class="btn pri" data-focus="${n.felder[0].f}">Zur Angabe</button>`:""}
+      ${n.art==="feld"?`<button class="btn pri" data-focus="${n.felder[0].f}">Zur Angabe</button>`:""}`}
     </div>
   </div>`:`<div class="next done" style="margin-bottom:14px">
     <div><span class="k">Erledigt</span><h3>Fall abgeschlossen am ${fmt(f.abgeschlossen.am)}</h3>
     <p>Abgeschlossen durch ${esc(f.abgeschlossen.von)} · alle fünf Phasen vollständig.</p></div>
-    <div class="acts"><button class="btn" data-reopen="${f.id}">Wieder öffnen</button></div>
+    <div class="acts">${bearbeitbar?`<button class="btn" data-reopen="${f.id}">Wieder öffnen</button>`:""}</div>
   </div>`}
 
   ${ws.length?`<div class="panel" style="margin-bottom:14px"><header><span class="lbl">Prüfungen zu diesem Fall</span></header>
@@ -1369,7 +1748,7 @@ function viewAuswertung(){
       <thead><tr><th>Bewirtschafter</th><th class="n">Gesamt</th><th class="n">Offen</th>
         <th class="n">Überfällig</th><th class="n">Ø Leerstand</th><th class="n">Ø nach Excel</th><th class="n">Differenz</th></tr></thead>
       <tbody>${rows.map(r=>`<tr>
-        <td>${esc(r.bew)}${r.bew===ICH?' <span class="chip acc" style="margin-left:4px">ich</span>':""}</td>
+        <td>${esc(r.bew)}${r.bew===ST.ich?' <span class="chip acc" style="margin-left:4px">ich</span>':""}</td>
         <td class="n">${r.gesamt}</td><td class="n">${r.offen}</td>
         <td class="n" ${r.ueber?'style="color:var(--crit);font-weight:600"':""}>${r.ueber}</td>
         <td class="n">${r.avgNeu==null?"–":r.avgNeu}</td>
@@ -1618,7 +1997,7 @@ function dialogNeuerFall(){
           </optgroup>`).join("")}</select>
           <div class="helptext" id="hlp_objekt" hidden>${esc(FELDHILFE.objekt)}</div></div>
         <div class="field"><label for="nfBew">Bewirtschafter <span class="req">*</span> ${hilfeBtn("bewirtschafter")}</label>
-          <select id="nfBew">${BEWIRTSCHAFTER.map(b=>`<option ${b===ICH?"selected":""}>${b}</option>`).join("")}</select>
+          <select id="nfBew">${BEWIRTSCHAFTER.map(b=>`<option ${b===ST.ich?"selected":""}>${b}</option>`).join("")}</select>
           <div class="helptext" id="hlp_bewirtschafter" hidden>${esc(FELDHILFE.bewirtschafter)}</div></div>
         <div class="field"><label for="nfEx">ex-Mieter <span class="req">*</span> ${hilfeBtn("exMieter")}</label>
           <input id="nfEx" type="text" placeholder="Name des kündigenden Mieters">
@@ -1655,6 +2034,7 @@ function pruefeNeu(){
   } else box.innerHTML="";
 }
 function speichereNeu(){
+  if(!darfAnlegen()){ toast("Keine Berechtigung, Fälle anzulegen."); return; }
   const objId=document.getElementById("nfObj").value;
   const bew=document.getElementById("nfBew").value;
   const ex=document.getElementById("nfEx").value.trim();
@@ -1677,7 +2057,7 @@ function speichereNeu(){
   SCHRITTE.forEach(s=>{ schritte[s.k]={status:"offen",datum:null,von:null,grund:null,termin:null}; });
   const f={id, objektId:objId, bewirtschafter:bew, exMieter:ex, gekuendigtPer:kue, haftungsdatum:haft,
     mieterSeit:seit, neuerMieter:"", vermietetPer:"", notiz:"", schritte,
-    historie:[{d:iso(HEUTE), von:ICH, txt:"Fall angelegt"}], abgeschlossen:null, angelegtAm:iso(HEUTE)};
+    historie:[{d:iso(HEUTE), von:ST.ich, txt:"Fall angelegt"}], abgeschlossen:null, angelegtAm:iso(HEUTE)};
   FAELLE.unshift(f);
   schliesseModal();
   ST.nav="fall"; ST.fallId=id;
@@ -1726,18 +2106,41 @@ function render(){
   const v=document.getElementById("view");
   let html="";
   if(ST.nav==="dashboard")        html=viewDashboard();
+  else if(ST.nav==="bereich")     html=viewBereich();
+  else if(ST.nav==="mitarbeiter") html=ST.mitarbeiter?viewMitarbeiter():viewDashboard();
   else if(ST.nav==="faelle")      html=viewFaelle();
   else if(ST.nav==="fall")        html=viewFall();
   else if(ST.nav==="auswertung")  html=viewAuswertung();
   else if(ST.nav==="stammdaten")  html=viewStammdaten();
   else if(ST.nav==="hilfe")       html=viewHilfe();
-  const key=ST.nav+"|"+(ST.fallId||"");
+  const key=[ST.nav,ST.fallId||"",ST.bereich||"",ST.mitarbeiter||""].join("|");
   const wechsel = key!==letzteAnsicht;
   v.innerHTML=html;
-  const aktiv = ST.nav==="fall" ? "faelle" : ST.nav;
+  const aktiv = ST.nav==="fall" ? "faelle" : ST.nav==="mitarbeiter" ? "dashboard" : ST.nav;
   document.querySelectorAll("#rail [data-nav]").forEach(b=>{
     if(b.dataset.nav===aktiv) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current");
   });
+  document.querySelectorAll("#rail [data-bereich]").forEach(b=>{
+    if(ST.nav==="bereich" && b.dataset.bereich===ST.bereich) b.setAttribute("aria-current","page");
+    else b.removeAttribute("aria-current");
+  });
+  const zaehlBasis = istLeitung() ? FAELLE : sichtFaelle();
+  BEREICHE.forEach(b=>{
+    const el=document.querySelector('#rail [data-cnt="'+b.k+'"]');
+    if(!el) return;
+    const z=bereichZahlen(zaehlBasis,b.k);
+    el.textContent = z.faelle||"";
+    el.className = "cnt"+(z.dringend?" crit":"");
+  });
+  const us=document.getElementById("userSel");
+  const soll=benutzerliste().map(b=>b.name).join("|");
+  if(us.dataset.stand!==soll){
+    us.dataset.stand=soll;
+    us.innerHTML=benutzerliste().map(b=>
+      '<option value="'+esc(b.name)+'">'+esc(b.name)+" — "+ROLLEN[b.rolle].t+'</option>').join("");
+  }
+  us.value=ST.ich;
+  document.getElementById("btnNeu").hidden = !darfAnlegen();
   const ueb=sichtFaelle().filter(f=>!f.abgeschlossen&&istUeberfaellig(f)).length;
   const badge=document.getElementById("railBadge");
   badge.textContent=ueb; badge.hidden = ueb===0;
@@ -1752,7 +2155,7 @@ function geheZu(nav,fallId){
 
 /* ---------- Ereignisse ---------- */
 document.addEventListener("click", e=>{
-  const t=e.target.closest("button,a"); if(!t) return;
+  const t=e.target.closest("button,a,[data-mitarbeiter]"); if(!t) return;
 
   if(t.dataset.hilfe!==undefined){
     const bereich=t.closest(".modal")||document;
@@ -1762,7 +2165,15 @@ document.addEventListener("click", e=>{
   }
   if(t.dataset.cancel!==undefined){ schliesseModal(); return; }
   if(t.dataset.nav){ geheZu(t.dataset.nav); return; }
+  if(t.dataset.setbew){ ST.fBew=t.dataset.setbew; ST.fStatus="offen"; geheZu("faelle"); return; }
   if(t.dataset.navTo){ geheZu(t.dataset.navTo); return; }
+  if(t.dataset.bereich){ ST.nav="bereich"; ST.bereich=t.dataset.bereich; render(); return; }
+  if(t.dataset.mitarbeiter){ ST.nav="mitarbeiter"; ST.mitarbeiter=t.dataset.mitarbeiter; render(); return; }
+  if(t.dataset.mitarbeiterWeg!==undefined){ ST.mitarbeiter=null; render(); return; }
+  if(t.dataset.q){ queueSpringe(Number(t.dataset.q)); return; }
+  if(t.dataset.qend!==undefined){ queueBeenden("Durcharbeiten beendet."); return; }
+  if(t.dataset.defer){ zurueckstellen(t.dataset.defer,3); return; }
+  if(t.dataset.wvweg){ wiedervorlageAufheben(t.dataset.wvweg); return; }
   if(t.dataset.open){ geheZu("fall", t.dataset.open); return; }
   if(t.dataset.sicht){ ST.sicht=t.dataset.sicht; speichern(); render(); return; }
   if(t.dataset.basis){ ST.basis=t.dataset.basis; speichern(); render();
@@ -1780,6 +2191,20 @@ document.addEventListener("click", e=>{
   if(t.dataset.terminFocus){ zeigeFeld("trm_"+t.dataset.terminFocus, true); return; }
 
   switch(t.id){
+    case "btnQueue": {
+      let liste, herkunft;
+      if(ST.nav==="bereich"){
+        liste=aufgaben(ST.mitarbeiter?faelleVon(ST.mitarbeiter):sichtFaelle(),{bereich:ST.bereich});
+        herkunft={nav:"bereich", bereich:ST.bereich, mitarbeiter:ST.mitarbeiter};
+      } else if(ST.nav==="mitarbeiter"){
+        liste=aufgaben(faelleVon(ST.mitarbeiter));
+        herkunft={nav:"mitarbeiter", mitarbeiter:ST.mitarbeiter};
+      } else {
+        liste=aufgaben(istLeitung()?FAELLE:sichtFaelle());
+        herkunft={nav:"dashboard"};
+      }
+      starteQueue(liste, herkunft); return;
+    }
     case "btnNeu": case "btnNeu2": dialogNeuerFall(); return;
     case "btnExport": dialogExport(); return;
     case "nfSave": speichereNeu(); return;
@@ -1812,6 +2237,8 @@ document.addEventListener("change", e=>{
   if(el.dataset && el.dataset.feld){ setFeld(el.dataset.fall, el.dataset.feld, el.value); return; }
   if(el.dataset && el.dataset.termin){ setTermin(el.dataset.fall, el.dataset.termin, el.value); return; }
   switch(el.id){
+    case "userSel": anmelden(el.value); return;
+    case "zustaendig": zuweisen(el.dataset.fall, el.value); return;
     case "fbew": ST.fBew=el.value; render(); return;
     case "fph":  ST.fPhase=el.value; render(); return;
     case "fst":  ST.fStatus=el.value; render(); return;

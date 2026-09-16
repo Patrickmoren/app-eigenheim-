@@ -291,7 +291,21 @@ Drei Verschiebungen gegenüber Excel:
 3. **Von der Farbe zur Aufgabe.** Statt gelb/rot/orange in einer Tabelle, die man erst filtern muss,
    eine Aufgabenliste „Das ist überfällig, das fehlt, das ist zu prüfen“ direkt auf der Startseite.
 
-### 4.1 Prozessmodell: 5 Phasen, 35 Felder bleiben fachlich erhalten
+### 4.1 Drei Arbeitsbereiche über fünf Phasen
+
+Die Gliederung aus Zeile 2 des Excels wird zur Navigation. Jeder Bereich ist ein eigener
+Arbeitsvorrat, den man am Stück durcharbeiten kann:
+
+| Arbeitsbereich | Phasen | Excel |
+|---|---|---|
+| **Kündigung & Abnahme** | 1–2 | A–V |
+| **Wiedervermietung** | 3–4 | W–AE |
+| **Schlussabrechnung** | 5 | AF–AH |
+
+Kündigung/Abnahme und Wiedervermietung bleiben bewusst getrennt: es sind zwei verschiedene
+Arbeiten, oft zeitlich versetzt, und die Vermarktung läuft parallel zur Abnahme.
+
+### 4.1b Prozessmodell: 5 Phasen, 35 Felder bleiben fachlich erhalten
 
 | Phase | aus Excel | Abschlusskriterium (automatisch) |
 |---|---|---|
@@ -378,12 +392,27 @@ Kein allgemeines Handbuch, sondern Hilfe **am Feld und am Fall**:
 
 ### 5.3 Rollen
 
-| Rolle | darf |
-|---|---|
-| **Bewirtschafter** | eigene Fälle anlegen und bearbeiten, fremde lesen (Vertretung, Auskunft am Telefon) |
-| **Teamleitung** | alle Fälle bearbeiten, umhängen, Auswertungen über alle, Fälle wieder öffnen |
-| **Leseberechtigt** (z. B. Eigentümerbetreuung, Buchhaltung) | alles lesen und exportieren, nichts ändern |
-| **Administrator** | Stammdaten (Bewirtschafter, Eigentümer, Liegenschaften), Benutzer und Rollen, Fristenparameter, Vorlagen |
+| Rolle | darf | Startseite |
+|---|---|---|
+| **Bewirtschafter** | eigene Fälle anlegen und bearbeiten, fremde lesen (Vertretung, Auskunft am Telefon) | «Mein Arbeitstag» |
+| **Teamleitung** | alle Fälle bearbeiten, Zuständigkeiten übergeben, Auswertungen über alle, Fälle wieder öffnen | «Teamübersicht» mit Mitarbeiter-Einstieg |
+| **Leseberechtigt** (z. B. Eigentümerbetreuung, Buchhaltung) | alles lesen und exportieren, nichts ändern | «Teamübersicht» ohne Aktionen |
+| **Administrator** | Stammdaten (Bewirtschafter, Eigentümer, Liegenschaften), Benutzer und Rollen, Fristenparameter, Vorlagen | Stammdaten |
+
+Die Teamleitung steigt über eine Mitarbeiterzeile direkt in dessen Arbeitsvorrat ein und sieht
+dort dieselben Aufgaben und Arbeitsbereiche wie die Person selbst. Berechtigungen werden nicht
+nur durch ausgeblendete Schaltflächen durchgesetzt: jede ändernde Aktion prüft sie selbst.
+
+### 5.3b Durcharbeiten
+
+Der Kern der Bedienung ist kein Suchen, sondern ein Stapel. «Aufgaben durcharbeiten» nimmt den
+Arbeitsvorrat – gesamt, je Bereich oder je Mitarbeiter – und führt Fall für Fall hindurch:
+Fortschrittsanzeige, eine Hauptaktion je Fall, Zurück, Später und Beenden. Nach dem Erledigen
+springt die Anwendung selbst weiter, sobald an diesem Fall nichts Dringendes mehr offen ist.
+
+**Später** stellt einen Fall mit Datum zurück, statt ihn zu überspringen. Er verschwindet aus dem
+Stapel, bleibt in der Liste sichtbar und kommt am Stichtag von selbst zurück – damit ist
+«jetzt nicht» eine dokumentierte Entscheidung und kein Vergessen.
 
 Begründung: Das Excel trennt heute physisch nach Blättern, erlaubt aber faktisch jedem alles.
 Die Trennung „eigene bearbeiten / alle sehen“ bildet die gelebte Praxis (Stellvertretung, Auskunft)
