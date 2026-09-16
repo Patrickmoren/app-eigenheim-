@@ -1,0 +1,1710 @@
+<title>Leerstandsmanager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F4F6F7; --surface:#FFFFFF; --surface-2:#FAFBFB; --sunken:#EDF1F2;
+  --ink:#15202A; --ink-2:#5A6B76; --ink-3:#85939C;
+  --line:#DFE5E8; --line-strong:#C6D0D5;
+  --accent:#0F5C6E; --accent-ink:#0B4655; --accent-soft:#E2EFF2; --on-accent:#FFFFFF;
+  --ok:#2F6B45; --ok-soft:#E3F0E8;
+  --warn:#8A5A0B; --warn-soft:#FAEEDA;
+  --crit:#A3312B; --crit-soft:#F8E4E2;
+  --ph1:#CFE3E8; --ph2:#A3CBD4; --ph3:#6FAEBC; --ph4:#3D8B9D; --ph5:#17657A;
+  --ph-ink-light:#0B4655; --ph-ink-dark:#FFFFFF;
+  --shadow:0 1px 2px rgba(21,32,42,.06), 0 4px 14px rgba(21,32,42,.05);
+  --r:6px;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#0F161D; --surface:#18212B; --surface-2:#1C2631; --sunken:#131C24;
+  --ink:#E7EDF1; --ink-2:#9AAAB5; --ink-3:#71828D;
+  --line:#2A3743; --line-strong:#3A4A57;
+  --accent:#5CBCCE; --accent-ink:#8FD5E2; --accent-soft:#16333C; --on-accent:#08222A;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --ph1:#22424E; --ph2:#2D5F6F; --ph3:#3E8296; --ph4:#59A6B8; --ph5:#8ACDD9;
+  --ph-ink-light:#D6EAF0; --ph-ink-dark:#08222A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.28);
+}}
+:root[data-theme="dark"]{
+  --ground:#0F161D; --surface:#18212B; --surface-2:#1C2631; --sunken:#131C24;
+  --ink:#E7EDF1; --ink-2:#9AAAB5; --ink-3:#71828D;
+  --line:#2A3743; --line-strong:#3A4A57;
+  --accent:#5CBCCE; --accent-ink:#8FD5E2; --accent-soft:#16333C; --on-accent:#08222A;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --ph1:#22424E; --ph2:#2D5F6F; --ph3:#3E8296; --ph4:#59A6B8; --ph5:#8ACDD9;
+  --ph-ink-light:#D6EAF0; --ph-ink-dark:#08222A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font:400 15px/1.5 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.f-ui{font-family:Archivo,"Segoe UI",system-ui,sans-serif;text-wrap:balance}
+h1{font-size:23px;font-weight:600;letter-spacing:-.01em;margin:0}
+h2{font-size:16px;font-weight:600;margin:0}
+h3{font-size:14px;font-weight:600;margin:0}
+.mono,.nr{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;letter-spacing:-.01em}
+.num{font-variant-numeric:tabular-nums}
+.lbl{font-family:Archivo,system-ui,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.muted{color:var(--ink-2)}
+.tiny{font-size:12.5px}
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* ---------- shell ---------- */
+.shell{display:flex;flex-direction:column;min-height:100%}
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:9px;margin-right:auto}
+.brand b{font-family:Archivo;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.brand .sub{font-size:11.5px;color:var(--ink-3)}
+.gsearch{position:relative;flex:0 1 300px;min-width:170px}
+.gsearch input[type=text]{width:100%;padding:7px 10px 7px 28px}
+.gsearch::before{content:"";position:absolute;left:9px;top:50%;width:11px;height:11px;margin-top:-7px;border:1.6px solid var(--ink-3);border-radius:50%}
+.gsearch::after{content:"";position:absolute;left:18px;top:50%;width:6px;height:1.6px;margin-top:2px;background:var(--ink-3);transform:rotate(45deg)}
+.main{display:grid;grid-template-columns:214px minmax(0,1fr);flex:1;align-items:start}
+.rail{position:sticky;top:calc(52px + env(safe-area-inset-top,0px));padding:16px 10px;display:flex;flex-direction:column;gap:2px}
+.rail button{
+  display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+  padding:8px 10px;border:0;border-radius:var(--r);background:none;color:var(--ink-2);
+  font-family:Archivo;font-size:13.5px;font-weight:500;cursor:pointer;
+}
+.rail button:hover{background:var(--sunken);color:var(--ink)}
+.rail button[aria-current="page"]{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+.rail .dot{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;background:var(--crit);color:#fff;border-radius:9px;padding:1px 6px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:10px 4px}
+.view{padding:22px 24px 64px;max-width:1180px;min-width:0}
+@media (max-width:880px){
+  .main{grid-template-columns:1fr}
+  .rail{position:static;flex-direction:row;overflow-x:auto;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
+  .rail button{width:auto;white-space:nowrap}
+  .rail hr{display:none}
+  .view{padding:18px 16px 56px}
+}
+
+/* ---------- controls ---------- */
+input,select,textarea,button{font-family:inherit;font-size:14px;color:inherit}
+input[type=text],input[type=date],input[type=number],select,textarea{
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r);
+  padding:7px 9px;width:100%;
+}
+input:disabled{background:var(--sunken);color:var(--ink-3)}
+textarea{font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.55}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:var(--r);
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  font-family:Archivo;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent-ink)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.pri:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:var(--on-accent)}
+.btn.sm{padding:4px 9px;font-size:12.5px}
+.btn.ghost{border-color:transparent;background:none;color:var(--ink-2);font-weight:500}
+.btn.ghost:hover{background:var(--sunken)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{display:flex;gap:14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>label{font-family:Archivo;font-size:12px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:5px}
+.req{color:var(--crit);font-size:14px;line-height:1}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.ihelp{
+  border:0;background:none;color:var(--ink-3);cursor:pointer;padding:0;
+  width:15px;height:15px;border:1px solid currentColor;border-radius:50%;
+  font:600 10px/13px Archivo,sans-serif;text-align:center;flex:none;
+}
+.ihelp:hover{color:var(--accent);background:var(--accent-soft)}
+.helptext{
+  font-size:12.5px;line-height:1.5;color:var(--ink-2);background:var(--accent-soft);
+  border-left:2px solid var(--accent);padding:7px 10px;border-radius:0 var(--r) var(--r) 0;
+}
+.err{font-size:12.5px;color:var(--crit);font-weight:600}
+
+/* ---------- surfaces ---------- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.panel>header{display:flex;align-items:center;gap:10px;padding:12px 15px;border-bottom:1px solid var(--line)}
+.panel>header .lbl{margin-right:auto}
+.panel .pad{padding:15px}
+.flat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;display:flex;flex-direction:column;gap:3px;box-shadow:var(--shadow)}
+.kpi .v{font-family:Archivo;font-size:29px;font-weight:600;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .foot{font-size:12px;color:var(--ink-3)}
+.kpi.is-crit .v{color:var(--crit)}
+.kpi.is-ok .v{color:var(--ok)}
+
+/* ---------- chips ---------- */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:20px;font-family:Archivo;font-size:11.5px;font-weight:600;white-space:nowrap}
+.chip.n{background:var(--sunken);color:var(--ink-2)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.crit{background:var(--crit-soft);color:var(--crit)}
+.chip.acc{background:var(--accent-soft);color:var(--accent-ink)}
+.chip .ic{font-size:10px}
+
+/* ---------- task list ---------- */
+.tasks{display:flex;flex-direction:column}
+.task{
+  display:grid;grid-template-columns:3px 1fr auto;gap:0 13px;align-items:center;
+  border-top:1px solid var(--line);padding:0;
+}
+.tasks .task:first-child{border-top:0}
+.task .stripe{align-self:stretch;background:var(--line-strong);border-radius:2px}
+.task.crit .stripe{background:var(--crit)}
+.task.warn .stripe{background:var(--warn)}
+.task.acc .stripe{background:var(--accent)}
+.task .body{padding:11px 0;min-width:0}
+.task .t1{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.task .t1 b{font-family:Archivo;font-weight:600;font-size:13.5px}
+.task .t2{font-size:13px;color:var(--ink-2);margin-top:2px}
+.task .side{padding:11px 15px 11px 0;display:flex;align-items:center;gap:10px}
+.task .due{text-align:right;font-family:"IBM Plex Mono",monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-2);line-height:1.35}
+.task .due b{display:block;font-size:13px}
+.task.crit .due b{color:var(--crit)}
+.task .body{padding-left:0}
+.tasks .task .body{padding-left:0}
+.task>.stripe{margin:6px 0}
+
+/* ---------- case rows ---------- */
+.cases{display:flex;flex-direction:column}
+.case{
+  display:grid;grid-template-columns:118px minmax(0,1.5fr) minmax(0,1.2fr) 148px 92px;
+  gap:14px;align-items:center;padding:11px 15px;border-top:1px solid var(--line);
+  background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left;cursor:pointer;color:inherit;
+}
+.cases .case:first-child{border-top:0}
+.case:hover{background:var(--surface-2)}
+.case .ln{font-family:Archivo;font-weight:600;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case .s2{font-size:12.5px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case .rt{text-align:right}
+@media (max-width:920px){
+  .case{grid-template-columns:1fr auto;gap:6px 12px}
+  .case .c-obj{grid-column:1/-1}
+  .case .c-mieter,.case .c-phase{grid-column:1/-1}
+}
+
+/* ---------- phase bar ---------- */
+.pbar{display:flex;gap:2px;align-items:center}
+.pbar i{height:7px;flex:1;border-radius:2px;background:var(--sunken);display:block}
+.pbar i.f1{background:var(--ph1)} .pbar i.f2{background:var(--ph2)} .pbar i.f3{background:var(--ph3)}
+.pbar i.f4{background:var(--ph4)} .pbar i.f5{background:var(--ph5)}
+.pbar i.cur{outline:1.5px solid var(--accent);outline-offset:1px}
+
+/* ---------- phase sections ---------- */
+.phase{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.phase+.phase{margin-top:10px}
+.phase>summary{display:flex;align-items:center;gap:11px;padding:11px 14px;cursor:pointer;list-style:none;background:var(--surface-2)}
+.phase>summary::-webkit-details-marker{display:none}
+.phase>summary::after{content:"▾";margin-left:auto;color:var(--ink-3);font-size:12px;transition:transform .15s}
+.phase[open]>summary::after{transform:rotate(180deg)}
+.phase .pnum{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;font:600 11px Archivo,sans-serif;flex:none}
+.phase .pnum.p1{background:var(--ph1);color:var(--ph-ink-light)}
+.phase .pnum.p2{background:var(--ph2);color:var(--ph-ink-light)}
+.phase .pnum.p3{background:var(--ph3);color:var(--ph-ink-dark)}
+.phase .pnum.p4{background:var(--ph4);color:var(--ph-ink-dark)}
+.phase .pnum.p5{background:var(--ph5);color:var(--ph-ink-dark)}
+.phase .ptitle{font-family:Archivo;font-weight:600;font-size:14px}
+.phase .pbody{padding:13px 14px;border-top:1px solid var(--line)}
+
+/* ---------- step ---------- */
+.step{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:start;padding:9px 0;border-top:1px dashed var(--line)}
+.step:first-child{border-top:0}
+.step .mark{width:17px;height:17px;border-radius:4px;border:1.6px solid var(--line-strong);display:grid;place-items:center;font-size:10px;margin-top:1px;flex:none}
+.step.done .mark{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.na .mark{background:var(--sunken);border-color:var(--line-strong);color:var(--ink-3)}
+.step.over .mark{border-color:var(--crit);color:var(--crit)}
+.step .sl{font-size:14px;font-family:Archivo;font-weight:500}
+.step.done .sl,.step.na .sl{color:var(--ink-2)}
+.step .meta{font-size:12px;color:var(--ink-3);margin-top:1px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.step .acts{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.step .acts input[type=date]{width:auto;padding:3px 6px;font-size:12px}
+.step .acts .btn.ghost{border-color:var(--line)}
+@media (max-width:620px){ .step{grid-template-columns:18px 1fr} .step .acts{grid-column:2/-1;justify-content:flex-start;margin-top:5px} }
+
+/* ---------- next-step callout ---------- */
+.next{display:flex;gap:13px;align-items:flex-start;padding:14px 15px;border-radius:var(--r);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.next.done{background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 35%,transparent)}
+.next .k{font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-ink)}
+.next.done .k{color:var(--ok)}
+.next h3{margin:3px 0 3px;font-size:16px}
+.next p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.next .acts{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:620px){ .next{flex-wrap:wrap} .next .acts{margin-left:0;width:100%} }
+
+/* ---------- warnings ---------- */
+.warn-list{display:flex;flex-direction:column}
+.wrow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 15px;border-top:1px solid var(--line);font-size:13.5px}
+.warn-list .wrow:first-child{border-top:0}
+.wrow .ic{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:600 11px Archivo;flex:none}
+.wrow.crit .ic{background:var(--crit-soft);color:var(--crit)}
+.wrow.warn .ic{background:var(--warn-soft);color:var(--warn)}
+.wrow.info .ic{background:var(--accent-soft);color:var(--accent-ink)}
+.wrow.ok .ic{background:var(--ok-soft);color:var(--ok)}
+.wrow .w2{font-size:12.5px;color:var(--ink-2)}
+
+/* ---------- table ---------- */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--surface-2)}
+tfoot td{font-weight:600;border-top:1.5px solid var(--line-strong);border-bottom:0}
+
+/* ---------- charts ---------- */
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:132px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:13px}
+.bar>span:first-child{line-height:1.25;min-width:0}
+.bar .track{display:block;height:15px;background:var(--sunken);border-radius:3px;overflow:hidden}
+.bar .fill{display:block;height:100%;background:var(--accent);border-radius:0 3px 3px 0;min-width:2px}
+.bar .v{text-align:right;font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.bar.is-crit .fill{background:var(--crit)}
+.meter{display:flex;gap:2px;height:26px;border-radius:3px;overflow:hidden}
+.meter span{display:grid;place-items:center;font:600 11px Archivo;font-variant-numeric:tabular-nums}
+.mlegend{display:flex;gap:12px;flex-wrap:wrap;margin-top:9px;font-size:12.5px;color:var(--ink-2)}
+.mlegend i{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:5px}
+
+/* ---------- misc ---------- */
+.hist{display:flex;flex-direction:column;gap:0;max-height:270px;overflow:auto}
+.hitem{display:grid;grid-template-columns:auto 1fr;gap:9px;padding:7px 0;border-top:1px dashed var(--line);font-size:12.5px}
+.hist .hitem:first-child{border-top:0}
+.hitem .ht{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.side{display:flex;flex-direction:column;gap:14px}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) 296px;gap:16px;align-items:start}
+@media (max-width:980px){ .detail{grid-template-columns:1fr} }
+.dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:13.5px;align-items:baseline}
+.dl dt{color:var(--ink-3);font-size:12.5px}
+.dl dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.metric{background:var(--surface);padding:10px 13px}
+.metric .v{font-family:Archivo;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.metric .v.crit{color:var(--crit)} .metric .v.ok{color:var(--ok)}
+.empty{padding:30px 15px;text-align:center;color:var(--ink-3);font-size:13.5px}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(10,18,24,.5);display:grid;place-items:start center;padding:24px 16px;overflow:auto}
+.modal .box{background:var(--surface);border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:100%;max-width:620px;border:1px solid var(--line)}
+.modal .box>header{display:flex;align-items:center;gap:10px;padding:14px 17px;border-bottom:1px solid var(--line)}
+.modal .box>header h2{margin-right:auto}
+.modal .box .pad{padding:17px}
+.modal .box>footer{display:flex;gap:9px;justify-content:flex-end;padding:13px 17px;border-top:1px solid var(--line);background:var(--surface-2);border-radius:0 0 8px 8px}
+.banner{display:flex;gap:10px;align-items:flex-start;padding:10px 13px;border-radius:var(--r);font-size:13px;line-height:1.45}
+.banner.warn{background:var(--warn-soft);color:var(--warn)}
+.banner.crit{background:var(--crit-soft);color:var(--crit)}
+.banner.info{background:var(--accent-soft);color:var(--accent-ink)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:80;background:var(--ink);color:var(--ground);padding:9px 16px;border-radius:20px;font-family:Archivo;font-size:13px;font-weight:600;box-shadow:var(--shadow)}
+@media (prefers-reduced-motion:no-preference){ .toast{animation:pop .2s ease-out} @keyframes pop{from{opacity:0;transform:translate(-50%,8px)}} }
+.crumb{background:none;border:0;padding:0;color:var(--ink-2);font-family:Archivo;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.crumb:hover{color:var(--accent-ink)}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:5px 11px;font-family:Archivo;font-size:12.5px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.seg button+button{border-left:1px solid var(--line-strong)}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-ink)}
+.note{font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.excel{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);background:var(--sunken);padding:1px 5px;border-radius:3px;white-space:nowrap}
+</style>
+
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <b>Leerstandsmanager</b>
+      <span class="sub">Schäppi Grundstücke · Bewirtschaftung</span>
+    </div>
+    <div class="gsearch">
+      <label for="gq" class="lbl" style="position:absolute;left:-9999px">Suche</label>
+      <input id="gq" type="text" placeholder="Obj.-Nr., Liegenschaft, Mieter …" autocomplete="off">
+    </div>
+    <button class="btn pri" id="btnNeu">+ Neuer Fall</button>
+  </div>
+
+  <div class="main">
+    <nav class="rail" id="rail" aria-label="Hauptnavigation">
+      <button data-nav="dashboard" aria-current="page">Dashboard <span class="dot" id="railBadge" hidden>0</span></button>
+      <button data-nav="faelle">Fälle</button>
+      <button data-nav="auswertung">Auswertung</button>
+      <button data-nav="stammdaten">Stammdaten</button>
+      <hr>
+      <button data-nav="hilfe">Hilfe &amp; Prinzipien</button>
+      <button id="btnReset" class="f-ui" style="color:var(--ink-3);font-size:12.5px">Demodaten zurücksetzen</button>
+    </nav>
+    <main class="view" id="view"></main>
+  </div>
+</div>
+<div id="modalHost"></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   1 · STAMMDATEN  (im Excel als Freitext in jeder Zeile wiederholt)
+   ============================================================ */
+const BEWIRTSCHAFTER = ["Moren","Ryser","Scherb","Ademi","Fazliu","Brandenburger","Breitmeier","Loa","Sivanesan"];
+const ICH = "Moren";
+
+const LIEGENSCHAFTEN = [
+  {id:"L01", name:"Seestrasse 118",            ort:"8002 Zürich",     eig:"PK Helvetia Immobilien"},
+  {id:"L02", name:"Birmensdorferstrasse 340",  ort:"8055 Zürich",     eig:"Erbengemeinschaft Vogt"},
+  {id:"L03", name:"Zürcherstrasse 27",         ort:"8400 Winterthur", eig:"Immo Nordwest AG"},
+  {id:"L04", name:"Im Sydefädeli 14",          ort:"8037 Zürich",     eig:"Stiftung Wohnwerk"},
+  {id:"L05", name:"Hardturmstrasse 205",       ort:"8005 Zürich",     eig:"PK Helvetia Immobilien"},
+  {id:"L06", name:"Dorfstrasse 9",             ort:"8804 Au ZH",      eig:"Meier & Söhne AG"},
+  {id:"L07", name:"Rebbergstrasse 4",          ort:"8610 Uster",      eig:"Erbengemeinschaft Vogt"},
+  {id:"L08", name:"Flurstrasse 61",            ort:"8048 Zürich",     eig:"Immo Nordwest AG"}
+];
+
+const OBJEKTE = [
+  {id:"O01", lig:"L01", nr:"0112.03.004", zi:3.5, stock:"3. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0112-03-004"},
+  {id:"O02", lig:"L01", nr:"0112.01.002", zi:2.5, stock:"1. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0112-01-002"},
+  {id:"O03", lig:"L02", nr:"0348.05.011", zi:4.5, stock:"5. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0348-05-011"},
+  {id:"O04", lig:"L02", nr:"0348.00.001", zi:1.5, stock:"EG",      sp:"https://schaeppi.sharepoint.com/objekte/0348-00-001"},
+  {id:"O05", lig:"L03", nr:"0501.02.007", zi:3.5, stock:"2. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0501-02-007"},
+  {id:"O06", lig:"L04", nr:"0620.04.014", zi:4.5, stock:"4. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0620-04-014"},
+  {id:"O07", lig:"L04", nr:"0620.01.003", zi:2.5, stock:"1. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0620-01-003"},
+  {id:"O08", lig:"L05", nr:"0774.06.021", zi:5.5, stock:"6. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0774-06-021"},
+  {id:"O09", lig:"L05", nr:"0774.02.008", zi:3.5, stock:"2. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0774-02-008"},
+  {id:"O10", lig:"L06", nr:"0815.01.005", zi:4.5, stock:"1. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0815-01-005"},
+  {id:"O11", lig:"L07", nr:"0903.00.002", zi:2.5, stock:"EG",      sp:"https://schaeppi.sharepoint.com/objekte/0903-00-002"},
+  {id:"O12", lig:"L07", nr:"0903.03.009", zi:3.5, stock:"3. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0903-03-009"},
+  {id:"O13", lig:"L08", nr:"1044.04.016", zi:4.5, stock:"4. OG",   sp:"https://schaeppi.sharepoint.com/objekte/1044-04-016"},
+  {id:"O14", lig:"L08", nr:"1044.UG.002", zi:1.0, stock:"UG",      sp:"https://schaeppi.sharepoint.com/objekte/1044-UG-002"},
+  {id:"O15", lig:"L03", nr:"0501.04.013", zi:2.5, stock:"4. OG",   sp:"https://schaeppi.sharepoint.com/objekte/0501-04-013"}
+];
+
+/* ============================================================
+   2 · PROZESSMODELL  – 5 Phasen, 20 Schritte (Excel-Spalten L–AH)
+   ============================================================ */
+const PHASEN = [
+  {nr:1, titel:"Erfassung",              excel:"A–K, N", zweck:"Objekt, Vormieter und die drei Schlüsseldaten festhalten."},
+  {nr:2, titel:"Abnahme & Vermarktung",  excel:"L–V",    zweck:"Kündigung abwickeln, Wohnung ausschreiben, abnehmen und instand stellen."},
+  {nr:3, titel:"Neuvermietung",          excel:"W–Z",    zweck:"Nachmieter finden und den Mietvertrag unterzeichnet zurückerhalten."},
+  {nr:4, titel:"Übergabe",               excel:"AA–AE",  zweck:"Schlüssel, Reinigung, Kaution und Meldungen für den Einzug erledigen."},
+  {nr:5, titel:"Schlussabrechnung",      excel:"AF–AH",  zweck:"Mit dem Vormieter abrechnen und den Zahlungseingang kontrollieren."}
+];
+
+const SCHRITTE = [
+  {k:"kue_best",      p:2, sp:"L",     t:"Kündigung bestätigt / Mutation G-Rem",
+   h:"Kündigungsbestätigung an den Vormieter versendet und die Mutation in G-Rem erfasst. Erster Schritt nach Eingang der Kündigung."},
+  {k:"meldung_werke", p:2, sp:"M",     t:"Meldung Werke / EGT",
+   h:"Werke (Strom, Wasser, Gas) und EGT über den bevorstehenden Auszug informiert, damit per Haftungsdatum korrekt abgelesen wird."},
+  {k:"vorbesicht",    p:2, sp:"O",     t:"Vorbesichtigung", entscheid:true, naGrund:"keine Vorbesichtigung nötig",
+   h:"Im Excel «Vorbesichtigung nötig? Ja/Nein». Hier ein Entscheid: «nicht erforderlich» schliesst den Schritt sauber ab, statt ihn als ewige Pendenz stehen zu lassen."},
+  {k:"vmz",           p:2, sp:"P",     t:"VMZ aktualisiert",
+   h:"Vermietungszentrale mit den aktuellen Objektdaten und dem frühestmöglichen Bezugstermin nachgeführt."},
+  {k:"inserat",       p:2, sp:"Q",     t:"Inserat online",
+   h:"Inserat publiziert. Je früher das Inserat läuft, desto kürzer der spätere Leerstand – deshalb steht dieser Schritt vor der Wohnungsabnahme."},
+  {k:"wa",            p:2, sp:"R + T", t:"Wohnungsabnahme durchgeführt", termin:true, tl:"WA-Termin",
+   h:"Im Excel zwei getrennte Spalten: R «WA-Termin» (Datum) und T «WA durchgeführt» (Ja/Nein). Hier ein Schritt mit Termin – genau daraus entsteht die Überfälligkeitsprüfung."},
+  {k:"handwerker",    p:2, sp:"S",     t:"Handwerker aufgeboten",
+   h:"Handwerker für die Instandstellung aufgeboten, üblicherweise direkt im Anschluss an die Abnahme."},
+  {k:"zustimmung",    p:2, sp:"U",     t:"Zustimmungserklärung unterzeichnet",
+   h:"Der Vormieter hat die Kostenübernahme für die im Abnahmeprotokoll festgehaltenen Mängel unterzeichnet. Grundlage der späteren Schlussabrechnung."},
+  {k:"instandst",     p:2, sp:"V",     t:"Instandstellungen beauftragt",
+   h:"Aufträge an die Handwerker erteilt."},
+  {k:"vertrag_vers",  p:3, sp:"X",     t:"Vertrag versendet",
+   h:"Mietvertrag an den neuen Mieter versendet."},
+  {k:"vertrag_ret",   p:3, sp:"Y",     t:"Vertrag retour", termin:true, tl:"erwartet bis",
+   h:"Unterzeichneter Vertrag zurückerhalten. Erst damit ist die Vermietung verbindlich. Im Excel gibt es dafür keine Frist – hier kann eine gesetzt werden."},
+  {k:"info_werke",    p:4, sp:"AA",    t:"Info Werke / EGT",
+   h:"Werke und EGT über den Einzug des neuen Mieters informiert."},
+  {k:"schluessel",    p:4, sp:"AB",    t:"Schlüsselübergabe terminiert", termin:true, tl:"Übergabetermin",
+   h:"Termin für die Schlüsselübergabe mit dem neuen Mieter vereinbart."},
+  {k:"reinigung",     p:4, sp:"AC",    t:"Reinigung veranlasst",
+   h:"Endreinigung beauftragt, damit die Wohnung zur Übergabe bezugsbereit ist."},
+  {k:"namensschild",  p:4, sp:"AD",    t:"Namensschilder",
+   h:"Namensschilder an Briefkasten, Klingel und Wohnungstür bestellt bzw. montiert."},
+  {k:"kaution",       p:4, sp:"AE",    t:"Kaution einbezahlt / G-Rem mutiert",
+   h:"Mietzinsdepot ist eingegangen und der neue Mieter in G-Rem erfasst. Ohne Kaution keine Schlüsselübergabe."},
+  {k:"rg",            p:5, sp:"AF",    t:"Instandstellungs-Rechnung",
+   h:"Rechnungen der Handwerker eingegangen und den Positionen des Abnahmeprotokolls zugeordnet."},
+  {k:"sa",            p:5, sp:"AG",    t:"Schlussabrechnung erhalten",
+   h:"Schlussabrechnung für den Vormieter erstellt und versendet."},
+  {k:"zahlung",       p:5, sp:"AH",    t:"Zahlungseingang erhalten",
+   h:"Saldo der Schlussabrechnung beglichen. Erst danach ist der Fall abschliessbar."}
+];
+const SCHRITT = Object.fromEntries(SCHRITTE.map(s=>[s.k,s]));
+const SCHRITTE_P = n => SCHRITTE.filter(s=>s.p===n);
+
+/* Feldhilfe für die Stammdaten des Falls */
+const FELDHILFE = {
+  objekt:        "Objekt aus den Stammdaten wählen. Obj.-Nr., Zimmerzahl, Stockwerk, Eigentümer und Sharepoint-Link kommen automatisch mit – im Excel wurden sie pro Zeile neu getippt.",
+  bewirtschafter:"Zuständigkeit für diesen Fall. Im Excel war das eine freie Dropdown-Spalte, die das Masterfile ignoriert hat – hier ist es eine echte Zuweisung.",
+  exMieter:      "Name des kündigenden Mieters.",
+  gekuendigtPer: "Datum, auf das die Kündigung ausgesprochen wurde – der Zeitpunkt des Kündigungseingangs, nicht der Auszug.",
+  haftungsdatum: "Ab diesem Datum trägt die Eigentümerschaft den Leerstand. Grundlage der Leerstandsberechnung – im Excel wurde dafür fälschlich «gekündigt per» verwendet.",
+  mieterSeit:    "Seit wann der kündigende Mieter im Objekt wohnt. Relevant für die Beurteilung der Abnutzung bei der Abnahme.",
+  neuerMieter:   "Name des Nachmieters, sobald die Zusage vorliegt.",
+  vermietetPer:  "Datum, ab dem das Objekt wieder vermietet ist. Beendet die Leerstandszählung."
+};
+
+/* ============================================================
+   3 · HILFSFUNKTIONEN
+   ============================================================ */
+const HEUTE = (()=>{ const d=new Date(); d.setHours(0,0,0,0); return d; })();
+const TAG = 86400000;
+function iso(d){ return d.toISOString().slice(0,10); }
+function tage(n){ const d=new Date(HEUTE.getTime()+n*TAG); return iso(d); }
+function parse(s){ if(!s) return null; const d=new Date(s+"T00:00:00"); return isNaN(d)?null:d; }
+function diffT(a,b){ const x=parse(a), y=parse(b); if(!x||!y) return null; return Math.round((y-x)/TAG); }
+function seitHeute(s){ const d=parse(s); if(!d) return null; return Math.round((HEUTE-d)/TAG); }
+const MONATE=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+function fmt(s){ const d=parse(s); if(!d) return "–"; return String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0")+"."+d.getFullYear(); }
+function fmtKurz(s){ const d=parse(s); if(!d) return "–"; return String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0")+"."; }
+function berichtsmonat(s){ const d=parse(s); if(!d) return "–"; return MONATE[d.getMonth()]+" "+d.getFullYear(); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function objekt(id){ return OBJEKTE.find(o=>o.id===id); }
+function lig(id){ return LIEGENSCHAFTEN.find(l=>l.id===id); }
+function objLabel(id){ const o=objekt(id); if(!o) return "–"; const l=lig(o.lig); return l.name+", "+o.stock; }
+function objVoll(id){ const o=objekt(id); if(!o) return "–"; const l=lig(o.lig); return l.name+", "+l.ort+" · "+o.stock+" · "+o.zi.toFixed(1).replace(".",",")+" Zi."; }
+
+/* ============================================================
+   4 · DEMODATEN  – alle Termine relativ zu heute, damit der
+   Prototyp jeden Tag realistisch bleibt
+   ============================================================ */
+function neuerFallObj(o){
+  const schritte={};
+  SCHRITTE.forEach(s=>{ schritte[s.k]={status:"offen",datum:null,von:null,grund:null,termin:null}; });
+  const hist=[];
+  const angelegt = o.angelegt!=null ? o.angelegt : -30;
+  hist.push({d:tage(angelegt), von:o.bew, txt:"Fall angelegt"});
+  const dn = o.done==="alle" ? Object.fromEntries(SCHRITTE.map((s,i)=>[s.k, angelegt+3+i*2])) : (o.done||{});
+  Object.entries(dn).forEach(([k,off])=>{
+    if(!schritte[k]) return;
+    schritte[k]={status:"erledigt",datum:tage(off),von:o.bew,grund:null,termin:null};
+    hist.push({d:tage(off), von:o.bew, txt:"Schritt erledigt: "+SCHRITT[k].t});
+  });
+  (o.na||[]).forEach(k=>{
+    schritte[k]={status:"na",datum:tage(angelegt+4),von:o.bew,grund:(o.naGrund&&o.naGrund[k])||"Objekt ist dem Team bekannt",termin:null};
+    hist.push({d:tage(angelegt+4), von:o.bew, txt:"Als nicht erforderlich markiert: "+SCHRITT[k].t});
+  });
+  Object.entries(o.termine||{}).forEach(([k,off])=>{ if(schritte[k]) schritte[k].termin=tage(off); });
+  const f={
+    id:o.id, objektId:o.obj, bewirtschafter:o.bew,
+    exMieter:o.ex||"", gekuendigtPer:o.kue!=null?tage(o.kue):"", haftungsdatum:o.haft!=null?tage(o.haft):"",
+    mieterSeit:o.seit||"", neuerMieter:o.neu||"", vermietetPer:o.verm!=null?tage(o.verm):"",
+    notiz:o.notiz||"", schritte, historie:hist,
+    abgeschlossen:o.zu!=null?{am:tage(o.zu),von:o.bew}:null,
+    angelegtAm:tage(angelegt)
+  };
+  if(f.abgeschlossen) hist.push({d:f.abgeschlossen.am, von:o.bew, txt:"Fall abgeschlossen"});
+  hist.sort((a,b)=> a.d<b.d?1:-1);
+  return f;
+}
+
+const ALLE_P2 = {kue_best:0,meldung_werke:0,vmz:0,inserat:0,wa:0,handwerker:0,zustimmung:0,instandst:0};
+
+function demodaten(){
+  return [
+    /* 1 – überfälliger WA-Termin, Langläufer */
+    neuerFallObj({id:"F-2026-041", obj:"O01", bew:"Moren", ex:"Familie Brunner", angelegt:-58,
+      kue:-58, haft:-24, seit:"2019-04-01",
+      done:{kue_best:-55, meldung_werke:-54, vmz:-50, inserat:-47, handwerker:-20},
+      termine:{wa:-6},
+      notiz:"Abnahme musste kurzfristig verschoben werden, Mieter war krank."}),
+    /* 2 – Übergabe läuft, Schlüsselübergabe steht an */
+    neuerFallObj({id:"F-2026-038", obj:"O08", bew:"Moren", ex:"S. Kaufmann", angelegt:-86,
+      kue:-86, haft:-34, seit:"2016-10-01", neu:"L. Iseli & P. Frei", verm:14,
+      done:{kue_best:-84,meldung_werke:-83,vmz:-79,inserat:-76,wa:-33,handwerker:-32,zustimmung:-33,instandst:-31,
+            vertrag_vers:-19,vertrag_ret:-12,info_werke:-10,reinigung:-6},
+      na:["vorbesicht"], termine:{schluessel:4}}),
+    /* 3 – Phase 5, Zahlungseingang fehlt */
+    neuerFallObj({id:"F-2026-029", obj:"O11", bew:"Moren", ex:"M. Odermatt", angelegt:-133,
+      kue:-133, haft:-71, seit:"2014-07-01", neu:"A. Schuler", verm:-56,
+      done:{kue_best:-131,meldung_werke:-130,vorbesicht:-126,vmz:-124,inserat:-121,wa:-70,handwerker:-69,
+            zustimmung:-70,instandst:-67,vertrag_vers:-63,vertrag_ret:-58,info_werke:-57,schluessel:-56,
+            reinigung:-58,namensschild:-57,kaution:-59,rg:-40,sa:-26}}),
+    /* 4 – Pflichtangabe fehlt (Haftungsdatum) */
+    neuerFallObj({id:"F-2026-052", obj:"O03", bew:"Moren", ex:"D. Hofstetter", angelegt:-9,
+      kue:-9, seit:"2021-01-01", done:{kue_best:-7}}),
+    /* 5 – abgeschlossen */
+    neuerFallObj({id:"F-2026-012", obj:"O05", bew:"Moren", ex:"R. Baumgartner", angelegt:-198,
+      kue:-198, haft:-140, seit:"2011-05-01", neu:"Familie Zbinden", verm:-98, done:"alle", zu:-63}),
+    /* 6 – Langläufer, Vermarktung stockt */
+    neuerFallObj({id:"F-2026-034", obj:"O06", bew:"Ryser", ex:"T. Widmer", angelegt:-104,
+      kue:-104, haft:-74, seit:"2018-02-01",
+      done:{kue_best:-102,meldung_werke:-101,vorbesicht:-98,vmz:-95,inserat:-90,wa:-73,handwerker:-72,zustimmung:-73,instandst:-70},
+      notiz:"5,5 Zimmer zu CHF 3'450 – bisher nur zwei Besichtigungen. Mietzins prüfen."}),
+    /* 7 – Vertrag retour überfällig */
+    neuerFallObj({id:"F-2026-044", obj:"O13", bew:"Ryser", ex:"J. Stucki", angelegt:-52,
+      kue:-52, haft:-18, seit:"2020-09-01", neu:"C. Moser",
+      done:{kue_best:-50,meldung_werke:-49,vmz:-45,inserat:-43,wa:-17,handwerker:-16,zustimmung:-17,instandst:-14,vertrag_vers:-10},
+      na:["vorbesicht"], termine:{vertrag_ret:-3}}),
+    /* 8 – Vorlauf: Objekt wird erst leer */
+    neuerFallObj({id:"F-2026-055", obj:"O04", bew:"Scherb", ex:"N. Aebi", angelegt:-5,
+      kue:-5, haft:12, seit:"2022-11-01", done:{kue_best:-4,meldung_werke:-3}, termine:{wa:10}}),
+    /* 9 – abgeschlossen */
+    neuerFallObj({id:"F-2026-018", obj:"O09", bew:"Scherb", ex:"P. Rüegg", angelegt:-176,
+      kue:-176, haft:-121, seit:"2015-03-01", neu:"S. Tanner", verm:-86, done:"alle", zu:-48}),
+    /* 10 – Übergabe, Kaution ausstehend */
+    neuerFallObj({id:"F-2026-046", obj:"O10", bew:"Ademi", ex:"Familie Lüthi", angelegt:-47,
+      kue:-47, haft:-16, seit:"2017-08-01", neu:"M. Dietrich", verm:9,
+      done:{kue_best:-45,meldung_werke:-44,vorbesicht:-41,vmz:-40,inserat:-38,wa:-15,handwerker:-14,zustimmung:-15,
+            instandst:-12,vertrag_vers:-8,vertrag_ret:-4,info_werke:-3},
+      termine:{schluessel:2}}),
+    /* 11 – stark überfällige Abnahme */
+    neuerFallObj({id:"F-2026-036", obj:"O12", bew:"Fazliu", ex:"K. Bühlmann", angelegt:-95,
+      kue:-95, haft:-40, seit:"2013-12-01",
+      done:{kue_best:-93,meldung_werke:-92,vmz:-88,inserat:-84},
+      termine:{wa:-11}, notiz:"Mieter nicht erreichbar, Abnahme dreimal verschoben."}),
+    /* 12 – Phase 3, «Vermietet per» fehlt */
+    neuerFallObj({id:"F-2026-049", obj:"O02", bew:"Brandenburger", ex:"E. Frei", angelegt:-33,
+      kue:-33, haft:-11, seit:"2019-11-01", neu:"Familie Steiner",
+      done:{kue_best:-31,meldung_werke:-30,vorbesicht:-28,vmz:-27,inserat:-25,wa:-10,handwerker:-9,zustimmung:-10,
+            instandst:-8,vertrag_vers:-4,vertrag_ret:-1}}),
+    /* 13 – abschliessbar */
+    neuerFallObj({id:"F-2026-025", obj:"O14", bew:"Breitmeier", ex:"Gewerbe Kunz GmbH", angelegt:-151,
+      kue:-151, haft:-96, seit:"2012-06-01", neu:"Atelier Haldi", verm:-74,
+      done:{kue_best:-149,meldung_werke:-148,vorbesicht:-144,vmz:-142,inserat:-139,wa:-95,handwerker:-94,
+            zustimmung:-95,instandst:-91,vertrag_vers:-83,vertrag_ret:-77,info_werke:-76,schluessel:-74,
+            reinigung:-76,namensschild:-75,kaution:-78,rg:-52,sa:-38,zahlung:-16}}),
+    /* 14 – Datumsfehler: Haftungsdatum vor Kündigung */
+    neuerFallObj({id:"F-2026-050", obj:"O07", bew:"Loa", ex:"A. Vetter", angelegt:-27,
+      kue:-27, haft:-35, seit:"2020-02-01",
+      done:{kue_best:-25,meldung_werke:-24,vmz:-21}, na:["vorbesicht"], termine:{wa:5}}),
+    /* 15 – frisch angelegt */
+    neuerFallObj({id:"F-2026-057", obj:"O15", bew:"Sivanesan", ex:"B. Marti", angelegt:-2,
+      kue:-2, haft:58, seit:"2023-04-01", done:{kue_best:-1}}),
+    /* 16 – zweiter offener Fall zum selben Objekt wie F-2026-041 */
+    neuerFallObj({id:"F-2026-056", obj:"O01", bew:"Sivanesan", ex:"Familie Brunner", angelegt:-3,
+      kue:-26, haft:-24, seit:"2019-04-01", done:{kue_best:-2},
+      notiz:"Beim Übernehmen der Pendenz neu erfasst."}),
+    /* 17–20 – abgeschlossene Vorfälle (Folgefälle zu bereits genutzten Objekten) */
+    neuerFallObj({id:"F-2025-088", obj:"O06", bew:"Brandenburger", ex:"H. Roth", angelegt:-430,
+      kue:-430, haft:-372, seit:"2009-09-01", neu:"T. Widmer", verm:-330, done:"alle", zu:-296}),
+    neuerFallObj({id:"F-2025-093", obj:"O13", bew:"Loa", ex:"V. Kälin", angelegt:-395,
+      kue:-395, haft:-338, seit:"2010-11-01", neu:"J. Stucki", verm:-281, done:"alle", zu:-249}),
+    neuerFallObj({id:"F-2025-101", obj:"O10", bew:"Breitmeier", ex:"G. Portmann", angelegt:-352,
+      kue:-352, haft:-291, seit:"2008-05-01", neu:"Familie Lüthi", verm:-249, done:"alle", zu:-214}),
+    neuerFallObj({id:"F-2025-110", obj:"O02", bew:"Ademi", ex:"U. Wyss", angelegt:-311,
+      kue:-311, haft:-257, seit:"2014-01-01", neu:"E. Frei", verm:-206, done:"alle", zu:-171})
+  ];
+}
+
+/* ============================================================
+   5 · ABGELEITETE LOGIK  – im Excel manuell bzw. gar nicht vorhanden
+   ============================================================ */
+const FELDNAME = {objektId:"Objekt", bewirtschafter:"Bewirtschafter", exMieter:"ex-Mieter",
+  gekuendigtPer:"gekündigt per", haftungsdatum:"Haftungsdatum", mieterSeit:"Mieter seit",
+  neuerMieter:"neuer Mieter", vermietetPer:"Vermietet per"};
+const PFLICHT_P1 = [
+  {f:"objektId",      t:"Objekt"},
+  {f:"exMieter",      t:"ex-Mieter"},
+  {f:"gekuendigtPer", t:"gekündigt per"},
+  {f:"haftungsdatum", t:"Haftungsdatum"}
+];
+const PFLICHT_P3 = [
+  {f:"neuerMieter",  t:"neuer Mieter"},
+  {f:"vermietetPer", t:"Vermietet per"}
+];
+function fehlendeFelder(f,phase){
+  const l = phase===1 ? PFLICHT_P1 : phase===3 ? PFLICHT_P3 : [];
+  return l.filter(x=>!f[x.f]);
+}
+function phaseKomplett(f,n){
+  if(n===1) return fehlendeFelder(f,1).length===0;
+  const alle = SCHRITTE_P(n).every(s=>f.schritte[s.k].status!=="offen");
+  if(n===3) return alle && fehlendeFelder(f,3).length===0;
+  return alle;
+}
+function aktuellePhase(f){ for(let n=1;n<=5;n++) if(!phaseKomplett(f,n)) return n; return 5; }
+function abschliessbar(f){ return !f.abgeschlossen && [1,2,3,4,5].every(n=>phaseKomplett(f,n)); }
+function fortschritt(f){ return [1,2,3,4,5].filter(n=>phaseKomplett(f,n)).length; }
+
+function naechsterSchritt(f){
+  if(f.abgeschlossen) return null;
+  const p = aktuellePhase(f);
+  const fehltP1 = fehlendeFelder(f,1);
+  if(fehltP1.length) return {art:"feld", phase:1, felder:fehltP1,
+    titel:"Pflichtangabe fehlt: "+fehltP1.map(x=>x.t).join(", "),
+    text:"Ohne diese Angaben lassen sich weder Leerstandstage noch Fristen berechnen."};
+  if(p===3 && !f.neuerMieter) return {art:"feld", phase:3, felder:[{f:"neuerMieter",t:"neuer Mieter"}],
+    titel:"Pflichtangabe fehlt: neuer Mieter",
+    text:"Solange kein Nachmieter zugesagt hat, lässt sich kein Vertrag versenden. Die Vermarktung läuft – hier wird der Name erfasst, sobald die Zusage vorliegt."};
+  const offen = SCHRITTE_P(p).filter(s=>f.schritte[s.k].status==="offen");
+  if(offen.length){
+    // Ein verstrichener oder heute fälliger Termin geht der Reihenfolge vor
+    const datiert = offen.filter(s=>f.schritte[s.k].termin)
+      .sort((a,b)=> f.schritte[a.k].termin < f.schritte[b.k].termin ? -1 : 1);
+    const dringend = datiert.find(s=>seitHeute(f.schritte[s.k].termin)>=0);
+    const s=dringend||offen[0], st=f.schritte[s.k];
+    let text = s.h;
+    if(st.termin){
+      const d=seitHeute(st.termin);
+      text = d>0 ? "Termin war am "+fmt(st.termin)+" – seit "+d+" Tagen überfällig."
+           : d===0 ? "Termin ist heute." : "Termin am "+fmt(st.termin)+", in "+(-d)+" Tagen.";
+    }
+    return {art:"schritt", phase:p, schritt:s, titel:s.t, text};
+  }
+  const fehltP3 = fehlendeFelder(f,3);
+  if(p===3 && fehltP3.length) return {art:"feld", phase:3, felder:fehltP3,
+    titel:"Pflichtangabe fehlt: "+fehltP3.map(x=>x.t).join(", "),
+    text:"Die Neuvermietung gilt erst mit Nachmieter und Vermietungsdatum als abgeschlossen."};
+  if(abschliessbar(f)) return {art:"abschluss", phase:5, titel:"Fall kann abgeschlossen werden",
+    text:"Alle fünf Phasen sind vollständig – inklusive Schlussabrechnung und Zahlungseingang."};
+  return null;
+}
+
+function leerstand(f){
+  const start = ST.basis==="haftung" ? f.haftungsdatum : f.gekuendigtPer;
+  if(!start) return null;
+  const ende = f.vermietetPer || iso(HEUTE);
+  const t = diffT(start, ende);
+  return {tage: Math.max(0,t), roh:t, laufend: !f.vermietetPer, kuenftig: t<0, start, ende};
+}
+function vorlauftage(f){
+  if(!f.gekuendigtPer || !f.haftungsdatum) return null;
+  return diffT(f.gekuendigtPer, f.haftungsdatum);
+}
+function tageInPhase(f){
+  const p = aktuellePhase(f);
+  const daten = SCHRITTE_P(p).map(s=>f.schritte[s.k].datum).filter(Boolean).sort();
+  const start = daten.length ? daten[daten.length-1] : f.angelegtAm;
+  return seitHeute(start);
+}
+function offeneTermine(f){
+  if(f.abgeschlossen) return [];
+  return SCHRITTE.filter(s=>s.termin && f.schritte[s.k].status==="offen" && f.schritte[s.k].termin)
+    .map(s=>({schritt:s, termin:f.schritte[s.k].termin, ueber:seitHeute(f.schritte[s.k].termin)}));
+}
+function istUeberfaellig(f){ return offeneTermine(f).some(t=>t.ueber>0); }
+
+function warnungen(f){
+  const w=[];
+  if(f.abgeschlossen) return w;
+  offeneTermine(f).forEach(t=>{
+    if(t.ueber>0) w.push({stufe:"crit", titel:t.schritt.t+" überfällig",
+      text:"Termin war am "+fmt(t.termin)+" – seit "+t.ueber+" "+(t.ueber===1?"Tag":"Tagen")+" offen."});
+    else if(t.ueber>=-7) w.push({stufe:"warn", titel:t.schritt.t+(t.ueber===0?" heute fällig":" fällig in "+(-t.ueber)+" Tagen"),
+      text:"Termin am "+fmt(t.termin)+"."});
+  });
+  const dop = FAELLE.filter(x=>x.id!==f.id && x.objektId===f.objektId && !x.abgeschlossen);
+  dop.forEach(x=>w.push({stufe:"crit", titel:"Zweiter offener Fall zum selben Objekt",
+    text:"Fall "+x.id+" ("+x.bewirtschafter+") ist zum selben Objekt ebenfalls offen. Einer der beiden dürfte doppelt erfasst sein.", fall:x.id}));
+  if(f.gekuendigtPer && f.haftungsdatum && diffT(f.gekuendigtPer,f.haftungsdatum)<0)
+    w.push({stufe:"crit", titel:"Haftungsdatum liegt vor dem Kündigungsdatum",
+      text:"Haftungsdatum "+fmt(f.haftungsdatum)+" ist früher als «gekündigt per» "+fmt(f.gekuendigtPer)+". Eines der beiden Daten ist falsch erfasst.", feld:"haftungsdatum"});
+  if(f.vermietetPer && f.haftungsdatum && diffT(f.haftungsdatum,f.vermietetPer)<0)
+    w.push({stufe:"warn", titel:"«Vermietet per» liegt vor dem Haftungsdatum",
+      text:"Das Objekt wäre vermietet, bevor es leer steht – bitte prüfen.", feld:"vermietetPer"});
+  const wt=f.schritte.wa.termin;
+  if(wt && f.gekuendigtPer && diffT(f.gekuendigtPer,wt)<0)
+    w.push({stufe:"warn", titel:"WA-Termin liegt vor dem Kündigungsdatum", text:"Bitte den WA-Termin prüfen."});
+  const p = aktuellePhase(f), fehlt = fehlendeFelder(f,p);
+  if(fehlt.length) w.push({stufe:"warn", titel:"Pflichtangaben fehlen",
+    text:"In Phase "+p+" fehlt: "+fehlt.map(x=>x.t).join(", ")+"."});
+  const ls = leerstand(f);
+  if(ls && ls.laufend && !ls.kuenftig && ls.tage>60)
+    w.push({stufe:"warn", titel:"Langläufer – "+ls.tage+" Tage Leerstand",
+      text:"Das Objekt steht seit über 60 Tagen leer und ist noch nicht vermietet."});
+  if(abschliessbar(f)) w.push({stufe:"info", titel:"Fall kann abgeschlossen werden",
+    text:"Alle Phasen sind vollständig."});
+  return w;
+}
+
+/* ============================================================
+   6 · ZUSTAND & SPEICHERUNG
+   ============================================================ */
+const KEY="leerstandsmanager.demo.v1";
+let FAELLE = [];
+let ST = {basis:"haftung", sicht:"meine", nav:"dashboard", fallId:null,
+          q:"", fBew:"", fPhase:"", fStatus:"offen", fUeber:false};
+
+function speichern(){
+  try{ localStorage.setItem(KEY, JSON.stringify({faelle:FAELLE, basis:ST.basis, sicht:ST.sicht})); }
+  catch(e){ /* privates Fenster o. Ä. – der Prototyp läuft auch ohne Speicherung */ }
+}
+function laden(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){ const d=JSON.parse(raw);
+      if(d && Array.isArray(d.faelle) && d.faelle.length){
+        FAELLE=d.faelle; if(d.basis) ST.basis=d.basis; if(d.sicht) ST.sicht=d.sicht; return; }
+    }
+  }catch(e){}
+  FAELLE = demodaten();
+}
+function fall(id){ return FAELLE.find(f=>f.id===id); }
+function protokoll(f,txt){ f.historie.unshift({d:iso(HEUTE), von:ICH, txt}); }
+
+/* ---------- Aktionen ---------- */
+function erledigen(id,k){
+  const f=fall(id), s=f.schritte[k];
+  s.status="erledigt"; s.datum=iso(HEUTE); s.von=ICH; s.grund=null;
+  protokoll(f,"Schritt erledigt: "+SCHRITT[k].t);
+  nach(f,"«"+SCHRITT[k].t+"» erledigt");
+}
+function nichtErforderlich(id,k,grund){
+  const f=fall(id), s=f.schritte[k];
+  s.status="na"; s.datum=iso(HEUTE); s.von=ICH; s.grund=grund||"nicht erforderlich";
+  protokoll(f,"Als nicht erforderlich markiert: "+SCHRITT[k].t+(grund?" ("+grund+")":""));
+  nach(f,"«"+SCHRITT[k].t+"» als nicht erforderlich markiert");
+}
+function zuruecksetzen(id,k){
+  const f=fall(id), s=f.schritte[k];
+  s.status="offen"; s.datum=null; s.von=null; s.grund=null;
+  protokoll(f,"Schritt wieder geöffnet: "+SCHRITT[k].t);
+  nach(f,"«"+SCHRITT[k].t+"» wieder offen");
+}
+function setTermin(id,k,d){
+  const f=fall(id), s=f.schritte[k], alt=s.termin;
+  s.termin = d||null;
+  protokoll(f,"Termin "+SCHRITT[k].t+": "+(alt?fmt(alt)+" → ":"")+(d?fmt(d):"entfernt"));
+  speichern(); render();
+}
+function setFeld(id,feld,wert){
+  const f=fall(id); if(f[feld]===wert) return;
+  const alt=f[feld];
+  f[feld]=wert;
+  const lab = FELDNAME[feld] || feld;
+  protokoll(f, lab+": "+(alt?(/\d{4}-\d{2}-\d{2}/.test(alt)?fmt(alt):alt):"leer")+" → "+(wert?(/\d{4}-\d{2}-\d{2}/.test(wert)?fmt(wert):wert):"leer"));
+  speichern(); render();
+}
+function abschliessen(id){
+  const f=fall(id);
+  if(!abschliessbar(f)){ toast("Abschluss nicht möglich – es sind noch Schritte offen."); return; }
+  f.abgeschlossen={am:iso(HEUTE), von:ICH};
+  protokoll(f,"Fall abgeschlossen");
+  nach(f,"Fall "+f.id+" abgeschlossen");
+}
+function wiederOeffnen(id){
+  const f=fall(id); f.abgeschlossen=null;
+  protokoll(f,"Fall wieder geöffnet");
+  nach(f,"Fall "+f.id+" wieder geöffnet");
+}
+function nach(f,msg){ speichern(); render(); toast(msg); }
+
+let toastT=null;
+function toast(msg){
+  const alt=document.getElementById("toast"); if(alt) alt.remove();
+  const el=document.createElement("div"); el.className="toast"; el.id="toast"; el.setAttribute("role","status");
+  el.textContent=msg; document.body.appendChild(el);
+  clearTimeout(toastT); toastT=setTimeout(()=>el.remove(), 2600);
+}
+
+/* ============================================================
+   7 · DARSTELLUNGS-BAUSTEINE
+   ============================================================ */
+function phaseBar(f){
+  const done=[1,2,3,4,5].map(n=>phaseKomplett(f,n));
+  const cur=aktuellePhase(f), zu=!!f.abgeschlossen;
+  return '<span class="pbar" role="img" aria-label="Phase '+(zu?5:cur)+' von 5">'+
+    [1,2,3,4,5].map(n=>'<i class="'+(done[n-1]?"f"+n:"")+(!zu&&n===cur?" cur":"")+'"></i>').join("")+'</span>';
+}
+function statusChip(f){
+  if(f.abgeschlossen) return '<span class="chip ok"><span class="ic">✓</span>abgeschlossen</span>';
+  if(istUeberfaellig(f)) return '<span class="chip crit"><span class="ic">!</span>überfällig</span>';
+  const ls=leerstand(f);
+  if(ls && ls.laufend && !ls.kuenftig && ls.tage>60) return '<span class="chip warn"><span class="ic">▲</span>Langläufer</span>';
+  if(ls && ls.kuenftig) return '<span class="chip n">Vorlauf</span>';
+  return '<span class="chip acc">Phase '+aktuellePhase(f)+'</span>';
+}
+function leerstandText(f){
+  const ls=leerstand(f);
+  if(!ls) return "–";
+  if(ls.kuenftig) return "in "+(-ls.roh)+" T.";
+  return ls.tage+" T."+(ls.laufend?"":"");
+}
+function hilfeBtn(key){ return '<button class="ihelp" data-hilfe="'+key+'" aria-label="Erklärung anzeigen" type="button">i</button>'; }
+
+function sichtFaelle(){
+  return ST.sicht==="meine" ? FAELLE.filter(f=>f.bewirtschafter===ICH) : FAELLE;
+}
+
+/* Aufgabenliste: was der Benutzer als Nächstes tun muss, nach Dringlichkeit */
+function aufgaben(basis){
+  const out=[];
+  basis.filter(f=>!f.abgeschlossen).forEach(f=>{
+    const n=naechsterSchritt(f); if(!n) return;
+    let stufe="acc", frist=null, sort=3, fristTxt="";
+    if(n.art==="schritt"){
+      const t=f.schritte[n.schritt.k].termin;
+      if(t){ const d=seitHeute(t); frist=t;
+        if(d>0){ stufe="crit"; sort=0; fristTxt=d+" T. überfällig"; }
+        else if(d<=7){ stufe="warn"; sort=1; fristTxt=d===0?"heute":"in "+(-d)+" T."; }
+        else { fristTxt="in "+(-d)+" T."; sort=2; }
+      } else fristTxt="Phase "+n.phase;
+    } else if(n.art==="feld"){ stufe="warn"; sort=1; fristTxt="unvollständig"; }
+    else if(n.art==="abschluss"){ stufe="acc"; sort=2; fristTxt="bereit"; }
+    const ls=leerstand(f);
+    out.push({f, n, stufe, frist, fristTxt, sort, ls});
+  });
+  out.sort((a,b)=> a.sort-b.sort ||
+    (a.frist&&b.frist ? (a.frist<b.frist?-1:1) : 0) ||
+    ((b.ls?b.ls.tage:0)-(a.ls?a.ls.tage:0)));
+  return out;
+}
+
+/* ============================================================
+   8 · ANSICHT: DASHBOARD
+   ============================================================ */
+function viewDashboard(){
+  const basis=sichtFaelle();
+  const offen=basis.filter(f=>!f.abgeschlossen);
+  const ueber=offen.filter(istUeberfaellig);
+  const laufend=offen.map(leerstand).filter(l=>l&&l.laufend&&!l.kuenftig);
+  const avg=laufend.length? Math.round(laufend.reduce((s,l)=>s+l.tage,0)/laufend.length) : null;
+  const mon=basis.filter(f=>f.abgeschlossen && parse(f.abgeschlossen.am).getMonth()===HEUTE.getMonth()
+                            && parse(f.abgeschlossen.am).getFullYear()===HEUTE.getFullYear());
+  const auf=aufgaben(basis);
+  const warnRows=[];
+  offen.forEach(f=>warnungen(f).filter(w=>w.stufe!=="info").forEach(w=>warnRows.push({f,w})));
+  const seen=new Set();
+  const warnU=warnRows.filter(r=>{ const k=r.f.id+"|"+r.w.titel; if(seen.has(k))return false; seen.add(k); return true; });
+  warnU.sort((a,b)=> (a.w.stufe==="crit"?0:1)-(b.w.stufe==="crit"?0:1));
+
+  return `
+  <div class="spread" style="margin-bottom:16px">
+    <div>
+      <h1>Dashboard</h1>
+      <p class="tiny muted" style="margin:3px 0 0">Stand ${fmt(iso(HEUTE))} · ${ST.sicht==="meine"?"meine Fälle ("+ICH+")":"alle Bewirtschafter"}</p>
+    </div>
+    <div class="row">
+      <div class="seg" role="group" aria-label="Sicht">
+        <button data-sicht="meine" aria-pressed="${ST.sicht==="meine"}">Meine Fälle</button>
+        <button data-sicht="team" aria-pressed="${ST.sicht==="team"}">Team</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpis" style="margin-bottom:18px">
+    <div class="kpi"><span class="lbl">Offene Fälle</span><span class="v">${offen.length}</span>
+      <span class="foot">von ${basis.length} insgesamt</span></div>
+    <div class="kpi ${ueber.length?"is-crit":""}"><span class="lbl">Überfällig</span><span class="v">${ueber.length}</span>
+      <span class="foot">${ueber.length?"Termin verstrichen, Schritt offen":"keine verstrichenen Termine"}</span></div>
+    <div class="kpi"><span class="lbl">Ø Leerstandstage</span><span class="v">${avg==null?"–":avg}</span>
+      <span class="foot">laufende Leerstände, ab ${ST.basis==="haftung"?"Haftungsdatum":"gekündigt per"}</span></div>
+    <div class="kpi is-ok"><span class="lbl">Abgeschlossen</span><span class="v">${mon.length}</span>
+      <span class="foot">im ${MONATE[HEUTE.getMonth()]} ${HEUTE.getFullYear()}</span></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px">
+    <header>
+      <span class="lbl">Meine Aufgaben</span>
+      <span class="tiny muted">${auf.length} offen · nach Dringlichkeit</span>
+    </header>
+    <div class="tasks">
+      ${auf.length? auf.slice(0,9).map(a=>`
+      <div class="task ${a.stufe}">
+        <span class="stripe"></span>
+        <div class="body">
+          <div class="t1">
+            <b>${esc(a.n.titel)}</b>
+            ${a.n.art==="abschluss"?'<span class="chip ok">bereit</span>':''}
+          </div>
+          <div class="t2">
+            <span class="nr">${esc(objekt(a.f.objektId).nr)}</span> ·
+            ${esc(objLabel(a.f.objektId))} · ex ${esc(a.f.exMieter||"—")}
+            ${ST.sicht==="team"?" · "+esc(a.f.bewirtschafter):""}
+          </div>
+        </div>
+        <div class="side">
+          <span class="due"><b>${esc(a.fristTxt||"—")}</b>${a.frist?fmtKurz(a.frist):""}</span>
+          <button class="btn sm" data-open="${a.f.id}">Öffnen</button>
+        </div>
+      </div>`).join("")
+      : '<div class="empty">Keine offenen Aufgaben.</div>'}
+    </div>
+    ${auf.length>9?`<div class="pad" style="padding:10px 15px;border-top:1px solid var(--line)">
+      <button class="btn ghost sm" data-nav-to="faelle">Alle ${auf.length} Aufgaben in der Fallliste ansehen →</button></div>`:""}
+  </div>
+
+  <div class="panel">
+    <header><span class="lbl">Warnungen &amp; Prüfungen</span>
+      <span class="tiny muted">laufend geprüft</span></header>
+    <div class="warn-list">
+      ${warnU.length? warnU.slice(0,8).map(r=>`
+      <div class="wrow ${r.w.stufe}">
+        <span class="ic">${r.w.stufe==="crit"?"!":"▲"}</span>
+        <div><b class="f-ui" style="font-size:13.5px">${esc(r.w.titel)}</b>
+          <div class="w2">${esc(objekt(r.f.objektId).nr)} · ${esc(objLabel(r.f.objektId))} — ${esc(r.w.text)}</div></div>
+        <button class="btn sm" data-open="${r.f.id}">Prüfen</button>
+      </div>`).join("")
+      : '<div class="wrow ok"><span class="ic">✓</span><div><b class="f-ui" style="font-size:13.5px">Keine Auffälligkeiten</b><div class="w2">Alle Daten plausibel, keine Termine verstrichen.</div></div><span></span></div>'}
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:16px">
+    <button class="btn pri" id="btnNeu2">+ Neuer Fall</button>
+    <button class="btn" data-nav-to="faelle">Alle Fälle</button>
+    <button class="btn" data-nav-to="auswertung">Auswertung</button>
+  </div>`;
+}
+
+/* ============================================================
+   9 · ANSICHT: FALLLISTE
+   ============================================================ */
+function gefiltert(){
+  const q=ST.q.trim().toLowerCase();
+  return FAELLE.filter(f=>{
+    if(ST.fBew && f.bewirtschafter!==ST.fBew) return false;
+    if(ST.fStatus==="offen" && f.abgeschlossen) return false;
+    if(ST.fStatus==="zu" && !f.abgeschlossen) return false;
+    if(ST.fPhase && String(aktuellePhase(f))!==ST.fPhase) return false;
+    if(ST.fUeber && !istUeberfaellig(f)) return false;
+    if(q){
+      const o=objekt(f.objektId), l=lig(o.lig);
+      const hay=[f.id,o.nr,l.name,l.ort,l.eig,f.exMieter,f.neuerMieter,f.bewirtschafter,o.stock].join(" ").toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  }).sort((a,b)=>{
+    const ua=istUeberfaellig(a)?0:1, ub=istUeberfaellig(b)?0:1;
+    if(ua!==ub) return ua-ub;
+    const la=leerstand(a), lb=leerstand(b);
+    return (lb?lb.tage:0)-(la?la.tage:0);
+  });
+}
+function viewFaelle(){
+  const list=gefiltert();
+  return `
+  <div class="spread" style="margin-bottom:14px">
+    <div><h1>Fälle</h1>
+      <p class="tiny muted" style="margin:3px 0 0">${list.length} von ${FAELLE.length} Fällen</p></div>
+    <div class="row">
+      <button class="btn" id="btnExport">Export</button>
+      <button class="btn pri" id="btnNeu2">+ Neuer Fall</button>
+    </div>
+  </div>
+
+  <div class="flat pad" style="padding:12px 14px;margin-bottom:14px">
+    <div class="row">
+      <div class="field" style="flex:1 1 230px"><label for="fq">Suche</label>
+        <input id="fq" type="text" value="${esc(ST.q)}" placeholder="Obj.-Nr., Liegenschaft, Mieter, Eigentümer …"></div>
+      <div class="field" style="flex:0 1 165px"><label for="fbew">Bewirtschafter</label>
+        <select id="fbew"><option value="">alle</option>
+        ${BEWIRTSCHAFTER.map(b=>`<option value="${b}" ${ST.fBew===b?"selected":""}>${b}</option>`).join("")}</select></div>
+      <div class="field" style="flex:0 1 150px"><label for="fph">Phase</label>
+        <select id="fph"><option value="">alle</option>
+        ${PHASEN.map(p=>`<option value="${p.nr}" ${ST.fPhase===String(p.nr)?"selected":""}>${p.nr} · ${p.titel}</option>`).join("")}</select></div>
+      <div class="field" style="flex:0 1 128px"><label for="fst">Status</label>
+        <select id="fst">
+          <option value="offen" ${ST.fStatus==="offen"?"selected":""}>offen</option>
+          <option value="zu" ${ST.fStatus==="zu"?"selected":""}>abgeschlossen</option>
+          <option value="" ${ST.fStatus===""?"selected":""}>alle</option>
+        </select></div>
+      <label class="row tiny" style="gap:6px;align-self:flex-end;padding-bottom:8px;cursor:pointer">
+        <input type="checkbox" id="fue" ${ST.fUeber?"checked":""} style="width:auto"> nur überfällige</label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="cases">
+      ${list.length? list.map(f=>{
+        const o=objekt(f.objektId), l=lig(o.lig), n=naechsterSchritt(f);
+        return `<button class="case" data-open="${f.id}">
+          <div class="c-obj"><div class="nr">${esc(o.nr)}</div><div class="s2">${esc(f.id)}</div></div>
+          <div class="c-lig"><div class="ln">${esc(l.name)}, ${esc(o.stock)}</div>
+            <div class="s2">${esc(l.ort)} · ${o.zi.toFixed(1).replace(".",",")} Zi. · ${esc(f.bewirtschafter)}</div></div>
+          <div class="c-mieter"><div class="s2" style="color:var(--ink)">ex ${esc(f.exMieter||"—")}</div>
+            <div class="s2">${f.neuerMieter?"neu "+esc(f.neuerMieter):(n?esc(n.titel):"—")}</div></div>
+          <div class="c-phase">${phaseBar(f)}<div class="s2" style="margin-top:4px">${f.abgeschlossen?"abgeschlossen "+fmtKurz(f.abgeschlossen.am):"Phase "+aktuellePhase(f)+" · "+PHASEN[aktuellePhase(f)-1].titel}</div></div>
+          <div class="rt"><div class="nr num">${leerstandText(f)}</div><div style="margin-top:4px">${statusChip(f)}</div></div>
+        </button>`;}).join("")
+      : '<div class="empty">Keine Fälle für diese Filter. <button class="btn ghost sm" id="btnFilterReset">Filter zurücksetzen</button></div>'}
+    </div>
+  </div>
+  <p class="note" style="margin-top:10px">Sortierung: überfällige Fälle zuerst, danach nach Leerstandstagen absteigend.</p>`;
+}
+
+/* ============================================================
+   10 · ANSICHT: FALLAKTE
+   ============================================================ */
+function feldZeile(f,feld,label,typ){
+  const v=f[feld]||"";
+  return `<div class="field">
+    <label for="fl_${feld}">${esc(label)} ${hilfeBtn(feld)}</label>
+    <input id="fl_${feld}" type="${typ}" value="${esc(v)}" data-feld="${feld}" data-fall="${f.id}"
+      ${f.abgeschlossen?"disabled":""}>
+    <div class="helptext" id="hlp_${feld}" hidden>${esc(FELDHILFE[feld]||"")}</div>
+  </div>`;
+}
+function schrittZeile(f,s){
+  const st=f.schritte[s.k];
+  const zu=!!f.abgeschlossen;
+  const ueber = st.status==="offen" && st.termin && seitHeute(st.termin)>0;
+  const cls = st.status==="erledigt"?"done":st.status==="na"?"na":(ueber?"over":"");
+  let meta="";
+  if(st.status==="erledigt") meta=`erledigt ${fmt(st.datum)} · ${esc(st.von||"")}`;
+  else if(st.status==="na") meta=`nicht erforderlich · ${esc(st.grund||"")}`;
+  else if(st.termin){ const d=seitHeute(st.termin);
+    meta = d>0 ? `<span style="color:var(--crit);font-weight:600">Termin ${fmt(st.termin)} · ${d} T. überfällig</span>`
+        : d===0 ? `<span style="color:var(--warn);font-weight:600">Termin heute</span>`
+        : `Termin ${fmt(st.termin)} · in ${-d} T.`;
+  } else meta="offen";
+  return `<div class="step ${cls}">
+    <span class="mark">${st.status==="erledigt"?"✓":st.status==="na"?"–":ueber?"!":""}</span>
+    <div>
+      <div class="sl">${esc(s.t)} <span class="excel" title="Spalte im Excel">${esc(s.sp)}</span> ${hilfeBtn("s_"+s.k)}</div>
+      <div class="meta">${meta}</div>
+      <div class="helptext" id="hlp_s_${s.k}" hidden style="margin-top:6px">${esc(s.h)}</div>
+    </div>
+    <div class="acts">
+      ${s.termin&&!zu?`<input type="date" aria-label="${esc(s.tl||"Termin")}" value="${esc(st.termin||"")}" data-termin="${s.k}" data-fall="${f.id}" title="${esc(s.tl||"Termin")}">`:""}
+      ${zu?"":st.status==="offen"
+        ? `<button class="btn sm pri" data-do="${s.k}" data-fall="${f.id}">Erledigen</button>
+           <button class="btn sm ghost" data-na="${s.k}" data-fall="${f.id}" title="Schritt entfällt bei diesem Fall">nicht nötig</button>`
+        : `<button class="btn sm ghost" data-undo="${s.k}" data-fall="${f.id}">rückgängig</button>`}
+    </div>
+  </div>`;
+}
+function viewFall(){
+  const f=fall(ST.fallId);
+  if(!f) return '<div class="empty">Fall nicht gefunden. <button class="btn ghost sm" data-nav-to="faelle">Zur Fallliste</button></div>';
+  const o=objekt(f.objektId), l=lig(o.lig);
+  const n=naechsterSchritt(f), ws=warnungen(f), ls=leerstand(f), vl=vorlauftage(f), cur=aktuellePhase(f);
+
+  return `
+  <button class="crumb" data-nav-to="faelle" style="margin-bottom:10px">← Fälle</button>
+  <div class="spread" style="margin-bottom:14px">
+    <div style="min-width:0">
+      <h1>${esc(l.name)}, ${esc(o.stock)}</h1>
+      <p class="tiny muted" style="margin:4px 0 0">
+        <span class="nr">${esc(o.nr)}</span> · ${esc(l.ort)} · ${o.zi.toFixed(1).replace(".",",")} Zimmer · ${esc(l.eig)}</p>
+    </div>
+    <div class="row">
+      ${statusChip(f)}
+      <span class="chip n">${esc(f.bewirtschafter)}</span>
+      <span class="chip n">${esc(f.id)}</span>
+    </div>
+  </div>
+
+  <div class="metrics" style="margin-bottom:14px">
+    <div class="metric"><span class="lbl">Leerstandstage</span>
+      <div class="v ${ls&&ls.laufend&&!ls.kuenftig&&ls.tage>60?"crit":""}">${ls?(ls.kuenftig?"0":ls.tage):"–"}</div>
+      <div class="tiny muted">${ls? (ls.kuenftig? "beginnt in "+(-ls.roh)+" Tagen" : (ls.laufend?"laufend":"bis "+fmtKurz(f.vermietetPer))) : "Haftungsdatum fehlt"}</div></div>
+    <div class="metric"><span class="lbl">Vorlauftage</span>
+      <div class="v">${vl==null?"–":vl}</div>
+      <div class="tiny muted">Kündigung → Haftungsdatum</div></div>
+    <div class="metric"><span class="lbl">Berichtsmonat</span>
+      <div class="v" style="font-size:15px;padding-top:4px">${esc(berichtsmonat(f.haftungsdatum))}</div>
+      <div class="tiny muted">aus Haftungsdatum</div></div>
+    <div class="metric"><span class="lbl">Tage in Phase ${f.abgeschlossen?"–":cur}</span>
+      <div class="v">${f.abgeschlossen?"–":tageInPhase(f)}</div>
+      <div class="tiny muted">${f.abgeschlossen?"abgeschlossen "+fmtKurz(f.abgeschlossen.am):esc(PHASEN[cur-1].titel)}</div></div>
+  </div>
+
+  ${n?`<div class="next ${n.art==="abschluss"?"done":""}" style="margin-bottom:14px">
+    <div style="min-width:0">
+      <span class="k">Nächster Schritt · Phase ${n.phase}</span>
+      <h3>${esc(n.titel)}</h3>
+      <p>${n.text}</p>
+    </div>
+    <div class="acts">
+      ${n.art==="schritt"?`<button class="btn pri" data-do="${n.schritt.k}" data-fall="${f.id}">Erledigen</button>`:""}
+      ${n.art==="abschluss"?`<button class="btn pri" data-close="${f.id}">Fall abschliessen</button>`:""}
+      ${n.art==="feld"?`<button class="btn pri" data-focus="${n.felder[0].f}">Zur Angabe</button>`:""}
+    </div>
+  </div>`:`<div class="next done" style="margin-bottom:14px">
+    <div><span class="k">Erledigt</span><h3>Fall abgeschlossen am ${fmt(f.abgeschlossen.am)}</h3>
+    <p>Abgeschlossen durch ${esc(f.abgeschlossen.von)} · alle fünf Phasen vollständig.</p></div>
+    <div class="acts"><button class="btn" data-reopen="${f.id}">Wieder öffnen</button></div>
+  </div>`}
+
+  ${ws.length?`<div class="panel" style="margin-bottom:14px"><header><span class="lbl">Prüfungen zu diesem Fall</span></header>
+    <div class="warn-list">${ws.map(w=>`<div class="wrow ${w.stufe}">
+      <span class="ic">${w.stufe==="crit"?"!":w.stufe==="warn"?"▲":"i"}</span>
+      <div><b class="f-ui" style="font-size:13.5px">${esc(w.titel)}</b><div class="w2">${esc(w.text)}</div></div>
+      ${w.fall?`<button class="btn sm" data-open="${w.fall}">Anderen Fall öffnen</button>`:"<span></span>"}
+    </div>`).join("")}</div></div>`:""}
+
+  <div class="detail">
+    <div>
+      ${PHASEN.map(p=>{
+        const komplett=phaseKomplett(f,p.nr);
+        const offenAnz=SCHRITTE_P(p.nr).filter(s=>f.schritte[s.k].status==="offen").length
+                     + fehlendeFelder(f,p.nr).length;
+        const open = !f.abgeschlossen && p.nr===cur;
+        return `<details class="phase" ${open?"open":""}>
+          <summary>
+            <span class="pnum p${p.nr}">${komplett?"✓":p.nr}</span>
+            <span class="ptitle">${esc(p.titel)}</span>
+            <span class="excel">${esc(p.excel)}</span>
+            ${komplett?'<span class="chip ok">vollständig</span>':`<span class="chip ${p.nr===cur?"acc":"n"}">${offenAnz} offen</span>`}
+          </summary>
+          <div class="pbody">
+            <p class="note" style="margin:0 0 11px">${esc(p.zweck)}</p>
+            ${p.nr===1?`<div class="grid2">
+              ${feldZeile(f,"exMieter","ex-Mieter","text")}
+              ${feldZeile(f,"mieterSeit","Mieter seit","date")}
+              ${feldZeile(f,"gekuendigtPer","gekündigt per","date")}
+              ${feldZeile(f,"haftungsdatum","Haftungsdatum","date")}
+            </div>`:""}
+            ${p.nr===3?`<div class="grid2" style="margin-bottom:11px">
+              ${feldZeile(f,"neuerMieter","neuer Mieter","text")}
+              ${feldZeile(f,"vermietetPer","Vermietet per","date")}
+            </div>`:""}
+            ${SCHRITTE_P(p.nr).map(s=>schrittZeile(f,s)).join("")}
+          </div>
+        </details>`;
+      }).join("")}
+    </div>
+
+    <aside class="side">
+      <div class="panel"><header><span class="lbl">Objekt</span></header><div class="pad">
+        <dl class="dl">
+          <dt>Obj.-Nr.</dt><dd class="nr">${esc(o.nr)}</dd>
+          <dt>Liegenschaft</dt><dd>${esc(l.name)}</dd>
+          <dt>Ort</dt><dd>${esc(l.ort)}</dd>
+          <dt>Stock</dt><dd>${esc(o.stock)}</dd>
+          <dt>Zimmer</dt><dd>${o.zi.toFixed(1).replace(".",",")}</dd>
+          <dt>Eigentümer</dt><dd>${esc(l.eig)}</dd>
+        </dl>
+        <p style="margin:11px 0 0"><a href="${esc(o.sp)}" target="_blank" rel="noopener">Dokumente auf SharePoint →</a></p>
+        <p class="note" style="margin-top:7px">Diese Angaben kommen aus den Stammdaten – im Excel wurden sie pro Zeile neu erfasst.</p>
+      </div></div>
+
+      <div class="panel"><header><span class="lbl">Daten</span></header><div class="pad">
+        <dl class="dl">
+          <dt>gekündigt per</dt><dd>${fmt(f.gekuendigtPer)}</dd>
+          <dt>Haftungsdatum</dt><dd>${fmt(f.haftungsdatum)}</dd>
+          <dt>Mieter seit</dt><dd>${fmt(f.mieterSeit)}</dd>
+          <dt>Vermietet per</dt><dd>${fmt(f.vermietetPer)}</dd>
+          <dt>angelegt</dt><dd>${fmt(f.angelegtAm)}</dd>
+        </dl>
+      </div></div>
+
+      ${f.notiz?`<div class="panel"><header><span class="lbl">Notiz</span></header>
+        <div class="pad tiny">${esc(f.notiz)}</div></div>`:""}
+
+      <div class="panel"><header><span class="lbl">Historie</span>
+        <span class="tiny muted">${f.historie.length}</span></header>
+        <div class="pad"><div class="hist">
+          ${f.historie.map(h=>`<div class="hitem"><span class="ht">${fmtKurz(h.d)}</span>
+            <span>${esc(h.txt)}<br><span class="muted tiny">${esc(h.von)}</span></span></div>`).join("")}
+        </div></div>
+      </div>
+    </aside>
+  </div>`;
+}
+
+/* ============================================================
+   11 · ANSICHT: AUSWERTUNG
+   ============================================================ */
+function phaseEnde(f,n){
+  if(n===1) return f.gekuendigtPer||f.angelegtAm;
+  const ds=SCHRITTE_P(n).map(s=>f.schritte[s.k].datum).filter(Boolean).sort();
+  return ds.length?ds[ds.length-1]:null;
+}
+function durchlauf(f,n){
+  const e=phaseEnde(f,n); if(!e) return null;
+  let s=null; for(let m=n-1;m>=1;m--){ s=phaseEnde(f,m); if(s) break; }
+  if(!s) return null;
+  const d=diffT(s,e); return d==null?null:Math.max(0,d);
+}
+function kennzahlen(bew){
+  const alle=FAELLE.filter(f=>f.bewirtschafter===bew);
+  const offen=alle.filter(f=>!f.abgeschlossen);
+  const ueber=offen.filter(istUeberfaellig).length;
+  const zu=alle.filter(f=>f.abgeschlossen && f.vermietetPer && f.haftungsdatum && f.gekuendigtPer);
+  const mit=(start)=>{ if(!zu.length) return null;
+    const v=zu.map(f=>diffT(f[start],f.vermietetPer)).filter(x=>x!=null);
+    return v.length? Math.round(v.reduce((a,b)=>a+b,0)/v.length) : null; };
+  return {bew, gesamt:alle.length, offen:offen.length, ueber,
+          avgNeu:mit("haftungsdatum"), avgExcel:mit("gekuendigtPer"), zuAnz:zu.length};
+}
+function viewAuswertung(){
+  const rows=BEWIRTSCHAFTER.map(kennzahlen);
+  const tot={gesamt:rows.reduce((s,r)=>s+r.gesamt,0), offen:rows.reduce((s,r)=>s+r.offen,0),
+             ueber:rows.reduce((s,r)=>s+r.ueber,0)};
+  const zuAlle=FAELLE.filter(f=>f.abgeschlossen && f.vermietetPer && f.haftungsdatum);
+  const avgT=zuAlle.length?Math.round(zuAlle.map(f=>diffT(f.haftungsdatum,f.vermietetPer)).reduce((a,b)=>a+b,0)/zuAlle.length):null;
+  const avgX=zuAlle.length?Math.round(zuAlle.map(f=>diffT(f.gekuendigtPer,f.vermietetPer)).reduce((a,b)=>a+b,0)/zuAlle.length):null;
+  const maxOffen=Math.max(1,...rows.map(r=>r.offen));
+
+  const dl=[2,3,4,5].map(n=>{
+    const v=FAELLE.filter(f=>f.abgeschlossen).map(f=>durchlauf(f,n)).filter(x=>x!=null);
+    return {n, titel:PHASEN[n-1].titel, avg: v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):null, anz:v.length};
+  });
+  const maxDl=Math.max(1,...dl.map(d=>d.avg||0));
+
+  const offeneF=FAELLE.filter(f=>!f.abgeschlossen);
+  const jePhase=[1,2,3,4,5].map(n=>({n, titel:PHASEN[n-1].titel, anz:offeneF.filter(f=>aktuellePhase(f)===n).length}));
+  const sumPh=Math.max(1,offeneF.length);
+
+  return `
+  <div class="spread" style="margin-bottom:14px">
+    <div><h1>Auswertung</h1>
+      <p class="tiny muted" style="margin:3px 0 0">Alle Bewirtschafter · Stand ${fmt(iso(HEUTE))}</p></div>
+    <button class="btn" id="btnExport">Export</button>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px">
+    <header><span class="lbl">Kennzahlen je Bewirtschafter</span>
+      <span class="tiny muted">entspricht dem Blatt «Kennzahlen», um den Methodenvergleich erweitert</span></header>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Bewirtschafter</th><th class="n">Gesamt</th><th class="n">Offen</th>
+        <th class="n">Überfällig</th><th class="n">Ø Leerstand</th><th class="n">Ø nach Excel</th><th class="n">Differenz</th></tr></thead>
+      <tbody>${rows.map(r=>`<tr>
+        <td>${esc(r.bew)}${r.bew===ICH?' <span class="chip acc" style="margin-left:4px">ich</span>':""}</td>
+        <td class="n">${r.gesamt}</td><td class="n">${r.offen}</td>
+        <td class="n" ${r.ueber?'style="color:var(--crit);font-weight:600"':""}>${r.ueber}</td>
+        <td class="n">${r.avgNeu==null?"–":r.avgNeu}</td>
+        <td class="n muted">${r.avgExcel==null?"–":r.avgExcel}</td>
+        <td class="n muted">${r.avgNeu!=null&&r.avgExcel!=null?"+"+(r.avgExcel-r.avgNeu):"–"}</td></tr>`).join("")}</tbody>
+      <tfoot><tr><td>Gesamt</td><td class="n">${tot.gesamt}</td><td class="n">${tot.offen}</td>
+        <td class="n">${tot.ueber}</td><td class="n">${avgT==null?"–":avgT}</td>
+        <td class="n">${avgX==null?"–":avgX}</td>
+        <td class="n">${avgT!=null&&avgX!=null?"+"+(avgX-avgT):"–"}</td></tr></tfoot>
+    </table></div>
+    <div class="pad" style="border-top:1px solid var(--line)">
+      <div class="banner info"><span>ℹ</span><div><b>Methodenvergleich.</b>
+        «Ø Leerstand» rechnet ab Haftungsdatum – dem Tag, ab dem die Eigentümerschaft den Leerstand trägt.
+        «Ø nach Excel» rechnet wie bisher ab «gekündigt per» und zählt damit die Kündigungsfrist mit.
+        Über alle abgeschlossenen Fälle liegt die alte Methode um <b>${avgT!=null&&avgX!=null?(avgX-avgT):"–"} Tage</b> höher.</div></div>
+      <div class="row" style="margin-top:11px">
+        <span class="tiny muted">Berechnungsbasis in der ganzen App:</span>
+        <div class="seg" role="group" aria-label="Berechnungsbasis">
+          <button data-basis="haftung" aria-pressed="${ST.basis==="haftung"}">ab Haftungsdatum</button>
+          <button data-basis="kuendigung" aria-pressed="${ST.basis==="kuendigung"}">ab gekündigt per</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2" style="align-items:start">
+    <div class="panel"><header><span class="lbl">Offene Fälle je Bewirtschafter</span></header>
+      <div class="pad"><div class="bars">
+        ${rows.map(r=>`<div class="bar ${r.ueber?"is-crit":""}">
+          <span>${esc(r.bew)}</span>
+          <span class="track"><span class="fill" style="width:${Math.round(r.offen/maxOffen*100)}%"></span></span>
+          <span class="v">${r.offen}</span></div>`).join("")}
+      </div>
+      <p class="note" style="margin-top:10px">Rot eingefärbt: Bewirtschafter mit mindestens einem überfälligen Termin.</p></div></div>
+
+    <div class="panel"><header><span class="lbl">Ø Durchlaufzeit je Phase</span>
+      <span class="tiny muted">abgeschlossene Fälle</span></header>
+      <div class="pad"><div class="bars">
+        ${dl.map(d=>`<div class="bar">
+          <span>${d.n} · ${esc(d.titel)}</span>
+          <span class="track"><span class="fill" style="width:${Math.round((d.avg||0)/maxDl*100)}%;background:var(--ph${d.n})"></span></span>
+          <span class="v">${d.avg==null?"–":d.avg+" T"}</span></div>`).join("")}
+      </div>
+      <p class="note" style="margin-top:10px">Diese Auswertung gibt es im Excel nicht – sie entsteht erst dadurch,
+        dass jeder Schritt mit Datum statt mit «Ja» festgehalten wird.</p></div></div>
+  </div>
+
+  <div class="panel" style="margin-top:14px"><header><span class="lbl">Offene Fälle nach Phase</span>
+    <span class="tiny muted">${offeneF.length} Fälle</span></header>
+    <div class="pad">
+      <div class="meter">
+        ${jePhase.map(p=>p.anz?`<span style="flex:${p.anz};background:var(--ph${p.n});color:var(--ph-ink-${p.n>=3?"dark":"light"})" title="${esc(p.titel)}: ${p.anz}">${p.anz}</span>`:"").join("")}
+      </div>
+      <div class="mlegend">
+        ${jePhase.map(p=>`<span><i style="background:var(--ph${p.n})"></i>${p.n} · ${esc(p.titel)} — <b>${p.anz}</b></span>`).join("")}
+      </div>
+      <p class="note" style="margin-top:10px">Anteil je Phase an allen offenen Fällen (${offeneF.length}). Dunkler = weiter fortgeschritten.</p>
+    </div></div>`;
+}
+
+/* ============================================================
+   12 · ANSICHT: STAMMDATEN
+   ============================================================ */
+function viewStammdaten(){
+  const eig=[...new Set(LIEGENSCHAFTEN.map(l=>l.eig))];
+  return `
+  <h1>Stammdaten</h1>
+  <p class="tiny muted" style="margin:3px 0 16px">Einmal gepflegt statt in jeder Zeile neu getippt.</p>
+
+  <div class="panel" style="margin-bottom:16px">
+    <header><span class="lbl">Bewirtschafter</span><span class="tiny muted">${BEWIRTSCHAFTER.length} aktiv</span></header>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Name</th><th class="n">Fälle gesamt</th><th class="n">davon offen</th><th class="n">überfällig</th></tr></thead>
+      <tbody>${BEWIRTSCHAFTER.map(b=>{const k=kennzahlen(b);return `<tr><td>${esc(b)}</td>
+        <td class="n">${k.gesamt}</td><td class="n">${k.offen}</td>
+        <td class="n" ${k.ueber?'style="color:var(--crit);font-weight:600"':""}>${k.ueber}</td></tr>`;}).join("")}</tbody>
+    </table></div>
+    <div class="pad" style="border-top:1px solid var(--line)">
+      <div class="row">
+        <div class="field" style="flex:1 1 210px"><label for="newBew">Neuen Bewirtschafter aufnehmen</label>
+          <input id="newBew" type="text" placeholder="Nachname"></div>
+        <button class="btn" id="btnAddBew" style="align-self:flex-end">Hinzufügen</button>
+      </div>
+      <p class="note" style="margin-top:9px">Im Excel bedeutete ein zehnter Bewirtschafter, 35 Spalten × 1314 Zeilen
+        Konsolidierungsformeln und zwei geschützte Blätter umzubauen – das leere Blatt «Reserve 2» ist davon übrig geblieben.</p>
+    </div>
+  </div>
+
+  <div class="grid2" style="align-items:start">
+    <div class="panel"><header><span class="lbl">Eigentümer</span><span class="tiny muted">${eig.length}</span></header>
+      <div class="tablewrap"><table><thead><tr><th>Eigentümer</th><th class="n">Liegenschaften</th><th class="n">Objekte</th></tr></thead>
+        <tbody>${eig.map(e=>{
+          const ls=LIEGENSCHAFTEN.filter(l=>l.eig===e);
+          const os=OBJEKTE.filter(o=>ls.some(l=>l.id===o.lig));
+          return `<tr><td>${esc(e)}</td><td class="n">${ls.length}</td><td class="n">${os.length}</td></tr>`;}).join("")}
+        </tbody></table></div></div>
+
+    <div class="panel"><header><span class="lbl">Liegenschaften</span><span class="tiny muted">${LIEGENSCHAFTEN.length}</span></header>
+      <div class="tablewrap"><table><thead><tr><th>Liegenschaft</th><th>Ort</th><th class="n">Objekte</th></tr></thead>
+        <tbody>${LIEGENSCHAFTEN.map(l=>`<tr><td>${esc(l.name)}</td><td>${esc(l.ort)}</td>
+          <td class="n">${OBJEKTE.filter(o=>o.lig===l.id).length}</td></tr>`).join("")}</tbody></table></div></div>
+  </div>
+
+  <div class="panel" style="margin-top:14px"><header><span class="lbl">Objekte</span>
+    <span class="tiny muted">${OBJEKTE.length}</span></header>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Obj.-Nr.</th><th>Liegenschaft</th><th>Stock</th><th class="n">Zimmer</th><th class="n">Fälle</th><th>Status</th></tr></thead>
+      <tbody>${OBJEKTE.map(o=>{
+        const fs=FAELLE.filter(f=>f.objektId===o.id), off=fs.filter(f=>!f.abgeschlossen);
+        return `<tr><td class="nr">${esc(o.nr)}</td><td>${esc(lig(o.lig).name)}</td><td>${esc(o.stock)}</td>
+          <td class="n">${o.zi.toFixed(1).replace(".",",")}</td><td class="n">${fs.length}</td>
+          <td>${off.length>1?'<span class="chip crit">'+off.length+' offene Fälle</span>'
+              :off.length?'<span class="chip acc">offen</span>':'<span class="chip n">vermietet</span>'}</td></tr>`;}).join("")}
+      </tbody></table></div>
+    <div class="pad" style="border-top:1px solid var(--line)">
+      <p class="note" style="margin:0">Mehrere Fälle zum selben Objekt sind normal – ein Objekt wird über die Jahre mehrfach frei.
+        Gewarnt wird nur, wenn <b>zwei Fälle gleichzeitig offen</b> sind. Im Excel färbte sich jede mehrfach vorkommende
+        Obj.-Nr. orange, auch bei längst abgeschlossenen Fällen.</p>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   13 · ANSICHT: HILFE
+   ============================================================ */
+const MAPPING = [
+  ["A","Monat","Entfällt als Eingabe – der Berichtsmonat wird aus dem Haftungsdatum abgeleitet, mit Jahr."],
+  ["B","Bewirtschafter","Zuständigkeit am Fall. Echte Zuweisung statt freies Dropdown, das die Auswertung ignoriert hat."],
+  ["C","Eigentümer","Stammdaten → Liegenschaft."],
+  ["D","Liegenschaft","Stammdaten → Liegenschaft."],
+  ["E","Obj. Nr.","Stammdaten → Objekt."],
+  ["F","Anz. Zimmer","Stammdaten → Objekt."],
+  ["G","Stock","Stammdaten → Objekt."],
+  ["H","Sharepoint Link:","Stammdaten → Objekt, als klickbarer Link in der Fallakte."],
+  ["I","ex Mieter","Phase 1 · Erfassung."],
+  ["J","gekündigt per","Phase 1 · Erfassung. Datumsfeld mit Plausibilitätsprüfung."],
+  ["K","Haftungsdatum","Phase 1 · Erfassung. Neu die Grundlage der Leerstandsberechnung."],
+  ["N","Mieter seit","Phase 1 · Erfassung, neben dem ex-Mieter statt mitten im Abnahmeblock."],
+  ["L","Kü bestätigt / Mut. G-Rem","Phase 2 · Schritt."],
+  ["M","Meldung Werke / EGT","Phase 2 · Schritt."],
+  ["O","Vorbesichtigung nötig?","Phase 2 · Schritt mit Entscheid «nicht erforderlich»."],
+  ["P","VMZ akualisiert","Phase 2 · Schritt («VMZ aktualisiert» – Tippfehler bereinigt)."],
+  ["Q","Inserat online","Phase 2 · Schritt."],
+  ["R + T","WA-Termin / WA durchgeführt","Phase 2 · ein Schritt mit Termin. Grundlage der Überfälligkeitsprüfung."],
+  ["S","aufbieten Handwerker","Phase 2 · Schritt."],
+  ["U","Zustimmungserklärung unterzeichnet","Phase 2 · Schritt."],
+  ["V","Instandstellungen beauftragt","Phase 2 · Schritt."],
+  ["W","neuer Mieter","Phase 3 · Pflichtangabe."],
+  ["X","Vertrag versendet:","Phase 3 · Schritt."],
+  ["Y","Vertrag retour","Phase 3 · Schritt, optional mit Frist."],
+  ["Z","Vermietet per:","Phase 3 · Pflichtangabe. Beendet die Leerstandszählung."],
+  ["AA","Info Werke / EGT","Phase 4 · Schritt."],
+  ["AB","Schlüsselübergabe terminiert","Phase 4 · Schritt mit Termin."],
+  ["AC","Reinigung veranlasst","Phase 4 · Schritt."],
+  ["AD","Namensschilder","Phase 4 · Schritt."],
+  ["AE","Kaution einbezahlt / G-Rem mutiert","Phase 4 · Schritt."],
+  ["AF","Instandstellungs-RG","Phase 5 · Schritt."],
+  ["AG","SA erhalten","Phase 5 · Schritt."],
+  ["AH","Zahlungseingang erhalten","Phase 5 · Schritt."],
+  ["AI","Fall bgeschlossen","Abgeleitet: nur möglich, wenn Phase 5 vollständig ist. Kein freier Haken mehr."],
+  ["AJ","Tage offen","Ersetzt durch Leerstandstage (ab Haftungsdatum) und Vorlauftage, getrennt ausgewiesen."],
+  ["AK–AR","Hilfsspalten","Entfallen – die Konsolidierung über neun Blätter wird nicht mehr gebraucht."]
+];
+function viewHilfe(){
+  return `
+  <h1>Hilfe &amp; Prinzipien</h1>
+  <p class="tiny muted" style="margin:3px 0 16px">Wie diese Anwendung gedacht ist – und wo jede Excel-Spalte geblieben ist.</p>
+
+  <div class="grid2" style="margin-bottom:16px">
+    <div class="flat pad"><h3>Der nächste Schritt wird angezeigt</h3>
+      <p class="tiny muted" style="margin:6px 0 0">Jeder Fall sagt selbst, was als Nächstes dran ist und warum.
+      Sie müssen nicht wissen, in welcher Spalte etwas steht – das Dashboard bringt die Aufgaben nach Dringlichkeit zu Ihnen.</p></div>
+    <div class="flat pad"><h3>Erledigen statt «Ja» eintragen</h3>
+      <p class="tiny muted" style="margin:6px 0 0">Wird ein Schritt erledigt, hält die Anwendung automatisch Datum und Benutzer fest.
+      Daraus entstehen Historie und Durchlaufzeiten, ohne zusätzliche Eingabe.</p></div>
+    <div class="flat pad"><h3>Drei Zustände statt Ja/Nein</h3>
+      <p class="tiny muted" style="margin:6px 0 0">Ein Schritt ist <b>offen</b>, <b>erledigt</b> oder <b>nicht erforderlich</b>.
+      Damit ist «bewusst übersprungen» von «noch nicht angefasst» unterscheidbar – im Excel hiess beides «Nein».</p></div>
+    <div class="flat pad"><h3>Leerstand ab Haftungsdatum</h3>
+      <p class="tiny muted" style="margin:6px 0 0">Gezählt wird ab dem Tag, ab dem die Eigentümerschaft den Leerstand trägt.
+      Die Kündigungsfrist davor wird als Vorlaufzeit getrennt ausgewiesen, nicht als Leerstand.</p></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px">
+    <header><span class="lbl">Prüfungen, die laufend im Hintergrund laufen</span></header>
+    <div class="warn-list">
+      <div class="wrow crit"><span class="ic">!</span><div><b class="f-ui" style="font-size:13.5px">Verstrichene Termine</b>
+        <div class="w2">WA-Termin, Vertragsrücklauf und Schlüsselübergabe – im Excel wurde nur der WA-Termin geprüft.</div></div><span></span></div>
+      <div class="wrow crit"><span class="ic">!</span><div><b class="f-ui" style="font-size:13.5px">Zwei offene Fälle zum selben Objekt</b>
+        <div class="w2">Wird beim Anlegen gemeldet, nicht erst als Farbe in der Liste.</div></div><span></span></div>
+      <div class="wrow warn"><span class="ic">▲</span><div><b class="f-ui" style="font-size:13.5px">Unplausible Daten</b>
+        <div class="w2">Haftungsdatum vor Kündigung, Vermietung vor Leerstandsbeginn, WA-Termin vor Kündigung.</div></div><span></span></div>
+      <div class="wrow warn"><span class="ic">▲</span><div><b class="f-ui" style="font-size:13.5px">Fehlende Pflichtangaben</b>
+        <div class="w2">Je Phase nur das, was in dieser Phase wirklich gebraucht wird.</div></div><span></span></div>
+      <div class="wrow warn"><span class="ic">▲</span><div><b class="f-ui" style="font-size:13.5px">Langläufer über 60 Tage</b>
+        <div class="w2">Gerechnet ab Haftungsdatum – dadurch schlägt die Warnung nicht mehr bei planmässigen Fällen an.</div></div><span></span></div>
+      <div class="wrow info"><span class="ic">i</span><div><b class="f-ui" style="font-size:13.5px">Abschlussbereitschaft</b>
+        <div class="w2">Ein Fall lässt sich erst schliessen, wenn die Schlussabrechnung bezahlt ist.</div></div><span></span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><span class="lbl">Wo jede Excel-Spalte geblieben ist</span>
+      <span class="tiny muted">${MAPPING.length} Einträge</span></header>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Spalte</th><th>Überschrift im Excel</th><th style="white-space:normal">In der Anwendung</th></tr></thead>
+      <tbody>${MAPPING.map(m=>`<tr><td class="nr">${esc(m[0])}</td><td>${esc(m[1])}</td>
+        <td style="white-space:normal">${esc(m[2])}</td></tr>`).join("")}</tbody>
+    </table></div>
+  </div>
+
+  <p class="note" style="margin-top:14px">Prototyp mit Demodaten. Die Daten liegen nur in diesem Browser;
+    «Demodaten zurücksetzen» in der linken Leiste stellt den Ausgangszustand wieder her.</p>`;
+}
+
+/* ============================================================
+   14 · DIALOGE: NEUER FALL, EXPORT
+   ============================================================ */
+function schliesseModal(){ document.getElementById("modalHost").innerHTML=""; }
+function zeigeModal(html){
+  document.getElementById("modalHost").innerHTML=
+    '<div class="modal" role="dialog" aria-modal="true">'+html+'</div>';
+  const first=document.querySelector("#modalHost input,#modalHost select");
+  if(first) first.focus();
+}
+function dialogNeuerFall(){
+  zeigeModal(`<div class="box">
+    <header><h2>Neuer Leerstandsfall</h2><button class="btn ghost sm" data-cancel>Abbrechen</button></header>
+    <div class="pad stack">
+      <div id="nfDup"></div>
+      <div class="grid2">
+        <div class="field"><label for="nfObj">Objekt <span class="req">*</span> ${hilfeBtn("objekt")}</label>
+          <select id="nfObj"><option value="">bitte wählen …</option>
+          ${LIEGENSCHAFTEN.map(l=>`<optgroup label="${esc(l.name)}, ${esc(l.ort)}">
+            ${OBJEKTE.filter(o=>o.lig===l.id).map(o=>`<option value="${o.id}">${esc(o.nr)} · ${esc(o.stock)} · ${o.zi.toFixed(1).replace(".",",")} Zi.</option>`).join("")}
+          </optgroup>`).join("")}</select>
+          <div class="helptext" id="hlp_objekt" hidden>${esc(FELDHILFE.objekt)}</div></div>
+        <div class="field"><label for="nfBew">Bewirtschafter <span class="req">*</span> ${hilfeBtn("bewirtschafter")}</label>
+          <select id="nfBew">${BEWIRTSCHAFTER.map(b=>`<option ${b===ICH?"selected":""}>${b}</option>`).join("")}</select>
+          <div class="helptext" id="hlp_bewirtschafter" hidden>${esc(FELDHILFE.bewirtschafter)}</div></div>
+        <div class="field"><label for="nfEx">ex-Mieter <span class="req">*</span> ${hilfeBtn("exMieter")}</label>
+          <input id="nfEx" type="text" placeholder="Name des kündigenden Mieters">
+          <div class="helptext" id="hlp_exMieter" hidden>${esc(FELDHILFE.exMieter)}</div></div>
+        <div class="field"><label for="nfSeit">Mieter seit ${hilfeBtn("mieterSeit")}</label>
+          <input id="nfSeit" type="date">
+          <div class="helptext" id="hlp_mieterSeit" hidden>${esc(FELDHILFE.mieterSeit)}</div></div>
+        <div class="field"><label for="nfKue">gekündigt per <span class="req">*</span> ${hilfeBtn("gekuendigtPer")}</label>
+          <input id="nfKue" type="date" value="${iso(HEUTE)}">
+          <div class="helptext" id="hlp_gekuendigtPer" hidden>${esc(FELDHILFE.gekuendigtPer)}</div></div>
+        <div class="field"><label for="nfHaft">Haftungsdatum <span class="req">*</span> ${hilfeBtn("haftungsdatum")}</label>
+          <input id="nfHaft" type="date">
+          <div class="helptext" id="hlp_haftungsdatum" hidden>${esc(FELDHILFE.haftungsdatum)}</div></div>
+      </div>
+      <div id="nfErr"></div>
+      <p class="note">Mehr braucht es zum Anlegen nicht. Alles Weitere fragt die Anwendung im Verlauf der fünf Phasen ab.</p>
+    </div>
+    <footer><button class="btn" data-cancel>Abbrechen</button>
+      <button class="btn pri" id="nfSave">Fall anlegen</button></footer>
+  </div>`);
+}
+function pruefeNeu(){
+  const objId=document.getElementById("nfObj").value;
+  const box=document.getElementById("nfDup");
+  const off=FAELLE.filter(f=>f.objektId===objId && !f.abgeschlossen);
+  if(objId && off.length){
+    box.innerHTML=`<div class="banner crit"><span>!</span><div><b>Zu diesem Objekt ist bereits ein Fall offen.</b><br>
+      ${off.map(f=>esc(f.id)+" ("+esc(f.bewirtschafter)+", Phase "+aktuellePhase(f)+", ex "+esc(f.exMieter)+")").join("<br>")}<br>
+      Bitte prüfen, ob der bestehende Fall gemeint ist – sonst entsteht eine Doppelerfassung.</div></div>`;
+  } else if(objId){
+    const alt=FAELLE.filter(f=>f.objektId===objId && f.abgeschlossen);
+    box.innerHTML = alt.length? `<div class="banner info"><span>ℹ</span><div>Zu diesem Objekt gibt es
+      ${alt.length} abgeschlossene${alt.length===1?"n Fall":" Fälle"} – das ist normal und kein Duplikat.</div></div>` : "";
+  } else box.innerHTML="";
+}
+function speichereNeu(){
+  const objId=document.getElementById("nfObj").value;
+  const bew=document.getElementById("nfBew").value;
+  const ex=document.getElementById("nfEx").value.trim();
+  const kue=document.getElementById("nfKue").value;
+  const haft=document.getElementById("nfHaft").value;
+  const seit=document.getElementById("nfSeit").value;
+  const errs=[];
+  if(!objId) errs.push("Bitte ein Objekt wählen.");
+  if(!ex) errs.push("Bitte den ex-Mieter erfassen.");
+  if(!kue) errs.push("Bitte «gekündigt per» erfassen.");
+  if(!haft) errs.push("Bitte das Haftungsdatum erfassen – ohne dieses Datum lässt sich der Leerstand nicht berechnen.");
+  if(kue&&haft&&diffT(kue,haft)<0) errs.push("Das Haftungsdatum liegt vor dem Kündigungsdatum. Bitte beide Daten prüfen.");
+  if(seit&&kue&&diffT(seit,kue)<0) errs.push("«Mieter seit» liegt nach dem Kündigungsdatum. Bitte prüfen.");
+  const box=document.getElementById("nfErr");
+  if(errs.length){ box.innerHTML='<div class="banner warn"><span>▲</span><div>'+errs.map(esc).join("<br>")+'</div></div>'; return; }
+  const jahr=HEUTE.getFullYear();
+  const nrs=FAELLE.map(f=>parseInt((f.id.split("-")[2]||"0"),10)).filter(n=>!isNaN(n));
+  const id="F-"+jahr+"-"+String(Math.max(0,...nrs)+1).padStart(3,"0");
+  const schritte={};
+  SCHRITTE.forEach(s=>{ schritte[s.k]={status:"offen",datum:null,von:null,grund:null,termin:null}; });
+  const f={id, objektId:objId, bewirtschafter:bew, exMieter:ex, gekuendigtPer:kue, haftungsdatum:haft,
+    mieterSeit:seit, neuerMieter:"", vermietetPer:"", notiz:"", schritte,
+    historie:[{d:iso(HEUTE), von:ICH, txt:"Fall angelegt"}], abgeschlossen:null, angelegtAm:iso(HEUTE)};
+  FAELLE.unshift(f);
+  schliesseModal();
+  ST.nav="fall"; ST.fallId=id;
+  speichern(); render(); toast("Fall "+id+" angelegt");
+}
+function dialogExport(){
+  const list=gefiltert();
+  const kopf=["Fall-Nr","Obj.-Nr.","Liegenschaft","Ort","Stock","Zimmer","Eigentümer","Bewirtschafter",
+    "ex Mieter","gekündigt per","Haftungsdatum","neuer Mieter","Vermietet per","Phase","Status",
+    "Leerstandstage","Vorlauftage","Berichtsmonat","offene Schritte"];
+  const zeilen=list.map(f=>{
+    const o=objekt(f.objektId), l=lig(o.lig), ls=leerstand(f);
+    const offen=SCHRITTE.filter(s=>f.schritte[s.k].status==="offen").length;
+    return [f.id,o.nr,l.name,l.ort,o.stock,o.zi.toFixed(1).replace(".",","),l.eig,f.bewirtschafter,
+      f.exMieter,fmt(f.gekuendigtPer),fmt(f.haftungsdatum),f.neuerMieter,fmt(f.vermietetPer),
+      f.abgeschlossen?"–":aktuellePhase(f), f.abgeschlossen?"abgeschlossen":(istUeberfaellig(f)?"überfällig":"offen"),
+      ls?ls.tage:"", vorlauftage(f)==null?"":vorlauftage(f), berichtsmonat(f.haftungsdatum), offen];
+  });
+  const csv=[kopf].concat(zeilen).map(r=>r.map(c=>String(c==null?"":c)).join(";")).join("\n");
+  zeigeModal(`<div class="box">
+    <header><h2>Export</h2><button class="btn ghost sm" data-cancel>Schliessen</button></header>
+    <div class="pad stack">
+      <div class="banner info"><span>ℹ</span><div>${list.length} Fälle nach den aktuellen Filtern.
+        In der produktiven Anwendung ist das ein Download als Excel- oder PDF-Datei; im Prototyp
+        steht der Inhalt hier zum Kopieren.</div></div>
+      <textarea id="exTxt" rows="11" readonly aria-label="Exportdaten">${esc(csv)}</textarea>
+    </div>
+    <footer><button class="btn" data-cancel>Schliessen</button>
+      <button class="btn pri" id="exCopy">In Zwischenablage kopieren</button></footer>
+  </div>`);
+}
+
+/* ============================================================
+   15 · RENDERING & NAVIGATION
+   ============================================================ */
+let letzteAnsicht="";
+function render(){
+  const v=document.getElementById("view");
+  let html="";
+  if(ST.nav==="dashboard")        html=viewDashboard();
+  else if(ST.nav==="faelle")      html=viewFaelle();
+  else if(ST.nav==="fall")        html=viewFall();
+  else if(ST.nav==="auswertung")  html=viewAuswertung();
+  else if(ST.nav==="stammdaten")  html=viewStammdaten();
+  else if(ST.nav==="hilfe")       html=viewHilfe();
+  const key=ST.nav+"|"+(ST.fallId||"");
+  const wechsel = key!==letzteAnsicht;
+  v.innerHTML=html;
+  const aktiv = ST.nav==="fall" ? "faelle" : ST.nav;
+  document.querySelectorAll("#rail [data-nav]").forEach(b=>{
+    if(b.dataset.nav===aktiv) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current");
+  });
+  const ueb=sichtFaelle().filter(f=>!f.abgeschlossen&&istUeberfaellig(f)).length;
+  const badge=document.getElementById("railBadge");
+  badge.textContent=ueb; badge.hidden = ueb===0;
+  const gq=document.getElementById("gq");
+  if(document.activeElement!==gq) gq.value=ST.q;
+  if(wechsel){ window.scrollTo(0,0); letzteAnsicht=key; }
+}
+function geheZu(nav,fallId){
+  ST.nav=nav; if(fallId!==undefined) ST.fallId=fallId;
+  render();
+}
+
+/* ---------- Ereignisse ---------- */
+document.addEventListener("click", e=>{
+  const t=e.target.closest("button,a"); if(!t) return;
+
+  if(t.dataset.hilfe!==undefined){
+    const bereich=t.closest(".modal")||document;
+    const box=bereich.querySelector("#hlp_"+CSS.escape(t.dataset.hilfe));
+    if(box){ box.hidden=!box.hidden; t.setAttribute("aria-expanded", String(!box.hidden)); }
+    return;
+  }
+  if(t.dataset.cancel!==undefined){ schliesseModal(); return; }
+  if(t.dataset.nav){ geheZu(t.dataset.nav); return; }
+  if(t.dataset.navTo){ geheZu(t.dataset.navTo); return; }
+  if(t.dataset.open){ geheZu("fall", t.dataset.open); return; }
+  if(t.dataset.sicht){ ST.sicht=t.dataset.sicht; speichern(); render(); return; }
+  if(t.dataset.basis){ ST.basis=t.dataset.basis; speichern(); render();
+    toast("Berechnungsbasis: "+(ST.basis==="haftung"?"ab Haftungsdatum":"ab gekündigt per")); return; }
+  if(t.dataset.do){ erledigen(t.dataset.fall, t.dataset.do); return; }
+  if(t.dataset.na){ const s=SCHRITT[t.dataset.na];
+    nichtErforderlich(t.dataset.fall, t.dataset.na, s.naGrund||"Entscheid: nicht erforderlich"); return; }
+  if(t.dataset.undo){ zuruecksetzen(t.dataset.fall, t.dataset.undo); return; }
+  if(t.dataset.close){ abschliessen(t.dataset.close); return; }
+  if(t.dataset.reopen){ wiederOeffnen(t.dataset.reopen); return; }
+  if(t.dataset.focus){
+    const el=document.getElementById("fl_"+t.dataset.focus);
+    if(el){ el.scrollIntoView({block:"center", behavior:"smooth"}); el.focus(); }
+    return;
+  }
+
+  switch(t.id){
+    case "btnNeu": case "btnNeu2": dialogNeuerFall(); return;
+    case "btnExport": dialogExport(); return;
+    case "nfSave": speichereNeu(); return;
+    case "exCopy": {
+      const ta=document.getElementById("exTxt");
+      ta.select();
+      if(navigator.clipboard) navigator.clipboard.writeText(ta.value).then(()=>toast("Exportdaten kopiert"),()=>toast("Bitte mit Strg+C kopieren"));
+      else toast("Bitte mit Strg+C kopieren");
+      return;
+    }
+    case "btnFilterReset": ST.q=""; ST.fBew=""; ST.fPhase=""; ST.fStatus="offen"; ST.fUeber=false; render(); return;
+    case "btnAddBew": {
+      const inp=document.getElementById("newBew"), name=inp.value.trim();
+      if(!name){ toast("Bitte einen Namen erfassen."); inp.focus(); return; }
+      if(BEWIRTSCHAFTER.includes(name)){ toast("Diesen Bewirtschafter gibt es bereits."); return; }
+      BEWIRTSCHAFTER.push(name); render(); toast(name+" aufgenommen – ohne Formelumbau.");
+      return;
+    }
+    case "btnReset": {
+      if(confirm("Alle Änderungen verwerfen und die Demodaten neu laden?")){
+        FAELLE=demodaten(); ST.fallId=null; ST.nav="dashboard"; speichern(); render(); toast("Demodaten zurückgesetzt");
+      }
+      return;
+    }
+  }
+});
+
+document.addEventListener("change", e=>{
+  const el=e.target;
+  if(el.dataset && el.dataset.feld){ setFeld(el.dataset.fall, el.dataset.feld, el.value); return; }
+  if(el.dataset && el.dataset.termin){ setTermin(el.dataset.fall, el.dataset.termin, el.value); return; }
+  switch(el.id){
+    case "fbew": ST.fBew=el.value; render(); return;
+    case "fph":  ST.fPhase=el.value; render(); return;
+    case "fst":  ST.fStatus=el.value; render(); return;
+    case "fue":  ST.fUeber=el.checked; render(); return;
+    case "nfObj": pruefeNeu(); return;
+  }
+});
+
+let sucheT=null;
+document.addEventListener("input", e=>{
+  const el=e.target;
+  if(el.id==="gq"){
+    ST.q=el.value;
+    clearTimeout(sucheT);
+    sucheT=setTimeout(()=>{ if(ST.nav!=="faelle"){ ST.nav="faelle"; } render(); el.focus(); }, 220);
+    return;
+  }
+  if(el.id==="fq"){
+    ST.q=el.value;
+    clearTimeout(sucheT);
+    sucheT=setTimeout(()=>{
+      const pos=el.selectionStart; render();
+      const neu=document.getElementById("fq");
+      if(neu){ neu.focus(); try{ neu.setSelectionRange(pos,pos); }catch(_){} }
+    }, 220);
+    return;
+  }
+});
+
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape" && document.querySelector("#modalHost .modal")) schliesseModal();
+});
+
+/* ---------- Start ---------- */
+laden();
+render();
+</script>
