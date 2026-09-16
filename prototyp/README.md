@@ -21,13 +21,24 @@ Veröffentlicht als Artifact: https://claude.ai/artifact/5wVJyvkUxngzAxzMJD4qUA
 
 ## Abgeleitete Sollfristen
 
-Sobald das Haftungsdatum erfasst ist, rechnet die Anwendung rückwärts: `VORLAUF_ABNAHME`
-(Standard 30 Tage) vor der Wohnungsabgabe werden **«Abnahmetermin vereinbaren»** und
-**«Handwerker aufbieten»** fällig. Solange kein eigener Termin gesetzt ist, heisst der Schritt
-nach der Handlung, die ansteht; ein manuell gesetzter Termin überschreibt die Sollfrist.
-Ohne Haftungsdatum entsteht keine Sollfrist und damit auch kein Fehlalarm.
+Jede Frist hängt an dem Datum, das sie auslöst:
 
-Die Frist steht als einzelne Konstante im Abschnitt «Prozessmodell» und ist dort änderbar.
+| Schritt | Anker | Frist | Konstante |
+|---|---|---|---|
+| Abnahmetermin vereinbaren | Haftungsdatum | 30 Tage **vorher** | `VORLAUF_ABNAHME` |
+| Handwerker aufbieten | Tag der durchgeführten Abnahme | 3 Tage **danach** | `FRIST_HANDWERKER` |
+
+Eine Frist entsteht erst, wenn ihr Ankerdatum feststeht: ohne Haftungsdatum keine
+Abnahmefrist, ohne durchgeführte Abnahme keine Handwerkerfrist – und damit kein Fehlalarm.
+Wird die Abnahme erledigt, meldet die Anwendung die dadurch gesetzte Folgefrist und schreibt
+sie in die Historie.
+
+Solange kein eigener Termin gesetzt ist, heisst der Schritt nach der Handlung, die ansteht
+(«Abnahmetermin vereinbaren» statt «Wohnungsabnahme durchgeführt»). Ein manuell gesetzter
+Termin überschreibt die Sollfrist immer.
+
+Beide Konstanten stehen im Abschnitt «Prozessmodell» und sind dort änderbar. Weitere Schritte
+lassen sich nach demselben Muster mit `soll: {anker, offset, txt}` versehen.
 
 Das Haftungsdatum entspricht immer dem Mietende – bei vorzeitiger Rückgabe wird ausserordentlich
 gekündigt und das Mietende angepasst. Ein separates Feld `Mietende` gibt es deshalb bewusst nicht.

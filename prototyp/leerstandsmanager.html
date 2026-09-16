@@ -396,10 +396,17 @@ const PHASEN = [
   {nr:5, titel:"Schlussabrechnung",      excel:"AF–AH",  zweck:"Mit dem Vormieter abrechnen und den Zahlungseingang kontrollieren."}
 ];
 
-// Vorlauf vor der Wohnungsabgabe (= Haftungsdatum): bis dahin müssen Abnahmetermin
-// und Handwerkeraufgebot stehen. Eine Zahl, an einer Stelle änderbar.
-const VORLAUF_ABNAHME = 30;
-const SOLL_ABNAHME = {offset:-VORLAUF_ABNAHME, txt:VORLAUF_ABNAHME+" Tage vor Wohnungsabgabe"};
+// Zwei Fristen mit unterschiedlichem Anker:
+//  · Der Abnahmetermin muss vor der Wohnungsabgabe stehen – Anker ist das Haftungsdatum.
+//  · Was die Handwerker machen müssen, weiss man erst nach der Abnahme – Anker ist der
+//    Tag, an dem die Wohnungsabnahme tatsächlich durchgeführt wurde. Vorher entsteht
+//    für diesen Schritt gar keine Frist.
+const VORLAUF_ABNAHME   = 30;   // Tage vor der Wohnungsabgabe
+const FRIST_HANDWERKER  = 3;    // Tage nach der durchgeführten Wohnungsabnahme
+const SOLL_ABNAHME    = {anker:"haftungsdatum", offset:-VORLAUF_ABNAHME,
+                         txt:VORLAUF_ABNAHME+" Tage vor Wohnungsabgabe"};
+const SOLL_HANDWERKER = {anker:"schritt:wa", offset:FRIST_HANDWERKER,
+                         txt:FRIST_HANDWERKER+" Tage nach der Wohnungsabnahme"};
 
 const SCHRITTE = [
   {k:"kue_best",      p:2, sp:"L",     t:"Kündigung bestätigt / Mutation G-Rem",
@@ -414,10 +421,10 @@ const SCHRITTE = [
    h:"Inserat publiziert. Je früher das Inserat läuft, desto kürzer der spätere Leerstand – deshalb steht dieser Schritt vor der Wohnungsabnahme."},
   {k:"wa",            p:2, sp:"R + T", t:"Wohnungsabnahme durchgeführt", termin:true, tl:"WA-Termin",
    tOffen:"Abnahmetermin vereinbaren", soll:SOLL_ABNAHME,
-   h:"Im Excel zwei getrennte Spalten: R «WA-Termin» (Datum) und T «WA durchgeführt» (Ja/Nein). Hier ein Schritt mit Termin – genau daraus entsteht die Überfälligkeitsprüfung. Solange kein Termin steht, meldet die Anwendung den Schritt als «Abnahmetermin vereinbaren», fällig "+VORLAUF_ABNAHME+" Tage vor der Wohnungsabgabe."},
+   h:"Im Excel zwei getrennte Spalten: R «WA-Termin» (Datum) und T «WA durchgeführt» (Ja/Nein). Hier ein Schritt mit Termin – genau daraus entsteht die Überfälligkeitsprüfung. Solange kein Termin steht, meldet die Anwendung den Schritt als «Abnahmetermin vereinbaren», fällig "+VORLAUF_ABNAHME+" Tage vor der Wohnungsabgabe. Ist die Abnahme erledigt, startet sie die Frist für das Handwerkeraufgebot."},
   {k:"handwerker",    p:2, sp:"S",     t:"Handwerker aufgeboten", termin:true, tl:"aufbieten bis",
-   tOffen:"Handwerker aufbieten", soll:SOLL_ABNAHME,
-   h:"Handwerker für die Instandstellung aufbieten. Die Sollfrist liegt "+VORLAUF_ABNAHME+" Tage vor der Wohnungsabgabe, damit die Kapazitäten gesichert sind, bevor die Wohnung leer steht. Ein eigener Termin überschreibt die Sollfrist."},
+   tOffen:"Handwerker aufbieten", soll:SOLL_HANDWERKER,
+   h:"Handwerker für die Instandstellung aufbieten. Die Frist entsteht erst mit der durchgeführten Wohnungsabnahme – vorher ist nicht bekannt, was zu beauftragen ist – und läuft dann "+FRIST_HANDWERKER+" Tage. Ein eigener Termin überschreibt die Sollfrist."},
   {k:"zustimmung",    p:2, sp:"U",     t:"Zustimmungserklärung unterzeichnet",
    h:"Der Vormieter hat die Kostenübernahme für die im Abnahmeprotokoll festgehaltenen Mängel unterzeichnet. Grundlage der späteren Schlussabrechnung."},
   {k:"instandst",     p:2, sp:"V",     t:"Instandstellungen beauftragt",
@@ -477,6 +484,8 @@ function fmtKurz(s){ const d=parse(s); if(!d) return "–"; return String(d.getU
 // Berichtsmonat richtet sich nach dem Leerstandsbeginn, nicht nach dem Haftungsdatum:
 // endet die Haftung am 31.08., ist der Leerstand ein September-Fall.
 function berichtsmonat(haft){ const b=plus(haft,1); const d=parse(b); if(!d) return "–"; return MONATE[d.getUTCMonth()]+" "+d.getUTCFullYear(); }
+function tg(n){ return n===1 ? "1 Tag" : n+" Tage"; }    // Nominativ: «5 Tage Leerstand»
+function tgD(n){ return n===1 ? "1 Tag" : n+" Tagen"; }  // Dativ: «in 5 Tagen», «seit 5 Tagen»
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function objekt(id){ return OBJEKTE.find(o=>o.id===id); }
 function lig(id){ return LIEGENSCHAFTEN.find(l=>l.id===id); }
@@ -547,6 +556,12 @@ function demodaten(){
       kue:-10, haft:25, seit:"2023-09-01",
       done:{kue_best:-9, meldung_werke:-8, vmz:-6, inserat:-5}, na:["vorbesicht"],
       notiz:"Nachmieter der letzten Kündigung – kündigt nach drei Jahren wieder."}),
+    /* 4c – Abnahme durchgeführt, dadurch läuft jetzt die Handwerkerfrist */
+    neuerFallObj({id:"F-2026-053", obj:"O09", bew:"Moren", ex:"P. Rüegg", angelegt:-40,
+      kue:-40, haft:-12, seit:"2020-05-01",
+      done:{kue_best:-38, meldung_werke:-37, vmz:-34, inserat:-32, wa:-2, zustimmung:-2},
+      na:["vorbesicht"],
+      notiz:"Abnahmeprotokoll mit vier Positionen – Offerten bei zwei Malern eingeholt."}),
     /* 5 – abgeschlossen */
     neuerFallObj({id:"F-2026-012", obj:"O05", bew:"Moren", ex:"R. Baumgartner", angelegt:-198,
       kue:-198, haft:-140, seit:"2011-05-01", neu:"Familie Zbinden", verm:-98, done:"alle", zu:-63}),
@@ -662,12 +677,12 @@ function naechsterSchritt(f){
     let text = s.h;
     if(tv){
       const d=seitHeute(tv);
-      const frist = soll
-        ? "Sollfrist "+fmt(tv)+" ("+s.soll.txt+", Wohnungsabgabe am "+fmt(f.haftungsdatum)+")"
-        : "Termin "+fmt(tv);
-      text = d>0 ? frist+" – seit "+d+" "+(d===1?"Tag":"Tagen")+" überschritten."
+      const bezug = soll && s.soll.anker==="haftungsdatum"
+        ? ", Wohnungsabgabe am "+fmt(f.haftungsdatum) : "";
+      const frist = soll ? "Sollfrist "+fmt(tv)+" ("+s.soll.txt+bezug+")" : "Termin "+fmt(tv);
+      text = d>0 ? frist+" – seit "+tgD(d)+" überschritten."
            : d===0 ? frist+" – heute fällig."
-           : frist+" – in "+(-d)+" Tagen.";
+           : frist+" – in "+tgD(-d)+".";
     }
     return {art:"schritt", phase:p, schritt:s, titel:schrittTitel(f,s), text, soll};
   }
@@ -706,8 +721,18 @@ function tageInPhase(f){
   const start = daten.length ? daten[daten.length-1] : f.angelegtAm;
   return seitHeute(start);
 }
-// Sollfrist: aus dem Haftungsdatum abgeleitet, sobald dieses erfasst ist.
-function sollTermin(f,s){ return (s.soll && f.haftungsdatum) ? plus(f.haftungsdatum, s.soll.offset) : null; }
+// Sollfrist: erst vorhanden, wenn ihr Ankerdatum feststeht.
+function sollTermin(f,s){
+  if(!s.soll) return null;
+  const a=s.soll.anker;
+  let basis=null;
+  if(a==="haftungsdatum") basis=f.haftungsdatum;
+  else if(a.indexOf("schritt:")===0){
+    const st=f.schritte[a.slice(8)];
+    basis = (st && st.status==="erledigt") ? st.datum : null;   // sonst: noch keine Frist
+  }
+  return basis ? plus(basis, s.soll.offset) : null;
+}
 // Ein von Hand gesetzter Termin geht der Sollfrist vor.
 function terminVon(f,s){ return f.schritte[s.k].termin || sollTermin(f,s); }
 function istSoll(f,s){ return !f.schritte[s.k].termin && !!sollTermin(f,s); }
@@ -728,12 +753,13 @@ function warnungen(f){
   offeneTermine(f).forEach(t=>{
     const titel=schrittTitel(f,t.schritt);
     const bezug = t.soll
-      ? "Sollfrist "+fmt(t.termin)+" · "+t.schritt.soll.txt+" (Wohnungsabgabe am "+fmt(f.haftungsdatum)+")."
+      ? "Sollfrist "+fmt(t.termin)+" · "+t.schritt.soll.txt
+        + (t.schritt.soll.anker==="haftungsdatum" ? " (Wohnungsabgabe am "+fmt(f.haftungsdatum)+")" : "")+"."
       : "Termin am "+fmt(t.termin)+".";
     if(t.ueber>0) w.push({stufe:"crit", titel:titel+(t.soll?" – Sollfrist überschritten":" überfällig"),
-      text:bezug+" Seit "+t.ueber+" "+(t.ueber===1?"Tag":"Tagen")+" offen."});
+      text:bezug+" Seit "+tgD(t.ueber)+" offen."});
     else if(t.ueber>=-7) w.push({stufe:"warn",
-      titel:titel+(t.ueber===0?" heute fällig":" fällig in "+(-t.ueber)+" Tagen"), text:bezug});
+      titel:titel+(t.ueber===0?" heute fällig":" fällig in "+tgD(-t.ueber)), text:bezug});
   });
   const dop = FAELLE.filter(x=>x.id!==f.id && x.objektId===f.objektId && !x.abgeschlossen);
   dop.forEach(x=>w.push({stufe:"crit", titel:"Zweiter offener Fall zum selben Objekt",
@@ -752,7 +778,7 @@ function warnungen(f){
     text:"In Phase "+p+" fehlt: "+fehlt.map(x=>x.t).join(", ")+"."});
   const ls = leerstand(f);
   if(ls && ls.laufend && !ls.kuenftig && ls.tage>60)
-    w.push({stufe:"warn", titel:"Langläufer – "+ls.tage+" Tage Leerstand",
+    w.push({stufe:"warn", titel:"Langläufer – "+tg(ls.tage)+" Leerstand",
       text:"Das Objekt steht seit über 60 Tagen leer und ist noch nicht vermietet."});
   if(abschliessbar(f)) w.push({stufe:"info", titel:"Fall kann abgeschlossen werden",
     text:"Alle Phasen sind vollständig."});
@@ -789,7 +815,16 @@ function erledigen(id,k){
   const f=fall(id), s=f.schritte[k];
   s.status="erledigt"; s.datum=iso(HEUTE); s.von=ICH; s.grund=null;
   protokoll(f,"Schritt erledigt: "+SCHRITT[k].t);
-  nach(f,"«"+SCHRITT[k].t+"» erledigt");
+  // Schritte, deren Frist an genau diesem Schritt hängt, bekommen jetzt eine.
+  const folge = SCHRITTE.filter(x=>x.soll && x.soll.anker==="schritt:"+k
+                                 && f.schritte[x.k].status==="offen" && !f.schritte[x.k].termin);
+  let msg = "«"+SCHRITT[k].t+"» erledigt";
+  folge.forEach(x=>{
+    const frist=sollTermin(f,x);
+    protokoll(f,"Frist gesetzt: "+(x.tOffen||x.t)+" bis "+fmt(frist)+" ("+x.soll.txt+")");
+    msg += " · "+(x.tOffen||x.t)+" bis "+fmt(frist);
+  });
+  nach(f,msg);
 }
 function nichtErforderlich(id,k,grund){
   const f=fall(id), s=f.schritte[k];
@@ -831,7 +866,8 @@ function haftungsdatumVerschoben(f,alt,neu){
   if(d===0) return null;
   const richtung = d<0 ? Math.abs(d)+" "+(Math.abs(d)===1?"Tag":"Tage")+" vorverlegt"
                        : d+" "+(d===1?"Tag":"Tage")+" nach hinten verschoben";
-  const offen = SCHRITTE.filter(x=>x.soll && f.schritte[x.k].status==="offen");
+  const offen = SCHRITTE.filter(x=>x.soll && x.soll.anker==="haftungsdatum"
+                                && f.schritte[x.k].status==="offen");
   let zusatz="", proto="Leerstandsbeginn neu "+fmt(plus(neu,1))+".";
   if(offen.length){
     const soll = plus(neu,-VORLAUF_ABNAHME), ueber = seitHeute(soll);
@@ -1479,7 +1515,7 @@ const MAPPING = [
   ["P","VMZ akualisiert","Phase 2 · Schritt («VMZ aktualisiert» – Tippfehler bereinigt)."],
   ["Q","Inserat online","Phase 2 · Schritt."],
   ["R + T","WA-Termin / WA durchgeführt","Phase 2 · ein Schritt mit Termin. Solange kein Termin steht, entsteht daraus die Aufgabe «Abnahmetermin vereinbaren», fällig 30 Tage vor der Wohnungsabgabe."],
-  ["S","aufbieten Handwerker","Phase 2 · Schritt mit Sollfrist 30 Tage vor der Wohnungsabgabe."],
+  ["S","aufbieten Handwerker","Phase 2 · Schritt. Die Frist entsteht erst mit der durchgeführten Wohnungsabnahme und läuft dann 3 Tage."],
   ["U","Zustimmungserklärung unterzeichnet","Phase 2 · Schritt."],
   ["V","Instandstellungen beauftragt","Phase 2 · Schritt."],
   ["W","neuer Mieter","Phase 3 · Pflichtangabe."],
@@ -1511,9 +1547,11 @@ function viewHilfe(){
       <p class="tiny muted" style="margin:6px 0 0">Wird ein Schritt erledigt, hält die Anwendung automatisch Datum und Benutzer fest.
       Daraus entstehen Historie und Durchlaufzeiten, ohne zusätzliche Eingabe.</p></div>
     <div class="flat pad"><h3>Fristen entstehen von selbst</h3>
-      <p class="tiny muted" style="margin:6px 0 0">Sobald das Haftungsdatum erfasst ist, rechnet die Anwendung
-      rückwärts: <b>${VORLAUF_ABNAHME} Tage vor der Wohnungsabgabe</b> werden «Abnahmetermin vereinbaren» und
-      «Handwerker aufbieten» fällig. Niemand muss daran denken, und ein eigener Termin überschreibt die Sollfrist.</p></div>
+      <p class="tiny muted" style="margin:6px 0 0">Jede Frist hängt an dem Datum, das sie auslöst.
+      <b>${VORLAUF_ABNAHME} Tage vor der Wohnungsabgabe</b> wird «Abnahmetermin vereinbaren» fällig.
+      «Handwerker aufbieten» bekommt seine Frist erst mit der <b>durchgeführten Abnahme</b> und läuft dann
+      ${FRIST_HANDWERKER} Tage – vorher ist ja nicht bekannt, was zu beauftragen ist.
+      Ein eigener Termin überschreibt die Sollfrist immer.</p></div>
     <div class="flat pad"><h3>Drei Zustände statt Ja/Nein</h3>
       <p class="tiny muted" style="margin:6px 0 0">Ein Schritt ist <b>offen</b>, <b>erledigt</b> oder <b>nicht erforderlich</b>.
       Damit ist «bewusst übersprungen» von «noch nicht angefasst» unterscheidbar – im Excel hiess beides «Nein».</p></div>
@@ -1529,7 +1567,7 @@ function viewHilfe(){
       <div class="wrow crit"><span class="ic">!</span><div><b class="f-ui" style="font-size:13.5px">Verstrichene Termine</b>
         <div class="w2">WA-Termin, Vertragsrücklauf und Schlüsselübergabe – im Excel wurde nur der WA-Termin geprüft.</div></div><span></span></div>
       <div class="wrow crit"><span class="ic">!</span><div><b class="f-ui" style="font-size:13.5px">Überschrittene Sollfristen</b>
-        <div class="w2">Abnahmetermin und Handwerkeraufgebot ${VORLAUF_ABNAHME} Tage vor der Wohnungsabgabe – aus dem Haftungsdatum abgeleitet, im Excel gar nicht vorhanden.</div></div><span></span></div>
+        <div class="w2">Abnahmetermin ${VORLAUF_ABNAHME} Tage vor der Wohnungsabgabe, Handwerkeraufgebot ${FRIST_HANDWERKER} Tage nach der Abnahme – im Excel gar nicht vorhanden.</div></div><span></span></div>
       <div class="wrow crit"><span class="ic">!</span><div><b class="f-ui" style="font-size:13.5px">Zwei offene Fälle zum selben Objekt</b>
         <div class="w2">Wird beim Anlegen gemeldet, nicht erst als Farbe in der Liste.</div></div><span></span></div>
       <div class="wrow warn"><span class="ic">▲</span><div><b class="f-ui" style="font-size:13.5px">Unplausible Daten</b>
