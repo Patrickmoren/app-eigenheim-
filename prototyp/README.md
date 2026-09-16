@@ -50,8 +50,10 @@ Leerstandsbeginn und Sollfristen wandern, und schreibt beides in die Historie. G
 
 - Eine Datei, keine Abhängigkeiten ausser Google Fonts (mit Fallback-Schriften).
 - Die Datei ist im Artifact-Format geschrieben, also ohne `<!doctype>`, `<html>`, `<head>` und `<body>` –
-  diese Hülle ergänzt die Veröffentlichung. Zum lokalen Öffnen im Browser genügt eine Hülle mit
-  `<meta charset="utf-8">`, sonst werden Umlaute falsch dargestellt.
+  diese Hülle ergänzt die Veröffentlichung. Für eine Datei, die sich lokal per Doppelklick öffnen
+  lässt, erzeugt `./build-standalone.sh` daraus `Leerstandsmanager.html` mit der nötigen Hülle
+  (Zeichensatz und Viewport). Ohne diese Hülle werden Umlaute falsch dargestellt.
+  Die erzeugte Datei wird bewusst nicht mitversioniert, damit es nur eine Quelle gibt.
 - Demodaten liegen im `localStorage` des jeweiligen Browsers, sind also pro Benutzer getrennt und
   erreichen niemanden sonst. «Demodaten zurücksetzen» stellt den Ausgangszustand her.
 - Alle Termine sind relativ zum aktuellen Datum erzeugt, damit Überfälligkeiten und Fristen
