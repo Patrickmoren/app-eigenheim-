@@ -423,9 +423,21 @@ Kein allgemeines Handbuch, sondern Hilfe **am Feld und am Fall**:
 | Rolle | darf | Startseite |
 |---|---|---|
 | **Bewirtschafter** | eigene Fälle anlegen und bearbeiten, fremde lesen (Vertretung, Auskunft am Telefon) | «Mein Arbeitstag» |
-| **Teamleitung** | alle Fälle bearbeiten, Zuständigkeiten übergeben, Auswertungen über alle, Fälle wieder öffnen | «Teamübersicht» mit Mitarbeiter-Einstieg |
+| **Teamleitung** | Fälle des eigenen Teams bearbeiten, Zuständigkeiten übergeben, Auswertungen, Fälle wieder öffnen | «Teamübersicht» des Teams mit Mitarbeiter-Einstieg |
 | **Leseberechtigt** (z. B. Eigentümerbetreuung, Buchhaltung) | alles lesen und exportieren, nichts ändern | «Teamübersicht» ohne Aktionen |
 | **Administrator** | Stammdaten (Bewirtschafter, Eigentümer, Liegenschaften), Benutzer und Rollen, Fristenparameter, Vorlagen | Stammdaten |
+
+**Teamzuschnitt.** Die Bewirtschaftung ist in zwei Teams gegliedert, dazu eine Gesamtsicht:
+
+| Sicht | Bewirtschafter |
+|---|---|
+| **BS Gesamt** | alle neun |
+| **BS 01** | Brandenburger · Breitmeier · Loa · Sivanesan |
+| **BS 02** | Moren · Ryser · Scherb · Ademi · Fazliu |
+
+Das Team bestimmt den gesamten Sichtbereich: Kennzahlen, Arbeitsbereiche, Aufgabenstapel und
+Auswertung. Eine Teamleitung bearbeitet die Fälle ihres Teams; BS Gesamt umfasst alle. Für einen
+Bewirtschafter bedeutet die Umschaltung «Team» sein eigenes Team, nicht mehr den ganzen Bestand.
 
 Die Teamleitung steigt über eine Mitarbeiterzeile direkt in dessen Arbeitsvorrat ein und sieht
 dort dieselben Aufgaben und Arbeitsbereiche wie die Person selbst. Berechtigungen werden nicht

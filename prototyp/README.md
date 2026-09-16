@@ -30,11 +30,17 @@ Veröffentlicht als Artifact: https://claude.ai/artifact/5wVJyvkUxngzAxzMJD4qUA
 Oben rechts wird der angemeldete Benutzer gewechselt – im Prototyp ohne Passwort, damit sich die
 Sichten vergleichen lassen.
 
-| Rolle | Startseite | Rechte |
+| Anmeldung | Startseite | Rechte |
 |---|---|---|
-| A. Leitner (Teamleitung) | Teamübersicht mit Mitarbeitertabelle | alles bearbeiten, Zuständigkeit übergeben |
+| **BS Gesamt** (Teamleitung) | Teamübersicht über alle neun | alle Fälle bearbeiten, Zuständigkeit übergeben |
+| **BS 01** (Teamleitung) | Teamübersicht Brandenburger · Breitmeier · Loa · Sivanesan | nur Fälle dieses Teams bearbeiten |
+| **BS 02** (Teamleitung) | Teamübersicht Moren · Ryser · Scherb · Ademi · Fazliu | nur Fälle dieses Teams bearbeiten |
 | die neun Bewirtschafter | «Mein Arbeitstag» | eigene Fälle bearbeiten, fremde lesen |
-| K. Weber (Buchhaltung) | Teamübersicht ohne Aktionen | nur lesen |
+
+Das gewählte Team bestimmt den ganzen Sichtbereich: Kennzahlen, Arbeitsbereiche, Aufgabenstapel
+und Auswertung. Die Auswertung ist nach Teams gruppiert und weist je Team ein Subtotal aus.
+Die im Konzept beschriebene Rolle «Leseberechtigt» ist im Berechtigungsmodell enthalten, hat im
+Prototyp aber keine Anmeldung mehr.
 
 Die Rechte hängen nicht an ausgeblendeten Schaltflächen: jede ändernde Funktion prüft sie selbst
 und lehnt ab, auch wenn sie direkt aufgerufen wird.
