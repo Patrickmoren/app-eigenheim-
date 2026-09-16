@@ -81,6 +81,22 @@ Wird das Haftungsdatum nachträglich verschoben, meldet die Anwendung sofort, wo
 Leerstandsbeginn und Sollfristen wandern, und schreibt beides in die Historie. Geändert wird es
 über «ändern» in der Datenübersicht der Fallakte, die die zugehörige Phase dafür aufklappt.
 
+## Datenintegrität
+
+Gespeicherte Daten werden beim Laden durch `normalisiereFall()` geprüft und repariert: fehlende
+Schritte werden ergänzt, unbekannte verworfen, falsche Typen korrigiert, unlesbare Datensätze
+übersprungen und gemeldet. Damit übersteht ein bestehender Bestand auch das Hinzufügen neuer
+Prozessschritte. Schlägt das Speichern fehl (privates Fenster, voller Speicher), wird das
+gemeldet statt stillschweigend verschluckt. Ein zweites Fenster derselben Anwendung übernimmt
+Änderungen, statt sie zu überschreiben.
+
+## Tests
+
+`node test-protokoll.js` fährt 52 Prüfungen gegen die Datei: Navigation, Bearbeiten, Speichern,
+Löschen, Suche, Filter, Sortierung, Statuslogik, Formulare, neun Varianten beschädigter
+Datenbestände, XSS, leerer Bestand, 500 Datensätze und vier Bildschirmbreiten. Benötigt Playwright
+und die Vorschaudatei aus `build-standalone.sh`.
+
 ## Technische Hinweise
 
 - Eine Datei, keine Abhängigkeiten ausser Google Fonts (mit Fallback-Schriften).
