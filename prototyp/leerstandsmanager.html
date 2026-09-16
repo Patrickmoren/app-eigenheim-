@@ -289,6 +289,9 @@ tfoot td{font-weight:600;border-top:1.5px solid var(--line-strong);border-bottom
 .dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:13.5px;align-items:baseline}
 .dl dt{color:var(--ink-3);font-size:12.5px}
 .dl dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.dl .edit{border:0;background:none;padding:0 0 0 7px;color:var(--ink-3);font-family:Archivo;
+  font-size:11.5px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.dl .edit:hover{color:var(--accent-ink)}
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .metric{background:var(--surface);padding:10px 13px}
 .metric .v{font-family:Archivo;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
@@ -811,8 +814,33 @@ function setFeld(id,feld,wert){
   const alt=f[feld];
   f[feld]=wert;
   const lab = FELDNAME[feld] || feld;
-  protokoll(f, lab+": "+(alt?(/\d{4}-\d{2}-\d{2}/.test(alt)?fmt(alt):alt):"leer")+" → "+(wert?(/\d{4}-\d{2}-\d{2}/.test(wert)?fmt(wert):wert):"leer"));
+  const zeig = v => v ? (/\d{4}-\d{2}-\d{2}/.test(v)?fmt(v):v) : "leer";
+  protokoll(f, lab+": "+zeig(alt)+" → "+zeig(wert));
+  const wirkung = feld==="haftungsdatum" ? haftungsdatumVerschoben(f,alt,wert) : null;
+  if(wirkung) protokoll(f, wirkung.protokoll);
   speichern(); render();
+  toast(wirkung ? wirkung.meldung : lab+" auf "+zeig(wert)+" gesetzt");
+}
+
+// Ein nachträglich verschobenes Haftungsdatum – etwa bei ausserordentlicher Kündigung
+// mit Nachmieterstellung – verschiebt Leerstandsbeginn und alle Sollfristen mit.
+// Das soll im selben Moment sichtbar sein, nicht erst als rote Zeile am nächsten Tag.
+function haftungsdatumVerschoben(f,alt,neu){
+  if(!alt || !neu) return null;
+  const d = diffT(alt,neu);
+  if(d===0) return null;
+  const richtung = d<0 ? Math.abs(d)+" "+(Math.abs(d)===1?"Tag":"Tage")+" vorverlegt"
+                       : d+" "+(d===1?"Tag":"Tage")+" nach hinten verschoben";
+  const offen = SCHRITTE.filter(x=>x.soll && f.schritte[x.k].status==="offen");
+  let zusatz="", proto="Leerstandsbeginn neu "+fmt(plus(neu,1))+".";
+  if(offen.length){
+    const soll = plus(neu,-VORLAUF_ABNAHME), ueber = seitHeute(soll);
+    const namen = offen.map(x=>x.tOffen||x.t).join(" und ");
+    zusatz = " Sollfrist für "+namen+" jetzt "+fmt(soll)
+           + (ueber>0 ? " – bereits überschritten." : ueber===0 ? " – heute fällig." : ".");
+    proto += " Sollfrist "+namen+": "+fmt(soll)+".";
+  }
+  return {meldung:"Haftungsdatum "+richtung+"."+zusatz, protokoll:proto};
 }
 function abschliessen(id){
   const f=fall(id);
@@ -858,6 +886,10 @@ function leerstandText(f){
   if(!ls) return "–";
   if(ls.kuenftig) return "in "+ls.bisBeginn+" T.";
   return ls.tage+" T."+(ls.laufend?"":"");
+}
+function aendern(f,feld){
+  if(f.abgeschlossen) return "";
+  return '<button class="edit" data-feld-edit="'+feld+'" type="button">ändern</button>';
 }
 function hilfeBtn(key){ return '<button class="ihelp" data-hilfe="'+key+'" aria-label="Erklärung anzeigen" type="button">i</button>'; }
 
@@ -1216,12 +1248,15 @@ function viewFall(){
 
       <div class="panel"><header><span class="lbl">Daten</span></header><div class="pad">
         <dl class="dl">
-          <dt>gekündigt per</dt><dd>${fmt(f.gekuendigtPer)}</dd>
-          <dt>Haftungsdatum</dt><dd>${fmt(f.haftungsdatum)}</dd>
-          <dt>Mieter seit</dt><dd>${fmt(f.mieterSeit)}</dd>
-          <dt>Vermietet per</dt><dd>${fmt(f.vermietetPer)}</dd>
+          <dt>gekündigt per</dt><dd>${fmt(f.gekuendigtPer)}${aendern(f,"gekuendigtPer")}</dd>
+          <dt>Haftungsdatum</dt><dd>${fmt(f.haftungsdatum)}${aendern(f,"haftungsdatum")}</dd>
+          <dt>Mieter seit</dt><dd>${fmt(f.mieterSeit)}${aendern(f,"mieterSeit")}</dd>
+          <dt>Vermietet per</dt><dd>${fmt(f.vermietetPer)}${aendern(f,"vermietetPer")}</dd>
           <dt>angelegt</dt><dd>${fmt(f.angelegtAm)}</dd>
         </dl>
+        <p class="note" style="margin:11px 0 0">Wird bei ausserordentlicher Kündigung das Mietende
+          vorverlegt, genügt es, das Haftungsdatum zu ändern – Leerstandsbeginn, Berichtsmonat und
+          Sollfristen rechnen sich mit und die Änderung steht in der Historie.</p>
       </div></div>
 
       ${f.notiz?`<div class="panel"><header><span class="lbl">Notiz</span></header>
@@ -1640,6 +1675,14 @@ function dialogExport(){
 /* ============================================================
    15 · RENDERING & NAVIGATION
    ============================================================ */
+// Ein Feld kann in einer zugeklappten Phase liegen – erst aufklappen, dann anspringen.
+function zeigeFeld(id, picker){
+  const el=document.getElementById(id); if(!el) return;
+  const d=el.closest("details.phase"); if(d) d.open=true;
+  el.scrollIntoView({block:"center", behavior:"smooth"});
+  el.focus();
+  if(picker && el.showPicker) try{ el.showPicker(); }catch(_){}
+}
 let letzteAnsicht="";
 function render(){
   const v=document.getElementById("view");
@@ -1692,17 +1735,11 @@ document.addEventListener("click", e=>{
   if(t.dataset.undo){ zuruecksetzen(t.dataset.fall, t.dataset.undo); return; }
   if(t.dataset.close){ abschliessen(t.dataset.close); return; }
   if(t.dataset.reopen){ wiederOeffnen(t.dataset.reopen); return; }
-  if(t.dataset.focus){
-    const el=document.getElementById("fl_"+t.dataset.focus);
-    if(el){ el.scrollIntoView({block:"center", behavior:"smooth"}); el.focus(); }
+  if(t.dataset.focus || t.dataset.feldEdit){
+    zeigeFeld("fl_"+(t.dataset.focus||t.dataset.feldEdit));
     return;
   }
-  if(t.dataset.terminFocus){
-    const el=document.getElementById("trm_"+t.dataset.terminFocus);
-    if(el){ el.scrollIntoView({block:"center", behavior:"smooth"}); el.focus();
-            if(el.showPicker) try{ el.showPicker(); }catch(_){} }
-    return;
-  }
+  if(t.dataset.terminFocus){ zeigeFeld("trm_"+t.dataset.terminFocus, true); return; }
 
   switch(t.id){
     case "btnNeu": case "btnNeu2": dialogNeuerFall(); return;

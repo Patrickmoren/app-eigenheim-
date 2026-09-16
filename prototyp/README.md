@@ -29,6 +29,12 @@ Ohne Haftungsdatum entsteht keine Sollfrist und damit auch kein Fehlalarm.
 
 Die Frist steht als einzelne Konstante im Abschnitt «Prozessmodell» und ist dort änderbar.
 
+Das Haftungsdatum entspricht immer dem Mietende – bei vorzeitiger Rückgabe wird ausserordentlich
+gekündigt und das Mietende angepasst. Ein separates Feld `Mietende` gibt es deshalb bewusst nicht.
+Wird das Haftungsdatum nachträglich verschoben, meldet die Anwendung sofort, wohin
+Leerstandsbeginn und Sollfristen wandern, und schreibt beides in die Historie. Geändert wird es
+über «ändern» in der Datenübersicht der Fallakte, die die zugehörige Phase dafür aufklappt.
+
 ## Technische Hinweise
 
 - Eine Datei, keine Abhängigkeiten ausser Google Fonts (mit Fallback-Schriften).

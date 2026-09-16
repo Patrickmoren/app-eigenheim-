@@ -314,7 +314,12 @@ Leerstandstage     = Anzahl Kalendertage von Beginn bis letztem leerem Tag, beid
 ```
 
 Das `Haftungsdatum` ist der letzte Tag, für den der Vormieter haftet; dieser Tag zählt selbst
-noch nicht als Leerstand. Haftung bis 31.08. und Vermietung ab 01.09. ergeben deshalb **0
+noch nicht als Leerstand. Es entspricht immer dem Mietende: wird eine Wohnung vorzeitig
+zurückgegeben, erfolgt eine ausserordentliche Kündigung und das Mietende wird angepasst.
+Ein zweites Feld `Mietende` wäre deshalb nur eine Kopie und wird bewusst nicht geführt.
+Verschiebt sich das Haftungsdatum nachträglich, rechnen Leerstandsbeginn, Berichtsmonat und
+alle Sollfristen mit; die Anwendung benennt die Auswirkung im selben Moment und hält sie in
+der Historie fest. Haftung bis 31.08. und Vermietung ab 01.09. ergeben deshalb **0
 Leerstandstage**, nicht einen. Liegt der Leerstandsbeginn in der Zukunft, steht der Fall im
 Vorlauf und die Zählung beginnt erst.
 
