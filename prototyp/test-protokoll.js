@@ -180,3 +180,5 @@ const T=(n,b,i="")=>{ if(b){ok++;console.log("  ✓ "+n+(i?"  "+i:""));} else {f
   await b.close();
   console.log(`\n═══ ${ok} bestanden, ${fail} fehlgeschlagen ═══`);
 })();
+// Ergänzende Prüfungen (Durcharbeiten nach Umstellung, Druckansicht, zweites Fenster)
+// stehen im Sitzungsprotokoll; sie laufen gegen dieselbe Vorschaudatei.
