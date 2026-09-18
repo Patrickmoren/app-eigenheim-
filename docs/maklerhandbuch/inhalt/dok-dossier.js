@@ -2,7 +2,7 @@
 const {abs, mix, h1neu, h2, h3, h4, leer, punkte, tabelle, info, recht, praxis,
        titelblatt, checks, felder, linien} = require('../lib/blocks.js');
 const B = require('./bausteine.js');
-const {STAND} = require('./handbuch.js');
+const {STAND} = require('./handbuch2.js');
 
 /* Platzhalterblock für eine Bildfläche */
 const bildflaeche = (bez, anzahl) => tabelle([bez],

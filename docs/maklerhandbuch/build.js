@@ -10,7 +10,8 @@ const path = require('path');
 const {schreibeDocx} = require('./lib/render-docx.js');
 const {schreibePdf}  = require('./lib/render-pdf.js');
 
-const handbuch      = require('./inhalt/handbuch.js');
+const handbuch      = require('./inhalt/handbuch2.js');
+const dokAudit      = require('./inhalt/dok-audit.js');
 const dokFormulare  = require('./inhalt/dok-formulare.js');
 const dokDossier    = require('./inhalt/dok-dossier.js');
 const dokKommunik   = require('./inhalt/dok-kommunikation.js');
@@ -18,7 +19,7 @@ const mappen        = require('./inhalt/mappen.js');
 const {auswahlfelder} = require('./lib/tabellen.js');
 const {pruefen, zeichenPruefen} = require('./lib/pruefen.js');
 
-const FUSS = `Makler-Handbuch Hausverkauf Schweiz · Fassung vom ${handbuch.STAND}`;
+const FUSS = `Makler-Handbuch Hausverkauf Schweiz · ${handbuch.VERSION} · Fassung vom ${handbuch.STAND}`;
 const hier = f => path.join(__dirname, f);
 
 async function main() {
@@ -37,6 +38,7 @@ async function main() {
   /* Zeichenvorrat prüfen, damit im PDF keine Platzhalter erscheinen */
   const zf = [
     ...zeichenPruefen(hb, '01 Handbuch'),
+    ...zeichenPruefen(dokAudit.bloecke(), '00 Audit'),
     ...zeichenPruefen(dokFormulare.bloecke(), '03 Formulare'),
     ...zeichenPruefen(dokDossier.bloecke(), '04 Verkaufsdossier'),
     ...zeichenPruefen(dokKommunik.bloecke(), '05 Kommunikationsvorlagen'),
@@ -51,6 +53,14 @@ async function main() {
     pfad: hier('01_Maklerhandbuch_Hausverkauf.pdf'), fusstext: FUSS}));
   erzeugt.push(await schreibeDocx({bloecke: hb,
     pfad: hier('01_Maklerhandbuch_Hausverkauf.docx'), fusstext: FUSS}));
+
+  /* 00 – Audit und Falltests */
+  const au = dokAudit.bloecke();
+  const fussAudit = `Audit und Falltests · ${handbuch.VERSION} · Fassung vom ${handbuch.STAND}`;
+  erzeugt.push(await schreibePdf({bloecke: au,
+    pfad: hier('00_Audit_und_Falltests.pdf'), fusstext: fussAudit}));
+  erzeugt.push(await schreibeDocx({bloecke: au,
+    pfad: hier('00_Audit_und_Falltests.docx'), fusstext: fussAudit}));
 
   /* 03 bis 05 – Word-Dokumente */
   erzeugt.push(await schreibeDocx({bloecke: dokFormulare.bloecke(),
@@ -70,6 +80,7 @@ async function main() {
     ['07_Objektaufnahme.xlsx',                mappen.objektaufnahme],
     ['08_Bewertung_Vorlage.xlsx',             mappen.bewertung],
     ['09_Verkaeufer_Abschlusscheckliste.xlsx', mappen.abschlusscheckliste],
+    ['10_Sonderfaelle_und_Stoerfaelle.xlsx',   mappen.sonderfaelle],
   ];
   for (const [name, bauen] of arbeitsmappen) {
     const wb = auswahlfelder(bauen());

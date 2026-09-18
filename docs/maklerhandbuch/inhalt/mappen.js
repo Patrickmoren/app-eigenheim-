@@ -10,6 +10,14 @@ const {ABSCHLUSS} = require('./abschluss.js');
 const B           = require('./bausteine.js');
 const BW          = require('./bewertung.js');
 const {posten: rechtsposten} = require('./recht.js');
+const {GATES}    = require('./gates.js');
+const {KONTROLLEN} = require('./kontrollen.js');
+const {ZUSATZ}   = require('./phasen-v2.js');
+const SF         = require('./sonderfaelle.js');
+const ST         = require('./stoerungen.js');
+const KF         = require('./kaeufer.js');
+const PR         = require('./preis.js');
+const CRMV       = require('./crm.js');
 
 const HW = 'Gelb hinterlegte Spalten sind Eingabefelder. Auswahlfelder haben eine Liste. Die Spalte «Register» verweist auf Teil W des Makler-Handbuchs.';
 
@@ -73,10 +81,16 @@ function checklisten() {
     {kopf: 'Begonnen am', breite: 13, eingabe: true},
     {kopf: 'Abgeschlossen am', breite: 15, eingabe: true},
     {kopf: 'Bemerkung', breite: 32, eingabe: true},
+    {kopf: 'Gate', breite: 14},
+    {kopf: 'CRM-Status', breite: 20},
     {kopf: 'Register', breite: 22},
   ], {hinweis: HW, xSplit: 2});
-  zeilen(p1, PHASEN.map(p => [p.nr, p.name, p.verantwortung, p.dauer, p.ergebnis,
-    'offen', '', '', '', p.recht.join(', ') || '—']));
+  zeilen(p1, PHASEN.map(p => {
+    const z = ZUSATZ[p.nr];
+    return [p.nr, p.name, p.verantwortung, p.dauer, p.ergebnis, 'offen', '', '', '',
+      z.gates.length ? z.gates.map(g => 'GATE ' + g).join(', ') : '—',
+      z.crm.status, p.recht.join(', ') || '—'];
+  }));
 
   /* Abschlusskriterien je Phase */
   const p2 = blatt(wb, 'Abschlusskriterien', '02 · Abschlusskriterien je Phase – erst erfüllen, dann weitergehen', [
@@ -106,6 +120,10 @@ function checklisten() {
     p.eigentuemer.forEach(t => az.push([p.nr, 'Aufgabe Eigentümer', t, 'offen', '', '', '']));
     p.pruefungen.forEach(t => az.push([p.nr, 'Prüfung', t, 'offen', '', '', '']));
     p.kommunikation.forEach(t => az.push([p.nr, 'Kommunikation', t, 'offen', '', '', '']));
+    ZUSATZ[p.nr].entscheidungen.forEach(t => az.push([p.nr, 'Entscheidung', t, 'offen', '', '', '']));
+    ZUSATZ[p.nr].risiken.forEach(t => az.push([p.nr, 'Risiko', t, 'offen', '', '', '']));
+    ZUSATZ[p.nr].stop.forEach(t => az.push([p.nr, 'Stop-Kriterium', t, 'offen', '', '', '']));
+    ZUSATZ[p.nr].dokumentation.forEach(t => az.push([p.nr, 'Dokumentation', t, 'offen', '', '', '']));
   });
   zeilen(p3, az);
 
@@ -153,6 +171,47 @@ function checklisten() {
   B.INSERAT_KANAELE.forEach(kk => vz.push(['Kanal', kk.kanal + ' – ' + kk.hinweis, 'offen', '', '']));
   zeilen(p5, vz);
 
+  /* Gates */
+  const pg = blatt(wb, 'Gates', '02 · Quality Gates – Freigabeprotokoll', [
+    {kopf: 'Gate', breite: 7}, {kopf: 'Bezeichnung', breite: 24},
+    {kopf: 'Nach Phase', breite: 10}, {kopf: 'Kriterium', breite: 80},
+    {kopf: 'Erfüllt', breite: 11, validierung: JANEIN, eingabe: true},
+    {kopf: 'Prüfer', breite: 24}, {kopf: 'Geprüft am', breite: 12, eingabe: true},
+    {kopf: 'Bemerkung', breite: 30, eingabe: true},
+  ], {hinweis: 'Ein Gate wird freigegeben, mit Bedingung freigegeben oder verweigert. Über ein Stop-Kriterium kann nicht bedingt freigegeben werden. Stop-Kriterien stehen im Blatt Stop-Kriterien.', xSplit: 2});
+  const gz = [];
+  GATES.forEach(g => {
+    gz.push({gruppe: `GATE ${g.nr} · ${g.name} – nach Phase ${g.nachPhase} · Prüfer: ${g.pruefer} · Nachweis: ${g.nachweis}`});
+    g.kriterien.forEach(k2 => gz.push([g.nr, g.name, g.nachPhase, k2, 'offen', g.pruefer, '', '']));
+  });
+  zeilen(pg, gz);
+
+  const ps2 = blatt(wb, 'Stop-Kriterien', '02 · Stop-Kriterien je Gate – keine bedingte Freigabe möglich', [
+    {kopf: 'Gate', breite: 7}, {kopf: 'Bezeichnung', breite: 24},
+    {kopf: 'Stop-Kriterium', breite: 80},
+    {kopf: 'Liegt vor', breite: 11, validierung: JANEIN, eingabe: true},
+    {kopf: 'Eskalation', breite: 60},
+    {kopf: 'Bemerkung', breite: 30, eingabe: true},
+  ], {hinweis: 'Liegt ein Stop-Kriterium vor, wird das Gate verweigert, der Prozess angehalten, der Eigentümer informiert und die Eskalation ausgelöst.', xSplit: 2});
+  const sz2 = [];
+  GATES.forEach(g => g.stop.forEach(x => sz2.push([g.nr, g.name, x, 'nein', g.eskalation, ''])));
+  zeilen(ps2, sz2);
+
+  /* Vier-Augen-Kontrollen */
+  const pk = blatt(wb, 'Kontrollen', '02 · Vier-Augen-Kontrollpunkte', [
+    {kopf: 'Nr.', breite: 7}, {kopf: 'Kontrollpunkt', breite: 26},
+    {kopf: 'Phase', breite: 8}, {kopf: 'Gate', breite: 9},
+    {kopf: 'Erstellt durch', breite: 24}, {kopf: 'Kontrolliert durch', breite: 30},
+    {kopf: 'Prüfgegenstand', breite: 80}, {kopf: 'Nachweis', breite: 40},
+    {kopf: 'Ergebnis', breite: 22,
+     validierung: ['freigegeben', 'freigegeben mit Auflage', 'zurückgewiesen'], eingabe: true},
+    {kopf: 'Kontrolliert am', breite: 13, eingabe: true},
+    {kopf: 'Durch', breite: 20, eingabe: true},
+    {kopf: 'Bemerkung', breite: 30, eingabe: true},
+  ], {hinweis: 'Der Kontrollierende ist nie der Erstellende. Kontrolliert wird gegen die Quelle, nicht gegen die Plausibilität. Ohne Vermerk gilt die Kontrolle als nicht erfolgt.', xSplit: 2});
+  zeilen(pk, KONTROLLEN.map(c => [c.nr, c.punkt, c.phase, c.gate ? 'GATE ' + c.gate : '—',
+    c.erstellt, c.kontrolliert, c.gegenstand, c.nachweis, 'offen', '', '', '']));
+
   /* Rechtsgrundlagen als Nachschlageblatt */
   const p6 = blatt(wb, 'Register', '02 · Rechtsgrundlagen-Register (Teil W des Handbuchs)', [
     {kopf: 'Nr.', breite: 7}, {kopf: 'Thema', breite: 34},
@@ -182,7 +241,7 @@ function interessenten() {
       validierung:
         c.feld === 'Finanzierung vorhanden' ? ['nein', 'in Abklärung', 'Selbstauskunft', 'schriftliche Bestätigung'] :
         c.feld === 'Interesse' ? ['hoch', 'mittel', 'gering', 'keines'] :
-        c.feld === 'Stufe' ? ['A', 'B', 'C'] :
+        c.feld === 'Stufe' ? KF.FUNNEL.map(f => f.st + ' ' + f.name) :
         c.feld === 'Angebot' ? ['nein', 'angekündigt', 'eingegangen', 'zurückgezogen'] :
         c.feld === 'Finanzierungsnachweis' ? ['fehlt', 'Selbstauskunft', 'Bankbestätigung objektbezogen'] :
         c.feld === 'Identifikation GwG' ? ['offen', 'erfasst', 'vollständig dokumentiert'] :
@@ -259,6 +318,45 @@ function interessenten() {
   }
   zeilen(wa, azn);
 
+  /* Funnel als Nachschlageblatt */
+  const wfu = blatt(wb, 'Funnel', '06 · Neunstufiger Käuferfunnel', [
+    {kopf: 'Stufe', breite: 7}, {kopf: 'Bezeichnung', breite: 26},
+    {kopf: 'Definition', breite: 50}, {kopf: 'Übergangskriterium', breite: 60},
+    {kopf: 'Aktion', breite: 44}, {kopf: 'Pflichtdaten', breite: 44},
+    {kopf: 'Abbruchgrund', breite: 40},
+  ], {hinweis: 'Eine Stufe wird nur mit belegtem Kriterium gesetzt. Rückstufungen sind normal und werden dokumentiert. Ab Stufe 3 vollständiges Dossier, ab Stufe 7 Namensnennung gegenüber dem Eigentümer.'});
+  zeilen(wfu, KF.FUNNEL.map(f => [f.st, f.name, f.def, f.kriterium, f.aktion, f.daten, f.abbruch]));
+
+  /* Preisindikatoren */
+  const wpi = blatt(wb, 'Preisindikatoren', '06 · Marktindikatoren für die Preissteuerung', [
+    {kopf: 'Indikator', breite: 34}, {kopf: 'Erhebung', breite: 40},
+    {kopf: 'Aussage', breite: 56},
+    {kopf: 'Woche 1', breite: 11, eingabe: true}, {kopf: 'Woche 2', breite: 11, eingabe: true},
+    {kopf: 'Woche 3', breite: 11, eingabe: true}, {kopf: 'Woche 4', breite: 11, eingabe: true},
+    {kopf: 'Kumuliert', breite: 12, eingabe: true},
+    {kopf: 'Auslösekriterium erreicht', breite: 16, validierung: JANEIN, eingabe: true},
+  ], {hinweis: 'Kein Indikator wird allein interpretiert. Eine Preisreduktion ist nie die erste Massnahme und niemals eine Folge des Zeitablaufs. Entscheidungslogiken P1 bis P8 im Blatt Preislogik.'});
+  zeilen(wpi, PR.INDIKATOREN.map(i => [i.i, i.erhebung, i.aussage, '', '', '', '', '', 'nein']));
+
+  const wpl = blatt(wb, 'Preislogik', '06 · Entscheidungslogik Preissteuerung P1 bis P8', [
+    {kopf: 'Nr.', breite: 7}, {kopf: 'Situation', breite: 34},
+    {kopf: 'WENN', breite: 50}, {kopf: 'Interpretation', breite: 56},
+    {kopf: 'DANN', breite: 60}, {kopf: 'SONST', breite: 50},
+    {kopf: 'NIE', breite: 50},
+    {kopf: 'Trifft zu', breite: 11, validierung: JANEIN, eingabe: true},
+    {kopf: 'Massnahme und Datum', breite: 30, eingabe: true},
+  ], {hinweis: 'Vor jeder Preisempfehlung die zutreffende Logik bestimmen und die Ursachenanalyse dokumentieren (Kontrollpunkt K3).', xSplit: 2});
+  zeilen(wpl, PR.STEUERUNG.map(x => [x.nr, x.situation, x.wenn, x.interpretation, x.dann, x.sonst, x.nie, 'nein', '']));
+
+  /* Objektpipeline */
+  const wop = blatt(wb, 'Objektpipeline', '06 · Objektstatus im CRM', [
+    {kopf: 'Status', breite: 24}, {kopf: 'Phase', breite: 10},
+    {kopf: 'Bedeutung', breite: 56}, {kopf: 'Pflichtfelder', breite: 50},
+    {kopf: 'Aktuell', breite: 11, validierung: JANEIN, eingabe: true},
+    {kopf: 'Seit', breite: 12, eingabe: true},
+  ], {hinweis: 'Genau ein Status ist aktuell. Bei «Verloren» ist der Verlustgrund zu erfassen.', orientation: 'portrait'});
+  zeilen(wop, CRMV.OBJEKTSTATUS.map(o => [o.st, o.phase, o.bedeutung, o.pflichtfeld, 'nein', '']));
+
   /* Controlling-Dashboard */
   const wd = blatt(wb, 'Controlling', '06 · Controlling-Dashboard', [
     {kopf: 'Kennzahl', breite: 34}, {kopf: 'Wert', breite: 16, eingabe: true},
@@ -275,7 +373,13 @@ function interessenten() {
   const rAngLie = AN('Angebot Liegenschaft CHF'), rAngTot = AN('Total CHF');
   const formel = {
     'Anzahl Interessenten': `=COUNTA(${rName})`,
-    'Anzahl qualifizierte Interessenten': `=COUNTIF(${rStufe},"A")`,
+    /* Qualifiziert ist ab Funnelstufe 3; die Stufen stehen als «3 Bezeichnung» im Feld */
+    'Anzahl qualifizierte Interessenten':
+      '=' + KF.FUNNEL.filter(f => f.st >= 3)
+        .map(f => `COUNTIF(${rStufe},"${f.st} ${f.name}")`).join('+'),
+    'Anzahl verhandlungsfähige Interessenten':
+      '=' + KF.FUNNEL.filter(f => f.st >= 7)
+        .map(f => `COUNTIF(${rStufe},"${f.st} ${f.name}")`).join('+'),
     'Anzahl Besichtigungen': `=COUNTA(${rBes})`,
     'Anzahl Zweitbesichtigungen': `=COUNTIF(${rArt},"Zweitbesichtigung")`,
     'Anzahl Absagen': `=COUNTIF(${rStatus},"abgesagt")`,
@@ -680,4 +784,51 @@ function abschlusscheckliste() {
   return wb;
 }
 
-module.exports = {checklisten, interessenten, objektaufnahme, bewertung, abschlusscheckliste};
+/* ------------------------------- 10 Sonderfälle und Störfälle */
+function sonderfaelle() {
+  const wb = mappe();
+  objektblatt(wb, '10 · Sonderfälle und Störfälle – Objektkopf');
+
+  const ws = blatt(wb, 'Sonderfaelle', '10 · Sonderfallkatalog, 30 Fälle', [
+    {kopf: 'Nr.', breite: 7}, {kopf: 'Sonderfall', breite: 30},
+    {kopf: 'Erkennung in Phase', breite: 11},
+    {kopf: 'Liegt vor', breite: 11, validierung: JANEIN, eingabe: true},
+    {kopf: 'Erkennung', breite: 56}, {kopf: 'Risiko', breite: 60},
+    {kopf: 'Notwendige Abklärungen', breite: 60}, {kopf: 'Zuständige Stelle', breite: 34},
+    {kopf: 'Dokumente', breite: 44}, {kopf: 'Stop-Kriterium', breite: 44},
+    {kopf: 'Eskalation', breite: 44}, {kopf: 'Register', breite: 12},
+    {kopf: 'Abgeklärt am', breite: 13, eingabe: true},
+    {kopf: 'Ergebnis', breite: 34, eingabe: true},
+  ], {hinweis: 'Je Mandat durchgehen, spätestens in Phase 3. «Liegt vor: nein» ist ebenfalls ein Ergebnis und wird festgehalten.', xSplit: 2});
+  const sz = [];
+  SF.SONDERFAELLE.forEach(x => {
+    if (x.g) { sz.push({gruppe: x.g}); return; }
+    sz.push([x.nr, x.fall, x.phase, 'nein', x.erkennung, x.risiko, x.abklaerung,
+      x.stelle, x.dokumente, x.stop, x.eskalation, x.recht || '—', '', '']);
+  });
+  zeilen(ws, sz);
+
+  const wt = blatt(wb, 'Stoerfaelle', '10 · Störfallkatalog, 17 Fälle', [
+    {kopf: 'Nr.', breite: 7}, {kopf: 'Störfall', breite: 32},
+    {kopf: 'Eingetreten', breite: 12, validierung: JANEIN, eingabe: true},
+    {kopf: 'Datum', breite: 12, eingabe: true},
+    {kopf: '1 Sofortmassnahme', breite: 60}, {kopf: '2 Verantwortlich', breite: 26},
+    {kopf: '3 Information', breite: 50}, {kopf: '4 Dokumentation', breite: 50},
+    {kopf: '5 Rechtliche Prüfung', breite: 50}, {kopf: '6 Eigentümerentscheid', breite: 44},
+    {kopf: '7 Wiederaufnahme', breite: 44}, {kopf: 'Prävention', breite: 50},
+    {kopf: 'Erledigt am', breite: 13, eingabe: true},
+    {kopf: 'Bemerkung', breite: 34, eingabe: true},
+  ], {hinweis: 'Ein Fehler wird gemeldet, nicht verwaltet. Meldung an die Verkaufsleitung am gleichen Tag, unabhängig davon, ob eine Lösung schon gefunden ist. Nichts wird rückdatiert oder überschrieben.', xSplit: 2});
+  const tz = [];
+  ST.STOERUNGEN.forEach(x => {
+    if (x.g) { tz.push({gruppe: x.g}); return; }
+    tz.push([x.nr, x.fall, 'nein', '', x.sofort, x.wer, x.info, x.doku, x.recht,
+      x.entscheid, x.wieder, x.praevention, '', '']);
+  });
+  zeilen(wt, tz);
+
+  return wb;
+}
+
+module.exports = {checklisten, interessenten, objektaufnahme, bewertung,
+                  abschlusscheckliste, sonderfaelle};

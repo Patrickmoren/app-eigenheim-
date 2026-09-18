@@ -289,6 +289,7 @@ const KENNZAHLEN = [
 {k: 'Reaktionszeit', def: 'Stunden von der Anfrage bis zur ersten Antwort', ziel: 'Unter 4 Arbeitsstunden'},
 {k: 'Anzahl Interessenten', def: 'Im CRM erfasste Personen oder Haushalte', ziel: '—'},
 {k: 'Anzahl qualifizierte Interessenten', def: 'Stufe A: finanziert und entscheidungsfähig', ziel: 'Mindestens 20 Prozent der Anfragen'},
+{k: 'Anzahl verhandlungsfähige Interessenten', def: 'Funnelstufe 7 und höher: Angebot vollständig und finanziell belegt', ziel: 'Der Indikator, der Abschlussnähe tatsächlich abbildet'},
 {k: 'Anzahl Besichtigungen', def: 'Durchgeführte Termine', ziel: '—'},
 {k: 'Quote Anfrage zu Besichtigung', def: 'Besichtigungen geteilt durch Anfragen', ziel: 'Tiefe Quote deutet auf Preis- oder Erwartungsproblem'},
 {k: 'Anzahl Zweitbesichtigungen', def: 'Termine mit demselben Interessenten', ziel: 'Stärkster Frühindikator für ein Angebot'},

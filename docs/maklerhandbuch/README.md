@@ -1,76 +1,84 @@
-# Makler-Handbuch Hausverkauf Schweiz
+# Makler-Handbuch Hausverkauf Schweiz — Version 2.0
 
-Vollständiger Verkaufsprozess für den Verkauf eines Hauses in der Schweiz, aufgebaut als
-internes Makler-Handbuch mit den dazugehörigen Checklisten, Formularen und Vorlagen.
-Ziel ist, dass eine neue Mitarbeiterin oder ein neuer Mitarbeiter einen Hausverkauf damit
-Schritt für Schritt durchführen kann, ohne einen Prozessschritt oder eine Unterlage zu vergessen.
+Operatives Verkaufsmanagementsystem für den Verkauf eines Wohnobjekts in der Schweiz:
+von der Eigentümerakquise bis zur Übergabe, mit verbindlichen Prüfpunkten, klaren
+Entscheidungsträgern und nachvollziehbarer Dokumentation.
 
-Stand der Fassung: **18. September 2026**, Version 1.
+Stand: **18. September 2026**, Version 2.0. Version 1 (264 Seiten) ist die Ausgangsbasis;
+was geprüft, übernommen, vertieft und korrigiert wurde, steht in `00_Audit_und_Falltests`.
 
 ## Dateien
 
-| Datei | Inhalt | Grundlage im Handbuch |
+| Datei | Inhalt | Umfang |
 |---|---|---|
-| `01_Maklerhandbuch_Hausverkauf.pdf` | Das Handbuch, 264 Seiten | Teile A–W |
-| `01_Maklerhandbuch_Hausverkauf.docx` | Dasselbe als Bearbeitungsformat | Teile A–W |
-| `02_Makler_Checklisten.xlsx` | Phasen, Abschlusskriterien, Aufgaben, Dokumente A–E, Vermarktung, Rechtsregister | Teile B, C, J, W |
-| `03_Makler_Formulare.docx` | Formulare F1–F9 zum Ausfüllen | Teile D, L, M, N, O, P, Q |
-| `04_Verkaufsdossier_Vorlage.docx` | Verkaufsdossier, 23 Abschnitte als Platzhaltervorlage | Teil H |
-| `05_Kommunikationsvorlagen.docx` | 20 E-Mail- und Gesprächsvorlagen K1–K20 | Teil T |
-| `06_Interessentenmanagement.xlsx` | CRM-Liste, Besichtigungsjournal, Angebote, Controlling-Dashboard | Teile K, U |
-| `07_Objektaufnahme.xlsx` | Objektaufnahme in 16 Blöcken mit 182 Feldern, Raumliste, Mängelliste | Teil E |
-| `08_Bewertung_Vorlage.xlsx` | Vergleichswert, Realwert, Ertragswert, Sanierungsbedarf, Wertspanne, Nettoerlös | Teil F |
-| `09_Verkaeufer_Abschlusscheckliste.xlsx` | Abschlusscheckliste mit 65 Positionen, Kennzahlen, Übergabe | Teil R |
+| `00_Audit_und_Falltests.pdf` / `.docx` | Audit von V1, 10 Falltests, Schlussaudit, Restrisiken | 54 S. |
+| `01_Maklerhandbuch_Hausverkauf.pdf` / `.docx` | Das Handbuch, Teile A–K | 396 S. |
+| `02_Makler_Checklisten.xlsx` | Phasen, Gates, Stop-Kriterien, Aufgaben, Dokumente, Vermarktung, Kontrollen, Register | 10 Blätter |
+| `03_Makler_Formulare.docx` | Formulare F1–F13 zum Ausfüllen | — |
+| `04_Verkaufsdossier_Vorlage.docx` | Dossier mit 23 Abschnitten und Release-Checkliste | — |
+| `05_Kommunikationsvorlagen.docx` | Vorlagen K1–K20 | — |
+| `06_Interessentenmanagement.xlsx` | Funnel, Käuferprofile, Besichtigungen, Angebote, Preisindikatoren, Preislogik, Objektpipeline, Controlling | 11 Blätter |
+| `07_Objektaufnahme.xlsx` | 16 Blöcke, 182 Felder, Raumliste, Mängelliste, offene Punkte | 5 Blätter |
+| `08_Bewertung_Vorlage.xlsx` | Vergleichs-, Real- und Ertragswert, Sanierungsbedarf, Wertspanne, Nettoerlös | 9 Blätter |
+| `09_Verkaeufer_Abschlusscheckliste.xlsx` | 65 Positionen, Kennzahlen, Übergabe | 4 Blätter |
+| `10_Sonderfaelle_und_Stoerfaelle.xlsx` | 30 Sonderfälle, 17 Störfälle zum Abarbeiten | 3 Blätter |
 
 ## Aufbau des Handbuchs
 
-* **Teil A** Überblick, sieben Rollen mit Zuständigkeiten und Nicht-Zuständigkeiten,
-  Kennzeichnungssystem, Gesamtübersicht, kantonale Klärungsliste
-* **Teil B** die 20 Phasen – je mit Ziel, Aufgaben des Maklers, Aufgaben des Eigentümers,
-  benötigten Unterlagen, Prüfungen, Kommunikation, Meilenstein und verbindlichen
-  Abschlusskriterien
-* **Teile C–W** die Werkzeuge, auf die die Phasen verweisen: Dokumenten-Checkliste,
-  Erstgesprächsleitfaden mit Strategieableitung, Objektaufnahme, Bewertung, Maklermandat,
-  Verkaufsdossier, Inserat, Fotografie, CRM, Besichtigung, Kaufangebot, Verhandlung,
-  Reservation, Notariat, Übergabeprotokoll, Abschlusscheckliste, Ordnerstruktur,
-  Kommunikationsvorlagen, Controlling, Prozessflow, Rechtsgrundlagen-Register
+**A** Grundsystem — 10 Rollen mit Nicht-Zuständigkeiten, 10 Qualitätsprinzipien, Prozessübersicht,
+30 Begriffe, kantonale Klärungsliste ·
+**B** 20 Phasen im 18-Feld-Raster und 10 Quality Gates ·
+**C** Bewertung, 6 Preisbegriffe, 14 Indikatoren, 8 Preislogiken ·
+**D** Eigentümer: Erstgespräch, Mandat, 14 Reports ·
+**E** Käufer: 9-stufiger Funnel, Käuferprofil, Angebotsmatrix, Verhandlung ·
+**F** Vermarktung: 8 Stufen, 9 Kanäle, Dossier, Release-Checkliste ·
+**G** Recht und Compliance: Normebenen, GwG-Triage, TJPG, Datenschutz, Aufbewahrung, Kostenfolgen ·
+**H** Notariat, Vertragsphase, Übergabe ·
+**I** CRM, Dokumentenarchitektur, 10 Vier-Augen-Kontrollpunkte ·
+**J** 30 Sonderfälle, 17 Störfälle ·
+**K** Vorlagen, Checklisten, Rechtsregister mit 47 Positionen
 
-## Kennzeichen
+## Was gegenüber Version 1 neu ist
 
-Rückmeldungen bitte unter Angabe der Kennung, damit sie eindeutig zuzuordnen sind:
+Fünf kritische Befunde korrigiert, fünfzehn fehlende Bestandteile ergänzt, sechs Redundanzen
+zusammengeführt. Die wichtigsten:
 
-| Kennung | Bedeutung |
-|---|---|
-| `Phase 1`–`Phase 20` | Phasen in Teil B |
-| `A1`–`E12` | Positionen der Dokumenten-Checkliste in Teil C |
-| `R1`–`R41` | Rechtsgrundlagen-Register in Teil W |
-| `K1`–`K20` | Kommunikationsvorlagen |
-| `F1`–`F9` | Formulare |
-| `[RP]` | Rechtliche Prüfung durch Notariat / Rechtsberatung erforderlich |
-| `[KA]` | Kantonal unterschiedlich, vor Mandatsbeginn abzuklären |
-| `[GW]` | Geldwäschereirechtlich relevant |
+* **GwG-Triage statt pauschaler Unterstellung.** V1 verlangte in vier Phasen eine ausnahmslose
+  Identifikationspflicht. Die Fachliteratur nennt Ausnahmen — unter anderem für den Kauf selbst
+  bewohnter Wohnliegenschaften, also den Regelfall dieses Handbuchs. V2 führt eine Triage in sechs
+  Schritten mit den Pfaden A/B/C und verlegt den Prüfzeitpunkt vom Mandatsbeginn zur
+  Käuferqualifikation, weil die Ausnahme an der Nutzungsabsicht der Käuferschaft anknüpft.
+* **Gate-System.** Zehn Gates mit 84 Kriterien, 37 Stop-Kriterien, Prüfer, Nachweis und Eskalation.
+  Ein Stop-Kriterium kann nicht bedingt freigegeben werden.
+* **Preissteuerung nach Indikatoren.** Die Regel «ab 90 Tagen Strategieüberprüfung» ist entfernt.
+  An ihrer Stelle 14 Indikatoren und 8 Entscheidungslogiken im Muster WENN / DANN / SONST / NIE,
+  mit Ursachenanalyse vor jeder Preisempfehlung.
+* **Neunstufiger Käuferfunnel.** V1 liess für die höchste Stufe eine «plausible Selbstauskunft» zur
+  Finanzierung genügen. V2 verlangt die objektbezogene Bankbestätigung als Gate-6-Kriterium.
+* **Vier-Augen-Prinzip definiert.** V1 referenzierte es, ohne Prüfer, Prüfgegenstand und Nachweis
+  festzulegen. V2 hat zehn Kontrollpunkte.
+* **Sonderfälle, Störfälle, Dokumentenarchitektur, Eigentümerreports, Begriffsverzeichnis, TJPG,
+  Aufbewahrungsfristen** — in V1 nicht vorhanden.
 
-28 `[RP]`-, 15 `[KA]`- und 2 `[GW]`-Positionen sind im Register ausgewiesen.
+Drei weitere Lücken deckten die Falltests auf und sind geschlossen: Besichtigung in vermieteten
+Objekten (R47, Art. 257h OR), Bewertung von Baurechtsobjekten ohne Landwert, Kostenfolgen bei
+Abbruch nach der Reservation.
 
-## Vor dem produktiven Einsatz zu klären
+## Vor dem produktiven Einsatz zu erledigen
 
-Das Handbuch nennt zu jedem rechtlich relevanten Punkt die Rechtsgrundlage, erfindet aber
-keine. Drei Punkte sind vor dem Einsatz durch die Rechtsabteilung zu bestätigen:
+1. **Geldwäschereirecht.** Die Abschnitte G3–G7 beruhen auf Fachpublikationen, nicht auf dem
+   Verordnungstext — Fedlex und die Bundesstellen waren aus der Arbeitsumgebung nicht erreichbar.
+   Die Sekundärquellen widersprechen sich zur Frage, ob reine Vermittlung die Unterstellung auslöst.
+   Rechtsabteilung und SRO klären das einmal grundsätzlich und hinterlegen das Ergebnis als Weisung.
+   Bis dahin gilt vorsorglich Pfad B mit Dokumentationspflicht.
+2. **Vertragsvorlagen.** Maklermandat, Kaufangebot F4 und Reservationsbestätigung F7 sind
+   Strukturvorgaben, keine freigegebenen Texte. Juristisch prüfen, danach unverändert einsetzen.
+3. **Kantonale Angaben.** Das Handbuch enthält bewusst keine kantonalen Zahlen, Sätze oder Fristen.
+   Die Klärungsliste A7 ist je Kanton auszufüllen.
+4. **Interne Vorgaben.** Provisionssätze, Löschfristen, Aufbewahrungsdauern, Budgetgrenzen und
+   Reaktionszeitziele sind als «interne Vorgabe definieren» gekennzeichnet.
 
-1. **Vertrags- und Reservationsvorlagen.** Teil G (Maklermandat), Teil O (Reservation),
-   Formular F4 (Kaufangebot) und F7 (Reservationsbestätigung) sind Strukturvorgaben, keine
-   freigegebenen Vertragstexte. Sie sind vor der ersten Verwendung juristisch zu prüfen.
-2. **Geldwäschereirecht.** Die Teilrevision des GwG tritt am 1. Oktober 2026 in Kraft und
-   unterstellt die berufsmässige Mitwirkung an Immobilientransaktionen erstmals dem Gesetz
-   (Art. 2 Abs. 3bis und 3ter revGwG). Der konkrete Pflichtenumfang, die Frist für den
-   Anschluss an eine Selbstregulierungsorganisation, das interne Weisungswesen und die
-   Aufbewahrungsvorgaben sind durch die Rechtsabteilung und die SRO zu bestätigen. Die
-   Darstellung in Teil W1 beruht auf öffentlich zugänglichen Fachpublikationen, nicht auf
-   der Verordnung im Wortlaut.
-3. **Kantonale Angaben.** Notariatssystem, Handänderungssteuer, Grundstückgewinnsteuer und
-   ihre Sicherstellung, GEAK-Pflicht, Nutzungskennzahlen und Formerfordernisse für
-   Vollmachten sind kantonal geregelt. Die Klärungsliste in Abschnitt A6 ist je Kanton
-   einmal auszufüllen und jährlich zu überprüfen. Im Handbuch stehen dazu keine Zahlen.
+Die vollständige Liste steht im Audit, Abschnitt 8.1.
 
 ## Erzeugung
 
@@ -79,44 +87,38 @@ npm install
 node build.js
 ```
 
-Alle zehn Dateien werden aus den Textquellen in `inhalt/` erzeugt und **nicht von Hand
-bearbeitet** – Rückmeldungen fliessen in die Quelle zurück, damit die Nummerierung über
-alle Fassungen stabil bleibt. Das gilt auch für das PDF: es wird direkt gesetzt, nicht aus
-dem Word-Dokument konvertiert.
+Alle dreizehn Dateien werden aus den Quellen in `inhalt/` erzeugt und **nicht von Hand bearbeitet**.
+Rückmeldungen fliessen in die Quelle zurück, damit die Nummerierung stabil bleibt. Das PDF wird
+direkt gesetzt, nicht aus Word konvertiert.
 
-### Aufbau des Verzeichnisses
+Der Bau prüft vorher die Querverweise — Phasen, Gates, Register, Sonderfälle, Störfälle,
+Kontrollpunkte, Funnel, Falltests, Vorlagen — sowie den Zeichenvorrat und bricht bei einem
+unbekannten Verweis ab.
+
+### Verzeichnis
 
 | Datei | Inhalt |
 |---|---|
-| `build.js` | Orchestrator, erzeugt alle zehn Dateien |
+| `build.js` | Orchestrator mit Querverweis- und Zeichenprüfung |
 | `lib/blocks.js` | renderer-unabhängige Inhaltsbausteine |
-| `lib/render-docx.js` | Bausteine → `.docx` |
-| `lib/render-pdf.js` | Bausteine → `.pdf`, eigene Satzlogik mit Tabellenumbruch |
-| `lib/stil.js` | Hausstil der Word-Dokumente, Farben aus `docs/prozesse` |
-| `lib/tabellen.js` | Hausstil der Arbeitsmappen, Auswahllisten, Zellbezüge |
-| `inhalt/phasen.js` | die 20 Phasen |
-| `inhalt/dokumente.js` | Dokumenten-Checkliste, 92 Positionen in den Gruppen A–E |
-| `inhalt/recht.js` | Rechtsgrundlagen-Register, 41 Positionen |
-| `inhalt/objektaufnahme.js` | Objektaufnahme, 16 Blöcke mit 182 Feldern |
-| `inhalt/bewertung.js` | Bewertungsverfahren und Rechenschema |
-| `inhalt/bausteine.js` | Mandat, Dossier, Inserat, Fotografie, CRM, Controlling, Ordner |
-| `inhalt/formulare.js` | Erstgesprächsleitfaden, Strategieableitung, Formulare F1–F9 |
-| `inhalt/kommunikation.js` | Vorlagen K1–K20 |
-| `inhalt/abschluss.js` | Abschlusscheckliste, 65 Positionen |
-| `inhalt/handbuch.js` | setzt Datei 01 zusammen |
-| `inhalt/dok-*.js` | setzen die Dateien 03, 04 und 05 zusammen |
-| `inhalt/mappen.js` | setzt die Arbeitsmappen 02 und 06–09 zusammen |
+| `lib/render-docx.js` / `lib/render-pdf.js` | Bausteine → `.docx` bzw. `.pdf` |
+| `lib/stil.js` / `lib/tabellen.js` | Hausstil Word und Excel |
+| `lib/pruefen.js` | Querverweis- und Zeichenprüfung |
+| `inhalt/phasen.js` + `phasen-v2.js` | 20 Phasen, V1-Inhalt und V2-Erweiterung getrennt |
+| `inhalt/gates.js` · `kontrollen.js` | 10 Gates, 10 Kontrollpunkte |
+| `inhalt/recht.js` · `compliance.js` | 47 Registerpositionen, GwG-Triage, TJPG, Datenschutz |
+| `inhalt/preis.js` · `kaeufer.js` · `eigentuemer.js` · `marketing.js` | Preis, Käufer, Eigentümer, Vermarktung |
+| `inhalt/sonderfaelle.js` · `stoerungen.js` | 30 Sonderfälle, 17 Störfälle |
+| `inhalt/crm.js` · `dokumentenmgmt.js` · `begriffe.js` | CRM, Dokumente, Glossar |
+| `inhalt/audit.js` · `falltests.js` | Audit von V1, 10 Falltests, Schlussaudit |
+| `inhalt/handbuch2.js` · `dok-*.js` · `mappen.js` | Zusammensetzung der Dateien |
 
-Jeder Inhalt steht genau einmal in der Quelle: die Phasen erscheinen im Handbuch und in
-der Checklistenmappe, die Dokumentenliste in beiden, die Objektaufnahme im Handbuch und in
-Mappe 07 – erzeugt jeweils aus derselben Datei. Die Querverweise zwischen Phasen, Register,
-Vorlagen und Formularen werden beim Bauen geprüft.
+Jeder Inhalt steht genau einmal in der Quelle. Phasen erscheinen im Handbuch und in der
+Checklistenmappe, Sonderfälle im Handbuch und in Mappe 10 — erzeugt jeweils aus derselben Datei.
 
 ## Quellen
 
-Die Rechtsgrundlagen sind in Teil W des Handbuchs einzeln mit Fundstelle aufgeführt
-(OR, ZGB, StHG, MWSTG, GwG, BewG, ZWG, BGBB, RPG, USG, AltlV, StSV, DSG sowie die
-Selbstregulierung der Schweizerischen Bankiervereinigung). Abschnitt W2 nennt die am
-18. September 2026 konsultierten Quellen. Gesetzestexte sind über die Systematische
-Rechtssammlung des Bundes zu verifizieren; die aufgeführten Fachpublikationen ersetzen die
-Konsultation der Primärquellen nicht.
+Rechtsgrundlagen einzeln mit Fundstelle und Normebene in Teil K (OR, ZGB, StHG, MWSTG, GwG, TJPG,
+BewG, ZWG, BGBB, RPG, USG, AltlV, StSV, DSG sowie die Selbstregulierung der Schweizerischen
+Bankiervereinigung). Die Positionen R37, R38 und R42 tragen einen Quellenvorbehalt: sie beruhen auf
+Fachpublikationen vom Juli bis September 2026 und sind gegen die Primärquellen zu verifizieren.

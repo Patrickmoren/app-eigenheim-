@@ -432,6 +432,7 @@ const PHASEN = [
  makler: [
   'Besichtigung vorbereiten nach Checkliste F3: Schlüssel, Beleuchtung, Lüftung, Dossier, Grundrisse, Interessentenformular, Zugang zu Keller, Estrich, Technikraum und Garage.',
   'Einzelbesichtigungen von 45 bis 60 Minuten als Standard; Sammelbesichtigungen nur wenn strategisch begründet und mit dem Eigentümer abgestimmt.',
+  'Bei vermietetem Objekt: Termine schriftlich und rechtzeitig beim Mieter ankündigen, zeitlich bündeln, Zahl begrenzen, auf das Notwendige beschränken. Der Mieter hat eine Duldungspflicht, der Vermieter aber kein freies Zutrittsrecht; keine Aufnahmen der Einrichtung des Mieters (R47).',
   'Führung in fester Reihenfolge: Aussenansicht, Eingang, Wohnbereich, Küche, Schlafbereich, Bäder, Nebenräume, Technik, Aussenbereich.',
   'Bekannte Mängel aktiv ansprechen und im Besichtigungsprotokoll festhalten, wem was gezeigt und gesagt wurde – dies ist der Nachweis der Offenlegung (R10).',
   'Keine Zusagen zu Bauzulässigkeit, Umbauten, Steuerfolgen oder Finanzierung; konsequent an die zuständige Stelle verweisen.',
@@ -448,6 +449,7 @@ const PHASEN = [
   'Ist das Interessentenformular vollständig ausgefüllt, insbesondere Finanzierung und Eigenmittel?',
   'Wurden Angaben gemacht, die nicht durch Unterlagen gedeckt sind? Korrektur schriftlich nachschieben (R9).',
   'Ist der Zugang zu allen Räumen tatsächlich gewährt worden? Nicht gezeigte Räume erzeugen Misstrauen und Haftungsrisiko.',
+  'Bei vermietetem Objekt: Wurde der Termin rechtzeitig und schriftlich angekündigt? Ohne Ankündigung keine Besichtigung (R47).',
   'Häufen sich gleichlautende Ablehnungsgründe? Dann Strategieanpassung mit dem Eigentümer besprechen, nicht zuwarten.',
   'Ist die Absage an nicht weiterverfolgte Interessenten erfolgt?'],
  kommunikation: ['K10 Besichtigungsbestätigung', 'K11 Rückmeldung nach Besichtigung, innerhalb von 48 Stunden',
@@ -456,7 +458,7 @@ const PHASEN = [
  weiter: ['Rückmeldungen liegen strukturiert vor.',
   'Offenlegung bekannter Mängel ist dokumentiert.',
   'Mindestens ein Interessent verfolgt ein Kaufinteresse weiter, oder es liegt ein Strategieentscheid des Eigentümers vor.'],
- recht: ['R9', 'R10']},
+ recht: ['R9', 'R10', 'R47']},
 
 {nr: 15, name: 'Kaufangebote und Finanzierungsprüfung', dauer: '3–10', verantwortung: 'Makler',
  ziel: 'Kaufinteresse in ein schriftliches, vergleichbares Angebot überführen und die Finanzierung belegen lassen, bevor verhandelt wird.',

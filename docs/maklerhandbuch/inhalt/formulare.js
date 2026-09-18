@@ -287,6 +287,7 @@ const NOTARIAT_VOR = [
 {p: 'Bewilligungen', i: 'Erforderliche Bewilligungen oder Zustimmungen: Lex Koller, bäuerliches Bodenrecht, Erwachsenenschutzbehörde, Zweitwohnungsrecht.'},
 {p: 'Offene Punkte', i: 'Liste aller ungeklärten Fragen mit Verantwortlichkeit und Frist; Bestätigung des Notariats, dass die Unterlagen vollständig sind.'},
 {p: 'Sprache und Vertretung', i: 'Bedarf an Übersetzung; Vertretung durch Vollmacht und deren Formerfordernis.'},
+{p: 'Kostenregelung und Kostenfolge bei Abbruch', i: 'Wer trägt Beurkundungs-, Grundbuch- und Handänderungskosten und in welchem Verhältnis. Zusätzlich vorab zu klären: welche Kosten entstehen, wenn der Vertrag nicht zustande kommt, und wer sie trägt. Antwort schriftlich vom Notariat einholen und im Dossier ablegen – nach einem Abbruch ist diese Frage nicht mehr neutral verhandelbar.'},
 ];
 
 const NOTARIAT_NACH = [

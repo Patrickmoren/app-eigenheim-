@@ -90,6 +90,18 @@ const REALWERT = [
 {pos: 'Realwert', einheit: 'CHF', formel: 'REALWERT'},
 ];
 
+/* Sonderfall Baurecht: das Realwertschema ist nicht unverändert anwendbar.
+   Ergänzt nach Falltest FT6 (Lücke L2). */
+const BAURECHT = [
+{p: 'Kein Landwert', i: 'Beim selbständigen und dauernden Baurecht gehört der Boden nicht zur Verkaufssache. Die Position «Landwert» des Realwertschemas entfällt vollständig – sie darf nicht mit einem reduzierten Ansatz gefüllt werden.'},
+{p: 'Baurechtszins als Belastung', i: 'Der jährliche Baurechtszins wird kapitalisiert und als Belastung vom Zeitbauwert abgezogen. Kapitalisierungssatz und Anpassungsmechanismus des Vertrags sind zu begründen und offenzulegen.'},
+{p: 'Restlaufzeit', i: 'Die Restlaufzeit begrenzt die Nutzungsdauer und damit den Wert. Sie wird als eigener Abzug abgebildet, nicht in der Altersentwertung versteckt. Je kürzer die Restlaufzeit, desto stärker der Abzug – bei kurzen Restlaufzeiten dominiert dieser Effekt jede andere Wertkomponente.'},
+{p: 'Heimfall', i: 'Heimfallregelung und die Höhe einer allfälligen Heimfallentschädigung sind aus dem Vertrag zu entnehmen und in der Bewertung zu berücksichtigen.'},
+{p: 'Finanzierbarkeit', i: 'Die Restlaufzeit begrenzt die Amortisationsdauer und damit die Finanzierbarkeit. Vor der Preisfestlegung ist die Finanzierbarkeit mit mindestens zwei Banken abzuklären; sie bestimmt die erreichbare Zielgruppe stärker als der Preis.'},
+{p: 'Zustimmung des Baurechtsgebers', i: 'Ist bei Handänderung eine Zustimmung erforderlich, ist sie vor der Vermarktung einzuholen. Ohne sie ist das Objekt nicht verkäuflich – Stop-Kriterium in Gate 1 (Sonderfall S9).'},
+{p: 'Vergleichswert', i: 'Vergleichsobjekte im Volleigentum sind nicht ohne Korrektur verwendbar. Entweder werden Baurechtsobjekte als Vergleich verwendet oder der Unterschied wird begründet als Abschlag gerechnet.'},
+];
+
 const SANIERUNG_BAUTEILE = [
 'Dach und Spenglerarbeiten', 'Fassade und Aussenwärmedämmung', 'Fenster und Aussentüren',
 'Wärmeerzeuger', 'Wärmeabgabe und Verteilung', 'Warmwasseraufbereitung',
@@ -98,4 +110,4 @@ const SANIERUNG_BAUTEILE = [
 'Umgebung, Zufahrt, Einfriedung', 'Kanalisation und Entwässerung',
 ];
 
-module.exports = {METHODEN, EINFLUSS, ABLAUF, VORLAGE, REALWERT, SANIERUNG_BAUTEILE};
+module.exports = {METHODEN, EINFLUSS, ABLAUF, VORLAGE, REALWERT, BAURECHT, SANIERUNG_BAUTEILE};

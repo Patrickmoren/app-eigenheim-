@@ -1,0 +1,216 @@
+/* Die zehn Quality Gates. Neu in Version 2.
+   Ein Gate ist keine Formalität: es hat einen Prüfer, der nicht der Bearbeiter
+   ist, einen belegten Nachweis, Stop-Kriterien und einen Eskalationsweg.
+   Ein Gate wird entweder freigegeben, mit Bedingung freigegeben oder verweigert. */
+
+const GATES = [
+{nr: 1, name: 'Verkaufsfähigkeit', nachPhase: 6, vorPhase: 7,
+ frage: 'Ist die Liegenschaft in der vorgesehenen Form überhaupt verkäuflich – und darf Geld für Vermarktung ausgegeben werden?',
+ kriterien: [
+  'Aktueller Grundbuchauszug liegt vor, nicht älter als drei Monate, direkt vom Grundbuchamt bezogen (R4).',
+  'Der eingetragene Eigentümer stimmt mit den auftretenden Personen überein; Abweichungen sind geklärt.',
+  'Jede Position des Auszugs ist eingestuft: unkritisch, offenzulegen, vor Vermarktung zu klären. Keine Position steht auf «vor Vermarktung zu klären» (R5).',
+  'Gesetzliche und vertragliche Vorkaufsrechte sind geklärt; besteht ein Recht, ist der Ablauf festgelegt (R6).',
+  'Bewilligungsstatus aller Umbauten ist geklärt oder als offenes Risiko mit Konsequenz dokumentiert (R44).',
+  'Katasterauszug belastete Standorte und Gefahrenkartenauszug liegen vor und sind ausgewertet (R29, R30).',
+  'Erwerbsrechtliche Beschränkungen für künftige Käufer sind bestimmt: Lex Koller, Zweitwohnungsrecht, bäuerliches Bodenrecht (R34, R35, R36).',
+  'Sonderfälle nach Teil J sind erkannt und die dort verlangten Abklärungen sind eingeleitet.'],
+ pruefer: 'Verkaufsleitung; bei Sonderfällen zusätzlich Rechtsberatung',
+ nachweis: 'Prüfbericht Recht mit Ampeleinstufung je Position, gegengezeichnet',
+ stop: [
+  'Verfügungsbefugnis nicht zweifelsfrei nachgewiesen.',
+  'Objekt liegt ausserhalb der Bauzone oder mit Landanteil und die landwirtschaftsrechtliche Einordnung ist offen.',
+  'Nicht bewilligte Bauten mit offenem Wiederherstellungsrisiko.',
+  'Eintrag im Kataster belasteter Standorte mit ungeklärten Pflichten.',
+  'Vorkaufsrecht besteht und der Ablauf ist nicht festgelegt.'],
+ eskalation: 'Rechtsberatung bei jeder Position «vor Vermarktung zu klären». Bei landwirtschaftlichem Bezug, Baurecht oder Denkmalschutz zusätzlich Fachstelle.'},
+
+{nr: 2, name: 'Mandatsfähigkeit', nachPhase: 10, vorPhase: 11,
+ frage: 'Ist der Auftrag rechtlich tragfähig erteilt – und darf das Mandat bearbeitet werden?',
+ kriterien: [
+  'Mandat ist von allen Verfügungsberechtigten unterzeichnet; bei Erbengemeinschaft von allen Erben oder der Erbenvertretung (R13).',
+  'Vorgelegte Vollmachten genügen für Mandat und späteres Beurkundungsverfahren; Formerfordernis beim zuständigen Notariat erfragt (R16).',
+  'Bei verbeiständeten Eigentümern liegt die Zustimmung der Erwachsenenschutzbehörde vor (R15).',
+  'Bei Ehegatten ist geklärt, ob die Wohnung der Familie betroffen ist; Zustimmung liegt vor (R14).',
+  'Bei juristischen Personen: Handelsregisterauszug, Zeichnungsberechtigung und Feststellung der wirtschaftlich berechtigten Person (R42).',
+  'Verwendete Vertragsvorlage ist die aktuelle, freigegebene Fassung; Abweichungen sind erneut freigegeben.',
+  'GwG-Triage nach Teil G ist durchgeführt und das Ergebnis mit Begründung abgelegt; bei Pfad A liegt die Compliance-Freigabe vor (R37).',
+  'Datenschutzerklärung ist übergeben und der Empfang dokumentiert (R39).',
+  'Mängelliste und Inventarliste sind vom Eigentümer bestätigt (R10).',
+  'Vermarktungsbudget ist freigegeben.'],
+ pruefer: 'Verkaufsleitung; bei Pfad A der GwG-Triage zusätzlich Compliance',
+ nachweis: 'Mandatsdossier mit Unterschriftenkontrolle, Identifikationsdossier, Triage-Protokoll',
+ stop: [
+  'Eine Unterschrift eines Verfügungsberechtigten fehlt.',
+  'Vollmacht genügt der Form des zuständigen Notariats nicht.',
+  'KESB-Zustimmung fehlt.',
+  'GwG-Triage nicht durchgeführt oder bei Pfad A keine Compliance-Freigabe.',
+  'Vertragsvorlage wurde ohne Freigabe verändert.'],
+ eskalation: 'Rechtsberatung bei jeder Abweichung von der Vertragsvorlage. Compliance bei Pfad A und in jedem Verdachtsfall.'},
+
+{nr: 3, name: 'Bewertungsfähigkeit', nachPhase: 7, vorPhase: 8,
+ frage: 'Trägt die Datengrundlage eine belastbare Preisempfehlung – oder würde eine Zahl Genauigkeit vortäuschen?',
+ kriterien: [
+  'Objektaufnahme ist vollständig; offene Felder sind als «zu klären» markiert und in der Liste offener Punkte geführt.',
+  'Flächen haben eine belegte Quelle und eine benannte Berechnungsnorm; Grundstücksfläche stammt aus dem Grundbuchauszug (R12).',
+  'Mindestens drei belastbare Vergleichsobjekte sind dokumentiert, mit Quelle, Abrufdatum und Unterscheidung von Angebots- und Abschlusspreis.',
+  'Sanierungsbedarf ist bauteilweise beziffert, nicht pauschal.',
+  'Nutzungsreserven sind entweder behördlich bestätigt oder ausdrücklich als unbewertet bezeichnet (R27).',
+  'Rechtliche Belastungen aus Gate 1 sind in ihrer Wertwirkung beurteilt.',
+  'Bei relevantem Mietertrag liegen Mietverträge und Mietzinsaufstellung vor (R8).'],
+ pruefer: 'Zweite bewertende Person im Vier-Augen-Prinzip',
+ nachweis: 'Blatt «Grundlagen» der Bewertungsmappe, vollständig mit Vorbehalten',
+ stop: [
+  'Weniger als drei belastbare Vergleichsobjekte und keine tragfähige Realwertrechnung.',
+  'Flächenangaben ohne Quelle.',
+  'Sanierungsbedarf nicht beziffert, obwohl erkennbar erheblich.'],
+ eskalation: 'Bei Sonderobjekten, bei Sanierungsbedarf über 40 Prozent des Zeitbauwerts oder bei fehlender Vergleichsbasis: qualifizierte Schätzungsexpertise beantragen statt eigene Zahl setzen.'},
+
+{nr: 4, name: 'Vermarktungsfreigabe', nachPhase: 11, vorPhase: 12,
+ frage: 'Sind die Vermarktungsmittel inhaltlich richtig, rechtlich geprüft und vom Eigentümer freigegeben?',
+ kriterien: [
+  'Release-Checkliste Verkaufsdossier nach Teil F ist vollständig abgearbeitet.',
+  'Jede Zahl im Dossier ist gegen ihre Quelle geprüft und die Prüfung ist abgezeichnet (R9, R12).',
+  'Offenlegungsteil ist vollständig: Mängel, Sanierungsbedarf, Dienstbarkeiten, Nutzungsbeschränkungen, Katastereintrag, Naturgefahren (R5, R10, R29, R30).',
+  'Kaufnebenkosten sind für den zutreffenden Kanton beim Notariat erfragt und als Spanne mit Quelle und Datum ausgewiesen (R26).',
+  'Energieangaben nur bei vorliegendem GEAK, mit Nummer und Datum (R33).',
+  'Bildrechte und Nutzungsdauer sind schriftlich geregelt; keine identifizierbaren Personen, keine Nachbarfenster, keine Kennzeichen (R39).',
+  'Virtuelle Möblierung ist als solche gekennzeichnet.',
+  'Rechtliche Hinweise im Dossier entsprechen der freigegebenen Fassung.',
+  'Schriftliche Freigabe des Eigentümers für Dossier, Bildauswahl, Grundrisse und Inseratstexte liegt vor.'],
+ pruefer: 'Zweite Person im Vier-Augen-Prinzip gegen die Unterlagen, danach Eigentümer',
+ nachweis: 'Abgezeichnete Release-Checkliste und schriftliche Eigentümerfreigabe',
+ stop: [
+  'Eine Angabe im Dossier ist nicht belegt.',
+  'Offenlegungsteil unvollständig.',
+  'Eigentümerfreigabe fehlt oder liegt nur mündlich vor.',
+  'Ausbaupotenzial wird ohne behördliche Bestätigung beworben.'],
+ eskalation: 'Rechtsberatung bei Formulierungen zu Mängeln, Freizeichnung, Potenzial und rechtlichen Hinweisen.'},
+
+{nr: 5, name: 'Marktfreigabe', nachPhase: 11, vorPhase: 12,
+ frage: 'Darf das Objekt in dieser Stufe an diesen Markt – und ist die Nachfrage messbar?',
+ kriterien: [
+  'Preisentscheid und Verkaufsstrategie liegen schriftlich vor, vom Eigentümer bestätigt.',
+  'Vermarktungsstufe ist bestimmt: Pre-Marketing, Off-Market, Soft Launch oder offizieller Marktstart (Teil F).',
+  'Kanäle, Zielgruppe, Reihenfolge und Starttag sind festgelegt.',
+  'Auslösekriterien für die Preissteuerung sind vereinbart, nicht ein pauschales Datum (Teil C).',
+  'Anfragebearbeitung ist organisiert: Zuständigkeit, Telefonzeiten, Reaktionszeitziel.',
+  'Kurzdossier und vollständiges Dossier sind getrennt; Freigaberegel für den Versand ist festgelegt.',
+  'Bei diskreter Vermarktung: Verzicht auf Portale, Schild und Adressanzeige ist schriftlich bestätigt, mit Kenntnisnahme der Reichweitenfolge.',
+  'Objektstatus im CRM ist auf «aktiv am Markt» gesetzt und der Starttag ist erfasst.'],
+ pruefer: 'Verkaufsleitung',
+ nachweis: 'Strategieprotokoll mit Auslösekriterien; Kontrollausdrucke der Inserate',
+ stop: [
+  'Preis ist nicht schriftlich entschieden.',
+  'Gate 4 ist nicht freigegeben.',
+  'Auslösekriterien der Preissteuerung fehlen.'],
+ eskalation: 'Verkaufsleitung, wenn der Eigentümer einen Preis über der Wertspanne verlangt: Testphase mit Anpassungsmechanismus oder Mandatsverzicht.'},
+
+{nr: 6, name: 'Angebotsfähigkeit', nachPhase: 15, vorPhase: 16,
+ frage: 'Ist dieses Angebot verhandlungsfähig – und sind mehrere Angebote vergleichbar gemacht?',
+ kriterien: [
+  'Angebot liegt schriftlich und vollständig vor; Eingang mit Datum und Uhrzeit protokolliert.',
+  'Objekt- und preisbezogene Finanzierungsbestätigung der Bank liegt vor; eine allgemeine Kreditfähigkeitsauskunft genügt nicht (R40).',
+  'Eigenmittel sind belegt; der Anteil harter Eigenmittel ist ausgewiesen (R40).',
+  'Erwerbsrechtliche Zulässigkeit ist abschliessend geklärt (R34, R35, R36).',
+  'GwG-Triage ist mit der Nutzungsabsicht der Käuferschaft abgeschlossen; bei Pfad A liegt die Compliance-Freigabe vor (R37).',
+  'Bedingungen und Vorbehalte sind erfasst und in ihrer Wirkung auf die Abschlusssicherheit beurteilt.',
+  'Angebotsvergleich nach Teil E ist erstellt; bei mehreren Angeboten mit gleichen Annahmen und ohne Wertung.',
+  'Nettoerlös je Angebot ist mit identischen Annahmen gerechnet; die Annahmen sind offengelegt.'],
+ pruefer: 'Verkaufsleitung prüft Vollständigkeit und Gleichbehandlung',
+ nachweis: 'Angebotsvergleich und Entscheidungsvorlage, abgezeichnet',
+ stop: [
+  'Keine objektbezogene Finanzierungsbestätigung.',
+  'Erwerbsrechtliche Bewilligungspflicht ungeklärt.',
+  'Bei Pfad A keine Compliance-Freigabe.',
+  'Angebot unvollständig und der Interessent liefert nicht nach.'],
+ eskalation: 'Compliance bei Auffälligkeiten zu Mittelherkunft oder Zahlungsweg. Verkaufsleitung beim Verfahren für mehrere gleichzeitige Angebote.'},
+
+{nr: 7, name: 'Verhandlungsfreigabe', nachPhase: 16, vorPhase: 16,
+ frage: 'Welche Verhandlungskompetenz hat der Eigentümer dem Makler schriftlich erteilt?',
+ kriterien: [
+  'Entscheidungsvorlage wurde dem Eigentümer vollständig und wertungsfrei vorgelegt.',
+  'Schriftlicher Verhandlungsauftrag liegt vor: Annahme, Gegenangebot mit Konditionen, Ablehnung oder Fristverfahren.',
+  'Zielpreis und Rückzugslinie sind vom Eigentümer bestimmt und intern klassifiziert.',
+  'Nicht verhandelbare Punkte sind benannt.',
+  'Verhandlungsmasse neben dem Preis sind bestimmt: Termin, Inventar, Sanierungsbeitrag, Modalitäten.',
+  'Befristung jeder Aussage nach aussen ist festgelegt.',
+  'Bei mehreren Angeboten: Verfahren und Frist sind festgelegt und allen Beteiligten gleich mitgeteilt.'],
+ pruefer: 'Verkaufsleitung prüft, dass der Auftrag den Handlungsrahmen deckt',
+ nachweis: 'Unterzeichneter Verhandlungsauftrag; Verhandlungsprotokoll nach Teil E',
+ stop: [
+  'Kein schriftlicher Verhandlungsauftrag – dann wird nicht verhandelt.',
+  'Verhandlungsschritt würde den erteilten Rahmen überschreiten.',
+  'Käuferseitiges Zusatzhonorar ist nicht offengelegt und genehmigt (R19).'],
+ eskalation: 'Verkaufsleitung, sobald ein Verhandlungsschritt den Rahmen überschreitet. Rechtsberatung bei jeder Zusage zu Gewährleistung oder Vertragsinhalt.'},
+
+{nr: 8, name: 'Notariatsreife', nachPhase: 17, vorPhase: 18,
+ frage: 'Kann das Notariat auf dieser Grundlage einen Vertrag aufsetzen, ohne nachzufragen?',
+ kriterien: [
+  'Einigung ist schriftlich festgehalten: Preis, Inventar, Termin, Nutzen- und Gefahrenübergang, Bedingungen.',
+  'Reservationsbestätigung entspricht der freigegebenen Fassung: keine Kaufverpflichtung, keine Konventionalstrafe, keine Verfallsklausel, keine Zahlung an den Makler (R2, R38).',
+  'Notariatscheckliste ist vollständig übermittelt; das Notariat hat die Vollständigkeit bestätigt.',
+  'Art, Anzahl, Nominalbetrag, Rang und Inhaber der Schuldbriefe sind geklärt; Ablösung oder Übertragung ist bei der Bank veranlasst (R41).',
+  'Provisorische Berechnung der Grundstückgewinnsteuer liegt vor; die Sicherstellung ist mit dem Notariat geregelt (R22, R25).',
+  'Mängelliste ist der Käuferschaft übergeben und der Übergabezeitpunkt ist dokumentiert (R10).',
+  'Identifikation der Käuferschaft nach dem Triage-Ergebnis ist abgeschlossen (R37).',
+  'Allfällige Bewilligungen sind eingeleitet und der Verfahrensstand ist bekannt (R34, R36).',
+  'Vermarktung ist geordnet zurückgestellt; Zweitinteressenten sind transparent in Wartestellung.'],
+ pruefer: 'Verkaufsleitung; Vollständigkeitsbestätigung durch das Notariat',
+ nachweis: 'Abgearbeitete Notariatscheckliste mit Bestätigung des Notariats',
+ stop: [
+  'Notariat meldet fehlende Unterlagen.',
+  'Steuersicherstellung ist nicht geregelt.',
+  'Reservationsvorlage wurde um bindende Elemente ergänzt.',
+  'Bewilligungspflicht besteht und das Verfahren ist nicht eingeleitet.'],
+ eskalation: 'Rechtsberatung bei jeder Abweichung der Reservationsvorlage. Notariat bei kantonalen Formfragen.'},
+
+{nr: 9, name: 'Vertragsreife', nachPhase: 18, vorPhase: 19,
+ frage: 'Bildet der Vertragsentwurf die Einigung vollständig ab und sind alle offenen Punkte geklärt?',
+ kriterien: [
+  'Entwurf ist gegen die Einigung und gegen die Unterlagen geprüft; Abweichungen wurden schriftlich gemeldet und sind erledigt.',
+  'Parzellennummer, Grundbuchblatt und Fläche stimmen mit dem Auszug überein (R4, R12).',
+  'Nutzen- und Gefahrenübergang, Übergabetermin und Eigentumsübergang sind eindeutig und voneinander unterschieden (R3).',
+  'Zahlungsabwicklung ist eindeutig: Beträge, Termine, Konten, Bedingungen der Grundbuchanmeldung, Verzugsfolgen.',
+  'Mängelliste und Inventarliste sind Vertragsbestandteil (R10).',
+  'Dienstbarkeiten, Grundlasten und Anmerkungen sind vollständig übernommen (R5).',
+  'Mietverhältnisse und ihr Übergang sind geregelt (R8).',
+  'Sicherstellung der Grundstückgewinnsteuer ist im Vertrag geregelt (R25).',
+  'Erforderliche Zustimmungen und Bewilligungen liegen vor oder sind als Bedingung aufgenommen.',
+  'Entwurf ist beiden Parteien mit ausreichender Prüffrist zugestellt; beide bestätigen die Kenntnisnahme.'],
+ pruefer: 'Makler prüft gegen die Einigung; Verkaufsleitung im Vier-Augen-Prinzip; Rechtsberatung bei Sonderfällen',
+ nachweis: 'Prüfvermerk zum Entwurf mit Liste der gemeldeten Punkte und deren Erledigung',
+ stop: [
+  'Eine gemeldete Abweichung ist nicht erledigt.',
+  'Mängelliste ist nicht Vertragsbestandteil.',
+  'Zahlungsabwicklung oder Steuersicherstellung sind nicht eindeutig geregelt.'],
+ eskalation: 'Rechtsberatung bei Freizeichnung, Bedingungen, Inventarbewertung und bei jeder Abweichung, die das Notariat nicht übernimmt.'},
+
+{nr: 10, name: 'Übergabereife', nachPhase: 19, vorPhase: 20,
+ frage: 'Sind Zahlung, Eigentumsübertragung und Übergabe so weit, dass übergeben werden darf?',
+ kriterien: [
+  'Kaufpreis ist vollständig und vertragsgemäss eingegangen; Bestätigung des Notariats liegt vor.',
+  'Eigentumsübergang ist im Grundbuch eingetragen; die Eintragungsbestätigung liegt vor (R3).',
+  'Grundpfandrechte sind vereinbarungsgemäss gelöscht, übertragen oder neu errichtet.',
+  'Grundstückgewinnsteuer ist sichergestellt oder bezahlt; Bestätigung liegt vor (R25).',
+  'Versorger und Versicherungen sind auf den Übergabetermin umgestellt; Nutzen- und Gefahrenübergang und Versicherungswechsel stimmen zeitlich überein.',
+  'Übergabeprotokoll ist vorbereitet; Schlüssel-, Zähler- und Dokumentenliste sind erstellt.',
+  'Liegenschaft ist geräumt und gereinigt; mitverkauftes Inventar ist vorhanden und entspricht der Vertragsbeilage.',
+  'Beide Parteien sind über Ablauf, Zeitbedarf und mitzubringende Unterlagen informiert.'],
+ pruefer: 'Makler; Verkaufsleitung prüft Zahlungs- und Eintragungsnachweis',
+ nachweis: 'Zahlungsbestätigung, Eintragungsbestätigung, vorbereitetes Übergabeprotokoll',
+ stop: [
+  'Eintragung im Grundbuch ist nicht bestätigt – dann wird nicht übergeben.',
+  'Kaufpreis ist nicht vollständig eingegangen.',
+  'Steuersicherstellung ist nicht bestätigt.'],
+ eskalation: 'Notariat bei Verzug in Zahlung oder Anmeldung. Verkaufsleitung, wenn eine Partei auf Übergabe vor Eintragung drängt.'},
+];
+
+/* Freigabeentscheid je Gate – die drei zulässigen Ergebnisse */
+const GATE_ENTSCHEID = [
+{e: 'Freigegeben', b: 'Alle Kriterien erfüllt. Datum, Prüfer und Nachweis im CRM erfasst. Nächste Phase startet.'},
+{e: 'Freigegeben mit Bedingung', b: 'Ein nicht kritisches Kriterium ist offen. Bedingung, Zuständigkeit und Frist werden erfasst; die Bedingung wird vor dem nächsten Gate erledigt. Nur die Verkaufsleitung darf bedingt freigeben, und nie über ein Stop-Kriterium hinweg.'},
+{e: 'Verweigert', b: 'Ein Stop-Kriterium liegt vor. Der Prozess wird angehalten, der Eigentümer wird informiert, die Eskalation läuft an. Die Verweigerung wird mit Begründung dokumentiert.'},
+];
+
+module.exports = {GATES, GATE_ENTSCHEID};

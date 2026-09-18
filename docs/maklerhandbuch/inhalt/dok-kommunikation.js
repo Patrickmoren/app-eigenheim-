@@ -3,7 +3,7 @@ const {abs, mix, h1neu, h2, h3, h4, leer, punkte, tabelle, info, recht,
        titelblatt, felder} = require('../lib/blocks.js');
 const {VORLAGEN} = require('./kommunikation.js');
 const {PHASEN} = require('./phasen.js');
-const {STAND} = require('./handbuch.js');
+const {STAND} = require('./handbuch2.js');
 
 function bloecke() {
   const k = [];

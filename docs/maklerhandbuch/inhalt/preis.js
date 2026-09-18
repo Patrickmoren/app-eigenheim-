@@ -1,0 +1,143 @@
+/* Preisbegriffe, Preisstrategie und indikatorbasierte Preissteuerung.
+   Neu in Version 2. Ersetzt die Regel «ab 90 Tagen Strategieüberprüfung»
+   aus Version 1 durch eine Steuerung nach Marktindikatoren. */
+
+/* ------------------------------------------------ Die sechs Preisbegriffe */
+const BEGRIFFE = [
+{b: 'Marktwert',
+ def: 'Der Wert, der bei einem Verkauf unter normalen Bedingungen zwischen unabhängigen Parteien mit üblicher Vermarktungsdauer am wahrscheinlichsten erzielt wird.',
+ bestimmt: 'Aus der Bewertung: Vergleichs-, Real- und gegebenenfalls Ertragswert, gewichtet und begründet.',
+ wer: 'Makler bzw. Bewertung, im Vier-Augen-Prinzip',
+ abgrenzung: 'Objektbezogen und personenunabhängig. Er berücksichtigt nicht, wie schnell verkauft werden muss, und nicht, was der Eigentümer braucht.'},
+{b: 'Realistischer Vermarktungspreis',
+ def: 'Die Spanne, in der das Objekt im aktuellen Marktumfeld tatsächlich absetzbar ist.',
+ bestimmt: 'Marktwert korrigiert um aktuelle Nachfrage, Angebotsdruck, Zinsumfeld, Saison und Finanzierbarkeit im Zielpreisband.',
+ wer: 'Makler mit Marktanalyse',
+ abgrenzung: 'Kann bei angespanntem Angebot über, bei schwacher Nachfrage unter dem Marktwert liegen. Das ist kein Widerspruch, sondern der Unterschied zwischen Wert und Absetzbarkeit.'},
+{b: 'Strategischer Angebotspreis',
+ def: 'Der Preis, mit dem das Objekt veröffentlicht wird.',
+ bestimmt: 'Aus dem realistischen Vermarktungspreis und der gewählten Strategie: am unteren Rand zur Bündelung der Nachfrage, in der Mitte als Marktstandard, am oberen Rand bei Zeitreserve.',
+ wer: 'Eigentümer entscheidet, Makler empfiehlt und dokumentiert die Konsequenz',
+ abgrenzung: 'Ein Kommunikations- und Steuerungsinstrument, keine Wertaussage. Er ist die einzige dieser Zahlen, die nach aussen geht.'},
+{b: 'Zielpreis',
+ def: 'Der Preis, den die Verkäuferschaft im Verhandlungsergebnis anstrebt.',
+ bestimmt: 'Vom Eigentümer, in Kenntnis der Wertspanne und der Nettoerlösrechnung.',
+ wer: 'Eigentümer',
+ abgrenzung: 'Intern. Er steuert die Verhandlungsführung und wird nie genannt.'},
+{b: 'Erwartbarer Transaktionspreis',
+ def: 'Der Preis, mit dem nach aktuellem Verhandlungsstand und Angebotslage zu rechnen ist.',
+ bestimmt: 'Aus den vorliegenden Angeboten, ihrer Finanzierungssicherheit und den Bedingungen.',
+ wer: 'Makler, laufend aktualisiert im Eigentümerreport',
+ abgrenzung: 'Die einzige Zahl, die sich während der Vermarktung laufend ändert. Sie ist die Grundlage der Nettoerlösrechnung im Entscheidungszeitpunkt.'},
+{b: 'Mindestpreis / Eigentümergrenze',
+ def: 'Der Betrag, unter dem die Verkäuferschaft nicht verkauft.',
+ bestimmt: 'Ausschliesslich vom Eigentümer, regelmässig bestimmt durch Hypothekenablösung, Steuer und Ersatzobjekt.',
+ wer: 'Eigentümer',
+ abgrenzung: 'Streng intern klassifiziert. Wird keinem Interessenten, keinem Notariat und keinem Dritten genannt. Er ist keine Wertaussage: ein Mindestpreis über dem Marktwert macht das Objekt unverkäuflich, nicht wertvoller.'},
+];
+
+const BEGRIFFE_WARUM = [
+  'Die sechs Werte sind nicht identisch, weil sie verschiedene Fragen beantworten: Was ist das Objekt wert? Was ist heute absetzbar? Womit gehen wir an den Markt? Was wollen wir erreichen? Womit ist zu rechnen? Wo ist die Grenze?',
+  'Version 1 dieses Handbuchs kannte nur Wertspanne und Angebotspreis. Damit liessen sich zwei häufige Gespräche nicht führen: erstens die Erklärung, weshalb ein Angebot unter dem Angebotspreis dennoch ein gutes Ergebnis sein kann, und zweitens die Trennung zwischen dem, was der Eigentümer braucht, und dem, was das Objekt wert ist.',
+  'Operative Folge: In der Bewertungsbesprechung werden alle sechs Werte benannt und auseinandergehalten. Nach aussen geht ausschliesslich der strategische Angebotspreis.',
+];
+
+/* -------------------------------------------- Marktindikatoren, Erhebung */
+const INDIKATOREN = [
+{i: 'Anzahl Anfragen', erhebung: 'CRM, je Kalenderwoche und kumuliert', aussage: 'Reichweite und Preisakzeptanz auf der ersten Stufe'},
+{i: 'Qualität der Anfragen', erhebung: 'Anteil Anfragen, die die Qualifizierung erreichen', aussage: 'Trifft das Inserat die Zielgruppe?'},
+{i: 'Quote Anfrage zu Besichtigung', erhebung: 'Besichtigungen geteilt durch Anfragen', aussage: 'Stimmen Inseratsversprechen und Objekt überein?'},
+{i: 'Anzahl Besichtigungen', erhebung: 'Besichtigungsjournal', aussage: 'Tatsächliches Interesse'},
+{i: 'Anzahl qualifizierte Besichtigungen', erhebung: 'Besichtigungen mit Funnelstufe 3 oder höher', aussage: 'Substanz der Nachfrage'},
+{i: 'Anzahl Zweitbesichtigungen', erhebung: 'Besichtigungsjournal, Feld Art', aussage: 'Stärkster Frühindikator für ein Angebot'},
+{i: 'Quote Besichtigung zu Angebot', erhebung: 'Angebote geteilt durch Besichtigungen', aussage: 'Preisakzeptanz nach Objektkenntnis'},
+{i: 'Anzahl Angebote', erhebung: 'Angebotsjournal', aussage: 'Marktergebnis'},
+{i: 'Angebotshöhe und Abstand zum Angebotspreis', erhebung: 'Angebotsjournal, Feld Abweichung', aussage: 'Höhe der Preiskorrektur, die der Markt vornimmt'},
+{i: 'Finanzierungssicherheit der Angebote', erhebung: 'Anteil mit objektbezogener Bankbestätigung', aussage: 'Belastbarkeit der Angebote'},
+{i: 'Absagegründe', erhebung: 'CRM, Verteilung nach Grund', aussage: 'Ursache der Nichtakzeptanz – der wichtigste Indikator'},
+{i: 'Konkurrenzangebote im Segment', erhebung: 'Marktbeobachtung, monatlich', aussage: 'Angebotsdruck'},
+{i: 'Preisänderungen der Konkurrenz', erhebung: 'Marktbeobachtung, monatlich', aussage: 'Marktrichtung im Segment'},
+{i: 'Tage am Markt', erhebung: 'Ab Starttag, automatisch', aussage: 'Nur im Verhältnis zur segmentüblichen Dauer aussagekräftig, nie allein'},
+];
+
+const INDIKATOREN_GRUNDSATZ = [
+  'Kein Indikator wird allein interpretiert. «Tage am Markt» ohne Anfragezahlen und Absagegründe sagt nichts darüber, was zu tun ist.',
+  'Eine Preisreduktion ist nie die erste Massnahme und niemals eine automatische Folge des Zeitablaufs. Sie ist die Massnahme, die bleibt, wenn Darstellung, Zielgruppe und Kanal ausgeschlossen sind.',
+  'Jede Massnahme braucht eine dokumentierte Ursachenanalyse. Ohne Analyse keine Empfehlung, ohne Empfehlung kein Eigentümerentscheid.',
+  'Der Eigentümer entscheidet über jede Preisänderung. Der Makler liefert Zahlen, Interpretation, Handlungsmöglichkeiten und Konsequenzen.',
+];
+
+/* ---------------------------- Entscheidungslogik WENN / DANN / SONST */
+const STEUERUNG = [
+{nr: 'P1',
+ situation: 'Wenige Anfragen, kaum Besichtigungen – über die gesamte erste Marktphase',
+ wenn: 'Anfragen liegen deutlich unter dem, was vergleichbare Objekte im Segment auslösen, und die Quote Anfrage zu Besichtigung ist unauffällig.',
+ interpretation: 'Das Objekt wird in der Trefferliste nicht geöffnet. Ursache liegt vor der Besichtigung: Preispositionierung, Leitbild, Titel, Suchfilter oder Kanal.',
+ dann: 'Zuerst Darstellung und Auffindbarkeit prüfen: Leitbild und Bildreihenfolge, Titel, Pflichtfelder und Suchfilter der Portale, Zimmerzahl und Flächenangaben, Kanalauswahl. Änderungen umsetzen und eine weitere Marktphase messen.',
+ sonst: 'Bleibt der Effekt nach der Korrektur aus, liegt die Ursache in der Preispositionierung. Dann Preisgespräch mit dokumentierter Analyse und Handlungsmöglichkeiten.',
+ nie: 'Keine Preisreduktion, solange Darstellung und Auffindbarkeit nicht geprüft sind. Eine Reduktion bei schlechtem Leitbild wirkt nicht und ist verloren.'},
+{nr: 'P2',
+ situation: 'Viele Anfragen, aber kaum Besichtigungen',
+ wenn: 'Anfragen sind zahlreich, die Quote Anfrage zu Besichtigung ist tief.',
+ interpretation: 'Das Inserat verspricht etwas anderes als das Objekt, oder die Unterlagen klären etwas, das abschreckt: Lage, Zustand, Sanierungsbedarf, Dienstbarkeit, Preis im Verhältnis zur Fläche.',
+ dann: 'Absagegründe der Anfragenden strukturiert erheben. Häufigsten Grund gezielt adressieren: Angabe korrigieren, Sachverhalt im Inserat früher benennen, Zielgruppe anpassen.',
+ sonst: 'Zeigt sich als Hauptgrund durchgehend der Preis im Verhältnis zum Gebotenen, ist die Positionierung zu überprüfen.',
+ nie: 'Keine Beschönigung der Unterlagen, um die Quote zu heben. Das verlagert den Abbruch nur auf die Besichtigung und beschädigt die Glaubwürdigkeit.'},
+{nr: 'P3',
+ situation: 'Ausreichend Besichtigungen, keine Angebote',
+ wenn: 'Zehn oder mehr Besichtigungen ohne Angebot, keine Zweitbesichtigungen.',
+ interpretation: 'Das Objekt überzeugt in der Besichtigung nicht zum verlangten Preis. Ursache ist Zustand, Grundriss, Umfeld oder Preis-Leistungs-Empfinden.',
+ dann: 'Absagegründe auswerten. Bei überwiegend objektbezogenen Gründen: gezielte Massnahmen prüfen – Zustandsanalyse beilegen, Sanierungsbedarf beziffern, Teilmassnahme ausführen, Inventar einbeziehen. Bei überwiegend preisbezogenen Gründen: Preisgespräch.',
+ sonst: 'Lehnt der Eigentümer sowohl Massnahme als auch Preisanpassung ab, ist das Ergebnis zu protokollieren und die Erwartung schriftlich anzupassen.',
+ nie: 'Keine Sammelbesichtigungen, um Aktivität zu zeigen. Das erzeugt Zahlen ohne Substanz.'},
+{nr: 'P4',
+ situation: 'Angebote kommen, aber deutlich unter dem Angebotspreis',
+ wenn: 'Mehrere unabhängige Angebote liegen in einem engen Band deutlich unter dem Angebotspreis.',
+ interpretation: 'Der Markt hat einen Preis gebildet. Mehrere unabhängige Angebote im gleichen Band sind die belastbarste Preisinformation, die überhaupt zu erhalten ist – belastbarer als jede Bewertung.',
+ dann: 'Dem Eigentümer das Band, die Finanzierungssicherheit und den Nettoerlös je Angebot vorlegen. Prüfen, ob das Band innerhalb der bewerteten Spanne liegt.',
+ sonst: 'Liegt das Band unter der Spanne, ist die Bewertung gegen die tatsächliche Marktreaktion zu prüfen und die Abweichung zu erklären, nicht zu verteidigen.',
+ nie: 'Angebote nicht vorenthalten, weil sie zu tief erscheinen. Jedes Angebot wird vorgelegt.'},
+{nr: 'P5',
+ situation: 'Mehrere Angebote gleichzeitig, teilweise über dem Angebotspreis',
+ wenn: 'Zwei oder mehr verhandlungsfähige Angebote innerhalb kurzer Zeit.',
+ interpretation: 'Der Angebotspreis lag unter der Absetzbarkeit, oder die Nachfrage im Segment ist angespannt.',
+ dann: 'Transparentes Verfahren mit gleicher Information und gleicher Frist für alle festlegen, vom Eigentümer beschliessen lassen und schriftlich kommunizieren. Nicht nur den Preis vergleichen, sondern die Abschlusssicherheit.',
+ sonst: 'Ist der Eigentümer versucht, nachträglich den Angebotspreis zu erhöhen: Konsequenzen benennen – Vertrauensverlust, Abbruchrisiko bei allen Bietenden, Reputationsschaden. Entscheid dokumentieren.',
+ nie: 'Keine Auktionsmechanik ohne vorherige Offenlegung gegenüber allen Beteiligten. Keine Weitergabe konkurrierender Angebotsbeträge.'},
+{nr: 'P6',
+ situation: 'Ein Angebot, aber mit unsicherer Finanzierung',
+ wenn: 'Angebot liegt preislich im Zielbereich, die Finanzierung ist nur selbstdeklariert oder mit Vorbehalt bestätigt.',
+ interpretation: 'Ein Angebot ohne belegte Finanzierung ist kein Angebot, sondern eine Absicht. Das Hauptrisiko ist nicht der Preis, sondern der Zeitverlust bei einem Abbruch.',
+ dann: 'Objektbezogene Bankbestätigung mit Frist verlangen. Vermarktung bis dahin nicht zurückstellen und Zweitinteressenten nicht absagen.',
+ sonst: 'Wird die Bestätigung nicht beigebracht, wird das Angebot nicht weiterverfolgt; Gate 6 ist nicht passiert.',
+ nie: 'Keine Reservation und keine Rückstellung der Vermarktung auf eine Selbstauskunft hin.'},
+{nr: 'P7',
+ situation: 'Nachfrage bricht nach einer Preisreduktion nicht an',
+ wenn: 'Nach einer umgesetzten Reduktion bleiben Anfragen und Besichtigungen auf dem Vorniveau.',
+ interpretation: 'Der Preis war nicht die bindende Ursache, oder die Reduktion war zu klein, um eine andere Suchfilterstufe zu erreichen.',
+ dann: 'Keine zweite Reduktion in kurzem Abstand. Ursachenanalyse wiederholen und die Filterlogik der Portale prüfen: eine Reduktion, die keine Preisstufe überschreitet, wird von der Zielgruppe nicht gesehen.',
+ sonst: 'Grundsatzgespräch mit dem Eigentümer: Rückzug vom Markt mit Neuaufstellung nach Wartezeit oder Fortsetzung mit angepasster Erwartung.',
+ nie: 'Keine Reduktionskette in kurzen Abständen. Sie signalisiert Not und zerstört die Verhandlungsposition endgültig.'},
+{nr: 'P8',
+ situation: 'Marktumfeld verändert sich während der Vermarktung',
+ wenn: 'Zinsniveau, Angebotsdruck im Segment oder Konkurrenzpreise verändern sich deutlich.',
+ interpretation: 'Die Grundlage der Preisstrategie hat sich geändert, unabhängig vom Objekt.',
+ dann: 'Marktanalyse aktualisieren und dem Eigentümer als eigenen Punkt vorlegen – getrennt von objektbezogenen Ursachen.',
+ sonst: 'Bei Verschlechterung und fehlender Anpassungsbereitschaft: Erwartung zur Vermarktungsdauer schriftlich anpassen.',
+ nie: 'Marktveränderung nicht als Begründung für eine Reduktion verwenden, ohne sie mit Zahlen zu belegen.'},
+];
+
+/* ------------------------------------------- Ablauf einer Preisänderung */
+const PREISAENDERUNG = [
+{s: 1, t: 'Indikatoren erheben', i: 'Vollständiger Indikatorensatz seit Marktstart, aus dem Controlling. Keine Auswahl einzelner Zahlen.'},
+{s: 2, t: 'Ursachen analysieren', i: 'Die vier Ursachenfelder einzeln prüfen und ausschliessen: Preispositionierung, Darstellung, Zielgruppe und Kanal, Objektanforderungen. Ergebnis schriftlich.'},
+{s: 3, t: 'Handlungsmöglichkeiten darstellen', i: 'Je Möglichkeit die erwartete Wirkung, der Aufwand und das Risiko. Mindestens eine Möglichkeit ohne Preisänderung.'},
+{s: 4, t: 'Nettoerlös rechnen', i: 'Je Variante der Nettoerlös mit identischen Annahmen. Bei einer Reduktion auch die Alternative «unverändert weiter» mit Zeitkosten.'},
+{s: 5, t: 'Vier-Augen-Prüfung', i: 'Verkaufsleitung prüft Analyse und Vorlage, bevor sie zum Eigentümer geht (Kontrollpunkt K3).'},
+{s: 6, t: 'Eigentümerentscheid einholen', i: 'Schriftlich, mit neuem Preis, Wirkungsdatum und Kenntnisnahme der Konsequenzen. Ohne Entscheid keine Änderung.'},
+{s: 7, t: 'Umsetzen', i: 'Alle Kanäle gleichzeitig ändern, Preisstufe der Suchfilter beachten, Kontrollausdrucke erstellen.'},
+{s: 8, t: 'Dokumentieren und messen', i: 'Änderung mit Datum, Höhe, Begründung und Entscheidträger im Controlling erfassen. Wirkung über eine definierte Messperiode beobachten, bevor weitere Schritte erwogen werden.'},
+];
+
+module.exports = {BEGRIFFE, BEGRIFFE_WARUM, INDIKATOREN, INDIKATOREN_GRUNDSATZ,
+  STEUERUNG, PREISAENDERUNG};

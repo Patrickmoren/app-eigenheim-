@@ -7,6 +7,15 @@ const {posten: rechtPosten} = require('../inhalt/recht.js');
 const {VORLAGEN}  = require('../inhalt/kommunikation.js');
 const {posten: abschlussPosten} = require('../inhalt/abschluss.js');
 const {AUFNAHME}  = require('../inhalt/objektaufnahme.js');
+const {ZUSATZ}    = require('../inhalt/phasen-v2.js');
+const {GATES}     = require('../inhalt/gates.js');
+const {KONTROLLEN}= require('../inhalt/kontrollen.js');
+const SFM         = require('../inhalt/sonderfaelle.js');
+const STM         = require('../inhalt/stoerungen.js');
+const KFM         = require('../inhalt/kaeufer.js');
+const PRM         = require('../inhalt/preis.js');
+const FTM         = require('../inhalt/falltests.js');
+const AUD         = require('../inhalt/audit.js');
 const B           = require('../inhalt/bausteine.js');
 const F           = require('../inhalt/formulare.js');
 
@@ -89,6 +98,112 @@ function pruefen() {
     (r.flag || '').split(' ').filter(Boolean).forEach(fl => {
       if (!['RP', 'KA', 'GW'].includes(fl)) f.push(`Register ${r.k}: unbekanntes Kennzeichen ${fl}`);
     });
+  });
+
+  /* --- Version 2: Phasenerweiterung vollständig? --- */
+  const V2FELDER = ['ausgangslage', 'beteiligte', 'entscheidungen', 'entscheider',
+    'risiken', 'dokumentation', 'dokumente', 'crm', 'gates', 'stop', 'eskalation'];
+  PHASEN.forEach(p => {
+    const z = ZUSATZ[p.nr];
+    if (!z) { f.push(`Phase ${p.nr}: Erweiterung in phasen-v2.js fehlt`); return; }
+    V2FELDER.forEach(k2 => {
+      if (z[k2] === undefined) f.push(`Phase ${p.nr}: V2-Feld «${k2}» fehlt`);
+    });
+    ['status', 'aktivitaet', 'aufgabe', 'frist', 'prio'].forEach(k2 => {
+      if (!z.crm || !z.crm[k2]) f.push(`Phase ${p.nr}: CRM-Feld «${k2}» fehlt`);
+    });
+    (z.gates || []).forEach(g => {
+      if (!GATES.some(x => x.nr === g)) f.push(`Phase ${p.nr}: unbekanntes Gate ${g}`);
+    });
+  });
+
+  /* --- Gates: Phasenbezug beidseitig konsistent --- */
+  const gateZuPhase = {};
+  Object.entries(ZUSATZ).forEach(([n, z]) => (z.gates || []).forEach(g => {
+    (gateZuPhase[g] = gateZuPhase[g] || []).push(Number(n));
+  }));
+  GATES.forEach(g => {
+    const ph = gateZuPhase[g.nr] || [];
+    if (ph.length !== 1) f.push(`Gate ${g.nr}: von ${ph.length} Phasen belegt, erwartet genau 1`);
+    else if (ph[0] !== g.nachPhase) {
+      f.push(`Gate ${g.nr}: Modul sagt «nach Phase ${g.nachPhase}», Phase ${ph[0]} beansprucht es`);
+    }
+    if (!phasenNr.has(g.nachPhase)) f.push(`Gate ${g.nr}: unbekannte Phase ${g.nachPhase}`);
+    ['frage', 'pruefer', 'nachweis', 'eskalation'].forEach(k2 => {
+      if (!g[k2]) f.push(`Gate ${g.nr}: Feld «${k2}» fehlt`);
+    });
+    if (!g.kriterien.length) f.push(`Gate ${g.nr}: keine Freigabekriterien`);
+    if (!g.stop.length) f.push(`Gate ${g.nr}: keine Stop-Kriterien`);
+  });
+
+  /* --- Kontrollpunkte --- */
+  KONTROLLEN.forEach(c => {
+    if (!phasenNr.has(c.phase)) f.push(`Kontrollpunkt ${c.nr}: unbekannte Phase ${c.phase}`);
+    if (c.gate && !GATES.some(g => g.nr === c.gate)) f.push(`Kontrollpunkt ${c.nr}: unbekanntes Gate ${c.gate}`);
+    if (c.erstellt === c.kontrolliert) f.push(`Kontrollpunkt ${c.nr}: Erstellender und Kontrollierender identisch`);
+    ['gegenstand', 'nachweis', 'folge'].forEach(k2 => {
+      if (!c[k2]) f.push(`Kontrollpunkt ${c.nr}: Feld «${k2}» fehlt`);
+    });
+  });
+
+  /* --- Sonderfälle --- */
+  SFM.posten().forEach(x => {
+    if (!phasenNr.has(x.phase)) f.push(`Sonderfall ${x.nr}: unbekannte Phase ${x.phase}`);
+    ['fall', 'erkennung', 'risiko', 'abklaerung', 'stelle', 'dokumente', 'stop', 'eskalation']
+      .forEach(k2 => { if (!x[k2]) f.push(`Sonderfall ${x.nr}: Feld «${k2}» fehlt`); });
+    (x.recht || '').split(' ').filter(Boolean).forEach(k2 => {
+      if (!rechtK.has(k2)) f.push(`Sonderfall ${x.nr}: unbekannter Rechtsverweis ${k2}`);
+    });
+  });
+  if (SFM.posten().length !== 30) f.push(`Sonderfälle: ${SFM.posten().length} statt 30`);
+
+  /* --- Störfälle --- */
+  STM.posten().forEach(x => {
+    ['fall', 'sofort', 'wer', 'info', 'doku', 'recht', 'entscheid', 'wieder', 'praevention']
+      .forEach(k2 => { if (!x[k2]) f.push(`Störfall ${x.nr}: Feld «${k2}» fehlt`); });
+  });
+  if (STM.posten().length !== 17) f.push(`Störfälle: ${STM.posten().length} statt 17`);
+
+  /* --- Käuferfunnel --- */
+  KFM.FUNNEL.forEach((x, i) => {
+    if (x.st !== i + 1) f.push(`Funnelstufe an Position ${i + 1} trägt die Nummer ${x.st}`);
+    ['name', 'def', 'kriterium', 'aktion', 'daten', 'abbruch'].forEach(k2 => {
+      if (!x[k2]) f.push(`Funnelstufe ${x.st}: Feld «${k2}» fehlt`);
+    });
+  });
+  if (KFM.FUNNEL.length !== 9) f.push(`Funnel: ${KFM.FUNNEL.length} Stufen statt 9`);
+
+  /* --- Preislogiken --- */
+  PRM.STEUERUNG.forEach(x => {
+    ['situation', 'wenn', 'interpretation', 'dann', 'sonst', 'nie'].forEach(k2 => {
+      if (!x[k2]) f.push(`Preislogik ${x.nr}: Feld «${k2}» fehlt`);
+    });
+  });
+  if (PRM.BEGRIFFE.length !== 6) f.push(`Preisbegriffe: ${PRM.BEGRIFFE.length} statt 6`);
+
+  /* --- Falltests: jede gemeldete Lücke muss eine Quelle haben --- */
+  const ftNr = new Set(FTM.FALLTESTS.map(t => t.nr));
+  FTM.LUECKEN.forEach(l => {
+    if (!ftNr.has(l.quelle)) f.push(`Lücke ${l.nr}: unbekannter Falltest ${l.quelle}`);
+    if (!l.geschlossen) f.push(`Lücke ${l.nr}: nicht als geschlossen dokumentiert`);
+  });
+  const gemeldet = FTM.FALLTESTS.filter(t => t.befund.includes('LÜCKE')).length;
+  if (gemeldet !== FTM.LUECKEN.length) {
+    f.push(`Falltests melden ${gemeldet} Lücken, dokumentiert sind ${FTM.LUECKEN.length}`);
+  }
+  if (FTM.FALLTESTS.length !== 10) f.push(`Falltests: ${FTM.FALLTESTS.length} statt 10`);
+
+  /* --- Audit: D-Befunde brauchen alle acht Felder --- */
+  AUD.D_BEFUNDE.forEach(d => {
+    ['titel', 'inhalt', 'problem', 'risiko', 'aenderung', 'loesung', 'phase',
+     'dokument', 'verantwortung'].forEach(k2 => {
+      if (!d[k2]) f.push(`Audit-Befund ${d.nr}: Feld «${k2}» fehlt`);
+    });
+  });
+  AUD.SCHLUSSAUDIT.forEach(x => {
+    if (!['erfüllt', 'teilweise erfüllt', 'nicht erfüllt', 'kritisch'].includes(x.e)) {
+      f.push(`Schlussaudit «${x.d}»: unzulässiges Ergebnis «${x.e}»`);
+    }
   });
 
   /* Strukturbausteine: erwartete Anzahl, damit Kürzungen auffallen */

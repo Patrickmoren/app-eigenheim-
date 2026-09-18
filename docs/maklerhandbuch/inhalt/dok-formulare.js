@@ -3,7 +3,7 @@ const {abs, mix, h1neu, h2, h3, h4, leer, punkte, tabelle, info, recht, praxis,
        titelblatt, checks, felder, linien, nrpunkte} = require('../lib/blocks.js');
 const F = require('./formulare.js');
 const B = require('./bausteine.js');
-const {STAND} = require('./handbuch.js');
+const {STAND} = require('./handbuch2.js');
 
 /* Kopfzeile, die jedes Formular trägt */
 const objektkopf = () => felder([
