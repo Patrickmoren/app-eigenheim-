@@ -87,9 +87,10 @@ function bloecke() {
   push(tabelle(['Nr.', 'Redundanz', 'Wo', 'Zusammenführung'],
     A.F_BEFUNDE.map(f => [f.nr, f.r, f.w, f.m]), [500, 1900, 3200, 4000]));
   push(info('Wirkung auf den Umfang', [
-    'Version 1 hatte 264 Seiten. Die Zusammenführungen sparen rund zwanzig Seiten, die Ergänzungen kosten deutlich mehr.',
-    'Der Umfang von Version 2.0 wächst also – aber nicht durch mehr Text zum gleichen Inhalt, sondern durch Gates, Sonderfälle, Störfälle, Kontrollpunkte und Entscheidungslogik. Das sind die Teile, die aus einem Handbuch ein System machen.',
-    'Gestrichen wurde kein Fachinhalt. Die drei gekürzten Teile – Objektaufnahme, Formulare, Vorlagenübersicht – liegen in den Begleitdateien vollständig vor, wo mit ihnen gearbeitet wird.']));
+    'Version 1 hatte 88 Seiten, Version 2.0 hat 132. Die Zusammenführungen sparen Umfang, die Ergänzungen kosten mehr.',
+    'Der Zuwachs entsteht nicht durch mehr Text zum gleichen Inhalt, sondern durch Gates, Sonderfälle, Störfälle, Kontrollpunkte und Entscheidungslogik. Das sind die Teile, die aus einem Handbuch ein System machen.',
+    'Gestrichen wurde kein Fachinhalt. Die drei gekürzten Teile – Objektaufnahme, Formulare, Vorlagenübersicht – liegen in den Begleitdateien vollständig vor, wo mit ihnen gearbeitet wird.',
+    'Für das Tagesgeschäft ist die Kurzfassung (Dokument 11, 21 Seiten) gedacht; das Handbuch bleibt Nachschlagewerk und Einarbeitungsgrundlage.']));
 
   /* ---------------------------------------------------------- Teil 5 */
   push(h1neu('5 · Falltests'));

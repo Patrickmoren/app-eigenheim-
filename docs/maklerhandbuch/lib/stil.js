@@ -95,7 +95,7 @@ const felder = (liste, o = {}) => liste.map(t => feld(t, o));
 /* ------------------------------------------------------------------ Tabellen */
 function zelle(text, {w, kopf = false, bold = false, zebra = false, mono = false,
                       fuellen = false, fill, span, align} = {}) {
-  const inhalt = Array.isArray(text) ? text : [String(text)];
+  const inhalt = Array.isArray(text) ? text : String(text).split('\n');
   return new TableCell({
     width: {size: w, type: WidthType.DXA},
     columnSpan: span,

@@ -12,6 +12,7 @@ const {schreibePdf}  = require('./lib/render-pdf.js');
 
 const handbuch      = require('./inhalt/handbuch2.js');
 const dokAudit      = require('./inhalt/dok-audit.js');
+const kurzfassung   = require('./inhalt/kurzfassung.js');
 const dokFormulare  = require('./inhalt/dok-formulare.js');
 const dokDossier    = require('./inhalt/dok-dossier.js');
 const dokKommunik   = require('./inhalt/dok-kommunikation.js');
@@ -39,6 +40,7 @@ async function main() {
   const zf = [
     ...zeichenPruefen(hb, '01 Handbuch'),
     ...zeichenPruefen(dokAudit.bloecke(), '00 Audit'),
+    ...zeichenPruefen(kurzfassung.bloecke(), '11 Kurzfassung'),
     ...zeichenPruefen(dokFormulare.bloecke(), '03 Formulare'),
     ...zeichenPruefen(dokDossier.bloecke(), '04 Verkaufsdossier'),
     ...zeichenPruefen(dokKommunik.bloecke(), '05 Kommunikationsvorlagen'),
@@ -61,6 +63,14 @@ async function main() {
     pfad: hier('00_Audit_und_Falltests.pdf'), fusstext: fussAudit}));
   erzeugt.push(await schreibeDocx({bloecke: au,
     pfad: hier('00_Audit_und_Falltests.docx'), fusstext: fussAudit}));
+
+  /* 11 – Kurzfassung für erfahrene Makler */
+  const kf = kurzfassung.bloecke();
+  const fussKurz = `Kurzfassung Praxis · ${handbuch.VERSION} · Fassung vom ${handbuch.STAND}`;
+  erzeugt.push(await schreibePdf({bloecke: kf,
+    pfad: hier('11_Kurzfassung_Praxis.pdf'), fusstext: fussKurz}));
+  erzeugt.push(await schreibeDocx({bloecke: kf,
+    pfad: hier('11_Kurzfassung_Praxis.docx'), fusstext: fussKurz}));
 
   /* 03 bis 05 – Word-Dokumente */
   erzeugt.push(await schreibeDocx({bloecke: dokFormulare.bloecke(),

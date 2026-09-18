@@ -11,7 +11,7 @@ const SCHLUESSEL = [
 ];
 
 const METHODE = [
-  'Geprüft wurde die Fassung vom 18. September 2026, 264 Seiten, Teile A bis W, mit den neun Begleitdateien.',
+  'Geprüft wurde die Fassung vom 18. September 2026, 88 Seiten, Teile A bis W, mit den neun Begleitdateien.',
   'Grundlage der Prüfung: die Anforderungen an ein operatives Verkaufsmanagementsystem – eindeutige Prozesslogik je Phase, verbindliche Prüfpunkte, klare Entscheidungsträger, belegbare Dokumentation, Entscheidungslogik statt Handlungsaufforderung.',
   'Die Bewertung bezieht sich auf die Eignung als Steuerungsinstrument, nicht auf die sprachliche Qualität. Version 1 ist sprachlich und strukturell sauber; ihre Schwäche liegt in der fehlenden Verbindlichkeit und in einer rechtlich zu pauschalen Compliance-Annahme.',
   'Vier Befunde betreffen die Rechtslage und sind unten als D-Befunde mit acht Feldern ausgewiesen. Der gewichtigste kehrt eine Kernannahme von Version 1 um.',
@@ -136,10 +136,10 @@ const E_BEFUNDE = [
 
 /* ------------------------------------------------- F-Befunde: Redundanzen */
 const F_BEFUNDE = [
-{nr: 'F1', r: 'Objektaufnahme doppelt', w: 'Alle 182 Felder stehen im Handbuch (Teil E, Seiten 40–46) und in Arbeitsmappe 07.',
- m: 'Im Handbuch nur Blockstruktur, Erfassungsregeln und die kritischen Felder; die Feldliste bleibt der Arbeitsmappe. Ersparnis rund sechs Seiten ohne Informationsverlust – gearbeitet wird ohnehin in der Mappe.'},
+{nr: 'F1', r: 'Objektaufnahme doppelt', w: 'Alle 182 Felder stehen im Handbuch (Teil E) und in Arbeitsmappe 07.',
+ m: 'Im Handbuch nur Blockstruktur, Erfassungsregeln und die kritischen Felder; die Feldliste bleibt der Arbeitsmappe. Kein Informationsverlust – gearbeitet wird ohnehin in der Mappe.'},
 {nr: 'F2', r: 'Formulare doppelt', w: 'Interessentenformular, Übergabeprotokoll und Notariatscheckliste stehen vollständig im Handbuch und in Dokument 03.',
- m: 'Im Handbuch Zweck, Struktur in Blöcken und die Prüfpunkte; die ausfüllbare Fassung bleibt in Dokument 03. Ersparnis rund acht Seiten.'},
+ m: 'Im Handbuch Zweck, Struktur in Blöcken und die Prüfpunkte; die ausfüllbare Fassung bleibt in Dokument 03.'},
 {nr: 'F3', r: 'Vorlagenübersicht doppelt', w: 'Teil T listet die 20 Kommunikationsvorlagen, die in Dokument 05 nochmals mit derselben Tabelle beginnen.',
  m: 'Eine Übersicht im Handbuch mit Verweis; Dokument 05 beginnt direkt mit den Vorlagen.'},
 {nr: 'F4', r: 'Prozessübersicht doppelt', w: 'Teil A4 zeigt alle 20 Phasen als Tabelle, Teil V dieselbe Abfolge als Flow über zwei Seiten.',

@@ -31,12 +31,14 @@ class Satz {
       {top: RAND, right: RAND, bottom: RAND_U, left: RAND}, autoFirstPage: false,
       bufferPages: true});
     this.fusstext = fusstext;
+    this.gesetzteSeiten = 0;   // vom Satz angeforderte Seiten
     this.neueSeite();
   }
   get u() { return A4[1] - RAND_U - 16; }     // untere Grenze des Satzspiegels
 
   neueSeite() {
     this.doc.addPage();
+    this.gesetzteSeiten++;
     this.y = RAND;
   }
   platz(h) {
@@ -316,11 +318,27 @@ class Satz {
   }
 
   /* -------------------------------------------------------------- Fusszeile */
+  /* pdfkit fügt für Text ausserhalb des Satzspiegels automatisch Seiten an.
+     Weicht die Zahl der Seiten im Dokument von der Zahl der vom Satz
+     angeforderten Seiten ab, ist genau das passiert. */
+  seitenPruefen() {
+    const ist = this.doc.bufferedPageRange().count;
+    if (ist !== this.gesetzteSeiten) {
+      throw new Error(`Seitenzahl weicht ab: gesetzt ${this.gesetzteSeiten}, `
+        + `im Dokument ${ist}. Ursache ist in der Regel Text ausserhalb des `
+        + `Satzspiegels, für den pdfkit eine Seite anfügt.`);
+    }
+  }
+
   fusszeilen() {
     const d = this.doc;
     const anz = d.bufferedPageRange();
     for (let i = anz.start; i < anz.start + anz.count; i++) {
       d.switchToPage(i);
+      /* Die Fusszeile liegt unterhalb des Satzspiegels. pdfkit fügt für Text
+         ausserhalb des Textbereichs automatisch eine Seite an – deshalb den
+         unteren Rand dieser Seite für den Schreibvorgang aufheben. */
+      d.page.margins.bottom = 0;
       const y = A4[1] - RAND_U + 6;
       d.moveTo(RAND, y - 5).lineTo(RAND + BREITE, y - 5)
        .lineWidth(0.5).strokeColor(LINIE).stroke();
@@ -359,6 +377,7 @@ function schreibePdf({bloecke, pfad, fusstext}) {
       }
     });
     s.fusszeilen();
+    try { s.seitenPruefen(); } catch (e) { return abgelehnt(e); }
     const strom = fs.createWriteStream(pfad);
     strom.on('finish', () => erfuellt(pfad));
     strom.on('error', abgelehnt);

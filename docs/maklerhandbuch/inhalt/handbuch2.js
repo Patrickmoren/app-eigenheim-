@@ -140,6 +140,7 @@ const FLOWS = [
 
 const DATEIEN = [
 ['00_Audit_und_Falltests.pdf', 'Audit von Version 1, zehn Falltests, Schlussaudit, Restrisiken', 'Begleitdokument'],
+['11_Kurzfassung_Praxis.pdf', 'Arbeitsebene für erfahrene Makler: Prozess, Gate-Karten, Entscheidungen, rote Linien', 'Verdichtung aus A–K'],
 ['01_Maklerhandbuch_Hausverkauf.pdf', 'Dieses Handbuch', 'Teile A–K'],
 ['02_Makler_Checklisten.xlsx', 'Phasen, Gates, Aufgaben, Dokumente, Vermarktung, Kontrollen, Register', 'B, F, I, K'],
 ['03_Makler_Formulare.docx', 'Formulare F1–F13 zum Ausfüllen', 'D, E, G, H'],

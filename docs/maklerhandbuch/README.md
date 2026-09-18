@@ -4,15 +4,20 @@ Operatives Verkaufsmanagementsystem für den Verkauf eines Wohnobjekts in der Sc
 von der Eigentümerakquise bis zur Übergabe, mit verbindlichen Prüfpunkten, klaren
 Entscheidungsträgern und nachvollziehbarer Dokumentation.
 
-Stand: **18. September 2026**, Version 2.0. Version 1 (264 Seiten) ist die Ausgangsbasis;
+Stand: **18. September 2026**, Version 2.0. Version 1 (88 Seiten) ist die Ausgangsbasis;
 was geprüft, übernommen, vertieft und korrigiert wurde, steht in `00_Audit_und_Falltests`.
+
+**Womit man arbeitet:** `11_Kurzfassung_Praxis` (21 Seiten) ist die Arbeitsebene für erfahrene
+Makler — Prozess, Gate-Karten, Entscheidungen, rote Linien. Das Handbuch (132 Seiten) ist das
+Nachschlagewerk und die Grundlage für die Einarbeitung neuer Mitarbeitender.
 
 ## Dateien
 
 | Datei | Inhalt | Umfang |
 |---|---|---|
-| `00_Audit_und_Falltests.pdf` / `.docx` | Audit von V1, 10 Falltests, Schlussaudit, Restrisiken | 54 S. |
-| `01_Maklerhandbuch_Hausverkauf.pdf` / `.docx` | Das Handbuch, Teile A–K | 396 S. |
+| `11_Kurzfassung_Praxis.pdf` / `.docx` | **Arbeitsebene:** Prozess auf 1 Seite, 10 Gate-Karten, Entscheidungsmatrix, Preislogik, GwG-Triage, Sonderfall- und Störfall-Radar, 30 rote Linien, Verweistabelle | 21 S. |
+| `00_Audit_und_Falltests.pdf` / `.docx` | Audit von V1, 10 Falltests, Schlussaudit, Restrisiken | 18 S. |
+| `01_Maklerhandbuch_Hausverkauf.pdf` / `.docx` | Das Handbuch, Teile A–K | 132 S. |
 | `02_Makler_Checklisten.xlsx` | Phasen, Gates, Stop-Kriterien, Aufgaben, Dokumente, Vermarktung, Kontrollen, Register | 10 Blätter |
 | `03_Makler_Formulare.docx` | Formulare F1–F13 zum Ausfüllen | — |
 | `04_Verkaufsdossier_Vorlage.docx` | Dossier mit 23 Abschnitten und Release-Checkliste | — |
@@ -22,6 +27,9 @@ was geprüft, übernommen, vertieft und korrigiert wurde, steht in `00_Audit_und
 | `08_Bewertung_Vorlage.xlsx` | Vergleichs-, Real- und Ertragswert, Sanierungsbedarf, Wertspanne, Nettoerlös | 9 Blätter |
 | `09_Verkaeufer_Abschlusscheckliste.xlsx` | 65 Positionen, Kennzahlen, Übergabe | 4 Blätter |
 | `10_Sonderfaelle_und_Stoerfaelle.xlsx` | 30 Sonderfälle, 17 Störfälle zum Abarbeiten | 3 Blätter |
+
+Die Kurzfassung enthält keinen eigenen Inhalt: sie wird aus denselben Quellen erzeugt wie das
+Handbuch und bleibt damit automatisch synchron.
 
 ## Aufbau des Handbuchs
 
@@ -87,13 +95,16 @@ npm install
 node build.js
 ```
 
-Alle dreizehn Dateien werden aus den Quellen in `inhalt/` erzeugt und **nicht von Hand bearbeitet**.
+Alle fünfzehn Dateien werden aus den Quellen in `inhalt/` erzeugt und **nicht von Hand bearbeitet**.
 Rückmeldungen fliessen in die Quelle zurück, damit die Nummerierung stabil bleibt. Das PDF wird
 direkt gesetzt, nicht aus Word konvertiert.
 
 Der Bau prüft vorher die Querverweise — Phasen, Gates, Register, Sonderfälle, Störfälle,
 Kontrollpunkte, Funnel, Falltests, Vorlagen — sowie den Zeichenvorrat und bricht bei einem
-unbekannten Verweis ab.
+unbekannten Verweis ab. Nach dem Satz vergleicht der PDF-Renderer die Zahl der gesetzten Seiten
+mit der Zahl der Seiten im Dokument und bricht bei Abweichung ab; damit ist der Fehler
+ausgeschlossen, der in einer früheren Fassung zu Leerseiten und damit zu falschen Seitenzahlen
+geführt hat.
 
 ### Verzeichnis
 
@@ -111,6 +122,7 @@ unbekannten Verweis ab.
 | `inhalt/sonderfaelle.js` · `stoerungen.js` | 30 Sonderfälle, 17 Störfälle |
 | `inhalt/crm.js` · `dokumentenmgmt.js` · `begriffe.js` | CRM, Dokumente, Glossar |
 | `inhalt/audit.js` · `falltests.js` | Audit von V1, 10 Falltests, Schlussaudit |
+| `inhalt/kurzfassung.js` | Verdichtung auf die Arbeitsebene, 30 rote Linien, Verweistabelle |
 | `inhalt/handbuch2.js` · `dok-*.js` · `mappen.js` | Zusammensetzung der Dateien |
 
 Jeder Inhalt steht genau einmal in der Quelle. Phasen erscheinen im Handbuch und in der
