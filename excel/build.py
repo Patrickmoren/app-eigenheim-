@@ -453,8 +453,9 @@ BEISPIELE = [
 wbsp = wb.create_sheet("Beispiele")
 wbsp["A1"] = "Beispiele – zehn typische Fälle"
 wbsp["A1"].font = schrift(15, True, PETROL)
-wbsp["A2"] = ("Nur zum Nachschlagen. Dieses Blatt rechnet gleich wie «Leerstände», wirkt sich aber "
-              "auf keine Kennzahl aus. Hier darf gefahrlos ausprobiert werden.")
+wbsp["A2"] = ("Zum Nachschlagen und Ausprobieren. Dieses Blatt rechnet gleich wie «Leerstände», "
+              "wirkt sich aber auf keine Kennzahl aus. Wer wissen will, was eine Änderung bewirkt, "
+              "ändert sie hier – die weissen Felder lassen sich bearbeiten, die grauen rechnen.")
 wbsp["A2"].font = schrift(9, farbe="5A6B76")
 wbsp["A3"] = ("Jede Zeile zeigt eine andere Lage – auch fehlerhafte Erfassungen, damit sichtbar wird, "
               "was die Spalte «Prüfhinweis» meldet. Die Notiz rechts aussen erklärt den Fall.")
@@ -478,6 +479,11 @@ for r in range(ERSTE, ERSTE + len(BEISPIELE)):
         if art == "f":
             c.value = FORMELN[name](r)
             c.fill = PatternFill("solid", fgColor=GRAU)
+            c.protection = Protection(locked=True)
+        else:
+            # Eingabefelder bleiben offen: auf diesem Blatt soll man gefahrlos
+            # ausprobieren können, was eine Änderung bewirkt.
+            c.protection = Protection(locked=False)
 wbsp.freeze_panes = "D5"
 wbsp.conditional_formatting.add(
     "A{}:{}{}".format(ERSTE, LETZTE_SP, ERSTE + len(BEISPIELE) - 1),
@@ -580,7 +586,7 @@ for team in ["BS 01", "BS 02"]:
         wk.cell(r, j + 1).fill = PatternFill("solid", fgColor=HELL)
     r += 1
 
-wk.cell(r, 1, "Gesamt").font = schrift(11, True, PETROL)
+wk.cell(r, 1, "Total BS Gesamt").font = schrift(11, True, PETROL)
 gesamt = [
     '=SUM(D{r}:G{r})'.format(r=r),
     '=COUNTIF({st},"offen")'.format(st=bez("Status")),

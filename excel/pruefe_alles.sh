@@ -10,6 +10,9 @@ python3 build.py
 echo "\n── 2 · statische Prüfung ────────────────────────────────"
 python3 pruefung_statisch.py Leerstandsliste.xlsx
 
+echo "\n── 2b · Grenzen von Excel und Dateistruktur ──────────"
+python3 grenzwerte.py Leerstandsliste.xlsx
+
 echo "\n── 3 · Lastfälle erzeugen und durchrechnen ──────────────"
 python3 lastfaelle.py
 python3 rechenprobe.py test-lastfaelle.xlsx 2>/dev/null | tail -4

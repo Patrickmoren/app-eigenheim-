@@ -1,5 +1,5 @@
 # Prüfdateien werden von pruefe_alles.sh erzeugt
 test-*.xlsx
-pruef-voll.xlsx
+pruef-*.xlsx
 tv.xlsx
 rechenprobe-umfang.json
