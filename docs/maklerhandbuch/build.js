@@ -13,6 +13,7 @@ const {schreibePdf}  = require('./lib/render-pdf.js');
 const handbuch      = require('./inhalt/handbuch2.js');
 const dokAudit      = require('./inhalt/dok-audit.js');
 const kurzfassung   = require('./inhalt/kurzfassung.js');
+const offmarket     = require('./inhalt/offmarket.js');
 const dokFormulare  = require('./inhalt/dok-formulare.js');
 const dokDossier    = require('./inhalt/dok-dossier.js');
 const dokKommunik   = require('./inhalt/dok-kommunikation.js');
@@ -41,6 +42,8 @@ async function main() {
     ...zeichenPruefen(hb, '01 Handbuch'),
     ...zeichenPruefen(dokAudit.bloecke(), '00 Audit'),
     ...zeichenPruefen(kurzfassung.bloecke(), '11 Kurzfassung'),
+    ...zeichenPruefen(offmarket.handout(), '12 Off-Market Handout'),
+    ...zeichenPruefen(offmarket.regeln(), '13 Off-Market Regeln'),
     ...zeichenPruefen(dokFormulare.bloecke(), '03 Formulare'),
     ...zeichenPruefen(dokDossier.bloecke(), '04 Verkaufsdossier'),
     ...zeichenPruefen(dokKommunik.bloecke(), '05 Kommunikationsvorlagen'),
@@ -71,6 +74,20 @@ async function main() {
     pfad: hier('11_Kurzfassung_Praxis.pdf'), fusstext: fussKurz}));
   erzeugt.push(await schreibeDocx({bloecke: kf,
     pfad: hier('11_Kurzfassung_Praxis.docx'), fusstext: fussKurz}));
+
+  /* 12 – Off-Market-Handout: geht nach aussen. Neutrale Fusszeile ohne
+     internen Dokumentnamen; nur docx, weil es je Objekt gefüllt wird. */
+  erzeugt.push(await schreibeDocx({bloecke: offmarket.handout(),
+    pfad: hier('12_Offmarket_Handout_Vorlage.docx'),
+    fusstext: 'Diskreter Verkauf · Objektnummer [Nr.] · Version [x] · Vertraulich'}));
+
+  /* 13 – Off-Market-Regeln: bleibt intern */
+  const omr = offmarket.regeln();
+  const fussOmr = `Off-Market, Regeln und Beilagen · INTERN · ${handbuch.VERSION} · Fassung vom ${handbuch.STAND}`;
+  erzeugt.push(await schreibeDocx({bloecke: omr,
+    pfad: hier('13_Offmarket_Regeln.docx'), fusstext: fussOmr}));
+  erzeugt.push(await schreibePdf({bloecke: omr,
+    pfad: hier('13_Offmarket_Regeln.pdf'), fusstext: fussOmr}));
 
   /* 03 bis 05 – Word-Dokumente */
   erzeugt.push(await schreibeDocx({bloecke: dokFormulare.bloecke(),

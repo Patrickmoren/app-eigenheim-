@@ -11,6 +11,10 @@ was geprüft, übernommen, vertieft und korrigiert wurde, steht in `00_Audit_und
 Makler — Prozess, Gate-Karten, Entscheidungen, rote Linien. Das Handbuch (132 Seiten) ist das
 Nachschlagewerk und die Grundlage für die Einarbeitung neuer Mitarbeitender.
 
+**Diskreter Verkauf:** `12_Offmarket_Handout_Vorlage` ist das Handout, das nach aussen geht;
+`13_Offmarket_Regeln` bleibt intern. Die Trennung ist beabsichtigt — Dokument 12 trägt keinen
+internen Dokumentnamen und keine fremde Seitenzahl in der Fusszeile.
+
 ## Dateien
 
 | Datei | Inhalt | Umfang |
@@ -27,6 +31,8 @@ Nachschlagewerk und die Grundlage für die Einarbeitung neuer Mitarbeitender.
 | `08_Bewertung_Vorlage.xlsx` | Vergleichs-, Real- und Ertragswert, Sanierungsbedarf, Wertspanne, Nettoerlös | 9 Blätter |
 | `09_Verkaeufer_Abschlusscheckliste.xlsx` | 65 Positionen, Kennzahlen, Übergabe | 4 Blätter |
 | `10_Sonderfaelle_und_Stoerfaelle.xlsx` | 30 Sonderfälle, 17 Störfälle zum Abarbeiten | 3 Blätter |
+| `12_Offmarket_Handout_Vorlage.docx` | **Geht nach aussen:** das zweiseitige Handout für den diskreten Verkauf, je Objekt auszufüllen | 2 S. |
+| `13_Offmarket_Regeln.pdf` / `.docx` | **Intern:** was ins Handout gehört und was nie, Ablauf in zwei Stufen, Vertraulichkeitserklärung, Verteilerprotokoll, Freigabe | 7 S. |
 
 Die Kurzfassung enthält keinen eigenen Inhalt: sie wird aus denselben Quellen erzeugt wie das
 Handbuch und bleibt damit automatisch synchron.
@@ -95,7 +101,7 @@ npm install
 node build.js
 ```
 
-Alle fünfzehn Dateien werden aus den Quellen in `inhalt/` erzeugt und **nicht von Hand bearbeitet**.
+Alle achtzehn Dateien werden aus den Quellen in `inhalt/` erzeugt und **nicht von Hand bearbeitet**.
 Rückmeldungen fliessen in die Quelle zurück, damit die Nummerierung stabil bleibt. Das PDF wird
 direkt gesetzt, nicht aus Word konvertiert.
 
@@ -123,6 +129,7 @@ geführt hat.
 | `inhalt/crm.js` · `dokumentenmgmt.js` · `begriffe.js` | CRM, Dokumente, Glossar |
 | `inhalt/audit.js` · `falltests.js` | Audit von V1, 10 Falltests, Schlussaudit |
 | `inhalt/kurzfassung.js` | Verdichtung auf die Arbeitsebene, 30 rote Linien, Verweistabelle |
+| `inhalt/offmarket.js` | Handout-Vorlage, Tabu- und Pflichtliste, Ablauf, Vertraulichkeitserklärung, Verteilerprotokoll |
 | `inhalt/handbuch2.js` · `dok-*.js` · `mappen.js` | Zusammensetzung der Dateien |
 
 Jeder Inhalt steht genau einmal in der Quelle. Phasen erscheinen im Handbuch und in der
