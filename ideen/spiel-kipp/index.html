@@ -137,7 +137,7 @@ svg{display:block;width:100%;height:auto}
       </div>
       <div class="card">
         <p class="label">Regeln in 3 Sätzen</p>
-        <p class="small">Lege Steine auf den Balken: aussen drücken sie stärker (Gewicht × Kerbe). Ist eine Seite zu schwer, kippt er. Wer kippt, verliert.</p>
+        <p class="small">Legt abwechselnd Steine auf den Balken: aussen drücken sie stärker (Gewicht × Kerbe). Alle 2 Steine sinkt die Kippgrenze um 1. Wer den Balken kippt, verliert.</p>
       </div>
     </div>
   </section>
@@ -194,22 +194,26 @@ function mulberry(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; le
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 /* ---------------------------------------------------------------- Levels
-   max = grösstes Gewicht, bal/anc = Anzahl Ballone (−3) / Anker (8), lim = Kippgrenze, cpu = Stärke 1–3 */
+   max = grösstes Gewicht, bal/anc = Anzahl Ballone (−3) / Anker (8), lim = Kippgrenze zu Beginn,
+   cpu = Stärke: 1 leicht (macht Fehler), 1.5 zufällig sicher, 2 mittel, 2.5 stark, 3 sehr stark, 4 Meister (rechnet voraus) */
 const WORLDS = [
-  { name:"Werkstatt", text:"Nur Gewichte 1–5. Lerne die Hebelwirkung.", color:"var(--p1)" },
+  { name:"Werkstatt", text:"Nur Gewichte 1–6. Lerne die Hebelwirkung.", color:"var(--p1)" },
   { name:"Ballone", text:"Ballone ziehen mit −3 nach oben. Sie retten eine Seite.", color:"var(--balloon)" },
   { name:"Anker", text:"Anker wiegen 8. Aussen kippen sie fast alles.", color:"var(--brass)" },
-  { name:"Sturm", text:"Kippgrenze 12. Der Computer spielt auf Sieg.", color:"var(--p2)" }
+  { name:"Sturm", text:"Die Grenze startet tief. Der Meister rechnet voraus.", color:"var(--p2)" }
 ];
 const LEVELS = [
-  {max:5,bal:0,anc:0,lim:16,cpu:1},{max:5,bal:0,anc:0,lim:16,cpu:1},{max:5,bal:0,anc:0,lim:15,cpu:2},{max:6,bal:0,anc:0,lim:15,cpu:2},{max:6,bal:0,anc:0,lim:14,cpu:2},
-  {max:6,bal:3,anc:0,lim:16,cpu:2},{max:6,bal:3,anc:0,lim:15,cpu:2},{max:6,bal:4,anc:0,lim:14,cpu:2},{max:6,bal:3,anc:0,lim:14,cpu:3},{max:6,bal:3,anc:0,lim:13,cpu:3},
-  {max:6,bal:2,anc:2,lim:16,cpu:2},{max:6,bal:3,anc:2,lim:16,cpu:3},{max:6,bal:3,anc:3,lim:15,cpu:3},{max:6,bal:2,anc:3,lim:15,cpu:3},{max:6,bal:3,anc:3,lim:14,cpu:3},
-  {max:6,bal:3,anc:2,lim:12,cpu:3},{max:6,bal:2,anc:2,lim:12,cpu:3},{max:6,bal:2,anc:3,lim:12,cpu:3},{max:6,bal:1,anc:3,lim:11,cpu:3},{max:6,bal:1,anc:3,lim:10,cpu:3}
+  {max:5,bal:0,anc:0,lim:16,cpu:1},  {max:5,bal:0,anc:0,lim:16,cpu:1},  {max:5,bal:0,anc:0,lim:15,cpu:1.5},{max:6,bal:0,anc:0,lim:15,cpu:1.5},{max:6,bal:0,anc:0,lim:14,cpu:2},
+  {max:6,bal:3,anc:0,lim:16,cpu:1.5},{max:6,bal:3,anc:0,lim:15,cpu:2},  {max:6,bal:4,anc:0,lim:14,cpu:2},  {max:6,bal:3,anc:0,lim:14,cpu:2.5},{max:6,bal:3,anc:0,lim:13,cpu:2.5},
+  {max:6,bal:2,anc:2,lim:16,cpu:2},  {max:6,bal:3,anc:2,lim:16,cpu:2.5},{max:6,bal:3,anc:3,lim:15,cpu:2.5},{max:6,bal:2,anc:3,lim:15,cpu:3},  {max:6,bal:3,anc:3,lim:14,cpu:3},
+  {max:6,bal:3,anc:2,lim:12,cpu:3},  {max:6,bal:2,anc:2,lim:12,cpu:3},  {max:6,bal:2,anc:3,lim:12,cpu:4},  {max:6,bal:1,anc:3,lim:11,cpu:4},  {max:6,bal:1,anc:3,lim:10,cpu:4}
 ];
+const CPUNAME = {1:"leicht",1.5:"locker",2:"mittel",2.5:"stark",3:"sehr stark",4:"Meister"};
 const DIST=[1,2,3,4], KEYS=["L4","L3","L2","L1","R1","R2","R3","R4"];
+const STEP=2, MIN_LIM=1;   // alle 2 gelegten Steine sinkt die Kippgrenze um 1, nie unter 1
+const DUO={max:6,bal:3,anc:2,lim:16}, TURM={max:6,bal:3,anc:3,lim:16};
 
-/* ---------------------------------------------------------------- Regeln */
+/* ---------------------------------------------------------------- Regeln (ohne Bildschirm, auch für die Tests) */
 function makeBag(o, rnd){
   const b=[]; for(let v=1; v<=o.max; v++) for(let i=0;i<3;i++) b.push(v);
   for(let i=0;i<o.bal;i++) b.push(-3); for(let i=0;i<o.anc;i++) b.push(8);
@@ -222,33 +226,82 @@ function torque(bd){ let l=0,r=0; for(const d of DIST){ for(const s of bd["L"+d]
 const tips=(bd,k,w,lim)=>{ const b=clone(bd); b[k].push({w}); return Math.abs(torque(b).diff)>lim };
 const safeMoves=(bd,hand,lim)=>{ const m=[]; hand.forEach((w,i)=>KEYS.forEach(k=>{ if(!tips(bd,k,w,lim)) m.push({i,k,w}) })); return m };
 const allMoves=hand=>{ const m=[]; hand.forEach((w,i)=>KEYS.forEach(k=>m.push({i,k,w}))); return m };
+const limFor=(base,placed)=>Math.max(MIN_LIM, base-Math.floor(placed/STEP));
+// Sterne: je früher der Gegner kippt (eigene Züge), desto mehr. Schwelle hängt von der Startgrenze ab;
+// abgestimmt mit test/simulation.js: 3 Sterne sind selten, 2 Sterne für gutes Spiel.
+const starsFor=(moves,base)=> moves<=base-4 ? 3 : moves<=base-2 ? 2 : 1;
+// Ein Zug nach den Regeln: legt den Stein, meldet ob gekippt, zieht nach (der Sack füllt sich endlos nach)
+function applyMove(G, p, m, rnd){
+  const lim=limFor(G.base,G.placed), w=G.hands[p][m.i];
+  G.hands[p].splice(m.i,1); G.board[m.k].push({w,p}); G.placed++;
+  if(Math.abs(torque(G.board).diff)>lim) return true;
+  if(!G.bag.length) G.bag=makeBag(G.opt,rnd);
+  G.hands[p].push(G.bag.pop());
+  return false;
+}
+function chooseMove(G, p, stage, rnd){
+  const hand=G.hands[p], lim=limFor(G.base,G.placed), nl=limFor(G.base,G.placed+1);
+  const safe=safeMoves(G.board,hand,lim);
+  if(!safe.length){ const a=allMoves(hand); return a[Math.floor(rnd()*a.length)] }
+  if(stage===1) return rnd()<0.2 ? allMoves(hand)[Math.floor(rnd()*hand.length*8)] : safe[Math.floor(rnd()*safe.length)];
+  if(stage===1.5) return safe[Math.floor(rnd()*safe.length)];
+  if(stage>=4) return monteCarlo(G,p,safe,rnd,12);
+  const sc=safe.map(m=>{ const b=clone(G.board); b[m.k].push({w:m.w,p});
+    const opp=safeMoves(b,G.hands[1-p],nl).length, d=Math.abs(torque(b).diff);
+    return {m, s:-opp*10 + (stage>=3 ? -Math.abs(d-nl*0.6)*0.3 : -d*0.2)} }).sort((a,b)=>b.s-a.s);
+  const pt = stage>=3 ? 1 : stage===2.5 ? 0.8 : 0.55;
+  return rnd()<pt ? sc[0].m : sc[Math.floor(rnd()*sc.length)].m;
+}
+// Meister: probiert jeden sicheren Zug in N zufälligen Weiterspielen aus und nimmt den besten
+function monteCarlo(G,p,safe,rnd,N){
+  let best=safe[0], bw=-1;
+  for(const m of safe){
+    let w=0;
+    for(let n=0;n<N;n++){
+      const T={base:G.base, placed:G.placed, opt:G.opt, bag:makeBag(G.opt,rnd), board:clone(G.board), hands:[G.hands[0].slice(),G.hands[1].slice()]};
+      const mi=T.hands[p].indexOf(m.w);
+      if(applyMove(T,p,{i:mi,k:m.k},rnd)) continue;
+      let q=1-p, lost=null;
+      for(let z=0; z<40; z++){
+        const s2=safeMoves(T.board,T.hands[q],limFor(T.base,T.placed));
+        const mv = s2.length ? s2[Math.floor(rnd()*s2.length)] : {i:0,k:"L4"};
+        if(applyMove(T,q,mv,rnd)){ lost=q; break }
+        q=1-q;
+      }
+      if(lost===1-p) w++; else if(lost===null) w+=0.5;
+    }
+    if(w>bw){ bw=w; best=m }
+  }
+  return best;
+}
 const label=w=> w<0 ? "−3" : String(w);
 const kind=w=> w<0 ? "balloon" : w>=8 ? "anchor" : "";
 
 /* ---------------------------------------------------------------- Zustand */
 let S=null;      // aktuelles Spiel
 function myName(){ return store.get("kipp-name","") }
-
+function newGame(mode, opt, rnd, extra){
+  S=Object.assign({ mode, opt, base:opt.lim, lim:opt.lim, placed:0, score:0, rnd, bag:makeBag(opt,rnd), hands:[[],[]], board:emptyBoard(), turn:0, sel:null, over:false, busy:false, last:null, moves:[0,0] }, extra||{});
+}
 function startLevel(i){
   const o=LEVELS[i];
-  S={ mode:"level", level:i, lim:o.lim, cpu:o.cpu, bag:makeBag(o,Math.random), hands:[[],[]], board:emptyBoard(), turn:0, sel:null, over:false, busy:false, last:null, moves:[0,0] };
+  newGame("level", o, Math.random, {level:i, cpu:o.cpu});
   deal(); S.turn = i<2 ? 0 : (Math.random()<.5?0:1);
-  begin(`Level ${i+1} · ${WORLDS[Math.floor(i/5)].name}`);
+  begin();
 }
 function startDuo(){
-  S={ mode:"duo", lim:16, bag:makeBag({max:6,bal:3,anc:2},Math.random), hands:[[],[]], board:emptyBoard(), turn:Math.random()<.5?0:1, sel:null, over:false, busy:false, last:null, moves:[0,0] };
-  deal(); begin("Duell offline");
+  newGame("duo", DUO, Math.random, {}); deal(); S.turn=Math.random()<.5?0:1; begin();
 }
 function startTurm(seed, rival, opp){
-  const rnd=mulberry(hashStr("turm:"+seed));
-  S={ mode:"turm", seed, rival:rival||null, opp: opp || (rival ? rival.name : null), lim:16, bag:makeBag({max:6,bal:3,anc:3},rnd), hands:[[],[]], board:emptyBoard(), turn:0, sel:null, over:false, busy:false, last:null, moves:[0,0], placed:0 };
+  newGame("turm", TURM, mulberry(hashStr("turm:"+seed)), {seed, rival:rival||null, opp: opp || (rival ? rival.name : null)});
   for(let i=0;i<3;i++) S.hands[0].push(S.bag.pop());
-  begin("Duell online");
+  const played=store.get("kipp-played",[]); played.push(seed); store.set("kipp-played", played.slice(-300));
+  begin();
 }
 function deal(){ for(let i=0;i<3;i++){ S.hands[0].push(S.bag.pop()); S.hands[1].push(S.bag.pop()) } }
-function begin(title){
+function begin(){
   $("over").hidden=true; show("scrGame");
-  status(S.mode==="turm" ? "Leg so viele Steine wie möglich. Alle 2 Steine sinkt die Kippgrenze um 1." : `${nameOf(S.turn)} beginnt.`);
+  status(S.mode==="turm" ? "Leg so viele Steine wie möglich. Alle 2 Steine sinkt die Grenze um 1." : `${nameOf(S.turn)} ${S.turn===0&&S.mode==="level"?"beginnst":"beginnt"}.`);
   render();
   if(S.mode==="level" && S.turn===1) cpuTurn();
 }
@@ -284,16 +337,16 @@ function render(){
   $("marker").style.left = (50 + Math.max(-1.1,Math.min(1.1,t.diff/SCALE))*45)+"%";
   const z=Math.max(0, 45*(1 - S.lim/SCALE)) + 5;   // rote Zone ab der Kippgrenze
   $("dzL").style.cssText=`left:0;width:${z}%`; $("dzR").style.cssText=`right:0;width:${z}%`;
-  $("gaugeText").textContent = S.tipped ? "Gekippt" : `Unterschied ${ad} · Grenze ${S.lim}`;
-  $("gaugeText").style.color = ad > S.lim-4 ? "var(--danger)" : "var(--muted)";
+  $("gaugeText").textContent = S.tipped ? "Gekippt!" : ad > S.lim ? `Über der Grenze ${S.lim}! Nächster Stein muss ausgleichen` : `Unterschied ${ad} · Grenze ${S.lim}`;
+  $("gaugeText").style.color = ad > S.lim-3 ? "var(--danger)" : "var(--muted)";
   const turm=S.mode==="turm", duo=S.mode==="duo";
   $("pl1").classList.toggle("active", S.turn===0 && !S.over);
   $("pl2").classList.toggle("active", S.turn===1 && !S.over);
   $("name1").textContent = duo ? "Spieler 1" : "Du";
   $("p1role").textContent = turm ? "Gelegt" : duo ? "Blau" : "Du";
-  $("name2").textContent = turm ? (S.rival ? `${S.rival.name}: ${S.rival.score}` : "Rekord "+store.get("turm-best",0)) : duo ? "Spieler 2" : ["","leicht","mittel","schwer"][S.cpu];
+  $("name2").textContent = turm ? (S.rival ? `${S.rival.name}: ${S.rival.score}` : "Rekord "+store.get("turm-best",0)) : duo ? "Spieler 2" : CPUNAME[S.cpu];
   $("p2role").textContent = turm ? (S.rival ? "Zu schlagen" : "Dein Rekord") : duo ? "Rot" : "Computer";
-  if(turm) $("name1").textContent = `${S.placed} Steine`;
+  if(turm) $("name1").textContent = `${S.score} Steine`;
   $("vsTxt").textContent = turm ? "·" : "VS";
   const human = duo ? S.turn : 0, other=1-human;
   const myTurn = !S.over && !S.busy && (duo || S.turn===0);
@@ -306,54 +359,46 @@ function render(){
     const load=S.board[k].reduce((a,s)=>a+s.w,0);
     h+=`<button class="notch ${S.sel!==null&&myTurn?"pick":""}" data-k="${k}" ${myTurn&&S.sel!==null?"":"disabled"} aria-label="${k[0]==="L"?"Links":"Rechts"} Kerbe ${k[1]}">${k[1]}<small>${load?("Σ "+load):"leer"}</small></button>` });
   $("notches").innerHTML=h;
-  $("bagInfo").textContent=`Im Sack: ${S.bag.length} Steine`;
+  const rest = STEP - (S.placed % STEP);
+  $("bagInfo").textContent = S.lim<=MIN_LIM ? `Grenze am Minimum (${MIN_LIM})` : `Grenze ${S.lim} · sinkt in ${rest} ${rest===1?"Stein":"Steinen"} auf ${S.lim-1}`;
 }
 
 /* ---------------------------------------------------------------- Züge */
 function play(move){
+  if(S.over) return;
   const mover=S.turn, w=S.hands[mover][move.i];
-  S.hands[mover].splice(move.i,1); S.board[move.k].push({w,p:mover}); S.last=move; S.sel=null; S.moves[mover]++;
+  const tipped=applyMove(S, mover, move, S.rnd);
+  S.last=move; S.sel=null; S.moves[mover]++;
+  S.lim=limFor(S.base,S.placed);
   const where=`${move.k[0]==="L"?"links":"rechts"} auf Kerbe ${move.k[1]}`;
-  if(S.mode==="turm"){
-    if(Math.abs(torque(S.board).diff) > S.lim){ S.over=true; S.tipped=true; render(); return endTurm() }
-    S.placed++; S.lim=Math.max(3, 16-Math.floor(S.placed/2));
-    if(S.bag.length) S.hands[0].push(S.bag.pop());
-    if(!S.hands[0].length){ S.over=true; render(); return endTurm() }
-    if(Math.abs(torque(S.board).diff) > S.lim){ S.over=true; S.tipped=true; render(); return endTurm() }  // Grenze gesunken: kippt
-    status(`${label(w)} ${where}. Grenze jetzt ${S.lim}.`); render(); return;
-  }
-  if(Math.abs(torque(S.board).diff) > S.lim){ S.over=true; S.tipped=true; render(); return endMatch(mover) }
-  if(S.bag.length) S.hands[mover].push(S.bag.pop());
-  if(!S.hands[0].length && !S.hands[1].length){ S.over=true; render(); return endMatch(null) }
-  S.turn=1-S.turn; if(!S.hands[S.turn].length) S.turn=1-S.turn;
-  status(`${nameOf(mover)} ${mover===0&&S.mode!=="duo"?"legst":"legt"} ${label(w)} ${where}.`);
+  if(tipped){ S.over=true; S.tipped=true; render(); return S.mode==="turm" ? endTurm() : endMatch(mover) }
+  if(S.mode==="turm"){ S.score=S.placed; status(`${label(w)} ${where}.`); render(); return }
+  S.turn=1-S.turn;
+  status(`${nameOf(mover)} ${mover===0&&S.mode==="level"?"legst":"legt"} ${label(w)} ${where}.`);
   render();
   if(S.mode==="level" && S.turn===1) return cpuTurn();
   if(!safeMoves(S.board,S.hands[S.turn],S.lim).length) status($("status").textContent+` ${nameOf(S.turn)} hat keinen sicheren Zug mehr!`);
 }
 function cpuTurn(){
   S.busy=true; render();
+  const me=S; if(S.cpu>=4) status($("status").textContent+" Der Meister denkt …");
   setTimeout(()=>{
-    const hand=S.hands[1], safe=safeMoves(S.board,hand,S.lim); let move;
-    if(!safe.length){ const a=allMoves(hand); move=a[Math.floor(Math.random()*a.length)] }
-    else if(S.cpu===1){ move = Math.random()<0.2 ? allMoves(hand)[Math.floor(Math.random()*hand.length*8)] : safe[Math.floor(Math.random()*safe.length)] }
-    else { const sc=safe.map(m=>{ const b=clone(S.board); b[m.k].push({w:m.w,p:1}); const opp=safeMoves(b,S.hands[0],S.lim).length; const d=Math.abs(torque(b).diff);
-        return {m, s: -opp*10 + (S.cpu===3 ? -Math.abs(d-S.lim*0.6)*0.3 : -d*0.2)} }).sort((a,b)=>b.s-a.s);
-      move = Math.random() < (S.cpu===3?1:0.55) ? sc[0].m : sc[Math.floor(Math.random()*sc.length)].m }
-    if(S.aborted) return; S.busy=false; play(move);
+    if(me!==S || me.aborted) return;
+    const move=chooseMove(S, 1, S.cpu, Math.random);
+    if(me!==S || me.aborted) return;
+    S.busy=false; play(move);
   }, 650);
 }
 
 /* ---------------------------------------------------------------- Ende */
-function stars(moves){ return moves<=5 ? 3 : moves<=8 ? 2 : 1 }
 function endMatch(loser){
   const c=$("overCard"); let html="";
   if(S.mode==="level"){
     const won = loser===1, i=S.level, prog=store.get("kipp-levels",{});
-    if(won){ const st=stars(S.moves[0]); const had=prog[i]||0; prog[i]=Math.max(had,st); store.set("kipp-levels",prog); renderHome();
+    if(won){ const st=starsFor(S.moves[0],S.base), s3=S.base-4, s2=S.base-2; const had=prog[i]||0; prog[i]=Math.max(had,st); store.set("kipp-levels",prog); renderHome();
       const nextOk = i+1<LEVELS.length;
       html=`<p class="label">Level ${i+1} geschafft</p><div class="stars">${[1,2,3].map(n=>n<=st?"★":`<span class="off">★</span>`).join("")}</div>
-        <h2>Der Computer ist gekippt.</h2><p class="muted">${S.moves[0]} eigene Züge. ${st<3?"Gewinn mit höchstens 5 Zügen für 3 Sterne.":"Perfekt."}</p>
+        <h2>Der Computer ist gekippt.</h2><p class="muted">${S.moves[0]} eigene Züge. ${st===3?"Perfekt.":`Gewinn mit höchstens ${st===2?s3:s2} Zügen für ${st+1} Sterne.`}</p>
         ${nextOk?`<button class="brass" id="oNext" style="width:100%">Level ${i+2}</button>`:`<p><b>Alle Levels geschafft!</b></p>`}
         <button class="ghost" id="oAgain" style="width:100%">Nochmals</button><button class="ghost" id="oMenu" style="width:100%">Levelübersicht</button>`;
     } else if(loser===0){
@@ -374,7 +419,7 @@ function endMatch(loser){
   }, 700);
 }
 function endTurm(){
-  const sc=S.placed, best=store.get("turm-best",0), rv=S.rival;
+  const sc=S.score, best=store.get("turm-best",0), rv=S.rival, me=S;
   if(sc>best) store.set("turm-best",sc);
   let head = `<p class="label">Duell online</p><div class="big">${sc}</div><p class="muted">Steine gelegt${sc>best?" · neuer Rekord!":` · Rekord ${best}`}</p>`;
   if(rv){ const tally=store.get("kipp-rivals",{}); const r=tally[rv.name]||{me:0,them:0};
@@ -387,18 +432,19 @@ function endTurm(){
     $("overCard").innerHTML = head + `<button class="brass" id="oBack" style="width:100%">Zurückschlagen</button>
       <p class="muted small">Du spielst eine neue Runde vor und schickst ${esc(rv.name)} den Code.</p>
       <button class="ghost" id="oMenu" style="width:100%">Startseite</button>`;
-    setTimeout(()=>{ $("over").hidden=false; $("oBack").onclick=()=>startTurm(newSeed(), null, rv.name);
+    setTimeout(()=>{ if(me!==S||me.aborted) return; $("over").hidden=false; $("oBack").onclick=()=>startTurm(newSeed(), null, rv.name);
       $("oMenu").onclick=()=>{ $("over").hidden=true; renderHome(); show("scrHome") }; $("oBack").focus() }, 700);
     return;
   }
   const code = codeOf();
+  const mine=store.get("kipp-mine",[]); mine.push(S.seed); store.set("kipp-mine", mine.slice(-300));
   $("overCard").innerHTML = head + `
     <p class="label">${S.opp?`Schick den Code an ${esc(S.opp)}`:"Schick den Code an einen Freund"}</p>
     <input id="oName" maxlength="12" placeholder="Dein Name" value="${esc(myName())}">
     <div class="code" id="oCode">${esc(code)}</div>
     <button class="brass" id="oCopy" style="width:100%">Code kopieren</button><p class="msg" id="oMsg"></p>
     <button class="ghost" id="oNew" style="width:100%">Neue Runde (neue Steine)</button><button class="ghost" id="oMenu" style="width:100%">Startseite</button>`;
-  setTimeout(()=>{ $("over").hidden=false;
+  setTimeout(()=>{ if(me!==S||me.aborted) return; $("over").hidden=false;
     $("oName").oninput=()=>{ store.set("kipp-name",$("oName").value.replace(/[^A-Za-zÀ-ž0-9]/g,"").slice(0,12)); $("oCode").textContent=codeOf() };
     $("oCopy").onclick=()=>{ const txt=$("oCode").textContent;
       const done=()=>$("oMsg").textContent="Kopiert. Im Chat einfügen und abschicken.";
@@ -408,13 +454,13 @@ function endTurm(){
     $("oMenu").onclick=()=>{ $("over").hidden=true; renderHome(); show("scrHome") };
   }, 700);
 }
-const newSeed=()=>Math.random().toString(36).slice(2,8);
+const newSeed=()=>Math.random().toString(36).slice(2,8).padEnd(6,"0");
 // Beim Zurückschlagen neue Steine: der Freund spielt dann DEINE Runde nach
 function codeOf(){
   const n=(myName()||"Anonym");
   const r=S.opp ? store.get("kipp-rivals",{})[S.opp] : null;
   const t=r ? `${r.me}.${r.them}` : "0.0";
-  return `KIPP-${S.seed}-${S.placed}-${n}-${t}`;
+  return `KIPP-${S.seed}-${S.score}-${n}-${t}`;
 }
 function parseCode(raw){
   const m=raw.trim().match(/^KIPP-([a-z0-9]{4,8})-(\d+)-([A-Za-zÀ-ž0-9]+)-(\d+)\.(\d+)$/i);
@@ -449,6 +495,8 @@ $("rivals").onclick=e=>{ const b=e.target.closest(".rival"); if(b) startTurm(new
 $("mTurm").onclick=()=>startTurm(newSeed(), null);
 $("btnCode").onclick=()=>{ const c=parseCode($("codeIn").value);
   if(!c){ $("codeMsg").textContent="Dieser Code stimmt nicht. Er sieht so aus: KIPP-k3f9a2-14-Anna-0.0"; return }
+  if(store.get("kipp-mine",[]).includes(c.seed)){ $("codeMsg").textContent="Das ist dein eigener Code. Schick ihn einem Freund."; return }
+  if(store.get("kipp-played",[]).includes(c.seed)){ $("codeMsg").textContent="Diese Runde hast du schon gespielt. Warte auf einen neuen Code."; return }
   $("codeMsg").textContent=""; $("codeIn").value=""; startTurm(c.seed, c) };
 $("pieces").onclick=e=>{ const b=e.target.closest(".piece"); if(!b||b.disabled) return; const i=+b.dataset.i; S.sel = S.sel===i ? null : i; render() };
 $("notches").onclick=e=>{ const b=e.target.closest(".notch"); if(!b||b.disabled||S.sel===null) return; const hand=S.hands[S.mode==="duo"?S.turn:0]; play({i:S.sel,k:b.dataset.k,w:hand[S.sel]}) };
