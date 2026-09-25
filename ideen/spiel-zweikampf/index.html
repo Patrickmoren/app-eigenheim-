@@ -33,47 +33,49 @@
 [hidden]{display:none!important}
 html,body{height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-tap-highlight-color:transparent}
-.app{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:16px;box-sizing:border-box;min-height:100%}
+.app{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:16px;box-sizing:border-box;min-height:100%}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-family:var(--display);font-weight:900;font-size:38px;line-height:1;margin:0;letter-spacing:.01em;cursor:pointer}
+.logo{font-family:var(--display);font-weight:900;font-size:36px;line-height:1;margin:0;cursor:pointer}
 .logo span{color:var(--accent)}
-.streak{display:flex;align-items:center;gap:6px;font-weight:800;font-variant-numeric:tabular-nums;background:var(--gold-soft);color:var(--ink);padding:6px 10px;border-radius:999px;font-size:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
-.card.hero{box-shadow:var(--shadow)}
-.eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0}
-h2{font-family:var(--display);font-weight:800;font-size:32px;line-height:1.02;margin:0;text-wrap:balance}
-h3{font-family:var(--display);font-weight:800;font-size:22px;line-height:1.1;margin:0}
+.pill{font-weight:800;font-size:13px;background:var(--gold-soft);padding:6px 11px;border-radius:999px;font-variant-numeric:tabular-nums}
 p{margin:0}
 .muted{color:var(--muted)}
 .small{font-size:13px}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
-button{font-family:var(--body);font-weight:800;font-size:16px;border:0;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--surface);background:var(--ink);touch-action:manipulation}
+button{font-family:var(--body);font-weight:800;font-size:17px;border:0;border-radius:14px;padding:15px 16px;cursor:pointer;color:var(--surface);background:var(--ink);touch-action:manipulation}
 button.accent{background:var(--accent);color:#fff}
 button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
 button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-button:disabled{opacity:.45;cursor:default}
 .row{display:flex;gap:8px;flex-wrap:wrap}
-.row > *{flex:1 1 150px}
-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}
-input{width:100%;box-sizing:border-box;font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-.games{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.gbtn{background:var(--surface);color:var(--ink);border:1px solid var(--line);text-align:left;padding:12px;display:flex;flex-direction:column;gap:2px;font-weight:700}
-.gbtn b{font-family:var(--display);font-size:20px;font-weight:800}
-.gbtn span{font-size:12px;color:var(--muted);font-weight:500}
-/* Spielbildschirm */
-.hud{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px}
-.hud .gname{font-family:var(--display);font-weight:900;font-size:30px;line-height:1}
-.hud .gstep{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.hud .pts{font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;font-variant-numeric:tabular-nums;text-align:right}
-.hud .rival{font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.row > *{flex:1 1 140px}
+input{width:100%;box-sizing:border-box;font:inherit;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:0}
+/* Start */
+.play{font-family:var(--display);font-weight:900;font-size:44px;letter-spacing:.02em;padding:26px 16px;border-radius:20px;background:var(--accent);color:#fff;box-shadow:var(--shadow);line-height:1}
+.play small{display:block;font-family:var(--body);font-size:14px;font-weight:700;opacity:.9;letter-spacing:0;margin-top:6px}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gbtn{background:var(--surface);color:var(--ink);border:1px solid var(--line);padding:10px 8px;display:flex;flex-direction:column;align-items:flex-start;gap:0;text-align:left}
+.gbtn span{font-size:12px;font-weight:700;color:var(--muted)}
+.gbtn b{font-family:var(--display);font-weight:900;font-size:30px;line-height:1.05;font-variant-numeric:tabular-nums}
+.rivals{display:flex;flex-direction:column;gap:6px}
+.rival{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-weight:700}
+.rival:last-child{border-bottom:0}
+.rival b{font-family:var(--display);font-size:24px;font-variant-numeric:tabular-nums}
+/* Spiel */
+.hud{display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.gname{font-family:var(--display);font-weight:900;font-size:30px;line-height:1}
+.target{font-size:12px;font-weight:700;color:var(--muted)}
+.pts{font-family:var(--display);font-weight:900;font-size:48px;line-height:.9;font-variant-numeric:tabular-nums}
 .tbar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
 .tbar i{display:block;height:100%;background:var(--accent);transform-origin:left}
-.arena{background:var(--surface);border:1px solid var(--line);border-radius:16px;min-height:380px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;box-shadow:var(--shadow);user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.arena{background:var(--surface);border:1px solid var(--line);border-radius:18px;min-height:390px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;box-shadow:var(--shadow);user-select:none;-webkit-user-select:none;touch-action:manipulation;overflow:hidden}
+.count{position:absolute;inset:0;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;z-index:2}
+.count b{font-family:var(--display);font-weight:900;font-size:120px;line-height:1;color:var(--accent)}
+.count p{font-size:18px;font-weight:700;max-width:30ch}
 .flash-ok{animation:ok .25s}
 .flash-bad{animation:bad .3s}
-@keyframes ok{0%{box-shadow:0 0 0 4px var(--win)}100%{box-shadow:var(--shadow)}}
-@keyframes bad{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes ok{0%{box-shadow:0 0 0 5px var(--win)}100%{box-shadow:var(--shadow)}}
+@keyframes bad{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .big{font-family:var(--display);font-weight:900;font-size:64px;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
 .grid{display:grid;gap:8px;width:100%}
 .tile{font-family:var(--display);font-weight:800;font-size:28px;aspect-ratio:1;border-radius:12px;background:var(--bg);color:var(--ink);border:2px solid var(--line);padding:0;display:grid;place-items:center}
@@ -96,69 +98,48 @@ input{width:100%;box-sizing:border-box;font:inherit;padding:12px;border-radius:1
 .react{width:100%;min-height:300px;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:34px;color:#fff;background:var(--red);border:0}
 .react.go{background:var(--green)}
 /* Ergebnis */
-.res{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.res th,.res td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}
-.res th:first-child,.res td:first-child{text-align:left}
-.res th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.res .w{color:var(--win);font-weight:800} .res .l{color:var(--lose)}
-.tally{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:8px}
-.tally b{font-family:var(--display);font-weight:900;font-size:64px;line-height:1}
-.tally span{display:block;font-size:13px;color:var(--muted)}
-.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;word-break:break-all;user-select:all}
-.msg{font-size:13px;color:var(--muted);min-height:1.4em}
+.result{text-align:center;align-items:center}
+.score{font-family:var(--display);font-weight:900;font-size:120px;line-height:.9;font-variant-numeric:tabular-nums}
+.badge{font-family:var(--display);font-weight:900;font-size:28px;letter-spacing:.04em;color:#fff;background:var(--gold);padding:4px 14px;border-radius:10px}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;width:100%}
+.vs b{font-family:var(--display);font-weight:900;font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+.vs span{display:block;font-size:13px;color:var(--muted);font-weight:700}
+.win{color:var(--win)} .lose{color:var(--lose)}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;word-break:break-all;user-select:all;text-align:left;width:100%;box-sizing:border-box}
+.msg{font-size:13px;color:var(--muted);min-height:1.2em}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}
 .note{font-size:12px;color:var(--muted);text-align:center}
-@media (max-width:380px){ .cross{grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,56px)} .big{font-size:52px} }
+@media (max-width:380px){ .cross{grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,56px)} .big{font-size:52px} .games{grid-template-columns:repeat(2,1fr)} }
 @media (prefers-reduced-motion: reduce){ .flash-ok,.flash-bad{animation:none} }
 </style>
 
+<canvas id="fx" aria-hidden="true"></canvas>
 <div class="app">
   <header>
     <h1 class="logo" id="home">ZWEIKAMPF<span>.</span></h1>
-    <div class="streak" title="Tage in Folge mit Tageskampf"><span aria-hidden="true">🔥</span><span id="streak">0</span></div>
+    <span class="pill" id="broken">0 Rekorde</span>
   </header>
 
   <!-- Start -->
   <section id="scrHome">
     <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card hero">
-        <p class="eyebrow" id="dayLabel">Tageskampf</p>
-        <h2>5 Spiele. Die gleiche Abfolge für alle. Heute.</h2>
-        <div class="chips" id="dayGames"></div>
-        <p class="muted small" id="dayBest"></p>
-        <button class="accent" id="btnDay">Tageskampf spielen</button>
-      </div>
+      <button class="play" id="btnPlay">SPIELEN<small>Zufälliges Spiel · 30 Sekunden</small></button>
+
       <div class="card">
-        <h3>Freunde herausfordern</h3>
-        <p class="muted small">3 zufällige Spiele. Du spielst zuerst und schickst den Code. Dein Gegner spielt exakt die gleichen Runden.</p>
-        <div class="row">
-          <div><label for="name">Dein Name</label><input id="name" maxlength="14" placeholder="Paul" autocomplete="nickname"></div>
-        </div>
-        <div class="row">
-          <button id="btnDuel">Neues Duell</button>
-          <button class="ghost" id="btnShowCode">Code eingeben</button>
-        </div>
-        <div id="codeBox" hidden>
-          <label for="codeIn">Code von deinem Gegner</label>
-          <div class="row"><input id="codeIn" placeholder="ZK-…"><button id="btnCode">Annehmen</button></div>
-          <p class="msg" id="codeMsg"></p>
-        </div>
+        <p class="label">Code von einem Freund?</p>
+        <div class="row"><input id="codeIn" placeholder="Code hier einfügen"><button id="btnCode">Annehmen</button></div>
+        <p class="msg" id="codeMsg"></p>
       </div>
+
+      <div class="card" id="rivalCard" hidden>
+        <p class="label">Deine Duelle</p>
+        <div class="rivals" id="rivals"></div>
+      </div>
+
       <div class="card">
-        <h3>Training</h3>
-        <p class="muted small">Jedes Spiel einzeln. Dein Rekord steht darunter.</p>
+        <p class="label">Deine Rekorde · antippen zum Spielen</p>
         <div class="games" id="gameList"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- Intro vor jedem Spiel -->
-  <section id="scrIntro" hidden>
-    <div class="card hero">
-      <p class="eyebrow" id="introStep"></p>
-      <h2 id="introName"></h2>
-      <p id="introRule"></p>
-      <p class="muted small" id="introRival"></p>
-      <button class="accent" id="btnGo">Los</button>
     </div>
   </section>
 
@@ -166,8 +147,8 @@ input{width:100%;box-sizing:border-box;font:inherit;padding:12px;border-radius:1
   <section id="scrGame" hidden>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="hud">
-        <div><div class="gstep" id="gStep"></div><div class="gname" id="gName"></div></div>
-        <div><div class="pts" id="gPts">0</div><div class="rival" id="gRival"></div></div>
+        <div><div class="gname" id="gName"></div><div class="target" id="gTarget"></div></div>
+        <div class="pts" id="gPts">0</div>
       </div>
       <div class="tbar"><i id="tbar"></i></div>
       <div class="arena" id="arena"></div>
@@ -176,29 +157,30 @@ input{width:100%;box-sizing:border-box;font:inherit;padding:12px;border-radius:1
 
   <!-- Ergebnis -->
   <section id="scrResult" hidden>
-    <div class="card hero">
-      <p class="eyebrow" id="resEyebrow"></p>
-      <h2 id="resTitle"></h2>
-      <div class="tally" id="tally" hidden>
-        <div><b id="tMe" class="w">0</b><span id="tMeName">Du</span></div>
-        <b style="font-size:40px;color:var(--muted)">:</b>
-        <div><b id="tThem">0</b><span id="tThemName"></span></div>
+    <div class="card result">
+      <p class="label" id="rGame"></p>
+      <div class="score" id="rScore">0</div>
+      <span class="badge" id="rBadge" hidden>NEUER REKORD</span>
+      <p class="muted" id="rNear"></p>
+      <div class="vs" id="rVs" hidden>
+        <div><b id="vMe">0</b><span>Du</span></div>
+        <b style="font-size:34px;color:var(--muted)">:</b>
+        <div><b id="vThem">0</b><span id="vThemName"></span></div>
       </div>
-      <div style="overflow-x:auto"><table class="res" id="resTable"></table></div>
-      <div id="shareBox">
-        <label>Dein Code – schick ihn deinem Gegner</label>
+      <p style="font-weight:800" id="rDuel"></p>
+      <button class="accent" id="btnAgain" style="width:100%">Nochmal</button>
+      <button id="btnChallenge" style="width:100%">Freund herausfordern</button>
+      <div id="shareBox" hidden style="width:100%;display:flex;flex-direction:column;gap:8px">
+        <input id="myName" maxlength="14" placeholder="Dein Name (sieht dein Freund)">
         <div class="code" id="myCode"></div>
+        <button class="ghost" id="btnCopy">Code kopieren</button>
+        <p class="msg" id="copyMsg">Schick den Code per WhatsApp. Dein Freund fügt ihn auf der Startseite ein.</p>
       </div>
-      <div class="row">
-        <button class="accent" id="btnCopy">Code kopieren</button>
-        <button class="ghost" id="btnAgain">Nochmals</button>
-      </div>
-      <p class="msg" id="copyMsg"></p>
-      <button class="ghost" id="btnBack">Zur Übersicht</button>
+      <button class="ghost" id="btnBack" style="width:100%">Zur Startseite</button>
     </div>
   </section>
 
-  <p class="note">Prototyp · Punkte und Rekorde bleiben nur in diesem Browser gespeichert.</p>
+  <p class="note">Prototyp · Rekorde bleiben in diesem Browser gespeichert.</p>
 </div>
 
 <script>
@@ -214,13 +196,10 @@ function mulberry(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; le
 const mk = r => ({ f:r, int:(a,b)=>a+Math.floor(r()*(b-a+1)), pick:arr=>arr[Math.floor(r()*arr.length)],
   shuffle(arr){ const x=arr.slice(); for(let i=x.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [x[i],x[j]]=[x[j],x[i]] } return x } });
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function todayKey(d=new Date()){ return d.getFullYear()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0") }
+const newSeed = () => Math.random().toString(36).slice(2,8);
 
-/* ---------------------------------------------------------------- Spiele
-   Jedes Spiel: id, name, rule, time (Sekunden oder 0 = rundenbasiert), start(ctx) -> stop()
-   ctx: rng, el, add(n), end(), flash(ok)                                     */
 const GAMES = [
-{ id:0, name:"Kipp", rule:"Leg jedes Gewicht links oder rechts. Mehr als 10 Unterschied und die Waage kippt. Genau ausgeglichen gibt +3.", time:45,
+{ id:0, name:"Kipp", rule:"Leg jedes Gewicht links oder rechts, ohne dass die Waage kippt.", time:30,
   start(c){
     let L=0,R=0,q=[c.rng.int(1,9),c.rng.int(1,9),c.rng.int(1,9)], n=0;
     c.el.innerHTML = `<svg class="scale" viewBox="0 0 300 120"><line x1="150" y1="30" x2="150" y2="110" stroke="var(--muted)" stroke-width="5"/>
@@ -239,32 +218,19 @@ const GAMES = [
     c.keys = k=>{ if(k==="ArrowLeft") put(-1); if(k==="ArrowRight") put(1) };
     draw();
   }},
-{ id:1, name:"Zielsumme", rule:"Tippe Zahlen an, bis sie genau die Zielsumme ergeben. Pro benutzte Zahl ein Punkt. Zu viel setzt zurück.", time:45,
-  start(c){
-    let tiles, target, sel;
-    const round=()=>{ tiles=Array.from({length:9},()=>c.rng.int(1,9)); const k=c.rng.int(2,4); const idx=c.rng.shuffle([0,1,2,3,4,5,6,7,8]).slice(0,k);
-      target=idx.reduce((a,i)=>a+tiles[i],0); sel=new Set(); draw() };
-    const draw=()=>{ const s=[...sel].reduce((a,i)=>a+tiles[i],0);
-      c.el.innerHTML=`<div class="muted small">Ziel</div><div class="big">${target}</div><div class="muted small">Auswahl: ${s}</div>
-      <div class="grid" style="grid-template-columns:repeat(3,1fr);max-width:300px">${tiles.map((t,i)=>`<button class="tile ${sel.has(i)?"sel":""}" data-i="${i}">${t}</button>`).join("")}</div>`;
-      c.el.querySelectorAll(".tile").forEach(b=>b.onclick=()=>tap(+b.dataset.i)) };
-    const tap=i=>{ if(sel.has(i)) sel.delete(i); else sel.add(i); const s=[...sel].reduce((a,j)=>a+tiles[j],0);
-      if(s===target){ c.add(sel.size); c.flash(true); round() } else if(s>target){ c.flash(false); sel=new Set(); draw() } else draw() };
-    round();
-  }},
-{ id:2, name:"Farbfalle", rule:"Passt das Wort zur Farbe, in der es geschrieben ist? Richtig +1, falsch −1.", time:40,
+{ id:2, name:"Farbfalle", rule:"Passt das Wort zu seiner Farbe? Tippe Ja oder Nein.", time:30,
   start(c){
     const C=[["ROT","var(--red)"],["BLAU","var(--blue)"],["GRÜN","var(--green)"],["GELB","var(--yellow)"],["LILA","var(--purple)"]];
     let ok;
     const round=()=>{ const w=c.rng.pick(C); ok=c.rng.f()<0.45; const col= ok ? w[1] : c.rng.pick(C.filter(x=>x!==w))[1];
       c.el.innerHTML=`<div class="big" style="color:${col};font-size:72px">${w[0]}</div>
-      <div class="two"><button class="ans" id="fN">Passt nicht</button><button class="ans" id="fY">Passt</button></div>`;
+      <div class="two"><button class="ans" id="fN">Nein</button><button class="ans" id="fY">Ja</button></div>`;
       c.el.querySelector("#fY").onclick=()=>ans(true); c.el.querySelector("#fN").onclick=()=>ans(false) };
     const ans=a=>{ if(a===ok){ c.add(1); c.flash(true) } else { c.add(-1); c.flash(false) } round() };
     c.keys=k=>{ if(k==="ArrowRight") ans(true); if(k==="ArrowLeft") ans(false) };
     round();
   }},
-{ id:3, name:"Pfeilsturm", rule:"Drück die Richtung des Pfeils. Ist der Pfeil rot, drück die Gegenrichtung. Richtig +1, falsch −1.", time:40,
+{ id:3, name:"Pfeilsturm", rule:"Drück die Pfeilrichtung. Roter Pfeil: Gegenrichtung.", time:30,
   start(c){
     const D=[["↑","u"],["→","r"],["↓","d"],["←","l"]], OPP={u:"d",d:"u",l:"r",r:"l"};
     let want;
@@ -277,7 +243,7 @@ const GAMES = [
     c.keys=k=>{ const m={ArrowUp:"u",ArrowDown:"d",ArrowLeft:"l",ArrowRight:"r"}; if(m[k]) ans(m[k]) };
     round();
   }},
-{ id:4, name:"Kopfrechnen", rule:"Wähle das richtige Ergebnis. Jede fünfte richtige Antwort in Folge gibt einen Bonus.", time:45,
+{ id:4, name:"Kopfrechnen", rule:"Tippe das richtige Ergebnis.", time:30,
   start(c){
     let res, streak=0, n=0;
     const round=()=>{ n++; const lvl=Math.min(3,Math.floor(n/6)); const op=c.rng.pick(lvl<1?["+","−"]:["+","−","×"]);
@@ -290,7 +256,7 @@ const GAMES = [
     const ans=v=>{ if(v===res){ streak++; c.add(1 + (streak%5===0 ? 3 : 0)); c.flash(true) } else { streak=0; c.flash(false) } round() };
     round();
   }},
-{ id:5, name:"Musterblick", rule:"Merk dir die aufleuchtenden Felder und tippe sie danach an. Jedes Muster wird grösser. 3 Leben.", time:60,
+{ id:5, name:"Musterblick", rule:"Merk dir die hellen Felder und tippe sie an.", time:40,
   start(c){
     let n=3, lives=3, pat, hit, lock=true, to;
     const draw=(show)=>{ c.el.innerHTML=`<div class="lives">${"♥".repeat(lives)}${"♡".repeat(3-lives)} · Muster mit ${n} Feldern</div>
@@ -304,7 +270,7 @@ const GAMES = [
     round();
     return ()=>clearTimeout(to);
   }},
-{ id:6, name:"Mehr Punkte", rule:"Tippe auf die Seite mit mehr Punkten. Der Unterschied wird immer kleiner. Richtig +1, falsch −1.", time:40,
+{ id:6, name:"Mehr Punkte", rule:"Tippe die Seite mit mehr Punkten.", time:30,
   start(c){
     let more, n=0;
     const box=k=>{ let s=""; for(let i=0;i<k;i++) s+=`<i style="left:${c.rng.int(8,92)}%;top:${c.rng.int(8,92)}%"></i>`; return s };
@@ -316,7 +282,7 @@ const GAMES = [
     c.keys=k=>{ if(k==="ArrowLeft") ans(0); if(k==="ArrowRight") ans(1) };
     round();
   }},
-{ id:7, name:"Der Andere", rule:"Ein Zeichen ist anders als alle anderen. Finde es. Das Feld wird grösser. Richtig +1, falsch −1.", time:45,
+{ id:7, name:"Der Andere", rule:"Finde das Zeichen, das anders ist.", time:30,
   start(c){
     const P=[["b","d"],["O","Q"],["6","9"],["M","N"],["E","F"],["p","q"],["8","B"],["C","G"],["m","n"],["W","V"]];
     let odd, n=0;
@@ -327,7 +293,7 @@ const GAMES = [
     const ans=i=>{ if(i===odd){ c.add(1); c.flash(true) } else { c.add(-1); c.flash(false) } round() };
     round();
   }},
-{ id:8, name:"Reflex", rule:"5 Runden. Tippe, sobald das Feld grün wird. Zu früh kostet. Punkte = 1000 minus deine Durchschnittszeit in ms.", time:0,
+{ id:8, name:"Reflex", rule:"Tippe, sobald es grün wird. Nicht zu früh!", time:0,
   start(c){
     let r=0, times=[], t0=0, state="wait", to;
     const btn=()=>c.el.querySelector(".react");
@@ -340,7 +306,7 @@ const GAMES = [
     next();
     return ()=>clearTimeout(to);
   }},
-{ id:9, name:"Punktlandung", rule:"Stoppe den Balken in der goldenen Zone. Mitte trifft doppelt. Die Zone wird kleiner, der Balken schneller. 3 Leben.", time:45,
+{ id:9, name:"Punktlandung", rule:"Stopp den Balken in der goldenen Zone.", time:30,
   start(c){
     let pos=0, dir=1, speed=45, zone, width=26, lives=3, raf, last=performance.now(), paused=false;
     c.el.innerHTML=`<div class="lives" id="pl"></div><div class="lane"><div class="zone" id="pz"></div><div class="mk" id="pm"></div></div>
@@ -358,137 +324,136 @@ const GAMES = [
   }}
 ];
 
-/* ---------------------------------------------------------------- Ablauf */
-let series=null;   // {kind:"day"|"duel"|"train", seed, ids:[], scores:[], i, rival:{name, scores}}
-let running=null;  // {stop, timer, score}
 
-function show(id){ ["scrHome","scrIntro","scrGame","scrResult"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0) }
-function myName(){ return ($("name").value.trim() || "Du") }
 
-function dayIds(key){ const r=mk(mulberry(hashStr("tag"+key))); return r.shuffle(GAMES.map(g=>g.id)).slice(0,5) }
+/* ---------------------------------------------------------------- Ablauf
+   Eine Runde = ein Spiel. Ein Code = eine Herausforderung:
+   ZK-<seed>-<spiel>-<punkte>-<name>-<siegeAbsender>.<siegeEmpfänger>          */
+let cur=null, running=null;
+const G = id => GAMES.find(g=>g.id===id);
 
-function startSeries(kind, seed, ids, rival){
-  series={kind, seed, ids, scores:[], i:0, rival:rival||null};
-  intro();
-}
-function intro(){
-  const g=GAMES[series.ids[series.i]];
-  $("introStep").textContent = series.kind==="train" ? "Training" : `Spiel ${series.i+1} von ${series.ids.length}`;
-  $("introName").textContent = g.name;
-  $("introRule").textContent = g.rule;
-  const rv = series.rival;
-  $("introRival").textContent = rv ? `${rv.name} hat hier ${rv.scores[series.i]} Punkte.` :
-    series.kind==="train" ? `Dein Rekord: ${store.get("best-"+g.id,0)}` : (g.time ? `${g.time} Sekunden` : "5 Runden");
-  show("scrIntro"); $("btnGo").focus();
-}
-function play(){
-  const g=GAMES[series.ids[series.i]];
-  const rng = mk(mulberry(hashStr(series.seed+":"+g.id+":"+series.i)));
+function show(id){ ["scrHome","scrGame","scrResult"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0) }
+
+function startGame(gid, seed, challenge){
+  cur = { gid, seed, challenge: challenge||null, score:0 };
+  const g=G(gid);
+  const rng = mk(mulberry(hashStr(seed+":"+gid)));
   const arena=$("arena"); arena.innerHTML="";
   $("gName").textContent=g.name;
-  $("gStep").textContent= series.kind==="train" ? "Training" : `Spiel ${series.i+1}/${series.ids.length}`;
-  const rv=series.rival;
-  let score=0, ended=false;
-  const setPts=()=>{ $("gPts").textContent=score; $("gRival").textContent = rv ? `${rv.name}: ${rv.scores[series.i]}` : "" };
-  const ctx={ rng, el:arena, keys:null,
-    add(n){ if(ended) return; score=Math.max(0,score+n); setPts() },
-    set(n){ if(ended) return; score=n; setPts() },
-    flash(ok){ arena.classList.remove("flash-ok","flash-bad"); void arena.offsetWidth; arena.classList.add(ok?"flash-ok":"flash-bad") },
-    end(){ if(ended) return; ended=true; finish() } };
-  setPts(); show("scrGame");
-  const t0=performance.now(); let tr;
-  const tick=()=>{ if(ended) return; if(g.time){ const left=g.time-(performance.now()-t0)/1000; $("tbar").style.transform=`scaleX(${Math.max(0,left/g.time)})`; if(left<=0) return ctx.end() } else $("tbar").style.transform="scaleX(1)"; tr=requestAnimationFrame(tick) };
-  const stopGame = g.start(ctx);
-  tr=requestAnimationFrame(tick);
-  running={ ctx, stop(){ cancelAnimationFrame(tr); if(typeof stopGame==="function") stopGame() } };
-  function finish(){
-    running.stop(); running=null;
-    series.scores[series.i]=score;
-    if(score > store.get("best-"+g.id,0)) store.set("best-"+g.id, score);
-    series.i++;
-    setTimeout(()=>{ if(series.i < series.ids.length) intro(); else result() }, 450);
+  const best=store.get("best-"+gid,0);
+  $("gTarget").textContent = challenge ? `${challenge.name} hat ${challenge.score} · dein Rekord ${best}` : `Dein Rekord: ${best}`;
+  $("gPts").textContent="0"; $("tbar").style.transform="scaleX(1)";
+  show("scrGame");
+  // Countdown mit der Regel in einem Satz
+  const ov=document.createElement("div"); ov.className="count";
+  ov.innerHTML=`<p>${g.rule}</p><b>3</b>`; arena.appendChild(ov);
+  let n=3; const cd=setInterval(()=>{ n--; if(n>0){ ov.querySelector("b").textContent=n } else { clearInterval(cd); ov.remove(); go() } }, 800);
+  running={ stop(){ clearInterval(cd) }, ctx:{} };
+  function go(){
+    let score=0, ended=false;
+    const ctx={ rng, el:arena, keys:null,
+      add(v){ if(ended) return; score=Math.max(0,score+v); $("gPts").textContent=score },
+      set(v){ if(ended) return; score=v; $("gPts").textContent=score },
+      flash(ok){ arena.classList.remove("flash-ok","flash-bad"); void arena.offsetWidth; arena.classList.add(ok?"flash-ok":"flash-bad") },
+      end(){ if(ended) return; ended=true; running.stop(); running=null; cur.score=score; setTimeout(result, 350) } };
+    const t0=performance.now(); let tr;
+    const tick=()=>{ if(ended) return; if(g.time){ const left=g.time-(performance.now()-t0)/1000; $("tbar").style.transform=`scaleX(${Math.max(0,left/g.time)})`; if(left<=0) return ctx.end() } tr=requestAnimationFrame(tick) };
+    const stopGame=g.start(ctx);
+    tr=requestAnimationFrame(tick);
+    running={ ctx, stop(){ cancelAnimationFrame(tr); if(typeof stopGame==="function") stopGame() } };
   }
-}
-
-function codeOf(s){ const n=myName().replace(/[\s-]+/g,"_").slice(0,14); return `ZK-${s.seed}-${s.ids.join("")}-${s.scores.join(".")}-${n}` }
-function parseCode(raw){
-  const m=raw.trim().match(/^ZK-([A-Za-z0-9]+)-(\d+)-([\d.]+)-(.+)$/);
-  if(!m) return null;
-  const ids=[...m[2]].map(Number), scores=m[3].split(".").map(Number);
-  if(!ids.length || ids.length!==scores.length || ids.some(i=>i>9)) return null;
-  return { seed:m[1], ids, scores, name:m[4].replace(/_/g," ") };
 }
 
 function result(){
-  const s=series, rv=s.rival;
-  const tot=s.scores.reduce((a,b)=>a+b,0);
-  let rows=`<tr><th>Spiel</th><th>${esc(myName())}</th>${rv?`<th>${esc(rv.name)}</th>`:""}<th>Rekord</th></tr>`;
-  let wMe=0, wThem=0;
-  s.ids.forEach((id,i)=>{ const me=s.scores[i], th= rv ? rv.scores[i] : null;
-    if(rv){ if(me>th) wMe++; else if(th>me) wThem++ }
-    rows+=`<tr><td>${GAMES[id].name}</td><td class="${rv?(me>th?"w":me<th?"l":""):""}">${me}</td>${rv?`<td class="${th>me?"w":th<me?"l":""}">${th}</td>`:""}<td>${store.get("best-"+id,0)}</td></tr>` });
-  if(s.kind!=="train") rows+=`<tr><td><b>Total</b></td><td><b>${tot}</b></td>${rv?`<td><b>${rv.scores.reduce((a,b)=>a+b,0)}</b></td>`:""}<td></td></tr>`;
-  $("resTable").innerHTML=rows;
-  $("tally").hidden = !rv;
-  if(rv){
-    $("tMe").textContent=wMe; $("tThem").textContent=wThem; $("tMeName").textContent=myName(); $("tThemName").textContent=rv.name;
-    $("tMe").className = wMe>=wThem ? "w" : "l"; $("tThem").className = wThem>=wMe ? "w" : "l";
-    $("resEyebrow").textContent="Duell";
-    $("resTitle").textContent = wMe>wThem ? `Du schlägst ${rv.name}.` : wMe<wThem ? `${rv.name} gewinnt diesmal.` : "Unentschieden. Das schreit nach Revanche.";
-  } else if(s.kind==="day"){
-    $("resEyebrow").textContent="Tageskampf";
-    const key=todayKey(), best=store.get("day-"+key,0);
-    if(tot>best) store.set("day-"+key,tot);
-    updateStreak();
-    $("resTitle").textContent = tot>best && best>0 ? `Neuer Tagesrekord: ${tot} Punkte.` : `${tot} Punkte im Tageskampf.`;
-  } else if(s.kind==="duel"){
-    $("resEyebrow").textContent="Duell"; $("resTitle").textContent=`${tot} Punkte vorgelegt. Jetzt ist dein Gegner dran.`;
-  } else {
-    $("resEyebrow").textContent="Training"; $("resTitle").textContent=`${s.scores[0]} Punkte in ${GAMES[s.ids[0]].name}.`;
-  }
-  $("shareBox").hidden = s.kind==="train"; $("btnCopy").hidden = s.kind==="train";
-  $("myCode").textContent = codeOf(s); $("copyMsg").textContent="";
+  const g=G(cur.gid), s=cur.score, key="best-"+cur.gid, best=store.get(key,0);
+  const isRecord = s>best && s>0;
+  if(isRecord){ store.set(key,s); store.set("broken", store.get("broken",0)+1); confetti() }
+  $("rGame").textContent=g.name;
+  $("rScore").textContent=s;
+  $("rBadge").hidden=!isRecord;
+  $("rNear").textContent = isRecord ? (best ? `Alter Rekord: ${best}` : "Dein erster Rekord in diesem Spiel.") :
+    (best-s<=3 ? `Nur ${best-s+1} Punkte bis zum Rekord (${best}). Nochmal!` : `Dein Rekord: ${best}`);
+  const ch=cur.challenge;
+  $("rVs").hidden=!ch; $("rDuel").textContent="";
+  if(ch){
+    const rv=store.get("rivals",{}); const r=rv[ch.name] || {me:ch.theirTally, them:ch.myTally};
+    // Stand aus dem Code übernehmen (der Code ist die gemeinsame Wahrheit), dann diese Runde werten
+    if(ch.myTally || ch.theirTally || !rv[ch.name]){ r.me=ch.theirTally; r.them=ch.myTally }
+    if(s>ch.score) r.me++; else if(s<ch.score) r.them++;
+    rv[ch.name]=r; store.set("rivals",rv);
+    $("vMe").textContent=s; $("vThem").textContent=ch.score; $("vThemName").textContent=ch.name;
+    $("vMe").className= s>=ch.score ? "win" : "lose"; $("vThem").className= ch.score>=s ? "win" : "lose";
+    $("rDuel").textContent = (s>ch.score ? "Gewonnen! " : s<ch.score ? "Verloren. " : "Unentschieden. ") + `Stand gegen ${ch.name}: ${r.me}:${r.them}`;
+    $("btnChallenge").textContent=`Zurückschlagen gegen ${ch.name}`;
+  } else $("btnChallenge").textContent = cur.replyTo ? `Code an ${cur.replyTo} senden` : "Freund herausfordern";
+  $("shareBox").hidden=true;
   show("scrResult");
+  $("btnAgain").focus();
 }
 
-function updateStreak(){
-  const st=store.get("streak",{last:null,n:0}), key=todayKey();
-  const y=new Date(); y.setDate(y.getDate()-1);
-  if(st.last!==key){ st.n = st.last===todayKey(y) ? st.n+1 : 1; st.last=key; store.set("streak",st) }
-  renderHome();
+function makeCode(){
+  const n=($("myName").value.trim()||"Anonym").replace(/[\s-]+/g,"_").slice(0,14);
+  const ch=cur.challenge; let tally="0.0";
+  if(ch){ const r=store.get("rivals",{})[ch.name]||{me:0,them:0}; tally=`${r.me}.${r.them}` }
+  return `ZK-${cur.seed}-${cur.gid}-${cur.score}-${n}-${tally}`;
 }
+function parseCode(raw){
+  const m=raw.trim().match(/^ZK-([a-z0-9]+)-(\d)-(\d+)-(.+)-(\d+)\.(\d+)$/i);
+  if(!m || !G(+m[2])) return null;
+  return { seed:m[1], gid:+m[2], score:+m[3], name:m[4].replace(/_/g," "), myTally:+m[5], theirTally:+m[6] };
+}
+
+// Nach «Zurückschlagen»: neues Spiel, danach Code mit neuem Stand senden
+function challenge(){
+  const ch=cur.challenge;
+  if(ch){
+    // Neue Runde gegen denselben Freund: anderes Spiel, neue Abfolge
+    const next = GAMES.filter(g=>g.id!==cur.gid)[Math.floor(Math.random()*(GAMES.length-1))].id;
+    startGame(next, newSeed(), null); cur.replyTo = ch.name; return;
+  }
+  $("shareBox").hidden=false; $("myCode").textContent=makeCode(); $("myName").focus();
+}
+
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c=$("fx"), x=c.getContext("2d"); c.width=innerWidth; c.height=innerHeight;
+  const cols=["#D1492E","#A8741F","#2F6FB0","#2E8A57","#7A5AA6","#C99A12"];
+  const P=Array.from({length:120},()=>({x:c.width/2,y:c.height*0.35,vx:(Math.random()-.5)*12,vy:-Math.random()*12-4,s:Math.random()*6+4,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6}));
+  let t=0; (function f(){ x.clearRect(0,0,c.width,c.height); P.forEach(p=>{ p.vy+=0.35; p.x+=p.vx; p.y+=p.vy; p.r+=0.2; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2); x.restore() }); if(++t<110) requestAnimationFrame(f); else x.clearRect(0,0,c.width,c.height) })();
+}
+
 function renderHome(){
-  const st=store.get("streak",{last:null,n:0}); const y=new Date(); y.setDate(y.getDate()-1);
-  const alive = st.last===todayKey() || st.last===todayKey(y);
-  $("streak").textContent = alive ? st.n : 0;
-  const key=todayKey(), ids=dayIds(key);
-  const d=new Date();
-  $("dayLabel").textContent=`Tageskampf · ${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
-  $("dayGames").innerHTML=ids.map(i=>`<span class="chip">${GAMES[i].name}</span>`).join("");
-  const best=store.get("day-"+key,0);
-  $("dayBest").textContent = best ? `Dein Bestwert heute: ${best} Punkte. Du kannst es nochmals versuchen.` : (alive && st.n ? `Spiel heute, sonst reisst deine Serie von ${st.n} Tagen.` : "Spiel jeden Tag und bau eine Serie auf.");
-  $("gameList").innerHTML=GAMES.map(g=>`<button class="gbtn" data-g="${g.id}"><b>${g.name}</b><span>Rekord ${store.get("best-"+g.id,0)}</span></button>`).join("");
+  $("broken").textContent = `${store.get("broken",0)} Rekorde`;
+  $("gameList").innerHTML=GAMES.map(g=>`<button class="gbtn" data-g="${g.id}"><span>${g.name}</span><b>${store.get("best-"+g.id,0)}</b></button>`).join("");
+  const rv=store.get("rivals",{}), names=Object.keys(rv);
+  $("rivalCard").hidden=!names.length;
+  $("rivals").innerHTML=names.map(n=>`<div class="rival"><span>${esc(n)}</span><b class="${rv[n].me>=rv[n].them?"win":"lose"}">${rv[n].me}:${rv[n].them}</b></div>`).join("");
 }
 
 /* ---------------------------------------------------------------- Ereignisse */
-$("btnDay").onclick=()=>{ const k=todayKey(); startSeries("day","T"+k, dayIds(k)) };
-$("btnDuel").onclick=()=>{ const seed=Math.random().toString(36).slice(2,8); const r=mk(mulberry(hashStr(seed))); startSeries("duel", seed, r.shuffle(GAMES.map(g=>g.id)).slice(0,3)) };
-$("btnShowCode").onclick=()=>{ $("codeBox").hidden=!$("codeBox").hidden; if(!$("codeBox").hidden) $("codeIn").focus() };
+$("btnPlay").onclick=()=>startGame(GAMES[Math.floor(Math.random()*GAMES.length)].id, newSeed());
+$("gameList").onclick=e=>{ const b=e.target.closest(".gbtn"); if(b) startGame(+b.dataset.g, newSeed()) };
 $("btnCode").onclick=()=>{ const c=parseCode($("codeIn").value);
-  if(!c){ $("codeMsg").textContent="Das ist kein gültiger Code. Er beginnt mit ZK- und sieht so aus: ZK-k3f9a2-418-34.12.27-Anna"; return }
-  $("codeMsg").textContent=""; startSeries("duel", c.seed, c.ids, {name:c.name, scores:c.scores}) };
-$("gameList").onclick=e=>{ const b=e.target.closest(".gbtn"); if(!b) return; startSeries("train", Math.random().toString(36).slice(2,8), [+b.dataset.g]) };
-$("btnGo").onclick=play;
-$("btnAgain").onclick=()=>{ const s=series; startSeries(s.kind, s.kind==="train" ? Math.random().toString(36).slice(2,8) : s.seed, s.ids, s.rival) };
-$("btnBack").onclick=()=>{ renderHome(); show("scrHome") };
-$("home").onclick=()=>{ if(running){ running.stop(); running=null } renderHome(); show("scrHome") };
+  if(!c){ $("codeMsg").textContent="Dieser Code stimmt nicht. Kopiere ihn nochmals vollständig aus dem Chat."; return }
+  $("codeMsg").textContent=""; $("codeIn").value=""; startGame(c.gid, c.seed, c) };
+$("btnAgain").onclick=()=>{ const reply=cur.replyTo; startGame(cur.gid, cur.challenge ? cur.seed : newSeed(), cur.challenge); if(reply) cur.replyTo=reply };
+$("btnChallenge").onclick=()=>{
+  if(cur.replyTo && !cur.challenge){ $("shareBox").hidden=false; $("myCode").textContent=makeCodeReply(); return }
+  challenge() };
+function makeCodeReply(){
+  const n=($("myName").value.trim()||"Anonym").replace(/[\s-]+/g,"_").slice(0,14);
+  const r=store.get("rivals",{})[cur.replyTo]||{me:0,them:0};
+  return `ZK-${cur.seed}-${cur.gid}-${cur.score}-${n}-${r.me}.${r.them}`;
+}
+$("myName").value=store.get("name","");
+$("myName").addEventListener("input",()=>{ store.set("name",$("myName").value.trim()); $("myCode").textContent = cur.replyTo && !cur.challenge ? makeCodeReply() : makeCode() });
 $("btnCopy").onclick=()=>{ const txt=$("myCode").textContent;
-  const done=()=>$("copyMsg").textContent="Kopiert. Schick den Code per WhatsApp oder SMS.";
+  const done=()=>$("copyMsg").textContent="Kopiert. Jetzt im Chat einfügen und abschicken.";
   const fail=()=>{ const r=document.createRange(); r.selectNodeContents($("myCode")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); $("copyMsg").textContent="Kopieren ging nicht. Der Code ist markiert, kopiere ihn von Hand." };
   try{ navigator.clipboard.writeText(txt).then(done,fail) }catch(e){ fail() } };
-$("name").value = store.get("name","");
-$("name").addEventListener("input",()=>store.set("name",$("name").value.trim()));
-document.addEventListener("keydown",e=>{ if(running && running.ctx.keys && !$("scrGame").hidden){ if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"," "].includes(e.key)) e.preventDefault(); running.ctx.keys(e.key) } });
+$("btnBack").onclick=()=>{ renderHome(); show("scrHome") };
+$("home").onclick=()=>{ if(running){ running.stop(); running=null } renderHome(); show("scrHome") };
+document.addEventListener("keydown",e=>{ if(running && running.ctx && running.ctx.keys && !$("scrGame").hidden){ if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"," "].includes(e.key)) e.preventDefault(); running.ctx.keys(e.key) } });
 
 renderHome();
 })();
