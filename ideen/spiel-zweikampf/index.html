@@ -112,35 +112,75 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
 @media (max-width:380px){ .cross{grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,56px)} .big{font-size:52px} .games{grid-template-columns:repeat(2,1fr)} }
 @media (prefers-reduced-motion: reduce){ .flash-ok,.flash-bad{animation:none} }
 </style>
+<style>
+.duels{display:flex;flex-direction:column;gap:0}
+.duel{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 10px;padding:12px 4px;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);border-radius:0;text-align:left;font-weight:700}
+.duel:last-child{border-bottom:0}
+.duel small{grid-column:1;font-size:12px;font-weight:700;color:var(--muted)}
+.duel small.turn{color:var(--accent)}
+.duel b{grid-row:1 / span 2;grid-column:2;font-family:var(--display);font-size:30px;font-variant-numeric:tabular-nums}
+.bhead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:8px}
+.bhead .nm{font-weight:800;font-size:15px;overflow-wrap:anywhere}
+.bhead .st{font-family:var(--display);font-weight:900;font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+.rounds{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.rounds td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:center}
+.rounds tr:last-child td{border-bottom:0}
+.rounds td.g{font-weight:700;color:var(--muted);font-size:13px}
+.rounds td.g b{display:block;color:var(--ink);font-size:15px}
+.rounds td.s{font-family:var(--display);font-weight:900;font-size:26px;width:22%}
+.rounds td.s.w{color:#fff;background:var(--win);border-radius:10px}
+.rounds td.s.l{color:var(--muted)}
+.rounds td.s.q{color:var(--muted);font-size:18px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opt{background:var(--bg);color:var(--ink);border:2px solid var(--line);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.opt b{font-family:var(--display);font-size:20px;font-weight:900;line-height:1.05}
+.opt span{font-size:11px;color:var(--muted);font-weight:700}
+.action{display:flex;flex-direction:column;gap:10px}
+</style>
 
 <canvas id="fx" aria-hidden="true"></canvas>
 <div class="app">
   <header>
     <h1 class="logo" id="home">ZWEIKAMPF<span>.</span></h1>
-    <span class="pill" id="broken">0 Rekorde</span>
+    <span class="pill" id="me">–</span>
   </header>
 
   <!-- Start -->
   <section id="scrHome">
     <div style="display:flex;flex-direction:column;gap:14px">
-      <button class="play" id="btnPlay">SPIELEN<small>Zufälliges Spiel · 30 Sekunden</small></button>
-
+      <div class="card" id="nameCard">
+        <p class="label">Wie heisst du?</p>
+        <input id="myName" maxlength="12" placeholder="Dein Name" autocomplete="nickname">
+      </div>
+      <button class="play" id="btnNew">NEUES DUELL<small>6 Runden · abwechselnd · gleiche Spiele für beide</small></button>
       <div class="card">
-        <p class="label">Code von einem Freund?</p>
-        <div class="row"><input id="codeIn" placeholder="Code hier einfügen"><button id="btnCode">Annehmen</button></div>
+        <p class="label">Code von einem Freund</p>
+        <div class="row"><input id="codeIn" placeholder="Code hier einfügen"><button id="btnCode">Öffnen</button></div>
         <p class="msg" id="codeMsg"></p>
       </div>
-
-      <div class="card" id="rivalCard" hidden>
+      <div class="card" id="listCard" hidden>
         <p class="label">Deine Duelle</p>
-        <div class="rivals" id="rivals"></div>
+        <div class="duels" id="duels"></div>
       </div>
-
       <div class="card">
-        <p class="label">Deine Rekorde · antippen zum Spielen</p>
-        <div class="games" id="gameList"></div>
+        <p class="label">So geht's</p>
+        <p class="small muted">Wie Quizduell, aber mit Spielen. Wer dran ist, spielt zuerst die Runde des Gegners und wählt dann aus 3 Spielen das nächste. Beide spielen jede Runde mit exakt gleichem Ablauf. Wer mehr Runden gewinnt, gewinnt das Duell.</p>
       </div>
     </div>
+  </section>
+
+  <!-- Duell-Brett -->
+  <section id="scrBoard" hidden>
+    <div class="card hero" style="gap:14px">
+      <div class="bhead">
+        <div class="nm" id="bMe">Du</div>
+        <div class="st" id="bStand">0:0</div>
+        <div class="nm" id="bThem">Gegner</div>
+      </div>
+      <table class="rounds" id="bRounds"></table>
+      <div class="action" id="bAction"></div>
+    </div>
+    <p class="note" style="margin-top:10px"><button class="ghost" id="btnList" style="width:100%">Alle Duelle</button></p>
   </section>
 
   <!-- Spiel -->
@@ -155,32 +195,7 @@ canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-in
     </div>
   </section>
 
-  <!-- Ergebnis -->
-  <section id="scrResult" hidden>
-    <div class="card result">
-      <p class="label" id="rGame"></p>
-      <div class="score" id="rScore">0</div>
-      <span class="badge" id="rBadge" hidden>NEUER REKORD</span>
-      <p class="muted" id="rNear"></p>
-      <div class="vs" id="rVs" hidden>
-        <div><b id="vMe">0</b><span>Du</span></div>
-        <b style="font-size:34px;color:var(--muted)">:</b>
-        <div><b id="vThem">0</b><span id="vThemName"></span></div>
-      </div>
-      <p style="font-weight:800" id="rDuel"></p>
-      <button class="accent" id="btnAgain" style="width:100%">Nochmal</button>
-      <button id="btnChallenge" style="width:100%">Freund herausfordern</button>
-      <div id="shareBox" hidden style="width:100%;display:flex;flex-direction:column;gap:8px">
-        <input id="myName" maxlength="14" placeholder="Dein Name (sieht dein Freund)">
-        <div class="code" id="myCode"></div>
-        <button class="ghost" id="btnCopy">Code kopieren</button>
-        <p class="msg" id="copyMsg">Schick den Code per WhatsApp. Dein Freund fügt ihn auf der Startseite ein.</p>
-      </div>
-      <button class="ghost" id="btnBack" style="width:100%">Zur Startseite</button>
-    </div>
-  </section>
-
-  <p class="note">Prototyp · Rekorde bleiben in diesem Browser gespeichert.</p>
+  <p class="note">Prototyp · Der Code trägt den ganzen Spielstand. Duelle bleiben in diesem Browser gespeichert.</p>
 </div>
 
 <script>
@@ -196,7 +211,6 @@ function mulberry(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; le
 const mk = r => ({ f:r, int:(a,b)=>a+Math.floor(r()*(b-a+1)), pick:arr=>arr[Math.floor(r()*arr.length)],
   shuffle(arr){ const x=arr.slice(); for(let i=x.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [x[i],x[j]]=[x[j],x[i]] } return x } });
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const newSeed = () => Math.random().toString(36).slice(2,8);
 
 const GAMES = [
 { id:0, name:"Kipp", rule:"Leg jedes Gewicht links oder rechts, ohne dass die Waage kippt.", time:30,
@@ -326,133 +340,184 @@ const GAMES = [
 
 
 
-/* ---------------------------------------------------------------- Ablauf
-   Eine Runde = ein Spiel. Ein Code = eine Herausforderung:
-   ZK-<seed>-<spiel>-<punkte>-<name>-<siegeAbsender>.<siegeEmpfänger>          */
-let cur=null, running=null;
+
+
+/* ---------------------------------------------------------------- Duell nach dem Quizduell-Prinzip
+   6 Runden. Runde 1, 3, 5 wählt A, Runde 2, 4, 6 wählt B. Wer wählt, spielt zuerst.
+   Code: ZD.<id>.<A>.<B>.<runden>   runden = spiel:a:b,…   (x = noch nicht gespielt)            */
+const ROUNDS = 6, DUEL_TIME = 20;
 const G = id => GAMES.find(g=>g.id===id);
+const clean = n => (n||"").normalize("NFC").replace(/[^A-Za-zÀ-ž0-9]/g,"").slice(0,12);
+let matches = store.get("zd-matches", {});
+let cur = null, running = null;
 
-function show(id){ ["scrHome","scrGame","scrResult"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0) }
+function myName(){ return clean($("myName").value) }
+function save(){ store.set("zd-matches", matches) }
+const other = m => m.me==="A" ? "B" : "A";
+const k = side => side==="A" ? "a" : "b";
+const chooser = r => r%2===0 ? "A" : "B";
+const nameOf = (m, side) => side===m.me ? "Du" : (m[side] && m[side]!=="?" ? m[side] : "Gegner");
 
-function startGame(gid, seed, challenge){
-  cur = { gid, seed, challenge: challenge||null, score:0 };
-  const g=G(gid);
-  const rng = mk(mulberry(hashStr(seed+":"+gid)));
+function state(m){
+  const mine=k(m.me), theirs=k(other(m));
+  const pending = m.rounds.findIndex(r=>r[mine]===null);
+  if(pending>=0) return {type:"play", r:pending};
+  const done = m.rounds.length===ROUNDS && m.rounds.every(r=>r.a!==null && r.b!==null);
+  if(done) return {type:"over"};
+  if(m.rounds.length<ROUNDS && chooser(m.rounds.length)===m.me && m.rounds.every(r=>r[theirs]!==null)) return {type:"choose", r:m.rounds.length};
+  return {type:"wait"};
+}
+function stand(m){ let a=0,b=0; m.rounds.forEach(r=>{ if(r.a!==null && r.b!==null){ if(r.a>r.b) a++; else if(r.b>r.a) b++ } }); return m.me==="A" ? [a,b] : [b,a] }
+function options(m, r){ const rng=mk(mulberry(hashStr(m.id+":opt:"+r))); return rng.shuffle(GAMES.map(g=>g.id)).slice(0,3) }
+
+function codeOf(m){
+  const rs=m.rounds.map(r=>`${r.g}:${r.a===null?"x":r.a}:${r.b===null?"x":r.b}`).join(",");
+  return `ZD.${m.id}.${m.A||"?"}.${m.B||"?"}.${rs}`;
+}
+function parse(raw){
+  const t=raw.trim().replace(/\s+/g,"");
+  const m=t.match(/^ZD\.([a-z0-9]{6})\.([^.]+)\.([^.]+)\.([\d:x,]*)$/i);
+  if(!m) return null;
+  const rounds = m[4] ? m[4].split(",").map(s=>{ const p=s.split(":"); return {g:+p[0], a:p[1]==="x"?null:+p[1], b:p[2]==="x"?null:+p[2]} }) : [];
+  if(rounds.length>ROUNDS || rounds.some(r=>!G(r.g))) return null;
+  return {id:m[1].toLowerCase(), A:m[2], B:m[3], rounds};
+}
+const filled = m => m.rounds.reduce((n,r)=>n+(r.a!==null)+(r.b!==null),0);
+
+function openCode(raw){
+  const c=parse(raw);
+  if(!c) return "Dieser Code stimmt nicht. Kopiere ihn nochmals vollständig aus dem Chat.";
+  const me=myName(); if(!me) return "Gib zuerst oben deinen Namen ein.";
+  const local=matches[c.id];
+  if(local){
+    if(filled(c) < filled(local)) { openBoard(c.id); return "Dieser Code ist älter als dein Stand. Du siehst den aktuellen Stand." }
+    local.A=c.A; local.B = c.B==="?" && local.me==="B" ? me : c.B; local.rounds=c.rounds;
+  } else {
+    if(c.A===me && c.B==="?") return "Das ist dein eigener Code. Schick ihn deinem Gegner.";
+    matches[c.id]={ id:c.id, A:c.A, B: c.B==="?" ? me : c.B, me: c.A===me ? "A" : "B", rounds:c.rounds, t:Date.now() };
+  }
+  matches[c.id].t=Date.now(); save(); openBoard(c.id); return "";
+}
+
+function newDuel(vs){
+  const me=myName(); if(!me){ $("myName").focus(); $("nameCard").style.outline="3px solid var(--accent)"; return }
+  const id=Math.random().toString(36).slice(2,8).padEnd(6,"0");
+  matches[id]={ id, A:me, B: vs || "?", me:"A", rounds:[], t:Date.now() }; save();
+  openBoard(id);
+}
+
+/* ---------------------------------------------------------------- Anzeige */
+function show(id){ ["scrHome","scrBoard","scrGame"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0) }
+
+function renderHome(){
+  const n=myName(); $("me").textContent = n || "–"; $("nameCard").hidden = !!n && !$("nameCard").dataset.edit;
+  const list=Object.values(matches).sort((x,y)=>{ const tx=["play","choose"].includes(state(x).type), ty=["play","choose"].includes(state(y).type); return (ty-tx) || (y.t-x.t) });
+  $("listCard").hidden=!list.length;
+  $("duels").innerHTML=list.map(m=>{ const s=state(m), st=stand(m), them=nameOf(m,other(m));
+    const txt = s.type==="play"||s.type==="choose" ? `<small class="turn">Du bist dran · Runde ${Math.min(ROUNDS, (s.r??0)+1)}</small>` :
+                s.type==="over" ? `<small>${st[0]>st[1]?"Gewonnen":st[0]<st[1]?"Verloren":"Unentschieden"}</small>` : `<small>Warte auf ${esc(them)}</small>`;
+    return `<button class="duel" data-id="${m.id}"><span>gegen ${esc(them)}</span>${txt}<b class="${st[0]>st[1]?"win":st[0]<st[1]?"lose":""}">${st[0]}:${st[1]}</b></button>` }).join("");
+}
+
+function openBoard(id){
+  cur=matches[id]; const m=cur, s=state(m), st=stand(m);
+  $("bMe").textContent="Du"; $("bThem").textContent=nameOf(m,other(m));
+  $("bStand").textContent=`${st[0]}:${st[1]}`;
+  const mine=k(m.me), theirs=k(other(m));
+  let rows="";
+  for(let i=0;i<ROUNDS;i++){
+    const r=m.rounds[i];
+    if(!r){ rows+=`<tr><td class="s q">·</td><td class="g">Runde ${i+1}<b>${chooser(i)===m.me?"du wählst":"Gegner wählt"}</b></td><td class="s q">·</td></tr>`; continue }
+    const a=r[mine], b=r[theirs];
+    const showB = a!==null ? b : (b!==null ? "?" : null);   // Gegner-Punkte erst nach dem eigenen Spiel zeigen
+    const cw = (x,y)=> (x!==null && y!==null && typeof y==="number") ? (x>y?"w":x<y?"l":"") : "q";
+    rows+=`<tr><td class="s ${a===null?"q":b===null?"":cw(a,b)}">${a===null?"–":a}</td><td class="g">Runde ${i+1}<b>${G(r.g).name}</b></td><td class="s ${a!==null?cw(b,a):"q"}">${showB===null?"–":showB}</td></tr>`;
+  }
+  $("bRounds").innerHTML=rows;
+  const act=$("bAction"); const them=nameOf(m,other(m));
+  if(s.type==="play"){
+    const r=m.rounds[s.r];
+    act.innerHTML=`<p class="label">${r[theirs]!==null?`${esc(them)} hat vorgelegt`:"Du spielst zuerst"}</p>
+      <button class="accent" id="aPlay">Runde ${s.r+1} spielen: ${G(r.g).name}</button>`;
+    $("aPlay").onclick=()=>playRound(s.r);
+  } else if(s.type==="choose"){
+    act.innerHTML=`<p class="label">Wähle das Spiel für Runde ${s.r+1}</p>
+      <div class="opts">${options(m,s.r).map(g=>`<button class="opt" data-g="${g}"><b>${G(g).name}</b><span>Rekord ${store.get("best-"+g,0)}</span></button>`).join("")}</div>`;
+    act.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ m.rounds.push({g:+b.dataset.g, a:null, b:null}); m.t=Date.now(); save(); playRound(s.r) });
+  } else {
+    const over = s.type==="over";
+    const txt = over ? (st[0]>st[1] ? `Gewonnen ${st[0]}:${st[1]}!` : st[0]<st[1] ? `${esc(them)} gewinnt ${st[1]}:${st[0]}.` : `Unentschieden ${st[0]}:${st[1]}.`) : `${esc(them)} ist dran.`;
+    act.innerHTML=`<p style="font-family:var(--display);font-weight:900;font-size:28px;line-height:1.1;margin:0">${txt}</p>
+      <p class="label">${over ? "Schick den Schlussstand, damit auch dein Gegner ihn sieht" : `Schick diesen Code an ${esc(them)}`}</p>
+      <div class="code" id="aCode">${esc(codeOf(m))}</div>
+      <button class="${over?"ghost":"accent"}" id="aCopy">Code kopieren</button>
+      <p class="msg" id="aMsg"></p>
+      ${over ? `<button class="accent" id="aRev">Revanche gegen ${esc(them)}</button>` : ""}`;
+    $("aCopy").onclick=()=>copy(codeOf(m));
+    if(over) $("aRev").onclick=()=>newDuel(m[other(m)]!=="?" ? m[other(m)] : "");
+    if(over && st[0]>st[1] && !m.cheered){ m.cheered=true; save(); confetti() }
+  }
+  show("scrBoard");
+}
+
+function copy(txt){
+  const done=()=>$("aMsg").textContent="Kopiert. Jetzt im Chat einfügen und abschicken.";
+  const fail=()=>{ const r=document.createRange(); r.selectNodeContents($("aCode")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); $("aMsg").textContent="Kopieren ging nicht. Der Code ist markiert, kopiere ihn von Hand." };
+  try{ navigator.clipboard.writeText(txt).then(done,fail) }catch(e){ fail() }
+}
+
+/* ---------------------------------------------------------------- Spiel ausführen */
+function playRound(ri){
+  const m=cur, r=m.rounds[ri], g=G(r.g), theirs=r[k(other(m))];
+  const rng = mk(mulberry(hashStr(m.id+":"+ri+":"+r.g)));
+  const time = g.time ? DUEL_TIME : 0;
   const arena=$("arena"); arena.innerHTML="";
   $("gName").textContent=g.name;
-  const best=store.get("best-"+gid,0);
-  $("gTarget").textContent = challenge ? `${challenge.name} hat ${challenge.score} · dein Rekord ${best}` : `Dein Rekord: ${best}`;
+  const best=store.get("best-"+g.id,0);
+  $("gTarget").textContent = theirs!==null ? `Zu schlagen: ${theirs} · Rekord ${best}` : `Du legst vor · Rekord ${best}`;
   $("gPts").textContent="0"; $("tbar").style.transform="scaleX(1)";
   show("scrGame");
-  // Countdown mit der Regel in einem Satz
   const ov=document.createElement("div"); ov.className="count";
   ov.innerHTML=`<p>${g.rule}</p><b>3</b>`; arena.appendChild(ov);
-  let n=3; const cd=setInterval(()=>{ n--; if(n>0){ ov.querySelector("b").textContent=n } else { clearInterval(cd); ov.remove(); go() } }, 800);
-  running={ stop(){ clearInterval(cd) }, ctx:{} };
+  let n=3; const cd=setInterval(()=>{ n--; if(n>0) ov.querySelector("b").textContent=n; else { clearInterval(cd); ov.remove(); go() } }, 800);
+  running={ ctx:{}, stop(){ clearInterval(cd) } };
   function go(){
     let score=0, ended=false;
     const ctx={ rng, el:arena, keys:null,
       add(v){ if(ended) return; score=Math.max(0,score+v); $("gPts").textContent=score },
       set(v){ if(ended) return; score=v; $("gPts").textContent=score },
       flash(ok){ arena.classList.remove("flash-ok","flash-bad"); void arena.offsetWidth; arena.classList.add(ok?"flash-ok":"flash-bad") },
-      end(){ if(ended) return; ended=true; running.stop(); running=null; cur.score=score; setTimeout(result, 350) } };
+      end(){ if(ended) return; ended=true; running.stop(); running=null; finish(score) } };
     const t0=performance.now(); let tr;
-    const tick=()=>{ if(ended) return; if(g.time){ const left=g.time-(performance.now()-t0)/1000; $("tbar").style.transform=`scaleX(${Math.max(0,left/g.time)})`; if(left<=0) return ctx.end() } tr=requestAnimationFrame(tick) };
-    const stopGame=g.start(ctx);
-    tr=requestAnimationFrame(tick);
+    const tick=()=>{ if(ended) return; if(time){ const left=time-(performance.now()-t0)/1000; $("tbar").style.transform=`scaleX(${Math.max(0,left/time)})`; if(left<=0) return ctx.end() } tr=requestAnimationFrame(tick) };
+    const stopGame=g.start(ctx); tr=requestAnimationFrame(tick);
     running={ ctx, stop(){ cancelAnimationFrame(tr); if(typeof stopGame==="function") stopGame() } };
   }
-}
-
-function result(){
-  const g=G(cur.gid), s=cur.score, key="best-"+cur.gid, best=store.get(key,0);
-  const isRecord = s>best && s>0;
-  if(isRecord){ store.set(key,s); store.set("broken", store.get("broken",0)+1); confetti() }
-  $("rGame").textContent=g.name;
-  $("rScore").textContent=s;
-  $("rBadge").hidden=!isRecord;
-  $("rNear").textContent = isRecord ? (best ? `Alter Rekord: ${best}` : "Dein erster Rekord in diesem Spiel.") :
-    (best-s<=3 ? `Nur ${best-s+1} Punkte bis zum Rekord (${best}). Nochmal!` : `Dein Rekord: ${best}`);
-  const ch=cur.challenge;
-  $("rVs").hidden=!ch; $("rDuel").textContent="";
-  if(ch){
-    const rv=store.get("rivals",{}); const r=rv[ch.name] || {me:ch.theirTally, them:ch.myTally};
-    // Stand aus dem Code übernehmen (der Code ist die gemeinsame Wahrheit), dann diese Runde werten
-    if(ch.myTally || ch.theirTally || !rv[ch.name]){ r.me=ch.theirTally; r.them=ch.myTally }
-    if(s>ch.score) r.me++; else if(s<ch.score) r.them++;
-    rv[ch.name]=r; store.set("rivals",rv);
-    $("vMe").textContent=s; $("vThem").textContent=ch.score; $("vThemName").textContent=ch.name;
-    $("vMe").className= s>=ch.score ? "win" : "lose"; $("vThem").className= ch.score>=s ? "win" : "lose";
-    $("rDuel").textContent = (s>ch.score ? "Gewonnen! " : s<ch.score ? "Verloren. " : "Unentschieden. ") + `Stand gegen ${ch.name}: ${r.me}:${r.them}`;
-    $("btnChallenge").textContent=`Zurückschlagen gegen ${ch.name}`;
-  } else $("btnChallenge").textContent = cur.replyTo ? `Code an ${cur.replyTo} senden` : "Freund herausfordern";
-  $("shareBox").hidden=true;
-  show("scrResult");
-  $("btnAgain").focus();
-}
-
-function makeCode(){
-  const n=($("myName").value.trim()||"Anonym").replace(/[\s-]+/g,"_").slice(0,14);
-  const ch=cur.challenge; let tally="0.0";
-  if(ch){ const r=store.get("rivals",{})[ch.name]||{me:0,them:0}; tally=`${r.me}.${r.them}` }
-  return `ZK-${cur.seed}-${cur.gid}-${cur.score}-${n}-${tally}`;
-}
-function parseCode(raw){
-  const m=raw.trim().match(/^ZK-([a-z0-9]+)-(\d)-(\d+)-(.+)-(\d+)\.(\d+)$/i);
-  if(!m || !G(+m[2])) return null;
-  return { seed:m[1], gid:+m[2], score:+m[3], name:m[4].replace(/_/g," "), myTally:+m[5], theirTally:+m[6] };
-}
-
-// Nach «Zurückschlagen»: neues Spiel, danach Code mit neuem Stand senden
-function challenge(){
-  const ch=cur.challenge;
-  if(ch){
-    // Neue Runde gegen denselben Freund: anderes Spiel, neue Abfolge
-    const next = GAMES.filter(g=>g.id!==cur.gid)[Math.floor(Math.random()*(GAMES.length-1))].id;
-    startGame(next, newSeed(), null); cur.replyTo = ch.name; return;
+  function finish(score){
+    r[k(m.me)]=score; m.t=Date.now();
+    if(score>best){ store.set("best-"+g.id, score); if(best>0) confetti() }
+    save();
+    setTimeout(()=>openBoard(m.id), 400);
   }
-  $("shareBox").hidden=false; $("myCode").textContent=makeCode(); $("myName").focus();
 }
 
 function confetti(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const c=$("fx"), x=c.getContext("2d"); c.width=innerWidth; c.height=innerHeight;
   const cols=["#D1492E","#A8741F","#2F6FB0","#2E8A57","#7A5AA6","#C99A12"];
-  const P=Array.from({length:120},()=>({x:c.width/2,y:c.height*0.35,vx:(Math.random()-.5)*12,vy:-Math.random()*12-4,s:Math.random()*6+4,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6}));
+  const P=Array.from({length:110},()=>({x:c.width/2,y:c.height*0.35,vx:(Math.random()-.5)*12,vy:-Math.random()*12-4,s:Math.random()*6+4,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6}));
   let t=0; (function f(){ x.clearRect(0,0,c.width,c.height); P.forEach(p=>{ p.vy+=0.35; p.x+=p.vx; p.y+=p.vy; p.r+=0.2; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2); x.restore() }); if(++t<110) requestAnimationFrame(f); else x.clearRect(0,0,c.width,c.height) })();
 }
 
-function renderHome(){
-  $("broken").textContent = `${store.get("broken",0)} Rekorde`;
-  $("gameList").innerHTML=GAMES.map(g=>`<button class="gbtn" data-g="${g.id}"><span>${g.name}</span><b>${store.get("best-"+g.id,0)}</b></button>`).join("");
-  const rv=store.get("rivals",{}), names=Object.keys(rv);
-  $("rivalCard").hidden=!names.length;
-  $("rivals").innerHTML=names.map(n=>`<div class="rival"><span>${esc(n)}</span><b class="${rv[n].me>=rv[n].them?"win":"lose"}">${rv[n].me}:${rv[n].them}</b></div>`).join("");
-}
-
 /* ---------------------------------------------------------------- Ereignisse */
-$("btnPlay").onclick=()=>startGame(GAMES[Math.floor(Math.random()*GAMES.length)].id, newSeed());
-$("gameList").onclick=e=>{ const b=e.target.closest(".gbtn"); if(b) startGame(+b.dataset.g, newSeed()) };
-$("btnCode").onclick=()=>{ const c=parseCode($("codeIn").value);
-  if(!c){ $("codeMsg").textContent="Dieser Code stimmt nicht. Kopiere ihn nochmals vollständig aus dem Chat."; return }
-  $("codeMsg").textContent=""; $("codeIn").value=""; startGame(c.gid, c.seed, c) };
-$("btnAgain").onclick=()=>{ const reply=cur.replyTo; startGame(cur.gid, cur.challenge ? cur.seed : newSeed(), cur.challenge); if(reply) cur.replyTo=reply };
-$("btnChallenge").onclick=()=>{
-  if(cur.replyTo && !cur.challenge){ $("shareBox").hidden=false; $("myCode").textContent=makeCodeReply(); return }
-  challenge() };
-function makeCodeReply(){
-  const n=($("myName").value.trim()||"Anonym").replace(/[\s-]+/g,"_").slice(0,14);
-  const r=store.get("rivals",{})[cur.replyTo]||{me:0,them:0};
-  return `ZK-${cur.seed}-${cur.gid}-${cur.score}-${n}-${r.me}.${r.them}`;
-}
-$("myName").value=store.get("name","");
-$("myName").addEventListener("input",()=>{ store.set("name",$("myName").value.trim()); $("myCode").textContent = cur.replyTo && !cur.challenge ? makeCodeReply() : makeCode() });
-$("btnCopy").onclick=()=>{ const txt=$("myCode").textContent;
-  const done=()=>$("copyMsg").textContent="Kopiert. Jetzt im Chat einfügen und abschicken.";
-  const fail=()=>{ const r=document.createRange(); r.selectNodeContents($("myCode")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); $("copyMsg").textContent="Kopieren ging nicht. Der Code ist markiert, kopiere ihn von Hand." };
-  try{ navigator.clipboard.writeText(txt).then(done,fail) }catch(e){ fail() } };
-$("btnBack").onclick=()=>{ renderHome(); show("scrHome") };
-$("home").onclick=()=>{ if(running){ running.stop(); running=null } renderHome(); show("scrHome") };
+$("myName").value = store.get("zd-name","");
+$("myName").addEventListener("input",()=>{ store.set("zd-name", myName()); $("me").textContent=myName()||"–"; $("nameCard").style.outline="" });
+$("me").onclick=()=>{ $("nameCard").dataset.edit="1"; $("nameCard").hidden=false; $("myName").focus() };
+$("btnNew").onclick=()=>newDuel("");
+$("btnCode").onclick=()=>{ const msg=openCode($("codeIn").value); $("codeMsg").textContent=msg; if(!msg) $("codeIn").value="" };
+$("duels").onclick=e=>{ const b=e.target.closest(".duel"); if(b) openBoard(b.dataset.id) };
+$("btnList").onclick=()=>{ renderHome(); show("scrHome") };
+$("home").onclick=()=>{ if(running){ running.stop(); running=null } delete $("nameCard").dataset.edit; renderHome(); show("scrHome") };
 document.addEventListener("keydown",e=>{ if(running && running.ctx && running.ctx.keys && !$("scrGame").hidden){ if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"," "].includes(e.key)) e.preventDefault(); running.ctx.keys(e.key) } });
 
 renderHome();
