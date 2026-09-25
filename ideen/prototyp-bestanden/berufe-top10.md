@@ -1,5 +1,9 @@
 # bestanden: die ersten 10 Berufe
 
+> **Überholt (25.09.2026):** Nach Prüfung der Durchfallquoten, der QV-Struktur und der Konkurrenz startet
+> «bestanden» mit Sanitärinstallateur/in EFZ und verkauft an Lehrbetriebe. Begründung:
+> [`bestanden/01-marktdaten-und-berufswahl.md`](../../bestanden/01-marktdaten-und-berufswahl.md).
+
 Auswahl nach der Zahl der Lehrabgänger/innen pro Jahr (erlangte EFZ), nicht nach Beliebtheit.
 
 **Quelle:** Bundesamt für Statistik, Statistik der beruflichen Grundbildung, erlangte EFZ 2022
