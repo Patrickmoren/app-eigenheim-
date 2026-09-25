@@ -40,7 +40,7 @@ Ausschlusskriterien, die für alle Ideen gelten:
 | 10 | Mieterauswahl für Privatvermieter (Dossiers prüfen, Absagen) | mittel | Flatfox-Bewerbungsverwaltung gratis | hoch | Teil von A möglich |
 | 11 | Digitale Hausakte mit Steuerlogik vor 2029 | belegt: Eigenmietwert fällt per 1.1.2029, Unterhaltsabzug nur bis Ende 2028 | **stark**: myky, renovatax.ch, HausAkte, eigenheimverwalter | tief | verworfen |
 | 12 | Sanierungs- und Fördernavigator | mittel | energiefranken.ch gratis, Offertenportale | tief | verworfen |
-| 13 | **Selbstverwaltung für kleine Stockwerkeigentümergemeinschaften** | belegt: kleine STWEG finden kaum Verwalter (NZZ 13.11.2025) | schwach: Excel-Vorlage, Neowise, ImmoApp | **hoch** | **Pitch B** |
+| 13 | **Selbstverwaltung für kleine Stockwerkeigentümergemeinschaften** | belegt: kleine STWEG finden kaum Verwalter (NZZ 13.11.2025) | **mittel: [EinfachSTWEG](https://einfachstweg.ch/) ab CHF 30/Mt. (Korrektur 25.09.2026)**, Neowise, ImmoApp | **hoch** | **Pitch B** |
 | 14 | **Mietertermin-Link für Handwerker** | plausibel, Fachkräftemangel (42'000 fehlende Handwerker); Leerfahrten **nicht belegt** | allgemein: Zoho Bookings u. a., keine Speziallösung gefunden | **hoch** | **Pitch C** |
 | 15 | Bewertungsplattform für Verwaltungen | hoch | kaum | mittel | **Konflikt**, Haftungsrisiko |
 

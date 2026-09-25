@@ -64,10 +64,10 @@ SEITEN = {
     funktionen=[
         ("Budget und Akonto", "Kosten erfassen, nach Wertquoten oder Sonderschlüssel verteilen, Akontorechnungen für alle.", "ZGB Art. 712h"),
         ("Jahresrechnung", "Belege hochladen, Abrechnung je Einheit, Nachzahlung oder Guthaben auf einen Blick.", "ZGB Art. 712m"),
-        ("Versammlung", "Einladung mit Traktanden, Vollmachten, Abstimmung nach Köpfen und Wertquoten, Protokollvorlage.", "Protokollpflicht ZGB Art. 712n"),
+        ("Versammlung", "Einladung mit Traktanden, Vollmachten, Abstimmung nach Köpfen und Wertquoten, Protokoll und Beschlussbuch.", "Protokollpflicht ZGB Art. 712n"),
         ("Erneuerungsfonds", "Plan, welche Bauteile wann fällig werden, und wie viel die Gemeinschaft jährlich einlegen sollte.", "ZGB Art. 712m Abs. 1 Ziff. 5"),
-        ("Beschlussbuch", "Jeder Beschluss mit Datum, Mehrheit und Wortlaut, jederzeit auffindbar.", ""),
-        ("Belege und Dokumente", "Reglement, Begründungsakt, Verträge, Versicherungen, Rechnungen an einem Ort.", ""),
+        ("Gebäude automatisch erfasst", "Adresse eingeben: Baujahr, Heizungsart und Wohnungen kommen aus dem eidgenössischen Gebäude- und Wohnungsregister. Belege und Reglement an einem Ort.", "Daten aus dem GWR"),
+        ("Vergleich mit ähnlichen Häusern", "Was zahlen vergleichbare Gemeinschaften für Heizung, Hauswartung, Versicherung oder ein neues Dach? Anonym, erst ab 10 vergleichbaren Gebäuden.", "Nur mit Ihrer Zustimmung, nie Personendaten"),
     ],
     faq_titel="Häufige Fragen",
     faq=[("Braucht eine Stockwerkeigentümergemeinschaft einen Verwalter?", "Nein, das Gesetz verlangt keinen. Wird keiner bestellt, kann jeder Stockwerkeigentümer die Ernennung durch das Gericht verlangen (ZGB Art. 712q); viele kleine Gemeinschaften verwalten sich selbst."),

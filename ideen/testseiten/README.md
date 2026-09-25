@@ -8,6 +8,10 @@
 
 Begründung der Auswahl: [../us-marktscan.md](../us-marktscan.md).
 
+**Hinweis Schweiz:** Mit [EinfachSTWEG](https://einfachstweg.ch/) gibt es in der Schweiz bereits eine
+ausgereifte Software für selbstverwaltete STWEG (ab CHF 30/Mt.). Die Schweizer Testseite misst deshalb
+vor allem, ob der tiefere Preis und die Gebäudedatenbank (siehe `../gebaeudedatenbank.md`) ziehen.
+
 ## Vor dem Veröffentlichen (15 Minuten, nur du)
 
 1. **Impressum ausfüllen:** In `inhalte.py` die Platzhalter `[Vorname Name]`, `[Strasse Nr.]`,
