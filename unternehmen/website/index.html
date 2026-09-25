@@ -1,0 +1,344 @@
+<title>Hausklar Liegenschaftsverwaltung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --grund:#F4F6F5; --flaeche:#FFFFFF; --tinte:#13262C; --leise:#51646A;
+  --petrol:#0F5C6E; --petrol-hell:#E2EEF0; --ocker:#B87A1E; --linie:#D3DCDB;
+  --gut:#2F7A4F;
+  --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --text:"Source Sans 3","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --grund:#0E1A1E; --flaeche:#15252A; --tinte:#E4ECEC; --leise:#9DB0B4;
+    --petrol:#6CB9C9; --petrol-hell:#18343B; --ocker:#E0A64B; --linie:#2A3E43; --gut:#6CC191;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --grund:#0E1A1E; --flaeche:#15252A; --tinte:#E4ECEC; --leise:#9DB0B4;
+  --petrol:#6CB9C9; --petrol-hell:#18343B; --ocker:#E0A64B; --linie:#2A3E43; --gut:#6CC191;
+}
+*{box-sizing:border-box}
+body{background:var(--grund);color:var(--tinte);font-family:var(--text);font-size:17px;line-height:1.55;padding-inline:20px}
+.rahmen{max-width:1080px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.1;margin:0}
+h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0;max-width:62ch}
+a{color:var(--petrol)}
+:focus-visible{outline:3px solid var(--ocker);outline-offset:2px}
+.etikett{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--leise)}
+.zahl{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Kopf */
+header.kopf{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:16px;flex-wrap:wrap}
+.marke{font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;color:var(--tinte);text-decoration:none}
+.marke svg{flex:none}
+nav{display:flex;gap:20px;flex-wrap:wrap;font-size:.95rem}
+nav a{text-decoration:none;color:var(--leise)}
+nav a:hover{color:var(--tinte)}
+
+/* Einstieg */
+.einstieg{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;padding-block:40px 64px;align-items:start}
+.einstieg .lead{font-size:1.2rem;color:var(--leise);margin-top:20px}
+.drei{display:grid;gap:10px;margin-top:28px;padding:0;list-style:none}
+.drei li{display:grid;grid-template-columns:5.5rem 1fr;gap:12px;align-items:baseline;border-top:1px solid var(--linie);padding-top:10px}
+.drei b{font-family:var(--mono);font-weight:500;color:var(--petrol);font-size:.95rem}
+.knopf{display:inline-block;background:var(--petrol);color:var(--grund);font-weight:600;padding:13px 22px;border-radius:4px;text-decoration:none;border:0;font:inherit;cursor:pointer}
+.knopf:hover{filter:brightness(1.08)}
+.knopf.zweit{background:transparent;color:var(--petrol);box-shadow:inset 0 0 0 1.5px var(--petrol)}
+.knoepfe{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
+/* Rechner: das Honorarblatt */
+.blatt{background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:26px;box-shadow:0 18px 40px -28px rgba(15,50,60,.45)}
+.blatt h2{font-size:1.3rem}
+.blatt .unter{color:var(--leise);font-size:.92rem;margin-top:4px}
+.felder{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;margin-top:20px}
+.feld label{display:block;font-size:.82rem;color:var(--leise);margin-bottom:4px}
+.feld input{width:100%;font-family:var(--mono);font-size:1rem;padding:9px 10px;border:1px solid var(--linie);border-radius:4px;background:var(--grund);color:var(--tinte)}
+.abrechnung{margin-top:22px;border-top:2px solid var(--tinte);font-variant-numeric:tabular-nums}
+.abrechnung div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--linie)}
+.abrechnung span:last-child{font-family:var(--mono)}
+.abrechnung .summe{border-bottom:0;padding-top:14px;font-weight:600}
+.abrechnung .summe span:last-child{color:var(--gut);font-size:1.5rem;font-weight:500}
+.fussnote{font-size:.78rem;color:var(--leise);margin-top:10px}
+
+/* Abschnitte */
+section{padding-block:64px;border-top:1px solid var(--linie)}
+.kopfzeile{display:grid;grid-template-columns:320px 1fr;gap:40px;margin-bottom:34px}
+.kopfzeile p{color:var(--leise)}
+
+/* Wer macht was */
+.regel{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--linie);vertical-align:top}
+th{font-family:var(--mono);font-weight:500;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--leise)}
+td.wer{white-space:nowrap;font-weight:600}
+.chip{display:inline-block;font-family:var(--mono);font-size:.75rem;padding:3px 8px;border-radius:3px}
+.chip.ki{background:var(--petrol-hell);color:var(--petrol)}
+.chip.mensch{background:var(--tinte);color:var(--grund)}
+.grenze{margin-top:22px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.grenze .zahl{font-size:2rem;color:var(--ocker)}
+
+/* Preise */
+.preise{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.preis{background:var(--flaeche);border:1px solid var(--linie);border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.preis .gross{font-family:var(--display);font-weight:800;font-size:2.6rem;letter-spacing:-.02em;color:var(--petrol)}
+.preis ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.preis .klein{font-size:.85rem;color:var(--leise)}
+
+/* STWEG und Übernahme */
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.zwei > div{display:grid;gap:14px;align-content:start}
+.liste{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.liste li{padding-left:22px;position:relative}
+.liste li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--ocker)}
+
+/* Kontakt */
+.kontakt{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+form{display:grid;gap:14px}
+form label{font-size:.85rem;color:var(--leise);display:block;margin-bottom:4px}
+form input,form select,form textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--linie);border-radius:4px;background:var(--flaeche);color:var(--tinte)}
+.meldung{background:var(--petrol-hell);color:var(--tinte);padding:12px 14px;border-radius:4px;font-size:.95rem}
+.adresse{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--mono)}
+.adresse button{font:inherit;font-size:.8rem;padding:4px 10px;border:1px solid var(--linie);background:var(--flaeche);color:var(--tinte);border-radius:3px;cursor:pointer}
+
+footer{padding-block:34px 48px;border-top:1px solid var(--linie);color:var(--leise);font-size:.88rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .einstieg,.kopfzeile,.preise,.zwei,.kontakt{grid-template-columns:1fr;gap:28px}
+  .einstieg{padding-block:16px 48px}
+}
+@media (max-width:460px){
+  .felder{grid-template-columns:1fr}
+  body{font-size:16px;padding-inline:16px}
+  .blatt,.preis{padding:20px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .abrechnung .summe span:last-child{transition:color .3s}
+}
+</style>
+
+<div class="rahmen">
+<header class="kopf">
+  <a class="marke" href="#start" aria-label="Hausklar Startseite">
+    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 14 15 4l12 10v13H3z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 20h10M10 15.5h10" stroke="var(--ocker)" stroke-width="2.4" stroke-linecap="round"/></svg>
+    Hausklar
+  </a>
+  <nav aria-label="Hauptnavigation">
+    <a href="#arbeitsweise">Arbeitsweise</a>
+    <a href="#preise">Preise</a>
+    <a href="#stockwerkeigentum">Stockwerkeigentum</a>
+    <a href="#nachfolge">Nachfolge</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<main id="start">
+<div class="einstieg">
+  <div>
+    <p class="etikett">Liegenschaftsverwaltung · Zürich, Zug, Aargau, Schwyz</p>
+    <h1 style="margin-top:14px">Ihre Liegenschaft, klar verwaltet.</h1>
+    <p class="lead">Eine Bewirtschafterin oder ein Bewirtschafter mit Namen verantwortet Ihr Haus. Routinearbeit erledigt unsere Software rund um die Uhr. Sie bezahlen einen festen Satz ohne Stundenzettel.</p>
+    <ul class="drei">
+      <li><b>2,9 %</b><span>des Nettomietertrags, Mieterwechsel inbegriffen</span></li>
+      <li><b>Minuten</b><span>bis Ihre Mieterinnen und Mieter eine Antwort haben, auch am Wochenende</span></li>
+      <li><b>1 Person</b><span>mit Stellvertretung, die Sie kennen und direkt erreichen</span></li>
+    </ul>
+    <div class="knoepfe">
+      <a class="knopf" href="#kontakt">Beratung vereinbaren</a>
+      <a class="knopf zweit" href="#preise">Preise ansehen</a>
+    </div>
+  </div>
+
+  <div class="blatt" aria-labelledby="rechner-titel">
+    <h2 id="rechner-titel">Honorarrechner</h2>
+    <p class="unter">Mit Beispielwerten vorausgefüllt. Tragen Sie Ihre eigenen Zahlen ein.</p>
+    <div class="felder">
+      <div class="feld"><label for="r-wohnungen">Wohnungen</label><input id="r-wohnungen" type="number" min="1" value="12"></div>
+      <div class="feld"><label for="r-miete">Ø Nettomiete CHF/Monat</label><input id="r-miete" type="number" min="0" step="10" value="1850"></div>
+      <div class="feld"><label for="r-satz">Heutiges Honorar in %</label><input id="r-satz" type="number" min="0" step="0.1" value="4.5"></div>
+      <div class="feld"><label for="r-wechsel">Mieterwechsel pro Jahr</label><input id="r-wechsel" type="number" min="0" value="6"></div>
+      <div class="feld"><label for="r-stunden">Verrechnete Std. je Wechsel</label><input id="r-stunden" type="number" min="0" step="0.5" value="3"></div>
+      <div class="feld"><label for="r-ansatz">Stundenansatz CHF</label><input id="r-ansatz" type="number" min="0" step="5" value="140"></div>
+    </div>
+    <div class="abrechnung" aria-live="polite">
+      <div><span>Nettomietertrag pro Jahr</span><span id="a-ertrag">–</span></div>
+      <div><span>Heute: Honorar und Stunden</span><span id="a-heute">–</span></div>
+      <div><span>Hausklar: 2,9 %, alles inbegriffen</span><span id="a-hausklar">–</span></div>
+      <div class="summe"><span>Ihre Ersparnis pro Jahr</span><span id="a-ersparnis">–</span></div>
+    </div>
+    <p class="fussnote">Beträge ohne MWST. Mindesthonorar CHF 3'600 pro Liegenschaft und Jahr. Bauherrenvertretung ab CHF 50'000 Bausumme wird separat offeriert.</p>
+  </div>
+</div>
+
+<section id="arbeitsweise">
+  <div class="kopfzeile">
+    <div><p class="etikett">Arbeitsweise</p><h2 style="margin-top:10px">Wer bei uns was entscheidet</h2></div>
+    <p>Unsere Software nimmt Anfragen an, ordnet sie der richtigen Wohnung zu und erledigt, was klar geregelt ist. Alles, was Geld, Verträge oder Mietrecht betrifft, entscheidet ein Mensch. Jede automatische Aktion wird protokolliert und ist für Sie im Portal sichtbar.</p>
+  </div>
+  <div class="regel">
+    <table>
+      <thead><tr><th>Aufgabe</th><th>Wer</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        <tr><td>Mieteranfragen per Telefon, E-Mail, WhatsApp</td><td class="wer"><span class="chip ki">Assistent</span></td><td>Waschplan, Kehrichttermine, Terminbestätigung, auf Deutsch, Französisch, Italienisch oder Englisch</td></tr>
+        <tr><td>Schadenmeldung bis CHF 500</td><td class="wer"><span class="chip ki">Assistent</span></td><td>Tropfender Wasserhahn: Sanitär aus unserem Partnernetz wird aufgeboten, Sie sehen den Fall im Portal</td></tr>
+        <tr><td>Mietzinsinkasso, Mahnungen, Belege</td><td class="wer"><span class="chip ki">Assistent</span> <span class="chip mensch">Freigabe</span></td><td>Vorbereitet automatisch, jede Zahlung im Vier-Augen-Prinzip freigegeben</td></tr>
+        <tr><td>Nebenkosten- und Heizkostenabrechnung</td><td class="wer"><span class="chip ki">Assistent</span> <span class="chip mensch">Prüfung</span></td><td>Verteilschlüssel und Akonto berechnet, vor dem Versand geprüft</td></tr>
+        <tr><td>Mietverträge, Kündigungen, Mietzinsanpassungen</td><td class="wer"><span class="chip mensch">Bewirtschafter/in</span></td><td>Entscheid und Unterschrift immer durch Ihre zuständige Person</td></tr>
+        <tr><td>Wohnungsabnahme und Übergabe</td><td class="wer"><span class="chip mensch">Bewirtschafter/in</span></td><td>Vor Ort, mit Protokoll und Fotos im Portal</td></tr>
+        <tr><td>Unterhalt über CHF 500, Sanierungen</td><td class="wer"><span class="chip mensch">Bewirtschafter/in</span></td><td>Offerten einholen, mit Ihnen entscheiden, Arbeiten begleiten</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grenze"><span class="zahl">CHF 500</span><p>Über diesem Betrag löst unsere Software nie selbst einen Auftrag aus. Für Ihr Haus lässt sich die Grenze tiefer setzen oder der Assistent ganz ausschalten.</p></div>
+</section>
+
+<section id="preise">
+  <div class="kopfzeile">
+    <div><p class="etikett">Preise</p><h2 style="margin-top:10px">Ein Satz, der alles enthält</h2></div>
+    <p>Marktüblich sind 4 bis 5 % des Nettomietertrags und zusätzlich Stundensätze für Mieterwechsel und Sonderaufwand. Bei uns sind Mieterwechsel inbegriffen. Alle Preise verstehen sich zuzüglich 8,1 % MWST.</p>
+  </div>
+  <div class="preise">
+    <div class="preis">
+      <p class="etikett">Mietliegenschaften</p>
+      <p class="gross">2,9 %</p>
+      <p>des jährlichen Nettomietertrags, mindestens CHF 3'600 pro Liegenschaft.</p>
+      <ul>
+        <li>Mieterkommunikation rund um die Uhr</li>
+        <li>Mieterwechsel von der Kündigung bis zur Schlussabrechnung</li>
+        <li>Buchhaltung, Inkasso, Nebenkostenabrechnung</li>
+        <li>Unterhalt und Handwerkerkoordination</li>
+        <li>Eigentümerportal mit allen Belegen</li>
+      </ul>
+      <p class="klein">Separat: Bauherrenvertretung ab CHF 50'000 Bausumme (3–5 %), Erstvermietung Neubau.</p>
+    </div>
+    <div class="preis">
+      <p class="etikett">Stockwerkeigentum</p>
+      <p class="gross">CHF 1'800 <span style="font-size:1.1rem;font-weight:700">+ 380 je Einheit</span></p>
+      <p>pro Jahr. Eine Gemeinschaft mit 10 Einheiten bezahlt CHF 5'600.</p>
+      <ul>
+        <li>Ordentliche Versammlung mit Einladung und Protokoll</li>
+        <li>Budget, Jahresrechnung, Erneuerungsfonds</li>
+        <li>Unterhalt bis CHF 5'000 pro Fall</li>
+        <li>Portal für alle Eigentümerinnen und Eigentümer</li>
+      </ul>
+      <p class="klein">Ab 4 Einheiten. Keine Mindestlaufzeit, Kündigung mit 3 Monaten Frist.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stockwerkeigentum">
+  <div class="zwei">
+    <div>
+      <p class="etikett">Kleine Gemeinschaften</p>
+      <h2>Ihre Verwaltung hat gekündigt? Wir nehmen kleine STWEG gerne.</h2>
+      <p>Viele Verwaltungen geben Gemeinschaften mit wenigen Einheiten ab, weil sich der Aufwand für sie nicht rechnet. Unsere Abläufe sind darauf ausgelegt, dass auch eine Gemeinschaft mit vier Wohnungen eine sorgfältige Verwaltung erhält.</p>
+    </div>
+    <div>
+      <h3>So wechseln Sie</h3>
+      <ul class="liste">
+        <li>Kurzes Gespräch mit dem Verwaltungsausschuss</li>
+        <li>Offerte innert 24 Stunden</li>
+        <li>Wir stellen uns an Ihrer Versammlung vor</li>
+        <li>Nach der Wahl übernehmen wir Unterlagen, Konten und Fonds von der bisherigen Verwaltung</li>
+        <li>Erster Rundgang innert 30 Tagen mit Zustandsbericht</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="nachfolge">
+  <div class="zwei">
+    <div>
+      <p class="etikett">Für Inhaberinnen und Inhaber von Verwaltungen</p>
+      <h2>Sie suchen eine Nachfolge für Ihre Verwaltung?</h2>
+      <p>Wir führen gute Schweizer Verwaltungen weiter, wenn die Inhaber kürzertreten möchten. Das Gespräch ist vertraulich und unverbindlich.</p>
+    </div>
+    <div>
+      <ul class="liste">
+        <li>Ihre Kundinnen und Kunden bleiben persönlich betreut</li>
+        <li>Ihre Mitarbeitenden behalten ihre Stelle</li>
+        <li>Sie bleiben so lange dabei, wie Sie möchten</li>
+        <li>Ein Teil des Kaufpreises hängt davon ab, dass Ihre Kunden bleiben. So haben wir dasselbe Ziel</li>
+      </ul>
+      <a class="knopf zweit" href="#kontakt" style="justify-self:start">Vertrauliches Gespräch anfragen</a>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="kontakt">
+    <div style="display:grid;gap:14px;align-content:start">
+      <p class="etikett">Kontakt</p>
+      <h2>30 Minuten, die sich rechnen</h2>
+      <p>Im ersten Gespräch hören wir zu, rechnen mit Ihren Zahlen und sagen Ihnen offen, ob wir passen. Sie erreichen uns auch direkt:</p>
+      <div class="adresse"><span id="mail">kontakt@hausklar.ch</span><button type="button" id="kopieren">Adresse kopieren</button></div>
+    </div>
+    <form id="anfrage" novalidate>
+      <div><label for="k-name">Name</label><input id="k-name" name="name" autocomplete="name" required></div>
+      <div><label for="k-kontakt">E-Mail oder Telefon</label><input id="k-kontakt" name="kontakt" required></div>
+      <div><label for="k-art">Worum geht es?</label>
+        <select id="k-art" name="art">
+          <option>Mietliegenschaft</option>
+          <option>Stockwerkeigentum</option>
+          <option>Geerbte Liegenschaft</option>
+          <option>Nachfolge meiner Verwaltung</option>
+        </select></div>
+      <div><label for="k-text">Ort und Grösse der Liegenschaft</label><textarea id="k-text" name="text" rows="3" placeholder="z. B. Winterthur, 14 Wohnungen"></textarea></div>
+      <button class="knopf" type="submit">Anfrage senden</button>
+      <p class="meldung" id="meldung" hidden></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>Hausklar · Liegenschaftsverwaltung · Deutschschweiz</span>
+  <span>Datenhaltung in der Schweiz · Verantwortung beim Menschen</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  const ids=["r-wohnungen","r-miete","r-satz","r-wechsel","r-stunden","r-ansatz"];
+  const chf=n=>"CHF "+Math.round(n).toLocaleString("de-CH").replace(/[’’]/g,"'");
+  function wert(id){const v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function rechne(){
+    const ertrag=wert("r-wohnungen")*wert("r-miete")*12;
+    const heute=ertrag*wert("r-satz")/100+wert("r-wechsel")*wert("r-stunden")*wert("r-ansatz");
+    const hk=ertrag>0?Math.max(ertrag*0.029,3600):0;
+    const diff=heute-hk;
+    document.getElementById("a-ertrag").textContent=chf(ertrag);
+    document.getElementById("a-heute").textContent=chf(heute);
+    document.getElementById("a-hausklar").textContent=chf(hk);
+    const e=document.getElementById("a-ersparnis");
+    if(diff>0){e.textContent=chf(diff)+" ("+Math.round(diff/heute*100)+" %)";e.style.color=""}
+    else{e.textContent="keine";e.style.color="var(--leise)"}
+  }
+  ids.forEach(id=>document.getElementById(id).addEventListener("input",rechne));
+  rechne();
+
+  document.getElementById("kopieren").addEventListener("click",function(){
+    const t=document.getElementById("mail").textContent, b=this;
+    const zeige=m=>{b.textContent=m;setTimeout(()=>b.textContent="Adresse kopieren",1800)};
+    const markiere=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r);zeige("Markiert")};
+    try{navigator.clipboard.writeText(t).then(()=>zeige("Kopiert"),markiere)}catch(e){markiere()}
+  });
+
+  document.getElementById("anfrage").addEventListener("submit",function(ev){
+    ev.preventDefault();
+    const m=document.getElementById("meldung");
+    const name=document.getElementById("k-name").value.trim(), k=document.getElementById("k-kontakt").value.trim();
+    if(!name||!k){m.textContent="Bitte Name und E-Mail oder Telefon angeben.";m.hidden=false;return}
+    m.textContent="Diese Seite ist eine Vorschau der künftigen Website. Ihre Anfrage wurde nicht übermittelt. Schreiben Sie uns bitte direkt an kontakt@hausklar.ch.";
+    m.hidden=false;
+  });
+})();
+</script>
