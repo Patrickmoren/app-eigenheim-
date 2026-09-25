@@ -1,0 +1,181 @@
+Punkte,Segment,Bedürfnis,Idee,M,Z,S,W,V,K,D
+82,Lernende,Lehrabschlussprüfung bestehen,QV-Prüfungstrainer je Beruf,4,4,5,3,4,5,4
+81,Mieter,früher aus dem Mietvertrag ohne doppelte Miete,Nachmieter-Lotse OR 264,3,4,5,3,5,5,4
+80,Weiterbildung,eidg. Fachausweis/Diplom bestehen,Prüfungstrainer Höhere Berufsbildung,3,5,5,2,4,5,4
+80,Weiterbildung,"Prüfung Sachbearbeitung/HR/Marketing (edupool, KV)",Prüfungstrainer KV-Weiterbildung,3,5,5,3,3,5,4
+79,Todesfall,Alles erledigen nach einem Todesfall,Nachlass-Lotse,3,4,5,3,4,5,4
+79,Weiterbildung,Prüfung Technische Kaufleute bestehen,Prüfungstrainer TK,2,5,5,4,3,5,4
+79,Weiterbildung,Treuhand-Fachausweis,Prüfungstrainer Treuhand,2,5,5,4,3,5,4
+78,Steuern,"Steuern optimieren (3a, Einkauf PK)",Steuer-Optimierer,4,4,5,2,3,5,4
+78,Bewirtschafter,Prüfung eidg. Fachausweis Immobilienbewirtschaftung bestehen,Prüfungstrainer Immobilien,1,5,5,3,5,5,4
+76,Familie,Übertritt Sek/Gymi vorbereiten,Gymi-Prüfungstrainer,3,4,5,2,4,5,4
+76,Steuern,Quellensteuer zurückholen (NOV),Quellensteuer-Lotse,3,4,5,2,4,5,4
+76,Finanzen,Erbe erhalten: was tun?,Erbschafts-Lotse,3,4,5,3,3,5,4
+75,Steuern,Steuererklärung schnell ausfüllen,KI-Steuerhelfer,5,3,5,1,3,5,4
+75,Weiterbildung,Sprachzertifikat für Einbürgerung (fide),fide-Trainer,2,4,5,3,4,5,4
+74,Eigenheim,Unterhalt bis Ende 2028 steuerlich nutzen,Eigenmietwert-Planer,3,4,5,2,3,5,4
+74,Berufswahl,"Eignungstest bestehen (Multicheck, Basic-Check)",Eignungstest-Trainer,3,4,5,1,4,5,4
+74,Lernende,Berufsschulstoff verstehen,KI-Tutor Berufsschule (ABU),4,3,5,2,4,5,3
+74,Einbürgerung,Einbürgerungstest bestehen,Einbürgerungs-Trainer je Gemeinde,3,4,5,1,4,5,4
+72,Eigenheim,Liegenschaft verkaufen ohne Makler,Privatverkauf-Assistent,4,4,4,2,3,5,3
+72,Vorsorge,Kapital oder Rente bei Pensionierung,Pensionierungsplaner,4,4,4,2,3,5,3
+72,Gesundheit,Arztrechnung nach neuem Tarif TARDOC prüfen,Rechnungs-Check TARDOC,3,3,5,4,4,4,3
+72,Trennung,Unterhalt und Scheidung berechnen,Unterhaltsrechner,2,4,5,3,3,5,4
+71,Familie,Hausaufgaben begleiten nach Lehrplan 21,KI-Lernbegleiter LP21,4,3,5,2,3,5,3
+71,Gesundheit,Therapeut:in (Psychotherapie) mit Platz finden,Therapieplatz-Finder,3,4,4,3,2,5,4
+71,Pflege,Pflegeheim finden und finanzieren,Pflege-Finanzierungs-Lotse,3,4,4,3,3,5,3
+71,KMU,Anrufe nicht verpassen,KI-Telefonassistent Mundart,5,4,3,1,4,4,3
+71,KMU,Sitzungen protokollieren (Mundart),Mundart-Protokoll,4,3,5,1,4,5,3
+71,Bau,Baubewilligung verstehen,Baugesuch-Assistent,3,4,4,3,3,5,3
+71,Recht,Rechtsfrage schnell klären,KI-Rechtsauskunft CH,4,3,5,2,3,4,4
+71,Bewirtschafter,Mieterbriefe schnell und korrekt,Vorlagen-KI Bewirtschaftung,2,3,5,3,5,5,3
+70,Mieter,Bewerbung gegen 50 Mitbewerber gewinnen,Mietdossier mit Coach,3,3,5,1,4,5,4
+70,STWE,Gemeinschaft ohne Verwalter führen,Selbstverwaltungs-Software,3,3,5,2,4,5,3
+70,Gesundheit,Richtige Franchise und Modell wählen,Krankenkassen-Optimierer,5,3,5,1,2,3,5
+70,Gesundheit,Zahnarztkosten vergleichen,Zahnkosten-Vergleich,3,3,5,3,2,5,4
+70,Vorsorge-Dokumente,"Testament, Vorsorgeauftrag, Patientenverfügung",Vorsorgedokumente digital,3,3,5,2,3,5,4
+70,Bau,Baukosten schätzen,Baukosten-Rechner,3,3,5,2,3,5,4
+70,Ärzte,Dokumentation per Sprache (Mundart),Mundart-Arztbericht,4,4,3,2,4,4,3
+70,Lehrpersonen,Unterricht nach LP21 vorbereiten,KI-Unterrichtsplaner LP21,3,3,5,2,3,5,4
+69,Mieter,Mängel melden und Fristen kennen,Mängel-Assistent,2,3,5,3,4,5,3
+69,STWE,Erneuerungsfonds richtig bemessen,Fonds-Planer,2,3,5,3,4,5,3
+69,Familie,Kita-Platz und Subventionen finden,Kita-Finder mit Subventionsrechner,2,3,5,3,3,5,4
+69,Angestellte,Arbeitszeugnis entschlüsseln,Zeugnis-Analyse,2,3,5,2,4,5,4
+69,Grenzgänger,Steuern und Sozialversicherung korrekt,Grenzgänger-Assistent,2,3,5,3,4,5,3
+69,Vorsorge,AHV-Lücken erkennen,AHV-Lücken-Check,2,3,5,3,4,5,3
+69,Vorsorge,Freizügigkeitsgelder finden,Guthaben-Suche,2,3,5,3,4,5,3
+69,Budget,"Fixkosten senken (Abos, Versicherungen)",Fixkosten-Coach,4,3,5,2,2,4,4
+69,Selbständige,AHV-Anerkennung als Selbständiger,Selbständigkeits-Lotse,2,3,5,3,4,5,3
+69,Handwerk,Offerten schnell schreiben,KI-Offerte per Sprache,3,4,4,2,3,5,3
+69,Handwerk,Mietertermine koordinieren,Mietertermin-Link,2,3,4,3,5,5,3
+69,Bau,Mängel bei Neubau dokumentieren (Garantie),Neubau-Mängel-App,2,3,5,3,4,5,3
+69,Recht,Betreibung einleiten gegen Schuldner,Inkasso-Assistent,3,4,5,2,3,4,3
+68,Eigenheim,Heizungsersatz planen und Förderung finden,Heizungs-Navigator,3,3,5,2,2,5,4
+68,Privatvermieter,Mieter sicher auswählen,Bewerber-Prüfung,3,3,5,2,4,4,3
+68,Privatvermieter,Buchhaltung und Nebenkosten,Vermietersoftware,3,3,5,1,4,5,3
+68,Berufswahl,Lehrstelle finden,Lehrstellen-Coach,3,3,5,1,3,5,4
+68,Expats,"Ankommen: Anmeldung, Krankenkasse, Bank",Expat-Onboarding,3,3,5,2,3,4,4
+68,Pflege,Ergänzungsleistungen beantragen,EL-Antrags-Assistent,2,4,4,3,3,5,3
+68,Auto,Occasion kaufen ohne Reinfall,Occasions-Check,3,3,5,2,2,5,4
+68,KMU,Datenschutz revDSG erfüllen,revDSG-Generator,3,3,5,2,3,5,3
+68,KMU,Nachfolge regeln,Nachfolge-Marktplatz,4,4,3,2,2,5,3
+68,Gastro,Hygiene-Selbstkontrolle dokumentieren,Digitale Hygiene-Kontrolle,3,3,4,3,3,5,3
+68,Detailhandel,"Export in die EU (MWST, Zoll)",Export-Assistent,2,4,5,3,3,5,2
+68,Landwirtschaft,Direktzahlungen und Agate-Formulare,Agrar-Admin-Assistent,3,3,4,3,4,5,2
+68,Senioren,Nachlass zu Lebzeiten ordnen,Lebensordner digital,3,3,5,2,3,5,3
+66,Eigenheim,Handwerker vertrauenswürdig finden,Handwerker-Bewertungen,4,3,5,1,2,5,3
+66,Eigenheim,Hypothek verlängern ohne Bankgespräch,Hypotheken-Vergleich,5,4,4,1,1,3,4
+66,Privatvermieter,Mietvertrag nach Kanton korrekt,Vertragsgenerator,2,3,5,2,4,5,3
+66,Berufswahl,Bewerbungsdossier für Lehrstelle,Lehrstellen-Bewerbungs-KI,2,3,5,2,3,5,4
+66,Auto,MFK-Prüfung vorbereiten,MFK-Checker,2,3,5,3,3,5,3
+66,Selbständige,Buchhaltung und MWST ohne Treuhänder,KI-Buchhaltung Einzelfirma,4,3,5,1,2,5,3
+66,Selbständige,Sozialversicherungen und Vorsorge als Selbständiger,Selbständigen-Vorsorge-Check,2,3,5,3,3,5,3
+66,Gastro,Allergene deklarieren,Allergen-Karte,2,3,5,3,3,5,3
+66,Energie,Strompreis und Tarife verstehen,Stromtarif-Vergleich,3,2,5,3,2,5,4
+66,Konsum,Garantie und Gewährleistung durchsetzen,Garantie-Assistent,2,3,5,3,3,5,3
+66,Recht,Schlichtungsverfahren vorbereiten,Schlichtungs-Lotse,2,3,5,3,3,5,3
+66,Behörden,"Formulare ausfüllen (Gemeinde, Kanton)",Formular-KI,3,2,5,3,3,5,3
+65,Mieter,Nebenkostenabrechnung verstehen,NK-Erklärer,2,2,5,3,4,5,3
+65,Eigenheim,Belege für Grundstückgewinnsteuer aufbewahren,Digitale Hausakte,3,3,5,1,3,5,3
+65,Eigenheim,Solarstrom optimal nutzen und abrechnen,PV-Eigenverbrauch-Coach,3,3,5,2,2,5,3
+65,Stellensuchende,Bewerbung auf Schweizer Standard,Bewerbungs-KI CH,3,3,5,1,2,5,4
+65,Führerausweis,Theorieprüfung bestehen,Theorie-Trainer,3,3,5,1,2,5,4
+65,Reisen,Flugverspätung entschädigt erhalten,Fluggastrechte-Claim,3,3,5,1,2,5,4
+65,Gründer,Firma gründen,Gründungsplattform,3,3,5,1,2,5,4
+65,KMU,Arbeitssicherheit EKAS/SUVA dokumentieren,Sicherheits-Doku-App,3,3,4,3,3,5,2
+64,Privatvermieter,Mietzins korrekt anpassen (Referenzzins),Mietzins-Assistent,2,3,5,1,4,5,3
+64,Angestellte,Lohn vergleichen und verhandeln,Lohnrechner/Verhandlungscoach,3,2,5,2,2,5,4
+64,Angestellte,Kündigung und Rechte verstehen,Arbeitsrechts-Assistent,2,3,5,2,3,5,3
+64,Schulden,Betreibung vermeiden und Schulden ordnen,Schulden-Lotse,2,3,5,3,3,4,3
+64,Selbständige,Offerten und Rechnungen,Rechnungs-App,4,3,5,1,1,5,3
+64,Senioren,Wohnen im Alter planen,Alterswohn-Lotse,2,3,4,3,3,5,3
+64,Konsum,Abo kündigen,Kündigungsdienst,3,2,5,2,2,5,4
+64,Tourismus,"Ferienwohnung vermieten (Kurtaxe, Regeln)",Gastgeber-Assistent CH,2,3,5,2,3,5,3
+62,Mieter,Kaution nach Auszug schnell zurück,Kautions-Freigabe-Assistent,1,3,5,3,4,5,2
+62,STWE,Versammlung digital abhalten,Versammlungs-App,2,2,5,3,3,5,3
+62,Stellensuchende,RAV-Pflichten erfüllen,RAV-Assistent,2,2,5,3,3,5,3
+62,Heirat,Hochzeit planen,Hochzeitsplaner CH,3,3,5,1,1,5,4
+62,Geburt,Mutterschaft und Formalitäten,Baby-Formular-Lotse,2,2,5,3,3,5,3
+62,Hund,Hundegesetze je Kanton und Kurse,Hunde-App CH,2,2,5,3,3,5,3
+62,Sport,"Verein führen (Mitglieder, Beiträge)",Vereinssoftware,3,3,5,1,2,5,3
+62,Selbständige,Scheinselbständigkeit vermeiden,Status-Check,1,3,5,4,3,5,2
+62,Nebenerwerb,Nebenerwerb korrekt anmelden,Nebenerwerb-Lotse,2,2,5,3,3,5,3
+62,Handwerk,Rapporte und Fotos,Rapport-App,3,3,4,2,3,5,2
+62,Sportvereine,J+S-Kurse administrieren,J+S-Assistent,2,2,4,4,4,5,2
+62,Studierende,Stipendien finden,Stipendien-Finder,1,3,5,3,3,5,3
+62,Studierende,Prüfungen lernen,KI-Lernkarten,3,3,5,1,1,5,4
+62,Junge,Erste Steuererklärung/Budget,Erwachsenwerden-Lotse,2,2,5,3,2,5,4
+62,Verkehr,Busse anfechten,Bussen-Check,1,3,5,3,3,5,3
+62,Online-Händler,Produkttexte und Übersetzungen DE/FR/IT,Mehrsprachige Shop-Texte,3,3,5,1,2,5,3
+62,Behörden,Bewilligungen für Anlässe,Anlass-Bewilligungs-Lotse,1,3,5,4,3,5,2
+61,Mieter,Umzug organisieren,Umzugs-Checkliste mit Partnern,3,2,5,1,2,5,4
+61,Mieter,Untermiete legal regeln,Untermiet-Assistent OR 262,1,2,5,4,4,5,2
+61,KMU,Lohnbuchhaltung inkl. Quellensteuer,Lohn-Software Kleinstbetriebe,4,3,4,1,3,4,2
+61,KMU,Personal finden,Stellen-Plattform,4,3,4,1,1,5,3
+61,Pflegende Angehörige,Anstellung bei Spitex/Entlastung,Angehörigen-Lotse,2,3,4,3,3,4,3
+61,Energie,Energieausweis GEAK vorbereiten,GEAK-Vorbereitung,2,3,4,3,3,5,2
+61,Gemeinden,Gemeindeversammlung protokollieren,Protokoll-Tool Gemeinden,2,3,3,3,4,5,2
+61,Versicherung,Deckungslücken erkennen,Versicherungs-Check,4,3,5,1,2,2,4
+61,Versicherung,Schaden schnell melden und durchsetzen,Schadenfall-Assistent,2,3,5,3,2,5,2
+61,Hauswarte,Rundgänge und Aufträge dokumentieren,Hauswart-App,2,3,4,2,4,5,2
+60,Mieter,Endreinigung mit Abnahmegarantie finden,Reinigungs-Vermittlung,3,3,4,1,3,4,3
+60,Familie,Ferienbetreuung organisieren,Ferienangebots-Plattform,2,2,5,3,2,5,3
+60,Familie,Nachhilfe finden,Nachhilfe-Marktplatz,3,3,4,1,2,5,3
+60,Lehrbetriebe,Lernende betreuen und dokumentieren,Lernenden-Management,3,3,3,2,3,5,2
+60,Velo,E-Bike Service und Diebstahl,Velo-Pass,2,2,5,3,2,5,3
+60,KMU,Google-Bewertungen verbessern,Bewertungs-Tool,3,3,5,1,1,5,3
+60,Gastro,Schichtplanung,Dienstplan-App,3,3,4,1,2,5,3
+60,Detailhandel,Online verkaufen in der Schweiz,Shop-Baukasten CH,3,3,5,1,1,5,3
+60,Psychotherapie,Anordnungsmodell-Administration,Psycho-Praxis-Software,3,3,4,2,2,5,2
+60,Energie,Stromgemeinschaft LEG abrechnen,LEG-Software,3,3,4,1,3,4,3
+60,Kitas,Betreuungsverträge und Abrechnung,Kita-Software,3,3,4,2,2,5,2
+60,Senioren,Betrugsmaschen erkennen,Betrugs-Check,2,2,5,3,2,5,3
+60,Junge,"Erster Mietvertrag, Versicherungen",Start-ins-Leben-Paket,2,2,5,3,3,4,3
+60,Kreative,Aufträge und Honorare,Honorarrechner,2,2,5,3,2,5,3
+60,Nachhaltigkeit,CO2-Bericht für KMU,KMU-CO2-Bilanz,3,3,4,2,2,5,2
+59,Privatvermieter,Ferienwohnung legal vermieten (Gemeinderegeln),Kurzzeit-Regel-Check,1,2,5,4,3,5,2
+59,Berufswahl,Schnupperlehren organisieren,Schnupper-Planer,1,2,5,3,3,5,3
+59,Militär,Dienstverschiebung und EO,Dienst-Assistent,1,2,5,4,3,5,2
+59,Finanzen,ETF/3a verstehen,Finanzbildung,3,2,5,1,1,5,4
+59,Makler,Inserate und Exposés,Exposé-KI,2,3,5,1,2,5,3
+57,Eigenheim,Gebäudeversicherung und Schäden melden,Schadenmelde-Assistent,2,2,5,3,2,5,2
+57,Freelancer,Aufträge finden,Freelancer-Marktplatz CH,3,3,4,1,1,5,3
+57,Gastro,Reservationen,Reservationssystem,3,3,4,1,1,5,3
+57,Therapeuten,Abrechnung EMR/ASCA,Praxis-Software Komplementär,3,3,4,1,2,5,2
+57,Landwirtschaft,Direktvermarktung Hofladen,Hofladen-Shop,2,2,5,2,2,5,3
+57,Landwirtschaft,Hofnachfolge,Hofnachfolge-Plattform,1,3,4,4,2,5,2
+57,Senioren,Digitale Hilfe am Handy,Senioren-Handyhilfe,2,2,4,3,2,5,3
+56,Familie,Familienkalender und Aufgaben teilen,Familien-App,3,2,5,1,1,5,3
+56,Familie,Kinderzulagen und Formulare,Familien-Formularhelfer,1,2,5,3,3,5,2
+56,Gesundheit,Belege bei Zusatzversicherung einreichen,Rückforderungs-Assistent,3,2,5,2,2,4,2
+56,Energie,E-Auto zuhause laden abrechnen (Mieter),Lade-Abrechnung,2,3,4,2,3,4,2
+56,Musikschulen,Stundenplan und Abrechnung,Musikschul-Software,2,3,4,2,2,5,2
+56,Finanzen,Vermögen und Konten im Überblick,Finanz-Übersicht CH,3,2,5,2,2,3,3
+56,Tourismus,Gästekommunikation mehrsprachig,Gäste-KI,2,3,5,1,1,5,3
+56,Nachhaltigkeit,Secondhand verkaufen,Wiederverkaufs-Assistent,3,2,5,1,1,5,3
+55,Detailhandel,Inventar und Nachbestellung,Lager-App,3,3,4,1,1,5,2
+55,Vereine,GV organisieren und Beiträge einziehen,Vereins-GV-Tool,2,2,5,1,2,5,3
+55,Lehrpersonen,Beurteilung und Zeugnisse,Beurteilungs-Tool,2,2,4,2,3,5,2
+55,Studierende,WG-Zimmer finden,WG-Plattform,2,2,5,1,1,5,4
+55,Online-Händler,Retouren und Versand CH,Versand-Tool,3,3,4,1,1,5,2
+54,Handwerk,Lernende rekrutieren,Lehrbetrieb-Recruiting,2,3,3,2,2,5,2
+54,Kreative,Rechte an Bildern/Musik klären,Rechte-Check,1,2,5,3,2,5,2
+54,Haustiere,Tiersitter finden,Tiersitter-Plattform,2,3,4,1,1,5,3
+54,Haustiere,Tierarztkosten versichern,Tierversicherungs-Vergleich,2,3,5,2,1,3,3
+52,Temporär,Einsätze und Stunden erfassen,Stundenrapport-App,2,2,4,2,2,5,2
+52,Gastro,Food Waste reduzieren,Restposten-App,2,2,4,1,1,5,4
+52,Spitex privat,Einsätze und Rapporte,Spitex-App,3,3,3,1,2,4,2
+52,Landwirtschaft,Aushilfen finden (Ernte),Erntehelfer-Plattform,1,3,4,3,2,4,2
+52,Nachhaltigkeit,Möbel und Geräte reparieren lassen,Reparatur-Plattform,2,2,4,2,1,5,3
+51,Familie,Babysitter vertrauenswürdig finden,Babysitter-Plattform,2,3,4,1,1,4,3
+51,Gesundheit,Chronische Krankheit managen,Patienten-Tagebuch,3,2,5,1,1,4,2
+51,Freizeit,Ausflüge mit Kindern,Ausflugs-Plattform,2,1,5,1,1,5,4
+51,Senioren,Mobilität ohne Auto,Fahrdienst-Vermittlung,2,3,3,2,2,4,2
+51,Tourismus,Bergbahn/Region: Gästedaten nutzen,Destinations-Analytics,2,3,2,3,2,5,1
+51,Behörden,"Umzug melden, Ausweise",Behörden-Checkliste,2,1,5,1,2,5,3
+50,Tierärzte,Termine und Erinnerungen,Tierarzt-App,2,2,4,2,1,5,2
+49,Schulen,Elternkommunikation,Schul-App,3,2,3,1,1,5,2
+48,Apotheken,Impf- und Beratungstermine,Termin-Tool,2,2,4,1,1,5,2
+48,Physio,Übungen für Patienten,Übungs-App,2,2,4,1,1,5,2
+45,Garten,Schrebergarten/Pflanzenpflege,Garten-App,1,1,5,2,1,5,2
+44,Handwerk,Material bestellen,Einkaufs-Plattform,3,2,3,1,1,3,2
