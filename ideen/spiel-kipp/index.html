@@ -5,8 +5,9 @@
 <style>
 :root{
   --bg:#EEF1EC; --surface:#FFFFFF; --ink:#1B2330; --muted:#5B6674; --line:#D5DBD3;
-  --brass:#A8741F; --brass-soft:#F3E6CC; --left:#2B7A82; --right:#C4502F;
-  --danger:#B3261E; --ok:#2E7D4F; --shadow:0 1px 2px rgba(27,35,48,.08),0 8px 24px rgba(27,35,48,.08);
+  --brass:#A8741F; --brass-soft:#F3E6CC; --p1:#2B7A82; --p2:#C4502F; --p1-soft:#DCEEEF; --p2-soft:#F7E1D9;
+  --danger:#B3261E; --ok:#2E7D4F; --balloon:#7A5AA6;
+  --shadow:0 1px 2px rgba(27,35,48,.08),0 8px 24px rgba(27,35,48,.08);
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
@@ -14,292 +15,371 @@
   :root:not([data-theme="light"]){
     color-scheme:dark;
     --bg:#11161C; --surface:#1A212A; --ink:#E8ECEF; --muted:#9AA5B1; --line:#2C3541;
-    --brass:#E2AA4B; --brass-soft:#3A2F1C; --left:#4FB3BC; --right:#F07A57;
-    --danger:#FF6B5E; --ok:#5BC98A; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --brass:#E2AA4B; --brass-soft:#3A2F1C; --p1:#4FB3BC; --p2:#F07A57; --p1-soft:#16383B; --p2-soft:#3E2219;
+    --danger:#FF6B5E; --ok:#5BC98A; --balloon:#B196DC;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
   --bg:#11161C; --surface:#1A212A; --ink:#E8ECEF; --muted:#9AA5B1; --line:#2C3541;
-  --brass:#E2AA4B; --brass-soft:#3A2F1C; --left:#4FB3BC; --right:#F07A57;
-  --danger:#FF6B5E; --ok:#5BC98A; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --brass:#E2AA4B; --brass-soft:#3A2F1C; --p1:#4FB3BC; --p2:#F07A57; --p1-soft:#16383B; --p2-soft:#3E2219;
+  --danger:#FF6B5E; --ok:#5BC98A; --balloon:#B196DC;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
 }
 [hidden]{display:none!important}
 html,body{height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
-.app{max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;gap:14px;padding:16px;box-sizing:border-box}
+.app{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:12px;padding:16px;box-sizing:border-box}
 header{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .logo{font-family:var(--display);font-weight:900;font-size:40px;letter-spacing:.02em;line-height:1;margin:0}
 .logo span{color:var(--brass)}
 .tag{color:var(--muted);font-size:13px;margin:0;text-align:right}
-.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
-.stat b{display:block;font-family:var(--display);font-weight:800;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
-.stat small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
-.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.turn{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+.player{border-radius:12px;padding:8px 12px;border:2px solid transparent;background:var(--surface)}
+.player small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.player b{font-size:16px}
+.player.p1.active{border-color:var(--p1);background:var(--p1-soft)}
+.player.p2.active{border-color:var(--p2);background:var(--p2-soft)}
+.player.p2{text-align:right}
+.vs{font-family:var(--display);font-weight:800;color:var(--muted)}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 svg{display:block;width:100%;height:auto}
-.timer{height:6px;background:var(--line)}
-.timer i{display:block;height:100%;width:100%;background:var(--brass);transform-origin:left}
-.next{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
-.chip{font-family:var(--display);font-weight:800;font-size:28px;min-width:44px;height:44px;border-radius:8px;display:inline-grid;place-items:center;background:var(--brass-soft);color:var(--ink);font-variant-numeric:tabular-nums}
-.chip.now{background:var(--brass);color:#fff;font-size:34px;min-width:56px;height:56px}
-.chip.later{opacity:.55;font-size:22px;min-width:36px;height:36px}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button{font-family:var(--body);font-weight:700;font-size:16px;border:0;border-radius:12px;padding:14px 16px;cursor:pointer;color:#fff;background:var(--ink)}
+.gauge{padding:10px 14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.gauge .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.gauge .lbl b{font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink)}
+.track{position:relative;height:14px;border-radius:7px;background:linear-gradient(90deg,var(--danger) 0 6%,var(--line) 6% 94%,var(--danger) 94% 100%)}
+.track i{position:absolute;top:-4px;width:6px;height:22px;border-radius:3px;background:var(--ink);transform:translateX(-50%);transition:left .3s}
+.track em{position:absolute;top:-4px;width:6px;height:22px;border-radius:3px;background:var(--brass);opacity:.8;transform:translateX(-50%)}
+.track::after{content:"";position:absolute;left:50%;top:2px;bottom:2px;width:2px;background:var(--muted);opacity:.5}
+.notches{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;padding:0 10px 10px}
+.notches .mid{display:grid;place-items:center;color:var(--muted);font-size:18px}
+.notch{font-family:var(--display);font-weight:800;font-size:20px;padding:10px 0;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.notch small{display:block;font-family:var(--body);font-weight:500;font-size:10px;color:var(--muted)}
+.notch:disabled{opacity:.45;cursor:default}
+.notch.pick{border-color:var(--brass);background:var(--brass-soft)}
+.hand{display:flex;flex-direction:column;gap:6px}
+.hand .who{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.pieces{display:flex;gap:8px;flex-wrap:wrap}
+.piece{font-family:var(--display);font-weight:900;font-size:30px;min-width:64px;height:64px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;line-height:1}
+.piece small{font-family:var(--body);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.piece.sel{border-color:var(--brass);box-shadow:0 0 0 3px var(--brass-soft)}
+.piece.balloon{color:var(--balloon)}
+.piece.anchor{background:var(--brass-soft)}
+.piece:disabled{opacity:.5;cursor:default}
+.opp .piece{min-width:46px;height:46px;font-size:22px}
+.status{font-size:14px;min-height:1.5em;margin:0}
+button{font-family:var(--body);font-weight:700;font-size:16px;border:0;border-radius:12px;padding:13px 16px;cursor:pointer;color:var(--surface);background:var(--ink)}
 button:focus-visible,input:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-button.put{font-family:var(--display);font-weight:800;font-size:26px;padding:18px 10px;letter-spacing:.03em}
-button.l{background:var(--left)} button.r{background:var(--right)}
 button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-button:disabled{opacity:.4;cursor:default}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .panel h2{font-family:var(--display);font-weight:800;font-size:30px;line-height:1.05;margin:0;text-wrap:balance}
 .panel p{margin:0;color:var(--muted)}
 .rules{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
 .row{display:flex;gap:8px;flex-wrap:wrap}
-.row > *{flex:1 1 160px}
+.row > *{flex:1 1 150px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1 1 90px;background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:10px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:4px}
 input{width:100%;box-sizing:border-box;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;word-break:break-all;user-select:all}
-.versus{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center}
-.versus b{font-family:var(--display);font-weight:900;font-size:52px;line-height:1;font-variant-numeric:tabular-nums}
-.versus span{display:block;color:var(--muted);font-size:13px}
-.win{color:var(--ok)} .lose{color:var(--danger)}
-.msg{font-size:13px;min-height:1.5em;color:var(--muted)}
+.record{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .note{font-size:12px;color:var(--muted);text-align:center;margin:0}
-@media (prefers-reduced-motion: reduce){ #beam,#panL,#panR{transition:none!important} }
+@media (prefers-reduced-motion: reduce){ #beamG,.track i{transition:none!important} }
 </style>
 
 <div class="app">
   <header>
     <h1 class="logo">KIPP<span>.</span></h1>
-    <p class="tag">Halte die Waage.<br>Schlag deine Freunde.</p>
+    <p class="tag">Ein Balken. Zwei Spieler.<br>Wer ihn kippt, verliert.</p>
   </header>
 
-  <div class="hud" aria-live="polite">
-    <div class="stat"><small>Punkte</small><b id="score">0</b></div>
-    <div class="stat"><small>Unterschied</small><b id="diff">0</b></div>
-    <div class="stat"><small>Rekord heute</small><b id="best">–</b></div>
+  <div class="turn">
+    <div class="player p1 active" id="pl1"><small>Spieler 1</small><b id="name1">Du</b></div>
+    <div class="vs">VS</div>
+    <div class="player p2" id="pl2"><small id="p2role">Computer</small><b id="name2">Computer · Mittel</b></div>
   </div>
 
   <div class="stage">
-    <svg viewBox="0 0 400 250" role="img" aria-label="Waage mit zwei Schalen">
-      <line x1="200" y1="62" x2="200" y2="226" stroke="var(--muted)" stroke-width="6" stroke-linecap="round"/>
-      <path d="M150 232 L250 232 L232 214 L168 214 Z" fill="var(--muted)"/>
-      <!-- Kippgrenze -->
-      <g id="limit" opacity=".9">
-        <text x="200" y="22" text-anchor="middle" font-family="Figtree,sans-serif" font-size="11" fill="var(--muted)">KIPPGRENZE ±10</text>
-      </g>
-      <g id="beam" style="transform-origin:200px 62px;transition:transform .35s cubic-bezier(.3,1.4,.5,1)">
-        <rect x="56" y="57" width="288" height="10" rx="5" fill="var(--brass)"/>
-        <circle cx="200" cy="62" r="9" fill="var(--ink)"/>
-      </g>
-      <g id="panL" style="transition:transform .35s cubic-bezier(.3,1.4,.5,1)"></g>
-      <g id="panR" style="transition:transform .35s cubic-bezier(.3,1.4,.5,1)"></g>
+    <svg viewBox="0 0 400 250" role="img" aria-label="Balken mit vier Kerben pro Seite und den gelegten Steinen">
+      <path d="M170 244 L230 244 L214 228 L186 228 Z" fill="var(--muted)"/>
+      <line x1="200" y1="228" x2="200" y2="96" stroke="var(--muted)" stroke-width="6" stroke-linecap="round"/>
+      <g id="beamG" style="transform-origin:200px 96px;transition:transform .45s cubic-bezier(.3,1.5,.5,1)"></g>
     </svg>
-    <div class="timer"><i id="bar"></i></div>
-    <div class="next">
-      <span>Jetzt</span><span class="chip now" id="n0">5</span>
-      <span>danach</span><span class="chip" id="n1">3</span><span class="chip later" id="n2">8</span>
+    <div class="notches" id="notches"></div>
+    <div class="gauge">
+      <div class="lbl"><span>Links <b id="tL">0</b></span><span id="gaugeText">Kippgrenze: Unterschied über 16</span><span><b id="tR">0</b> Rechts</span></div>
+      <div class="track" aria-hidden="true"><em id="ghost" hidden></em><i id="marker" style="left:50%"></i></div>
     </div>
   </div>
 
-  <div class="controls">
-    <button class="put l" id="btnL" disabled>← LINKS</button>
-    <button class="put r" id="btnR" disabled>RECHTS →</button>
+  <p class="status" id="status" aria-live="polite"></p>
+
+  <div class="hand" id="myHand">
+    <span class="who" id="handWho">Deine Steine – wähle einen, dann eine Kerbe</span>
+    <div class="pieces" id="pieces"></div>
   </div>
+  <div class="hand opp" id="oppHand">
+    <span class="who" id="oppWho">Steine des Gegners</span>
+    <div class="pieces" id="oppPieces"></div>
+  </div>
+  <p class="record" id="bagInfo"></p>
 
   <section class="panel" id="start">
-    <h2>Lege jedes Gewicht links oder rechts. Kippt die Waage, ist Schluss.</h2>
+    <h2>Legt abwechselnd Steine auf den Balken. Wer ihn zum Kippen bringt, verliert.</h2>
     <ul class="rules">
-      <li>Der Unterschied zwischen links und rechts darf höchstens <b>10</b> sein.</li>
-      <li>Jedes Gewicht gibt 1 Punkt. Genau ausgeglichen: <b>+3 Punkte</b>.</li>
-      <li>Die Zeit pro Gewicht wird kürzer. Läuft sie ab, fällt es auf die schwerere Seite.</li>
-      <li>Alle spielen heute die gleiche Reihe. Wer mehr Punkte hat, gewinnt.</li>
+      <li>Jede Seite hat 4 Kerben. Ein Stein drückt mit <b>Gewicht × Abstand</b>: eine 5 auf Kerbe 3 zählt 15.</li>
+      <li>Ist eine Seite um mehr als <b>16</b> schwerer, kippt der Balken.</li>
+      <li>Du musst jeden Zug legen. Hast du keinen sicheren Zug mehr, kippst du.</li>
+      <li><b style="color:var(--balloon)">Ballon −3</b> zieht nach oben. <b>Anker 8</b> ist schwer und gefährlich.</li>
+      <li>Beide sehen alle Steine. Nach jedem Zug ziehst du einen neuen aus dem Sack.</li>
     </ul>
-    <div class="row">
-      <div><label for="name">Dein Name</label><input id="name" maxlength="14" placeholder="z. B. Paul" autocomplete="nickname"></div>
-    </div>
-    <div class="row">
-      <button id="play">Tagesrunde spielen</button>
-      <button class="ghost" id="showCode">Herausforderung annehmen</button>
-    </div>
-    <div id="codeBox" hidden>
-      <label for="codeIn">Code von deinem Gegner</label>
-      <div class="row">
-        <input id="codeIn" placeholder="KIPP-…">
-        <button id="acceptCode">Gegen diesen Code spielen</button>
+    <div>
+      <label>Gegner</label>
+      <div class="seg" id="modeSeg">
+        <button data-mode="cpu" data-level="1" aria-pressed="false">Computer leicht</button>
+        <button data-mode="cpu" data-level="2" aria-pressed="true">Computer mittel</button>
+        <button data-mode="cpu" data-level="3" aria-pressed="false">Computer schwer</button>
+        <button data-mode="duo" aria-pressed="false">Zu zweit am Handy</button>
       </div>
-      <div class="msg" id="codeMsg"></div>
     </div>
-    <p class="note">Tastatur: ← / → oder A / D</p>
+    <div class="row">
+      <div><label for="n1">Name Spieler 1</label><input id="n1" maxlength="14" placeholder="Paul" autocomplete="nickname"></div>
+      <div id="n2wrap" hidden><label for="n2">Name Spieler 2</label><input id="n2" maxlength="14" placeholder="Anna"></div>
+    </div>
+    <button id="play">Spiel starten</button>
+    <p class="record" id="record"></p>
   </section>
 
   <section class="panel" id="end" hidden>
-    <h2 id="endTitle">Gekippt.</h2>
-    <div class="versus" id="versus" hidden>
-      <div><b id="vsMe">0</b><span id="vsMeName">Du</span></div>
-      <div style="color:var(--muted);font-weight:700">:</div>
-      <div><b id="vsThem">0</b><span id="vsThemName">Gegner</span></div>
-    </div>
+    <h2 id="endTitle"></h2>
     <p id="endText"></p>
-    <div>
-      <label>Dein Code zum Weitergeben</label>
-      <div class="code" id="myCode"></div>
-    </div>
     <div class="row">
-      <button id="copy">Code kopieren</button>
-      <button class="ghost" id="again">Nochmals</button>
+      <button id="again">Revanche</button>
+      <button class="ghost" id="menu">Anderer Gegner</button>
     </div>
-    <div class="msg" id="copyMsg"></div>
   </section>
 
-  <p class="note">Prototyp. Gegner schickst du den Code per Chat; er gibt ihn unter «Herausforderung annehmen» ein und spielt die gleiche Reihe.</p>
+  <p class="note">Prototyp · Stein antippen, dann Kerbe antippen · Tastatur: 1–3 wählt einen Stein</p>
 </div>
 
 <script>
 (function(){
   const $ = id => document.getElementById(id);
-  const LIMIT = 10;
+  const LIMIT = 16, DIST = [1,2,3,4];
   const store = {
     get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } },
     set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
   };
-  function hashStr(s){ let h=2166136261; for(const c of s){ h^=c.charCodeAt(0); h=Math.imul(h,16777619) } return h>>>0 }
-  function rng(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296 } }
-  function today(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0") }
+  const LEVELNAME = {1:"leicht",2:"mittel",3:"schwer"};
+  let mode = "cpu", level = 2;
+  let bag, hands, board, turn, sel, over, busy, lastMove;
 
-  let seed, rand, queue, L, R, stackL, stackR, score, count, timeLeft, timeMax, timer, running=false, rival=null, lastT;
-
-  function nextWeight(){
-    // spätere Gewichte werden schwerer
-    const top = Math.min(9 + Math.floor(count/12), 13);
-    return 1 + Math.floor(rand()*top);
+  // board: key "L1".."R4" -> array of {w, p}
+  function newBag(){
+    const b = [];
+    for(let v=1; v<=6; v++) for(let i=0;i<3;i++) b.push(v);
+    b.push(1, -3, -3, -3, 8, 8);
+    for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]] }
+    return b;
   }
-  function fillQueue(){ while(queue.length<3) queue.push(nextWeight()) }
+  function torque(bd){
+    let l=0, r=0;
+    for(const d of DIST){ for(const s of bd["L"+d]) l += s.w*d; for(const s of bd["R"+d]) r += s.w*d }
+    return {l, r, diff:r-l};
+  }
+  function emptyBoard(){ const b={}; for(const d of DIST){ b["L"+d]=[]; b["R"+d]=[] } return b }
+  function clone(bd){ const b={}; for(const k in bd) b[k]=bd[k].slice(); return b }
+  function tips(bd, key, w){ const b=clone(bd); b[key].push({w}); return Math.abs(torque(b).diff) > LIMIT }
+  const KEYS = ["L4","L3","L2","L1","R1","R2","R3","R4"];
+  function safeMoves(bd, hand){
+    const m=[]; hand.forEach((w,i)=>KEYS.forEach(k=>{ if(!tips(bd,k,w)) m.push({i,k,w}) })); return m;
+  }
+  function allMoves(hand){ const m=[]; hand.forEach((w,i)=>KEYS.forEach(k=>m.push({i,k,w}))); return m }
 
-  function drawPan(g, x, stack, color, sum){
-    const items = stack.slice(-6);
-    let s = `<line x1="${x}" y1="62" x2="${x-34}" y2="140" stroke="var(--muted)" stroke-width="1.5"/>
-             <line x1="${x}" y1="62" x2="${x+34}" y2="140" stroke="var(--muted)" stroke-width="1.5"/>
-             <path d="M${x-48} 140 Q${x} 168 ${x+48} 140 Z" fill="${color}" opacity=".9"/>`;
-    items.forEach((w,i)=>{
-      const y = 128 - i*15;
-      s += `<rect x="${x-18}" y="${y}" width="36" height="13" rx="3" fill="var(--surface)" stroke="${color}" stroke-width="1.5"/>
-            <text x="${x}" y="${y+10.5}" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="var(--ink)">${w}</text>`;
+  function label(w){ return w===-3 ? "−3" : String(w) }
+  function kind(w){ return w<0 ? "balloon" : w>=8 ? "anchor" : "" }
+  function nameOf(p){ return p===0 ? ($("n1").value.trim()||"Du") : (mode==="cpu" ? "Computer" : ($("n2").value.trim()||"Spieler 2")) }
+
+  function drawBeam(){
+    const g = $("beamG"); let s = `<rect x="22" y="90" width="356" height="12" rx="6" fill="var(--brass)"/>`;
+    KEYS.forEach(k=>{
+      const d = +k[1], x = 200 + (k[0]==="L"?-1:1)*d*42;
+      const hi = lastMove && lastMove.k===k;
+      s += `<circle cx="${x}" cy="96" r="3.5" fill="var(--surface)"/>`;
+      s += `<text x="${x}" y="86" text-anchor="middle" font-family="Figtree,sans-serif" font-size="10" fill="var(--muted)">${d}</text>`;
+      let down = 0, up = 0;
+      board[k].forEach((st, idx)=>{
+        const col = st.p===0 ? "var(--p1)" : "var(--p2)";
+        if(st.w<0){
+          const y = 58 - up*22; up++;
+          s += `<line x1="${x}" y1="${y+9}" x2="${x}" y2="90" stroke="var(--balloon)" stroke-width="1.2"/>`;
+          s += `<circle cx="${x}" cy="${y}" r="10" fill="var(--balloon)" opacity=".9"/>`;
+          s += `<text x="${x}" y="${y+4}" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#fff">−3</text>`;
+        } else if(down < 5){
+          const y = 108 + down*20; down++;
+          const last = hi && idx===board[k].length-1;
+          s += `<line x1="${x}" y1="${y-6}" x2="${x}" y2="${y}" stroke="var(--muted)" stroke-width="1"/>`;
+          s += `<rect x="${x-15}" y="${y}" width="30" height="17" rx="4" fill="var(--surface)" stroke="${col}" stroke-width="${last?3:1.8}"/>`;
+          s += `<text x="${x}" y="${y+12.5}" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="var(--ink)">${st.w}</text>`;
+        } else if(down===5){
+          down++; s += `<text x="${x}" y="222" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="12" fill="var(--muted)">+</text>`;
+        }
+      });
     });
-    s += `<text x="${x}" y="196" text-anchor="middle" font-family="Big Shoulders Display,Arial Narrow,sans-serif" font-weight="800" font-size="30" fill="${color}">${sum}</text>`;
     g.innerHTML = s;
+    const t = torque(board);
+    const ang = Math.max(-1, Math.min(1, t.diff/LIMIT)) * 12 * (over ? 1.6 : 1);
+    g.style.transform = `rotate(${ang}deg)`;
   }
+  function y0(){ return 218 }
+
+  function setMarker(el, diff){ const p = 50 + Math.max(-1.12, Math.min(1.12, diff/LIMIT))*44; el.style.left = p+"%" }
   function render(){
-    const d = R - L;
-    const ang = Math.max(-1, Math.min(1, d/LIMIT)) * 16;
-    $("beam").style.transform = `rotate(${ang}deg)`;
-    const rad = ang*Math.PI/180, dy = Math.sin(rad)*140;
-    drawPan($("panL"), 60, stackL, "var(--left)", L);
-    drawPan($("panR"), 340, stackR, "var(--right)", R);
-    $("panL").style.transform = `translate(${140-Math.cos(rad)*140}px, ${-dy}px)`;
-    $("panR").style.transform = `translate(${-(140-Math.cos(rad)*140)}px, ${dy}px)`;
-    $("score").textContent = score;
-    const ad = Math.abs(d);
-    $("diff").textContent = ad;
-    $("diff").style.color = ad>=8 ? "var(--danger)" : ad===0 ? "var(--ok)" : "var(--ink)";
-    $("n0").textContent = queue[0]; $("n1").textContent = queue[1]; $("n2").textContent = queue[2];
+    drawBeam();
+    const t = torque(board);
+    $("tL").textContent = t.l; $("tR").textContent = t.r;
+    setMarker($("marker"), t.diff);
+    const ad = Math.abs(t.diff);
+    $("gaugeText").textContent = over ? "Gekippt" : `Unterschied ${ad} von max. ${LIMIT}`;
+    $("gaugeText").style.color = ad>12 ? "var(--danger)" : "var(--muted)";
+    $("pl1").classList.toggle("active", turn===0 && !over);
+    $("pl2").classList.toggle("active", turn===1 && !over);
+    $("name1").textContent = nameOf(0);
+    $("name2").textContent = mode==="cpu" ? `Computer · ${LEVELNAME[level]}` : nameOf(1);
+    $("p2role").textContent = mode==="cpu" ? "Computer" : "Spieler 2";
+    // Hände
+    const human = mode==="duo" ? turn : 0;
+    const other = 1-human;
+    const myTurn = !over && !busy && (mode==="duo" || turn===0);
+    $("handWho").textContent = mode==="duo" ? `Steine von ${nameOf(human)} – wähle einen, dann eine Kerbe` : "Deine Steine – wähle einen, dann eine Kerbe";
+    $("oppWho").textContent = `Steine von ${nameOf(other)}`;
+    $("pieces").innerHTML = hands[human].map((w,i)=>`<button class="piece ${kind(w)} ${sel===i?"sel":""}" data-i="${i}" ${myTurn?"":"disabled"} aria-pressed="${sel===i}">${label(w)}<small>${w<0?"BALLON":w>=8?"ANKER":""}</small></button>`).join("") || `<span class="record">Keine Steine mehr</span>`;
+    $("oppPieces").innerHTML = hands[other].map(w=>`<span class="piece ${kind(w)}">${label(w)}</span>`).join("");
+    // Kerben
+    const nb = $("notches"); let h = "";
+    KEYS.forEach((k,idx)=>{
+      if(idx===4) h += `<span class="mid">▲</span>`;
+      const load = board[k].reduce((a,s)=>a+s.w,0);
+      h += `<button class="notch ${sel!==null&&myTurn?"pick":""}" data-k="${k}" ${myTurn&&sel!==null?"":"disabled"} aria-label="${k[0]==="L"?"Links":"Rechts"} Kerbe ${k[1]}">${k[1]}<small>${load?("Σ "+load):"leer"}</small></button>`;
+    });
+    nb.innerHTML = h;
+    $("bagInfo").textContent = `Im Sack: ${bag.length} Steine`;
   }
-  function setup(s){
-    seed = s; rand = rng(hashStr(String(s)));
-    queue=[]; L=R=0; stackL=[]; stackR=[]; score=0; count=0;
-    fillQueue();
-  }
-  function startRound(s, rv){
-    rival = rv || null;
-    setup(s);
-    $("start").hidden = true; $("end").hidden = true;
-    $("btnL").disabled = $("btnR").disabled = false;
-    running = true; timeMax = 3.0; timeLeft = timeMax; lastT = performance.now();
-    render(); cancelAnimationFrame(timer); timer = requestAnimationFrame(tick);
-    $("btnL").focus();
-  }
-  function tick(t){
-    if(!running) return;
-    timeLeft -= (t-lastT)/1000; lastT = t;
-    $("bar").style.transform = `scaleX(${Math.max(0,timeLeft/timeMax)})`;
-    if(timeLeft<=0){ place(L>=R ? "L" : "R"); }
-    if(running) timer = requestAnimationFrame(tick);
-  }
-  function place(side){
-    if(!running) return;
-    const w = queue.shift();
-    if(side==="L"){ L+=w; stackL.push(w) } else { R+=w; stackR.push(w) }
-    count++; score++;
-    if(L===R) score+=3;
-    fillQueue();
-    timeMax = Math.max(1.2, 3.0 - count*0.05); timeLeft = timeMax;
+
+  function status(t){ $("status").textContent = t }
+
+  function play(move){
+    const mover = turn;
+    const w = hands[turn][move.i];
+    hands[turn].splice(move.i,1);
+    board[move.k].push({w, p:turn});
+    lastMove = move; sel = null;
+    const t = torque(board);
+    if(Math.abs(t.diff) > LIMIT){ over = true; render(); return end(turn) }
+    if(bag.length) hands[turn].push(bag.pop());
+    if(!hands[0].length && !hands[1].length){ over = true; render(); return end(null) }
+    turn = 1-turn;
+    if(!hands[turn].length) turn = 1-turn;
+    const where = `${move.k[0]==="L"?"links":"rechts"} auf Kerbe ${move.k[1]}`;
+    status(`${nameOf(mover)} legt ${label(w)} ${where}.`);
     render();
-    if(Math.abs(L-R) > LIMIT) finish();
+    if(mode==="cpu" && turn===1) cpuTurn();
+    else if(!safeMoves(board, hands[turn]).length) status($("status").textContent + ` ${nameOf(turn)} hat keinen sicheren Zug mehr!`);
   }
-  function codeFor(){ const n = ($("name").value.trim() || "Anonym").replace(/\s+/g,"_"); return `KIPP-${seed}-${score}-${n}` }
-  function finish(){
-    running=false; cancelAnimationFrame(timer);
-    $("btnL").disabled = $("btnR").disabled = true;
-    const key = "kipp-best-"+seed;
-    const prev = parseInt(store.get(key)||"0",10);
-    if(score>prev) store.set(key, String(score));
-    if(seed===today()) $("best").textContent = Math.max(prev,score);
-    $("myCode").textContent = codeFor();
-    $("copyMsg").textContent = "";
-    if(rival){
-      $("versus").hidden = false;
-      $("vsMe").textContent = score; $("vsThem").textContent = rival.score;
-      $("vsMeName").textContent = $("name").value.trim() || "Du"; $("vsThemName").textContent = rival.name;
-      const w = score>rival.score, eq = score===rival.score;
-      $("vsMe").className = w ? "win" : eq ? "" : "lose";
-      $("vsThem").className = w ? "lose" : eq ? "" : "win";
-      $("endTitle").textContent = w ? `Gewonnen gegen ${rival.name}.` : eq ? "Unentschieden." : `${rival.name} war besser.`;
-      $("endText").textContent = w ? "Schick deinen Code zurück. Mal sehen, ob sie kontert." : "Gleiche Reihe, nochmals versuchen? Oder schick deinen Code weiter.";
+
+  function cpuTurn(){
+    busy = true; render();
+    setTimeout(()=>{
+      const hand = hands[1], safe = safeMoves(board, hand);
+      let move;
+      if(!safe.length){ const all = allMoves(hand); move = all[Math.floor(Math.random()*all.length)] }
+      else if(level===1){ move = Math.random()<0.15 ? allMoves(hand)[Math.floor(Math.random()*hand.length*8)] : safe[Math.floor(Math.random()*safe.length)] }
+      else {
+        const scored = safe.map(m=>{
+          const b = clone(board); b[m.k].push({w:m.w, p:1});
+          const opp = safeMoves(b, hands[0]).length;
+          const d = Math.abs(torque(b).diff);
+          return {m, s: -opp*10 - (level===3 ? 0 : d*0.2) + (level===3 ? -Math.abs(d-10)*0.3 : 0)};
+        }).sort((a,b)=>b.s-a.s);
+        const pickTop = level===3 ? 1 : 0.55;
+        move = Math.random()<pickTop ? scored[0].m : scored[Math.floor(Math.random()*scored.length)].m;
+      }
+      busy = false;
+      play(move);
+    }, 650);
+  }
+
+  function end(loser){
+    const rec = JSON.parse(store.get("kipp2-record")||"{}");
+    if(loser===null){
+      $("endTitle").textContent = "Der Balken hat gehalten. Unentschieden.";
+      $("endText").textContent = "Alle Steine liegen. Keiner hat gekippt.";
     } else {
-      $("versus").hidden = true;
-      $("endTitle").textContent = `Gekippt bei ${score} Punkten.`;
-      $("endText").textContent = "Schick deinen Code an jemanden. Er spielt genau die gleiche Reihe wie du.";
+      const winner = 1-loser;
+      const du = n => n==="Du";
+      const ln = nameOf(loser), wn = nameOf(winner);
+      $("endTitle").textContent = `${ln} ${du(ln)?"hast":"hat"} gekippt. ${wn} ${du(wn)?"gewinnst":"gewinnt"}.`;
+      const t = torque(board);
+      $("endText").textContent = `Unterschied am Schluss: ${Math.abs(t.diff)} (erlaubt: ${LIMIT}).`;
+      if(mode==="cpu"){
+        const k = "L"+level; rec[k] = rec[k] || {w:0,l:0};
+        if(winner===0) rec[k].w++; else rec[k].l++;
+        store.set("kipp2-record", JSON.stringify(rec));
+      }
     }
+    status("");
     $("end").hidden = false;
     $("again").focus();
+    showRecord();
+  }
+  function showRecord(){
+    const rec = JSON.parse(store.get("kipp2-record")||"{}");
+    const parts = [1,2,3].map(l=>{ const r=rec["L"+l]; return r ? `${LEVELNAME[l]} ${r.w}:${r.l}` : null }).filter(Boolean);
+    $("record").textContent = parts.length ? `Deine Bilanz gegen den Computer (Siege:Niederlagen): ${parts.join(" · ")}` : "";
   }
 
-  $("btnL").addEventListener("click", ()=>place("L"));
-  $("btnR").addEventListener("click", ()=>place("R"));
-  document.addEventListener("keydown", e=>{
-    if(!running) return;
-    if(e.key==="ArrowLeft"||e.key==="a"||e.key==="A"){ e.preventDefault(); place("L") }
-    if(e.key==="ArrowRight"||e.key==="d"||e.key==="D"){ e.preventDefault(); place("R") }
-  });
-  $("name").value = store.get("kipp-name") || "";
-  $("name").addEventListener("input", ()=>store.set("kipp-name", $("name").value.trim()));
-  $("play").addEventListener("click", ()=>startRound(today()));
-  $("showCode").addEventListener("click", ()=>{ $("codeBox").hidden = !$("codeBox").hidden; if(!$("codeBox").hidden) $("codeIn").focus() });
-  $("acceptCode").addEventListener("click", ()=>{
-    const raw = $("codeIn").value.trim();
-    const m = raw.match(/^KIPP-(\d{4}-\d{2}-\d{2}|[A-Za-z0-9]+)-(\d+)-(.+)$/);
-    if(!m){ $("codeMsg").textContent = "Das ist kein gültiger Code. Er sieht so aus: KIPP-2026-09-25-34-Anna"; return }
-    $("codeMsg").textContent = "";
-    startRound(m[1], {score:parseInt(m[2],10), name:m[3].replace(/_/g," ")});
-  });
-  $("again").addEventListener("click", ()=>startRound(seed, rival));
-  $("copy").addEventListener("click", ()=>{
-    const txt = $("myCode").textContent;
-    const done = ()=> $("copyMsg").textContent = "Kopiert. Füge den Code im Chat ein.";
-    const fail = ()=>{
-      const r = document.createRange(); r.selectNodeContents($("myCode"));
-      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      $("copyMsg").textContent = "Kopieren ging nicht. Der Code ist markiert, kopiere ihn von Hand.";
-    };
-    try{ navigator.clipboard.writeText(txt).then(done, fail) }catch(e){ fail() }
-  });
+  function newGame(){
+    bag = newBag(); hands = [[],[]]; board = emptyBoard(); sel = null; over = false; busy = false; lastMove = null;
+    for(let i=0;i<3;i++){ hands[0].push(bag.pop()); hands[1].push(bag.pop()) }
+    turn = Math.random()<0.5 ? 0 : 1;
+    $("start").hidden = true; $("end").hidden = true;
+    status(`${nameOf(turn)} beginnt.`);
+    render();
+    if(mode==="cpu" && turn===1) cpuTurn();
+  }
 
-  // Ruhezustand: Beispielstellung zeigen
-  setup(today());
-  const b = parseInt(store.get("kipp-best-"+today())||"0",10);
-  if(b) $("best").textContent = b;
-  L=17; R=12; stackL=[8,6,3]; stackR=[5,7]; score=0;
-  render();
+  // Ereignisse
+  $("pieces").addEventListener("click", e=>{
+    const b = e.target.closest(".piece"); if(!b || b.disabled) return;
+    const i = +b.dataset.i; sel = sel===i ? null : i; render();
+  });
+  $("notches").addEventListener("click", e=>{
+    const b = e.target.closest(".notch"); if(!b || b.disabled || sel===null) return;
+    play({i:sel, k:b.dataset.k, w:hands[turn][sel]});
+  });
+  document.addEventListener("keydown", e=>{
+    if(over || busy || !hands || !$("start").hidden) return;
+    if(["1","2","3"].includes(e.key)){ const i=+e.key-1; if(i < hands[mode==="duo"?turn:0].length){ sel=i; render() } }
+  });
+  $("modeSeg").addEventListener("click", e=>{
+    const b = e.target.closest("button"); if(!b) return;
+    [...$("modeSeg").children].forEach(x=>x.setAttribute("aria-pressed", x===b ? "true" : "false"));
+    mode = b.dataset.mode; if(b.dataset.level) level = +b.dataset.level;
+    $("n2wrap").hidden = mode!=="duo";
+    render();
+  });
+  $("n1").value = store.get("kipp-name") || "";
+  $("n1").addEventListener("input", ()=>{ store.set("kipp-name", $("n1").value.trim()); render() });
+  $("n2").addEventListener("input", render);
+  $("play").addEventListener("click", newGame);
+  $("again").addEventListener("click", newGame);
+  $("menu").addEventListener("click", ()=>{ $("end").hidden = true; $("start").hidden = false; $("play").focus() });
+
+  // Ruhezustand: Beispielstellung
+  bag = newBag(); hands = [[5,-3,2],[8,4,1]]; board = emptyBoard(); sel = null; over = false; busy = true; turn = 0; lastMove = null;
+  board.L3.push({w:4,p:0}); board.L1.push({w:6,p:1}); board.R2.push({w:5,p:0}); board.R4.push({w:3,p:1}); board.R1.push({w:-3,p:1});
+  status("Beispielstellung. Starte unten ein Spiel.");
+  render(); showRecord();
 })();
 </script>
