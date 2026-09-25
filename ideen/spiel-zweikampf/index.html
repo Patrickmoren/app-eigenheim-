@@ -1,0 +1,495 @@
+<title>Zweikampf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --bg:#EDF0EA; --surface:#FFFFFF; --ink:#18202B; --muted:#5A6572; --line:#D3D9D0;
+  --accent:#D1492E; --accent-soft:#F8DED6; --gold:#A8741F; --gold-soft:#F3E6CC;
+  --blue:#2F6FB0; --green:#2E8A57; --yellow:#C99A12; --red:#C4302B; --purple:#7A5AA6;
+  --win:#2E8A57; --lose:#C4302B;
+  --shadow:0 1px 2px rgba(24,32,43,.08),0 10px 28px rgba(24,32,43,.09);
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#10151B; --surface:#1A2129; --ink:#E9EDF0; --muted:#9BA6B2; --line:#2B3440;
+    --accent:#FF7456; --accent-soft:#40231B; --gold:#E2AA4B; --gold-soft:#3A2F1C;
+    --blue:#6AA7E6; --green:#5BC98A; --yellow:#E8C04A; --red:#FF6B5E; --purple:#B196DC;
+    --win:#5BC98A; --lose:#FF6B5E;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#10151B; --surface:#1A2129; --ink:#E9EDF0; --muted:#9BA6B2; --line:#2B3440;
+  --accent:#FF7456; --accent-soft:#40231B; --gold:#E2AA4B; --gold-soft:#3A2F1C;
+  --blue:#6AA7E6; --green:#5BC98A; --yellow:#E8C04A; --red:#FF6B5E; --purple:#B196DC;
+  --win:#5BC98A; --lose:#FF6B5E;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+.app{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:16px;box-sizing:border-box;min-height:100%}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-family:var(--display);font-weight:900;font-size:38px;line-height:1;margin:0;letter-spacing:.01em;cursor:pointer}
+.logo span{color:var(--accent)}
+.streak{display:flex;align-items:center;gap:6px;font-weight:800;font-variant-numeric:tabular-nums;background:var(--gold-soft);color:var(--ink);padding:6px 10px;border-radius:999px;font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.card.hero{box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0}
+h2{font-family:var(--display);font-weight:800;font-size:32px;line-height:1.02;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:800;font-size:22px;line-height:1.1;margin:0}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+button{font-family:var(--body);font-weight:800;font-size:16px;border:0;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--surface);background:var(--ink);touch-action:manipulation}
+button.accent{background:var(--accent);color:#fff}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row > *{flex:1 1 150px}
+label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}
+input{width:100%;box-sizing:border-box;font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.games{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.gbtn{background:var(--surface);color:var(--ink);border:1px solid var(--line);text-align:left;padding:12px;display:flex;flex-direction:column;gap:2px;font-weight:700}
+.gbtn b{font-family:var(--display);font-size:20px;font-weight:800}
+.gbtn span{font-size:12px;color:var(--muted);font-weight:500}
+/* Spielbildschirm */
+.hud{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px}
+.hud .gname{font-family:var(--display);font-weight:900;font-size:30px;line-height:1}
+.hud .gstep{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hud .pts{font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;font-variant-numeric:tabular-nums;text-align:right}
+.hud .rival{font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.tbar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--accent);transform-origin:left}
+.arena{background:var(--surface);border:1px solid var(--line);border-radius:16px;min-height:380px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;box-shadow:var(--shadow);user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.flash-ok{animation:ok .25s}
+.flash-bad{animation:bad .3s}
+@keyframes ok{0%{box-shadow:0 0 0 4px var(--win)}100%{box-shadow:var(--shadow)}}
+@keyframes bad{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.big{font-family:var(--display);font-weight:900;font-size:64px;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
+.grid{display:grid;gap:8px;width:100%}
+.tile{font-family:var(--display);font-weight:800;font-size:28px;aspect-ratio:1;border-radius:12px;background:var(--bg);color:var(--ink);border:2px solid var(--line);padding:0;display:grid;place-items:center}
+.tile.on{background:var(--gold);border-color:var(--gold);color:#fff}
+.tile.sel{background:var(--gold-soft);border-color:var(--gold)}
+.tile.good{background:var(--win);border-color:var(--win)}
+.tile.bad{background:var(--lose);border-color:var(--lose)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.ans{font-family:var(--display);font-weight:800;font-size:30px;padding:18px 8px;background:var(--bg);color:var(--ink);border:2px solid var(--line)}
+.lives{font-size:14px;color:var(--muted);font-weight:700}
+.dots{position:relative;aspect-ratio:1;border-radius:14px;background:var(--bg);border:2px solid var(--line);padding:0;overflow:hidden}
+.dots i{position:absolute;width:9%;aspect-ratio:1;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%)}
+.cross{display:grid;grid-template-columns:repeat(3,72px);grid-template-rows:repeat(3,64px);gap:6px}
+.cross button{font-size:28px;padding:0;background:var(--bg);color:var(--ink);border:2px solid var(--line)}
+.lane{position:relative;width:100%;height:56px;border-radius:12px;background:var(--bg);border:2px solid var(--line);overflow:hidden}
+.lane .zone{position:absolute;top:0;bottom:0;background:var(--gold-soft);border-left:2px solid var(--gold);border-right:2px solid var(--gold)}
+.lane .zone::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--gold)}
+.lane .mk{position:absolute;top:4px;bottom:4px;width:6px;border-radius:3px;background:var(--accent);transform:translateX(-50%)}
+.scale{width:100%}
+.react{width:100%;min-height:300px;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:34px;color:#fff;background:var(--red);border:0}
+.react.go{background:var(--green)}
+/* Ergebnis */
+.res{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.res th,.res td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}
+.res th:first-child,.res td:first-child{text-align:left}
+.res th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.res .w{color:var(--win);font-weight:800} .res .l{color:var(--lose)}
+.tally{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:8px}
+.tally b{font-family:var(--display);font-weight:900;font-size:64px;line-height:1}
+.tally span{display:block;font-size:13px;color:var(--muted)}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;word-break:break-all;user-select:all}
+.msg{font-size:13px;color:var(--muted);min-height:1.4em}
+.note{font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:380px){ .cross{grid-template-columns:repeat(3,60px);grid-template-rows:repeat(3,56px)} .big{font-size:52px} }
+@media (prefers-reduced-motion: reduce){ .flash-ok,.flash-bad{animation:none} }
+</style>
+
+<div class="app">
+  <header>
+    <h1 class="logo" id="home">ZWEIKAMPF<span>.</span></h1>
+    <div class="streak" title="Tage in Folge mit Tageskampf"><span aria-hidden="true">🔥</span><span id="streak">0</span></div>
+  </header>
+
+  <!-- Start -->
+  <section id="scrHome">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card hero">
+        <p class="eyebrow" id="dayLabel">Tageskampf</p>
+        <h2>5 Spiele. Die gleiche Abfolge für alle. Heute.</h2>
+        <div class="chips" id="dayGames"></div>
+        <p class="muted small" id="dayBest"></p>
+        <button class="accent" id="btnDay">Tageskampf spielen</button>
+      </div>
+      <div class="card">
+        <h3>Freunde herausfordern</h3>
+        <p class="muted small">3 zufällige Spiele. Du spielst zuerst und schickst den Code. Dein Gegner spielt exakt die gleichen Runden.</p>
+        <div class="row">
+          <div><label for="name">Dein Name</label><input id="name" maxlength="14" placeholder="Paul" autocomplete="nickname"></div>
+        </div>
+        <div class="row">
+          <button id="btnDuel">Neues Duell</button>
+          <button class="ghost" id="btnShowCode">Code eingeben</button>
+        </div>
+        <div id="codeBox" hidden>
+          <label for="codeIn">Code von deinem Gegner</label>
+          <div class="row"><input id="codeIn" placeholder="ZK-…"><button id="btnCode">Annehmen</button></div>
+          <p class="msg" id="codeMsg"></p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Training</h3>
+        <p class="muted small">Jedes Spiel einzeln. Dein Rekord steht darunter.</p>
+        <div class="games" id="gameList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro vor jedem Spiel -->
+  <section id="scrIntro" hidden>
+    <div class="card hero">
+      <p class="eyebrow" id="introStep"></p>
+      <h2 id="introName"></h2>
+      <p id="introRule"></p>
+      <p class="muted small" id="introRival"></p>
+      <button class="accent" id="btnGo">Los</button>
+    </div>
+  </section>
+
+  <!-- Spiel -->
+  <section id="scrGame" hidden>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="hud">
+        <div><div class="gstep" id="gStep"></div><div class="gname" id="gName"></div></div>
+        <div><div class="pts" id="gPts">0</div><div class="rival" id="gRival"></div></div>
+      </div>
+      <div class="tbar"><i id="tbar"></i></div>
+      <div class="arena" id="arena"></div>
+    </div>
+  </section>
+
+  <!-- Ergebnis -->
+  <section id="scrResult" hidden>
+    <div class="card hero">
+      <p class="eyebrow" id="resEyebrow"></p>
+      <h2 id="resTitle"></h2>
+      <div class="tally" id="tally" hidden>
+        <div><b id="tMe" class="w">0</b><span id="tMeName">Du</span></div>
+        <b style="font-size:40px;color:var(--muted)">:</b>
+        <div><b id="tThem">0</b><span id="tThemName"></span></div>
+      </div>
+      <div style="overflow-x:auto"><table class="res" id="resTable"></table></div>
+      <div id="shareBox">
+        <label>Dein Code – schick ihn deinem Gegner</label>
+        <div class="code" id="myCode"></div>
+      </div>
+      <div class="row">
+        <button class="accent" id="btnCopy">Code kopieren</button>
+        <button class="ghost" id="btnAgain">Nochmals</button>
+      </div>
+      <p class="msg" id="copyMsg"></p>
+      <button class="ghost" id="btnBack">Zur Übersicht</button>
+    </div>
+  </section>
+
+  <p class="note">Prototyp · Punkte und Rekorde bleiben nur in diesem Browser gespeichert.</p>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v===null ? d : JSON.parse(v) }catch(e){ return d } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)) }catch(e){} }
+};
+function hashStr(s){ let h=2166136261; for(const c of s){ h^=c.charCodeAt(0); h=Math.imul(h,16777619) } return h>>>0 }
+function mulberry(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296 } }
+const mk = r => ({ f:r, int:(a,b)=>a+Math.floor(r()*(b-a+1)), pick:arr=>arr[Math.floor(r()*arr.length)],
+  shuffle(arr){ const x=arr.slice(); for(let i=x.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [x[i],x[j]]=[x[j],x[i]] } return x } });
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function todayKey(d=new Date()){ return d.getFullYear()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0") }
+
+/* ---------------------------------------------------------------- Spiele
+   Jedes Spiel: id, name, rule, time (Sekunden oder 0 = rundenbasiert), start(ctx) -> stop()
+   ctx: rng, el, add(n), end(), flash(ok)                                     */
+const GAMES = [
+{ id:0, name:"Kipp", rule:"Leg jedes Gewicht links oder rechts. Mehr als 10 Unterschied und die Waage kippt. Genau ausgeglichen gibt +3.", time:45,
+  start(c){
+    let L=0,R=0,q=[c.rng.int(1,9),c.rng.int(1,9),c.rng.int(1,9)], n=0;
+    c.el.innerHTML = `<svg class="scale" viewBox="0 0 300 120"><line x1="150" y1="30" x2="150" y2="110" stroke="var(--muted)" stroke-width="5"/>
+      <g id="kb" style="transform-origin:150px 30px;transition:transform .25s"><rect x="20" y="26" width="260" height="8" rx="4" fill="var(--gold)"/>
+      <text id="kl" x="40" y="70" text-anchor="middle" font-family="Big Shoulders Display,sans-serif" font-weight="900" font-size="34" fill="var(--blue)">0</text>
+      <text id="kr" x="260" y="70" text-anchor="middle" font-family="Big Shoulders Display,sans-serif" font-weight="900" font-size="34" fill="var(--accent)">0</text></g></svg>
+      <div class="big" id="kn"></div><div class="muted small" id="kq"></div>
+      <div class="two"><button class="ans" id="kL">← Links</button><button class="ans" id="kR">Rechts →</button></div>`;
+    const draw=()=>{ const d=R-L; c.el.querySelector("#kb").style.transform=`rotate(${Math.max(-1,Math.min(1,d/10))*14}deg)`;
+      c.el.querySelector("#kl").textContent=L; c.el.querySelector("#kr").textContent=R;
+      c.el.querySelector("#kn").textContent=q[0]; c.el.querySelector("#kq").textContent=`danach ${q[1]}, ${q[2]} · Unterschied ${Math.abs(d)}`; };
+    const put=s=>{ const w=q.shift(); q.push(c.rng.int(1, Math.min(9+Math.floor(n/10),14))); n++;
+      if(s<0) L+=w; else R+=w; let p=1; if(L===R) p+=3; c.add(p);
+      if(Math.abs(L-R)>10){ draw(); c.flash(false); return c.end() } draw(); };
+    c.el.querySelector("#kL").onclick=()=>put(-1); c.el.querySelector("#kR").onclick=()=>put(1);
+    c.keys = k=>{ if(k==="ArrowLeft") put(-1); if(k==="ArrowRight") put(1) };
+    draw();
+  }},
+{ id:1, name:"Zielsumme", rule:"Tippe Zahlen an, bis sie genau die Zielsumme ergeben. Pro benutzte Zahl ein Punkt. Zu viel setzt zurück.", time:45,
+  start(c){
+    let tiles, target, sel;
+    const round=()=>{ tiles=Array.from({length:9},()=>c.rng.int(1,9)); const k=c.rng.int(2,4); const idx=c.rng.shuffle([0,1,2,3,4,5,6,7,8]).slice(0,k);
+      target=idx.reduce((a,i)=>a+tiles[i],0); sel=new Set(); draw() };
+    const draw=()=>{ const s=[...sel].reduce((a,i)=>a+tiles[i],0);
+      c.el.innerHTML=`<div class="muted small">Ziel</div><div class="big">${target}</div><div class="muted small">Auswahl: ${s}</div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);max-width:300px">${tiles.map((t,i)=>`<button class="tile ${sel.has(i)?"sel":""}" data-i="${i}">${t}</button>`).join("")}</div>`;
+      c.el.querySelectorAll(".tile").forEach(b=>b.onclick=()=>tap(+b.dataset.i)) };
+    const tap=i=>{ if(sel.has(i)) sel.delete(i); else sel.add(i); const s=[...sel].reduce((a,j)=>a+tiles[j],0);
+      if(s===target){ c.add(sel.size); c.flash(true); round() } else if(s>target){ c.flash(false); sel=new Set(); draw() } else draw() };
+    round();
+  }},
+{ id:2, name:"Farbfalle", rule:"Passt das Wort zur Farbe, in der es geschrieben ist? Richtig +1, falsch −1.", time:40,
+  start(c){
+    const C=[["ROT","var(--red)"],["BLAU","var(--blue)"],["GRÜN","var(--green)"],["GELB","var(--yellow)"],["LILA","var(--purple)"]];
+    let ok;
+    const round=()=>{ const w=c.rng.pick(C); ok=c.rng.f()<0.45; const col= ok ? w[1] : c.rng.pick(C.filter(x=>x!==w))[1];
+      c.el.innerHTML=`<div class="big" style="color:${col};font-size:72px">${w[0]}</div>
+      <div class="two"><button class="ans" id="fN">Passt nicht</button><button class="ans" id="fY">Passt</button></div>`;
+      c.el.querySelector("#fY").onclick=()=>ans(true); c.el.querySelector("#fN").onclick=()=>ans(false) };
+    const ans=a=>{ if(a===ok){ c.add(1); c.flash(true) } else { c.add(-1); c.flash(false) } round() };
+    c.keys=k=>{ if(k==="ArrowRight") ans(true); if(k==="ArrowLeft") ans(false) };
+    round();
+  }},
+{ id:3, name:"Pfeilsturm", rule:"Drück die Richtung des Pfeils. Ist der Pfeil rot, drück die Gegenrichtung. Richtig +1, falsch −1.", time:40,
+  start(c){
+    const D=[["↑","u"],["→","r"],["↓","d"],["←","l"]], OPP={u:"d",d:"u",l:"r",r:"l"};
+    let want;
+    c.el.innerHTML=`<div class="big" id="pa" style="font-size:110px"></div>
+      <div class="cross"><span></span><button data-d="u">↑</button><span></span><button data-d="l">←</button><span></span><button data-d="r">→</button><span></span><button data-d="d">↓</button><span></span></div>`;
+    const round=()=>{ const d=c.rng.pick(D), inv=c.rng.f()<0.35; want= inv ? OPP[d[1]] : d[1];
+      const a=c.el.querySelector("#pa"); a.textContent=d[0]; a.style.color= inv ? "var(--red)" : "var(--ink)" };
+    const ans=d=>{ if(d===want){ c.add(1); c.flash(true) } else { c.add(-1); c.flash(false) } round() };
+    c.el.querySelectorAll(".cross button").forEach(b=>b.onclick=()=>ans(b.dataset.d));
+    c.keys=k=>{ const m={ArrowUp:"u",ArrowDown:"d",ArrowLeft:"l",ArrowRight:"r"}; if(m[k]) ans(m[k]) };
+    round();
+  }},
+{ id:4, name:"Kopfrechnen", rule:"Wähle das richtige Ergebnis. Jede fünfte richtige Antwort in Folge gibt einen Bonus.", time:45,
+  start(c){
+    let res, streak=0, n=0;
+    const round=()=>{ n++; const lvl=Math.min(3,Math.floor(n/6)); const op=c.rng.pick(lvl<1?["+","−"]:["+","−","×"]);
+      let a,b; if(op==="×"){ a=c.rng.int(2,6+lvl*2); b=c.rng.int(2,9); res=a*b } else if(op==="+"){ a=c.rng.int(3,20+lvl*25); b=c.rng.int(3,20+lvl*25); res=a+b } else { a=c.rng.int(10,30+lvl*30); b=c.rng.int(2,a); res=a-b }
+      const opts=c.rng.shuffle([res, res+c.rng.pick([-10,-2,-1,1,2,10]), res+c.rng.pick([-3,3,5,-5,11])]);
+      const uniq=[...new Set(opts)]; while(uniq.length<3) uniq.push(res+uniq.length*7);
+      c.el.innerHTML=`<div class="big">${a} ${op} ${b}</div><div class="muted small">Serie: ${streak}</div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">${uniq.map(o=>`<button class="ans" data-v="${o}">${o}</button>`).join("")}</div>`;
+      c.el.querySelectorAll(".ans").forEach(b=>b.onclick=()=>ans(+b.dataset.v)) };
+    const ans=v=>{ if(v===res){ streak++; c.add(1 + (streak%5===0 ? 3 : 0)); c.flash(true) } else { streak=0; c.flash(false) } round() };
+    round();
+  }},
+{ id:5, name:"Musterblick", rule:"Merk dir die aufleuchtenden Felder und tippe sie danach an. Jedes Muster wird grösser. 3 Leben.", time:60,
+  start(c){
+    let n=3, lives=3, pat, hit, lock=true, to;
+    const draw=(show)=>{ c.el.innerHTML=`<div class="lives">${"♥".repeat(lives)}${"♡".repeat(3-lives)} · Muster mit ${n} Feldern</div>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);max-width:320px">${Array.from({length:16},(_,i)=>`<button class="tile ${show&&pat.has(i)?"on":""} ${hit.has(i)?"good":""}" data-i="${i}"></button>`).join("")}</div>`;
+      c.el.querySelectorAll(".tile").forEach(b=>b.onclick=()=>tap(+b.dataset.i,b)) };
+    const round=()=>{ pat=new Set(c.rng.shuffle([...Array(16).keys()]).slice(0,n)); hit=new Set(); lock=true; draw(true);
+      to=setTimeout(()=>{ lock=false; draw(false) }, 700+n*180) };
+    const tap=(i,b)=>{ if(lock||hit.has(i)) return;
+      if(pat.has(i)){ hit.add(i); b.classList.add("good"); if(hit.size===pat.size){ c.add(n); c.flash(true); n=Math.min(n+1,12); lock=true; to=setTimeout(round,350) } }
+      else { b.classList.add("bad"); lives--; c.flash(false); lock=true; if(lives<=0){ to=setTimeout(()=>c.end(),400) } else to=setTimeout(round,500) } };
+    round();
+    return ()=>clearTimeout(to);
+  }},
+{ id:6, name:"Mehr Punkte", rule:"Tippe auf die Seite mit mehr Punkten. Der Unterschied wird immer kleiner. Richtig +1, falsch −1.", time:40,
+  start(c){
+    let more, n=0;
+    const box=k=>{ let s=""; for(let i=0;i<k;i++) s+=`<i style="left:${c.rng.int(8,92)}%;top:${c.rng.int(8,92)}%"></i>`; return s };
+    const round=()=>{ n++; const a=c.rng.int(10,28), gap=Math.max(1, 7-Math.floor(n/4)); const b=a+gap*(c.rng.f()<0.5?1:-1);
+      more= a>b ? 0 : 1;
+      c.el.innerHTML=`<div class="two"><button class="dots" id="d0">${box(a)}</button><button class="dots" id="d1">${box(b)}</button></div><div class="muted small">Welche Seite hat mehr?</div>`;
+      c.el.querySelector("#d0").onclick=()=>ans(0); c.el.querySelector("#d1").onclick=()=>ans(1) };
+    const ans=s=>{ if(s===more){ c.add(1); c.flash(true) } else { c.add(-1); c.flash(false) } round() };
+    c.keys=k=>{ if(k==="ArrowLeft") ans(0); if(k==="ArrowRight") ans(1) };
+    round();
+  }},
+{ id:7, name:"Der Andere", rule:"Ein Zeichen ist anders als alle anderen. Finde es. Das Feld wird grösser. Richtig +1, falsch −1.", time:45,
+  start(c){
+    const P=[["b","d"],["O","Q"],["6","9"],["M","N"],["E","F"],["p","q"],["8","B"],["C","G"],["m","n"],["W","V"]];
+    let odd, n=0;
+    const round=()=>{ n++; const k=Math.min(3+Math.floor(n/3),7); const pr=c.rng.pick(P), sw=c.rng.f()<0.5; const base= sw?pr[1]:pr[0], o= sw?pr[0]:pr[1];
+      odd=c.rng.int(0,k*k-1);
+      c.el.innerHTML=`<div class="grid" style="grid-template-columns:repeat(${k},1fr);max-width:${Math.min(360,k*56)}px">${Array.from({length:k*k},(_,i)=>`<button class="tile" data-i="${i}" style="font-size:${k>5?20:26}px;font-family:var(--body)">${i===odd?o:base}</button>`).join("")}</div>`;
+      c.el.querySelectorAll(".tile").forEach(b=>b.onclick=()=>ans(+b.dataset.i)) };
+    const ans=i=>{ if(i===odd){ c.add(1); c.flash(true) } else { c.add(-1); c.flash(false) } round() };
+    round();
+  }},
+{ id:8, name:"Reflex", rule:"5 Runden. Tippe, sobald das Feld grün wird. Zu früh kostet. Punkte = 1000 minus deine Durchschnittszeit in ms.", time:0,
+  start(c){
+    let r=0, times=[], t0=0, state="wait", to;
+    const btn=()=>c.el.querySelector(".react");
+    const next=()=>{ if(r>=5){ const avg=times.reduce((a,b)=>a+b,0)/times.length; c.set(Math.max(0,Math.round(1000-avg))); return c.end() }
+      state="wait"; c.el.innerHTML=`<button class="react">Warten … (${r+1}/5)</button>`; btn().onpointerdown=tap;
+      to=setTimeout(()=>{ state="go"; t0=performance.now(); const b=btn(); b.classList.add("go"); b.textContent="JETZT!" }, 900+c.rng.int(0,2600)) };
+    const tap=()=>{ if(state==="wait"){ clearTimeout(to); times.push(600); r++; c.flash(false); btn().textContent="Zu früh! +600 ms"; state="pause"; to=setTimeout(next,800) }
+      else if(state==="go"){ const t=Math.round(performance.now()-t0); times.push(t); r++; state="pause"; btn().textContent=`${t} ms`; c.set(Math.max(0,Math.round(1000-times.reduce((a,b)=>a+b,0)/times.length))); to=setTimeout(next,700) } };
+    c.keys=k=>{ if(k===" "||k==="Enter") tap() };
+    next();
+    return ()=>clearTimeout(to);
+  }},
+{ id:9, name:"Punktlandung", rule:"Stoppe den Balken in der goldenen Zone. Mitte trifft doppelt. Die Zone wird kleiner, der Balken schneller. 3 Leben.", time:45,
+  start(c){
+    let pos=0, dir=1, speed=45, zone, width=26, lives=3, raf, last=performance.now(), paused=false;
+    c.el.innerHTML=`<div class="lives" id="pl"></div><div class="lane"><div class="zone" id="pz"></div><div class="mk" id="pm"></div></div>
+      <button class="accent" id="pb" style="width:100%;padding:22px;font-size:22px">STOPP</button>`;
+    const newZone=()=>{ zone=c.rng.int(5, 95-width); c.el.querySelector("#pz").style.left=zone+"%"; c.el.querySelector("#pz").style.width=width+"%";
+      c.el.querySelector("#pl").textContent=`${"♥".repeat(lives)}${"♡".repeat(3-lives)} · Zone ${Math.round(width)} %` };
+    const loop=t=>{ const dt=(t-last)/1000; last=t; if(!paused){ pos+=dir*speed*dt; if(pos>100){pos=100;dir=-1} if(pos<0){pos=0;dir=1} c.el.querySelector("#pm").style.left=pos+"%" } raf=requestAnimationFrame(loop) };
+    const stop=()=>{ if(paused) return; const mid=zone+width/2;
+      if(pos>=zone && pos<=zone+width){ const p = Math.abs(pos-mid) < width*0.18 ? 2 : 1; c.add(p); c.flash(true); width=Math.max(6,width*0.9); speed=Math.min(140,speed*1.08) }
+      else { lives--; c.flash(false); if(lives<=0){ cancelAnimationFrame(raf); return c.end() } }
+      paused=true; setTimeout(()=>{ paused=false; newZone() }, 250) };
+    c.el.querySelector("#pb").onclick=stop; c.keys=k=>{ if(k===" "||k==="Enter") stop() };
+    newZone(); raf=requestAnimationFrame(loop);
+    return ()=>cancelAnimationFrame(raf);
+  }}
+];
+
+/* ---------------------------------------------------------------- Ablauf */
+let series=null;   // {kind:"day"|"duel"|"train", seed, ids:[], scores:[], i, rival:{name, scores}}
+let running=null;  // {stop, timer, score}
+
+function show(id){ ["scrHome","scrIntro","scrGame","scrResult"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0) }
+function myName(){ return ($("name").value.trim() || "Du") }
+
+function dayIds(key){ const r=mk(mulberry(hashStr("tag"+key))); return r.shuffle(GAMES.map(g=>g.id)).slice(0,5) }
+
+function startSeries(kind, seed, ids, rival){
+  series={kind, seed, ids, scores:[], i:0, rival:rival||null};
+  intro();
+}
+function intro(){
+  const g=GAMES[series.ids[series.i]];
+  $("introStep").textContent = series.kind==="train" ? "Training" : `Spiel ${series.i+1} von ${series.ids.length}`;
+  $("introName").textContent = g.name;
+  $("introRule").textContent = g.rule;
+  const rv = series.rival;
+  $("introRival").textContent = rv ? `${rv.name} hat hier ${rv.scores[series.i]} Punkte.` :
+    series.kind==="train" ? `Dein Rekord: ${store.get("best-"+g.id,0)}` : (g.time ? `${g.time} Sekunden` : "5 Runden");
+  show("scrIntro"); $("btnGo").focus();
+}
+function play(){
+  const g=GAMES[series.ids[series.i]];
+  const rng = mk(mulberry(hashStr(series.seed+":"+g.id+":"+series.i)));
+  const arena=$("arena"); arena.innerHTML="";
+  $("gName").textContent=g.name;
+  $("gStep").textContent= series.kind==="train" ? "Training" : `Spiel ${series.i+1}/${series.ids.length}`;
+  const rv=series.rival;
+  let score=0, ended=false;
+  const setPts=()=>{ $("gPts").textContent=score; $("gRival").textContent = rv ? `${rv.name}: ${rv.scores[series.i]}` : "" };
+  const ctx={ rng, el:arena, keys:null,
+    add(n){ if(ended) return; score=Math.max(0,score+n); setPts() },
+    set(n){ if(ended) return; score=n; setPts() },
+    flash(ok){ arena.classList.remove("flash-ok","flash-bad"); void arena.offsetWidth; arena.classList.add(ok?"flash-ok":"flash-bad") },
+    end(){ if(ended) return; ended=true; finish() } };
+  setPts(); show("scrGame");
+  const t0=performance.now(); let tr;
+  const tick=()=>{ if(ended) return; if(g.time){ const left=g.time-(performance.now()-t0)/1000; $("tbar").style.transform=`scaleX(${Math.max(0,left/g.time)})`; if(left<=0) return ctx.end() } else $("tbar").style.transform="scaleX(1)"; tr=requestAnimationFrame(tick) };
+  const stopGame = g.start(ctx);
+  tr=requestAnimationFrame(tick);
+  running={ ctx, stop(){ cancelAnimationFrame(tr); if(typeof stopGame==="function") stopGame() } };
+  function finish(){
+    running.stop(); running=null;
+    series.scores[series.i]=score;
+    if(score > store.get("best-"+g.id,0)) store.set("best-"+g.id, score);
+    series.i++;
+    setTimeout(()=>{ if(series.i < series.ids.length) intro(); else result() }, 450);
+  }
+}
+
+function codeOf(s){ const n=myName().replace(/[\s-]+/g,"_").slice(0,14); return `ZK-${s.seed}-${s.ids.join("")}-${s.scores.join(".")}-${n}` }
+function parseCode(raw){
+  const m=raw.trim().match(/^ZK-([A-Za-z0-9]+)-(\d+)-([\d.]+)-(.+)$/);
+  if(!m) return null;
+  const ids=[...m[2]].map(Number), scores=m[3].split(".").map(Number);
+  if(!ids.length || ids.length!==scores.length || ids.some(i=>i>9)) return null;
+  return { seed:m[1], ids, scores, name:m[4].replace(/_/g," ") };
+}
+
+function result(){
+  const s=series, rv=s.rival;
+  const tot=s.scores.reduce((a,b)=>a+b,0);
+  let rows=`<tr><th>Spiel</th><th>${esc(myName())}</th>${rv?`<th>${esc(rv.name)}</th>`:""}<th>Rekord</th></tr>`;
+  let wMe=0, wThem=0;
+  s.ids.forEach((id,i)=>{ const me=s.scores[i], th= rv ? rv.scores[i] : null;
+    if(rv){ if(me>th) wMe++; else if(th>me) wThem++ }
+    rows+=`<tr><td>${GAMES[id].name}</td><td class="${rv?(me>th?"w":me<th?"l":""):""}">${me}</td>${rv?`<td class="${th>me?"w":th<me?"l":""}">${th}</td>`:""}<td>${store.get("best-"+id,0)}</td></tr>` });
+  if(s.kind!=="train") rows+=`<tr><td><b>Total</b></td><td><b>${tot}</b></td>${rv?`<td><b>${rv.scores.reduce((a,b)=>a+b,0)}</b></td>`:""}<td></td></tr>`;
+  $("resTable").innerHTML=rows;
+  $("tally").hidden = !rv;
+  if(rv){
+    $("tMe").textContent=wMe; $("tThem").textContent=wThem; $("tMeName").textContent=myName(); $("tThemName").textContent=rv.name;
+    $("tMe").className = wMe>=wThem ? "w" : "l"; $("tThem").className = wThem>=wMe ? "w" : "l";
+    $("resEyebrow").textContent="Duell";
+    $("resTitle").textContent = wMe>wThem ? `Du schlägst ${rv.name}.` : wMe<wThem ? `${rv.name} gewinnt diesmal.` : "Unentschieden. Das schreit nach Revanche.";
+  } else if(s.kind==="day"){
+    $("resEyebrow").textContent="Tageskampf";
+    const key=todayKey(), best=store.get("day-"+key,0);
+    if(tot>best) store.set("day-"+key,tot);
+    updateStreak();
+    $("resTitle").textContent = tot>best && best>0 ? `Neuer Tagesrekord: ${tot} Punkte.` : `${tot} Punkte im Tageskampf.`;
+  } else if(s.kind==="duel"){
+    $("resEyebrow").textContent="Duell"; $("resTitle").textContent=`${tot} Punkte vorgelegt. Jetzt ist dein Gegner dran.`;
+  } else {
+    $("resEyebrow").textContent="Training"; $("resTitle").textContent=`${s.scores[0]} Punkte in ${GAMES[s.ids[0]].name}.`;
+  }
+  $("shareBox").hidden = s.kind==="train"; $("btnCopy").hidden = s.kind==="train";
+  $("myCode").textContent = codeOf(s); $("copyMsg").textContent="";
+  show("scrResult");
+}
+
+function updateStreak(){
+  const st=store.get("streak",{last:null,n:0}), key=todayKey();
+  const y=new Date(); y.setDate(y.getDate()-1);
+  if(st.last!==key){ st.n = st.last===todayKey(y) ? st.n+1 : 1; st.last=key; store.set("streak",st) }
+  renderHome();
+}
+function renderHome(){
+  const st=store.get("streak",{last:null,n:0}); const y=new Date(); y.setDate(y.getDate()-1);
+  const alive = st.last===todayKey() || st.last===todayKey(y);
+  $("streak").textContent = alive ? st.n : 0;
+  const key=todayKey(), ids=dayIds(key);
+  const d=new Date();
+  $("dayLabel").textContent=`Tageskampf · ${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
+  $("dayGames").innerHTML=ids.map(i=>`<span class="chip">${GAMES[i].name}</span>`).join("");
+  const best=store.get("day-"+key,0);
+  $("dayBest").textContent = best ? `Dein Bestwert heute: ${best} Punkte. Du kannst es nochmals versuchen.` : (alive && st.n ? `Spiel heute, sonst reisst deine Serie von ${st.n} Tagen.` : "Spiel jeden Tag und bau eine Serie auf.");
+  $("gameList").innerHTML=GAMES.map(g=>`<button class="gbtn" data-g="${g.id}"><b>${g.name}</b><span>Rekord ${store.get("best-"+g.id,0)}</span></button>`).join("");
+}
+
+/* ---------------------------------------------------------------- Ereignisse */
+$("btnDay").onclick=()=>{ const k=todayKey(); startSeries("day","T"+k, dayIds(k)) };
+$("btnDuel").onclick=()=>{ const seed=Math.random().toString(36).slice(2,8); const r=mk(mulberry(hashStr(seed))); startSeries("duel", seed, r.shuffle(GAMES.map(g=>g.id)).slice(0,3)) };
+$("btnShowCode").onclick=()=>{ $("codeBox").hidden=!$("codeBox").hidden; if(!$("codeBox").hidden) $("codeIn").focus() };
+$("btnCode").onclick=()=>{ const c=parseCode($("codeIn").value);
+  if(!c){ $("codeMsg").textContent="Das ist kein gültiger Code. Er beginnt mit ZK- und sieht so aus: ZK-k3f9a2-418-34.12.27-Anna"; return }
+  $("codeMsg").textContent=""; startSeries("duel", c.seed, c.ids, {name:c.name, scores:c.scores}) };
+$("gameList").onclick=e=>{ const b=e.target.closest(".gbtn"); if(!b) return; startSeries("train", Math.random().toString(36).slice(2,8), [+b.dataset.g]) };
+$("btnGo").onclick=play;
+$("btnAgain").onclick=()=>{ const s=series; startSeries(s.kind, s.kind==="train" ? Math.random().toString(36).slice(2,8) : s.seed, s.ids, s.rival) };
+$("btnBack").onclick=()=>{ renderHome(); show("scrHome") };
+$("home").onclick=()=>{ if(running){ running.stop(); running=null } renderHome(); show("scrHome") };
+$("btnCopy").onclick=()=>{ const txt=$("myCode").textContent;
+  const done=()=>$("copyMsg").textContent="Kopiert. Schick den Code per WhatsApp oder SMS.";
+  const fail=()=>{ const r=document.createRange(); r.selectNodeContents($("myCode")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); $("copyMsg").textContent="Kopieren ging nicht. Der Code ist markiert, kopiere ihn von Hand." };
+  try{ navigator.clipboard.writeText(txt).then(done,fail) }catch(e){ fail() } };
+$("name").value = store.get("name","");
+$("name").addEventListener("input",()=>store.set("name",$("name").value.trim()));
+document.addEventListener("keydown",e=>{ if(running && running.ctx.keys && !$("scrGame").hidden){ if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"," "].includes(e.key)) e.preventDefault(); running.ctx.keys(e.key) } });
+
+renderHome();
+})();
+</script>
