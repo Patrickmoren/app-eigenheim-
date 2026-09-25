@@ -1,0 +1,621 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kairn</title>
+<meta name="description" content="Kairn (KAIRN) – der Token, mit dem KI-Agenten pro Anfrage bezahlen. Ohne Gas, auf Base, von der Community gesteuert.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='23' width='24' height='7' rx='3.5' fill='%23232624'/%3E%3Crect x='7' y='15.5' width='18' height='6.5' rx='3.25' fill='%23232624'/%3E%3Crect x='10' y='8.5' width='12' height='6' rx='3' fill='%23232624'/%3E%3Crect x='13' y='2' width='6' height='5.5' rx='2.75' fill='%23D52B1E'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #ECEEEA;
+    --surface: #F7F8F5;
+    --ink: #232624;
+    --muted: #5B6657;
+    --line: #CDD2C9;
+    --sign: #F2C200;
+    --sign-ink: #1D1F1C;
+    --mark: #D52B1E;
+    --stone-1: #3A3F3B;
+    --stone-2: #555C56;
+    --stone-3: #6F776F;
+    --stone-4: #8B928A;
+    --stone-5: #A3A9A1;
+    --stone-6: #D52B1E;
+    --ok: #2F7A45;
+    --warn: #A15C00;
+    --focus: #1B5FD1;
+    --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+    --body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #141716;
+      --surface: #1E2220;
+      --ink: #E4E7E1;
+      --muted: #9DA79A;
+      --line: #333935;
+      --sign: #F2C200;
+      --sign-ink: #1D1F1C;
+      --mark: #E8483B;
+      --stone-1: #C9CEC6;
+      --stone-2: #AEB4AB;
+      --stone-3: #939A90;
+      --stone-4: #7A8177;
+      --stone-5: #636A61;
+      --stone-6: #E8483B;
+      --ok: #6CC486;
+      --warn: #E0A04A;
+      --focus: #7FA8FF;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #141716;
+    --surface: #1E2220;
+    --ink: #E4E7E1;
+    --muted: #9DA79A;
+    --line: #333935;
+    --sign: #F2C200;
+    --sign-ink: #1D1F1C;
+    --mark: #E8483B;
+    --stone-1: #C9CEC6;
+    --stone-2: #AEB4AB;
+    --stone-3: #939A90;
+    --stone-4: #7A8177;
+    --stone-5: #636A61;
+    --stone-6: #E8483B;
+    --ok: #6CC486;
+    --warn: #E0A04A;
+    --focus: #7FA8FF;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 var(--body);
+    padding-inline: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin-inline: auto; }
+  a { color: inherit; text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.02; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+  h2 { font-size: clamp(34px, 5vw, 52px); text-transform: uppercase; }
+  h3 { font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; }
+  p { margin: 0; max-width: 62ch; }
+  .muted { color: var(--muted); }
+  .mono { font-family: var(--mono); font-size: 0.86em; }
+  .label {
+    font-family: var(--display); font-weight: 600; font-size: 15px;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted);
+  }
+
+  /* Bergweg-Markierung: weiss-rot-weiss */
+  .blaze { display: inline-flex; flex-direction: column; width: 28px; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); flex: none; }
+  .blaze i { display: block; height: 6px; background: #fff; }
+  .blaze i:nth-child(2) { background: var(--mark); }
+
+  /* Kopfzeile */
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand b { font-family: var(--display); font-size: 28px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  nav.links { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--display); font-weight: 600; font-size: 17px; text-transform: uppercase; letter-spacing: 0.08em; }
+  nav.links a { text-decoration: none; color: var(--muted); }
+  nav.links a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav.links { display: none; } }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; padding-block: 40px 72px; }
+  .hero h1 { font-size: clamp(52px, 8.2vw, 104px); text-transform: uppercase; font-weight: 800; }
+  .hero h1 span { color: var(--mark); }
+  .hero .lead { font-size: 20px; margin-top: 22px; color: var(--muted); }
+  .hero .lead strong { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 3px;
+    font-family: var(--display); font-size: 19px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    text-decoration: none; border: 2px solid var(--ink); background: var(--ink); color: var(--bg); cursor: pointer;
+  }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 16px 56px; } }
+
+  /* Wegweiser */
+  .signpost { position: relative; padding-left: 26px; }
+  .signpost::before { content: ""; position: absolute; left: 0; top: -14px; bottom: -40px; width: 12px; background: var(--muted); border-radius: 2px; opacity: 0.55; }
+  .sign-head {
+    background: #fff; color: var(--sign-ink); border: 2px solid var(--sign-ink);
+    padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    font-family: var(--display); font-weight: 700; font-size: 17px; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .sign-head small { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: 0; text-transform: none; }
+  .arrows { display: grid; gap: 8px; margin-top: 8px; }
+  .arrow {
+    --tip: 30px;
+    background: var(--sign); color: var(--sign-ink);
+    clip-path: polygon(0 0, calc(100% - var(--tip)) 0, 100% 50%, calc(100% - var(--tip)) 100%, 0 100%);
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+    padding: 12px calc(var(--tip) + 12px) 12px 18px;
+    transform-origin: left center;
+  }
+  .arrow.mountain { box-shadow: inset 0 0 0 0 transparent; }
+  .arrow .dest { font-family: var(--display); font-weight: 700; font-size: 25px; text-transform: uppercase; line-height: 1.05; }
+  .arrow .dest small { display: block; font-family: var(--body); font-weight: 500; font-size: 13px; text-transform: none; letter-spacing: 0; opacity: 0.8; margin-top: 2px; }
+  .arrow .time { font-family: var(--display); font-weight: 700; font-size: 22px; white-space: nowrap; font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+  .arrow .blaze { width: 22px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
+  .arrow .blaze i { height: 5px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .arrow { animation: swing 0.7s cubic-bezier(.2,.9,.3,1.2) both; }
+    .arrow:nth-child(2) { animation-delay: 0.12s; }
+    .arrow:nth-child(3) { animation-delay: 0.24s; }
+    .arrow:nth-child(4) { animation-delay: 0.36s; }
+  }
+  @keyframes swing { from { transform: rotate(-4deg) translateX(-8px); } to { transform: none; } }
+
+  /* Sektionen */
+  section.block { padding-block: 72px; border-top: 1px solid var(--line); display: grid; gap: 40px; }
+  .intro { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: 40px; align-items: start; }
+  .intro > div { display: grid; gap: 14px; }
+  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 18px; } section.block { padding-block: 56px; } }
+
+  /* Eigenschaften */
+  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .fact { background: var(--surface); padding: 28px; display: grid; gap: 10px; align-content: start; }
+  .fact .std { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  @media (max-width: 700px) { .facts { grid-template-columns: 1fr; } }
+
+  /* Ablauf */
+  .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
+  .step { display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 3px solid var(--ink); }
+  .step::before { counter-increment: step; content: counter(step); font-family: var(--display); font-weight: 800; font-size: 44px; line-height: 1; color: var(--mark); }
+  .step code { font-family: var(--mono); font-size: 13px; background: var(--surface); border: 1px solid var(--line); padding: 1px 6px; border-radius: 2px; overflow-wrap: anywhere; }
+  @media (max-width: 860px) { .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .flow { grid-template-columns: 1fr; } }
+  .http { background: var(--surface); border: 1px solid var(--line); padding: 18px 20px; overflow-x: auto; font-family: var(--mono); font-size: 13.5px; line-height: 1.7; white-space: pre; }
+  .http .k { color: var(--muted); }
+  .http .s { color: var(--mark); font-weight: 500; }
+
+  /* Steinmann-Tokenomics */
+  .cairn-wrap { display: grid; grid-template-columns: 1fr minmax(0, 380px); gap: 48px; align-items: end; }
+  .cairn { display: grid; gap: 6px; }
+  .tier { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 20px; }
+  .stone-track { display: flex; justify-content: flex-end; }
+  .stone { height: 52px; border-radius: 26px / 24px; background: var(--c); width: calc(var(--p) / 40 * 100%); min-width: 40px; }
+  .tier:nth-child(odd) .stone { border-radius: 30px 22px 26px 24px / 26px 24px 26px 22px; }
+  .tier .meta { display: grid; gap: 0; }
+  .tier .meta b { font-family: var(--display); font-weight: 700; font-size: 22px; text-transform: uppercase; line-height: 1.1; }
+  .tier .meta span { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .tier .pct { font-family: var(--display); font-weight: 800; font-size: 22px; font-variant-numeric: tabular-nums; margin-right: 8px; }
+  .ground { height: 3px; background: var(--ink); margin-top: 4px; }
+  .supply { display: grid; gap: 18px; }
+  .supply .big { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 7vw, 76px); line-height: 1; font-variant-numeric: tabular-nums; }
+  dl.kv { display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; margin: 0; font-size: 15px; }
+  dl.kv dt { color: var(--muted); }
+  dl.kv dd { margin: 0; font-variant-numeric: tabular-nums; }
+  @media (max-width: 860px) { .cairn-wrap { grid-template-columns: 1fr; } .tier { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 12px; } .stone { height: 42px; } }
+
+  /* DAO-Tabelle */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-family: var(--display); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  td:nth-child(2) { font-family: var(--display); font-weight: 700; font-size: 20px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* Etappen */
+  .route { display: grid; gap: 0; border-left: 3px solid var(--ink); margin-left: 12px; }
+  .leg { position: relative; padding: 0 0 30px 32px; display: grid; gap: 6px; }
+  .leg:last-child { padding-bottom: 0; }
+  .leg::before { content: ""; position: absolute; left: -12px; top: 4px; width: 21px; height: 21px; border-radius: 50%; background: var(--bg); border: 3px solid var(--ink); }
+  .leg.done::before { background: var(--mark); border-color: var(--mark); }
+  .leg .when { font-family: var(--display); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+  .chip { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: 2px; }
+  .chip.ok { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
+  .chip.next { background: var(--sign); color: var(--sign-ink); }
+
+  /* Airdrop */
+  .claim { background: var(--surface); border: 1px solid var(--line); padding: 28px; display: grid; gap: 18px; max-width: 720px; }
+  .claim label { font-weight: 600; font-size: 15px; }
+  .field { display: flex; gap: 10px; flex-wrap: wrap; }
+  .field input {
+    flex: 1 1 320px; min-width: 0; font: 500 15px var(--mono); padding: 12px 14px; border-radius: 3px;
+    border: 2px solid var(--line); background: var(--bg); color: var(--ink);
+  }
+  .field input:focus { border-color: var(--ink); outline: none; }
+  .result { padding: 14px 16px; border-left: 4px solid var(--line); background: var(--bg); font-size: 15px; }
+  .result.ok { border-color: var(--ok); }
+  .result.no { border-color: var(--warn); }
+  .result b { font-family: var(--display); font-size: 22px; font-weight: 700; }
+  .status-line { display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--muted); }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--warn); flex: none; }
+  .dot.live { background: var(--ok); }
+
+  /* FAQ */
+  details { border-top: 1px solid var(--line); padding-block: 18px; }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 22px; text-transform: uppercase; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-weight: 500; color: var(--muted); }
+  details[open] summary::after { content: "–"; }
+  details p { margin-top: 10px; color: var(--muted); }
+
+  footer { border-top: 3px solid var(--ink); padding-block: 32px 48px; display: grid; gap: 18px; font-size: 14px; color: var(--muted); }
+  footer .risk { max-width: 80ch; }
+  footer .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Kairn Startseite">
+      <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="4" y="23" width="24" height="7" rx="3.5" fill="var(--ink)"/>
+        <rect x="7" y="15.5" width="18" height="6.5" rx="3.25" fill="var(--ink)"/>
+        <rect x="10" y="8.5" width="12" height="6" rx="3" fill="var(--ink)"/>
+        <rect x="13" y="2" width="6" height="5.5" rx="2.75" fill="var(--mark)"/>
+      </svg>
+      <b>Kairn</b>
+    </a>
+    <nav class="links" aria-label="Seitennavigation">
+      <a href="#zahlungen">Zahlungen</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#dao">DAO</a>
+      <a href="#airdrop">Airdrop</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="label" style="display:flex;align-items:center;gap:10px"><span class="blaze" aria-hidden="true"><i></i><i></i><i></i></span>KAIRN · ERC-20 auf Base</div>
+        <h1 style="margin-top:18px">Der Weg&shy;weiser für <span>Agenten</span>-Zahlungen</h1>
+        <p class="lead">KI-Agenten bezahlen mit Kairn jede einzelne Anfrage an eine API. <strong>Eine Signatur genügt, Gas zahlt der Dienst.</strong> Die Menge ist fest, und über das Treasury entscheidet die Community.</p>
+        <div class="cta">
+          <a class="btn" href="#airdrop">Airdrop prüfen</a>
+          <a class="btn ghost" href="#zahlungen">So funktioniert's</a>
+        </div>
+      </div>
+
+      <div class="signpost" aria-label="Wegweiser mit den Eckdaten von Kairn">
+        <div class="sign-head">Kairn <small>Base · Chain-ID 8453</small></div>
+        <div class="arrows">
+          <div class="arrow">
+            <div class="dest">Agenten-Zahlung<small>EIP-3009, x402-kompatibel</small></div>
+            <div class="time">1 Signatur</div>
+          </div>
+          <div class="arrow">
+            <div class="dest">Gesamtmenge<small>kein Nachprägen möglich</small></div>
+            <div class="time">1 Mrd.</div>
+          </div>
+          <div class="arrow">
+            <div class="dest">DAO-Abstimmung<small>plus 2 Tage Timelock</small></div>
+            <div class="time">7 Tage</div>
+          </div>
+          <div class="arrow mountain">
+            <div class="dest">Community-Anteil<small>Airdrop + DAO-Treasury</small></div>
+            <div class="time"><span class="blaze" aria-hidden="true"><i></i><i></i><i></i></span>60 %</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="token">
+      <div class="intro">
+        <div>
+          <div class="label">Was Kairn ist</div>
+          <h2>Ein Token ohne Hintertür</h2>
+        </div>
+        <p class="muted">Kairn ist ein gewöhnlicher ERC-20-Token mit vier Zusätzen. Der Vertrag hat keinen Besitzer und keine Pausentaste und lässt sich nicht upgraden. Was beim Start festgelegt wird, gilt für immer.</p>
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <h3>Zahlen per Signatur</h3>
+          <p class="muted">Ein Agent signiert eine Zahlung, der Dienst reicht sie ein und bezahlt das Gas. Der Agent braucht also kein ETH, nur KAIRN. Auch Smart-Contract-Wallets können signieren.</p>
+          <div class="std">EIP-3009 · ERC-1271</div>
+        </div>
+        <div class="fact">
+          <h3>Feste Menge</h3>
+          <p class="muted">Beim Start entstehen genau 1&#8239;000&#8239;000&#8239;000 KAIRN. Eine Mint-Funktion gibt es nicht. Wer Token vernichtet (burn), senkt die Menge dauerhaft.</p>
+          <div class="std">ERC-20 · Burnable</div>
+        </div>
+        <div class="fact">
+          <h3>Stimmrecht</h3>
+          <p class="muted">Jeder Token ist eine Stimme für die Kairn-DAO. Die Stimmen zählen nach Zeitstempel. Das ist auf Layer-2-Chains wie Base verlässlicher als die Blocknummer.</p>
+          <div class="std">ERC20Votes · mode=timestamp</div>
+        </div>
+        <div class="fact">
+          <h3>Freigabe ohne Gas</h3>
+          <p class="muted">Freigaben an Apps und Börsen (approve) lassen sich ebenfalls per Signatur erteilen. Eine eigene Transaktion ist dafür nicht nötig.</p>
+          <div class="std">EIP-2612 · Permit</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="zahlungen">
+      <div class="intro">
+        <div>
+          <div class="label">Agenten-Zahlungen</div>
+          <h2>HTTP 402 wird endlich benutzt</h2>
+        </div>
+        <p class="muted">Den Statuscode 402 „Payment Required“ gibt es seit 1997. Mit x402 erhält er eine Bedeutung: Der Server nennt einen Preis, und der Agent bezahlt mit einer signierten Autorisierung. Kairn unterstützt genau das Verfahren, das x402 auf EVM-Chains verwendet.</p>
+      </div>
+      <div class="flow">
+        <div class="step">
+          <h3>Anfrage</h3>
+          <p class="muted">Der Agent ruft eine kostenpflichtige API auf, zum Beispiel <code>GET /wetter/zermatt</code>.</p>
+        </div>
+        <div class="step">
+          <h3>Preis</h3>
+          <p class="muted">Der Server antwortet mit <code>402</code>. Die Antwort nennt Betrag, Empfänger und Token.</p>
+        </div>
+        <div class="step">
+          <h3>Signatur</h3>
+          <p class="muted">Der Agent signiert <code>TransferWithAuthorization</code>. Dafür braucht er weder ETH noch eine Transaktion.</p>
+        </div>
+        <div class="step">
+          <h3>Abrechnung</h3>
+          <p class="muted">Der Server reicht die Signatur on-chain ein, zahlt das Gas und liefert die Daten.</p>
+        </div>
+      </div>
+      <div class="http" role="region" aria-label="Beispiel einer x402-Antwort" tabindex="0"><span class="k">HTTP/1.1</span> <span class="s">402 Payment Required</span>
+<span class="k">content-type:</span> application/json
+
+{ "scheme": "exact", "network": "base",
+  "asset": "KAIRN", "maxAmountRequired": "0.02",
+  "payTo": "0x…Dienst", "maxTimeoutSeconds": 60 }</div>
+    </section>
+
+    <section class="block" id="tokenomics">
+      <div class="intro">
+        <div>
+          <div class="label">Tokenomics</div>
+          <h2>Der Steinmann</h2>
+        </div>
+        <p class="muted">Jeder Stein steht für eine Zuteilung, und seine Breite entspricht ihrem Anteil. Das Fundament gehört der Community. Team und Partner erhalten ihre Token erst über Jahre verteilt (Vesting).</p>
+      </div>
+      <div class="cairn-wrap">
+        <div>
+          <div class="cairn" id="cairn" role="list" aria-label="Verteilung der Token"></div>
+          <div class="ground" aria-hidden="true"></div>
+        </div>
+        <div class="supply">
+          <div class="label">Gesamtmenge</div>
+          <div class="big">1&#8239;000&#8239;000&#8239;000</div>
+          <dl class="kv">
+            <dt>Symbol</dt><dd>KAIRN</dd>
+            <dt>Dezimalstellen</dt><dd>18</dd>
+            <dt>Chain</dt><dd>Base (Ethereum L2)</dd>
+            <dt>Nachprägen</dt><dd>unmöglich</dd>
+            <dt>Privatverkauf</dt><dd>keiner</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="dao">
+      <div class="intro">
+        <div>
+          <div class="label">Kairn DAO</div>
+          <h2>Das Treasury gehört der DAO</h2>
+        </div>
+        <p class="muted">Das Treasury umfasst 600 Mio. KAIRN und liegt in einem Timelock-Vertrag. Auszahlungen gibt es nur per Abstimmung, zum Beispiel als Grants für Entwicklerinnen und Entwickler von Agenten. Nach dem Deployment hat das Gründungsteam keinen Zugriff mehr.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Regel</th><th>Wert</th><th>Bedeutung</th></tr></thead>
+          <tbody>
+            <tr><td>Vorschlagsschwelle</td><td>1 Mio. KAIRN</td><td class="muted">So viele delegierte Stimmen braucht, wer einen Vorschlag einreicht (0,1 %).</td></tr>
+            <tr><td>Wartezeit</td><td>1 Tag</td><td class="muted">Zeit zwischen Vorschlag und Beginn der Abstimmung, damit Inhaber ihre Stimmen delegieren können.</td></tr>
+            <tr><td>Abstimmung</td><td>7 Tage</td><td class="muted">Zur Wahl stehen Ja, Nein und Enthaltung.</td></tr>
+            <tr><td>Quorum</td><td>4 %</td><td class="muted">So viel Beteiligung (40 Mio. KAIRN) braucht ein gültiger Beschluss.</td></tr>
+            <tr><td>Spätes Quorum</td><td>+ 2 Tage</td><td class="muted">Wird das Quorum erst kurz vor Schluss erreicht, verlängert sich die Abstimmung. Das verhindert Überraschungsangriffe in letzter Minute.</td></tr>
+            <tr><td>Timelock</td><td>2 Tage</td><td class="muted">Wartefrist zwischen Annahme und Ausführung. In dieser Zeit kann jeder prüfen, was ausgeführt wird.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" id="airdrop">
+      <div class="intro">
+        <div>
+          <div class="label">Community-Airdrop</div>
+          <h2>Den eigenen Anteil holen</h2>
+        </div>
+        <p class="muted">20 % der Menge gehen an frühe Nutzerinnen und Nutzer. Dafür gibt es keinen Verkauf und keine Registrierung. Wer auf der Liste steht, holt seine Token innerhalb von 180 Tagen ab. Danach fällt der Rest an das DAO-Treasury.</p>
+      </div>
+      <form class="claim" id="claim-form" novalidate>
+        <div class="status-line"><span class="dot" id="live-dot"></span><span id="live-text">Lade Status …</span></div>
+        <label for="addr">Wallet-Adresse</label>
+        <div class="field">
+          <input id="addr" name="addr" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="0x…" value="0x70997970C51812dc3A010C7d01b50e0d17dc79C8">
+          <button class="btn ghost" type="submit">Prüfen</button>
+        </div>
+        <div class="result" id="result" hidden></div>
+        <div class="cta" style="margin-top:0">
+          <button class="btn" type="button" id="claim-btn" disabled>Mit Wallet abholen</button>
+        </div>
+        <p class="muted" style="font-size:14px">Die Adresse oben ist eine Beispieladresse aus der Testliste. Abholen geht nur mit einer Browser-Wallet wie MetaMask oder Coinbase Wallet, die mit Base verbunden ist.</p>
+      </form>
+    </section>
+
+    <section class="block" id="etappen">
+      <div class="intro">
+        <div>
+          <div class="label">Etappen</div>
+          <h2>Die Route</h2>
+        </div>
+        <p class="muted">Kairn geht erst live, wenn der Code geprüft ist und die rechtliche Einordnung steht.</p>
+      </div>
+      <div class="route">
+        <div class="leg done"><div class="when">Etappe 1 <span class="chip ok">erledigt</span></div><h3>Verträge und Tests</h3><p class="muted">Token, DAO, Vesting und Airdrop sind fertig und durch 31 automatische Tests abgedeckt (100 % der Codezeilen).</p></div>
+        <div class="leg"><div class="when">Etappe 2 <span class="chip next">als Nächstes</span></div><h3>Testnetz Base Sepolia</h3><p class="muted">Öffentlicher Probebetrieb mit einem Bug-Bounty-Programm und einer Beispiel-API, die per x402 abrechnet.</p></div>
+        <div class="leg"><div class="when">Etappe 3</div><h3>Audit und Recht</h3><p class="muted">Unabhängige Prüfung des Codes, Einordnung durch die FINMA und Aufsetzen der Multisig-Wallets.</p></div>
+        <div class="leg"><div class="when">Etappe 4</div><h3>Launch auf Base</h3><p class="muted">Deployment, Airdrop-Start und Liquiditätspool. Danach übernimmt die DAO.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <div class="intro">
+        <div>
+          <div class="label">Fragen</div>
+          <h2>Häufige Fragen</h2>
+        </div>
+        <div>
+          <details>
+            <summary>Kann ich KAIRN kaufen?</summary>
+            <p>Bei Kairn gibt es weder Vorverkauf noch ICO. Nach dem Launch stellt die Liquiditäts-Zuteilung einen Pool auf einer dezentralen Börse bereit.</p>
+          </details>
+          <details>
+            <summary>Wer kontrolliert den Vertrag?</summary>
+            <p>Niemand. Der Token-Vertrag hat keinen Owner. Das Treasury verwaltet ausschliesslich die DAO, und der Deployer gibt seine Admin-Rechte schon beim Deployment ab.</p>
+          </details>
+          <details>
+            <summary>Warum Base?</summary>
+            <p>Transaktionen kosten auf Base Bruchteile eines Rappens. Viele x402-Dienste laufen bereits dort, und die Coinbase-Wallet ist direkt angebunden.</p>
+          </details>
+          <details>
+            <summary>Was passiert mit nicht abgeholten Airdrop-Token?</summary>
+            <p>Nach 180 Tagen kann jede Person die Funktion <span class="mono">sweep()</span> aufrufen. Der Rest geht dann an das DAO-Treasury und nicht an das Team.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="row">
+      <span class="brand"><span class="blaze" aria-hidden="true"><i></i><i></i><i></i></span><b style="font-size:22px">Kairn</b></span>
+      <span class="mono" id="token-addr">Vertragsadresse folgt beim Launch</span>
+    </div>
+    <p class="risk">Risikohinweis: KAIRN ist ein Utility- und Governance-Token. Er ist kein Wertpapier, keine Anlage und kein Zahlungsversprechen. Es gibt keine Garantie auf Wert, Handelbarkeit oder Rendite. Smart Contracts können Fehler enthalten, und Verluste sind möglich. Diese Seite ist keine Anlageberatung.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const ALLOC = [
+    { name: "Stiftung", note: "Betrieb, Recht, Listings", p: 5, c: "var(--stone-6)" },
+    { name: "Partner", note: "6 Mt. Cliff, 24 Mt. Vesting", p: 10, c: "var(--stone-5)" },
+    { name: "Liquidität", note: "DEX-Pool beim Launch", p: 10, c: "var(--stone-4)" },
+    { name: "Team", note: "12 Mt. Cliff, 48 Mt. Vesting", p: 15, c: "var(--stone-3)" },
+    { name: "Airdrop", note: "Claim während 180 Tagen", p: 20, c: "var(--stone-2)" },
+    { name: "DAO-Treasury", note: "nur per Abstimmung", p: 40, c: "var(--stone-1)" },
+  ];
+  const fmt = (n) => n.toLocaleString("de-CH");
+  const cairn = document.getElementById("cairn");
+  cairn.innerHTML = ALLOC.map((a) => `
+    <div class="tier" role="listitem">
+      <div class="stone-track"><div class="stone" style="--p:${a.p};--c:${a.c}"></div></div>
+      <div class="meta"><b><span class="pct">${a.p} %</span>${a.name}</b><span>${fmt(a.p * 10)} Mio. KAIRN · ${a.note}</span></div>
+    </div>`).join("");
+
+  // Airdrop
+  const form = document.getElementById("claim-form");
+  const input = document.getElementById("addr");
+  const result = document.getElementById("result");
+  const claimBtn = document.getElementById("claim-btn");
+  const liveDot = document.getElementById("live-dot");
+  const liveText = document.getElementById("live-text");
+  let airdrop = null, deployment = null, current = null;
+
+  const load = (url) => fetch(url, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+
+  Promise.all([load("airdrop.json"), load("deployment.json")]).then(([a, d]) => {
+    airdrop = a; deployment = d;
+    if (d && d.contracts && d.contracts.KairnAirdrop) {
+      liveDot.classList.add("live");
+      const net = d.chainId === 8453 ? "Base" : d.chainId === 84532 ? "Base Sepolia (Testnetz)" : `Chain ${d.chainId}`;
+      liveText.textContent = `Claim offen auf ${net}`;
+      document.getElementById("token-addr").textContent = d.contracts.KairnToken;
+    } else {
+      liveText.textContent = "Noch nicht live: Die Prüfung nutzt die Testliste, Abholen wird zum Launch freigeschaltet.";
+    }
+    if (a) check();
+  });
+
+  const toKairn = (wei) => {
+    const s = BigInt(wei).toString().padStart(19, "0");
+    const whole = BigInt(s.slice(0, -18));
+    return whole.toLocaleString("de-CH");
+  };
+
+  function check() {
+    const v = input.value.trim();
+    result.hidden = false;
+    current = null;
+    claimBtn.disabled = true;
+    if (!/^0x[0-9a-fA-F]{40}$/.test(v)) {
+      result.className = "result no";
+      result.textContent = "Diese Adresse ist ungültig. Sie beginnt mit 0x, gefolgt von 40 Zeichen aus 0–9 und a–f.";
+      return;
+    }
+    if (!airdrop) {
+      result.className = "result no";
+      result.textContent = "Die Airdrop-Liste konnte nicht geladen werden. Bitte die Seite neu laden.";
+      return;
+    }
+    const key = Object.keys(airdrop.claims).find((k) => k.toLowerCase() === v.toLowerCase());
+    if (!key) {
+      result.className = "result no";
+      result.textContent = "Diese Adresse steht nicht auf der Airdrop-Liste.";
+      return;
+    }
+    current = { address: key, ...airdrop.claims[key] };
+    result.className = "result ok";
+    result.innerHTML = `<b>${toKairn(current.amount)} KAIRN</b><br>stehen für diese Adresse bereit.`;
+    claimBtn.disabled = !(deployment && deployment.contracts && deployment.contracts.KairnAirdrop);
+  }
+
+  form.addEventListener("submit", (e) => { e.preventDefault(); check(); });
+
+  function loadEthers() {
+    if (window.ethers) return Promise.resolve(window.ethers);
+    return new Promise((res, rej) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js";
+      s.onload = () => res(window.ethers);
+      s.onerror = () => rej(new Error("Die Wallet-Bibliothek konnte nicht geladen werden."));
+      document.head.appendChild(s);
+    });
+  }
+
+  claimBtn.addEventListener("click", async () => {
+    if (!current || !deployment) return;
+    if (!window.ethereum) {
+      result.className = "result no";
+      result.textContent = "Keine Browser-Wallet gefunden. Bitte MetaMask oder Coinbase Wallet installieren und die Seite neu laden.";
+      return;
+    }
+    claimBtn.disabled = true;
+    try {
+      const ethers = await loadEthers();
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const hexChain = "0x" + deployment.chainId.toString(16);
+      try { await provider.send("wallet_switchEthereumChain", [{ chainId: hexChain }]); } catch (_) {}
+      const signer = await provider.getSigner();
+      const me = await signer.getAddress();
+      if (me.toLowerCase() !== current.address.toLowerCase()) {
+        throw new Error(`In der Wallet ist ${me.slice(0, 8)}… aktiv. Bitte zur Adresse ${current.address.slice(0, 8)}… wechseln.`);
+      }
+      const c = new ethers.Contract(deployment.contracts.KairnAirdrop,
+        ["function claim(address to, uint256 amount, bytes32[] proof)", "function hasClaimed(address) view returns (bool)"], signer);
+      if (await c.hasClaimed(me)) throw new Error("Diese Adresse hat ihren Anteil bereits abgeholt.");
+      result.className = "result";
+      result.textContent = "Bitte die Transaktion in der Wallet bestätigen …";
+      const tx = await c.claim(me, current.amount, current.proof);
+      result.textContent = "Transaktion gesendet, warte auf Bestätigung …";
+      await tx.wait();
+      result.className = "result ok";
+      result.innerHTML = `<b>Abgeholt.</b><br>${toKairn(current.amount)} KAIRN sind in deiner Wallet.`;
+    } catch (err) {
+      result.className = "result no";
+      result.textContent = err.shortMessage || err.message || "Das Abholen ist fehlgeschlagen.";
+      claimBtn.disabled = false;
+    }
+  });
+})();
+</script>

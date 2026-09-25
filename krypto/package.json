@@ -11,7 +11,9 @@
     "deploy:local": "hardhat run scripts/deploy.js --network localhost",
     "deploy:base-sepolia": "hardhat run scripts/deploy.js --network base-sepolia",
     "deploy:base": "hardhat run scripts/deploy.js --network base",
-    "verify": "hardhat run scripts/verify.js"
+    "verify": "hardhat run scripts/verify.js",
+    "demo": "hardhat run scripts/demo-agent-payment.js",
+    "website": "node scripts/build-website.js"
   },
   "author": "",
   "license": "ISC",
