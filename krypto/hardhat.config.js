@@ -16,7 +16,8 @@ subtask(TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD, async ({ solcVersion }, hre, runSu
   };
 });
 
-const { SEPOLIA_RPC_URL, PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
+const { PRIVATE_KEY, BASE_SEPOLIA_RPC_URL, BASE_RPC_URL, ETHERSCAN_API_KEY } = process.env;
+const accounts = PRIVATE_KEY ? [PRIVATE_KEY] : [];
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -28,10 +29,19 @@ module.exports = {
     },
   },
   networks: {
-    // Nur aktiv, wenn .env ausgefüllt ist
-    ...(SEPOLIA_RPC_URL && PRIVATE_KEY
-      ? { sepolia: { url: SEPOLIA_RPC_URL, accounts: [PRIVATE_KEY] } }
-      : {}),
+    "base-sepolia": {
+      url: BASE_SEPOLIA_RPC_URL || "https://sepolia.base.org",
+      chainId: 84532,
+      accounts,
+    },
+    base: {
+      url: BASE_RPC_URL || "https://mainnet.base.org",
+      chainId: 8453,
+      accounts,
+    },
   },
+  // Etherscan-API v2: ein Schlüssel für alle Chains inkl. Base
   etherscan: { apiKey: ETHERSCAN_API_KEY || "" },
+  sourcify: { enabled: false },
+  gasReporter: { enabled: process.env.REPORT_GAS === "true", currency: "CHF" },
 };
