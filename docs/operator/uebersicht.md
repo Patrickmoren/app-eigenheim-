@@ -37,12 +37,24 @@
 
 ## C. Aktuell riskanteste Annahmen
 
-Nach Signifikanz geordnet (nicht nach Reihenfolge im Hypothesenregister):
+**Aktualisiert nach der radikalen Neubewertung (`docs/mietpilot-neubewertung.md`) — H14 steht
+jetzt vor allen anderen, weil sie alle übrigen Fragen entwertet, falls sie nicht zutrifft:**
 
-1. **H3** (Vertrauen in KI-Vorauswahl bei behaltener Enddecision) — trägt das gesamte Produktversprechen. Ohne Bestätigung fällt auch H4, H9, H10.
-2. **H12/H5** (CAC im B2C-Modell) — kann das gesamte B2C-Modell wirtschaftlich unmöglich machen, unabhängig davon, ob H3 bestätigt wird.
-3. **H7** (Verwaltungen/Makler setzen externe Engine ein, wenn integrierbar) — trägt die gesamte B2B2C-Alternative, die im Stresstest als ökonomisch stärker eingeschätzt wurde.
-4. **H11** (properti kann schneller reagieren, als Mietpilot Marktanteil gewinnt) — bereits gut durch Marktrecherche gestützt (FAKT: 195 MA, Garantie-Produkt), aber die Konsequenz daraus (Rückzug ins B2B2C) ist selbst noch nicht getestet.
+0. **H14** (Existenz eines zahlungsbereiten Mittelmarkts zwischen Gratis-DIY und
+   properti-Vollservice) — **potenziell modellzerstörend**, bisher nie explizit geprüft,
+   stand nur implizit hinter dem gesamten Projekt.
+1. **H15** (Screening/Ranking allein ist als eigenständiges Produkt verkaufbar) — bestimmt,
+   ob die aktuelle "Alles automatisieren"-Plattform überhaupt der richtige Produktumfang ist.
+2. **H3** (Vertrauen in KI-Vorauswahl bei behaltener Enddecision) — trägt das gesamte Produktversprechen. Ohne Bestätigung fällt auch H4, H9, H10, H16.
+3. **H12/H5** (CAC im B2C-Modell) — kann das gesamte B2C-Modell wirtschaftlich unmöglich machen, unabhängig davon, ob H3 bestätigt wird.
+4. **H7/H17** (Verwaltungen/Makler setzen externe Engine ein — aus Zeitersparnis- statt Vertrauensmotiv) — trägt die gesamte B2B2C-Alternative.
+5. **H11** (properti kann schneller reagieren, als Mietpilot Marktanteil gewinnt) — bereits gut durch Marktrecherche gestützt (FAKT: 195 MA, Garantie-Produkt), aber die Konsequenz daraus (Rückzug ins B2B2C) ist selbst noch nicht getestet.
+6. **H18** (ortsferne Eigentümer:innen als Zielsegment) — steht im erkannten Widerspruch zu H13 (Besichtigung bleibt immer beim Menschen); muss aufgelöst werden, nicht nur getestet.
+
+**Praktische Konsequenz:** Die ursprünglich geplanten 20 B2C-/B2B-Interviews (Leitfäden in
+`validierung-mietpilot.md` und `interviewleitfaden-b2b.md`) sollten um die 5 Experimente aus
+`mietpilot-neubewertung.md` ergänzt werden, bevor sie als abgeschlossen gelten — insbesondere
+die Mittelmarkt-Frage (H14) gehört an den Anfang jedes Gesprächs, nicht ans Ende.
 
 ## D. Die 10 konkreten nächsten Aktionen
 
