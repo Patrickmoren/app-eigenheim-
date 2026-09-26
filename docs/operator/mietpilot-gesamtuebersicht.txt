@@ -1,0 +1,259 @@
+MIETPILOT — GESAMTÜBERSICHT (Stand: laufende Validierung, noch keine echten Interviews geführt)
+================================================================================
+Dieses Dokument fasst alle bisherigen Arbeitsergebnisse zu einem KI-Vermietungsservice-Projekt
+zusammen und listet alle zugehörigen Dateien auf. Erstellt als einzelnes Textdokument zur
+externen Weiterverwendung (z. B. Review mit einem anderen KI-Modell).
+
+--------------------------------------------------------------------------------
+1. WIE DIE IDEE ENTSTANDEN IST
+--------------------------------------------------------------------------------
+Ausgangspunkt war eine breite Marktanalyse für ein bootstrap-fähiges, automatisierbares
+Ein-Personen-Geschäftsmodell mit CHF 10-30k+ Monatsumsatz-Ziel bei langfristig 2-3h/Tag Aufwand.
+
+Entwicklung in drei Schritten:
+- FRISTENWÄCHTER: Software zur Überwachung von Prüf-/Wartungsfristen für Immobilien-
+  verwaltungen. Recherchierte echte Marktlücke (Segment zwischen Excel und teurem Enterprise-
+  CAFM), aber als "nicht sexy" verworfen.
+- VERMIETUNGSPILOT: KI-Agent für professionelle Immobilienverwaltungen, der den kompletten
+  Wiedervermietungsprozess automatisiert. Als Positionierung gewählt: Copilot auf bestehenden
+  Tools (Flatfox, Rimo, GARAIO) statt neue All-in-one-Plattform.
+- MIETPILOT: Dieselbe technologische Engine, aber Zielgruppe privater Eigentümer:innen
+  (1-5 Wohnungen) statt professioneller Verwaltungen. Grösserer, emotional greifbarerer Markt.
+
+--------------------------------------------------------------------------------
+2. DAS AKTUELLE PRODUKT
+--------------------------------------------------------------------------------
+Mietpilot ist eine KI-Engine für das DIGITALE BACKOFFICE der Wiedervermietung:
+1. Mietzins-Vorschlag (Eigentümer:in bestätigt)
+2. Exposé-Erstellung (automatisch)
+3. Publikation auf Portalen
+4. Bewerber-Screening (Einkommen, Betreibungsauszug, Referenzen)
+5. Bewerber-Ranking mit nachvollziehbarer Begründung ("3 statt 30")
+6. Kommunikation mit Bewerber:innen (automatisiert)
+7. Terminlogistik für Besichtigungen
+8. Vertragsvorbereitung
+
+BEWUSST AUSGESCHLOSSEN, DAUERHAFT: Die physische Besichtigung und Übergabe führt IMMER die
+Eigentümerin selbst durch — kein Partnernetz, kein Feldpersonal, jemals. Das ist eine bewusste
+Scope-Entscheidung (nicht nur eine Notlösung), die aus einer Nutzerrückmeldung entstand: sie
+entfernt den einzigen Prozessschritt, der physisch nie skaliert hätte, hält die Firma
+vollständig digital/remote betreibbar, und stärkt vermutlich sogar das Vertrauen (Eigentümerin
+trifft die Top-Kandidat:innen persönlich, bevor sie entscheidet, statt komplett blind zu
+delegieren).
+
+KERNVERSPRECHEN (aktuelle Fassung, bewusst zurückhaltender als die erste Version
+"Sie müssen nichts tun"):
+"Ihre Wohnung wird vermietet. Sie treffen nur noch Ihre künftigen Mieter:innen."
+
+--------------------------------------------------------------------------------
+3. ZWEI KONKURRIERENDE GESCHÄFTSMODELL-HYPOTHESEN (NICHT ENTSCHIEDEN)
+--------------------------------------------------------------------------------
+B2C — Mietpilot als eigene Endkundenmarke:
+- Zielgruppe: private Eigentümer:in mit 1-5 Wohnungen
+- Preis: CHF 890 pauschal, erfolgsabhängig, nur bei erfolgreicher Vermietung fällig
+- Vertrieb: bezahlte Werbung, SEO, Empfehlungen
+- Risiko: hoher Kundengewinnungspreis (CAC), weil Eigentümer:innen selten vermieten
+  (kein Wiederkauf pro Person), direkte Konkurrenz zu properti (siehe Abschnitt 4)
+
+B2B2C — Mietpilot als Technologie-Zulieferer:
+- Zielgruppe: kleinere Regionalmakler, Treuhänder mit Immobilienmandaten, kleine
+  Immobilienverwaltungen
+- Modell: Lizenz-/Fallgebühr, White-Label-fähig
+- Vertrieb: direkter B2B-Vertrieb, wenige Partnerverträge bringen viele Fälle
+- Vorteil: niedrigere Kundengewinnungskosten, nutzt bestehendes Kundenvertrauen des Partners
+
+EINSCHÄTZUNG AUS DEM STRESSTEST (Details siehe Abschnitt 5): B2B2C wird als ökonomisch
+stärker eingeschätzt, aber NICHT als "entweder/oder" empfohlen. Stattdessen: B2C klein als
+Referenz-/Beweisspur weiterlaufen lassen (echte Fälle, echte Zahlen sammeln), parallel
+2-3 B2B2C-Partnergespräche führen. Beide Hypothesen sind noch ungetestet.
+
+--------------------------------------------------------------------------------
+4. KONKURRENZ — EHRLICHER STAND
+--------------------------------------------------------------------------------
+- PROPERTI: Kein Startup, sondern ein etablierter Incumbent — 195 Mitarbeitende, 12 Standorte
+  in der Schweiz, Preis 1.5 Bruttomonatsmieten (mind. CHF 3'000), INKLUSIVE einer
+  5-Jahres-Mietergarantie. Das ist das eigentliche Vergleichsprodukt. "Günstiger als properti"
+  allein ist strukturell keine stabile Positionierung gegen einen kapitalstarken Anbieter mit
+  Garantie-Produkt — properti könnte selbst günstiger werden oder eine KI-Version launchen.
+- FLATFOX: Dominiert die professionelle Schiene (Verwaltungen) in der Schweiz, bietet bereits
+  automatisiertes Bewerber-Screening und Kommunikation.
+- PROPERTYOWNER.CH: Ursprünglich fälschlich als Vermietungs-Konkurrent eingestuft — genauere
+  Recherche zeigt, es ist primär ein VERKAUFS-Dienstleister, kein bestätigter Wettbewerber im
+  Vermietungsgeschäft. (Diese Korrektur ist ein Beispiel dafür, wie im Projektverlauf eigene
+  Fehleinschätzungen aktiv aufgedeckt und korrigiert wurden, siehe Abschnitt 6.)
+
+FAZIT: Kein unbesetzter Markt (anders als beim ursprünglich geprüften Fristenwächter-Modell).
+Die Differenzierung ist der KI-getriebene Kosten-/Geschwindigkeitsvorteil bzw. der B2B2C-Zugang
+zu bereits bestehendem Kundenvertrauen — nicht eine Marktlücke.
+
+--------------------------------------------------------------------------------
+5. STRATEGISCHER STRESSTEST — ZENTRALE ERGEBNISSE
+--------------------------------------------------------------------------------
+Vollständige 20-Phasen-Analyse in docs/mietpilot-stresstest.md. Kernpunkte:
+
+PROBLEM: Private Eigentümer:innen wollen bei einer seltenen, aber riskanten Wiedervermietung
+schnell einen zuverlässigen Mieter finden, ohne wochenlang Bewerbungen zu prüfen oder eine
+volle Maklerprovision zu zahlen.
+
+ZIELGRUPPEN-EINORDNUNG: Segmente mit 5-20 Wohnungen bzw. ortsferne Eigentümer:innen sind
+die stärksten Endkunden-Segmente (höherer Fallwert, höhere Automatisierungs-Akzeptanz als
+1-Wohnungs-Besitzer:innen). B2B2C-Partner sind strukturell am effizientesten, weil sie das
+CAC-Problem umgehen.
+
+UNIT ECONOMICS (Annahmen, nicht validiert): Variable Kosten pro Fall ca. CHF 177 (20% von
+CHF 890) -> Deckungsbeitrag I ca. CHF 713 (80%) vor Marketing. Grösste Unsicherheit ist der
+Kundengewinnungspreis (CAC), geschätzt CHF 250-400 zu Beginn, sinkend auf CHF 100-180 bei
+etabliertem SEO-/Empfehlungsanteil. Für CHF 1 Mio. Jahresumsatz wären ca. 1'124 Vermietungen/
+Jahr nötig (ca. 22/Woche).
+
+RECHTLICHE PRÜFUNG (mit zwei Selbstkorrekturen im Verlauf, siehe Abschnitt 6):
+- Mietmakler-Bewilligungspflicht: urspr. als kritisches Risiko eingestuft, dann korrigiert —
+  Kanton Zürich hat diese Pflicht 2012 aufgehoben, für den Hauptzielmarkt kein Thema mehr.
+  Genf/Tessin haben noch allgemeine (nicht mietspezifische) Maklerregulierung.
+- Art. 21 nDSG (automatisierte Einzelentscheidungen): lösbar durch Einwilligung der
+  Bewerber:innen zu automatisiertem Screening und durch Bestätigung von Absagen durch die
+  Eigentümerin statt rein automatischen Versands.
+- Diskriminierungsrecht: Herkunft/Geschlecht/Religion sind keine zulässigen Ablehnungsgründe;
+  Scoring darf ausschliesslich auf finanziellen/referenzbezogenen Kriterien basieren.
+- Betreibungsauszug: Standard-Marktpraxis (Bewerber:innen bestellen und reichen ihn selbst
+  ein) deckt sich bereits mit dem Produktkonzept, kein neues rechtliches Risiko.
+
+RADIKALE SELBSTPRÜFUNG ("Würdest du das mit CHF 0 genau so bauen?"): Antwort NEIN in der
+reinen B2C-Form. Empfehlung: dieselbe Engine zuerst 2-3 kleinen Regionalmaklern/Verwaltungen
+als kostenlosen Pilotpartner anbieten, um echte Referenzen zu bekommen, bevor eine
+Endkundenmarke aufgebaut wird.
+
+--------------------------------------------------------------------------------
+6. WICHTIGE SELBSTKORREKTUREN IM PROJEKTVERLAUF (Transparenz)
+--------------------------------------------------------------------------------
+Zwei Fehleinschätzungen wurden im Verlauf durch kritisches Hinterfragen aufgedeckt und offen
+korrigiert (nicht stillschweigend geändert):
+
+A) Mietmakler-Bewilligungspflicht: Erste Fassung behauptete eine kritische, ungeklärte
+   kantonale Bewilligungspflicht, gestützt nur auf eine KI-Suchzusammenfassung statt
+   Primärquelle. Direkte Recherche der offiziellen Mitteilung des Kantons Zürich zeigte:
+   diese Pflicht wurde 2012 aufgehoben. Der "nächste Schritt" musste dadurch komplett
+   geändert werden (von "Anwaltsgespräch buchen" zu "Interviews starten").
+
+B) Besichtigungs-Engpass: Erste Fassung führte Besichtigung/Übergabe als physischen
+   Skalierungsengpass, der Personal-Wachstum erzwingt. Bei genauerem Hinsehen: Das war eine
+   Vermischung von "ein physischer Schritt existiert im Prozess" mit "Mietpilot muss dafür
+   Personal stellen" — Besichtigung/Übergabe waren nie Mietpilot's eigene Aufgabe, sondern
+   immer die der Eigentümerin. Mit dieser Klarstellung bleibt die Firma vollständig digital/
+   remote skalierbar, unabhängig vom Fallvolumen.
+
+--------------------------------------------------------------------------------
+7. HYPOTHESENREGISTER (13 Hypothesen, Stand: alle noch OFFEN oder nur durch Marktrecherche,
+   nicht durch echte Gespräche gestützt)
+--------------------------------------------------------------------------------
+H1  - Private Eigentümer:innen empfinden die digitale Wiedervermietung als erheblichen Aufwand.
+H2  - Bewerber-Screening ist einer der grössten Zeitfresser.
+H3  - Private Eigentümer:innen akzeptieren KI-Vorauswahl, solange sie die Enddecision behalten.
+      [ZENTRALSTE HYPOTHESE DES GESAMTEN PRODUKTS]
+H4  - CHF 890 erfolgsabhängig wird von einem relevanten Teil der Zielgruppe akzeptiert.
+H5  - Private Eigentümer:innen sind wegen geringer Wiederholungsfrequenz teuer zu akquirieren.
+H6  - Kleine Verwaltungen haben höheren wirtschaftlichen Nutzen von Mietpilot als Privatpersonen.
+H7  - Verwaltungen/Makler würden eine externe KI-Engine einsetzen, wenn integrierbar.
+      [ZENTRALE B2B2C-HYPOTHESE]
+H8  - B2B2C ermöglicht niedrigere Akquisitionskosten und wiederkehrenden Firmenumsatz.
+H9  - Vertrauen/Haftungsfragen sind grössere Hindernisse als die technische Umsetzung.
+H10 - Das Produkt ist die Automatisierung eines standardisierten Prozesses, nicht "KI-Hype".
+H11 - properti kann eine B2C-Reaktion schneller nachbauen, als Mietpilot Marktanteil gewinnt.
+      [GUT GESTÜTZT durch Marktrecherche: 195 MA, Garantie-Produkt]
+H12 - CAC im B2C-Modell übersteigt bei realistischem Trichter die Marge pro Fall.
+      [HÖCHSTE PRIORITÄT FÜR ERSTEN ECHTEN TEST]
+H13 - Besichtigung/Übergabe bewusst bei der Eigentümerin zu belassen wird als
+      vertrauensbildend empfunden, nicht als reduzierter Service.
+
+--------------------------------------------------------------------------------
+8. VALIDIERUNGS-INFRASTRUKTUR (aufgebaut, noch keine echten Daten)
+--------------------------------------------------------------------------------
+Getrennte Prozesse für B2C und B2B mit Interviewleitfäden (verhaltensbasiert, nicht
+suggestiv — erst Ist-Prozess erfragen, erst danach das Konzept zeigen), Outreach-Texten
+(bewusst nüchtern, kein Startup-Hype), einem Lead-Qualifizierungssystem (HOT/WARM/COLD/
+INVALID nach Signalstärke, nicht nach Sympathie) und einem CRM mit zwei live-formelbasierten
+Dashboards (Excel, rechnet automatisch bei neuen Einträgen).
+
+Kill-Criteria (Auszug): Abbrechen bzw. Modell anpassen, wenn Mehrheit jede Bewerbung selbst
+sichten will, CHF 890 als unseriös oder zu teuer gegen DIY wirkt, unter 20% das Produkt
+ausprobieren würden, oder B2B2C-Erstgespräche kein Interesse zeigen.
+
+--------------------------------------------------------------------------------
+9. ALLE DATEIEN DIESES PROJEKTS (Repository app-eigenheim-, Branch
+   claude/business-model-analysis-chf20k-01olut)
+--------------------------------------------------------------------------------
+
+STRATEGIE & ANALYSE (Ordner docs/):
+- geschaeftsmodell-analyse-chf20k.md
+  Ausgangsanalyse: 30 bewertete Geschäftsprobleme, 10 abgeleitete Geschäftsmodelle,
+  Auswahl des ursprünglichen Kandidaten Fristenwächter.
+- mietpilot-stresstest.md
+  Vollständiger 20-Phasen-Stresstest von Mietpilot: Problem, Zielgruppen-Scoring,
+  Wettbewerb, 5 Produktalternativen, Prozesszerlegung, Vertrauensmodell, 7 Preismodelle,
+  Unit Economics (100 bis 50'000 Fälle/Jahr), Skalierbarkeit, Schweizer Rechtsprüfung,
+  MVP-Definition, Go-to-Market, 5 Validierungsexperimente, Entscheidungsmatrix.
+  Enthält beide in Abschnitt 6 beschriebenen Selbstkorrekturen.
+- zusammenfassung-mietpilot.md
+  Aktueller Kurzstand des Projekts (Kurzfassung dieses Dokuments, aber als Markdown).
+- validierung-mietpilot.md
+  B2C-Validierungspaket: Zielgruppen-Kriterien, Fundstellen (Homegate/ImmoScout24-
+  Privatinserate, HEV-Sektionen, Facebook-Gruppen), Outreach-Texte, Interviewleitfaden mit
+  Vertrauens- und Preistest, Kill Criteria.
+- validierung-woche1-leitfaden.md
+  (Aus der früheren Fristenwächter-Spur, methodisch wiederverwendbar.)
+- 01-analyse-und-konzept.md, Ordner anleitung/, machbarkeit/, prozesse/, sharepoint/
+  (Bestehende Projektinhalte, nicht Teil der Mietpilot-Analyse — betreffen das
+  ursprüngliche app-eigenheim-Projekt des Nutzers.)
+
+OPERATOR-INFRASTRUKTUR (Ordner docs/operator/):
+- hypothesen.md — das vollständige Hypothesenregister (s. Abschnitt 7).
+- interviewleitfaden-b2b.md — Interviewleitfaden für Verwaltungen/Makler/Treuhänder.
+- outreach-b2b.md — E-Mail-, LinkedIn-, Telefon- und Follow-up-Texte für die B2B-Spur.
+- lead-qualifizierung.md — HOT/WARM/COLD/INVALID-Regeln nach Signalstärke.
+- mietpilot-crm.xlsx — Excel-Arbeitsmappe: CRM B2C, CRM B2B, Pilot-Tracking,
+  Dashboard B2C, Dashboard B2B (beide formelbasiert, aktualisieren sich automatisch).
+  Aktuell leer bis auf je eine markierte Beispielzeile pro Blatt.
+- uebersicht.md — Statusbericht: was vorhanden ist, was fehlt, riskanteste Annahmen,
+  10 konkrete nächste Aktionen, was vom Nutzer noch gebraucht wird.
+- mietpilot-gesamtuebersicht.txt — dieses Dokument.
+
+PROTOTYPEN (Ordner prototyp/):
+- mietpilot.html (+ README-mietpilot.md)
+  Aktueller Klickdummy: Landingpage + interaktive Live-Demo für private Eigentümer:innen,
+  mit Preisvergleich (CHF 890 vs. properti CHF 2'500) und Kandidaten-Auswahl-Demo.
+- vermietungspilot.html (+ README)
+  Vorläufer-Prototyp für professionelle Verwaltungen (Portfolio-Dashboard, Aktivitäts-
+  protokoll, Fachfirmen-Portal) — nicht die aktuelle Zielgruppe, aber dieselbe Engine-Idee.
+- fristenwaechter.html (+ README)
+  Ursprünglicher Prototyp aus der verworfenen Fristenwächter-Spur.
+- leerstandsmanager.html
+  Bestehendes, unabhängiges internes Tool des Nutzers (nicht Teil der Mietpilot-Analyse).
+
+--------------------------------------------------------------------------------
+10. AKTUELLER STATUS & NÄCHSTE SCHRITTE
+--------------------------------------------------------------------------------
+STATUS: Strategie, Klickdummy, Validierungsmaterial und Operator-Infrastruktur sind fertig.
+Es liegen NULL echte Interviewdaten vor — alle Hypothesen sind ungetestet.
+
+DIE 10 NÄCHSTEN KONKRETEN AKTIONEN:
+1. B2C: 10 private Inserent:innen auf Homegate/ImmoScout24 identifizieren, ins CRM eintragen.
+2. B2C: Diese 10 kontaktieren (Vorlage in validierung-mietpilot.md).
+3. B2C: Erste 5 Interviews führen (verhaltensbasiert vor Konzeptvorstellung).
+4. B2B: 8-10 kleinere Verwaltungen/Makler/Treuhänder identifizieren, ins CRM eintragen.
+5. B2B: Diese kontaktieren (Vorlage in outreach-b2b.md).
+6. B2B: Erste 3 Gespräche führen (Leitfaden in interviewleitfaden-b2b.md).
+7. Nach jedem Gespräch: Notizen/Transkript liefern -> wird strukturiert ins CRM
+   eingetragen, Hypothesenregister aktualisiert, Lead-Status vergeben.
+8. CAC-Signal: kleinen Test-Ads-Betrag (CHF 300-500) auf die Landingpage schalten für
+   einen ersten echten Datenpunkt zu H12.
+9. Nach 5 B2C- und 3 B2B-Gesprächen: Musteranalyse, Hypothesenregister aktualisieren.
+10. Parallel: Kurzes Gespräch mit einer Verwaltungssoftware-Anbieterin (Abacus/GARAIO/
+    Rimo) zur technischen Machbarkeit einer Anbindung anfragen.
+
+WICHTIGE EINSCHRÄNKUNG: Interviews, Anrufe und Nachrichtenversand müssen von einer echten
+Person durchgeführt werden — hier fehlt aktuell nur die Feldausführung, nicht die
+Vorbereitung.
+
+================================================================================
+Ende der Gesamtübersicht.
+================================================================================
