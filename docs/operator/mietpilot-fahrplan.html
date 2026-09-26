@@ -1,0 +1,294 @@
+<title>Mietpilot Fahrplan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --surface-2:#FAFAF7; --sunken:#EAEBE4;
+  --ink:#1C2024; --ink-2:#565E67; --ink-3:#868F97;
+  --line:#E1E3DA; --line-strong:#CBCFC2;
+  --accent:#2F5DD4; --accent-ink:#1E3FA0; --accent-soft:#E8EDFC; --on-accent:#FFFFFF;
+  --ok:#2F6B45; --ok-soft:#E3F0E8;
+  --warn:#8A5A0B; --warn-soft:#FAEEDA;
+  --crit:#A3312B; --crit-soft:#F8E4E2;
+  --neutral:#5B6470; --neutral-soft:#EAEBE4;
+  --shadow:0 1px 2px rgba(28,32,36,.06), 0 4px 16px rgba(28,32,36,.06);
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#14171A; --surface:#1C2024; --surface-2:#202529; --sunken:#181C1F;
+  --ink:#E9EAE6; --ink-2:#AEB4B9; --ink-3:#7C848B;
+  --line:#2E3338; --line-strong:#3D4349;
+  --accent:#7C9AF0; --accent-ink:#A9BFF6; --accent-soft:#20293D; --on-accent:#0C1220;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --neutral:#AEB4B9; --neutral-soft:#20242A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+}}
+:root[data-theme="dark"]{
+  --ground:#14171A; --surface:#1C2024; --surface-2:#202529; --sunken:#181C1F;
+  --ink:#E9EAE6; --ink-2:#AEB4B9; --ink-3:#7C848B;
+  --line:#2E3338; --line-strong:#3D4349;
+  --accent:#7C9AF0; --accent-ink:#A9BFF6; --accent-soft:#20293D; --on-accent:#0C1220;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --neutral:#AEB4B9; --neutral-soft:#20242A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 15.5px/1.6 "Source Sans 3","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.f-ui{font-family:Archivo,"Segoe UI",system-ui,sans-serif;text-wrap:balance}
+p{margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.num{font-variant-numeric:tabular-nums}
+.lbl{font-family:Archivo,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.muted{color:var(--ink-2)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){ *{animation-duration:.001ms!important;transition-duration:.001ms!important} }
+
+.wrap{max-width:980px;margin:0 auto;padding:28px 20px 70px}
+@media (max-width:600px){ .wrap{padding:20px 16px 56px} }
+
+header.top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+header.top .titles{margin-right:auto}
+header.top h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.02em;margin:0}
+header.top .sub{color:var(--ink-2);margin-top:4px;font-size:15px}
+.phase-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:var(--accent-soft);color:var(--accent-ink);font-family:Archivo;font-weight:700;font-size:12.5px;white-space:nowrap}
+.phase-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:puls 1.8s ease-in-out infinite}
+@keyframes puls{0%,100%{opacity:1}50%{opacity:.35}}
+
+.status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 34px}
+@media (max-width:640px){ .status{grid-template-columns:1fr 1fr} }
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;box-shadow:var(--shadow)}
+.stat .v{font-family:Archivo;font-size:24px;font-weight:700;letter-spacing:-.01em}
+.stat .l{font-size:12px;color:var(--ink-3);margin-top:2px}
+
+section{margin-top:38px}
+section>h2{display:flex;align-items:baseline;gap:10px;font-size:19px;margin-bottom:4px}
+section>h2 .n{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent-ink);font-weight:600}
+section>.desc{color:var(--ink-2);font-size:13.5px;max-width:640px;margin-bottom:16px}
+
+/* Scope */
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){ .scope{grid-template-columns:1fr} }
+.scopecard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.scopecard.in{border-left:3px solid var(--ok)}
+.scopecard.out{border-left:3px solid var(--ink-3)}
+.scopecard h3{font-size:13px;display:flex;align-items:center;gap:8px}
+.scopecard ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.scopecard li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px}
+.scopecard.in li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);flex:none;margin-top:7px}
+.scopecard.out li{color:var(--ink-2)}
+.scopecard.out li::before{content:"";width:10px;height:1.6px;background:var(--ink-3);flex:none;margin-top:9px}
+
+/* Tracks */
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){ .tracks{grid-template-columns:1fr} }
+.track{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.track>header{padding:13px 16px;background:var(--surface-2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.track>header .badge{width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-family:Archivo;font-weight:700;font-size:12.5px;flex:none}
+.track>header b{font-size:14.5px}
+.track .pad{padding:15px 16px}
+.track .job{font-size:13px;color:var(--ink-2);margin-bottom:12px}
+.track .job b{color:var(--ink);font-weight:600}
+.track dl{margin:0;display:flex;flex-direction:column;gap:9px}
+.track dt{font-family:Archivo;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.track dd{margin:2px 0 0;font-size:13px}
+
+/* Signal ladder */
+.ladder{display:flex;align-items:flex-end;gap:8px;padding-top:10px}
+@media (max-width:640px){ .ladder{flex-direction:column;align-items:stretch} }
+.rung{flex:1;display:flex;flex-direction:column;gap:8px}
+@media (max-width:640px){ .rung{flex-direction:row;align-items:center} }
+.rung .bar{border-radius:8px 8px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;font-family:Archivo;font-weight:800;font-size:17px;color:var(--on-accent)}
+@media (max-width:640px){ .rung .bar{border-radius:8px;width:44px;flex:none;padding-top:0;align-items:center;height:44px!important} }
+.rung.a .bar{height:52px;background:var(--neutral)}
+.rung.b .bar{height:70px;background:var(--neutral)}
+.rung.c .bar{height:90px;background:var(--warn)}
+.rung.d .bar{height:112px;background:var(--ok)}
+.rung.e .bar{height:132px;background:var(--ok-ink,var(--ok));filter:brightness(.88)}
+.rung .txt{font-size:12px;line-height:1.4;padding:0 2px}
+.rung .txt b{display:block;font-size:12.5px;margin-bottom:2px}
+.rung .cnt{font-family:Archivo;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:10px;width:fit-content}
+.rung.a .cnt,.rung.b .cnt{background:var(--neutral-soft);color:var(--neutral)}
+.rung.c .cnt{background:var(--warn-soft);color:var(--warn)}
+.rung.d .cnt,.rung.e .cnt{background:var(--ok-soft);color:var(--ok)}
+
+/* Decision cards */
+.decisions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media (max-width:760px){ .decisions{grid-template-columns:1fr} }
+.dcard{border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.dcard.kill{background:var(--crit-soft);border:1px solid color-mix(in srgb,var(--crit) 35%,transparent)}
+.dcard.pivot{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent)}
+.dcard.proceed{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent)}
+.dcard h3{font-family:Archivo;font-size:14px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;margin-bottom:9px}
+.dcard.kill h3{color:var(--crit)}
+.dcard.pivot h3{color:var(--warn)}
+.dcard.proceed h3{color:var(--ok)}
+.dcard ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px;font-size:13px}
+.dcard li{color:var(--ink)}
+.note{margin-top:14px;font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:11px 14px}
+
+/* Timeline */
+.timeline{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px 16px 14px}
+.tl-track{display:flex;gap:3px}
+.tl-phase{display:flex;flex-direction:column;gap:8px}
+.tl-phase .bar{height:10px;border-radius:5px}
+.tl-phase .days{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);text-align:center}
+.tl-phase .lbl2{font-size:11.5px;text-align:center;color:var(--ink-2);line-height:1.3;padding:0 2px}
+.tl-phase.p1{flex:2} .tl-phase.p1 .bar{background:var(--neutral)}
+.tl-phase.p2{flex:2} .tl-phase.p2 .bar{background:var(--accent)}
+.tl-phase.p3{flex:4} .tl-phase.p3 .bar{background:var(--accent-ink)}
+.tl-phase.p4{flex:1} .tl-phase.p4 .bar{background:var(--warn)}
+.tl-phase.p5{flex:3} .tl-phase.p5 .bar{background:var(--accent-ink)}
+.tl-phase.p6{flex:1} .tl-phase.p6 .bar{background:var(--warn)}
+.tl-phase.p7{flex:1} .tl-phase.p7 .bar{background:var(--ok)}
+@media (max-width:640px){ .tl-track{flex-wrap:wrap} .tl-phase{flex:1 1 30%!important} }
+
+footer.pagefoot{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+[hidden]{display:none!important}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="titles">
+      <h1>Mietpilot — Fahrplan</h1>
+      <p class="sub">Validierung des reduzierten MVP: nur Bewerbungsprüfung &amp; -vergleich, 14 Tage, zwei getrennte Zielgruppen.</p>
+    </div>
+    <span class="phase-pill"><span class="dot"></span>Phase: Validierung vor jedem Bau</span>
+  </header>
+
+  <div class="status">
+    <div class="stat"><div class="v num">0 / 20</div><div class="l">Interviews geführt</div></div>
+    <div class="stat"><div class="v num">0 / 14</div><div class="l">Tage vergangen</div></div>
+    <div class="stat"><div class="v num">0</div><div class="l">Signal D/E bisher</div></div>
+    <div class="stat"><div class="v">H14</div><div class="l">wichtigste offene Hypothese</div></div>
+  </div>
+
+  <section id="scope">
+    <h2><span class="n">01</span> Was das MVP ist — und was nicht</h2>
+    <p class="desc">Kein Vermietungsprozess wird automatisiert. Nur ein Schritt: die Bewerbungsprüfung.</p>
+    <div class="scope">
+      <div class="scopecard in">
+        <h3>Im MVP</h3>
+        <ul>
+          <li>Automatisierte Prüfung eingereichter Unterlagen</li>
+          <li>Strukturierte Extraktion (Einkommen, Betreibungen, Referenzen)</li>
+          <li>Vergleich der Bewerber:innen</li>
+          <li>Nachvollziehbare Kandidatenübersicht — nichts versteckt</li>
+          <li>Optionale Top-3-Empfehlung mit Begründung</li>
+        </ul>
+      </div>
+      <div class="scopecard out">
+        <h3>Nicht im MVP</h3>
+        <ul>
+          <li>Mietzinsberechnung</li>
+          <li>Exposé &amp; Inserateerstellung</li>
+          <li>Portalpublikation</li>
+          <li>Besichtigungsorganisation, physische Besichtigung</li>
+          <li>Vertragsabschluss, Übergabe</li>
+          <li>Komplette Vermietungsplattform</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="tracks">
+    <h2><span class="n">02</span> Zwei Spuren, getrennt geführt</h2>
+    <p class="desc">Unterschiedlicher Job-to-be-done (H17) — nie zu einer Zielgruppe zusammenfassen.</p>
+    <div class="tracks">
+      <div class="track">
+        <header><span class="badge">A</span><b>Private Eigentümer:innen, 5–20 Wohnungen</b></header>
+        <div class="pad">
+          <p class="job">Job-to-be-done: <b>Urteilssicherheit.</b> Angst vor der falschen Entscheidung, nicht primär Zeitmangel.</p>
+          <dl>
+            <div><dt>Zusatzfragen</dt><dd>Portfoliogrösse &amp; Vermietungsfrequenz · schon einmal dafür bezahlt?</dd></div>
+            <div><dt>Kill-Signal</dt><dd>Kostenlose Eigenlösung wird als völlig ausreichend empfunden.</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="track">
+        <header><span class="badge">B</span><b>Kleine Immobilienverwaltungen</b></header>
+        <div class="pad">
+          <p class="job">Job-to-be-done: <b>Zeitersparnis</b> bei bereits vorhandener Kompetenz, nicht Vertrauen/Verantwortung abgeben.</p>
+          <dl>
+            <div><dt>Zusatzfragen</dt><dd>Objekte &amp; Fälle/Jahr · wer prüft heute, wie viel Zeit? · Kernprozess oder Last?</dd></div>
+            <div><dt>Kill-Signal</dt><dd>Bestehender Prozess ist "gut genug", kein Wechselgrund erkennbar.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signal">
+    <h2><span class="n">03</span> Signalstufen A–E</h2>
+    <p class="desc">Für die Geschäftsmodell-Validierung zählen primär <b>D</b> und <b>E</b> — nicht Zustimmung, sondern Handlung.</p>
+    <div class="ladder">
+      <div class="rung a"><div class="bar">A</div><div class="txt"><b>"Interessant"</b>reine Meinungsäusserung</div><span class="cnt">zählt nicht</span></div>
+      <div class="rung b"><div class="bar">B</div><div class="txt"><b>"Würde ich vielleicht nutzen"</b>Absicht, keine Handlung</div><span class="cnt">zählt nicht</span></div>
+      <div class="rung c"><div class="bar">C</div><div class="txt"><b>"Ich würde einen echten Fall testen"</b>Handlungsbereitschaft</div><span class="cnt">Erfolgskriterium</span></div>
+      <div class="rung d"><div class="bar">D</div><div class="txt"><b>"Hier ist ein echter Vermietungsfall"</b>konkrete Unterlagen</div><span class="cnt">zählt</span></div>
+      <div class="rung e"><div class="bar">E</div><div class="txt"><b>"Ich würde dafür bezahlen"</b>Zahlungsbereitschaft</div><span class="cnt">zählt</span></div>
+    </div>
+  </section>
+
+  <section id="decisions">
+    <h2><span class="n">04</span> Entscheidungslogik</h2>
+    <p class="desc">Beide Spuren werden unabhängig bewertet — A kann KILL sein, B PROCEED, oder umgekehrt.</p>
+    <div class="decisions">
+      <div class="dcard kill">
+        <h3>Kill</h3>
+        <ul>
+          <li>Kein relevanter Schmerz erkennbar</li>
+          <li>Kostenlose Eigenlösung gilt als ausreichend</li>
+          <li>Niemand will einen echten Fall testen (0× Signal D)</li>
+          <li>Nur B: bestehender Prozess ist bereits gut genug</li>
+        </ul>
+      </div>
+      <div class="dcard pivot">
+        <h3>Pivot</h3>
+        <ul>
+          <li>Screening ist wichtig — aber ein anderer Prozessschritt wird wiederholt als wertvoller genannt</li>
+          <li>→ zurück zur Neubewertung, Produktkern neu bestimmen</li>
+        </ul>
+      </div>
+      <div class="dcard proceed">
+        <h3>Proceed</h3>
+        <ul>
+          <li>Wiederholt echte Fälle angeboten (Signal D)</li>
+          <li>Erste Zahlungsbereitschaft entsteht (Signal E)</li>
+          <li>→ Pilotprozess starten, danach erst über MVP-Bau entscheiden</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Erfolgsschwelle je Segment: ≥ 30 % Signal C oder höher · ≥ 3 Signal D über beide Segmente total · ≥ 1 Signal E gilt bereits als starkes Signal.</div>
+  </section>
+
+  <section id="timeline">
+    <h2><span class="n">05</span> 14-Tage-Plan</h2>
+    <p class="desc">Kein Software-Bau, keine Landingpage, kein Marketing in diesen 14 Tagen.</p>
+    <div class="timeline">
+      <div class="tl-track">
+        <div class="tl-phase p1"><div class="bar"></div><div class="days">1–2</div><div class="lbl2">Zielliste A+B</div></div>
+        <div class="tl-phase p2"><div class="bar"></div><div class="days">3–4</div><div class="lbl2">Kontaktaufnahme</div></div>
+        <div class="tl-phase p3"><div class="bar"></div><div class="days">5–8</div><div class="lbl2">Erste 10 Interviews</div></div>
+        <div class="tl-phase p4"><div class="bar"></div><div class="days">9</div><div class="lbl2">Zwischen&shy;auswertung</div></div>
+        <div class="tl-phase p5"><div class="bar"></div><div class="days">10–12</div><div class="lbl2">Restliche 10 Interviews</div></div>
+        <div class="tl-phase p6"><div class="bar"></div><div class="days">13</div><div class="lbl2">Vollauswertung</div></div>
+        <div class="tl-phase p7"><div class="bar"></div><div class="days">14</div><div class="lbl2">Kill/Pivot/Proceed</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    Details: <span class="mono">docs/operator/mvp-validierung-screening.md</span> ·
+    <span class="mono">docs/mietpilot-neubewertung.md</span> ·
+    <span class="mono">docs/operator/hypothesen.md</span> (H14–H18) ·
+    <span class="mono">docs/operator/mietpilot-crm.xlsx</span>
+  </footer>
+
+</div>
