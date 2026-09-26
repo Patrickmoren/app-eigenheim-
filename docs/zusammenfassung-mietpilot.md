@@ -2,13 +2,16 @@
 
 ## Die Idee
 
-Ein KI-Agent, der für private Eigentümer:innen (1–5 Wohnungen) die komplette
-Wiedervermietung übernimmt: Exposé erstellen, auf Portalen publizieren, Bewerbungen prüfen
-(Einkommen, Betreibungsauszug, Referenzen), Besichtigungen koordinieren. Die Eigentümerin
-trifft nur noch die letzte Entscheidung — wählt aus 3 vorgeprüften, verständlich begründeten
-Empfehlungen.
+Ein KI-Agent, der für private Eigentümer:innen (1–5 Wohnungen) das komplette digitale
+Backoffice der Wiedervermietung übernimmt: Exposé erstellen, auf Portalen publizieren,
+Bewerbungen prüfen (Einkommen, Betreibungsauszug, Referenzen), Besichtigungstermine
+organisieren. **Die physische Besichtigung führt immer die Eigentümerin selbst durch** —
+bewusste Scope-Entscheidung, die den einzigen Prozessschritt entfernt, der nie skaliert
+hätte (kein Partnernetz, keine physische Präsenz nötig), und die zugleich das Vertrauen
+stärkt: Die Eigentümerin trifft die Top-Kandidat:innen persönlich, bevor sie entscheidet.
 
-**Kernversprechen:** *"Ihre Wohnung wird vermietet. Sie müssen nichts tun."*
+**Kernversprechen:** *"Ihre Wohnung wird vermietet. Sie treffen nur noch Ihre künftigen
+Mieter:innen."*
 
 ## Zielkunde
 
