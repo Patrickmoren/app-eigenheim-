@@ -1,0 +1,577 @@
+<title>Kantönligeist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --bg:#EEF0EA; --surface:#FFFFFF; --ink:#1A2230; --muted:#5C6673; --line:#D4D9D0; --edge:#B9C0B6;
+  --a:#1F6FB2; --a-soft:#DCE9F5; --b:#D23B2E; --b-soft:#F8DEDA; --neutral:#E4E7E1; --neutral-ink:#6A7380;
+  --gold:#B07A1C; --gold-soft:#F4E7CC; --ok:#2E7D4F;
+  --shadow:0 1px 2px rgba(26,34,48,.08),0 10px 26px rgba(26,34,48,.09);
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#10151B; --surface:#1A2129; --ink:#E9EDF0; --muted:#9CA6B2; --line:#2B3440; --edge:#3A4450;
+    --a:#5BA3E6; --a-soft:#18314A; --b:#FF6F5E; --b-soft:#44211C; --neutral:#2A323C; --neutral-ink:#A9B2BD;
+    --gold:#E6AE4A; --gold-soft:#3A2F1C; --ok:#5BC98A;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#10151B; --surface:#1A2129; --ink:#E9EDF0; --muted:#9CA6B2; --line:#2B3440; --edge:#3A4450;
+  --a:#5BA3E6; --a-soft:#18314A; --b:#FF6F5E; --b-soft:#44211C; --neutral:#2A323C; --neutral-ink:#A9B2BD;
+  --gold:#E6AE4A; --gold-soft:#3A2F1C; --ok:#5BC98A;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px rgba(0,0,0,.35);
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+.app{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:12px;padding:16px;box-sizing:border-box}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-family:var(--display);font-weight:900;font-size:34px;line-height:1;margin:0;cursor:pointer;letter-spacing:.01em}
+.logo span{color:var(--b)}
+.pill{font-weight:800;font-size:13px;background:var(--gold-soft);padding:6px 11px;border-radius:999px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:13px}
+h2{font-family:var(--display);font-weight:900;font-size:30px;line-height:1.04;margin:0;text-wrap:balance}
+button{font-family:var(--body);font-weight:800;font-size:16px;border:0;border-radius:14px;padding:13px 16px;cursor:pointer;color:var(--surface);background:var(--ink);touch-action:manipulation}
+button.red{background:var(--b);color:#fff}
+button.blue{background:var(--a);color:#fff}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.45;cursor:default}
+input{width:100%;box-sizing:border-box;font:inherit;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row > *{flex:1 1 140px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:0}
+.hero{box-shadow:var(--shadow)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.games{display:flex;flex-direction:column}
+.gitem{display:grid;grid-template-columns:1fr auto;gap:0 10px;align-items:center;background:transparent;color:var(--ink);border-radius:0;border-bottom:1px solid var(--line);padding:10px 2px;text-align:left}
+.gitem:last-child{border-bottom:0}
+.gitem small{font-size:12px;color:var(--muted);font-weight:700}
+.gitem small.turn{color:var(--b)}
+.gitem b{grid-row:1 / span 2;grid-column:2;font-family:var(--display);font-size:24px;font-variant-numeric:tabular-nums}
+/* Spiel */
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+.pl{border-radius:12px;padding:6px 10px;border:2px solid transparent;background:var(--surface)}
+.pl small{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pl b{font-size:15px;overflow-wrap:anywhere}
+.pl.a.on{border-color:var(--a);background:var(--a-soft)}
+.pl.b.on{border-color:var(--b);background:var(--b-soft)}
+.pl.b{text-align:right}
+.round{font-family:var(--display);font-weight:900;font-size:20px;text-align:center;line-height:1.05}
+.round small{display:block;font-family:var(--body);font-size:11px;color:var(--muted);font-weight:700}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.node{cursor:pointer}
+.node text{pointer-events:none;font-family:var(--body)}
+@keyframes pulse{0%{stroke-width:6;stroke-opacity:.9}100%{stroke-width:14;stroke-opacity:0}}
+.flash{animation:pulse 1.1s ease-out 3}
+.act{display:flex;flex-direction:column;gap:8px}
+.phase{font-weight:800;font-size:16px}
+.hint{font-size:13px;color:var(--muted)}
+.log{font-size:13px;background:var(--gold-soft);border-radius:12px;padding:8px 12px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line)}
+.legend b{color:var(--ink)}
+.over{position:fixed;inset:0;background:rgba(16,21,27,.55);display:grid;place-items:center;padding:16px;z-index:5}
+.over .card{max-width:440px;width:100%;box-shadow:var(--shadow);max-height:calc(100vh - 32px);overflow:auto}
+.msgbox{white-space:pre-wrap;font-size:14px;background:var(--bg);border:1px dashed var(--line);border-radius:12px;padding:10px 12px;user-select:all;word-break:break-word}
+.msg{font-size:13px;color:var(--muted);min-height:1.2em}
+.note{font-size:12px;color:var(--muted);text-align:center}
+.rules{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+@media (prefers-reduced-motion: reduce){ .flash{animation:none} }
+</style>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="app">
+  <header>
+    <h1 class="logo" id="home">KANTÖNLIGEIST<span>.</span></h1>
+    <span class="pill" id="mePill">–</span>
+  </header>
+
+  <!-- Start -->
+  <section id="scrHome">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card hero">
+        <p class="label">Erobere die Schweiz – gegen deine Freunde</p>
+        <h2>Zug um Zug per Chat. Kein Würfel. Nur Taktik.</h2>
+        <div class="row"><input id="myName" maxlength="12" placeholder="Dein Name" autocomplete="nickname"></div>
+        <button class="red" id="btnNew">Neues Duell starten</button>
+        <p class="msg" id="newMsg"></p>
+      </div>
+      <div class="card">
+        <p class="label">Nachricht von einem Freund</p>
+        <div class="row"><input id="codeIn" placeholder="Ganze Nachricht einfügen"><button id="btnCode">Öffnen</button></div>
+        <p class="msg" id="codeMsg"></p>
+      </div>
+      <div class="card" id="listCard" hidden>
+        <p class="label">Deine Duelle</p>
+        <div class="games" id="games"></div>
+      </div>
+      <div class="modes">
+        <button class="ghost" id="btnCpu">Üben gegen den Computer</button>
+        <button class="ghost" id="btnDuo">Zu zweit am Handy</button>
+      </div>
+      <div class="card">
+        <p class="label">Regeln</p>
+        <ul class="rules">
+          <li><b>Setzen:</b> Jede Runde bekommst du neue Leute: 3, plus 1 je 3 Kantone, plus Bonus für jede ganze Grossregion.</li>
+          <li><b>Ziehen:</b> Bis zu 3 Züge von einem deiner Kantone in einen Nachbarn. Einer bleibt immer zurück.</li>
+          <li><b>Erobern:</b> Kommen mehr Leute an, als dort stehen, gehört der Kanton dir. Die Heimat verteidigt mit +6.</li>
+          <li><b>Sieg:</b> Erobere die Heimat deines Gegners. Nach 12 Runden gewinnt, wer mehr Kantone hält.</li>
+          <li><b>Fairness:</b> Wer beginnt, bekommt in der ersten Runde 4 Leute extra, weil der Zweite schon reagieren kann.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spiel -->
+  <section id="scrGame" hidden>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="bar">
+        <div class="pl a" id="plA"><small id="kA">0 Kantone</small><b id="nA">Du</b></div>
+        <div class="round" id="roundTxt">Runde 1<small>von 12</small></div>
+        <div class="pl b" id="plB"><small id="kB">0 Kantone</small><b id="nB">Gegner</b></div>
+      </div>
+      <p class="log" id="log" hidden></p>
+      <div class="mapbox">
+        <svg id="map" viewBox="12 12 424 300" role="img" aria-label="Karte der 26 Kantone als Netz. Farbe zeigt den Besitzer, die Zahl die Leute."></svg>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="card act">
+        <p class="phase" id="phase"></p>
+        <p class="hint" id="hint"></p>
+        <div class="row" id="actBtns"></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="note">Prototyp · Die Karte ist vereinfacht: Kantone als Punkte, Nachbarn als Linien. Duelle bleiben in diesem Browser gespeichert.</p>
+</div>
+
+<div class="over" id="over" hidden><div class="card" id="overCard"></div></div>
+
+<script>
+(function(){
+"use strict";
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v===null ? d : JSON.parse(v) }catch(e){ return d } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)) }catch(e){} }
+};
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function hashStr(s){ let h=2166136261; for(const c of s){ h^=c.charCodeAt(0); h=Math.imul(h,16777619) } return h>>>0 }
+function mulberry(seed){ let a=seed>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296 } }
+
+/* ---------------------------------------------------------------- Karte */
+const K = { // Kürzel: [Name, x, y]
+  GE:["Genf",35,292], VD:["Waadt",88,236], VS:["Wallis",196,288], NE:["Neuenburg",104,164], JU:["Jura",140,104], FR:["Freiburg",142,214],
+  BE:["Bern",200,182], SO:["Solothurn",182,124], BS:["Basel-Stadt",186,58], BL:["Basel-Land.",218,90], AG:["Aargau",258,94], LU:["Luzern",240,150],
+  ZG:["Zug",296,130], SZ:["Schwyz",330,160], OW:["Obwalden",250,198], NW:["Nidwalden",284,180], UR:["Uri",312,222], ZH:["Zürich",306,86],
+  SH:["Schaffhausen",300,32], TG:["Thurgau",354,56], SG:["St. Gallen",380,128], AR:["Appenzell AR",376,88], AI:["Appenzell IR",414,102],
+  GL:["Glarus",358,178], GR:["Graubünden",410,222], TI:["Tessin",330,288]
+};
+const IDS = Object.keys(K);   // feste Reihenfolge für den Code
+const EDGES = "GE-VD VD-VS VD-FR VD-NE VD-BE VS-BE VS-UR VS-TI NE-FR NE-BE NE-JU JU-BE JU-SO JU-BL FR-BE BE-SO BE-AG BE-LU BE-OW BE-NW BE-UR BE-BL SO-BL SO-AG BS-BL BL-AG AG-ZH AG-ZG AG-LU LU-ZG LU-SZ LU-NW LU-OW ZG-ZH ZG-SZ SZ-ZH SZ-NW SZ-UR SZ-GL SZ-SG OW-NW OW-UR NW-UR UR-GL UR-GR UR-TI ZH-SH ZH-TG ZH-SG SH-TG TG-SG SG-AR SG-AI SG-GL SG-GR AR-AI GL-GR GR-TI".split(" ").map(e=>e.split("-"));
+const NB = {}; IDS.forEach(k=>NB[k]=[]); EDGES.forEach(([a,b])=>{ NB[a].push(b); NB[b].push(a) });
+// Grossregionen des BFS mit Bonus
+const REGIONS = [
+  {name:"Genferseeregion", ids:["GE","VD","VS"], bonus:2},
+  {name:"Espace Mittelland", ids:["BE","FR","SO","NE","JU"], bonus:3},
+  {name:"Nordwestschweiz", ids:["BS","BL","AG"], bonus:2},
+  {name:"Zürich", ids:["ZH"], bonus:1},
+  {name:"Ostschweiz", ids:["GL","SH","AR","AI","SG","GR","TG"], bonus:4},
+  {name:"Zentralschweiz", ids:["LU","UR","SZ","OW","NW","ZG"], bonus:3},
+  {name:"Tessin", ids:["TI"], bonus:1}
+];
+const ROUNDS=12, MOVES=3, HOME_DEF=6, MAXT=35, START_HOME=8, FIRST_BONUS=4, HOME_GAP=3;
+// Werte abgestimmt mit test/test.js (Computer gegen Computer): Beginner und Zweiter gewinnen je rund 50 %, Ø 8–9 Runden.
+
+/* ---------------------------------------------------------------- Regeln (rein, auch für Tests) */
+// Zustand: {id, turn, names:[A,B], home:[A,B], own:{K:0|1|2}, tr:{K:n}}   own 0 = neutral, 1 = A, 2 = B
+function newState(id, nameA, homeA){
+  const r=mulberry(hashStr("kg:"+id)), own={}, tr={};
+  IDS.forEach(k=>{ own[k]=0; tr[k]=2+Math.floor(r()*4) });
+  own[homeA]=1; tr[homeA]=START_HOME;
+  return {id, turn:0, names:[nameA,"?"], home:[homeA,null], own, tr};
+}
+function setHomeB(S, homeB, nameB){ S.home[1]=homeB; S.own[homeB]=2; S.tr[homeB]=START_HOME; S.names[1]=nameB }
+const mover = S => S.turn%2;              // 0 = A, 1 = B
+function hops(a,b){ const q=[[a,0]], seen=new Set([a]); while(q.length){ const [x,d]=q.shift(); if(x===b) return d; for(const n of NB[x]) if(!seen.has(n)){ seen.add(n); q.push([n,d+1]) } } return 99 }
+// Heimat des Zweiten: neutral und mindestens HOME_GAP Schritte von der ersten Heimat entfernt
+const homeOk = (S,k) => S.own[k]===0 && (!S.home[0] || hops(S.home[0],k)>=HOME_GAP);
+const count = (S,p) => IDS.filter(k=>S.own[k]===p+1).length;
+function income(S,p){
+  let n = 3 + Math.floor(count(S,p)/3);
+  REGIONS.forEach(R=>{ if(R.ids.every(k=>S.own[k]===p+1)) n+=R.bonus });
+  if(S.turn===0) n+=FIRST_BONUS;           // Ausgleich: der Zweite kann zuerst reagieren
+  return n;
+}
+const defense = (S,k) => S.tr[k] + (S.home.includes(k) && S.own[k]!==0 ? HOME_DEF : 0);
+function canMove(S,p,from,to){
+  if(S.own[from]!==p+1 || !NB[from].includes(to) || S.tr[from]<2) return false;
+  if(S.own[to]===p+1) return S.tr[to] < MAXT;
+  return S.tr[from]-1 > defense(S,to);
+}
+function doMove(S,p,from,to){  // gibt "move"/"capture"/"win" zurück
+  const n=S.tr[from]-1;
+  if(S.own[to]===p+1){ const m=Math.min(n, MAXT-S.tr[to]); S.tr[to]+=m; S.tr[from]-=m; return "move" }
+  const wasHome = S.home[1-p]===to && S.own[to]===(2-p);
+  S.tr[to] = n - defense(S,to); S.own[to]=p+1; S.tr[from]=1;
+  return wasHome ? "win" : "capture";
+}
+function place(S,p,k,n){ if(S.own[k]!==p+1) return 0; const m=Math.min(n, MAXT-S.tr[k]); S.tr[k]+=m; return m }
+function winnerAfterRounds(S){
+  const a=count(S,0), b=count(S,1);
+  if(a!==b) return a>b?0:1;
+  const ta=IDS.reduce((s,k)=>s+(S.own[k]===1?S.tr[k]:0),0), tb=IDS.reduce((s,k)=>s+(S.own[k]===2?S.tr[k]:0),0);
+  return ta===tb ? null : (ta>tb?0:1);
+}
+const over = S => S.turn >= ROUNDS*2;
+// Computer: setzt an die Front, erobert die schwächsten Ziele, bevorzugt die Heimat des Gegners
+function aiTurn(S,p){
+  const log={place:{}, moves:[]}; let inc=income(S,p);
+  const mine=()=>IDS.filter(k=>S.own[k]===p+1);
+  const threat=k=>NB[k].filter(n=>S.own[n]!==p+1).reduce((s,n)=>s+(S.own[n]===0?1:S.tr[n]+2),0);
+  const enemyHome=S.home[1-p];
+  while(inc>0){
+    const front=mine().filter(k=>NB[k].some(n=>S.own[n]!==p+1) && S.tr[k]<MAXT);
+    const pool=front.length?front:mine().filter(k=>S.tr[k]<MAXT); if(!pool.length) break;
+    pool.sort((a,b)=> (NB[b].includes(enemyHome)-NB[a].includes(enemyHome)) || (a===S.home[p]?-1:0) || threat(b)-threat(a));
+    const k=pool[0]; const m=place(S,p,k,1); if(!m) break; log.place[k]=(log.place[k]||0)+1; inc--;
+  }
+  for(let i=0;i<MOVES;i++){
+    const opts=[]; mine().forEach(f=>NB[f].forEach(t=>{ if(S.own[t]!==p+1 && canMove(S,p,f,t)){
+      const reg=REGIONS.find(R=>R.ids.includes(t)); const left=reg.ids.filter(x=>S.own[x]!==p+1).length;
+      opts.push({f,t,s:(t===enemyHome?1000:0)+(S.own[t]===2-p?30:10)+(left===1?reg.bonus*8:0)-defense(S,t)-(f===S.home[p]&&S.tr[f]-1-defense(S,t)<3?15:0)}) } }));
+    if(!opts.length) break;
+    opts.sort((a,b)=>b.s-a.s); const o=opts[0];
+    const r=doMove(S,p,o.f,o.t); log.moves.push(o.f+">"+o.t+(r==="win"?"!":"*"));
+    if(r==="win") return {log, win:true};
+  }
+  return {log, win:false};
+}
+
+/* ---------------------------------------------------------------- Code (ganzer Spielstand in einer Nachricht) */
+const B36="0123456789abcdefghijklmnopqrstuvwxyz";
+function encode(S, log){
+  const st=IDS.map(k=>S.own[k]+B36[S.tr[k]]).join("");
+  const lg=(Object.entries(log.place).map(([k,n])=>k+"+"+n).join(",")||"-")+"~"+(log.moves.join(",")||"-");
+  const body=["KG1",S.id,S.turn,S.names[0],S.names[1],S.home[0],S.home[1]||"?",st,lg].join(".");
+  return body+"."+hashStr(body).toString(36).slice(-4);
+}
+function decode(raw){
+  const m=raw.match(/KG1\.[a-z0-9]{6}\.\d+\.[^.\s]+\.[^.\s]+\.[A-Z?]{1,2}\.[A-Z?]{1,2}\.[0-2][0-9a-z]{0,1}(?:[0-2][0-9a-z])*\.[A-Za-z0-9+,>*!~-]+\.[0-9a-z]{1,4}/);
+  if(!m) return {err:"Darin ist kein Spielzug. Kopiere die ganze Nachricht deines Freundes nochmals."};
+  const parts=m[0].split("."), chk=parts.pop(), body=parts.join(".");
+  if(hashStr(body).toString(36).slice(-4)!==chk) return {err:"Der Code ist beschädigt oder wurde verändert. Kopiere ihn nochmals vollständig."};
+  const [, id, turn, nA, nB, hA, hB, st, lg] = parts;
+  if(st.length!==IDS.length*2 || !K[hA] || (hB!=="?" && !K[hB])) return {err:"Der Code ist unvollständig."};
+  const own={}, tr={}; IDS.forEach((k,i)=>{ own[k]=+st[i*2]; tr[k]=B36.indexOf(st[i*2+1]) });
+  const [pl, mv] = lg.split("~");
+  const log={place:{}, moves: mv==="-"?[]:mv.split(",")};
+  if(pl!=="-") pl.split(",").forEach(x=>{ const [k,n]=x.split("+"); log.place[k]=+n });
+  return {S:{id, turn:+turn, names:[nA,nB], home:[hA, hB==="?"?null:hB], own, tr}, log};
+}
+const clean = v => (v||"").replace(/[^A-Za-zÀ-ž0-9]/g,"").slice(0,12);
+
+/* ---------------------------------------------------------------- Zustand der Seite */
+let G=null;   // {mode:"online"|"duo"|"cpu", S, me (0/1 online), phase:"home"|"place"|"move"|"done", left, moves, sel, log, flash:[], prev}
+let games = store.get("kg-games", {});
+const saveGames = () => store.set("kg-games", games);
+const myName = () => clean($("myName").value);
+
+function show(id){ ["scrHome","scrGame"].forEach(s=>$(s).hidden = s!==id); window.scrollTo(0,0) }
+function colorOf(o){ return o===1 ? "var(--a)" : o===2 ? "var(--b)" : "var(--neutral)" }
+function nameFor(p){ // Anzeige aus Sicht des Bildschirms
+  if(G.mode==="online") return p===G.me ? "Du" : (G.S.names[p]!=="?" ? G.S.names[p] : "Gegner");
+  if(G.mode==="cpu") return p===0 ? "Du" : "Computer";
+  return G.S.names[p];
+}
+
+function drawMap(){
+  const S=G.S, p=mover(S), sel=G.sel;
+  let s=`<g stroke="var(--edge)" stroke-width="2">`;
+  EDGES.forEach(([a,b])=>{ s+=`<line x1="${K[a][1]}" y1="${K[a][2]}" x2="${K[b][1]}" y2="${K[b][2]}"/>` });
+  s+=`</g>`;
+  IDS.forEach(k=>{
+    const [nm,x,y]=K[k], o=S.own[k], home=S.home.includes(k) && o!==0;
+    let ring="", tag="";
+    const selectable = G.phase==="home" ? homeOk(S,k)
+      : G.phase==="place" ? o===p+1
+      : G.phase==="move" ? (sel ? (sel===k || canMove(S,p,sel,k)) : (o===p+1 && S.tr[k]>=2 && NB[k].some(t=>canMove(S,p,k,t)))) : false;
+    if(sel===k) ring=`<circle cx="${x}" cy="${y}" r="23" fill="none" stroke="var(--gold)" stroke-width="3"/>`;
+    else if(G.phase==="move" && sel && canMove(S,p,sel,k)){
+      ring=`<circle cx="${x}" cy="${y}" r="22" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="4 3"/>`;
+      if(S.own[k]!==p+1) tag=`<text x="${x}" y="${y-22}" text-anchor="middle" font-size="9" font-weight="800" fill="var(--gold)">erobern</text>`;
+    }
+    const fl = G.flash.includes(k) ? `<circle class="flash" cx="${x}" cy="${y}" r="16" fill="none" stroke="var(--gold)"/>` : "";
+    const fill=colorOf(o), txt = o===0 ? "var(--neutral-ink)" : "#fff";
+    s+=`<g class="node" data-k="${k}" tabindex="${selectable?0:-1}" role="button" aria-label="${nm}, ${o===0?"neutral":o===1?"blau":"rot"}, ${S.tr[k]} Leute${home?", Heimat":""}" opacity="${(G.phase==="place"||G.phase==="move"||G.phase==="home")&&!selectable&&sel!==k?0.78:1}">
+      ${fl}${ring}<circle cx="${x}" cy="${y}" r="17" fill="${fill}" stroke="${home?"var(--gold)":o===0?"var(--edge)":"var(--surface)"}" stroke-width="${home?3:2}"/>
+      <text x="${x}" y="${y}" text-anchor="middle" font-size="13" font-weight="800" fill="${txt}">${S.tr[k]}</text>
+      <text x="${x}" y="${y+10}" text-anchor="middle" font-size="8" font-weight="700" fill="${txt}" opacity=".9">${k}</text>
+      ${home?`<text x="${x+13}" y="${y-10}" font-size="11">🏠</text>`:""}${tag}</g>`;
+  });
+  $("map").innerHTML=s;
+}
+
+function render(){
+  const S=G.S, p=mover(S);
+  drawMap();
+  $("nA").textContent=nameFor(0); $("nB").textContent=nameFor(1);
+  $("kA").textContent=`${count(S,0)} Kantone`; $("kB").textContent=`${count(S,1)} Kantone`;
+  $("plA").classList.toggle("on", p===0 && G.phase!=="done"); $("plB").classList.toggle("on", p===1 && G.phase!=="done");
+  $("roundTxt").innerHTML=`Runde ${Math.min(ROUNDS, Math.floor(S.turn/2)+1)}<small>von ${ROUNDS}</small>`;
+  const regs=REGIONS.map(R=>{ const a=R.ids.every(k=>S.own[k]===1), b=R.ids.every(k=>S.own[k]===2);
+    return `<span>${a?"🔵 ":b?"🔴 ":""}${R.name} <b>+${R.bonus}</b></span>` }).join("");
+  $("legend").innerHTML = regs;
+  const btns=$("actBtns"), ph=$("phase"), hint=$("hint");
+  const who = nameFor(p);
+  if(G.phase==="home"){
+    ph.textContent="Wähle deinen Heimatkanton";
+    hint.textContent= S.home[0] ? `Hell = möglich (mindestens ${HOME_GAP} Schritte von der gegnerischen Heimat). Die Heimat startet mit ${START_HOME} Leuten und verteidigt mit +${HOME_DEF}.` : `Tippe auf einen Kanton. Er startet mit ${START_HOME} Leuten und verteidigt mit +${HOME_DEF}.`;
+    btns.innerHTML="";
+  } else if(G.phase==="place"){
+    ph.textContent=`${who==="Du"?"Setze":who+" setzt"} noch ${G.left} ${G.left===1?"Mensch":"Leute"}`;
+    hint.textContent="Tippe auf eigene Kantone. Am besten an die Grenze, wo erobert oder verteidigt wird.";
+    btns.innerHTML=`<button class="ghost" id="bUndo" ${G.placed.length?"":"disabled"}>Rückgängig</button><button id="bAll" class="${p===0?"blue":"red"}" ${G.sel?"":"disabled"}>Rest auf ${G.sel||"…"}</button>`;
+    $("bUndo").onclick=undoPlace; $("bAll").onclick=()=>{ if(G.sel){ while(G.left>0 && place(G.S,p,G.sel,1)){ G.left--; G.placed.push(G.sel); G.log.place[G.sel]=(G.log.place[G.sel]||0)+1 } afterPlace() } };
+  } else if(G.phase==="move"){
+    ph.textContent= `${who==="Du"?"Ziehen":who+" zieht"}: noch ${MOVES-G.moves} von ${MOVES} Zügen`;
+    hint.textContent= G.sel ? `Von ${K[G.sel][0]} (${S.tr[G.sel]} Leute): wähle ein Ziel. Gestrichelt = möglich. Ein Mensch bleibt zurück.` : "Tippe auf einen deiner Kantone mit mindestens 2 Leuten. Erobern geht nur, wenn mehr ankommen, als dort stehen.";
+    btns.innerHTML=`<button class="ghost" id="bCancel" ${G.sel?"":"disabled"}>Auswahl aufheben</button><button id="bEnd" class="${p===0?"blue":"red"}">Zug beenden</button>`;
+    $("bCancel").onclick=()=>{ G.sel=null; render() }; $("bEnd").onclick=endTurn;
+  } else {
+    ph.textContent = G.mode==="online" ? `${nameFor(p)} ist dran` : ""; hint.textContent=""; btns.innerHTML="";
+    if(G.mode==="online" && !over(S)) btns.innerHTML=`<button class="red" id="bShare">Nachricht nochmals zeigen</button>`, $("bShare").onclick=()=>shareTurn(G.lastLog);
+  }
+}
+
+/* ---------------------------------------------------------------- Ablauf */
+function startTurn(){
+  const S=G.S, p=mover(S);
+  G.left=income(S,p); G.moves=0; G.sel=null; G.placed=[]; G.log={place:{}, moves:[]};
+  G.phase="place";
+  if(G.mode==="cpu" && p===1){ render(); return cpuTurn() }
+  afterPlace();
+}
+function undoPlace(){ const k=G.placed.pop(); if(!k) return; G.S.tr[k]--; G.left++; G.log.place[k]--; if(!G.log.place[k]) delete G.log.place[k]; render() }
+const canPlace = (S,p) => IDS.some(k=>S.own[k]===p+1 && S.tr[k]<MAXT);
+function afterPlace(){ if(G.left<=0 || !canPlace(G.S,mover(G.S))){ G.left=0; G.phase="move"; G.sel=null } render() }
+function tapNode(k){
+  const S=G.S, p=mover(S);
+  if(G.mode==="cpu" && p===1) return;
+  if(G.phase==="home"){
+    if(!homeOk(S,k)) return;
+    return chooseHome(k);
+  }
+  if(G.phase==="place"){
+    if(S.own[k]!==p+1) return;
+    G.sel=k; if(place(S,p,k,1)){ G.left--; G.placed.push(k); G.log.place[k]=(G.log.place[k]||0)+1 }
+    return afterPlace();
+  }
+  if(G.phase==="move"){
+    if(!G.sel){ if(S.own[k]===p+1 && S.tr[k]>=2){ G.sel=k; render() } return }
+    if(k===G.sel){ G.sel=null; return render() }
+    if(S.own[k]===p+1 && !canMove(S,p,G.sel,k) && S.tr[k]>=2){ G.sel=k; return render() }
+    if(!canMove(S,p,G.sel,k)) return;
+    const r=doMove(S,p,G.sel,k); G.moves++; G.log.moves.push(G.sel+">"+k+(r==="win"?"!":r==="capture"?"*":""));
+    G.flash=[k]; G.sel=null;
+    if(r==="win"){ G.lastLog=G.log; S.turn++; return finish(p, "home") }   // Zug zählt: der Gegner bekommt den Schlussstand
+    if(G.moves>=MOVES) return endTurn();
+    render();
+  }
+}
+function chooseHome(k){
+  const S=G.S;
+  if(G.mode==="online" && !G.S.home[0]){ // neues Duell: A wählt
+    games[S.id]={id:S.id, me:0, S:null, t:Date.now()};
+    const fresh=newState(S.id, S.names[0], k); G.S=fresh; games[S.id].S=fresh; saveGames();
+    return startTurn();
+  }
+  setHomeB(S, k, G.mode==="online" ? myName()||"Gegner" : S.names[1]);
+  if(G.mode==="online"){ games[S.id].S=S; saveGames() }
+  G.flash=[k];
+  startTurn();
+}
+function endTurn(){
+  const S=G.S, p=mover(S);
+  if(G.phase==="place" && G.left>0) return;
+  G.lastLog=G.log; S.turn++; G.sel=null; G.flash=[];
+  if(over(S)){ return finish(winnerAfterRounds(S), "rounds") }
+  if(G.mode==="online"){ games[S.id].S=S; games[S.id].t=Date.now(); saveGames(); G.phase="done"; render(); return shareTurn(G.log) }
+  if(G.mode==="duo"){ G.phase="done"; render(); return passPhone() }
+  startTurn();
+}
+function cpuTurn(){
+  G.phase="done"; render();
+  const me=G;
+  setTimeout(()=>{ if(me!==G) return;
+    const S=G.S, r=aiTurn(S,1);
+    G.flash=[...Object.keys(r.log.place), ...r.log.moves.map(m=>m.slice(3,5))];
+    showLog("Computer", r.log);
+    if(r.win) return finish(1,"home");
+    S.turn++; if(over(S)) return finish(winnerAfterRounds(S),"rounds");
+    startTurn();
+  }, 700);
+}
+function logText(name, log){
+  const pl=Object.entries(log.place).map(([k,n])=>`+${n} ${k}`).join(", ");
+  const mv=log.moves.map(m=>{ const f=m.slice(0,2), t=m.slice(3,5), c=m[5]; return c==="!"?`${f}→${t} erobert die Heimat!`:c==="*"?`${f}→${t} erobert`:`${f}→${t} verschoben` }).join(", ");
+  return `${name}: ${pl||"nichts gesetzt"}${mv?` · ${mv}`:" · keine Züge"}`;
+}
+function showLog(name, log){ const el=$("log"); el.textContent=logText(name,log); el.hidden=false }
+
+function passPhone(){
+  const p=mover(G.S);
+  $("overCard").innerHTML=`<p class="label">Zu zweit am Handy</p><h2>Gib das Handy an ${esc(G.S.names[p])}.</h2><p class="muted">${esc(logText(G.S.names[1-p], G.lastLog))}</p><button class="${p===0?"blue":"red"}" id="oGo">${esc(G.S.names[p])} ist bereit</button>`;
+  $("over").hidden=false; $("oGo").focus();
+  $("oGo").onclick=()=>{ $("over").hidden=true; G.flash=[...Object.keys(G.lastLog.place), ...G.lastLog.moves.map(m=>m.slice(3,5))]; showLog(G.S.names[1-p], G.lastLog); startTurn() };
+}
+function shareTurn(log){
+  const S=G.S, other=G.me===0?1:0, oname=S.names[other]!=="?"?S.names[other]:"";
+  const code=encode(S, log);
+  const caps=log.moves.filter(m=>m[5]==="*").length;
+  const text=`${caps?`Ich habe ${caps} ${caps===1?"Kanton":"Kantone"} erobert. `:""}Du bist dran in Kantönligeist! Runde ${Math.floor(S.turn/2)+1} von ${ROUNDS}, ich halte ${count(S,G.me)} Kantone.\n\nCode: ${code}`;
+  $("overCard").innerHTML=`<p class="label">Zug fertig</p><h2>Schick die Nachricht an ${oname?esc(oname):"deinen Gegner"}.</h2>
+    <div class="msgbox" id="oMsgBox">${esc(text)}</div>
+    <button class="red" id="oCopy">Nachricht kopieren</button><p class="msg" id="oMsg"></p>
+    <button class="ghost" id="oHome">Zu meinen Duellen</button>`;
+  $("over").hidden=false;
+  $("oCopy").onclick=()=>{ const done=()=>$("oMsg").textContent="Kopiert. Jetzt im WhatsApp-Chat einfügen und abschicken.";
+    const fail=()=>{ const r=document.createRange(); r.selectNodeContents($("oMsgBox")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); $("oMsg").textContent="Kopieren ging nicht. Die Nachricht ist markiert, kopiere sie von Hand." };
+    try{ navigator.clipboard.writeText(text).then(done,fail) }catch(e){ fail() } };
+  $("oHome").onclick=()=>{ $("over").hidden=true; goHome() };
+}
+function finish(winner, how){
+  const S=G.S; G.phase="done";
+  if(G.mode==="online"){ games[S.id].S=S; games[S.id].over=true; games[S.id].winner=winner; saveGames() }
+  render();
+  const wn = winner===null ? null : nameFor(winner);
+  const title = winner===null ? "Unentschieden!" : how==="home" ? `${wn==="Du"?"Du eroberst":wn+" erobert"} die Heimat – ${wn==="Du"?"gewonnen!":"Sieg!"}` : `${wn==="Du"?"Du gewinnst":wn+" gewinnt"} nach ${ROUNDS} Runden!`;
+  const iWon = (G.mode==="online" && winner===G.me) || (G.mode==="cpu" && winner===0) || (G.mode==="duo" && winner!==null);
+  if(iWon) confetti();
+  let code="";
+  if(G.mode==="online") code=encode(S, G.lastLog||{place:{},moves:[]});
+  $("overCard").innerHTML=`<p class="label">Spielende</p><h2>${esc(title)}</h2>
+    <p class="muted">Kantone: ${esc(nameFor(0))} ${count(S,0)} · ${esc(nameFor(1))} ${count(S,1)}</p>
+    ${G.mode==="online"?`<p class="label">Schick das Ergebnis, damit auch dein Gegner es sieht</p><div class="msgbox" id="oMsgBox">${esc(`Kantönligeist – ${title}\n\nCode: ${code}`)}</div><button class="ghost" id="oCopy">Nachricht kopieren</button><p class="msg" id="oMsg"></p>`:""}
+    <button class="red" id="oAgain">Revanche</button><button class="ghost" id="oHome">Startseite</button>`;
+  $("over").hidden=false;
+  if($("oCopy")) $("oCopy").onclick=()=>{ const t=$("oMsgBox").textContent; try{ navigator.clipboard.writeText(t).then(()=>$("oMsg").textContent="Kopiert.",()=>$("oMsg").textContent="Bitte von Hand kopieren.") }catch(e){ $("oMsg").textContent="Bitte von Hand kopieren." } };
+  $("oAgain").onclick=()=>{ $("over").hidden=true; if(G.mode==="cpu") startCpu(); else if(G.mode==="duo") startDuo(G.S.names); else newOnline() };
+  $("oHome").onclick=()=>{ $("over").hidden=true; goHome() };
+}
+
+/* ---------------------------------------------------------------- Modi */
+const newId = () => Math.random().toString(36).slice(2,8).padEnd(6,"0");
+function newOnline(){
+  const n=myName(); if(!n){ $("newMsg").textContent="Gib zuerst deinen Namen ein."; show("scrHome"); $("myName").focus(); return }
+  const id=newId();
+  G={mode:"online", me:0, S:{id, turn:0, names:[n,"?"], home:[null,null], own:Object.fromEntries(IDS.map(k=>[k,0])), tr:newState(id,n,"GE").tr}, phase:"home", flash:[], log:{place:{},moves:[]}};
+  G.S.tr.GE = newState(id,n,"ZH").tr.GE;   // neutrale Startwerte ohne Heimat
+  $("log").hidden=true; show("scrGame"); render();
+}
+function startCpu(){
+  const id=newId(), homes=["GE","TG","TI","BS","GR","VD"], hA=homes[Math.floor(Math.random()*homes.length)];
+  const S=newState(id,"Du",hA);
+  const far=IDS.filter(k=>S.own[k]===0 && k!==hA && !NB[hA].includes(k)).sort((a,b)=>Math.hypot(K[b][1]-K[hA][1],K[b][2]-K[hA][2])-Math.hypot(K[a][1]-K[hA][1],K[a][2]-K[hA][2]));
+  setHomeB(S, far[0], "Computer");
+  G={mode:"cpu", S, phase:"place", flash:[S.home[0],S.home[1]], log:{place:{},moves:[]}};
+  $("log").hidden=true; show("scrGame"); startTurn();
+}
+function startDuo(names){
+  const n = names || [ "Blau", "Rot" ];
+  const id=newId();
+  G={mode:"duo", S:{id, turn:0, names:n.slice(), home:[null,null], own:Object.fromEntries(IDS.map(k=>[k,0])), tr:newState(id,"x","GE").tr}, phase:"home", flash:[], log:{place:{},moves:[]}};
+  G.S.tr.GE=newState(id,"x","ZH").tr.GE;
+  duoHomeStep=0; $("log").hidden=true; show("scrGame"); render();
+  $("phase").textContent=`${n[0]}: Wähle deinen Heimatkanton`;
+}
+let duoHomeStep=0;
+function askDuo(){
+  const n=store.get("kg-duo",["",""]);
+  $("overCard").innerHTML=`<p class="label">Zu zweit am Handy</p><h2>Wer spielt?</h2>
+    <input id="dA" maxlength="12" placeholder="Spieler Blau" value="${esc(n[0])}"><input id="dB" maxlength="12" placeholder="Spieler Rot" value="${esc(n[1])}">
+    <button class="red" id="dGo">Los geht's</button><button class="ghost" id="dNo">Abbrechen</button>`;
+  $("over").hidden=false; $("dA").focus();
+  $("dGo").onclick=()=>{ const a=clean($("dA").value)||"Blau", b=clean($("dB").value)||"Rot"; store.set("kg-duo",[a,b]); $("over").hidden=true; startDuo([a,b]) };
+  $("dNo").onclick=()=>{ $("over").hidden=true };
+}
+
+function openCode(raw){
+  const d=decode(raw); if(d.err) return d.err;
+  const me=myName(); if(!me) return "Gib oben zuerst deinen Namen ein.";
+  const S=d.S, local=games[S.id];
+  if(local && local.S && local.S.turn>=S.turn) { resume(S.id); return local.S.turn===S.turn ? "" : "Dieser Code ist älter als dein Stand. Du siehst den aktuellen Stand." }
+  const meIdx = S.turn%2;   // wer die Nachricht bekommt, ist dran
+  if(S.names[meIdx]!=="?" && S.names[meIdx]!==me && !local) { /* anderer Name: trotzdem zulassen, z. B. neues Gerät */ }
+  games[S.id]={id:S.id, me:meIdx, S, t:Date.now(), over:false}; saveGames();
+  G={mode:"online", me:meIdx, S, flash:[...Object.keys(d.log.place), ...d.log.moves.map(m=>m.slice(3,5))], log:{place:{},moves:[]}, lastLog:d.log};
+  show("scrGame");
+  const oname=S.names[1-meIdx];
+  const winMove=d.log.moves.find(m=>m[5]==="!");
+  showLog(oname, d.log);
+  if(winMove) return finish(1-meIdx,"home"), "";
+  if(over(S)) return finish(winnerAfterRounds(S),"rounds"), "";
+  if(!S.home[1]){ G.phase="home"; render(); return "" }
+  startTurn(); return "";
+}
+function resume(id){
+  const g=games[id]; if(!g||!g.S) return;
+  const S=g.S;
+  G={mode:"online", me:g.me, S, flash:[], log:{place:{},moves:[]}};
+  $("log").hidden=true; show("scrGame");
+  if(g.over) return finish(g.winner??winnerAfterRounds(S), "rounds");
+  if(mover(S)===g.me) startTurn(); else { G.phase="done"; G.lastLog={place:{},moves:[]}; render() }
+}
+function goHome(){ renderHome(); show("scrHome") }
+function renderHome(){
+  $("mePill").textContent = myName() || "–";
+  const list=Object.values(games).filter(g=>g.S).sort((a,b)=>b.t-a.t);
+  $("listCard").hidden=!list.length;
+  $("games").innerHTML=list.slice(0,20).map(g=>{ const S=g.S, other=S.names[1-g.me]!=="?"?S.names[1-g.me]:"Gegner";
+    const st = g.over ? (g.winner===g.me?"Gewonnen":g.winner===null?"Unentschieden":"Verloren") : mover(S)===g.me ? "Du bist dran" : `Warte auf ${other}`;
+    return `<button class="gitem" data-id="${g.id}"><span>gegen ${esc(other)}</span><small class="${!g.over&&mover(S)===g.me?"turn":""}">${esc(st)} · Runde ${Math.min(ROUNDS,Math.floor(S.turn/2)+1)}</small><b>${count(S,g.me)}:${count(S,1-g.me)}</b></button>` }).join("");
+}
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c=$("fx"), x=c.getContext("2d"); c.width=innerWidth; c.height=innerHeight;
+  const cols=["#1F6FB2","#D23B2E","#B07A1C","#2E7D4F","#FFFFFF"];
+  const P=Array.from({length:120},()=>({x:c.width/2,y:c.height*0.3,vx:(Math.random()-.5)*12,vy:-Math.random()*11-4,s:Math.random()*6+4,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6}));
+  let t=0; (function f(){ x.clearRect(0,0,c.width,c.height); P.forEach(p=>{ p.vy+=0.35; p.x+=p.vx; p.y+=p.vy; p.r+=0.2; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2); x.restore() }); if(++t<110) requestAnimationFrame(f); else x.clearRect(0,0,c.width,c.height) })();
+}
+
+/* ---------------------------------------------------------------- Ereignisse */
+$("map").addEventListener("click", e=>{ const n=e.target.closest(".node"); if(!n) return;
+  if(G.mode==="duo" && G.phase==="home"){ return duoHome(n.dataset.k) }
+  tapNode(n.dataset.k) });
+$("map").addEventListener("keydown", e=>{ if(e.key!=="Enter" && e.key!==" ") return; const n=e.target.closest(".node"); if(!n) return; e.preventDefault(); if(G.mode==="duo"&&G.phase==="home") duoHome(n.dataset.k); else tapNode(n.dataset.k) });
+function duoHome(k){
+  const S=G.S;
+  if(!homeOk(S,k)) return;
+  if(duoHomeStep===0){ const fresh=newState(S.id, S.names[0], k); fresh.names=S.names; G.S=fresh; duoHomeStep=1; G.flash=[k]; render(); $("phase").textContent=`${S.names[1]}: Wähle deinen Heimatkanton`; return }
+  setHomeB(G.S,k,S.names[1]); G.flash=[k]; startTurn();
+}
+$("myName").value=store.get("kg-name","");
+$("myName").addEventListener("input",()=>{ store.set("kg-name",myName()); $("mePill").textContent=myName()||"–"; $("newMsg").textContent="" });
+$("btnNew").onclick=newOnline;
+$("btnCpu").onclick=startCpu;
+$("btnDuo").onclick=askDuo;
+$("btnCode").onclick=()=>{ const m=openCode($("codeIn").value); $("codeMsg").textContent=m||""; if(!m) $("codeIn").value="" };
+$("games").onclick=e=>{ const b=e.target.closest(".gitem"); if(b) resume(b.dataset.id) };
+$("home").onclick=()=>{ $("over").hidden=true; if(G) G={...G, dead:true}; goHome() };
+
+renderHome();
+// Test-Schnittstelle (nur Regeln, keine Seite): für automatische Prüfung
+window.__KG = {homeOk,hops,newState,setHomeB,income,canMove,doMove,place,aiTurn,encode,decode,count,over,winnerAfterRounds,IDS,NB,mover};
+})();
+</script>
