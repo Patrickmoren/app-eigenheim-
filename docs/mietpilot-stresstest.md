@@ -9,8 +9,8 @@
 Mietpilot in der aktuellen Form — ein KI-Agent, der als **Endkundenmarke gegenüber privaten Eigentümer:innen** auftritt und die komplette Wiedervermietung für eine Pauschale von CHF 890 übernimmt — hält dem Stresstest **nicht ohne substanzielle Anpassung** stand. Drei Befunde sind entscheidend:
 
 1. **properti ist kein kleiner Wettbewerber, sondern ein etablierter, kapitalstarker Incumbent** (195 Mitarbeitende, 12 Standorte, 1.5 Monatsmieten inkl. 5-Jahres-Mietergarantie). Eine reine "gleiches Ergebnis, günstiger"-Positionierung ist gegen einen Anbieter mit Garantie-Produkt, Vertrauensmarke und Skalenvorteil strukturell schwach — properti kann bei Bedarf selbst günstiger werden oder eine "AI-Lite"-Version launchen, ohne dass Mietpilot etwas dagegen ausrichten kann.
-2. **Ein regulatorischer Punkt wurde bisher übersehen:** Für **Mietmakler** besteht in der Schweiz eine kantonal geregelte **Bewilligungspflicht** (OR 418 räumt den Kantonen diese Kompetenz ein) — anders als für Verkaufsmakler, die grundsätzlich unreguliert sind. Mietpilot wäre wirtschaftlich eine Mietmakler-Tätigkeit. **Das ist ZU VALIDIEREN, bevor überhaupt weiter gebaut wird**, nicht danach.
-3. **Die eigentlich verteidigbare Chance liegt nicht im Endkundengeschäft, sondern im B2B2C-Vertrieb der Screening-/Ranking-Engine an bereits vertrauenswürdige Player** (properti selbst, kleinere Regionalmakler, Verwaltungen, Treuhänder, der Grundeigentümerverband) — das senkt Kundengewinnungskosten drastisch, nutzt bestehende Vertrauensbeziehungen und passt deutlich besser zu den Ausgangskriterien "1 Person, wenig Kapital, hohe Marge, kaum Personal".
+2. **Korrektur einer ersten Fassung dieser Analyse:** Hier stand zunächst, eine kantonal geregelte Mietmakler-Bewilligungspflicht sei ein zentrales, ungeklärtes Risiko. Das war falsch bzw. veraltet und beruhte auf einer KI-Suchzusammenfassung statt einer Primärquelle. Tatsächlich hat **Kanton Zürich die Bewilligungspflicht für die gewerbsmässige Vermietungsvermittlung per 1. Januar 2012 explizit aufgehoben** (Mitteilung Kanton Zürich, zh.ch) — für den wichtigsten Zielmarkt ist das kein Thema. Genf (LPI) und Tessin haben weiterhin eigene, allgemeine Maklerregulierungen, die aber nicht mietspezifisch sind und nur bei dortiger Niederlassung greifen. Details und Folgen dieser Korrektur unter Phase 10.
+3. **Die eigentlich verteidigbare Chance liegt nicht im Endkundengeschäft, sondern im B2B2C-Vertrieb der Screening-/Ranking-Engine an bereits vertrauenswürdige Player** (properti selbst, kleinere Regionalmakler, Verwaltungen, Treuhänder, der Grundeigentümerverband) — das senkt Kundengewinnungskosten drastisch, nutzt bestehende Vertrauensbeziehungen und passt deutlich besser zu den Ausgangskriterien "1 Person, wenig Kapital, hohe Marge, kaum Personal". Dieser Punkt steht **weiterhin**, jetzt aber primär gestützt auf properti's Marktstärke und die CAC-Ökonomie (Phase 8), nicht mehr auf eine rechtliche Hürde.
 
 **Antwort auf die eigentliche Frage (Phase 19):** Mit CHF 0 und ohne bestehende Technologie würde ich **nicht** eine Endkundenmarke "Mietpilot" gegen properti aufbauen. Ich würde die gleiche KI-Engine (Screening, Ranking, Kommunikation) **als White-Label/API an bestehende Vermietungsdienstleister verkaufen** — das ist im Detail unter Phase 17 und 19 begründet.
 
@@ -74,7 +74,7 @@ Das heisst nicht "Stopp". Es heisst: **B2C-Version zuerst so klein wie möglich 
 
 | Modell | Beschreibung | Problemstärke | Zahlungsbereitschaft | Automatisierbarkeit | Skalierbarkeit | Vertrauensbarriere | Rechtliches Risiko | Konkurrenzdruck | Time-to-Market | Kapitalbedarf | Marge |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| **1. Mietpilot Full-Service B2C** (aktuelle Idee) | KI übernimmt alles, Endkundenmarke gegen private Eigentümer:innen | mittel | mittel | hoch | mittel (CAC-limitiert) | sehr hoch | hoch (Mietmakler-Bewilligung, Art. 21 nDSG) | hoch (properti) | mittel | mittel-hoch | mittel (nach CAC) |
+| **1. Mietpilot Full-Service B2C** (aktuelle Idee) | KI übernimmt alles, Endkundenmarke gegen private Eigentümer:innen | mittel | mittel | hoch | mittel (CAC-limitiert) | sehr hoch | niedrig-mittel (v. a. Art. 21 nDSG; Mietmakler-Bewilligung in ZH seit 2012 aufgehoben, nur in GE/TI bei dortiger Niederlassung relevant) | hoch (properti) | mittel | mittel-hoch | mittel (nach CAC) |
 | **2. KI-Bewerberfilter als eigenständiges Tool** | Eigentümer:in macht Inserat weiter selbst (Homegate etc.), Mietpilot übernimmt nur Screening + Ranking der eingehenden Bewerbungen | mittel | niedrig-mittel (Teilservice = geringere Zahlungsbereitschaft) | sehr hoch | hoch | mittel (kleinerer Vertrauensschritt als Vollservice) | mittel (immer noch Profiling-Frage, aber kein Makler-Thema) | mittel | kurz | niedrig | hoch (schlanker Scope) |
 | **3. Besichtigungs- & Kommunikations-Automatisierung** | Reine Terminkoordination + automatisierte Bewerberkommunikation, Auswahl bleibt beim Menschen | niedrig-mittel | niedrig | hoch | hoch | niedrig | niedrig | mittel-hoch (viele Terminbuchungstools) | kurz | niedrig | mittel |
 | **4. "Vermietung as a Service" — White-Label-Engine für Makler/Verwaltungen (B2B2C)** | Dieselbe Technologie, verkauft an properti-Konkurrenten, Regionalmakler, Treuhänder, Verwaltungen als internes Effizienz-Tool | hoch (deren Personalkosten sind das Problem) | hoch (B2B-Preise) | hoch | **sehr hoch** (ein Vertragsabschluss = Hunderte Fälle) | niedrig (Partner vertraut Technologie, nicht Endkunde direkt) | mittel (Verantwortung liegt beim Partner als Auftraggeber) | niedrig (kaum jemand bietet das als reines Backend an) | mittel | niedrig-mittel | **sehr hoch** |
@@ -200,7 +200,7 @@ Bei den obigen Annahmen bleibt bereits bei 100 Fällen/Jahr ein positiver Deckun
 | Thema | Status | Kernaussage |
 |---|---|---|
 | Mietrecht (Anfangsmietzins, Formvorschriften) | FAKT | Bestehende Standardprozesse (Formularpflicht bei Mietzinserhöhung/Erstvermietung je nach Kanton) müssen im Vertragsmodul abgebildet werden — lösbar, aber nicht trivial |
-| **Maklerbewilligung** | **ZU VALIDIEREN — kritisch** | Verkaufsmakler sind in der CH grundsätzlich unreguliert, **für Mietmakler besteht jedoch eine Bewilligungspflicht**, und Kantone können zusätzliche Vorschriften erlassen (OR 418). Mietpilot wäre wirtschaftlich eine Mietmakler-Tätigkeit. **Vor jeder weiteren Investition mit einer Anwaltskanzlei kantonal klären, insbesondere im ersten Zielkanton.** |
+| **Maklerbewilligung** | **FAKT — grösstenteils entschärft (Korrektur)** | In einer früheren Fassung dieser Analyse stand hier fälschlich "kritisch, ZU VALIDIEREN" — gestützt nur auf eine KI-Suchzusammenfassung, nicht auf eine Primärquelle. Tatsächlich: **Kanton Zürich hat die Bewilligungspflicht für die gewerbsmässige Vermietungsvermittlung (Vermittlung von Wohn- und Geschäftsräumen) per 1. Januar 2012 aufgehoben** (Mitteilung Kanton Zürich, zh.ch — Gesetz vom 30.11.1980 entsprechend geändert). Für den grössten und naheliegendsten Zielmarkt ist das damit **kein Thema mehr**. Genf (Loi sur la pratique des professions immobilières, LPI) und Tessin kennen weiterhin eigene, aber **allgemeine** Maklerregulierungen (nicht mietspezifisch), die nur greifen, wenn dort physisch/geschäftlich niedergelassen wird. **Verbleibend ZU VALIDIEREN, aber nur noch als Nebenpunkt:** kantonale Detailprüfung nötig, falls Genf/Tessin explizit als Zielmarkt geplant sind — für einen Start in Zürich (oder den meisten anderen Kantonen) nicht blockierend. |
 | Datenschutz — automatisierte Einzelentscheidungen (Art. 21 nDSG) | FAKT | Gilt bei Entscheidungen, die ausschliesslich automatisiert erfolgen und Rechtsfolgen haben — **Ausnahme, wenn die betroffene Person ausdrücklich in die automatisierte Entscheidung eingewilligt hat, oder wenn die automatisierte Entscheidung dem Antrag stattgibt** (Zusage statt Absage). Praktikable Lösung: (a) Einwilligung der Bewerber:innen zu automatisiertem Pre-Screening als Teil des Bewerbungsformulars einholen, (b) Ablehnungen formal von der Eigentümer:in bestätigen lassen, nicht rein automatisch versenden |
 | Betreibungsauszug — Beschaffung | FAKT | Dritte (Vermieter, Vermittler) dürfen einen Auszug über eine Person nur **mit deren Zustimmung** einholen. **Lösung bereits produktkonform:** Standardpraxis in der Schweiz ist ohnehin, dass Bewerber:innen ihren Auszug **selbst bestellen und einreichen** — das entspricht exakt dem im Prototyp angenommenen Ablauf, ist also kein neues Risiko |
 | Diskriminierungsrecht | FAKT | Herkunft, Geschlecht, Religion, soziale Stellung sind **keine zulässigen Ablehnungsgründe** (Art. 8 BV, Persönlichkeitsschutz OR). Finanzielle/bonitätsbezogene Kriterien sind zulässig. **Design-Konsequenz:** Scoring-Algorithmus darf ausschliesslich auf finanziellen/referenzbezogenen Merkmalen basieren, keine Namens-, Herkunfts- oder sonstigen Proxy-Variablen verwenden — inklusive eines regelmässigen Bias-Audits, sobald reale Daten vorliegen |
@@ -208,7 +208,7 @@ Bei den obigen Annahmen bleibt bereits bei 100 Fällen/Jahr ein positiver Deckun
 | Vertragsabschluss/E-Signatur | FAKT | Etablierte Schweizer Lösungen (z. B. Skribble) existieren und werden bereits von Flatfox/VERIT genutzt — kein Neuland |
 | Identitätsprüfung | ZU VALIDIEREN | Wie wird sichergestellt, dass die Person, die sich bewirbt, tatsächlich die Person im Lohnausweis/Betreibungsauszug ist? Betrugsrisiko real, Lösung (z. B. Video-Ident) muss noch definiert werden |
 
-**Wichtigste Konsequenz:** Punkt "Maklerbewilligung" ist der einzige Punkt in dieser ganzen Analyse, der **vor** dem nächsten Gespräch mit Eigentümer:innen geklärt werden sollte, weil er die Grundstruktur des Geschäfts (eigenständige Maklertätigkeit vs. Technologie-Zulieferer an einen bewilligten Makler) beeinflusst — und damit auch, ob Modell A (B2C) oder Modell G (B2B2C, wo der *Partner* die Bewilligung trägt) der gangbarere Weg ist.
+**Wichtigste Konsequenz:** Die Maklerbewilligungsfrage blockiert einen Start in Zürich (und den meisten Kantonen) **nicht mehr** — das war ein Fehler in der ersten Fassung dieser Analyse. Die eigentlich entscheidenden offenen Punkte in dieser Tabelle sind jetzt **Art. 21 nDSG (Design-Anforderung, keine Blockade) und die Identitätsprüfung** — beide lösbar, keiner davon verlangt eine Klärung *vor* den ersten Kundengesprächen.
 
 ---
 
@@ -297,7 +297,7 @@ Nutzt den bereits bestehenden Leitfaden (`docs/validierung-mietpilot.md`, Fragen
 | Tatsächliche Nutzung | (fehlte) | Von 3 "Wizard of Oz"-Testfällen (Experiment 4) scheitert mehr als 1 an Vertrauen/Prozess statt an Zufall |
 | Weiterempfehlung | (fehlte) | Der/die zahlende Testkund:in (Experiment 5) würde bei direkter Nachfrage **nicht** aktiv weiterempfehlen |
 | Zeitersparnis | (fehlte) | Der reale Vermietungsprozess dauert im Testfall nicht spürbar kürzer als beim Eigentümer-Vergleichswert aus Teil 1, Frage 5 |
-| Rechtlich | "Haftungsbedenken" | Die Maklerbewilligungsfrage (Phase 10) klärt sich **negativ** für das geplante B2C-Modell in mindestens einem grossen Zielkanton, ohne praktikablen Ausweg (z. B. Bewilligung selbst erwerben oder mit bewilligtem Partner kooperieren) |
+| Rechtlich | "Haftungsbedenken" | Genf/Tessin sollen als Zielmarkt dienen **und** die dortige kantonale Maklerregulierung erweist sich als praktisch nicht erfüllbar, **oder** in Interviews/Praxis zeigt sich ein bisher nicht erkanntes rechtliches Hindernis (z. B. bei Art. 21 nDSG-Umsetzung oder Identitätsprüfung) |
 
 ---
 
@@ -311,7 +311,7 @@ Nutzt den bereits bestehenden Leitfaden (`docs/validierung-mietpilot.md`, Fragen
 | 4 | **Success-Fee-Plattform mit mehreren "Erfüllungsgehilfen"** (Marktplatz-Modell) | Mietpilot bleibt Marke/Technologie, lokale Partner (freie Besichtigungspartner, Treuhänder) führen die physischen Schritte gegen Teilprovision aus | Löst den Besichtigungs-Engpass aus Phase 9 strukturell, aber höhere Koordinationskomplexität |
 | 5 | **Reines Datenprodukt/Marktbericht** (radikal anderes Modell) | Aus den bei der Vermietungsprüfung gesammelten (anonymisierten) Marktdaten (Mietzins-Realisierung, Nachfrage pro Lage) ein bezahltes Marktreport-Produkt für Investor:innen/Banken entwickeln | Nur relevant, **nachdem** genug Fallvolumen existiert — kein Startpunkt, aber ein späterer Zusatzumsatz-Hebel |
 
-**Explizit ausgesprochen, wie in der Aufgabenstellung verlangt:** Ja — **Mietpilot sollte nicht primär als Endkundenmarke gegen properti aufgebaut werden.** Die vorliegende Analyse (properti's Kapitalstärke und Garantie-Produkt, die ungeklärte Maklerbewilligungsfrage, der strukturell hohe CAC bei seltenem Einzelbedarf, der Skalierbarkeits-Engpass durch physische Prozessschritte) zeigt in der Summe, dass **Modell 1 (B2B2C-Engine)** ökonomisch überlegen ist. Das bedeutet nicht, das B2C-Konzept zu verwerfen — es bedeutet, es als **Nachweis-/Referenz-Vehikel** zu behandeln (kleine Fallzahl, um die Technologie zu beweisen), nicht als das grosse, skalierende Endprodukt.
+**Explizit ausgesprochen, wie in der Aufgabenstellung verlangt:** Ja — **Mietpilot sollte nicht primär als Endkundenmarke gegen properti aufgebaut werden.** Die vorliegende Analyse (properti's Kapitalstärke und Garantie-Produkt, der strukturell hohe CAC bei seltenem Einzelbedarf, der Skalierbarkeits-Engpass durch physische Prozessschritte) zeigt in der Summe, dass **Modell 1 (B2B2C-Engine)** ökonomisch überlegen ist — die anfangs vermutete Maklerbewilligungsfrage trägt diese Schlussfolgerung **nicht mehr** (s. Korrektur Phase 10), die übrigen drei Gründe tragen sie weiterhin eigenständig. Das bedeutet nicht, das B2C-Konzept zu verwerfen — es bedeutet, es als **Nachweis-/Referenz-Vehikel** zu behandeln (kleine Fallzahl, um die Technologie zu beweisen), nicht als das grosse, skalierende Endprodukt.
 
 ---
 
@@ -324,10 +324,10 @@ Nutzt den bereits bestehenden Leitfaden (`docs/validierung-mietpilot.md`, Fragen
 | 3. Wichtigstes Produkt | Die Screening-/Ranking-/Kommunikations-Engine — nicht die Endkundenmarke |
 | 4. Bestes Geschäftsmodell | B2B2C-Lizenz-/API-Modell (Phase 7, Modell G), mit einer kleinen, kontrollierten B2C-Linie als Referenz |
 | 5. Wichtigste Differenzierung | Nicht "billiger als properti", sondern "Effizienz-Backend, das ein bestehender, vertrauenswürdiger Anbieter nutzen kann, um seine eigene Marge zu verbessern oder seinen Preis zu senken" |
-| 6. Grösster Risikofaktor | **Nicht** die KI-Technologie, **nicht** primär das Endkunden-Vertrauen — sondern die **Maklerbewilligungsfrage** und der **CAC bei seltenem Einzelbedarf im B2C-Modell** |
+| 6. Grösster Risikofaktor | **Nicht** die KI-Technologie, **nicht** die Maklerbewilligung (weitgehend entschärft, s. Phase 10) — sondern **Vertrauen in die automatisierte Vorauswahl und der CAC bei seltenem Einzelbedarf im B2C-Modell** |
 | 7. Grösster technischer Engpass | Fehlende API-Partnerschaften mit Homegate/ImmoScout24/Flatfox für automatisierte Inserate-Publikation |
-| 8. Grösster rechtlicher Engpass | Mietmakler-Bewilligungspflicht (kantonal, ZU VALIDIEREN) |
-| 9. Wichtigste Validierung | Experiment 3 (Vertrauen) UND die rechtliche Klärung der Maklerbewilligung — beide **vor** nennenswerter weiterer Entwicklung |
+| 8. Grösster rechtlicher Engpass | Keiner, der einen Start blockiert — Art. 21 nDSG und Identitätsprüfung sind Design-Anforderungen, keine Hürden (Mietmakler-Bewilligung in ZH seit 2012 aufgehoben, s. Korrektur Phase 10) |
+| 9. Wichtigste Validierung | Experiment 3 (Vertrauen) und Experiment 2 (CAC/Preis) — beide **vor** nennenswerter weiterer Entwicklung |
 | 10. Sinnvollster nächster Schritt | Siehe unten — ein einziger, konkreter Schritt |
 
 ---
@@ -338,7 +338,7 @@ Nutzt den bereits bestehenden Leitfaden (`docs/validierung-mietpilot.md`, Fragen
 
 **Antwort: Nein, nicht in der aktuellen B2C-Form.** Die Kombination aus (a) einem kapitalstarken, bereits vertrauenswürdigen Incumbent mit Garantie-Produkt, (b) einer ungeklärten, potenziell geschäftsmodell-verändernden Bewilligungsfrage, und (c) einem strukturell CAC-intensiven Einzelbedarf ohne Wiederkauf ist eine schwierige Ausgangslage für einen Solo-Start mit wenig Kapital.
 
-**Was ich stattdessen bauen würde:** Dieselbe KI-Engine (Bewerbungs-Screening, Ranking mit Begründung, automatisierte Kommunikation) — aber von Anfang an als **B2B2C-Werkzeug, das ich zuerst 2–3 kleinen Regionalmaklern oder Verwaltungen als kostenlosen Pilotpartner anbiete**, um echte Fälle, echte Referenzen und echte Zahlen zu bekommen, bevor überhaupt eine Endkundenmarke, eine Preisdiskussion mit privaten Eigentümer:innen oder eine Maklerbewilligung für das eigene Unternehmen zum Thema wird. Das ist **kapitalärmer, rechtlich einfacher (der Partner trägt die Bewilligung), und CAC-frei** (der Partner bringt die Fälle mit).
+**Was ich stattdessen bauen würde:** Dieselbe KI-Engine (Bewerbungs-Screening, Ranking mit Begründung, automatisierte Kommunikation) — aber von Anfang an als **B2B2C-Werkzeug, das ich zuerst 2–3 kleinen Regionalmaklern oder Verwaltungen als kostenlosen Pilotpartner anbiete**, um echte Fälle, echte Referenzen und echte Zahlen zu bekommen, bevor überhaupt eine Endkundenmarke oder eine Preisdiskussion mit privaten Eigentümer:innen zum Thema wird. Das ist **kapitalärmer und CAC-frei** (der Partner bringt die Fälle mit, nicht bezahlte Werbung) — nicht, weil eine Maklerbewilligung im Weg stünde (die ist für den relevanten Markt kein Thema mehr), sondern weil properti's Kapitalstärke und die CAC-Ökonomie eines seltenen Einzelbedarfsprodukts für sich allein schon genug Gegenwind sind.
 
 Das ist innerhalb desselben Themenfelds (Immobilien, KI, Schweizer Markt) abgeleitet — keine komplett fachfremde Idee, sondern eine **Umkehrung der Vertriebsrichtung** desselben Produkts.
 
@@ -362,9 +362,9 @@ Das ist innerhalb desselben Themenfelds (Immobilien, KI, Schweizer Markt) abgele
 
 **H. Wettbewerb:** properti ist der relevante Massstab, kein weisser Fleck. Differenzierung liegt nicht in "billiger", sondern darin, bestehenden Anbietern eine Effizienzsteigerung zu verkaufen, die sie selbst nicht so schnell bauen (Fokus, nicht mangelnde Fähigkeit — properti könnte das mit 195 Mitarbeitenden technisch auch bauen, tut es aber aktuell nicht).
 
-**I. Risiken:** Maklerbewilligungspflicht ungeklärt · CAC im B2C-Modell potenziell modellsprengend · properti-Reaktion bei sichtbarem Erfolg · Diskriminierungs-/Datenschutzrisiko bei fehlerhaftem Scoring-Design.
+**I. Risiken:** CAC im B2C-Modell potenziell modellsprengend · properti-Reaktion bei sichtbarem Erfolg · Diskriminierungs-/Datenschutzrisiko bei fehlerhaftem Scoring-Design · kantonale Maklerregulierung nur relevant, falls Genf/Tessin als Zielmarkt geplant sind.
 
-**J. Validierung:** Rechtliche Klärung Maklerbewilligung (parallel, nicht danach) + 20 verhaltensbasierte Interviews (Phase 15) + Preistest mit echtem CTA (Experiment 2) + Vertrauenstest (Experiment 3).
+**J. Validierung:** 20 verhaltensbasierte Interviews (Phase 15) + Preistest mit echtem CTA (Experiment 2) + Vertrauenstest (Experiment 3) — keine rechtliche Klärung mehr als Vorbedingung nötig.
 
 **K. MVP:** Wie in Phase 11 beschrieben — schlankes Eigentümer-Formular, KI-Engine im Hintergrund, Bewerber-Formular, internes Admin-Kontrollsystem mit manueller Freigabe vor jeder Top-3-Versendung.
 
@@ -372,7 +372,7 @@ Das ist innerhalb desselben Themenfelds (Immobilien, KI, Schweizer Markt) abgele
 
 | Zeitraum | Fokus |
 |---|---|
-| Woche 1–2 | Rechtliche Erstklärung Maklerbewilligung (Kurzberatung Anwaltskanzlei); Start der 20 verhaltensbasierten Interviews (Phase 15) |
+| Woche 1–2 | Start der 20 verhaltensbasierten Interviews (Phase 15); parallel ersten kleinen Google/Meta-Ads-Test für Experiment 2 (echter CAC-Datenpunkt) aufsetzen |
 | Woche 3–4 | Interviews abschliessen, auswerten; parallel 2–3 Erstgespräche mit potenziellen B2B2C-Partnern (kleine Regionalmakler/Treuhänder) führen, um Modell G realistisch einzuschätzen |
 | Monat 2 | Go/No-Go anhand Phase-16-Kriterien; bei Go: "Wizard of Oz"-Test mit 3 echten Fällen (Experiment 4), parallel ersten Piloten mit einem B2B2C-Partner vereinbaren |
 | Monat 3 | Erste echte, bezahlte Vermietung (Experiment 5) abschliessen; Entscheidung über Schwerpunkt B2C vs. B2B2C anhand der bis dahin gesammelten echten Zahlen treffen |
@@ -381,8 +381,8 @@ Das ist innerhalb desselben Themenfelds (Immobilien, KI, Schweizer Markt) abgele
 
 | Wenn... | ...dann |
 |---|---|
-| Maklerbewilligung ist im ersten Zielkanton nötig und nicht kurzfristig erhältlich | → Sofortiger Schwenk zu Modell G (B2B2C), B2C-Linie pausieren |
-| Maklerbewilligung ist unproblematisch oder nicht nötig | → Beide Spuren (B2C-Referenz + B2B2C-Gespräche) parallel weiterverfolgen |
+| Genf/Tessin werden als Zielmarkt geplant und die dortige Maklerregulierung erweist sich als praktisch nicht erfüllbar | → Diese Kantone vorerst auslassen, mit Zürich/anderen Kantonen starten (dort kein Thema) |
+| Start erfolgt in Zürich oder einem anderen Kanton ohne Mietmakler-Bewilligungspflicht (Regelfall) | → Beide Spuren (B2C-Referenz + B2B2C-Gespräche) direkt parallel weiterverfolgen, keine rechtliche Vorprüfung nötig |
 | < 30 % berichten von echtem Problem (Phase 16) | → Ganzes Konzept zurückstellen, Alternativkandidaten aus der ursprünglichen Analyse (Fristenwächter) neu prüfen |
 | ≥ 50 % Vertrauen, aber < 50 % finden CHF 890 fair | → Preismodell E (Grundgebühr + reduziertes Erfolgshonorar) testen statt Modell A |
 | > 50 % lehnen jede automatisierte Vorauswahl kategorisch ab | → Umbau zu Modell 2 (reines Screening-Tool ohne Autonomie-Versprechen) |
@@ -394,7 +394,7 @@ Das ist innerhalb desselben Themenfelds (Immobilien, KI, Schweizer Markt) abgele
 ## Die 10 wichtigsten Erkenntnisse
 
 1. **properti ist kein Startup-Wettbewerber, sondern ein skalierter Incumbent** mit Garantie-Produkt (195 MA, 12 Standorte) — "billiger als properti" allein ist keine stabile Positionierung.
-2. **Die Mietmakler-Bewilligungspflicht wurde bisher übersehen** und ist die wichtigste offene rechtliche Frage — muss vor signifikanter weiterer Arbeit geklärt werden.
+2. **Korrektur in dieser Analyse selbst:** Die zunächst behauptete Mietmakler-Bewilligungspflicht beruhte auf einer ungeprüften KI-Suchzusammenfassung. Recherche der Primärquelle zeigt: **Kanton Zürich hat sie 2012 aufgehoben**, sie blockiert einen Start dort nicht. Nur Genf/Tessin haben noch allgemeine (nicht mietspezifische) Maklerregulierung — relevant nur bei dortiger Niederlassung.
 3. **Das Hauptrisiko ist tatsächlich Vertrauen — aber nicht das einzige.** CAC bei seltenem Einzelbedarf ist mindestens ebenso kritisch für die Wirtschaftlichkeit.
 4. **CHF 890 ist wirtschaftlich plausibel, aber ungetestet** — die Unit Economics stehen und fallen mit dem tatsächlichen CAC, nicht mit den KI-Kosten (die sind klein).
 5. **Automatisierung stösst an physische Grenzen** (Besichtigung, Übergabe, Eskalation) — 1'000× mehr Fälle ohne 1'000× mehr Personal ist im B2C-Modell nicht realistisch, im B2B2C-Modell dagegen strukturell möglich, weil diese Schritte beim Partner liegen.
@@ -408,9 +408,9 @@ Das ist innerhalb desselben Themenfelds (Immobilien, KI, Schweizer Markt) abgele
 
 ## Der nächste konkrete Schritt
 
-**Ein 30-minütiges Erstgespräch mit einer auf Miet-/Immobilienrecht spezialisierten Schweizer Anwaltskanzlei buchen, mit der einen konkreten Frage: "Fällt ein digitaler Vermietungsservice gegen Erfolgshonorar unter die kantonale Mietmakler-Bewilligungspflicht, und wenn ja, in welchen Kantonen und mit welchen Auflagen?"**
+**Die ersten 5 der 20 verhaltensbasierten Interviews (Phase 15, Teil 1) diese Woche führen — beginnend mit Personen, die über private Inserate auf Homegate/ImmoScout24 identifiziert werden, weil die gerade aktiv im Prozess stecken.**
 
-Das ist der einzige Punkt in dieser gesamten Analyse, der die Grundstruktur des gesamten weiteren Vorgehens verändert (B2C selbst vs. B2B2C über einen bereits bewilligten Partner) — und er lässt sich in einem einzigen, klar umrissenen Gespräch klären, bevor eine einzige weitere Stunde Produktarbeit investiert wird.
+Der ursprünglich hier vorgeschlagene Schritt (rechtliche Klärung der Maklerbewilligung) ist nach der Korrektur in Phase 10 kein Blocker mehr. Die tatsächlich einzigen beiden offenen Fragen, die über das Geschäftsmodell entscheiden — echtes Vertrauen in automatisierte Vorauswahl (Experiment 3) und ob der Leidensdruck stark genug ist, um überhaupt zu wechseln (Experiment 1) — lassen sich nur mit echten Gesprächen beantworten, nicht mit weiterer Schreibtischarbeit. Genau die liegen bereits vorbereitet vor (`docs/validierung-mietpilot.md`, ergänzt um Phase 15 in diesem Dokument).
 
 ---
 
