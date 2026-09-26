@@ -1,0 +1,638 @@
+<title>Fristenwächter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F4F6F7; --surface:#FFFFFF; --surface-2:#FAFBFB; --sunken:#EDF1F2;
+  --ink:#15202A; --ink-2:#5A6B76; --ink-3:#85939C;
+  --line:#DFE5E8; --line-strong:#C6D0D5;
+  --accent:#0F5C6E; --accent-ink:#0B4655; --accent-soft:#E2EFF2; --on-accent:#FFFFFF;
+  --ok:#2F6B45; --ok-soft:#E3F0E8;
+  --warn:#8A5A0B; --warn-soft:#FAEEDA;
+  --crit:#A3312B; --crit-soft:#F8E4E2;
+  --portal:#5B4B8A; --portal-soft:#EDE9F6; --portal-ink:#463876;
+  --shadow:0 1px 2px rgba(21,32,42,.06), 0 4px 14px rgba(21,32,42,.05);
+  --r:6px;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#0F161D; --surface:#18212B; --surface-2:#1C2631; --sunken:#131C24;
+  --ink:#E7EDF1; --ink-2:#9AAAB5; --ink-3:#71828D;
+  --line:#2A3743; --line-strong:#3A4A57;
+  --accent:#5CBCCE; --accent-ink:#8FD5E2; --accent-soft:#16333C; --on-accent:#08222A;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --portal:#B6A6E8; --portal-soft:#2A2242; --portal-ink:#D9CFF5;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.28);
+}}
+:root[data-theme="dark"]{
+  --ground:#0F161D; --surface:#18212B; --surface-2:#1C2631; --sunken:#131C24;
+  --ink:#E7EDF1; --ink-2:#9AAAB5; --ink-3:#71828D;
+  --line:#2A3743; --line-strong:#3A4A57;
+  --accent:#5CBCCE; --accent-ink:#8FD5E2; --accent-soft:#16333C; --on-accent:#08222A;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --portal:#B6A6E8; --portal-soft:#2A2242; --portal-ink:#D9CFF5;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font:400 15px/1.5 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.f-ui{font-family:Archivo,"Segoe UI",system-ui,sans-serif;text-wrap:balance}
+h1{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:0}
+h2{font-size:16px;font-weight:600;margin:0}
+h3{font-size:14px;font-weight:600;margin:0}
+p{margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;letter-spacing:-.01em}
+.num{font-variant-numeric:tabular-nums}
+.lbl{font-family:Archivo,system-ui,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.muted{color:var(--ink-2)}
+.tiny{font-size:12.5px}
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+/* ---------- shell ---------- */
+.shell{display:flex;flex-direction:column;min-height:100%}
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto}
+.brand .ic{width:26px;height:26px;border-radius:7px;background:var(--accent);display:grid;place-items:center;flex:none}
+.brand .ic svg{width:15px;height:15px}
+.brand b{font-family:Archivo;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.brand .sub{font-size:11.5px;color:var(--ink-3)}
+.rolebox{display:flex;align-items:center;gap:8px}
+.rolebox select{padding:6px 9px;font-size:12.5px;max-width:260px;font-family:Archivo,system-ui,sans-serif;font-weight:600}
+.main{display:grid;grid-template-columns:206px minmax(0,1fr);flex:1;align-items:start}
+.rail{position:sticky;top:calc(50px + env(safe-area-inset-top,0px));padding:16px 10px;display:flex;flex-direction:column;gap:2px}
+.rail button{
+  display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+  padding:8px 10px;border:0;border-radius:var(--r);background:none;color:var(--ink-2);
+  font-family:Archivo;font-size:13.5px;font-weight:500;cursor:pointer;
+}
+.rail button:hover{background:var(--sunken);color:var(--ink)}
+.rail button[aria-current="page"]{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+.rail .cnt{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rail .cnt.crit{color:var(--crit);font-weight:600;background:var(--crit-soft);border-radius:9px;padding:1px 6px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:10px 4px}
+.view{padding:22px 24px 64px;max-width:1180px;min-width:0}
+@media (max-width:880px){
+  .main{grid-template-columns:1fr}
+  .rail{position:static;flex-direction:row;overflow-x:auto;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
+  .rail button{width:auto;white-space:nowrap}
+  .rail hr{display:none}
+  .view{padding:18px 16px 56px}
+}
+
+/* ---------- controls ---------- */
+input,select,textarea,button{font-family:inherit;font-size:14px;color:inherit}
+input[type=text],input[type=date],input[type=number],select,textarea{
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r);
+  padding:7px 9px;width:100%;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:var(--r);
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  font-family:Archivo;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent-ink)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.pri:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:var(--on-accent)}
+.btn.sm{padding:4px 9px;font-size:12.5px}
+.btn.ghost{border-color:transparent;background:none;color:var(--ink-2);font-weight:500}
+.btn.ghost:hover{background:var(--sunken)}
+.btn.portal{background:var(--portal);border-color:var(--portal);color:#fff}
+.btn.portal:hover{filter:brightness(0.92)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{display:flex;gap:14px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>label{font-family:Archivo;font-size:12px;font-weight:600;color:var(--ink-2)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.helptext{font-size:12.5px;line-height:1.5;color:var(--ink-2);background:var(--accent-soft);border-left:2px solid var(--accent);padding:7px 10px;border-radius:0 var(--r) var(--r) 0}
+.help{position:relative;display:inline-flex}
+.help .ihelp{border:1px solid currentColor;background:none;color:var(--ink-3);cursor:help;width:14px;height:14px;border-radius:50%;font:600 9.5px/13px Archivo,sans-serif;text-align:center;padding:0}
+.help:hover .tip,.help:focus-within .tip{display:block}
+.help .tip{display:none;position:absolute;left:50%;bottom:135%;transform:translateX(-50%);width:230px;
+  background:var(--ink);color:var(--ground);font-size:11.5px;line-height:1.45;padding:8px 10px;border-radius:6px;z-index:20;font-family:"Source Sans 3",sans-serif;font-weight:400}
+.help .tip::after{content:"";position:absolute;top:100%;left:50%;margin-left:-4px;border:4px solid transparent;border-top-color:var(--ink)}
+
+/* ---------- surfaces ---------- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.panel>header{display:flex;align-items:center;gap:10px;padding:12px 15px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.panel>header .lbl{margin-right:auto}
+.panel .pad{padding:15px}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;display:flex;flex-direction:column;gap:3px;box-shadow:var(--shadow)}
+.kpi .v{font-family:Archivo;font-size:28px;font-weight:600;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .foot{font-size:12px;color:var(--ink-3)}
+.kpi.is-crit .v{color:var(--crit)}
+.kpi.is-ok .v{color:var(--ok)}
+
+/* ---------- chips ---------- */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:20px;font-family:Archivo;font-size:11.5px;font-weight:600;white-space:nowrap}
+.chip.n{background:var(--sunken);color:var(--ink-2)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.crit{background:var(--crit-soft);color:var(--crit)}
+.chip.acc{background:var(--accent-soft);color:var(--accent-ink)}
+.chip.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* ---------- object cards ---------- */
+.ocards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.ocard{display:flex;flex-direction:column;gap:6px;text-align:left;cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--line-strong);
+  border-radius:var(--r);padding:13px 15px;color:inherit;box-shadow:var(--shadow)}
+.ocard:hover{border-color:var(--accent);background:var(--surface-2)}
+.ocard.is-crit{border-left-color:var(--crit)}
+.ocard.is-warn{border-left-color:var(--warn)}
+.ocard.is-ok{border-left-color:var(--ok)}
+.ocard .adr{font-family:Archivo;font-weight:600;font-size:14.5px}
+.ocard .ort{font-size:12.5px;color:var(--ink-2)}
+.ocard .meta{font-size:12px;color:var(--ink-3);margin-top:2px}
+
+/* ---------- ampel task list ---------- */
+.tasks{display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:3px 1fr auto;gap:0 13px;align-items:center;border-top:1px solid var(--line)}
+.tasks .task:first-child{border-top:0}
+.task .stripe{align-self:stretch;background:var(--line-strong);border-radius:2px;margin:6px 0}
+.task.crit .stripe{background:var(--crit)}
+.task.warn .stripe{background:var(--warn)}
+.task .body{padding:11px 0;min-width:0}
+.task .t1{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.task .t1 b{font-family:Archivo;font-weight:600;font-size:13.5px}
+.task .t2{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+.task .side{padding:11px 15px 11px 0;display:flex;align-items:center;gap:10px}
+.task .due{text-align:right;font-family:"IBM Plex Mono",monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-2);line-height:1.35}
+.task .due b{display:block;font-size:13px}
+.task.crit .due b{color:var(--crit)}
+.task.warn .due b{color:var(--warn)}
+
+/* ---------- table ---------- */
+table.dt{width:100%;border-collapse:collapse;font-size:13.5px}
+table.dt th{text-align:left;font-family:Archivo;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.dt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.dt tr:last-child td{border-bottom:0}
+table.dt tr:hover td{background:var(--surface-2)}
+.twrap{overflow-x:auto}
+.anlage-typ{display:flex;align-items:center;gap:8px;font-family:Archivo;font-weight:600}
+.anlage-typ .ic{width:7px;height:7px;border-radius:50%;flex:none}
+.ic.crit{background:var(--crit)} .ic.warn{background:var(--warn)} .ic.ok{background:var(--ok)}
+
+/* ---------- report document ---------- */
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 28px}
+.doc-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:16px}
+.doc-head h2{font-size:19px}
+.doc-head .stand{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-2);text-align:right}
+.doc-sum{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;font-size:13px}
+.doc-sum b{font-family:Archivo}
+.doc-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3)}
+
+/* ---------- portal (fachfirma, kein login) ---------- */
+.portalshell{min-height:100%;background:linear-gradient(180deg,var(--portal-soft),var(--ground) 260px)}
+.portaltop{padding:20px 20px 0;max-width:640px;margin:0 auto}
+.portalbrand{display:flex;align-items:center;gap:9px;margin-bottom:18px}
+.portalbrand .ic{width:26px;height:26px;border-radius:7px;background:var(--portal);display:grid;place-items:center;flex:none}
+.portalbrand .ic svg{width:15px;height:15px}
+.portalbrand b{font-family:Archivo;font-weight:700;font-size:15px}
+.portalbrand .tag{margin-left:auto;font-size:11px;font-family:Archivo;font-weight:600;color:var(--portal-ink);background:var(--surface);border:1px solid var(--line);padding:3px 9px;border-radius:20px}
+.portalwrap{max-width:640px;margin:0 auto;padding:0 20px 60px;display:flex;flex-direction:column;gap:14px}
+.job{display:flex;flex-direction:column;gap:3px;text-align:left;cursor:pointer;width:100%;
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--line-strong);border-radius:var(--r);padding:13px 15px;color:inherit;box-shadow:var(--shadow)}
+.job:hover{border-color:var(--portal)}
+.job.is-crit{border-left-color:var(--crit)}
+.job.is-warn{border-left-color:var(--warn)}
+.job .t{font-family:Archivo;font-weight:600;font-size:14px}
+.job .s{font-size:12.5px;color:var(--ink-2)}
+.dropzone{border:2px dashed var(--line-strong);border-radius:var(--r);padding:22px;text-align:center;color:var(--ink-2);font-size:13px;background:var(--surface-2);cursor:pointer}
+.dropzone:hover{border-color:var(--portal);color:var(--portal-ink)}
+.dropzone.has-file{border-style:solid;border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.seg{display:flex;border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden;width:fit-content}
+.seg label{padding:7px 14px;font-family:Archivo;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink-2)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--portal);color:#fff}
+.seg label:first-child{border-right:1px solid var(--line-strong)}
+.confirm{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 40%,transparent);border-radius:var(--r);padding:16px 18px;color:var(--ok);display:flex;gap:12px;align-items:flex-start}
+.confirm svg{flex:none;width:22px;height:22px;margin-top:2px}
+.confirm .txt{min-width:0}
+.confirm b{font-family:Archivo;display:block;color:var(--ink);margin-bottom:2px}
+[hidden]{display:none!important}
+</style>
+<div id="app"></div>
+<script>
+/* ================= Zeit & Format ================= */
+const TAG=86400000;
+const HEUTE=new Date(new Date().toDateString());
+function iso(d){ return d.toISOString().slice(0,10); }
+function tage(n){ return iso(new Date(HEUTE.getTime()+n*TAG)); }
+function parse(s){ if(!s) return null; const d=new Date(s+"T00:00:00Z"); return isNaN(d)?null:d; }
+function plusTage(s,n){ const d=parse(s); return d?iso(new Date(d.getTime()+n*TAG)):null; }
+function diffTage(a,b){ const x=parse(a),y=parse(b); if(!x||!y) return null; return Math.round((y-x)/TAG); }
+function fmt(s){ const d=parse(s); if(!d) return "–"; return String(d.getUTCDate()).padStart(2,"0")+"."+String(d.getUTCMonth()+1).padStart(2,"0")+"."+d.getUTCFullYear(); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function heuteTxt(){ return fmt(iso(HEUTE)); }
+
+/* ================= Regelwerk (Normfristen-Engine) =================
+   Einzige Quelle für Prüfintervalle. Wird ein Wert hier geändert, ändert sich
+   die berechnete Fälligkeit sofort für jede zugeordnete Anlage im ganzen
+   Portfolio – kein einzelnes Datumsfeld wird manuell nachgeführt. */
+const REGELWERK=[
+  {typ:"Feuerlöscher",        intervallMt:24, norm:"SN EN 3 · VKF-Brandschutzrichtlinie 21-15", hinweis:"Kantonal einheitlich"},
+  {typ:"Aufzug",               intervallMt:24, norm:"Aufzugsverordnung STEV · anerkannte Inspektionsstelle", hinweis:"Zwischenkontrolle je nach Kanton zusätzlich"},
+  {typ:"Elektroinstallation",  intervallMt:120, norm:"NIN · Kontrollperiodengesetz (Niederspannung)", hinweis:"Periode 5/10/20 J. nach Gebäudekategorie"},
+  {typ:"Heizung / Cheminée",   intervallMt:12, norm:"Kantonales Feuerungskontrollreglement", hinweis:"Intervall 1–3 J. je Kanton"},
+  {typ:"Trinkwasser (Legionellen)", intervallMt:12, norm:"Trinkwasserhygiene-Richtlinie SVGW", hinweis:"Grossanlagen: jährlich empfohlen"},
+  {typ:"Blitzschutzanlage",    intervallMt:48, norm:"SNR 464022 Blitzschutznorm", hinweis:"2–5 J. je Schutzklasse"},
+];
+function regel(typ){ return REGELWERK.find(r=>r.typ===typ); }
+function faelligkeit(a){ return plusTage(a.letztePruefung, Math.round(regel(a.typ).intervallMt*30.4)); }
+function statusVon(a){ const d=diffTage(iso(HEUTE), faelligkeit(a)); if(d<0) return "crit"; if(d<=30) return "warn"; return "ok"; }
+function statusLabel(s){ return s==="crit"?"überfällig":s==="warn"?"bald fällig":"in Ordnung"; }
+function tageTxt(a){
+  const d=diffTage(iso(HEUTE), faelligkeit(a));
+  if(d<0) return "seit "+Math.abs(d)+" Tagen";
+  if(d===0) return "heute";
+  return "in "+d+" Tagen";
+}
+function statusChipText(a){
+  const s=statusVon(a);
+  if(s==="crit") return "Überfällig · "+tageTxt(a);
+  if(s==="warn") return "Fällig "+tageTxt(a);
+  return "In Ordnung · fällig "+tageTxt(a);
+}
+
+/* ================= Fachfirmen ================= */
+const FACHFIRMEN=[
+  {id:"ff1", name:"Muster Prüftechnik AG", kontakt:"pruefung@musterpt.ch", typen:["Feuerlöscher","Blitzschutzanlage"]},
+  {id:"ff2", name:"Schindler Liftservice",  kontakt:"service@liftservice-demo.ch", typen:["Aufzug"]},
+  {id:"ff3", name:"Elektro Suter GmbH",     kontakt:"kontrolle@suter-elektro.ch", typen:["Elektroinstallation"]},
+  {id:"ff4", name:"Kaminfeger Zentral AG",  kontakt:"info@kaminfeger-zentral.ch", typen:["Heizung / Cheminée","Trinkwasser (Legionellen)"]},
+];
+function firma(id){ return FACHFIRMEN.find(f=>f.id===id); }
+function firmaFuer(typ){ return FACHFIRMEN.find(f=>f.typen.includes(typ)); }
+
+/* ================= Objekte & Anlagen ================= */
+let ID=0;
+function anlage(typ,standort,monateSeit,nachweis){
+  return {id:"a"+(++ID), typ, standort, letztePruefung:tage(-Math.round(monateSeit*30.4)),
+          fachfirmaId:firmaFuer(typ).id, nachweis};
+}
+function seed(){
+  return [
+    {id:"o1", adresse:"Bahnhofstrasse 12", ort:"8001 Zürich", einheiten:24, anlagen:[
+      anlage("Feuerlöscher","Hauseingang EG",24.7,"Pruefprotokoll_Feuerloescher_o1_23.pdf"),
+      anlage("Aufzug","Lift A, Treppenhaus",23.5,"Pruefprotokoll_Aufzug_o1_23.pdf"),
+      anlage("Elektroinstallation","Hauptverteilung UG",115,"Pruefprotokoll_Elektro_o1_16.pdf"),
+      anlage("Heizung / Cheminée","Heizzentrale UG",12.3,"Pruefprotokoll_Heizung_o1_24.pdf"),
+      anlage("Trinkwasser (Legionellen)","Technikraum UG",10,"Pruefprotokoll_Trinkwasser_o1_24.pdf"),
+    ]},
+    {id:"o2", adresse:"Seefeldstrasse 88", ort:"8008 Zürich", einheiten:16, anlagen:[
+      anlage("Feuerlöscher","Tiefgarage",19.7,"Pruefprotokoll_Feuerloescher_o2_24.pdf"),
+      anlage("Elektroinstallation","Verteilung Süd",117.7,"Pruefprotokoll_Elektro_o2_16.pdf"),
+      anlage("Heizung / Cheminée","Dachzentrale",11.8,"Pruefprotokoll_Heizung_o2_24.pdf"),
+      anlage("Blitzschutzanlage","Dachfirst",47.7,"Pruefprotokoll_Blitzschutz_o2_20.pdf"),
+    ]},
+    {id:"o3", adresse:"Marktgasse 5", ort:"8400 Winterthur", einheiten:12, anlagen:[
+      anlage("Feuerlöscher","Hauseingang",13.2,"Pruefprotokoll_Feuerloescher_o3_24.pdf"),
+      anlage("Heizung / Cheminée","Keller West",11.3,"Pruefprotokoll_Heizung_o3_24.pdf"),
+      anlage("Trinkwasser (Legionellen)","Boiler Keller",13.3,"Pruefprotokoll_Trinkwasser_o3_23.pdf"),
+      anlage("Elektroinstallation","Hauptverteilung",98.7,"Pruefprotokoll_Elektro_o3_17.pdf"),
+    ]},
+    {id:"o4", adresse:"Freie Strasse 44", ort:"4051 Basel", einheiten:30, anlagen:[
+      anlage("Aufzug","Lift 1, Nordflügel",24.7,"Pruefprotokoll_Aufzug_o4_23.pdf"),
+      anlage("Feuerlöscher","Alle Geschosse (Sammelposten)",23.2,"Pruefprotokoll_Feuerloescher_o4_23.pdf"),
+      anlage("Elektroinstallation","Hauptverteilung EG",118.7,"Pruefprotokoll_Elektro_o4_16.pdf"),
+      anlage("Heizung / Cheminée","Heizzentrale",11.7,"Pruefprotokoll_Heizung_o4_24.pdf"),
+      anlage("Trinkwasser (Legionellen)","Technikraum 2. UG",6.6,"Pruefprotokoll_Trinkwasser_o4_25.pdf"),
+      anlage("Blitzschutzanlage","Dachaufbauten",42.7,"Pruefprotokoll_Blitzschutz_o4_22.pdf"),
+    ]},
+    {id:"o5", adresse:"Spitalgasse 21", ort:"3011 Bern", einheiten:18, anlagen:[
+      anlage("Feuerlöscher","Hauseingang",3.3,"Pruefprotokoll_Feuerloescher_o5_25.pdf"),
+      anlage("Heizung / Cheminée","Keller",13.2,"Pruefprotokoll_Heizung_o5_24.pdf"),
+      anlage("Elektroinstallation","Verteilung",116.7,"Pruefprotokoll_Elektro_o5_16.pdf"),
+      anlage("Trinkwasser (Legionellen)","Boiler UG",12.6,"Pruefprotokoll_Trinkwasser_o5_24.pdf"),
+    ]},
+  ];
+}
+let OBJEKTE=seed();
+function objekt(id){ return OBJEKTE.find(o=>o.id===id); }
+function alleAnlagen(){ return OBJEKTE.flatMap(o=>o.anlagen.map(a=>({...a,objektId:o.id}))); }
+function objVon(a){ return a.objektId ? objekt(a.objektId) : OBJEKTE.find(o=>o.anlagen.includes(a)); }
+function ampel(o){
+  const s=o.anlagen.map(statusVon);
+  if(s.includes("crit")) return "crit";
+  if(s.includes("warn")) return "warn";
+  return "ok";
+}
+
+/* ================= Zustand ================= */
+const ST={ rolle:"verwaltung", nav:"uebersicht", objektId:null, berichtObjektId:OBJEKTE[0].id, portalFirmaId:"ff1", portalAuftragId:null, meldung:null };
+
+function geheZu(nav,objektId){ ST.nav=nav; if(objektId!==undefined) ST.objektId=objektId; render(); window.scrollTo(0,0); }
+
+/* ================= Icons (inline, keine externen Bilder) ================= */
+const ICO_SCHILD='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>';
+const ICO_HAKEN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>';
+
+/* ================= Views: Verwaltung ================= */
+function railVerwaltung(){
+  const anz=alleAnlagen();
+  const crit=anz.filter(a=>statusVon(a)==="crit").length;
+  const items=[
+    ["uebersicht","Übersicht",null],
+    ["objekte","Objekte",null],
+    ["fachfirmen","Fachfirmen",null],
+    ["regelwerk","Regelwerk & Fristen",null],
+    ["berichte","Berichte",null],
+  ];
+  const aktiv = ST.nav==="objekt" ? "objekte" : ST.nav;
+  return '<div class="rail">'+items.map(([k,t])=>
+    '<button data-nav="'+k+'" '+(aktiv===k?'aria-current="page"':'')+'>'+t+
+    (k==="uebersicht" && crit>0 ? '<span class="cnt crit">'+crit+'</span>':'')+'</button>').join("")+'</div>';
+}
+
+function viewUebersicht(){
+  const anz=alleAnlagen();
+  const crit=anz.filter(a=>statusVon(a)==="crit");
+  const warn=anz.filter(a=>statusVon(a)==="warn");
+  const ok=anz.filter(a=>statusVon(a)==="ok");
+  const dringend=[...crit,...warn].sort((a,b)=>diffTage(iso(HEUTE),faelligkeit(a))-diffTage(iso(HEUTE),faelligkeit(b)));
+  return '<div class="stack">'+
+  '<div class="spread"><h1>Übersicht</h1><span class="tiny muted">Stand '+heuteTxt()+' · '+OBJEKTE.length+' Objekte · '+anz.length+' Anlagen</span></div>'+
+  '<div class="kpis">'+
+    '<div class="kpi is-crit"><span class="lbl">Überfällig</span><span class="v num">'+crit.length+'</span><span class="foot">sofort handeln</span></div>'+
+    '<div class="kpi"><span class="lbl">Fällig &lt; 30 Tage</span><span class="v num">'+warn.length+'</span><span class="foot">Fachfirma bereits informiert</span></div>'+
+    '<div class="kpi is-ok"><span class="lbl">In Ordnung</span><span class="v num">'+ok.length+'</span><span class="foot">nächste Fälligkeit &gt; 30 Tage</span></div>'+
+    '<div class="kpi"><span class="lbl">Fachfirmen aktiv</span><span class="v num">'+FACHFIRMEN.length+'</span><span class="foot">automatisch benachrichtigt</span></div>'+
+  '</div>'+
+  '<div class="panel"><header><span class="lbl">Nach Dringlichkeit</span><span class="tiny muted">'+dringend.length+' Einträge</span></header>'+
+    (dringend.length? '<div class="tasks">'+dringend.map(a=>{
+      const o=objVon(a); const s=statusVon(a);
+      return '<div class="task '+s+'"><span class="stripe"></span><div class="body">'+
+        '<div class="t1"><b>'+esc(a.typ)+'</b><span class="chip '+s+' dot">'+statusLabel(s)+'</span></div>'+
+        '<div class="t2">'+esc(o.adresse)+', '+esc(o.ort)+' · '+esc(a.standort)+' · zust.: '+esc(firma(a.fachfirmaId).name)+'</div>'+
+        '</div><div class="side"><span class="due">'+tageTxt(a)+'<b>'+fmt(faelligkeit(a))+'</b></span>'+
+        '<button class="btn sm" data-open-objekt="'+o.id+'">Objekt öffnen</button></div></div>';
+    }).join("")+'</div>' : '<div class="pad tiny muted">Keine offenen Punkte – alle Prüfungen sind aktuell.</div>')+
+  '</div></div>';
+}
+
+function viewObjekte(){
+  return '<div class="stack">'+
+  '<div class="spread"><h1>Objekte</h1><span class="tiny muted">'+OBJEKTE.length+' verwaltete Liegenschaften</span></div>'+
+  '<div class="ocards">'+OBJEKTE.map(o=>{
+    const s=ampel(o);
+    const crit=o.anlagen.filter(a=>statusVon(a)==="crit").length;
+    const warn=o.anlagen.filter(a=>statusVon(a)==="warn").length;
+    return '<button class="ocard is-'+s+'" data-open-objekt="'+o.id+'">'+
+      '<span class="adr">'+esc(o.adresse)+'</span><span class="ort">'+esc(o.ort)+'</span>'+
+      '<span class="meta">'+o.einheiten+' Einheiten · '+o.anlagen.length+' Anlagen</span>'+
+      '<span class="row" style="margin-top:4px">'+
+        (crit? '<span class="chip crit">'+crit+' überfällig</span>':'')+
+        (warn? '<span class="chip warn">'+warn+' bald fällig</span>':'')+
+        (!crit&&!warn? '<span class="chip ok">alles in Ordnung</span>':'')+
+      '</span></button>';
+  }).join("")+'</div></div>';
+}
+
+function viewObjekt(){
+  const o=objekt(ST.objektId)||OBJEKTE[0];
+  return '<div class="stack">'+
+  '<div><button class="btn ghost sm" data-nav="objekte">← Alle Objekte</button></div>'+
+  '<div class="spread"><h1>'+esc(o.adresse)+'</h1><span class="tiny muted">'+esc(o.ort)+' · '+o.einheiten+' Einheiten</span></div>'+
+  '<div class="panel"><header><span class="lbl">Anlagen &amp; Prüffristen</span>'+
+    '<button class="btn sm" data-report-objekt="'+o.id+'">Bericht erzeugen</button></header>'+
+  '<div class="twrap"><table class="dt"><thead><tr><th>Anlage</th><th>Standort</th><th>Letzte Prüfung</th><th>Nächste Fälligkeit</th><th>Status</th><th>Fachfirma</th><th>Nachweis</th></tr></thead><tbody>'+
+    o.anlagen.slice().sort((a,b)=>diffTage(iso(HEUTE),faelligkeit(a))-diffTage(iso(HEUTE),faelligkeit(b))).map(a=>{
+      const s=statusVon(a);
+      return '<tr><td><span class="anlage-typ"><span class="ic '+s+'"></span>'+esc(a.typ)+'</span></td>'+
+        '<td class="tiny muted">'+esc(a.standort)+'</td>'+
+        '<td class="mono">'+fmt(a.letztePruefung)+'</td>'+
+        '<td class="mono">'+fmt(faelligkeit(a))+'</td>'+
+        '<td><span class="chip '+s+'">'+statusChipText(a)+'</span></td>'+
+        '<td class="tiny">'+esc(firma(a.fachfirmaId).name)+'</td>'+
+        '<td class="tiny"><a href="#" class="mono" style="font-size:11.5px" title="'+esc(a.nachweis)+'">Nachweis ansehen</a></td></tr>';
+    }).join("")+
+  '</tbody></table></div></div>'+
+  '<div class="helptext">Die Fälligkeiten dieser Liegenschaft werden nicht pro Zeile gepflegt, sondern aus dem zentralen <b>Regelwerk</b> je Anlagetyp abgeleitet. Eine Prüfnorm ändert sich selten – wenn doch, wirkt die Korrektur automatisch auf alle betroffenen Anlagen im ganzen Portfolio.</div>'+
+  '</div>';
+}
+
+function viewFachfirmen(){
+  const anz=alleAnlagen();
+  return '<div class="stack">'+
+  '<div class="spread"><h1>Fachfirmen</h1><span class="tiny muted">'+FACHFIRMEN.length+' angebundene Prüf- &amp; Wartungsfirmen</span></div>'+
+  '<div class="panel"><div class="twrap"><table class="dt"><thead><tr><th>Firma</th><th>Zuständig für</th><th>Kontakt</th><th>Zugewiesene Anlagen</th><th>Davon überfällig</th><th></th></tr></thead><tbody>'+
+  FACHFIRMEN.map(f=>{
+    const zug=anz.filter(a=>a.fachfirmaId===f.id);
+    const crit=zug.filter(a=>statusVon(a)==="crit").length;
+    return '<tr><td class="anlage-typ">'+esc(f.name)+'</td>'+
+      '<td class="tiny">'+f.typen.map(esc).join(", ")+'</td>'+
+      '<td class="tiny mono">'+esc(f.kontakt)+'</td>'+
+      '<td class="mono">'+zug.length+'</td>'+
+      '<td>'+(crit? '<span class="chip crit">'+crit+'</span>' : '<span class="tiny muted">0</span>')+'</td>'+
+      '<td><button class="btn sm" data-copy-link="'+f.id+'">Zugangslink kopieren</button></td></tr>';
+  }).join("")+
+  '</tbody></table></div></div>'+
+  '<div class="helptext">Jede Fachfirma erhält einen persönlichen Link ohne Login und ohne Sicht auf andere Mandate – sie sieht ausschliesslich die ihr zugewiesenen Prüfaufträge. Zum Ausprobieren: Rolle oben rechts auf «Fachfirma (Demo-Zugang)» wechseln.</div>'+
+  '</div>';
+}
+
+function viewRegelwerk(){
+  return '<div class="stack">'+
+  '<div class="spread"><h1>Regelwerk &amp; Fristen</h1><span class="tiny muted">Normfristen-Engine</span></div>'+
+  '<div class="panel"><div class="twrap"><table class="dt"><thead><tr><th>Anlagetyp</th><th>Intervall (Monate)</th><th>Norm-Referenz</th><th>Kantonale Varianz</th><th>Betroffene Anlagen</th></tr></thead><tbody>'+
+  REGELWERK.map(r=>{
+    const n=alleAnlagen().filter(a=>a.typ===r.typ).length;
+    return '<tr><td class="anlage-typ">'+esc(r.typ)+'</td>'+
+      '<td><input type="number" min="1" max="240" class="mono" style="width:80px" value="'+r.intervallMt+'" data-regel="'+esc(r.typ)+'"></td>'+
+      '<td class="tiny">'+esc(r.norm)+'</td>'+
+      '<td class="tiny muted">'+esc(r.hinweis)+'</td>'+
+      '<td class="mono">'+n+'</td></tr>';
+  }).join("")+
+  '</tbody></table></div></div>'+
+  '<div class="helptext">Intervall ändern und Enter drücken: Die Fälligkeit jeder betroffenen Anlage im ganzen Portfolio wird sofort neu berechnet – prüfbar in «Übersicht» und «Objekte». Genau diese zentrale Logik kann ein Datumsfeld in einem allgemeinen CRM nicht abbilden.</div>'+
+  '</div>';
+}
+
+function viewBerichte(){
+  const o=objekt(ST.berichtObjektId)||OBJEKTE[0];
+  const rows=o.anlagen.slice().sort((a,b)=>a.typ.localeCompare(b.typ,"de-CH"));
+  const crit=rows.filter(a=>statusVon(a)==="crit").length;
+  const warn=rows.filter(a=>statusVon(a)==="warn").length;
+  const text=berichtAlsText(o);
+  return '<div class="stack">'+
+  '<div class="spread"><h1>Berichte</h1></div>'+
+  '<div class="row"><div class="field" style="max-width:340px"><label>Objekt</label>'+
+    '<select data-bericht-objekt>'+OBJEKTE.map(x=>'<option value="'+x.id+'" '+(x.id===o.id?'selected':'')+'>'+esc(x.adresse)+', '+esc(x.ort)+'</option>').join("")+'</select></div>'+
+    '<button class="btn pri" style="align-self:flex-end" data-copy-bericht>Report-Text kopieren</button></div>'+
+  '<div class="doc">'+
+    '<div class="doc-head"><div><h2>Prüfhistorie-Report</h2><span class="tiny muted">'+esc(o.adresse)+', '+esc(o.ort)+'</span></div>'+
+      '<span class="stand">Stand<br>'+heuteTxt()+'</span></div>'+
+    '<div class="doc-sum"><span><b>'+rows.length+'</b> Anlagen</span>'+
+      '<span style="color:var(--crit)"><b>'+crit+'</b> überfällig</span>'+
+      '<span style="color:var(--warn)"><b>'+warn+'</b> bald fällig</span>'+
+      '<span style="color:var(--ok)"><b>'+(rows.length-crit-warn)+'</b> in Ordnung</span></div>'+
+    '<div class="twrap"><table class="dt"><thead><tr><th>Anlage</th><th>Standort</th><th>Letzte Prüfung</th><th>Nächste Fälligkeit</th><th>Status</th><th>Fachfirma</th><th>Norm-Referenz</th></tr></thead><tbody>'+
+    rows.map(a=>{ const s=statusVon(a); return '<tr><td class="anlage-typ"><span class="ic '+s+'"></span>'+esc(a.typ)+'</td>'+
+      '<td class="tiny muted">'+esc(a.standort)+'</td><td class="mono">'+fmt(a.letztePruefung)+'</td><td class="mono">'+fmt(faelligkeit(a))+'</td>'+
+      '<td><span class="chip '+s+'">'+statusLabel(s)+'</span></td><td class="tiny">'+esc(firma(a.fachfirmaId).name)+'</td><td class="tiny muted">'+esc(regel(a.typ).norm)+'</td></tr>';
+    }).join("")+'</tbody></table></div>'+
+    '<div class="doc-foot">Automatisch erzeugt aus dem laufend gepflegten Prüfregister — geeignet zur Vorlage an der Eigentümerversammlung. Referenzierte Nachweise liegen im Anlagenregister des jeweiligen Objekts.</div>'+
+  '</div>'+
+  '<textarea id="berichtText" hidden readonly>'+esc(text)+'</textarea>'+
+  '</div>';
+}
+function berichtAlsText(o){
+  const rows=o.anlagen.slice().sort((a,b)=>a.typ.localeCompare(b.typ,"de-CH"));
+  let t="PRÜFHISTORIE-REPORT\n"+o.adresse+", "+o.ort+"\nStand: "+heuteTxt()+"\n\n";
+  rows.forEach(a=>{ t+="- "+a.typ+" ("+a.standort+"): letzte Prüfung "+fmt(a.letztePruefung)+", nächste Fälligkeit "+fmt(faelligkeit(a))+" ["+statusLabel(statusVon(a))+"], zuständig: "+firma(a.fachfirmaId).name+"\n"; });
+  return t;
+}
+
+/* ================= Views: Fachfirmen-Portal (Rolle "Fachfirma") ================= */
+function offeneAuftraegeFuer(firmaId){
+  return alleAnlagen().filter(a=>a.fachfirmaId===firmaId && statusVon(a)!=="ok")
+    .sort((a,b)=>diffTage(iso(HEUTE),faelligkeit(a))-diffTage(iso(HEUTE),faelligkeit(b)));
+}
+function viewPortal(){
+  const f=firma(ST.portalFirmaId);
+  const auftraege=offeneAuftraegeFuer(f.id);
+  if(ST.portalAuftragId){
+    const a=alleAnlagen().find(x=>x.id===ST.portalAuftragId);
+    if(a) return viewPortalFormular(a,f);
+  }
+  return '<div class="portalshell"><div class="portaltop"><div class="portalbrand"><span class="ic">'+ICO_SCHILD+'</span><b>Fachfirmen-Zugang</b><span class="tag">ohne Login</span></div>'+
+    '<p class="muted tiny">Angemeldet als <b style="color:var(--ink)">'+esc(f.name)+'</b> — Sie sehen ausschliesslich die Ihnen zugewiesenen Prüfaufträge, keine weiteren Objekt- oder Verwaltungsdaten.</p></div>'+
+    '<div class="portalwrap">'+
+    (ST.meldung? '<div class="confirm">'+ICO_HAKEN+'<div class="txt">'+ST.meldung+'</div></div>' : '')+
+    '<h2 style="margin-top:6px">Offene Prüfaufträge ('+auftraege.length+')</h2>'+
+    (auftraege.length? auftraege.map(a=>{ const o=objVon(a); const s=statusVon(a);
+      return '<button class="job is-'+s+'" data-portal-auftrag="'+a.id+'"><span class="t">'+esc(a.typ)+' · '+esc(o.adresse)+', '+esc(o.ort)+'</span>'+
+        '<span class="s">'+esc(a.standort)+' · '+statusChipText(a)+' · Termin '+fmt(faelligkeit(a))+'</span></button>';
+    }).join("") : '<div class="panel pad tiny muted">Aktuell keine offenen Aufträge. Alle zugewiesenen Anlagen sind geprüft.</div>')+
+    '</div></div>';
+}
+function viewPortalFormular(a,f){
+  const o=objVon(a);
+  return '<div class="portalshell"><div class="portaltop"><div class="portalbrand"><span class="ic">'+ICO_SCHILD+'</span><b>Fachfirmen-Zugang</b><span class="tag">ohne Login</span></div></div>'+
+  '<div class="portalwrap">'+
+  '<div><button class="btn ghost sm" data-portal-zurueck>← Zurück zur Auftragsliste</button></div>'+
+  '<div class="panel"><header><span class="lbl">Prüfauftrag</span></header><div class="pad stack">'+
+    '<div><b class="mono" style="font-size:15px">'+esc(a.typ)+'</b><div class="tiny muted">'+esc(o.adresse)+', '+esc(o.ort)+' · '+esc(a.standort)+'</div></div>'+
+    '<div class="grid2 tiny"><div><span class="lbl">Letzte Prüfung</span><br>'+fmt(a.letztePruefung)+'</div><div><span class="lbl">Fällig</span><br>'+fmt(faelligkeit(a))+'</div></div>'+
+  '</div></div>'+
+  '<div class="panel"><header><span class="lbl">Nachweis einreichen</span></header><div class="pad stack">'+
+    '<div class="field"><label>Prüfprotokoll (PDF oder Foto)</label>'+
+      '<label class="dropzone" id="dz"><input type="file" id="dzfile" style="display:none" accept=".pdf,image/*"><span id="dztxt">Datei auswählen oder hier ablegen</span></label></div>'+
+    '<div class="field"><label>Prüfdatum</label><input type="date" id="pdatum" value="'+iso(HEUTE)+'"></div>'+
+    '<div class="field"><label>Ergebnis</label><div class="seg"><label><input type="radio" name="ergebnis" value="ok" checked>i. O.</label><label><input type="radio" name="ergebnis" value="mangel">Mängel festgestellt</label></div></div>'+
+    '<div class="field"><label>Bemerkung (optional)</label><textarea rows="2" id="bemerkung" placeholder="z. B. Ersatzteil bestellt, Nachkontrolle in 4 Wochen"></textarea></div>'+
+    '<button class="btn portal" data-portal-submit="'+a.id+'" style="align-self:flex-start">Nachweis einreichen</button>'+
+  '</div></div>'+
+  '</div></div>';
+}
+
+/* ================= Rendern ================= */
+function render(){
+  const app=document.getElementById("app");
+  const anz=alleAnlagen(); const kritGesamt=anz.filter(a=>statusVon(a)==="crit").length;
+  if(ST.rolle==="fachfirma"){
+    app.innerHTML=topbar()+viewPortal();
+  } else {
+    let v;
+    if(ST.nav==="objekt") v=viewObjekt();
+    else if(ST.nav==="objekte") v=viewObjekte();
+    else if(ST.nav==="fachfirmen") v=viewFachfirmen();
+    else if(ST.nav==="regelwerk") v=viewRegelwerk();
+    else if(ST.nav==="berichte") v=viewBerichte();
+    else v=viewUebersicht();
+    app.innerHTML='<div class="shell">'+topbar()+'<div class="main">'+railVerwaltung()+'<div class="view" id="view">'+v+'</div></div></div>';
+  }
+}
+function topbar(){
+  return '<div class="topbar"><div class="brand"><span class="ic">'+ICO_SCHILD+'</span><b>Fristenwächter</b><span class="sub">Prüf- &amp; Wartungsfristen für Verwaltungen</span></div>'+
+  '<div class="rolebox"><span class="lbl">Ansicht</span><select id="rolleSel">'+
+    '<option value="verwaltung" '+(ST.rolle==="verwaltung"?"selected":"")+'>Verwaltung — Muster Verwaltung AG</option>'+
+    '<option value="fachfirma" '+(ST.rolle==="fachfirma"?"selected":"")+'>Fachfirma (Demo-Zugang ohne Login)</option>'+
+  '</select></div></div>';
+}
+
+/* ================= Ereignisse ================= */
+document.addEventListener("click", e=>{
+  const t=e.target.closest("button,a,label.dropzone"); if(!t) return;
+  if(t.tagName==="A" && t.getAttribute("href")==="#"){ e.preventDefault(); return; }
+  if(t.dataset.nav){ geheZu(t.dataset.nav); return; }
+  if(t.dataset.openObjekt){ geheZu("objekt", t.dataset.openObjekt); return; }
+  if(t.dataset.reportObjekt){ ST.berichtObjektId=t.dataset.reportObjekt; geheZu("berichte"); return; }
+  if(t.dataset.copyLink){
+    const f=firma(t.dataset.copyLink);
+    const link="https://fristenwaechter.ch/zugang/"+btoa(f.id).replace(/=/g,"").slice(0,10);
+    kopieren(link, t);
+    return;
+  }
+  if(t.dataset.copyBericht!==undefined){
+    const ta=document.getElementById("berichtText");
+    kopieren(ta.value, t);
+    return;
+  }
+  if(t.dataset.portalAuftrag){ ST.portalAuftragId=t.dataset.portalAuftrag; render(); window.scrollTo(0,0); return; }
+  if(t.dataset.portalZurueck!==undefined){ ST.portalAuftragId=null; render(); return; }
+  if(t.dataset.portalSubmit){
+    const a=alleAnlagen().find(x=>x.id===t.dataset.portalSubmit);
+    if(a){
+      const orig=OBJEKTE.flatMap(o=>o.anlagen).find(x=>x.id===a.id);
+      const datum=document.getElementById("pdatum").value || iso(HEUTE);
+      orig.letztePruefung=datum;
+      orig.nachweis="Pruefprotokoll_"+orig.typ.replace(/[^A-Za-z]/g,"")+"_"+iso(HEUTE)+".pdf";
+      ST.meldung="<b>Danke, Nachweis eingereicht.</b> Die Verwaltung wurde informiert. Nächste Fälligkeit automatisch berechnet: "+fmt(faelligkeit(orig))+".";
+      ST.portalAuftragId=null;
+      render(); window.scrollTo(0,0);
+    }
+    return;
+  }
+  if(t.id==="dz"){ /* Klick öffnet nativ das file input */ return; }
+});
+document.addEventListener("change", e=>{
+  const t=e.target;
+  if(t.id==="rolleSel"){ ST.rolle=t.value; ST.nav="uebersicht"; ST.meldung=null; ST.portalAuftragId=null; render(); window.scrollTo(0,0); return; }
+  if(t.matches("input[data-regel]")){
+    const r=regel(t.dataset.regel);
+    r.intervallMt=Math.max(1,Math.min(240,Number(t.value)||r.intervallMt));
+    render();
+    return;
+  }
+  if(t.matches("select[data-bericht-objekt]")){ ST.berichtObjektId=t.value; render(); return; }
+  if(t.id==="dzfile"){
+    const f=t.files[0];
+    const dz=document.getElementById("dz"), txt=document.getElementById("dztxt");
+    if(f){ dz.classList.add("has-file"); txt.textContent="Ausgewählt: "+f.name; }
+    return;
+  }
+});
+function kopieren(text,btn){
+  const alt=btn.textContent;
+  function ok(){ btn.textContent="Kopiert ✓"; setTimeout(()=>btn.textContent=alt,1600); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok).catch(fallback);
+  } else fallback();
+  function fallback(){
+    const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); ok(); }catch(e){}
+    document.body.removeChild(ta);
+  }
+}
+
+render();
+</script>
