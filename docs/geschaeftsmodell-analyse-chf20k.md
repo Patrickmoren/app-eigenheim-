@@ -319,6 +319,7 @@ Die Idee wird abgebrochen, wenn:
 - Nach dem Vorverkaufsversuch (Woche 3) weniger als 2 zahlende Pilotkunden gewonnen werden.
 - Die Customer Acquisition Cost nach den ersten 20 zahlenden Kunden CHF 3'000+ übersteigt, ohne klaren Weg zur Senkung.
 - Ein etablierter Anbieter (GARAIO, Abacus) binnen 6 Monaten ein direktes Konkurrenzfeature launcht, das die Kernlücke schliesst.
+- Bei der "Warum nicht im CRM"-Frage (siehe Validierungsleitfaden) antwortet die Mehrheit der zahlungsbereiten Interviewpartner mit reiner Trägheit statt mit strukturellen Gründen (externer Zugang, Normfristen-Logik, Audit-Reporting) — dann fehlt dem Produkt ein tragfähiger Kern jenseits eines CRM-Custom-Fields.
 
 ---
 
@@ -344,7 +345,16 @@ Die Idee wird abgebrochen, wenn:
 
 ## Moat / Wettbewerbsvorteil
 
-Realistisch einzuordnen: **kein starker struktureller Moat am Anfang.** Der Vorteil entsteht über Zeit durch:
+**Zentraler Einwand, der die Idee kippen kann:** Ein Datumsfeld mit Erinnerung ist in praktisch jedem bestehenden CRM oder in der ohnehin genutzten Verwaltungssoftware in kurzer Zeit als Custom Field abbildbar. Wenn der Produktkern nur "Feld + Reminder" ist, gibt es keinen tragfähigen Grund, CHF 400/Monat für ein separates Tool zu zahlen statt es selbst zu konfigurieren — das wäre reine Bequemlichkeit, keine strukturelle Notwendigkeit, und damit ökonomisch fragil.
+
+Die Differenzierung, die tatsächlich über ein CRM-Custom-Field hinausgeht und daher zwingend in den Validierungsgesprächen (siehe `docs/validierung-woche1-leitfaden.md`, Frage 9) geprüft werden muss, liegt in drei Punkten:
+- **Externer Partei-Zugang:** Die Fachfirma (Aufzugsprüfer, Elektriker), die den Nachweis liefert, bekommt in keinem realistischen Szenario einen Seat im internen CRM — ein Tool mit gastweisem Upload-Zugang ohne Lizenzkosten pro Fachfirma ist ein echter struktureller Unterschied.
+- **Normfristen-Regel-Engine:** Automatische Berechnung der korrekten Prüfintervalle pro Anlagetyp/Kanton ist Fachwissen, das ein generisches CRM nicht mitbringt und das gepflegt werden muss.
+- **Audit-taugliches Reporting:** Ein Knopfdruck-Report der kompletten Prüfhistorie für Eigentümerversammlungen ist in einem CRM ein manueller Exportbastelakt, kein eingebautes Feature.
+
+**Wenn die Interviews zeigen, dass Verwaltungen die Lücke heute primär aus Trägheit (keine Zeit, es selbst aufzusetzen) offenlassen** und nicht aus einem der drei strukturellen Gründe oben, ist das ein ernstzunehmendes Kill-Signal für dieses Geschäftsmodell in seiner jetzigen Form — dann wäre entweder eine schärfere Fokussierung auf genau die drei Differenzierungspunkte nötig, oder ein Wechsel auf einen Alternativkandidaten (Abschnitt 4) sinnvoller.
+
+Darüber hinaus, mit der Zeit:
 - **Daten/Historie:** Je länger ein Kunde die Prüfhistorie im System hat, desto teurer der Wechsel (Wechselkosten).
 - **Workflow-Lock-in:** Sobald Fachfirmen direkt im Tool Nachweise hochladen, entsteht ein zweiseitiges Netzwerk (Verwaltung + Prüffirma), das Konkurrenten neu aufbauen müssten.
 - **Branchenwissen/Regel-Engine-Pflege:** Kontinuierliche Pflege der kantonalen/normativen Prüfintervalle ist mühsam genug, dass ein Nachbau nicht trivial ist, aber auch keine unüberwindbare Hürde für einen Grosskonzern.

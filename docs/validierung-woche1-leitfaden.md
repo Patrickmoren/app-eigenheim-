@@ -72,17 +72,21 @@
 ### Zahlungsbereitschaft (3–4 Min.)
 6. "Falls es ein Tool gäbe, das automatisch alle Fristen pro Gebäude berechnet, Fachfirmen und Sie rechtzeitig erinnert und auf Knopfdruck einen Nachweis-Report für Eigentümerversammlungen erstellt — wäre das für Sie relevant?"
 7. "Was würde ein solches Tool für Sie ungefähr wert sein — pro Monat, pro verwaltete Einheit oder pauschal?" *(Zahl nicht vorschlagen, warten lassen)*
-8. "Nutzen Sie aktuell eine Verwaltungssoftware (Abacus, GARAIO, Rimo, etc.)? Deckt die dieses Thema ab?"
+8. "Nutzen Sie aktuell eine Verwaltungssoftware (Abacus, GARAIO, Rimo, etc.) oder ein CRM? Deckt die dieses Thema ab?"
+9. **"Sie könnten Fristen und Erinnerungen doch auch einfach als Feld in Ihrem bestehenden CRM/Ihrer Verwaltungssoftware abbilden — warum passiert das heute nicht?"** *(Kernfrage — hört genau hin: "Keine Zeit, das aufzusetzen" = schwaches Signal/Trägheit; "Die Fachfirma bräuchte dann einen Zugang, den wir ihr nicht geben wollen/können" oder "Unser System kennt die Normfristen pro Anlagetyp nicht" = starkes Signal für eine echte strukturelle Lücke.)*
+
+> **Warum diese Frage entscheidend ist:** Ein Datumsfeld + Erinnerung ist in jedem CRM in einer Stunde konfigurierbar. Wenn Interviewpartner darauf nur mit "hatten wir noch nie Zeit für" antworten, ist die Zahlungsbereitschaft für ein eigenständiges Produkt fragil — das wäre dann "Bequemlichkeit kaufen", kein strukturelles Muss. Erst Antworten, die auf externe Parteien (Fachfirmen ohne System-Zugang), fehlende Normfristen-Logik oder fehlendes Audit-Reporting verweisen, bestätigen einen echten Produktkern jenseits eines einfachen Feldes.
 
 ### Abschluss (2 Min.)
-9. "Wenn ich in ein paar Wochen einen ersten Prototyp habe — dürfte ich Ihnen den zeigen?"
-10. "Kennen Sie 1–2 Kolleg:innen aus der Branche, mit denen ich auch sprechen dürfte?"
+10. "Wenn ich in ein paar Wochen einen ersten Prototyp habe — dürfte ich Ihnen den zeigen?"
+11. "Kennen Sie 1–2 Kolleg:innen aus der Branche, mit denen ich auch sprechen dürfte?"
 
 **Direkt nach dem Call notieren (nicht während des Gesprächs tippen):**
 - Problem bestätigt? (Ja / eher ja / neutral / nein)
 - Konkrete Anekdote über verpasste Frist? (Ja/Nein, Kurzbeschreibung)
 - Zahl genannt? (CHF-Betrag oder "keine Zahl genannt")
-- Nutzt aktuell: Excel / Verwaltungssoftware / Papier / Sonstiges
+- Nutzt aktuell: Excel / Verwaltungssoftware / CRM / Papier / Sonstiges
+- **"Warum nicht im CRM"-Antworttyp: Trägheit (schwach) / externe Partei-Zugang (stark) / fehlende Normfristen-Logik (stark) / fehlendes Audit-Reporting (stark) / weiss nicht**
 - Demo-Interesse? (Ja/Nein)
 - Referral erhalten? (Name/Firma)
 
@@ -97,12 +101,14 @@ Nach 15–20 Gesprächen zusammenfassen:
 | Anteil "Problem aktiv bestätigt" | ≥ 40 % | |
 | Anzahl mit konkreter Anekdote (verpasste Frist) | — (qualitativ wichtig) | |
 | Anzahl, die unaufgefordert Zahl ≥ CHF 100/Monat nennen | ≥ 5 | |
+| **Anteil "starke" Antworten auf die CRM-Frage (externe Partei / Normfristen-Logik / Audit-Reporting)** | **≥ 50 % der Zahlungsbereiten** | |
 | Anzahl Demo-Interesse | — | |
 | Anzahl Referrals erhalten | — | |
 
 **Entscheidung nach Woche 1:**
-- Zielwerte erreicht → weiter zu Woche 2 (Landingpage, siehe Hauptanalyse Abschnitt 17).
+- Zielwerte erreicht (inkl. CRM-Frage) → weiter zu Woche 2 (Landingpage, siehe Hauptanalyse Abschnitt 17).
 - Zielwerte klar verfehlt (< 40 % Bestätigung, keine Zahlungsbereitschaft) → Kill-Criteria prüfen (Abschnitt 21 der Hauptanalyse), ggf. Wechsel auf Alternativkandidat B (nDSG-Autopilot für Mikro-KMU).
+- **Zusatz-Killsignal:** Wenn die Mehrheit der zahlungsbereiten Personen auf die CRM-Frage nur "Trägheit" antwortet (kein struktureller Grund) → Produkt in der jetzigen Form ist zu dünn; entweder Konzept auf die externen-Partei-/Audit-Report-Funktionen fokussieren und diese im nächsten Gesprächsblock gezielt gegentesten, oder Wechsel auf Alternativkandidat prüfen.
 - Uneindeutig → 10–15 weitere Gespräche vor Entscheidung.
 
 ---
