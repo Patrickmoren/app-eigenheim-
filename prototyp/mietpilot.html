@@ -1,0 +1,254 @@
+<title>Mietpilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F5F6F1; --surface:#FFFFFF; --surface-2:#FAFAF6; --sunken:#EDEEE6;
+  --ink:#1B2320; --ink-2:#54604F; --ink-3:#83907E;
+  --line:#E1E4D8; --line-strong:#C9CEBB;
+  --accent:#1E5A45; --accent-ink:#164533; --accent-soft:#E3EEE7; --on-accent:#FFFFFF;
+  --cta:#D9773F; --cta-ink:#B4601F; --cta-soft:#FCEDE1; --on-cta:#241300;
+  --ok:#2F6B45; --ok-soft:#E3F0E8;
+  --warn:#8A5A0B; --warn-soft:#FAEEDA;
+  --crit:#A3312B; --crit-soft:#F8E4E2;
+  --shadow:0 1px 2px rgba(27,35,32,.06), 0 6px 20px rgba(27,35,32,.07);
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#12160F; --surface:#1A2018; --surface-2:#1E251B; --sunken:#161C13;
+  --ink:#E9ECE3; --ink-2:#ADB8A3; --ink-3:#7C8873;
+  --line:#2C362A; --line-strong:#3C4A38;
+  --accent:#6FBB98; --accent-ink:#93D3B4; --accent-soft:#1E332A; --on-accent:#0B1710;
+  --cta:#E89257; --cta-ink:#F2AE7E; --cta-soft:#33230F; --on-cta:#1B0E00;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+}}
+:root[data-theme="dark"]{
+  --ground:#12160F; --surface:#1A2018; --surface-2:#1E251B; --sunken:#161C13;
+  --ink:#E9ECE3; --ink-2:#ADB8A3; --ink-3:#7C8873;
+  --line:#2C362A; --line-strong:#3C4A38;
+  --accent:#6FBB98; --accent-ink:#93D3B4; --accent-soft:#1E332A; --on-accent:#0B1710;
+  --cta:#E89257; --cta-ink:#F2AE7E; --cta-soft:#33230F; --on-cta:#1B0E00;
+  --ok:#7BC496; --ok-soft:#1A3326;
+  --warn:#E0A950; --warn-soft:#382A12;
+  --crit:#EB8B83; --crit-soft:#3A1E1C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 16px/1.6 "Source Sans 3","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.f-ui{font-family:Archivo,"Segoe UI",system-ui,sans-serif;text-wrap:balance}
+p{margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)}
+.tiny{font-size:13px}
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){ *{animation-duration:.001ms!important;transition-duration:.001ms!important} }
+
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;align-items:center;gap:12px;padding:14px 24px;background:var(--surface);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto}
+.brand .ic{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;flex:none}
+.brand .ic svg{width:16px;height:16px}
+.brand b{font-family:Archivo;font-weight:800;font-size:16.5px;letter-spacing:-.01em}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+@media (max-width:640px){ .wrap{padding:0 16px} .topbar{padding:12px 16px} }
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 36px;text-align:center}
+.hero h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.12;max-width:680px;margin:0 auto}
+.hero .sub{max-width:520px;margin:16px auto 0;color:var(--ink-2);font-size:17px}
+.hero .ctas{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.pricebar{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:34px;padding:16px 22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);flex-wrap:wrap;max-width:560px;margin-inline:auto}
+.pricebar .item{display:flex;flex-direction:column;gap:1px}
+.pricebar .item b{font-family:Archivo;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.pricebar .item.old b{color:var(--ink-3);text-decoration:line-through;text-decoration-color:var(--crit);text-decoration-thickness:2px}
+.pricebar .item span{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-family:Archivo;font-weight:600}
+.pricebar .arrow{color:var(--ink-3);font-size:18px}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:40px 0}
+@media (max-width:720px){ .steps{grid-template-columns:1fr 1fr} }
+@media (max-width:460px){ .steps{grid-template-columns:1fr} }
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.step .n{width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-family:Archivo;font-weight:700;font-size:12.5px;margin-bottom:10px}
+.step h3{font-size:14.5px}
+.step p{font-size:13px;color:var(--ink-2);margin-top:5px;line-height:1.5}
+
+/* ---------- demo ---------- */
+.demosec{padding:14px 0 60px}
+.demosec .kicker{text-align:center;margin-bottom:22px}
+.demosec .kicker h2{font-size:24px}
+.demosec .kicker p{color:var(--ink-2);margin-top:6px}
+.demopanel{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.demo-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--surface-2);flex-wrap:wrap}
+.demo-head .obj{font-family:Archivo;font-weight:700;font-size:15px}
+.demo-head .meta{font-size:12.5px;color:var(--ink-2)}
+.live{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-family:Archivo;font-size:11px;font-weight:700;color:var(--accent-ink);letter-spacing:.04em;text-transform:uppercase}
+.live .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:puls 1.6s ease-in-out infinite}
+@keyframes puls{0%,100%{opacity:1}50%{opacity:.3}}
+.demo-body{padding:20px}
+.startbox{text-align:center;padding:26px 10px}
+.startbox p{color:var(--ink-2);max-width:400px;margin:8px auto 0}
+
+.feed{display:flex;flex-direction:column;gap:0}
+.entry{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line);opacity:0;animation:einblenden .4s ease forwards}
+.feed .entry:first-child{border-top:0}
+@keyframes einblenden{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.av{width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+.av svg{width:13px;height:13px}
+.entry .txt{font-size:14px;line-height:1.5;padding-top:2px}
+.entry .txt b{font-weight:600}
+
+.kandgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+@media (max-width:720px){ .kandgrid{grid-template-columns:1fr} }
+.kcard{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--surface-2)}
+.kcard.gewaehlt{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.kcard .top{display:flex;align-items:center;gap:10px}
+.av2{width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-family:Archivo;font-weight:700;font-size:14px;flex:none}
+.kcard .name{font-family:Archivo;font-weight:700;font-size:14.5px}
+.kcard .tag{font-size:11.5px;color:var(--ink-3)}
+.kcard ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+.kcard .btn{margin-top:auto}
+.kcard li{font-size:12.5px;color:var(--ink-2);display:flex;gap:6px;align-items:flex-start}
+.kcard li .ok{color:var(--accent-ink);flex:none;margin-top:2px}
+
+.fertig{text-align:center;padding:20px 10px}
+.fertig .badge{width:52px;height:52px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;margin:0 auto 14px}
+.fertig .badge svg{width:26px;height:26px}
+.fertig .sum{margin-top:16px;display:inline-flex;flex-direction:column;gap:2px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:14px 22px}
+
+/* ---------- controls ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--r);border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font-family:Archivo;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--accent);color:var(--accent-ink)}
+.btn.pri{background:var(--cta);border-color:var(--cta);color:var(--on-cta)}
+.btn.pri:hover{filter:brightness(1.06)}
+.btn.ghost{border-color:transparent;background:none;color:var(--ink-2);font-weight:500}
+.btn.ghost:hover{background:var(--sunken)}
+.btn.sm{padding:6px 13px;font-size:12.5px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- vertrauen ---------- */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:10px 0 60px}
+@media (max-width:720px){ .trust{grid-template-columns:1fr} }
+.trust .t{padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.trust .t b{font-family:Archivo;font-size:13.5px;display:block;margin-bottom:4px}
+.trust .t p{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+footer{text-align:center;padding:30px 0 50px;color:var(--ink-3);font-size:12px}
+[hidden]{display:none!important}
+</style>
+<div id="app"></div>
+<script>
+const ICO_HAUS='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>';
+const ICO_BLITZ='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 11-14h-8z"/></svg>';
+const ICO_MAIL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+const ICO_HAKEN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+const ICO_HAKEN2='<svg viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>';
+
+const KANDIDATEN=[
+  {init:"LM", name:"L. Meier", tag:"3.5-Zi. gesucht · sofort verfügbar", punkte:["Einkommen deutlich über der Faustregel (3× Miete)","Keine Betreibungen, saubere Auszüge","Sehr gute Referenz vom bisherigen Vermieter"]},
+  {init:"SK", name:"S. Keller & J. Widmer", tag:"Paar · Einzug in 2 Monaten möglich", punkte:["Gemeinsames Einkommen solide über der Faustregel","Keine Betreibungen","Referenz beim bisherigen Vermieter angefragt"]},
+  {init:"AN", name:"A. Njoku", tag:"Einzelperson · sofort verfügbar", punkte:["Einkommen über der Faustregel","Keine Betreibungen","Neue Festanstellung seit 3 Monaten"]},
+];
+
+const LOG=[
+  {icon:ICO_MAIL, txt:"Ihre Wohnungsdaten wurden übernommen."},
+  {icon:ICO_BLITZ, txt:"Exposé erstellt und auf Homegate, ImmoScout24 und Flatfox veröffentlicht."},
+  {icon:ICO_BLITZ, txt:"<b>24 Bewerbungen</b> eingegangen und automatisch geprüft (Einkommen, Betreibungsauszug, Referenzen)."},
+  {icon:ICO_BLITZ, txt:"21 Bewerbungen lagen unterhalb der üblichen Mindestkriterien und wurden höflich automatisch abgesagt."},
+  {icon:ICO_BLITZ, txt:"Besichtigungen mit den 3 vielversprechendsten Interessent:innen koordiniert und durchgeführt."},
+  {icon:ICO_HAKEN, txt:"<b>Unsere Empfehlung ist bereit</b> — wählen Sie unten Ihre Wunschkandidat:in."},
+];
+
+const ST={ phase:"start", gewaehlt:null };
+
+function render(){
+  const app=document.getElementById("app");
+  app.innerHTML=
+  '<div class="topbar"><div class="brand"><span class="ic">'+ICO_HAUS+'</span><b>Mietpilot</b></div>'+
+    '<span class="tiny muted">für private Eigentümer</span></div>'+
+  '<div class="wrap">'+
+    '<div class="hero"><h1>Ihre Wohnung wird vermietet. Sie müssen nichts tun.</h1>'+
+    '<p class="sub">Mietpilot übernimmt Exposé, Inserate, Bewerber-Prüfung und Besichtigungen für Sie — Sie wählen am Ende nur noch aus, wer einzieht.</p>'+
+    '<div class="ctas"><button class="btn pri" data-scroll>Kostenlos ausprobieren</button><button class="btn ghost" data-scroll>So funktioniert’s</button></div>'+
+    '<div class="pricebar"><div class="item old"><b>ca. CHF 2’500</b><span>Klassischer Makler · 1.5 Monatsmieten</span></div>'+
+    '<span class="arrow">→</span><div class="item"><b style="color:var(--accent-ink)">CHF 890</b><span>Mietpilot · pauschal, nur bei Erfolg</span></div></div>'+
+    '</div>'+
+    '<div class="steps">'+
+      step("1","Wohnung anmelden","2 Minuten: Adresse, Miete, ein paar Fotos.")+
+      step("2","KI erstellt &amp; veröffentlicht","Exposé und Inserat auf allen gängigen Portalen.")+
+      step("3","KI prüft Bewerbungen","Einkommen, Betreibungsauszug, Referenzen — automatisch.")+
+      step("4","Sie wählen aus","3 geprüfte Empfehlungen, mit Begründung. Fertig.")+
+    '</div>'+
+    '<div class="demosec" id="demo"><div class="kicker"><h2>So sieht das für Sie aus</h2><p>Ein Beispiel-Fall, live durchgeklickt.</p></div>'+
+      '<div class="demopanel"><div class="demo-head"><div><div class="obj">Musterstrasse 8, 3.5 Zimmer, 8006 Zürich</div>'+
+        '<div class="meta">CHF 2’180.–/Mt. · angemeldet '+(ST.phase==="start"?"jetzt":"vor 3 Wochen")+'</div></div>'+
+        (ST.phase!=="start"?'<span class="live"><span class="dot"></span>Live</span>':'')+'</div>'+
+      '<div class="demo-body" id="demobody">'+viewDemoBody()+'</div></div>'+
+    '</div>'+
+    '<div class="trust">'+
+      trust("Nur bei Erfolg","Keine Vermietung, keine Kosten. Sie zahlen erst, wenn der Vertrag unterschrieben ist.")+
+      trust("Sie entscheiden","Der Agent bereitet alles vor — den letzten Klick, wer einzieht, machen immer Sie.")+
+      trust("Schweizer Prüfkriterien","Betreibungsauszug, Referenzen und Einkommen werden nach den Standards geprüft, die auch Verwaltungen nutzen.")+
+    '</div>'+
+  '</div>'+
+  '<footer>Mietpilot ist ein Klickdummy zu Demonstrationszwecken · keine echten Daten werden verarbeitet</footer>';
+}
+function step(n,t,p){ return '<div class="step"><div class="n">'+n+'</div><h3>'+t+'</h3><p>'+p+'</p></div>'; }
+function trust(t,p){ return '<div class="t"><b>'+t+'</b><p>'+p+'</p></div>'; }
+
+function viewDemoBody(){
+  if(ST.phase==="start"){
+    return '<div class="startbox"><h3 style="font-size:16px">Bereit? Wir zeigen Ihnen live, wie Mietpilot Ihre Wohnung vermieten würde.</h3>'+
+      '<p>Beispielobjekt ist bereits ausgefüllt — klicken Sie einfach auf Start.</p>'+
+      '<div style="margin-top:16px"><button class="btn pri" data-start>Demo starten</button></div></div>';
+  }
+  if(ST.phase==="fertig"){
+    const k=KANDIDATEN[ST.gewaehlt];
+    return '<div class="fertig"><span class="badge">'+ICO_HAKEN2+'</span>'+
+      '<h3 style="font-size:17px">Perfekt — '+k.name+' zieht ein.</h3>'+
+      '<p class="muted" style="margin-top:6px">Der Mietvertrag wird vorbereitet und Ihnen sowie '+k.name+' zur Unterschrift zugestellt.</p>'+
+      '<div class="sum"><span class="tiny muted">Rechnung erst bei Vertragsunterschrift</span><b class="mono" style="font-size:20px">CHF 890.–</b></div>'+
+      '<div style="margin-top:18px"><button class="btn ghost sm" data-reset>Demo nochmal ansehen</button></div></div>';
+  }
+  // laufend oder auswahl
+  const anzahl = ST.phase==="auswahl" ? LOG.length : ST.sichtbar;
+  const entries=LOG.slice(0,anzahl).map((l,i)=>
+    '<div class="entry" style="'+(i===anzahl-1?'':'animation:none;opacity:1')+'"><span class="av">'+l.icon+'</span><div class="txt">'+l.txt+'</div></div>').join("");
+  const kand = ST.phase==="auswahl" ? '<div class="kandgrid">'+KANDIDATEN.map((k,i)=>kandCard(k,i)).join("")+'</div>' : '';
+  return '<div class="feed">'+entries+'</div>'+kand;
+}
+function kandCard(k,i){
+  return '<div class="kcard"><div class="top"><span class="av2">'+k.init+'</span><div><div class="name">'+k.name+'</div><div class="tag">'+k.tag+'</div></div></div>'+
+    '<ul>'+k.punkte.map(p=>'<li><span class="ok">'+ICO_HAKEN+'</span>'+p+'</li>').join("")+'</ul>'+
+    '<button class="btn pri sm" data-waehlen="'+i+'" style="margin-top:2px">Diese Person auswählen</button></div>';
+}
+
+/* ================= Ablauf ================= */
+function starteDemo(){
+  ST.phase="laeuft"; ST.sichtbar=0; render();
+  let i=0;
+  const tick=()=>{
+    i++; ST.sichtbar=i;
+    const body=document.getElementById("demobody");
+    if(body) body.innerHTML=viewDemoBody();
+    if(i<LOG.length){ setTimeout(tick, 650); }
+    else { setTimeout(()=>{ ST.phase="auswahl"; render(); document.getElementById("demo").scrollIntoView({behavior:"smooth",block:"start"}); }, 500); }
+  };
+  setTimeout(tick, 500);
+}
+
+document.addEventListener("click", e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.dataset.scroll!==undefined){ document.getElementById("demo").scrollIntoView({behavior:"smooth",block:"start"}); return; }
+  if(t.dataset.start!==undefined){ starteDemo(); return; }
+  if(t.dataset.waehlen!==undefined){ ST.gewaehlt=Number(t.dataset.waehlen); ST.phase="fertig"; render(); document.getElementById("demo").scrollIntoView({behavior:"smooth",block:"start"}); return; }
+  if(t.dataset.reset!==undefined){ ST.phase="start"; ST.gewaehlt=null; render(); return; }
+});
+
+render();
+</script>
