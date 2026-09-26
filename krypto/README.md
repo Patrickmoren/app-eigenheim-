@@ -28,13 +28,34 @@ zahlt das Gas. Die Menge ist fest (1 Mrd.), es gibt keinen Owner und kein Nachpr
 
 Verteilung und Parameter: [`config/tokenomics.js`](config/tokenomics.js).
 
+## x402-Beispiel-API
+
+Im Ordner [`x402/`](x402/) liegt eine kleine API („Kairn Bergwetter“), die pro Anfrage
+KAIRN verlangt, dazu ein Client, mit dem ein Agent automatisch bezahlt.
+
+| Datei | Inhalt |
+|---|---|
+| [`x402/server.js`](x402/server.js) | Server: antwortet mit `402`, prüft die Signatur per Simulation, rechnet on-chain ab, liefert die Quittung im Header `X-PAYMENT-RESPONSE` |
+| [`x402/client.js`](x402/client.js) | `payingFetch()` für Agenten: bezahlt bei `402` automatisch, mit Obergrenze pro Anfrage |
+| [`x402/routes.js`](x402/routes.js) | Endpunkte: `/orte` gratis, `/wetter/<ort>` 0.02 KAIRN, `/lawinen/<ort>` 0.10 KAIRN (Demodaten) |
+
+Der Server rechnet selbst ab, statt einen externen Facilitator zu nutzen. So funktioniert er
+mit jedem EIP-3009-Token. Ungültige Anfragen (z. B. unbekannter Ort) werden **vor** der Zahlung
+abgelehnt, damit niemand für einen Fehler bezahlt.
+
+```bash
+npm run demo:x402                  # alles lokal: Deployment, Server, Agent ohne ETH
+npm run x402 -- base-sepolia       # Server gegen das Testnetz (braucht X402_SERVER_KEY)
+```
+
 ## Befehle
 
 ```bash
 npm install
-npm test                       # 31 Tests
+npm test                       # 39 Tests (Verträge und x402-API)
 npm run coverage               # Testabdeckung
-npm run demo                   # Agent ohne ETH bezahlt eine API
+npm run demo                   # Agent ohne ETH bezahlt direkt per Signatur
+npm run demo:x402              # dasselbe über HTTP 402 mit Beispiel-API
 npm run airdrop                # airdrop/liste.csv → Merkle-Root und Beweise
 
 npm run node                   # lokale Chain (Terminal 1)

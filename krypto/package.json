@@ -13,7 +13,9 @@
     "deploy:base": "hardhat run scripts/deploy.js --network base",
     "verify": "hardhat run scripts/verify.js",
     "demo": "hardhat run scripts/demo-agent-payment.js",
-    "website": "node scripts/build-website.js"
+    "website": "node scripts/build-website.js",
+    "demo:x402": "hardhat run x402/demo.js",
+    "x402": "node x402/start.js"
   },
   "author": "",
   "license": "ISC",

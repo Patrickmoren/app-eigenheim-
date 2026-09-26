@@ -7,11 +7,12 @@ Diese Liste zuerst vollständig abarbeiten.
 
 - [x] Konzept, Name, Tokenomics, Governance-Parameter
 - [x] Verträge: `KairnToken`, `KairnGovernor`, `KairnTimelock`, `KairnVesting`, `KairnAirdrop`
-- [x] 31 Tests, 100 % Zeilenabdeckung (`npm test`, `npm run coverage`)
+- [x] 31 Vertrags-Tests, 100 % Zeilenabdeckung (`npm test`, `npm run coverage`)
 - [x] Deploy-Skript mit Verteilungsprüfung und Mainnet-Sperre
 - [x] Verify-Skript für Basescan
 - [x] Airdrop-Werkzeug (CSV → Merkle-Root und Beweise)
 - [x] Demo der Agenten-Zahlung (`npm run demo`)
+- [x] x402-Beispiel-API mit Agenten-Client und 8 Tests (`npm run demo:x402`)
 - [x] Webseite mit Airdrop-Prüfung und Claim (`website/`)
 - [x] Whitepaper, Markenleitfaden, Recht und Risiken
 
@@ -25,7 +26,7 @@ Diese Liste zuerst vollständig abarbeiten.
 - [ ] `npm run website -- base-sepolia` und Webseite testweise hosten
 - [ ] Airdrop mit eigener Adresse auf der Liste durchspielen
 - [ ] DAO-Vorschlag im Testnetz durchspielen (z. B. mit Tally)
-- [ ] x402-Demo-API mit Test-KAIRN aufsetzen
+- [ ] x402-Demo-API öffentlich hosten: `X402_SERVER_KEY` setzen, `npm run x402 -- base-sepolia`
 - [ ] Bug-Bounty ausschreiben (z. B. Immunefi, Cantina)
 
 ## C. Vor dem Mainnet – braucht dich
