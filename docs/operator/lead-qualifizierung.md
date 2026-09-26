@@ -3,6 +3,24 @@
 > Grundsatz (Master-Prompt Abschnitt 8 & 10): Ein "klingt gut" ist keine Validierung.
 > Nicht aus Sympathie HOT vergeben.
 
+## Verhältnis zur A–E-Signalskala (MVP-Validierungsphase)
+
+Für die reduzierte MVP-Validierung (`mvp-validierung-screening.md`) wird zusätzlich die
+feinere A–E-Skala erfasst (Spalte "Signalstufe" in `mietpilot-crm.xlsx`). Zuordnung zu
+HOT/WARM/COLD/INVALID:
+
+| Signalstufe | Bedeutung | Entspricht Lead-Status |
+|---|---|---|
+| E | "Ich würde dafür bezahlen" | HOT |
+| D | "Hier ist ein echter Vermietungsfall" | HOT |
+| C | "Ich würde einen echten Fall testen" | WARM |
+| B | "Würde ich vielleicht nutzen" | WARM (tendenziell schwächer) |
+| A | "Interessant" | COLD |
+
+Für die Geschäftsmodellvalidierung dieser Phase zählen **primär D und E** — C ist ein
+positives, aber nicht ausreichendes Signal (s. Erfolgskriterien in
+`mvp-validierung-screening.md`).
+
 ## Signalstärke (Master-Prompt Abschnitt 16)
 
 **Starke Signale** (zählen für HOT):

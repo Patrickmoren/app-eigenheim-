@@ -8,6 +8,8 @@
 **Strategie & Analyse:**
 - `docs/geschaeftsmodell-analyse-chf20k.md` — Ausgangsanalyse (30 Probleme, 10 Modelle), die zu Fristenwächter → Vermietungspilot → Mietpilot führte.
 - `docs/mietpilot-stresstest.md` — 20-Phasen-Stresstest: Zielgruppen-Scoring, Wettbewerbsanalyse (properti als Incumbent, FAKT), Unit Economics, rechtliche Prüfung (inkl. zweier im Verlauf selbst korrigierter Fehleinschätzungen), B2C-vs-B2B2C-Empfehlung.
+- `docs/mietpilot-neubewertung.md` — radikale Nullpunkt-Prüfung: identifiziert H14 (Mittelmarkt-Existenz zwischen Gratis-DIY und Vollservice) als potenziell modellzerstörend, empfiehlt Produktverkleinerung auf reines Bewerber-Screening/-Ranking.
+- **`docs/operator/mvp-validierung-screening.md` — AKTUELL GÜLTIGER Arbeitsplan:** Interviewleitfaden (getrennt A: 5-20 Wohnungen / B: kleine Verwaltungen), Signalskala A-E, Kill/Pivot/Proceed-Logik, Pilotprozess, MVP-Spezifikation, 14-Tage-Plan. Ersetzt für diese Phase den breiteren Ansatz der vorherigen Dokumente.
 - `docs/zusammenfassung-mietpilot.md` — aktueller Kurzstand.
 
 **Validierungsmaterial B2C:**
