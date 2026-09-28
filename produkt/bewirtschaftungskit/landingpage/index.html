@@ -1,0 +1,342 @@
+<title>BewirtschaftungsKit</title>
+<meta name="description" content="Vorlagenpaket Leerstandsmanagement &amp; Mieterwechsel für kleine Schweizer Verwaltungen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#16232B;
+    --ink-soft:#4A5A61;
+    --paper:#F7F5F1;
+    --panel:#FFFFFF;
+    --line:#DEDCD3;
+    --petrol:#0F5C6E;
+    --petrol-dark:#0B4552;
+    --petrol-tint:#E7F0F1;
+    --amber:#C97B2E;
+    --amber-tint:#F7EADA;
+    --ok:#2F7D5B;
+    --ok-tint:#E6F1EA;
+    --warn-tint:#FBEFE0;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EDEAE3;
+      --ink-soft:#AEB9BC;
+      --paper:#141B1E;
+      --panel:#1B2427;
+      --line:#33403F;
+      --petrol:#4FA9BD;
+      --petrol-dark:#7CC3D2;
+      --petrol-tint:#1D2E31;
+      --amber:#E0A05C;
+      --amber-tint:#2B241C;
+      --ok:#6FBE95;
+      --ok-tint:#1C2C24;
+      --warn-tint:#2C2618;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EDEAE3;
+    --ink-soft:#AEB9BC;
+    --paper:#141B1E;
+    --panel:#1B2427;
+    --line:#33403F;
+    --petrol:#4FA9BD;
+    --petrol-dark:#7CC3D2;
+    --petrol-tint:#1D2E31;
+    --amber:#E0A05C;
+    --amber-tint:#2B241C;
+    --ok:#6FBE95;
+    --ok-tint:#1C2C24;
+    --warn-tint:#2C2618;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Public Sans", system-ui, sans-serif;
+    padding-left:16px; padding-right:16px;
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    text-wrap:balance;
+    margin:0;
+  }
+  a{color:var(--petrol-dark);}
+  .wrap{max-width:760px; margin:0 auto;}
+  .eyebrow{
+    font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--petrol-dark);
+  }
+  section{padding-block:56px;}
+  section.tight{padding-block:32px;}
+  .rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* Hero */
+  .hero{padding-block:64px 40px;}
+  .hero h1{font-size:clamp(28px,5vw,42px); line-height:1.15; margin-top:10px;}
+  .hero p.lead{font-size:18px; color:var(--ink-soft); max-width:560px; margin-top:16px;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--petrol); color:white; border:none;
+    font-family:"Public Sans"; font-weight:700; font-size:15.5px;
+    padding:13px 22px; border-radius:8px; cursor:pointer;
+    text-decoration:none;
+  }
+  .btn:hover{background:var(--petrol-dark);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1.5px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--petrol);}
+  .microcopy{font-size:13px; color:var(--ink-soft);}
+
+  /* Pain points */
+  .pains{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px;}
+  @media (max-width:640px){.pains{grid-template-columns:1fr;}}
+  .pain{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:18px; display:flex; flex-direction:column; gap:8px;
+  }
+  .pain .tag{
+    font-size:12px; font-weight:700; color:var(--amber);
+    background:var(--amber-tint); align-self:flex-start; padding:3px 8px; border-radius:5px;
+  }
+  .pain p{margin:0; font-size:14.5px; color:var(--ink-soft);}
+  .pain strong{color:var(--ink); font-size:15.5px;}
+
+  /* Includes */
+  .includes{display:flex; flex-direction:column; gap:0; margin-top:26px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--panel);}
+  .item{display:flex; gap:14px; padding:18px 20px; border-bottom:1px solid var(--line);}
+  .item:last-child{border-bottom:none;}
+  .item .num{
+    font-family:"Fraunces"; font-weight:700; color:var(--petrol); font-size:18px;
+    min-width:28px;
+  }
+  .item h3{font-size:16px; margin-bottom:4px;}
+  .item p{margin:0; font-size:14px; color:var(--ink-soft);}
+
+  /* Mock preview */
+  .mock{
+    border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-top:26px;
+    background:var(--panel);
+  }
+  .mock-bar{background:var(--petrol-dark); color:#fff; font-size:12.5px; font-weight:600; padding:9px 14px;}
+  table.mocktable{width:100%; border-collapse:collapse; font-size:12.5px;}
+  table.mocktable th{
+    background:var(--petrol-tint); text-align:left; padding:8px 10px; font-weight:700;
+    color:var(--petrol-dark); white-space:nowrap; border-bottom:1px solid var(--line);
+  }
+  table.mocktable td{padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .pill{padding:2px 8px; border-radius:20px; font-size:11.5px; font-weight:700;}
+  .pill.ok{background:var(--ok-tint); color:var(--ok);}
+  .pill.warn{background:var(--warn-tint); color:var(--amber);}
+  .pill.bad{background:var(--amber-tint); color:#9C4A21;}
+  .mock-note{padding:10px 14px; font-size:12.5px; color:var(--ink-soft);}
+
+  /* Pricing */
+  .price-card{
+    background:var(--panel); border:1.5px solid var(--petrol); border-radius:12px;
+    padding:28px; margin-top:26px;
+  }
+  .price-top{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap;}
+  .price-figure{font-family:"Fraunces"; font-size:40px; font-weight:700; color:var(--petrol-dark);}
+  .price-was{font-size:15px; color:var(--ink-soft); text-decoration:line-through;}
+  .badge{background:var(--amber); color:#fff; font-size:12px; font-weight:700; padding:4px 10px; border-radius:20px;}
+  .price-list{margin:20px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .price-list li{display:flex; gap:10px; font-size:14.5px;}
+  .check{color:var(--ok); font-weight:700;}
+
+  /* fit */
+  .fit-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:26px;}
+  @media (max-width:640px){.fit-grid{grid-template-columns:1fr;}}
+  .fit-col{border-radius:10px; padding:18px; border:1px solid var(--line);}
+  .fit-col.yes{background:var(--ok-tint);}
+  .fit-col.no{background:var(--warn-tint);}
+  .fit-col h3{font-size:14.5px; margin-bottom:10px;}
+  .fit-col ul{margin:0; padding-left:18px; font-size:14px; color:var(--ink-soft); display:flex; flex-direction:column; gap:6px;}
+
+  /* faq */
+  details{border-bottom:1px solid var(--line); padding-block:14px;}
+  summary{font-weight:600; cursor:pointer; font-size:15px;}
+  details p{margin:10px 0 0; color:var(--ink-soft); font-size:14.5px;}
+
+  footer{padding-block:40px 64px; text-align:center;}
+  footer .microcopy{margin-top:6px;}
+</style>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">Für kleine Schweizer Verwaltungen &amp; Hausverwalter</div>
+    <h1>Leerstand kostet jeden Monat, den er länger dauert. Excel muss das nicht.</h1>
+    <p class="lead">Ein fertiges, formelbasiertes Vorlagenpaket für Leerstandsübersicht, Fristen und Mieterwechsel-Ablauf – ohne Software-Abo, ohne Einrichtungsprojekt. In 15 Minuten einsatzbereit.</p>
+    <div class="cta-row">
+      <a class="btn" href="#preis" id="cta-hero" data-checkout-placeholder="https://payhip.com/DEIN-PRODUKT">Paket ansehen — CHF 149.–</a>
+      <a class="btn secondary" href="#inhalt">Was ist drin?</a>
+    </div>
+    <p class="microcopy" style="margin-top:14px;">Einmalige Zahlung. Sofortiger Download. Funktioniert in Excel und Google Sheets.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="problem">
+    <div class="eyebrow">Das Problem</div>
+    <h2 style="font-size:26px; margin-top:8px;">Leerstand wird meist erst sichtbar, wenn er schon teuer ist</h2>
+    <div class="pains">
+      <div class="pain">
+        <span class="tag">Fristen</span>
+        <strong>Rückgabetermine im Kopf</strong>
+        <p>Kündigungsfrist, Rückgabetermin, Vermarktungsstart – irgendwo notiert, aber nicht an einem Ort. Ein verpasster Termin kostet einen Monat Miete.</p>
+      </div>
+      <div class="pain">
+        <span class="tag">Übersicht</span>
+        <strong>Mehrere Objekte, eine Excel-Wüste</strong>
+        <p>Bei 20+ Wohnungen verliert eine formatierte, aber unstrukturierte Liste schnell ihre Übersicht. Wer ist wo im Prozess?</p>
+      </div>
+      <div class="pain">
+        <span class="tag">Kosten</span>
+        <strong>Leerstandskosten unsichtbar</strong>
+        <p>Wie viel kostet der aktuelle Leerstand wirklich? Ohne Formel eine Schätzung, keine Zahl für den Eigentümer-Rapport.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="inhalt">
+    <div class="eyebrow">Was Sie erhalten</div>
+    <h2 style="font-size:26px; margin-top:8px;">Ein Paket, drei Werkzeuge</h2>
+    <div class="includes">
+      <div class="item">
+        <div class="num">01</div>
+        <div><h3>Leerstandsliste mit Ampel-Status &amp; Kostenformel</h3>
+        <p>Eine Tabelle pro Objekt. Leerstandstage, Leerstandskosten und Status ("in Frist" / "überfällig" / "vermietet") berechnen sich automatisch aus den Daten, die Sie ohnehin haben.</p></div>
+      </div>
+      <div class="item">
+        <div class="num">02</div>
+        <div><h3>Fristenrechner Mieterwechsel</h3>
+        <p>Kündigungseingang eintragen – die Vorlage berechnet Kündigungstermin, Rückgabetermin und den empfohlenen Start der Vermarktung.</p></div>
+      </div>
+      <div class="item">
+        <div class="num">03</div>
+        <div><h3>Checkliste Mieterwechsel (PDF)</h3>
+        <p>Alle Schritte von Kündigungseingang bis Neuvermietung als druckbare Checkliste – für Sie und fürs Team.</p></div>
+      </div>
+      <div class="item">
+        <div class="num">+</div>
+        <div><h3>Bonus: 10 KI-Prompt-Vorlagen</h3>
+        <p>Fertige ChatGPT/Claude-Prompts für Inserate, Kündigungsbestätigungen und Eigentümer-Updates – einfach Ihre Angaben einfügen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="tight">
+    <div class="eyebrow">Vorschau</div>
+    <div class="mock">
+      <div class="mock-bar">Leerstandsliste — Auszug</div>
+      <table class="mocktable">
+        <tr><th>Liegenschaft</th><th>Wohnung</th><th>gekündigt per</th><th>Rückgabe</th><th>Leerstandstage</th><th>Kosten</th><th>Status</th></tr>
+        <tr><td>Bahnhofstrasse 12</td><td>3.5-Zi, 2. OG</td><td>31.10.2025</td><td>31.10.2025</td><td>14</td><td>CHF 933</td><td><span class="pill warn">in Frist</span></td></tr>
+        <tr><td>Bahnhofstrasse 12</td><td>2.5-Zi, EG</td><td>30.09.2025</td><td>30.09.2025</td><td>52</td><td>CHF 2'860</td><td><span class="pill bad">überfällig</span></td></tr>
+        <tr><td>Wiesenweg 4</td><td>4.5-Zi, 1. OG</td><td>31.08.2025</td><td>15.10.2025</td><td>15</td><td>CHF 750</td><td><span class="pill ok">vermietet</span></td></tr>
+      </table>
+      <div class="mock-note">Alle grau hinterlegten Spalten (Tage, Kosten, Status) rechnen automatisch. Sie tragen nur die weissen Spalten ein.</div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="preis">
+    <div class="eyebrow">Preis</div>
+    <div class="price-card">
+      <div class="price-top">
+        <div>
+          <div class="price-figure">CHF 149.–</div>
+          <div class="price-was">Regulär CHF 249.–</div>
+        </div>
+        <span class="badge">Einführungspreis — nur für die ersten 10 Kunden</span>
+      </div>
+      <ul class="price-list">
+        <li><span class="check">✓</span> Leerstandsliste (Excel &amp; Google Sheets)</li>
+        <li><span class="check">✓</span> Fristenrechner mit Formeln</li>
+        <li><span class="check">✓</span> Checkliste Mieterwechsel (PDF)</li>
+        <li><span class="check">✓</span> 10 KI-Prompt-Vorlagen</li>
+        <li><span class="check">✓</span> Kurzanleitung, keine Einrichtung nötig</li>
+        <li><span class="check">✓</span> Lebenslange Nutzung, einmalige Zahlung</li>
+      </ul>
+      <a class="btn" href="#" style="margin-top:22px; width:100%; justify-content:center;" data-checkout-placeholder="https://payhip.com/DEIN-PRODUKT">Jetzt sichern — CHF 149.–</a>
+      <p class="microcopy" style="margin-top:10px; text-align:center;">Sichere Zahlung per Kreditkarte oder TWINT. Sofortiger Download nach Zahlung.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <div class="eyebrow">Für wen</div>
+    <div class="fit-grid">
+      <div class="fit-col yes">
+        <h3>Passt gut, wenn Sie …</h3>
+        <ul>
+          <li>1–50 Wohneinheiten selbst oder für Eigentümer verwalten</li>
+          <li>aktuell mit Excel, Word oder E-Mail arbeiten</li>
+          <li>eine strukturierte, sofort nutzbare Lösung wollen — kein Software-Projekt</li>
+          <li>Fristen und Leerstandskosten sichtbar machen möchten</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3>Eher nicht, wenn Sie …</h3>
+        <ul>
+          <li>bereits Rimo, Garaio REM, Abacus o.ä. im Einsatz haben</li>
+          <li>eine automatisierte Schnittstelle zu Buchhaltung/CRM brauchen</li>
+          <li>über 200 Einheiten verwalten (dann lohnt sich echte Software)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="faq">
+    <div class="eyebrow">Fragen</div>
+    <details open>
+      <summary>Ersetzt das eine Verwaltungssoftware?</summary>
+      <p>Nein. Es ersetzt die unstrukturierte Excel-/Word-Lösung, die viele kleine Verwaltungen heute nutzen. Für grössere Portfolios mit Buchhaltungsanbindung ist eine dedizierte Software sinnvoller.</p>
+    </details>
+    <details>
+      <summary>Funktioniert es auch in Google Sheets?</summary>
+      <p>Ja. Die Formeln basieren auf Standardfunktionen (EDATE, WENN/IF), die in Excel und Google Sheets identisch funktionieren.</p>
+    </details>
+    <details>
+      <summary>Sind die Fristen rechtlich verbindlich?</summary>
+      <p>Der Fristenrechner ist eine Orientierungshilfe basierend auf gängigen Kündigungsfristen. Er ersetzt keine Rechtsberatung — prüfen Sie Fristen im Einzelfall gemäss Mietvertrag und OR.</p>
+    </details>
+    <details>
+      <summary>Gibt es Rückerstattung?</summary>
+      <p>Ja, 14 Tage Geld-zurück ohne Rückfragen, falls das Paket nicht passt.</p>
+    </details>
+  </section>
+
+  <footer>
+    <a class="btn" href="#preis">Paket ansehen — CHF 149.–</a>
+    <p class="microcopy">BewirtschaftungsKit · Fragen: kontakt@bewirtschaftungskit.ch</p>
+  </footer>
+
+</div>
+
+<script>
+  // Platzhalter-Checkout: Link ersetzen, sobald das Payhip/Lemonsqueezy-Produkt live ist.
+  document.querySelectorAll('[data-checkout-placeholder]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+    });
+  });
+</script>
