@@ -132,7 +132,7 @@ Keine Cookies, keine externen Inhalte → keine Einwilligung, kein Banner. Das P
 `golive_check.py` kontrolliert das nach dem Aufschalten.
 
 ### 3.9 Steuern, Sozialversicherung, Register (deine Aufgabe)
-- **AHV:** Selbständige Nebenerwerbstätigkeit bei der Ausgleichskasse (Kanton Zürich: SVA Zürich)
+- **AHV:** Selbständige Nebenerwerbstätigkeit bei der Ausgleichskasse (Kanton Basel-Landschaft: SVA Basel-Landschaft)
   anmelden, sobald Einnahmen fliessen. Liegt das Reineinkommen daraus unter der Geringfügigkeitsgrenze (rund CHF 2'300–2'500 im
   Jahr; aktuellen Betrag bei der Ausgleichskasse bestätigen), werden Beiträge nur auf dein Verlangen
   erhoben (Art. 19 AHVV) – die Anmeldung schadet trotzdem nicht.
