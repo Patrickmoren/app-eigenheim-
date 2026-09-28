@@ -1,10 +1,10 @@
 {
   "INHABER": "Patrick Moren",
   "ADRESSE": "[Strasse Nr, PLZ Ort]",
-  "EMAIL": "[abrechnung@…]",
+  "EMAIL": "abrechnung@nebenkosten-fixfertig.ch",
   "TELEFON": "[079 000 00 00]",
-  "WEBSITE": "https://nebenkosten-fixfertig.netlify.app",
-  "FORM_ENDPOINT": "",
-  "EMAIL_ANBIETER": "[z. B. Google Ireland Ltd. (Gmail), Irland/USA]",
+  "WEBSITE": "https://nebenkosten-fixfertig.ch",
+  "FORM_ENDPOINT": "[https://formspree.io/f/…]",
+  "EMAIL_ANBIETER": "Infomaniak Network SA, Genf (Schweiz) – Speicherung in der Schweiz",
   "STAND": "Oktober 2026"
 }

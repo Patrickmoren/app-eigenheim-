@@ -62,6 +62,7 @@ trotzdem verkaufbar (z. B. als Lizenz). Keine Kunden oder Daten des Arbeitgebers
 - **MWST:** nicht pflichtig unter CHF 100'000 Umsatz – deshalb «keine MWST» in den Bedingungen.
 - **AHV:** Nebenerwerb bei der Ausgleichskasse anmelden, sobald Einnahmen fliessen; bis CHF 2'500
   Reingewinn/Jahr sind Beiträge nur auf Verlangen geschuldet. Einnahmen in der Steuererklärung angeben.
+- **Anbieter und Anmeldung:** siehe [`EINRICHTUNG.md`](EINRICHTUNG.md).
 - **Rechtstexte:** Datenschutzerklärung und Auftragsbedingungen sind sorgfältige Vorlagen für diesen
   Anwendungsfall, aber keine Anwaltsprüfung. Für den Test ausreichend; vor grösserem Volumen einmal
   beim HEV-Rechtsdienst oder einer Anwältin gegenlesen lassen (~CHF 200–400).
