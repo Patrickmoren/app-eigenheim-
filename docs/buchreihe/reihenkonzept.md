@@ -1,3 +1,5 @@
+> **Historisches Dokument (Stand 28.09.2026).** Massgeblich sind die Dateien in `entwicklung/` (siehe `ARBEITSREGELN.md`). Abweichungen, z. B. Finale, Diagnosejahr und Anruf-Mechanik, sind dort dokumentiert.
+
 # WAS DAS EIS ZURÜCKGIBT
 ### Serienarchitektur – Band 1: *Die Tote, die sonntags anruft*
 

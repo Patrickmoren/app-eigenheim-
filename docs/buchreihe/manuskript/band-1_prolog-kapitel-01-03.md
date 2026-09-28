@@ -227,7 +227,7 @@ Auf der anderen Seite nichts. Kein Atem, kein Papier. Dann ein Stuhl, der nachga
 
 „Vorgestern. Um sieben Uhr abends. Wir telefonieren jeden Sonntag.“
 
-Ich hörte ihr zu, wie ich allen zuhöre. Ich kann es nicht abstellen. Eine mittlere Stimme, eher tief für eine Frau, rau an den Rändern, wie vom Rauchen oder von Jahren, in denen sie zu laut hatte sprechen müssen. Französisch als erste Sprache: Das R sass vorn im Mund, und die Satzmelodie stieg am Ende, wo eine Deutschschweizerin sie hätte fallen lassen. Ein kleiner Raum mit Klimaanlage, das Brummen lag knapp über hundert Hertz, und irgendwo hinter ihr tippte jemand mit zwei Fingern.
+Ich hörte ihr zu, wie ich allen zuhöre. Ich kann es nicht abstellen. Eine mittlere Stimme, eher tief für eine Frau, rau an den Rändern, wie vom Rauchen oder von Jahren, in denen sie zu laut hatte sprechen müssen. Französisch als erste Sprache: Das R sass vorn im Mund, und die Satzmelodie stieg am Ende, wo eine Deutschschweizerin sie hätte fallen lassen. Ein kleiner Raum mit Klimaanlage, und irgendwo hinter ihr tippte jemand mit zwei Fingern.
 
 „Dann“, sagte sie, und ich hörte, wie sie etwas notierte, „ist das vermutlich die beste Nachricht, die ich diese Woche bekomme.“
 
@@ -243,7 +243,7 @@ Sie erklärte es mir sachlich, in der Reihenfolge, in der man es in einen Berich
 
 „Seiner geschiedenen Frau“, sagte sie, ohne jede Ironie.
 
-Ich stand auf. Ich weiss nicht, warum. Ich stand auf und ging zum Fenster, das keines war, nur ein Lichtschacht mit Milchglas, hinter dem die Füsse der Passanten als Schatten vorbeigingen.
+Ich stand auf und ging zum Fenster, das keines war, nur ein Lichtschacht mit Milchglas, hinter dem die Füsse der Passanten als Schatten vorbeigingen.
 
 „Meine Mutter lebt in Porto“, sagte ich. „Seit sechs Jahren. Sie ist achtundfünfzig, sie hat es mit dem Rücken, und sie ruft jeden Sonntag um sieben an. Vielleicht hat sie den Ring verloren. Vielleicht hat sie ihn verkauft. Sie hat nie etwas behalten, das sie an meinen Vater erinnert.“
 
@@ -439,7 +439,7 @@ Die alte Frau mit den Einkaufstaschen stieg vor mir aus und ging davon, ohne sic
 
 Ich stellte meinen Koffer auf das Kopfsteinpflaster, und in diesem Moment begann die Glocke zu läuten.
 
-Ein einzelner Ton, von der Kapelle oben am Hang, immer wieder angeschlagen. Ein Fis, eine Spur zu hoch, und darunter eine Schwebung, ein langsames Wabern, das verriet, dass die Glocke irgendwo einen Riss hatte oder eine alte Reparatur. Ich griff nach dem Telefon in meiner Tasche, bevor ich wusste, warum.
+Ein einzelner Ton, von der Kapelle oben am Hang, immer wieder angeschlagen. Ein Fis, eine Spur zu hoch, und darunter eine Schwebung, ein langsames Wabern, das verriet, dass die Glocke irgendwo einen Riss hatte oder eine alte Reparatur. Meine Hand lag schon auf dem Telefon in meiner Tasche.
 
 Es war Dienstag. Niemand würde anrufen.
 
@@ -479,7 +479,7 @@ Reto Zuber war sechzig. Ich hatte ihn zuletzt mit achtzehn gesehen, bei meiner M
 
 „Nora.“
 
-Es war keine Frage.
+Er sagte meinen Namen so, wie man ein Wort ausspricht, das man lange nicht benutzt hat.
 
 „Hallo.“
 
@@ -571,7 +571,7 @@ Ich ging die Reihe entlang, Stufe für Stufe, Jahrzehnt für Jahrzehnt, bis ich 
 
 *Kathi Zuber, Lichtmess 1995.*
 
-Eine junge Frau in einem roten Skianorak. Schnee im Haar, Schnee auf den Schultern, das Gesicht vom Blitz überbelichtet und trotzdem so deutlich, dass ich den Atem anhielt. Sie hielt die Kerze in beiden Armen, und sie lachte, mit offenem Mund, mit dem ganzen Gesicht, schmal wie ein Docht in dieser weiten Jacke.
+Eine junge Frau in einem roten Skianorak. Schnee im Haar, Schnee auf den Schultern, das Gesicht vom Blitz überbelichtet und trotzdem deutlicher als jedes Foto, das ich von ihr besass. Sie hielt die Kerze in beiden Armen, und sie lachte, mit offenem Mund, mit dem ganzen Gesicht, schmal wie ein Docht in dieser weiten Jacke.
 
 Meine Mutter mit siebenundzwanzig. Ich hatte sie nie so lachen sehen. Nicht einmal auf Fotos, denn es gab kaum Fotos von ihr, und auf denen, die es gab, sah sie aus wie jemand, der gleich aus dem Bild treten will.
 
@@ -597,7 +597,7 @@ Die Frau, die herauskam, war klein. Viel kleiner als die Frau auf dem Foto von 1
 
 Sie sah mich an und blieb stehen.
 
-Ich kannte ihre Handschrift, bevor ich ihr Gesicht kannte. Dreissig Geburtstagskarten, jedes Jahr eine, seit ich zwei war. In jeder eine Zwanzigfrankennote und eine gepresste Blume, Enzian oder Edelweiss oder Männertreu, einmal ein Fingerhut, violett und gefleckt. Und immer dieselbe Zeile: *Für Nora. Deine Grosi in Lomm.* Auf dem Umschlag das Z von *Zuber* mit einem Querstrich in der Mitte, wie man es früher in der Schule lernte, damit man es nicht mit einer Zwei verwechselt. Meine Mutter hatte mir die Karten ungeöffnet gegeben, jedes Jahr, so wie man einen Brief vom Steueramt weitergibt, und nie ein Wort dazu gesagt. Ich hatte sie alle aufbewahrt. In einer Schuhschachtel.
+Ich kannte ihre Handschrift, bevor ich ihr Gesicht kannte. Dreissig Geburtstagskarten, jedes Jahr eine, seit ich zwei war. In jeder eine Zwanzigfrankennote und eine gepresste Blume, Enzian oder Edelweiss oder Männertreu. Und immer dieselbe Zeile: *Für Nora. Deine Grosi in Lomm.* Auf dem Umschlag das Z von *Zuber* mit einem Querstrich in der Mitte, wie man es früher in der Schule lernte, damit man es nicht mit einer Zwei verwechselt. Meine Mutter hatte mir die Karten ungeöffnet gegeben, jedes Jahr, so wie man einen Brief vom Steueramt weitergibt, und nie ein Wort dazu gesagt. Ich hatte sie alle aufbewahrt. In einer Schuhschachtel.
 
 Martha Zuber stellte den Kuchen auf den gedeckten Tisch. Sie wischte sich die Hände an der Schürze ab, langsam, gründlich, Finger für Finger. Dann kam sie auf mich zu und nahm mein Gesicht zwischen ihre Hände.
 
@@ -612,58 +612,3 @@ Sie lächelte und sagte es mir nicht. Sie sah mich nur an, sehr lange, als lese 
 Dann zog sie mich an sich. Sie reichte mir kaum bis zur Schulter, und sie hielt mich fester, als mich seit Jahren jemand gehalten hatte.
 
 „Endlich“, sagte sie in mein Haar. „Das Eis hat dich heimgebracht.“
-
----
-
-## ENTWICKLUNGSNOTIZ
-
-**Was funktioniert bereits besonders gut?**
-- Die Paradox-Hook funktioniert in beide Richtungen. Kapitel 1 macht den Sonntagsanruf zu etwas Intimem und Echtem, bevor Kapitel 2 ihn unmöglich macht.
-- Noras Hören ist bereits die Erzählperspektive selbst, nicht nur ihr Beruf: Sie liest Fabiennes Raum, Retos Ausatmen und die Glocke über Frequenzen. So kann sie später plausibel Fälle lösen, ohne je allwissend zu wirken, weil sie ihre Beobachtungen immer wieder selbst wegerklärt.
-- Die Regel „Den Atem lasse ich immer drin“ steht auf Seite 3. Nach der Mitte des Buches wird sie zur Anklage gegen Nora selbst.
-- Martha tritt als Zuflucht auf: dreissig Karten, eine Schuhschachtel, ein Kuchen. Die spätere Erschütterung kann dadurch echt sein.
-
-**Wo besteht das grösste dramaturgische Risiko?**
-- Die Häufung von Anruf-Auffälligkeiten in Kapitel 1: Hochdeutsch, keine Unterbrechungen, Verzögerung, Möwen ohne Regen, Atem nur zwischen den Sätzen, kein Video. Einzeln ist jede davon harmlos. Zusammen könnten KI-erfahrene Leser den Mittel-Twist erraten.
-- Gegenmittel: Die Hinweise sind hier bewusst dicht gesetzt, weil Kapitel 1 als Beweisgrundlage dienen muss. Bis Kapitel 19 kommt kein weiterer Anruf-Hinweis mehr. Die Aufmerksamkeit wandert auf die Leiche, die Zwillinge und das Band.
-
-**Welche kleine Anpassung würdest du vor Kapitel 4 empfehlen?**
-Ich habe drei kleinere Ergänzungen eingebaut, die ohne Zustimmung erlaubt sind. Sie sollten ins Konzept übernommen werden:
-1. **Das fehlende Lichtmess-Foto von 1997.** Frischer Nagel, scharfe Kanten des hellen Rechtecks: Jemand hat es nach dem Leichenfund abgenommen. Das ergibt eine neue offene Frage für Teil 1. Das Foto sollte in Kapitel 18 in Retos Keller auftauchen. Es zeigt Kathi in der roten Jacke mit der Kerze, Stunden vor ihrem Tod.
-2. **Die Kerzenwache bis Mitternacht.** Sie erklärt den Kerzenbuch-Eintrag um 00:40 Uhr und das Summen im Prolog.
-3. **Das Gletscherläuten als Stillstand.** Während der drei Minuten bewegt sich im Dorf niemand. Das ist ein Ritual, das in Kapitel 44 und im Hörbuch trägt.
-
-Für Kapitel 4 empfehle ich, das falsche H nicht als Erstes zu setzen. Martha soll in der Küche zuerst über Alltägliches summen, und das falsche H fällt beiläufig in einer Zeile, während Nora abgelenkt ist, zum Beispiel vom Leinentuch mit „M.W. 1961“. So hört es das Hörbuch, die Leserin überliest es.
-
-Offene Stilentscheidung: Das Manuskript verwendet Schweizer Rechtschreibung (ss statt ß). Das passt zur Erzählerin, sollte für den Vertrieb in Deutschland aber bewusst bestätigt werden.
-
-**Welche Hinweise wurden bereits gesetzt?**
-
-| Ebene | Wo | Hinweis |
-|---|---|---|
-| Täterin | Prolog | Summen auf dem Eis, „drei Töne, dann nichts, dann wieder zwei“. Entspricht dem Liedfetzen aus dem Tal. |
-| Täterin | Kap. 3 | Summen in der Küche, „eine Tonart, die sich nicht ganz entscheiden konnte“. |
-| Täterin | Kap. 3 | Z mit Querstrich (Kerzenbuch) und gepresster Fingerhut (Gift). |
-| Firn | Prolog | Dreifacher Husten (Bruno), ein Name fällt, „Lichtmess“. |
-| Band-Mechanik | Prolog | Schalter auf Sprachaktivierung, Recorder in Visp gekauft. |
-| KI-Anrufe | Kap. 1 | Exakt 19:00:00; Hochdeutsch; „Erzähl du“ ohne Unterbrechen; Verzögerung; Möwen ohne Regen; Atem nie mitten im Satz; kein Video; Postfach. Dazu die Atem-Regel (Ruth). |
-| Mamas Drehbuch | Kap. 1 | „Wenn es dieses Jahr heiss bleibt …“ – ein vorformulierter Satz. |
-| Identität | Kap. 1 | Pfeifen beim S, Schneidezahn mit fehlendem Dreieck (→ Zahnbefund). |
-| Identität | Kap. 2 | „Es gibt Frauen, die den Ring einer anderen tragen“; „Leni ist gegangen“. |
-| Identität | Kap. 3 | Retos „Ich habe nicht gesagt, dass sie es ist“ und „Wie klingt sie?“. |
-| Ritual | Kap. 3 | Glocke um 19:00 Uhr, Noras Griff zum Telefon. |
-| Band 2 | Kap. 2 | Aurels Zitat „Wir kaufen Zeit. Die Frage ist nur, wofür.“ |
-| **Band 3** (1) | Prolog | „Sie spult nicht zurück. Was vorher auf dem Band war, braucht sie nicht mehr.“ |
-| **Band 3** (2) | Prolog | „Beim Wickeln“ – Kathi zieht das Kind gross (Ebene 3: nicht ihr leibliches). |
-| **Band 3** (3) | Kap. 2 | Geburt in Aosta, obwohl die Strasse in einer Sackgasse verschüttet war; Fabiennes Pause. |
-| **Band 3** (4) | Kap. 3 | „Kathi, Lichtmess 1995“: schmal, fünf Wochen vor Noras Geburt, nicht schwanger. |
-| **Band 3** (5) | Kap. 3 | Mia: „Wenn du meinst“ – keine Halbschwester, kein gemeinsames Blut. |
-| **Band 3** (6) | Kap. 3 | Martha: „Du stehst wie sie.“ – „Wie wer?“ Keine Antwort. |
-
-**Welche Informationen dürfen auf keinen Fall zu früh enthüllt werden?**
-- Dass Kathi und Leni **eineiige Zwillinge** waren. Frühestens Kapitel 7, und bis dahin fällt nirgends das Wort „Zwilling“.
-- Dass die Tote **keinen abgeschlagenen Zahn** hat, darf in Kapitel 5 nur beiläufig fallen („auffallend schöne Zähne“). Nora darf die Verbindung erst in Kapitel 12 ziehen.
-- Alles über **ALS, Voice Banking und Inês** kommt nicht vor Kapitel 23/24. Die Frau mit dem grauen Schal bleibt bis dahin ohne Namen.
-- **Marthas Mädchenname (Werlen)** erscheint nur als Monogramm, nie ausgeschrieben, bis Kapitel 41.
-- Der Name **Firn** fällt nicht vor Kapitel 18. Bis dahin gibt es nur „die Festung“ und „sie sind drin“.
-- Dass **Reto nicht Noras leiblicher Vater** ist: in Band 1 gar nicht, nur über Subtext.
