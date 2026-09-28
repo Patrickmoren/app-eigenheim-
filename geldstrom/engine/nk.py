@@ -458,7 +458,13 @@ def dateiname(s):
 
 def chromium():
     for kandidat in [os.environ.get("CHROME"), shutil.which("chromium"), shutil.which("chromium-browser"),
-                     shutil.which("google-chrome"), *sorted(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux/chrome"))]:
+                     shutil.which("google-chrome"), shutil.which("chrome"), shutil.which("msedge"),
+                     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                     "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+                     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                     r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                     r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+                     *sorted(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux/chrome"))]:
         if kandidat and os.path.exists(kandidat):
             return kandidat
     return None
