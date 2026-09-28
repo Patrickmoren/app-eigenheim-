@@ -17,19 +17,19 @@
 
 Mamas „Lawinen“-Version gegenüber Nora wird so zu einer zweiten, abweichenden Lüge (siehe L3).
 **Auswirkungen:** Kapitel 3 (ein Halbsatz), Kapitel 9 (die Dorfversion „Kur in Italien“), Band 3 (Mechanik der Adoption).
-**Alternative:** Das Foto verliert seine Band-3-Funktion und zeigt Kathi 1994. Ein anderer Hinweis ersetzt es, zum Beispiel das Fehlen jeglicher Schwangerschaftsfotos in Mamas Nachlass (Kapitel 36).
+**Alternative:** Das Foto verliert seine Band-3-Funktion und zeigt Kathi 1994. Ein anderer Hinweis ersetzt es, zum Beispiel das Fehlen jeglicher Schwangerschaftsfotos in Mamas Nachlass (Kapitel 27).
 
-### E2 · KONZEPTVERBESSERUNG – Das Finale (Kapitel 40–43)
+### E2 · KONZEPTVERBESSERUNG – Das Finale (Kapitel 31–34)
 **Bisher:** Martha setzt Nora vergifteten Kuchen vor (Fingerhut), Nora flieht mit Herzrhythmusstörungen in die Evakuierungsnacht.
 **Problem:** Das macht Martha zur Bösewichtin und widerspricht der Vorgabe, ihre Liebe zu Nora sei echt und die Leserin solle denken: „Wie konnte ein Mensch aus Liebe so weit gehen?“. Ausserdem wiederholt es Brunos Tod als Mechanik.
-**Vorschlag:** Martha hat den Kuchen **für sich selbst** gebacken. Sie weigert sich zu evakuieren und will mit der Gelübdekerze in ihrer Küche sterben, das Geheimnis mit sich nehmen und das Dorf und Nora schonen. Nora kommt, erkennt das falsche H und konfrontiert sie. Martha gesteht, isst dabei selbst vom Kuchen und schlägt Nora die Gabel aus der Hand: „Nicht du. Davon nicht.“ Nora begreift, was Fingerhut ist (Garten Kapitel 4, Bruno Kapitel 28). Jetzt steht **Nora an Lenis Spaltenrand**: Holt sie Hilfe für die Frau, die ihre Mutter hat sterben lassen? Sie holt sie. Sie schleppt Martha durch die Evakuierungsnacht zum Helikopter, Aurel kommt ihr entgegen, hinter ihnen bricht der Gletscher.
+**Vorschlag:** Martha hat den Kuchen **für sich selbst** gebacken. Sie weigert sich zu evakuieren und will mit der Gelübdekerze in ihrer Küche sterben, das Geheimnis mit sich nehmen und das Dorf und Nora schonen. Nora kommt, erkennt das falsche H und konfrontiert sie. Martha gesteht, isst dabei selbst vom Kuchen und schlägt Nora die Gabel aus der Hand: „Nicht du. Davon nicht.“ Nora begreift, was Fingerhut ist (Garten Kapitel 4, Bruno Kapitel 23). Jetzt steht **Nora an Lenis Spaltenrand**: Holt sie Hilfe für die Frau, die ihre Mutter hat sterben lassen? Sie holt sie. Sie schleppt Martha durch die Evakuierungsnacht zum Helikopter, Aurel kommt ihr entgegen, hinter ihnen bricht der Gletscher.
 **Warum es stärker ist:**
 - Martha bleibt tragisch statt böse.
 - Das Finale spiegelt die Kernszene von 1997 (Seil holen oder nicht) mit umgekehrtem Ausgang. Damit durchbricht Nora den Kreislauf der Familie.
 - Martha überlebt für den Prozess in Band 3.
 - Die körperliche Gefahr für Nora bleibt (Nacht, Eis, Abbruch).
 - Brunos Tod behält seine Doppeldeutigkeit (Gnade oder Schweigen) für die Exhumierung in Band 2.
-**Auswirkungen:** Kapitel 40–43 umgebaut, Kapitel 42 (Spital: nicht Nora vergiftet, sondern Martha). Die Anklage wegen Kathi bleibt. Bruno bleibt offen bis Band 2. Die Foreshadowing-Einträge zum Fingerhut bleiben gültig.
+**Auswirkungen:** Kapitel 31–34 umgebaut, Kapitel 33 (Spital: nicht Nora vergiftet, sondern Martha). Die Anklage wegen Kathi bleibt. Bruno bleibt offen bis Band 2. Die Foreshadowing-Einträge zum Fingerhut bleiben gültig.
 
 ---
 
@@ -38,9 +38,9 @@ Mamas „Lawinen“-Version gegenüber Nora wird so zu einer zweiten, abweichend
 |---|---|---|
 | D1 | Leni verlässt Lomm am 3.2.1997 „ohne Adieu“, damit niemand den Zahn hört | Kap. 9, Matrix |
 | D2 | Aosta-Widerspruch wird in Band 1 von Figuren benannt und als offen markiert | Kap. 7, 9 |
-| D3 | Sonntagsanrufe im Hybridbetrieb: Mama tippt (2022–24), danach Inês mit Sprachmodell-Vorschlägen und geklonter Stimme | Kap. 24, 25, 36 |
-| D4 | Mama stirbt am 17.11.2024 während des Anrufs um 19 Uhr; das ist Anruf 1 von 93 | Kap. 24, 25, 36, 44 |
-| D5 | Beweis auf dem Band: Lenis Schrei „Lass mich los, Martha – sie lebt noch!“ | Kap. 43 |
+| D3 | Sonntagsanrufe im Hybridbetrieb: Mama tippt (2022–24), danach Inês mit Sprachmodell-Vorschlägen und geklonter Stimme | Kap. 19, 25, 36 |
+| D4 | Mama stirbt am 17.11.2024 während des Anrufs um 19 Uhr; das ist Anruf 1 von 93 | Kap. 19, 25, 36, 44 |
+| D5 | Beweis auf dem Band: Lenis Schrei „Lass mich los, Martha – sie lebt noch!“ | Kap. 34 |
 | D6 | ALS-Diagnose am 2.2.2021 in Porto (nicht 2020) | Figuren, Zeitlinie |
 | D7 | Reto hat das Foto von 1997 abgenommen und aufbewahrt | Kap. 3, 18 |
 | D8 | Martha summt beim Gehen – ein alter Brauch auf dem Eis | Kap. 4, Prolog |

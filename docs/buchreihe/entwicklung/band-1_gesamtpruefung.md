@@ -113,3 +113,6 @@ Ja, wenn E1 und E2 entschieden sind und die Beweiskette aus der Mystery-Matrix b
 - **Umfang:** K6 und K10 sind kurz (rund 1.250 Wörter). Das ist beabsichtigt; das Umfangsziel ist angepasst (Produktionsplan).
 - **Audio:** Der Kontrast Mama 2020 und Anrufstimme 2026 funktioniert im Hörbuch, ohne dass der Text vergleicht. Das ist die stärkste Hörbuchstelle bisher.
 - **Informationssperren:** eingehalten (Firn, Werlen, ALS/Inês, Zahnakte, Reto).
+
+### Architekturprüfung (29.09.2026)
+Die ganze Geschichte wurde neu betrachtet (siehe `reihen-architektur.md`). Ergebnis: **3 Hauptbände**. Band 1 wird von 44 auf 35 Kapitel verdichtet. Grund sind Funktionsdopplungen im alten Plan: zwei Dokumentenszenen mit Reto, zwei Portugal-Bestätigungen, ein Laptopdiebstahl, der nur Zugang herstellt, ein separates Geständniskapitel, eine Instagram-Szene ohne eigene Wirkung. Kapitel 1–10 bleiben inhaltlich unverändert. Die Kapitelnummern ≥ 11 in den Entwicklungsdateien sind umgestellt; frühere Nummern in dieser Datei beziehen sich auf die alte Zählung.

@@ -18,7 +18,7 @@ Jede Figur hat: Wunsch · Angst · Geheimnis · blinden Fleck · Widerspruch · 
 - **Blinder Fleck:** hält Schweigen für Schutz.
 - **Widerspruch:** Ihre Liebe äussert sich als Kontrolle.
 - **Stimme (echt, bis 2021):** Walliserdeutsch, fällt ins Wort, bringt Sätze falsch zu Ende, lacht laut, hustet mitten im Satz, spitze Ironie („dein Knistern“). **Stimme (gebankt/synthetisch):** Hochdeutsch, geduldig, „Erzähl du“, warm, glatt, lobend.
-- **Versionen, die die Leserin kennenlernt:** Noras Erinnerung (K1–2) · die Anrufstimme (K1) · Dorferzählungen (K4, K9) · die Aufnahme 2020 (K7) · die Bandstimme 1997 (K22) · die Entwürfe (K33) · Porto (K36) · letzte echte Aufnahme (K44).
+- **Versionen, die die Leserin kennenlernt:** Noras Erinnerung (K1–2) · die Anrufstimme (K1) · Dorferzählungen (K4, K9) · die Aufnahme 2020 (K7) · die Bandstimme 1997 (K17) · die Entwürfe (K25) · Porto (K27) · letzte echte Aufnahme (K35).
 
 ## Martha Zuber
 - **Wunsch:** Lomm und die Familie beisammenhalten; Nora zurückhaben.
@@ -27,7 +27,7 @@ Jede Figur hat: Wunsch · Angst · Geheimnis · blinden Fleck · Widerspruch · 
 - **Blinder Fleck:** Sie hält Kontrolle für Fürsorge.
 - **Widerspruch:** Die Frau, die alle füttert, hat einen Menschen in der Kälte sterben lassen.
 - **Stimme:** Walliser Rhythmus, kurze Befehle im Gewand von Fürsorge („Iss.“ „Komm.“ „Du musst nichts sagen, was du nicht weisst.“), Sprichwörter über das Eis, spricht von Toten im Präsens. Summt beim Gehen und beim Kneten.
-- **Echte Liebe zeigen (Pflicht):** Karten, Jacke, sie hält Nora, verteidigt sie öffentlich (K20), bietet ihr ihr Haus an (K35). Im Finale *(E2)* schützt sie Nora vor dem eigenen Gift.
+- **Echte Liebe zeigen (Pflicht):** Karten, Jacke, sie hält Nora, verteidigt sie öffentlich (K18), bietet ihr ihr Haus an (K27). Im Finale *(E2)* schützt sie Nora vor dem eigenen Gift.
 
 ## Reto Zuber
 - **Wunsch:** Das Hotel retten, Mia aus Lomm herausbringen.

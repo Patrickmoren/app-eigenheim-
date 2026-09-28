@@ -1,5 +1,7 @@
 # Band 1 – Mystery-Matrix *(intern)*
 
+> Kapitelnummern ab K11 folgen der Architektur vom 29.09.2026 (Band 1 = 35 Kapitel, siehe `band-1_produktionsplan.md` §C.2).
+
 Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt · Kap. = erstes Auftreten → Wiederaufnahme → Auflösung
 
 ## 1. Die Wahrheit (vollständig, chronologisch)
@@ -33,10 +35,10 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 |---|---|---|
 | Die Tote ist Kathi | Martha, Reto, Bruno (dement) | Kap. 12 |
 | Mama war Leni | Martha, Reto, Bruno | Kap. 12/13 |
-| Mama ist tot, die Anrufe sind synthetisch | Inês | Kap. 24 |
-| Firn / Schmuggel | Martha, Reto (teilweise), Bruno | Kap. 18–30 |
-| Martha war auf dem Eis | nur Martha (Leni ist tot) | Kap. 40–43 |
-| Leni wollte retten und wurde erpresst | Martha, Mamas Entwürfe (verschlüsselt) | Kap. 43 |
+| Mama ist tot, die Anrufe sind synthetisch | Inês | Kap. 19 |
+| Firn / Schmuggel | Martha, Reto (teilweise), Bruno | Kap. 16–23 |
+| Martha war auf dem Eis | nur Martha (Leni ist tot) | Kap. 31–34 |
+| Leni wollte retten und wurde erpresst | Martha, Mamas Entwürfe (verschlüsselt) | Kap. 34 |
 | Nora ist Lenis Kind | Martha, Reto | **Band 3** |
 | Der Tote in A7 | Martha, Bruno | **Band 2** |
 | Wer flog als Leni nach Kanada | Martha, (Bruno) | **Band 2** |
@@ -65,15 +67,15 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 2. **Schrift:** Kerzenbuch 00:40 in ihrer Handschrift (Kap. 14, 43)
 3. **Zeuge:** Bruno: „Martha hat gesagt, wir sollen die Kerzen zählen“ (Kap. 13)
 4. **Biografie:** M.W. = Martha Werlen (Kap. 4, 30, 41)
-5. **Band:** Lenis Schrei mit Marthas Namen (Kap. 43)
-6. **Geständnis:** Kap. 41, die Drohung gegen Leni
+5. **Band:** Lenis Schrei mit Marthas Namen (Kap. 34)
+6. **Geständnis:** Kap. 32, die Drohung gegen Leni
 
 ## 6. Informationssperren (verbindlich)
 - „Zwilling“: nicht vor Kapitel 7
 - vollständiger Zahnbefund: Kapitel 12 (in Kapitel 5 nur Noras eigene Folgerung)
-- ALS, Voice Banking, Inês’ Name: Kapitel 23/24
-- „Werlen“ ausgeschrieben: Kapitel 41
-- „Firn“: ab Kapitel 18
+- ALS, Voice Banking, Inês’ Name: Kapitel 19
+- „Werlen“ ausgeschrieben: Kapitel 32
+- „Firn“: ab Kapitel 16
 - Reto als Nicht-Vater: in Band 1 nie ausgesprochen
 
 ## 7. Nachträge aus Kapitel 4–10
@@ -82,8 +84,8 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 - **Kathi fürchtete das Eis** (Martha K4, wahr). Die Frau im Prolog fürchtete als Kind das Singen des Eises → stützt B, klingt aber wie A („Leni war die vom Eis“).
 - **Lenis Jacke:** Martha hat sie 29 Jahre aufbewahrt („Grosi gibt nie was her“, Mia K7). Agnes erkennt die Jacke (K9, reibt den Ärmel) und schweigt.
 - **Mamas Anekdote „erstes Wort: Nein“** (K5): Band 3 – Leni war beim ersten Wort nicht dabei (sie war die Tante). Die Anekdote ist erfunden.
-- **Kanada-Anfrage** (K8): Die Antwort kommt erst in **K44**: „Magdalena Walpen, eingereist 3.2.1997, wohnhaft Montreal.“ Das bereitet den Epilog fair vor.
-- **Portugal-Anfrage zum Anschluss** (K5): Antwort frühestens in K26 (VoIP-Anschluss auf Inês Carvalho).
+- **Kanada-Anfrage** (K8): Die Antwort kommt erst in **K35**: „Magdalena Walpen, eingereist 3.2.1997, wohnhaft Montreal.“ Das bereitet den Epilog fair vor.
+- **Portugal-Anfrage zum Anschluss** (K5): Antwort frühestens in K21 (VoIP-Anschluss auf Inês Carvalho).
 - **Retos Lüge** (K8): „Sie hat ihn verloren. In dem Winter.“ Er stützt Theorie A auf Marthas Linie.
 - **Fabiennes Stick** (K8): Noras erster Regelverstoss. Die Frist ist Ende September (Chef).
 

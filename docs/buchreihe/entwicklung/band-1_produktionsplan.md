@@ -29,38 +29,80 @@ Format je Eintrag: **Problem → Lösung → konkrete Änderung → Kapitel → 
 
 **Umstellung gegenüber dem alten Plan:** Das Kerzenbuch wird in K9 nur angekündigt und in K14 geöffnet. Mia hat ihren Auftritt schon in K3 und bekommt in K7 ihre eigene Szene. Die DNA wandert von K7 nach K8, damit K7 mit der Stille endet.
 
-## C. Kapitel 11–44 – Anpassungen gegenüber dem Konzept
+## C. Neue Architektur ab Kapitel 11 (Stand 29.09.2026)
 
-| Kap. | Änderung | Grund |
+Grundlage: `reihen-architektur.md`. Band 1 hat jetzt **Prolog + 35 Kapitel + Epilog** statt Prolog + 44 + Epilog. Ziel sind etwa 62.000–68.000 Wörter. Es gibt keine Wortzielvorgabe; jedes Kapitel muss den 20-Seiten-Test bestehen.
+
+### C.1 Gestrichen und zusammengelegt – und warum
+| Alt | Entscheidung | Grund (Funktionsdopplung) |
 |---|---|---|
-| 11 | Nora erzählt Martha vom Band; Martha: „Kann man da nach so langer Zeit noch etwas hören?“ | dramatische Ironie |
-| 12 | Die Zahnakte kehrt T2 um: „Leni hatte den abgeschlagenen Zahn.“ Die Tote ist Kathi, Mama ist Leni. | D9 |
-| 13 | Nora versteht „ohne Adieu“ (K9): Mama musste gehen, bevor jemand sie reden hörte. | L2 |
-| 15 | Der Name „Ferraris“ wird hörbar. | D10 |
-| 18 | Im Keller: verbrannte Akten *und* das unversehrte Foto von 1997. | D7 |
-| 19 | Nora hört ihr Archiv; sie merkt, dass die Pausen mit der Satzlänge wachsen, und verdrängt es. | Anruf-Hinweis in der Mitte |
-| 24 | Inês erklärt den Hybridbetrieb und Mamas Auslöserliste. Das Erschreckende ist, *wie gut sie Nora kennt*: den Tonbrief, den Ex-Partner, das Wassermelonen-Abendessen. | D3, Auftrag §12 |
-| 25 | Möwenschleife; das identische Pfeifen; der Anruf vom 17.11.2024 mit wechselndem Latenzmuster. | D4, A-Pfeifen |
-| 25/31 | Nora analysiert Aurels Stimme, statt ihm zu glauben; er merkt es. | Romance-Leitsatz |
-| 36 | Porto: Inês’ Rechner, das Protokoll vom 17.11.2024 | D4 |
-| 40–43 | Finale nach E2 (angenommen): Kuchen für Martha selbst, „Nicht du. Davon nicht.“, Nora rettet sie, Spiegelung nicht erklärt | E2 |
-| 43 | Das Band: „Lass mich los, Martha – sie lebt noch!“ | D5 |
-| 44 | Zum ersten Mal ausgesprochen: „Zuhören ist nicht dasselbe wie Vertrauen“ | Leitsatz |
+| 16 Mia/Instagram | **gestrichen** | Das Anruf-Signal liefert K20 (Archivanalyse) stärker; Mia behält zwei echte Handlungsbeiträge (Keller-Tipp, Foto von Retos Auto) |
+| 17 Aurel gesteht (separat) | **in K15** | Aurel erkennt den Husten und sagt es sofort; keine künstliche Verzögerung |
+| 21 Laptopdiebstahl | **gestrichen** | Der offizielle Zugang zum Band folgt aus Noras Beweis (Brunos Stimme), nicht aus einem Einbruch |
+| 18 + 30 Keller / Firn-Mappe | **zwei Stufen, schärfer getrennt:** K16 Keller (Seite „L.W.“ + Foto 1997), K23 Mappe (Liste „M.W.“) | Beide Szenen verschieben jetzt eine *andere* Annahme |
+| 19 + 21 + 22 Archiv / Bern / Stufe 3 | **ein Kapitel K17** (Bern) | ein Ort, ein Arbeitsgang, eine Enthüllung |
+| 20 + 23 Versammlung / Treffen angekündigt | **K18** | Die Versammlung endet mit der Begegnung |
+| 26 Portugal bestätigt + 25 | **K20/K21** | Die Bestätigung wird Beleg statt Szene |
+| 28 + 29 + 30 Brunos Tod / Reto / Mappe | **K23** | eine Eskalationskette an zwei Tagen |
+| 32 + 33 Sabotage / Entwürfe | **K25** | beides folgt aus der Evakuierungsempfehlung |
+| 35 + 36 Kapitulation / Porto | **K27** | Die Versuchung, abzuschliessen, geschieht *in Porto*, am Ort der Mutter |
+
+### C.2 Kapitelplan Band 1 ab Kapitel 11
+| Neu | Alt | Datum · Ort | Funktion (Wissen / Beziehung / Gefahr) | Schlussimpuls |
+|---|---|---|---|---|
+| 11 | 11 | Do 3.9. · Hotel, Martha | Nora fragt Reto nach der Festung (verschweigt das Band); er bietet Geld, sie soll gehen. Nora erzählt Martha vom Band (**Fehler**): „Kann man da nach so langer Zeit noch etwas hören?“ | Nachts: Der Laptop steht anders als vorher. |
+| 12 | 12 | Fr 4.9. · A7 | Aufstieg mit Aurel; das Portal einbetoniert, aber ein frisches Schloss, Parisienne-Stummel; der Gletscher ächzt. **W2:** Lenis Zahnakte | „Wer hat mich dann grossgezogen?“ |
+| 13 | 13 | Sa 5.9. · Agnes, Heim | Das Pfeifen war Lenis. „Ohne Adieu“ bekommt seinen Sinn. Agnes: „Das war Lenis Jacke.“ Aurel: Sein Vater hat die Auswanderung eingetragen. Bruno: „Leni! … Die Martha hat gesagt, wir sollen die Kerzen zählen.“ | Bruno hält Nora für Leni und hat Angst vor ihr. |
+| 14 | 14 | So 6.9. · Kapelle | Agnes bringt Sepp dazu, das Kerzenbuch zu zeigen: 41/41, „K.Z. 00:40“ in fremder Schrift, durchgestrichenes Z („Mama schrieb es auch so“). 19 Uhr, kein Anruf, jetzt weiss Nora, warum sie Angst hat. | Die Frau mit dem grauen Schal in der letzten Bank; ein Tramticket aus Porto. |
+| 15 | 15+17 | Mo 7.9. · Hotel, Messstation, Polizei | **Stufe 2:** Männer in der Festung, „Ferraris“, „nach Lichtmess ist das erledigt“, der Husten. Aurel: „Das ist mein Vater.“ Beide zu Fabienne. | Fabienne: offizieller Zugang zum Originalband, in Bern, unter Aufsicht. |
+| 16 | 18(+16) | Di–Mi 8./9.9. · Hotelkeller | Mia: „Papa verbrennt nachts Papier.“ Im Keller: eine verkohlte Seite „Firn – Lichtmess 97 – Transport Lommerjoch – L.W.“ **und das unversehrte Foto von 1997.** Reto: „Deine Mutter war eine Schmugglerin.“ | „Frag dich lieber, warum sie dich mitgenommen hat.“ |
+| 17 | 19+21+22 | Do–Fr 10./11.9. · Bern | Ruth, Tape Baking. In Studio 3 hört Nora ihr Archiv und bemerkt, dass die Pausen mit der Satzlänge wachsen, und verdrängt es. **W3 / Stufe 3:** der Zwillingsstreit; nur eine pfeift. „Du hast sie mir gegeben …“ – „Geh und komm nie wieder.“ | Das Letzte, was Mama zu ihrer Schwester sagte. |
+| 18 | 20+23 | Sa 12.9. · Gemeindeversammlung | Evakuierungsstreit, Hass auf Aurel; Martha verteidigt Nora; alle singen, Martha singt das H. Erste körperliche Nähe (Aurel nach der Versammlung). | Die Graue-Schal-Frau: „Morgen. Um sieben. Beim Stadel.“ |
+| 19 | 24 | So 13.9., 19:00 · Stadel | **MIDPOINT, W4:** Inês. „Hallo, mein Schatz. Erzähl du.“ ALS, gebankte Stimme, Tod am 17.11.2024 während des Anrufs, 93 Sonntage. Das Erschreckende: wie gut Inês Nora kennt. Der Brief mit der Lüge. | „Mit ihrer eigenen Stimme.“ |
+| 20 | 25 | Mo 14.9. | Wut; Möwenschleife 0:47; identisches Pfeifen; der Anruf vom 17.11.2024 mit wechselndem Latenzmuster. Nora vermisst Aurels Stimme, statt ihm zu glauben; er merkt es. | Aurel geht. |
+| 21 | 26 | Di–Mi 15./16.9. | Portugal bestätigt den Tod; Katharina Zuber ist zweimal gestorben; Verdacht auf Identitätsbetrug gegen Reto; Martha bringt Essen. | Bruno ruft um Mitternacht an, klar: „Komm morgen.“ |
+| 22 | 27 | Do 17.9. · Bruno | Bruno erzählt: Firn, Leni, Dario, „Kathi hat uns gehört“. „Leni, du hast doch gesagt, du gehst nicht zurück zur Spalte!“ Der Donnerstagskuchen. | Martha in der Tür: „Er ist müde.“ |
+| 23 | 28+29+30 | Fr–Sa 18./19.9. | Bruno ist tot; Aurel gibt Nora die Schuld; Mias Foto von Retos Auto; Retos Version (Leni lockte Kathi); die Firn-Mappe: „M.W. – 2.2.97 – Kerzen“. **Theorie T5 setzt ein.** | „Mama hatte die Kerzen gezählt.“ |
+| 24 | 31 | So 20.9. · Stadel | Aurel kehrt zurück; die Schuld beider Eltern; **erster Kuss**; Aurel: „Eine Frau, allein vom Eis. Ich war neun.“ Um 19 Uhr hören sie die Glocke zusammen. | „Morgen empfehle ich die Evakuierung.“ |
+| 25 | 32+33 | Mo–Di 21./22.9. | Empfehlung; die Station wird sabotiert (Schuhgrösse 37); Inês bringt Mamas Entwürfe: „Ich habe sie gehen lassen.“ – „Wenn du den Gesang hörst, lauf.“ | Nora liest es als Schuldgeständnis. |
+| 26 | 34 | Mi 23.9. | **Stufe 4 (W5):** „Du?“, der Sturz, „Leni! LENI!“, Knitterschaden, „Kathi?“ von oben. | „Meine Mutter hat meine Mutter getötet.“ |
+| 27 | 35+36 | Fr–Sa 25./26.9. · Porto | Mamas Wohnung, das Tablet, echte Möwen, gespeicherte Sätze („Singt man in Lomm noch das Lied?“). Fabienne will abschliessen („Täterin verstorben“). Martha ruft an: „Komm heim. Das Haus gehört dir.“ | Nora sagt beinahe Ja. |
+| 28 | 37 | Mo 28.9. | Evakuierung für So 4.10. angeordnet; Martha weigert sich; Nora erzählt ihr von der letzten Restaurierung. | „Dann fahr. Und komm am Sonntag. Ich backe.“ |
+| 29 | 38 | Di–Sa 29.9.–3.10. · Bern | Knitterschaden; das „Pfeifen im Eis“ ist ein Summen; es fehlt eine Tonhöhenreferenz; die Motorgeräusche des Rekorders; der Algorithmus braucht 20 Stunden. | Nora muss vorher zurück. |
+| 30 | 39 | So 4.10., 16:00 | Evakuierung, Sirenen; Mias eigene Entscheidung; Aurel an der Station; Marthas Einladung. | Die Datei kommt um 18:52. |
+| 31 | 40 | So, 18:52 · Küche | **W6a:** das H, live und im Ohrhörer zugleich. | „Du hast es gehört.“ |
+| 32 | 41 | So, 19:00 · Küche → Pfad | Glocke; Marthas Nicht-Geständnis; sie isst; **„Nicht du. Davon nicht.“**; Nora entscheidet sich und trägt Martha in die Nacht. | Lichtkegel von oben. |
+| 33 | 42 | Nacht | Aurel, Helikopter, der Gletscher bricht; eine Stahltür hängt offen im Eis. | Aufwachen im Spital: Martha lebt. |
+| 34 | 43 | Mo–Mi 5.–7.10. | **W6b / Stufe 5:** „Lass mich los, Martha – sie lebt noch! Ich hol ein Seil!“ Reto zerbricht. Fabienne: Anklage. | „Sie ist zurückgegangen.“ |
+| 35 | 44 | Sa 17.10. · Visp | Beerdigung, erster Schnee; die Antwort aus Kanada; 19 Uhr: Mama hat nach Hause telefoniert; Inês löscht das Modell; eine letzte echte Aufnahme von 2020; „Zuhören ist nicht dasselbe wie Vertrauen.“ | Nora und Aurel im Schnee. |
+| E | E | So 18.10., 19:00 · Bern | „Hier ist Leni Walpen. … Wir müssen über den Mann im Stollen reden.“ | – |
+
+### C.3 Nächste Einheit: „Firnlinie“ – Kapitel 11–19 (von der Festung bis zum Midpoint)
+Datei: `manuskript/band-1_kapitel-11-19.md` · Richtwert 15.000–17.000 Wörter, keine Pflicht.
+- **Was die Leserin erfährt:** Die Tote ist Kathi. Mama war Leni. Es gab ein Treffen in der Festung; Aurels Vater war dabei. Mama war in jener Nacht auf dem Eis. Firn existiert. Die Anrufe waren seit 2022 nicht mehr Mamas eigene Stimme, seit 2024 nicht einmal mehr Mama.
+- **Was sie glauben soll:** zuerst, dass Reto der Täter ist (Nervosität, Schloss, Parisienne, Keller); ab K17, dass Mama mehr getan hat als geschwiegen.
+- **Was sie bezweifeln soll:** jede Figur, die „Leni“ sagt, und die Frau mit dem grauen Schal.
+- **Emotion:** Identitätsverlust (K12/13), Verrat (K16/17), dann ein doppelter Verlust (K19).
+- **Beziehungen:** Aurel wählt die Wahrheit über seinen Vater (K15), Vertrauen wächst, erste Nähe (K18). Nora vertraut Martha, zu sehr (K11). Reto wird Gegner.
+- **Neue Fragen:** Wer war „der Italiener“? Was hat Mama auf dem Eis getan? Wer hat das Kerzenbuch gefälscht? Was steht im Brief?
+- **Vorbereitet wird:** Martha (Z, Kerzen, H), Brunos Tod (K13 Heim, Donnerstag), die Tür von A7 (Schloss), Band 3 (Stufe 3: „Du hast sie mir gegeben“).
+- **Informationssperren:** „Werlen“ nie; ALS/Inês erst K19; Reto als Nicht-Vater nie.
+
+### C.4 Kapitel 1–10
+Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten (Phase 14): die Telefonate in K10 und einzelne Weganläufe in K4 und K6 („spät rein, früh raus“). Diese Stellen werden erst im Gesamtlektorat gestrafft, damit keine Kontinuität verloren geht.
 
 ## D. Produktionsphasen und Qualitätstore
 
-| Phase | Inhalt | Datei | Qualitätstor (muss erfüllt sein) |
+| Phase | Inhalt | Datei | Qualitätstor |
 |---|---|---|---|
-| 5–6 | Kapitel 4–10 | `band-1_kapitel-04-10.md` | T2 ist vollständig und fair aufgebaut; jede Szene verändert ≥ 2 Dinge; keine Informationssperre verletzt |
-| 7 | Blockprüfung 1 | Gesamtprüfung | Zeitlinie 22.8.–2.9. lückenlos; Hinweise nicht geclustert |
-| 8 | Kapitel 11–20 | `band-1_kapitel-11-20.md` | Kippmoment K12 wirkt zwingend; Firn nicht vor K18 |
-| 9 | Blockprüfung 2 | | Romance hat drei echte Stufen; Anruf-Hinweise nicht zu dicht |
-| 10 | Kapitel 21–30 | `band-1_kapitel-21-30.md` | Midpoint K24 menschlich, nicht technisch; T5 aufgebaut |
-| 11 | Blockprüfung 3 | | Leserin glaubt T5 – und hat alle Hinweise dagegen gesehen |
-| 12–13 | Kapitel 31–44, Epilog | `band-1_kapitel-31-44.md`, `band-1_epilog.md` | Beweiskette gegen Martha vollständig (Matrix §5); Band-1-Konflikt geschlossen; neue Frage |
-| 14–19 | Gesamtlektorat; Fairness-, Foreshadowing-, Kontinuitäts-, Sprach- und Hörbuchtest | alle | Protokoll in der Gesamtprüfung |
-| 20–22 | BoD, Cover, Klappentext, Metadaten, Veröffentlichungsprüfung | `publikation/` | aktuelle BoD-Anforderungen **recherchiert und mit Quelle belegt**, nicht aus dem Gedächtnis |
+| ✅ | Prolog–K10 | `band-1_prolog-kapitel-01-03.md`, `band-1_kapitel-04-10.md` | Blockprüfung 1 ✅ |
+| 8 | K11–19 „Firnlinie“ | `band-1_kapitel-11-19.md` | W2 zwingend; Midpoint menschlich, nicht technisch; Firn nicht vor K16 |
+| 9 | Blockprüfung 2 | Gesamtprüfung | 20-Seiten-Test; Romance hat zwei echte Stufen |
+| 10 | K20–27 „Spalte“ | `band-1_kapitel-20-27.md` | T5 überzeugend; alle Gegenhinweise gesehen |
+| 11 | Blockprüfung 3 | | 20-Seiten-Test |
+| 12–13 | K28–35 „Kalben“ + Epilog | `band-1_kapitel-28-35.md`, `band-1_epilog.md` | Beweiskette gegen Martha vollständig; Band 1 geschlossen; E2-Spiegelung nicht erklärt |
+| 14–19 | Gesamtlektorat; Tests auf Fairness, Foreshadowing, Kontinuität, Sprache, Hörbuch; 20-Seiten-Test für den ganzen Band | alle | Protokoll |
+| 20–22 | BoD, Cover, Texte, Metadaten | `publikation/` | aktuelle Anforderungen recherchiert und belegt |
 
-**Umfangsziel (angepasst nach Block 1):** Kapitel von 1.200 bis 2.600 Wörtern; kurze Kapitel sind im Genre ein Vorteil. Gesamt ≈ 80.000–90.000 Wörter. Mittlere Kapitel (Midpoint, Finale) dürfen länger sein.
-
-**Stand:** Prolog–K3 ≈ 7.800 · K4–10 ≈ 10.700 (✅ geschrieben, Blockprüfung 1 ✅).
+**Umfang:** Es gibt keine Wortzielvorgabe. Erwartung für Band 1: 62.000–68.000 Wörter (siehe `reihen-architektur.md` §7).
+**Stand:** Prolog–K10 ≈ 18.000 Wörter.

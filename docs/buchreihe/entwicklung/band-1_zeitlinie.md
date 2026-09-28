@@ -36,28 +36,44 @@ Wochentage geprüft: 2.2.1997 = Sonntag · 17.11.2024 = Sonntag · alle unten ge
 | 2023 | erste Vliese auf dem Lommgletscher |
 | **So 17.11.2024** | Mama stirbt während des 19-Uhr-Anrufs; Inês übernimmt (Anruf 1 von 93) |
 
-## Gegenwart 2026 (Romanhandlung)
+## Gegenwart 2026 (Romanhandlung, Architektur vom 29.09.2026)
 | Datum | Tag | Kap. | Ereignis |
 |---|---|---|---|
 | 22.8. | Sa | – | Aurel findet die Tote |
 | 23.8. | So | 1 | letzter Anruf (Nr. 93, Datei 349) |
-| 24.8. | Mo | 1 | Zeitungsmeldung; Reto identifiziert den Ring und nimmt nachts das Foto ab; Inês beendet die Anrufe |
+| 24.8. | Mo | – | Zeitungsmeldung; Reto identifiziert den Ring und nimmt nachts das Foto ab; Inês beendet die Anrufe |
 | 25.8. | Di | 1–3 | Fabiennes Anruf; Reise; Ankunft 19:00 |
-| 26.8. | Mi | 4 | Marthas Haus |
-| 27.8. | Do | 5 | Rechtsmedizin Sitten, Abstrich |
+| 26.8. | Mi | 4 | Marthas Haus, Lenis Jacke |
+| 27.8. | Do | 5 | Rechtsmedizin Sitten, Abstrich, Zähne, Diktiergerät |
 | 28.8. | Fr | 6 | Aurel, Gletscherzunge |
-| 29.–30.8. | Sa–So | 7 | Mia, Zwillinge; So 19:00 kein Anruf |
-| 31.8. | Mo | 8 | DNA-Ergebnis; Datei von Fabienne; Stufe 1 |
-| 1.9. | Di | 9 | Kapelle, Dorf |
-| 2.9. | Mi | 10 | Nummer abgeschaltet; Vliese nachts, A7 |
-| 3.9. | Do | 11 | Reto, A7; Nora erzählt Martha vom Band |
-| 4.9. | Fr | 12 | Aufstieg zu A7; Zahnbefund |
-| 5.–6.9. | Sa–So | 13–14 | Bruno; Kerzenbuch |
-| … | | | *(wird beim Schreiben von Kap. 13ff. fortgeführt; Eckdaten:)* |
-| 13.9. | So | 23–24 | Inês, Midpoint |
-| 17.9. | Do | 27 | Bruno spricht |
-| 18.9. | Fr | 28 | Bruno ist tot |
-| 20.9. | So | 31 | erster Kuss |
-| 4.10. | So | 39–42 | Evakuierung, Finale, Gletscherabbruch |
-| 17.10. | Sa | 44 | Beerdigung, erster Schnee |
-| 18.10. | So | Epilog | Anruf aus Montreal |
+| 29.–30.8. | Sa–So | 7 | Zwillinge; So 19:00 kein Anruf; Datei vom 5.1.2020 |
+| 31.8. | Mo | 8 | DNA; Theorie Leni; Stick; Stufe 1 |
+| 1.9. | Di | 9 | Dorf, Agnes, Sepp, graue Schal-Frau |
+| 2.9. | Mi | 10 | Nummer tot; Ruth; Vliese; A7 |
+| 3.9. | Do | 11 | Reto, Martha erfährt vom Band |
+| 4.9. | Fr | 12 | A7-Aufstieg; Zahnakte |
+| 5.9. | Sa | 13 | Agnes/Jacke; Bruno |
+| 6.9. | So | 14 | Kerzenbuch; 19 Uhr still |
+| 7.9. | Mo | 15 | Stufe 2; Aurel über seinen Vater; Fabienne |
+| 8.–9.9. | Di–Mi | 16 | Keller, Foto 1997 |
+| 10.–11.9. | Do–Fr | 17 | Bern, Stufe 3 |
+| 12.9. | Sa | 18 | Gemeindeversammlung |
+| 13.9. | So | 19 | Midpoint: Inês |
+| 14.9. | Mo | 20 | Archivanalyse |
+| 15.–16.9. | Di–Mi | 21 | Portugal bestätigt; Brunos Anruf |
+| 17.9. | Do | 22 | Bruno spricht; Donnerstagskuchen |
+| 18.–19.9. | Fr–Sa | 23 | Bruno ist tot; Reto; Firn-Mappe |
+| 20.9. | So | 24 | Kuss; Glocke zu zweit |
+| 21.–22.9. | Mo–Di | 25 | Empfehlung, Sabotage, Entwürfe |
+| 23.9. | Mi | 26 | Stufe 4 |
+| 25.–26.9. | Fr–Sa | 27 | Porto |
+| 28.9. | Mo | 28 | Evakuierung angeordnet |
+| 29.9.–3.10. | Di–Sa | 29 | Bern, Stufe 5 (Summen) |
+| 4.10. | So | 30–33 | Evakuierung; 18:52 Küche; 19:00 Glocke; Nacht, Abbruch |
+| 5.–7.10. | Mo–Mi | 34 | Spital; Band-Schluss; Anklage |
+| 17.10. | Sa | 35 | Beerdigung, erster Schnee, Kanada-Antwort |
+| 18.10. | So | E | Anruf aus Montreal |
+
+## Band 2 / Band 3 (Rahmen)
+- **Band 2:** Frühjahr 2027 (Bergung von A7) bis Sommer 2027.
+- **Band 3:** Winter 2027/28 (Prozess) bis zum letzten Läuten.

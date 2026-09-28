@@ -12,6 +12,7 @@ Diese Regeln gelten für das gesamte Projekt *Was das Eis zurückgibt*. Sie gehe
 | Daten, Alter, Orte, Namen, Gegenstände | `entwicklung/band-1_kontinuitaet.md` + `band-1_zeitlinie.md` |
 | Wie denkt und spricht eine Figur? | `entwicklung/band-1_figuren.md` |
 | Welche Geräusche tragen Bedeutung? | `entwicklung/band-1_audio-hinweise.md` |
+| Bandgrenzen und Reihenaufbau | `entwicklung/reihen-architektur.md` |
 | Was wird als Nächstes geschrieben? | `entwicklung/band-1_produktionsplan.md` |
 | Offene Entscheidungen des Autors | `entwicklung/band-1_entscheidungen.md` |
 | Verkaufstexte, Metadaten, BoD | `publikation/` |
@@ -26,11 +27,12 @@ docs/buchreihe/
   manuskript/                      nur Romantext, keine Notizen, keine Kommentare
     band-1_prolog-kapitel-01-03.md
     band-1_kapitel-04-10.md
-    band-1_kapitel-11-20.md
-    band-1_kapitel-21-30.md
-    band-1_kapitel-31-44.md
+    band-1_kapitel-11-19.md
+    band-1_kapitel-20-27.md
+    band-1_kapitel-28-35.md
     band-1_epilog.md
   entwicklung/                     Arbeitsdokumente, nie Teil des Buches
+    reihen-architektur.md
     band-1_gesamtpruefung.md
     band-1_produktionsplan.md
     band-1_entscheidungen.md
@@ -49,6 +51,8 @@ docs/buchreihe/
 - Jedes Kapitel existiert genau einmal. Überarbeitungen ersetzen den Text in derselben Datei. Es gibt keine Dateien wie „v2“ oder „neu“; Versionen liegen in der Git-Historie.
 - Schweizer Rechtschreibung (ss), deutsche Anführungszeichen „…“ und ‚…‘, Gedankenstrich –, Auslassung …
 - Verbotsliste der Formulierungen gilt immer: „wusste nicht warum“, „Herz raste“, „Luft blieb weg“, „bedeutungsvoll“, „fröstelte“, „plötzlich wurde klar“, „Es war keine Frage“ (höchstens einmal im Buch).
+- Keine Wort- oder Seitenzielvorgabe. Massstab ist Wirkung pro Seite; jeder Block durchläuft den 20-Seiten-Test (Was kann weg, ohne dass Wirkung verloren geht?).
+- Szenen spät beginnen, früh verlassen.
 - Frequenzangaben in Zahlen: höchstens eine pro Kapitel. Nora hört präzise, sie spricht nicht ständig in Hertz.
 
 ## 4. Arbeitszyklus pro Kapitelblock
