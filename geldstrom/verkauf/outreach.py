@@ -17,31 +17,26 @@ import urllib.parse
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 
-BETREFF = "Nebenkostenabrechnungen Ihrer Vermieter-Kunden"
+BETREFF = "Nebenkostenabrechnungen für Ihre Vermieter-Kunden"
 
 TEXT = """{anrede}
 
-Viele Ihrer Privatkunden mit Mietliegenschaften müssen jedes Jahr eine Heiz- und Nebenkostenabrechnung erstellen – und fragen dafür oft ihren Treuhänder.
+Private Vermieter fragen ihre Treuhänderin oder Verwaltung oft, wer ihnen die jährliche Heiz- und Nebenkostenabrechnung erstellt – für ein Mandat sind die Liegenschaften meist zu klein.
 
-Ich komme aus der Immobilienbewirtschaftung und erstelle diese Abrechnungen als Fixpreis-Service (ab CHF 290 pro Liegenschaft, inkl. Mieterwechsel und Heizöl-Lager). Die Kundschaft sendet die Belege per E-Mail, nach 5 Arbeitstagen liegen versandbereite Abrechnungen für alle Mietparteien vor. Bezahlt wird erst nach Freigabe des Entwurfs.
+Ich komme aus der Immobilienbewirtschaftung und erstelle diese Abrechnungen zum Fixpreis von CHF 390 pro Liegenschaft: Der Vermieter sendet die Unterlagen, er erhält für jede Mietpartei eine fertige, fachlich geprüfte Abrechnung zurück. Für jeden vermittelten Auftrag erhalten Sie CHF 60, offen gegenüber Ihrer Kundschaft – oder Ihre Kundschaft erhält stattdessen CHF 60 Rabatt.
 
-Wenn Sie Kunden an mich verweisen möchten: Pro Auftrag erhalten Sie CHF 60 Vermittlungsprovision, die Sie Ihrer Kundschaft gegenüber offenlegen – oder, wenn Ihnen das lieber ist, erhält Ihre Kundschaft stattdessen CHF 60 Rabatt. Ich biete keine Treuhand- oder Steuerleistungen an; Ihre Kundenbeziehung bleibt unberührt.
-
-Ein Beispiel (fiktive Daten): {website}/beispiel-abrechnung.pdf
-Angebot für Ihre Kundschaft: {website}
-
-Passt es, wenn ich Sie diese Woche kurz anrufe (5 Minuten)?
+Angebot und Beispiel: {website}
 
 Freundliche Grüsse
 {name}
-Nebenkosten fixfertig · {telefon} · {website}
+Nebenkosten fixfertig · {telefon}
 
 Falls kein Interesse besteht, genügt eine kurze Antwort – ich melde mich dann nicht mehr."""
 
 LEITFADEN = """VOR DEM ANRUF: Nummer auf local.ch prüfen – mit Stern (*) nicht anrufen (Art. 3 Abs. 1 lit. u UWG).
 
-Guten Tag, {name} – ich erstelle Heiz- und Nebenkostenabrechnungen für Privatvermieter
-zum Fixpreis. Haben Sie Kunden mit vermieteten Wohnungen, die das selbst machen?
+Guten Tag, {name} – ich erstelle Heiz- und Nebenkostenabrechnungen für private Vermieter
+zum Fixpreis von CHF 390. Haben Sie Kunden mit vermieteten Wohnungen, die das selbst machen?
 → Ja: «Darf ich Ihnen ein Beispiel und das Angebot mailen? Pro Auftrag gibt es CHF 60 Provision, offen gegenüber Ihrer Kundschaft – oder CHF 60 Rabatt für sie.»
   E-Mail-Adresse notieren, danach Vorlage senden.
 → Nein / kein Interesse: bedanken, im Tracker «abgesagt» eintragen."""

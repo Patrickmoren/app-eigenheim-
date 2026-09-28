@@ -9,8 +9,7 @@ Gebühren nur bei Zahlungseingang. Gesamtzeit etwa 75 Minuten. Preise geprüft a
 |---|---|---|---|
 | Domain + E-Mail | **Infomaniak** (Genf) | .ch-Domain ab ca. CHF 9/Jahr, **1 E-Mail-Adresse gratis** dabei | Schweizer Anbieter, Daten in der Schweiz – gut für die Datenschutzerklärung und das Vertrauen der Kundschaft; günstigster CH-Registrar |
 | Website | **Netlify** | gratis, SSL inklusive | Hochladen per Drag-and-drop, eigene Domain kostenlos verknüpfbar |
-| Bestellformular | **Formspree** | gratis bis 50 Einsendungen/Monat | kein Code nötig, leitet jede Bestellung an deine E-Mail weiter |
-| Zahlung | **Stripe** (Payment Links) | keine Grundgebühr; TWINT 1,9 % + CHF 0.30, Karte 2,9 % + CHF 0.30 | TWINT + Karte ohne Monatsgebühr; bei CHF 290 per TWINT kostet eine Zahlung CHF 5.81 |
+| Bestellung + Zahlung | **Stripe** (Payment Links) | keine Grundgebühr; TWINT 1,9 % + CHF 0.30, Karte 2,9 % + CHF 0.30 | Bestellseite und Zahlung in einem, TWINT + Karte, kein Kundenkonto; bei CHF 390 per TWINT kostet eine Zahlung CHF 7.71 |
 | Zahlung ohne Gebühr | **QR-Rechnung** aus deinem E-Banking | gratis | Rückfallebene für Kundschaft, die lieber per Rechnung zahlt |
 
 Bewusst **nicht** gewählt: Payrexx/Wallee (Monatsgebühr lohnt erst bei Volumen), SumUp (kein TWINT
@@ -40,44 +39,42 @@ nach den Anmeldungen schickst du mir die Angaben unten, und ich baue die fertige
 5. Mail in der Infomaniak-App (Handy) oder in deinem Mailprogramm einrichten.
    Test: eine Mail von deiner privaten Adresse an die neue senden und antworten.
 
-## Schritt 2 · Formspree: Bestellformular (5 Min., gratis)
+## Schritt 2 · Stripe: Bestell- und Zahlungsseite (30 Min., gratis)
 
-1. <https://formspree.io> → **Sign up** mit `abrechnung@nebenkosten-fixfertig.ch`, Adresse bestätigen.
-2. **+ New Form** → Name «Bestellung» → Formular-E-Mail = dieselbe Adresse.
-3. Die angezeigte Adresse kopieren, sie sieht so aus: `https://formspree.io/f/abcdwxyz`.
-4. Konto → **Two-Factor Authentication** einschalten.
-5. Monatlich die Einträge unter «Submissions» löschen (die Datenschutzerklärung sagt: spätestens nach 30 Tagen).
-
-## Schritt 3 · Stripe: Zahlungslinks (25 Min., gratis)
+Stripe ist gleichzeitig das Bestellformular – kein eigenes Formular, kein Kundenkonto nötig.
 
 1. <https://dashboard.stripe.com/register> → Land **Schweiz**, E-Mail = die neue Adresse.
-2. Geschäftsangaben: **Einzelunternehmen**, Branche «Professionelle Dienstleistungen /
-   Buchhaltung», Website `https://nebenkosten-fixfertig.ch`, Produktbeschreibung:
-   «Erstellung von Heiz- und Nebenkostenabrechnungen für private Vermieter zum Fixpreis.»
-3. Identität und Bankkonto (IBAN für Auszahlungen) angeben.
-4. **Einstellungen → Zahlungsmethoden:** TWINT aktivieren.
-5. **Payment Links → + Neu**, viermal:
-   - «Nebenkostenabrechnung 1–4 Wohnungen» – CHF 290
-   - «Nebenkostenabrechnung 5–8 Wohnungen» – CHF 390
-   - «Nebenkostenabrechnung 9–12 Wohnungen» – CHF 490
-   - «Express-Zuschlag» – CHF 90
+2. Geschäftsangaben: **Einzelunternehmen**, Branche «Professionelle Dienstleistungen», Website
+   `https://nebenkosten-fixfertig.ch`, Beschreibung: «Erstellung von Heiz- und Nebenkostenabrechnungen
+   für private Vermieter zum Fixpreis.» Identität und IBAN für Auszahlungen angeben.
+3. **Einstellungen → Zahlungsmethoden:** TWINT und Karten aktivieren.
+4. **Einstellungen → Öffentliche Angaben:** Abrechnungsbezeichnung «NEBENKOSTEN FIX», Support-E-Mail,
+   **Nutzungsbedingungen-URL** `https://nebenkosten-fixfertig.ch/agb.html`,
+   **Datenschutz-URL** `https://nebenkosten-fixfertig.ch/datenschutz.html`.
+5. **Einstellungen → Kunden-E-Mails:** «Erfolgreiche Zahlungen» einschalten (automatische Bestätigung).
+6. **Payment Links → + Neu**, zweimal:
+   - Produkt «Nebenkostenabrechnung – bis 8 Wohnungen», **CHF 390**
+   - Produkt «Nebenkostenabrechnung – 9 bis 12 Wohnungen», **CHF 490**
 
-   Jeweils: «Kunden können Menge anpassen» aus, «Rechnungsadresse erfassen» an,
-   **«Promotion-Codes zulassen» an**.
-   Nach der Zahlung: Bestätigungsseite mit Text «Danke! Sie erhalten Ihre Abrechnungen innert
-   eines Arbeitstags per E-Mail.»
-6. **Produkte → Gutscheine:** «PARTNER60» (CHF 60 Rabatt, einmal je Kunde – für Treuhänder, die den
-   Rabatt statt der Provision wählen) und «STAMM40» (CHF 40 Rabatt für Stammkunden).
-7. **Einstellungen → Kunden-E-Mails:** «Erfolgreiche Zahlungen» einschalten – Stripe schickt dann
-   automatisch einen Zahlungsbeleg (gilt zugleich als elektronische Bestätigung, Art. 3 Abs. 1 lit. s UWG).
-8. **Einstellungen → Öffentliche Angaben:** Abrechnungsbezeichnung «NEBENKOSTEN FIX», Support-E-Mail
-   = neue Adresse, Links auf `…/agb.html` (Bedingungen) und `…/datenschutz.html`.
-9. Zwei-Faktor-Anmeldung einschalten (Stripe verlangt es ohnehin).
-10. Die Links in `verkauf/zahlungslinks.txt` notieren (nicht ins Repository – ist ignoriert).
+   Bei beiden Links:
+   - Menge anpassbar: **aus**
+   - Kundenangaben erfassen: **Name, E-Mail, Telefonnummer, Rechnungsadresse**
+   - **Benutzerdefinierte Felder** (max. 3):
+     1. «Adresse der Liegenschaft» – Text, Pflicht
+     2. «Abrechnungsperiode endet am» – Auswahl: 30.06.2026 / 31.12.2025 / anderes Datum
+     3. «Wie haben Sie von uns erfahren?» – Text, optional (für die Messung)
+   - **Zustimmung zu den Nutzungsbedingungen verlangen: an**
+   - Promotion-Codes zulassen: an
+   - **Nach der Zahlung: Weiterleitung** auf `https://nebenkosten-fixfertig.ch/unterlagen.html`
+7. **Produkte → Gutscheine:** «PARTNER60» (CHF 60, für Kunden von Treuhändern, die Rabatt statt Provision
+   wählen). Weitere Rabatte gibt es nicht.
+8. Die zwei Links (`https://buy.stripe.com/…`) in `landingpage/config.json` bei `STRIPE_390` und
+   `STRIPE_490` eintragen.
+9. Zwei-Faktor-Anmeldung einschalten.
 
 Freischaltung dauert bei Stripe manchmal 1–2 Tage. Bis dahin: QR-Rechnung.
 
-## Schritt 4 · Netlify: Website online (15 Min., gratis)
+## Schritt 3 · Netlify: Website online (15 Min., gratis)
 
 Diesen Schritt mache ich mit dir, sobald ich die Angaben unten habe und das ZIP gebaut ist.
 
@@ -90,7 +87,7 @@ Diesen Schritt mache ich mit dir, sobald ich die Angaben unten habe und das ZIP 
    **Die MX-Einträge für die E-Mail nicht anfassen**, sonst geht die Mail nicht mehr.
 4. Nach 15–60 Minuten erstellt Netlify das SSL-Zertifikat automatisch. Fertig.
 
-## Schritt 5 · Claude API für Kundenbelege (10 Min., ca. CHF 5 Guthaben)
+## Schritt 4 · Claude API für Kundenbelege (10 Min., ca. CHF 5 Guthaben)
 
 Echte Kundenunterlagen laufen **nicht** über ein privates claude.ai-Konto, sondern über die API
 (kommerzielle Bedingungen: keine Verwendung zum Training, Auftragsbearbeitung geregelt). So stimmt die
@@ -103,10 +100,10 @@ Datenschutzerklärung.
    `export ANTHROPIC_API_KEY=…` in deiner Shell-Konfiguration – nie ins Repository, nie per Mail.
 4. `pip install anthropic` · Test: `python3 geldstrom/engine/extrahiere.py kunden/test --trocken`.
 
-## Schritt 6 · Sicherheit (10 Min., einmalig)
+## Schritt 5 · Sicherheit (10 Min., einmalig)
 
 - Laptop-Verschlüsselung an (Mac: FileVault, Windows: BitLocker/Geräteverschlüsselung).
-- Zwei-Faktor-Anmeldung bei Infomaniak, Netlify, Formspree, Stripe, Anthropic.
+- Zwei-Faktor-Anmeldung bei Infomaniak, Netlify, Stripe, Anthropic.
 - Kundenordner (`kunden/`) nur lokal, nicht in geteilten Cloud-Ordnern; das Repository ignoriert ihn.
 - Kein Arbeitgeber-Gerät, keine Arbeitgeber-Vorlagen, keine Arbeit während der Arbeitszeit.
 
@@ -115,11 +112,11 @@ Datenschutzerklärung.
 ## Go-live-Checkliste (nach dem Aufschalten, 20 Min.)
 
 1. `python3 geldstrom/landingpage/golive_check.py https://nebenkosten-fixfertig.ch` → «bereit für Go-live».
-2. Testanfrage über das Formular mit deiner privaten Adresse → kommt im Postfach an?
-3. Testzahlung: Payment Link im **Testmodus** von Stripe durchspielen → Zahlungsbeleg kommt?
-4. Seite auf dem Handy öffnen: Formular, Impressum, Datenschutz, Beispiel-PDF.
+2. Testbestellung: Payment Link im **Testmodus** von Stripe durchspielen → Zahlungsbeleg kommt,
+   Weiterleitung auf die Unterlagen-Seite funktioniert, Bestellangaben sind im Stripe-Dashboard sichtbar?
+3. Auf der Unterlagen-Seite «Unterlagen per E-Mail senden» klicken → E-Mail kommt im Postfach an?
+4. Seite auf dem Handy öffnen: Button, Preis, Impressum, Datenschutz, Beispiel-PDF.
 5. Link per WhatsApp an dich selbst schicken → Vorschaubild erscheint?
-6. Formspree-Testeintrag löschen.
 7. Erst dann: Google Ads starten und Treuhänder-E-Mails senden.
 
 ## Das brauche ich danach von dir
@@ -128,7 +125,8 @@ Datenschutzerklärung.
 Adresse fürs Impressum:  Strasse Nr, PLZ Ort
 Telefon:                 079 …
 E-Mail:                  abrechnung@nebenkosten-fixfertig.ch   (falls anders: welche)
-Formspree-Adresse:       https://formspree.io/f/…
+Stripe-Link CHF 390:     https://buy.stripe.com/…
+Stripe-Link CHF 490:     https://buy.stripe.com/…
 Domain:                  nebenkosten-fixfertig.ch              (falls anders: welche)
 ```
 
@@ -139,7 +137,7 @@ Dann baue ich das ZIP, prüfe es und schicke es dir zum Hochladen.
 | | Jahr 1 | danach |
 |---|---|---|
 | Domain inkl. E-Mail | ca. CHF 9–13 | ca. CHF 13/Jahr |
-| Hosting, Formular, Stripe-Konto | 0 | 0 |
-| Pro Auftrag (TWINT, CHF 290) | CHF 5.81 | CHF 5.81 |
+| Hosting, Stripe-Konto | 0 | 0 |
+| Pro Auftrag (TWINT, CHF 390) | CHF 7.71 | CHF 7.71 |
 | Claude API pro Auftrag | unter CHF 1 | unter CHF 1 |
 | Google Ads Testwoche | CHF 140 (einmalig, optional) | nach Ergebnis |

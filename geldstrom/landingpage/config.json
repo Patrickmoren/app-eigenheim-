@@ -4,8 +4,9 @@
   "EMAIL": "abrechnung@nebenkosten-fixfertig.ch",
   "TELEFON": "[079 000 00 00]",
   "WEBSITE": "https://nebenkosten-fixfertig.ch",
-  "FORM_ENDPOINT": "[https://formspree.io/f/…]",
   "EMAIL_ANBIETER": "Infomaniak Network SA, Genf (Schweiz) – Speicherung in der Schweiz",
   "STAND": "Oktober 2026",
-  "AGB_VERSION": "1.0"
+  "AGB_VERSION": "1.1",
+  "STRIPE_390": "[https://buy.stripe.com/…]",
+  "STRIPE_490": "[https://buy.stripe.com/…]"
 }

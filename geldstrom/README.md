@@ -8,22 +8,22 @@ Herleitung (30 Probleme → 20 Modelle → 10 → 5 → 3 → 1, Bewertung, Zers
 
 ---
 
-## DAS IST DER ERSTE TEST
+## JETZT: PHASE 1 – VERKAUF VOR ENTWICKLUNG
+
+**Offene Frage:** Zahlt ein Vermieter tatsächlich CHF 390 dafür, dass seine Nebenkostenabrechnung für
+ihn erstellt wird? Bis das mit Geld beantwortet ist, wird **nichts weiter automatisiert**.
+Testplan, Akquise, Nachrichten, Messung und Entscheidungsregeln: [`VERKAUFSTEST.md`](VERKAUFSTEST.md).
 
 | | |
 |---|---|
-| **Produkt** | Heiz- und Nebenkostenabrechnung als Fixpreis-Dienstleistung: Belege rein, versandbereite Abrechnung je Mietpartei raus. |
-| **Ein Satz** | Wir helfen Privatvermietern, ihre jährliche Nebenkostenabrechnung zu erledigen, ohne dass sie Belege ausrechnen, Heizöl bewerten und Briefe schreiben müssen. |
-| **Zielgruppe** | Privatpersonen mit 1–12 vermieteten Wohnungen ohne Verwaltung (MFH, Erben, pensionierte Eigentümer). 47 % der CH-Mietwohnungen gehören Privatpersonen. |
-| **Problem** | Pflicht (Art. 4 VMWG), jedes Jahr, ½–1 Tag Arbeit; Fehler bei Mieterwechsel, Heizöl-Lager und nicht vereinbarten Positionen kosten Geld und Streit. |
-| **Preis** | CHF 290 (1–4 Whg.) · 390 (5–8) · 490 (9–12) · Express +90 · Stammkunde –40. |
-| **Warum jemand zahlt** | Frist + Aufwand + Fehlerrisiko, und die Gebühr ist über den Verwaltungsaufwand (3–5 % der NK, Art. 4 Abs. 3 VMWG) grossteils an die Mieter weiterverrechenbar. Eine Verwaltung kostet CHF 350–500 pro Wohnung und Jahr. |
-| **Verkaufsweg** | 1. eigenes Netzwerk (20 Nachrichten) · 2. Kleintreuhänder als Vermittler (CHF 60/Auftrag) · 3. Google Ads auf Kaufabsicht (CHF 20/Tag) · 4. tutti/anibis. Kein Posten, keine Videos, keine Community. |
-| **MVP** | Landingpage + E-Mail-Eingang + KI-Extraktion + Rechenkern + Zahlungslink. Alles in diesem Ordner, lauffähig und getestet. |
-| **Automatisierung** | siehe Architektur unten; du bist nur bei Kontrolle und Freigabe dabei. |
-| **7-Tage-Test** | 29.09.–05.10.2026, Plan unten. Saison passt: Perioden per 30.6. werden jetzt abgerechnet. |
-| **Erfolgskriterium** | ≥ 1 **bezahlter** Auftrag in 7 Tagen, oder ≥ 2 Vermieter haben Unterlagen geschickt (Zahlung folgt nach Entwurf). |
-| **Kill-Kriterium** | Nach **40 qualifizierten Kontakten** (Netzwerk + Treuhänder) und **CHF 140 Ads** mit < 3 Gesprächen und 0 Unterlagen → Modell verwerfen, T2 (Verkaufsdokumentation) starten. Nicht verlängern, nicht «noch eine Woche». |
+| **Produkt** | «Ihre Nebenkostenabrechnung wird für Sie erstellt.» Unterlagen senden, fertige Abrechnung je Mietpartei zurück – fachlich geprüft. |
+| **Zielgruppe** | Private Vermieter in der Deutschschweiz mit 1–12 Wohnungen ohne Verwaltung. |
+| **Preis** | **CHF 390** pro Liegenschaft und Jahr bis 8 Wohnungen · CHF 490 für 9–12 Wohnungen. Keine weiteren Varianten. |
+| **Bestellung** | Website → Stripe (bezahlen, Bedingungen bestätigen) → Unterlagen-Seite → E-Mail mit Unterlagen. Kein Konto. |
+| **Risiko für den Kunden** | Volle Rückerstattung, solange keine Unterlagen gesendet sind oder wenn wir nicht liefern können. |
+| **Lieferung** | bestehendes System: Auslesen → Rechnen → Prüfbericht → Sichtkontrolle → Lieferpaket (ZIP) |
+| **Erfolg** | mindestens 1 bezahlter Auftrag |
+| **Entscheid** | 0 → Angebot/Zielgruppe prüfen · 1–2 → weiter testen · 3–5 → Automatisierung analysieren · 5+ → Variante B bauen |
 
 ---
 
@@ -39,19 +39,15 @@ Rechtliche Prüfung des ganzen Modells: [`recht/RECHTLICHE-PRUEFUNG.md`](recht/R
 Alle Anmeldungen Schritt für Schritt, mit Go-live-Checkliste: [`EINRICHTUNG.md`](EINRICHTUNG.md).
 
 1. **Infomaniak:** Domain `nebenkosten-fixfertig.ch` + E-Mail-Adresse.
-2. **Formspree:** Anfrageformular (gratis).
-3. **Stripe:** Zahlungslinks CHF 290 / 390 / 490 / 90, Gutscheine, Zahlungsbelege. Die Links gehören in
-   die Entwurf-Mail, nicht auf die Website. Rückfall: QR-Rechnung aus dem E-Banking.
-4. **Website:** Werte in `landingpage/config.json` eintragen, `python3 landingpage/build.py` →
-   `landingpage/nebenkosten-website.zip` auf Netlify, Domain verbinden, dann
-   `python3 landingpage/golive_check.py https://nebenkosten-fixfertig.ch`.
-   Enthält Startseite, Anfrageformular mit Unterlagen-Checkliste, Impressum, Datenschutzerklärung,
-   Auftragsbedingungen mit Auftragsbearbeitungs-Anhang, 404-Seite, Vorschaubild, Sicherheits-Header.
+2. **Stripe:** zwei Zahlungslinks (CHF 390 / 490) als Bestellseite, mit Zustimmung zu den Bedingungen und
+   Weiterleitung auf die Unterlagen-Seite. Rückfall: QR-Rechnung aus dem E-Banking.
+3. **Website:** Telefon und Stripe-Links in `landingpage/config.json` eintragen,
+   `python3 landingpage/build.py` → `landingpage/nebenkosten-website.zip` auf Netlify, Domain verbinden,
+   dann `python3 landingpage/golive_check.py https://nebenkosten-fixfertig.ch`.
    **Keine Cookies, kein Tracking → kein Cookie-Banner nötig.**
-5. **Claude API** für Kundenbelege (`engine/extrahiere.py`) – nie ein privates Chat-Konto für echte
+4. **Claude API** für Kundenbelege (`engine/extrahiere.py`) – nie ein privates Chat-Konto für echte
    Kundenunterlagen.
-6. **Google Ads** gemäss [`verkauf/nachrichten.md`](verkauf/nachrichten.md#c--google-ads-suchnetzwerk--ab-tag-2-läuft-ohne-dich).
-   Ohne Conversion-Tag auf der Website (sonst wären Cookies und ein Banner nötig); gemessen wird im Tracker.
+5. **Google Ads** (optional) gemäss [`verkauf/nachrichten.md`](verkauf/nachrichten.md).
 
 ### Formelles (einmal lesen, nichts davon blockiert den Test)
 - **Handelsregister:** nicht nötig unter CHF 100'000 Umsatz/Jahr. Auftritt unter eigenem Namen (Impressum).
@@ -65,32 +61,23 @@ Alle Anmeldungen Schritt für Schritt, mit Go-live-Checkliste: [`EINRICHTUNG.md`
 
 ## 7-Tage-Test
 
-| Tag | Aufgabe | Zeit |
-|---|---|---|
-| Mo 29.9. | Einrichtung 1–4 (EINRICHTUNG.md) · 20 Netzwerk-Nachrichten (Vorlage A) | 2 h |
-| Di 30.9. | `python3 verkauf/outreach.py …` → 15 Prio-A/B-E-Mails per Klick (Liste mit 32 Treuhändern liegt bereit) · Google Ads live · tutti-Inserat | 1,5 h |
-| Mi 1.10. | restliche Treuhänder-Mails · Antworten bearbeiten | 1 h |
-| Do 2.10. | 10 Treuhänder anrufen (5 Min. je) · Netzwerk-Nachfass | 1 h |
-| Fr 3.10. | eingehende Unterlagen → `extrahiere.py` → `nk.py` → Prompt 2 → Entwurf an Kunde | 1 h |
-| Sa/So | Puffer, erste Lieferung nach Zahlung | 0–1 h |
-| So 5.10. | Messen: Tracker auswerten, Entscheid nach Erfolgs-/Kill-Kriterium | 15 Min |
-
-Messung ausschliesslich in [`verkauf/test-tracker.csv`](verkauf/test-tracker.csv):
-angeschrieben → Antwort → interessiert → Unterlagen → Entwurf → **bezahlt**. Klicks und Likes zählen nicht.
+Siehe [`VERKAUFSTEST.md`](VERKAUFSTEST.md) – Plan, Kanäle, Vorlagen, Tracker, Entscheidungsregel.
 
 ## Lieferprozess (pro Auftrag, Ziel ≤ 45 Min. deiner Zeit)
 
 ```
-Unterlagen im Postfach
+Zahlung eingegangen (Stripe-Mail) → Auftrag bestätigen (VERKAUFSTEST.md, Vorlage 5)   (du, 3 Min.)
+Unterlagen im Postfach → in kunden/<x>/belege/ ablegen
   → python3 engine/extrahiere.py kunden/<x>          → JSON + Rückfragen      (KI, 5 Min. du)
   → Rückfragen? eine E-Mail an Kunde                                          (du, 5 Min.)
-  → python3 engine/nk.py kunden/<x>.json --out kunden/<x>/ --pdf              (Automation)
+  → python3 engine/nk.py kunden/<x>/eingabe.json --out kunden/<x>/ausgabe --pdf
   → Prompt 2 mit Uebersicht.pdf + pruefbericht.txt    → «LIEFERBAR»            (KI)
   → Sichtkontrolle Übersicht + 1 Abrechnung                                   (du, 10 Min.)
-  → Entwurf-Mail mit Uebersicht.pdf + Zahlungslink                            (du, 3 Min.)
   → python3 engine/nk.py kunden/<x>/eingabe.json --out kunden/<x>/ausgabe --paket
-  → Zahlung eingegangen → Lieferungs-Mail mit dem ZIP                          (du, 3 Min.)
+  → Lieferungs-Mail mit dem ZIP (Vorlage 6)                                   (du, 3 Min.)
 ```
+
+Minuten je Schritt im Tracker notieren – das ist die Grundlage für jede spätere Automatisierung.
 
 `nk.py` rechnet deterministisch (keine KI-Zahlen): Verteilschlüssel, Heizgradtage bei Mieterwechsel
 (mietrechtspraxis-Tabelle, per Test gegen die Tabelle geprüft), Heizöl-Lager (FIFO), Leerstand,
@@ -103,7 +90,7 @@ python3 -m unittest test_nk.py                         # 22 Tests
 python3 nk.py beispiel/mfh-beispielweg.json --out /tmp/nk --pdf
 ```
 
-## Automatisierungsarchitektur
+## Automatisierungsarchitektur (erst ab 5 bezahlten Aufträgen)
 
 | Schritt | V1 (Test) | V2 (ab 5 Kunden) | Wer |
 |---|---|---|---|
@@ -114,13 +101,13 @@ python3 nk.py beispiel/mfh-beispielweg.json --out /tmp/nk --pdf
 | KI | `extrahiere.py` (Claude API), von dir gestartet | automatisch bei Eingang der Unterlagen | KI |
 | Datenverarbeitung | `nk.py` | gleich, ausgelöst durch neues JSON | Automation |
 | Qualitätskontrolle | Prüfbericht + Prompt 2 + **deine Sichtkontrolle** | Sichtkontrolle nur bei WARNUNG | KI + **Mensch** |
-| Zahlung | Stripe Payment Link nach Entwurf | gleich | Automation |
+| Zahlung | Stripe Payment Link bei Bestellung | gleich | Automation |
 | Output | PDFs | gleich | Automation |
 | Lieferung | E-Mail von dir | Stripe-Webhook → automatische Lieferung | Automation |
 | Follow-up | Vorlage «Wiederholung + Empfehlung» | Kalender-Erinnerung 11 Monate später, automatische Mail | Automation |
 | Upsell | Vermietungspaket bei Mieterwechsel | gleich | Mensch (selten) |
 
-Mensch bleibt nur bei: Rückfragen, Sichtkontrolle, Freigabe. Diese Grenze ist bewusst – eine falsche
+Mensch bleibt nur bei: Rückfragen und Sichtkontrolle. Diese Grenze ist bewusst – eine falsche
 Abrechnung zerstört das Vertrauen, auf dem das Wiederholgeschäft beruht.
 
 ## Dein persönlicher Aufwand
@@ -136,22 +123,18 @@ Abrechnung zerstört das Vertrauen, auf dem das Wiederholgeschäft beruht.
 
 ## Finanzielles Szenario
 
-Annahmen: Ø Preis CHF 330 · variable Kosten pro Auftrag CHF 52 (Zahlung ~CHF 10, KI ~CHF 2,
-Akquise Ø CHF 40 aus Partnerprämie/Ads) · Aufbau 8 h einmalig · 45 Min. pro Auftrag für die ersten 10,
-danach 30 Min.
+Annahmen: Preis CHF 390 · variable Kosten pro Auftrag ca. CHF 49 (TWINT CHF 7.71, KI unter CHF 1,
+Akquise Ø CHF 40) · Aufbau 8 h einmalig · 45 Min. pro Auftrag für die ersten 10, danach 30 Min.
 
 | Kunden | Umsatz | Gewinn | Zeit total | CHF Gewinn / Stunde |
 |---|---|---|---|---|
-| 1 | 330 | 278 | 8,75 h | **32** (ohne Aufbau: 371) |
-| 5 | 1'650 | 1'390 | 11,75 h | **118** |
-| 10 | 3'300 | 2'780 | 15,5 h | **179** |
-| 20 | 6'600 | 5'560 | 20,5 h | **271** |
-| 50 | 16'500 | 13'900 | 35,5 h | **392** |
+| 1 | 390 | 341 | 8,75 h | **39** (ohne Aufbau: 455) |
+| 5 | 1'950 | 1'705 | 11,75 h | **145** |
+| 10 | 3'900 | 3'410 | 15,5 h | **220** |
+| 20 | 7'800 | 6'820 | 20,5 h | **333** |
+| 50 | 19'500 | 17'050 | 35,5 h | **480** |
 
-Im Folgejahr fallen Aufbau und ein Grossteil der Akquise weg (Stammkunden): 40 Liegenschaften
-× CHF 290 ≈ CHF 11'600 bei ~20 h/Jahr → **≈ CHF 950/Monat bei < 30 Min./Woche im Jahresschnitt**.
-Ehrliche Einordnung: Umsatz kommt in Saisonwellen, und CHF 4'000+/Monat erreicht dieses Modell nur
-mit Hilfskraft oder Lizenzierung (siehe Analyse, Realitätscheck).
+Das sind Rechenbeispiele, keine Prognose – ob überhaupt jemand kauft, zeigt erst der Test.
 
 ## Wenn der Test scheitert
 

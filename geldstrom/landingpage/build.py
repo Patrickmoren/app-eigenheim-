@@ -35,8 +35,8 @@ display:flex;flex-direction:column;justify-content:center;padding:0 90px;box-siz
 h1{font-size:74px;line-height:1.05;margin:0 0 30px;letter-spacing:-1px}
 p{font-size:34px;margin:0;opacity:.9}</style></head><body>
 <div class="m"><b>Nebenkosten</b> fixfertig</div>
-<h1>Ihre Nebenkosten&shy;abrechnung – fertig, ohne dass Sie rechnen.</h1>
-<p>Für Privatvermieter · Fixpreis ab CHF 290 · Zahlung erst nach Entwurf</p>
+<h1>Ihre Nebenkosten&shy;abrechnung – für Sie erstellt.</h1>
+<p>Für private Vermieter · CHF 390 · fachlich geprüft</p>
 </body></html>"""
 
 
@@ -46,8 +46,9 @@ def pruefe(cfg):
         fehler.append("EMAIL ist keine gültige Adresse")
     if not cfg["WEBSITE"].startswith("https://"):
         fehler.append("WEBSITE muss mit https:// beginnen")
-    if cfg["FORM_ENDPOINT"] and not re.fullmatch(r"https://formspree\.io/f/\w+", cfg["FORM_ENDPOINT"]):
-        fehler.append("FORM_ENDPOINT muss wie https://formspree.io/f/abcd1234 aussehen oder leer sein")
+    for k in ("STRIPE_390", "STRIPE_490"):
+        if not re.fullmatch(r"https://buy\.stripe\.com/\w+", cfg[k]):
+            fehler.append(f"{k} muss ein Stripe-Zahlungslink sein (https://buy.stripe.com/…)")
     if not re.search(r"\d{4}\s+\S", cfg["ADRESSE"]):
         fehler.append("ADRESSE braucht Strasse, PLZ und Ort (Impressumspflicht, Art. 3 Abs. 1 lit. s UWG)")
     if not re.search(r"\d{3}", cfg["TELEFON"]):
@@ -70,9 +71,9 @@ def main():
         fehler = pruefe(cfg)
         if fehler:
             sys.exit("config.json:\n  " + "\n  ".join(fehler))
-    # Formular ohne JavaScript: direkt an Formspree, sonst als E-Mail
-    ep = cfg.get("FORM_ENDPOINT", "")
-    cfg["FORM_ACTION"] = ep if ep.startswith("https://") else "mailto:" + cfg["EMAIL"]
+    # Telefonnummer für tel:-Links: 079 123 45 67 → +41791234567
+    ziffern = re.sub(r"\D", "", cfg["TELEFON"])
+    cfg["TELEFON_LINK"] = "+41" + ziffern[1:] if ziffern.startswith("0") else "+" + ziffern
 
     shutil.rmtree(DIST, ignore_errors=True)
     shutil.copytree(SRC, DIST)

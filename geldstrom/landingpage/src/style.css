@@ -60,3 +60,12 @@ footer a { color: inherit; }
 .recht p, .recht li { color: var(--tx); }
 .recht .stand { color: var(--mu); font-size: 14px; }
 a { color: var(--ak); }
+.preiszeile { margin: 0 0 18px; }
+.preiszeile .preis { display: inline; font-size: 40px; }
+.knopf.gross { font-size: 19px; padding: 16px 26px; }
+.nach-knopf { margin-top: 12px; }
+.schritte { padding-left: 22px; margin: 0; }
+.schritte li { margin: 8px 0; }
+.preisbox p { color: var(--tx); }
+.preisbox .knopf { margin: 6px 0 10px; }
+.schluss { text-align: center; }

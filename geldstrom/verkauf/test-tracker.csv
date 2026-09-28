@@ -1,2 +1,2 @@
-datum,kanal,kontakt,status,liegenschaft_wohnungen,preis_chf,bezahlt_chf,meine_minuten,notiz
-2026-09-29,A Netzwerk,Beispiel Person,angeschrieben,,,,2,"status: angeschrieben | antwort | interessiert | unterlagen | entwurf | bezahlt | abgesagt"
+datum;kanal;kontakt;antwort_JN;interessent_JN;bestellung_JN;bezahlt_CHF;abgeschlossen_JN;min_rueckfragen;min_erstellung;min_pruefung;min_lieferung;problem;einwand_woertlich;wiederkehrend_JN;notiz
+2026-09-29;1 Umfeld;Beispiel: Onkel Hans;J;J;N;;N;;;;;;"mache ich immer selber, dauert aber";;Zeile löschen

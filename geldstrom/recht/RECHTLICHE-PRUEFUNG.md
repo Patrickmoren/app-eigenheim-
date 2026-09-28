@@ -1,6 +1,6 @@
 # Rechtliche Prüfung «Nebenkosten fixfertig»
 
-Stand 28.09.2026 · Schweizer Recht · geprüft: Geschäftsmodell, Website, Auftragsbedingungen,
+Stand 28.09.2026, Nachtrag zum Bestellablauf unten · Schweizer Recht · geprüft: Geschäftsmodell, Website, Auftragsbedingungen,
 Datenschutzerklärung, Impressum, Verkaufstexte, Rechenprogramm, Datenfluss.
 
 > **Einordnung:** Diese Prüfung ist sorgfältig und nennt zu jedem Punkt die Rechtsgrundlage, sie ist
@@ -155,3 +155,21 @@ Keine Cookies, keine externen Inhalte → keine Einwilligung, kein Banner. Das P
 `landingpage/golive_check.py` (neu) · `engine/nk.py` · `engine/test_nk.py` (22 Tests) ·
 `engine/extrahiere.py` (neu) · `engine/prompts/01-extraktion.md` · `verkauf/nachrichten.md` ·
 `verkauf/outreach.py` · `recht/vermittlungsvereinbarung.md` (neu)
+
+## 6. Nachtrag: Bezahlung bei Bestellung (Phase 1)
+
+Der Ablauf wurde geändert: Der Kunde bezahlt **bei der Bestellung** über Stripe und sendet danach die
+Unterlagen. Rechtliche Anpassungen, umgesetzt in AGB Version 1.1:
+
+- **Vertragsschluss** mit erfolgreicher Zahlung (AGB 3.2). Zustimmung zu den Bedingungen direkt auf der
+  Stripe-Zahlungsseite (Pflicht-Häkchen mit Link) → gültiger Einbezug.
+- **E-Commerce-Pflichten** (Art. 3 Abs. 1 lit. s UWG): Eingaben auf der Stripe-Seite vor Abschluss prüf- und
+  korrigierbar; automatische Zahlungsbestätigung von Stripe; Auftragsbestätigung per E-Mail.
+- **Rückerstattung** klar geregelt (AGB 5.5): voll, solange keine Unterlagen gesendet sind oder wenn nicht
+  geliefert werden kann. Das senkt die Hürde für den Kauf und vermeidet Streit über Vorauszahlungen.
+- **Rücktritt nach Einsenden der Unterlagen:** Vergütung nur für geleistete Arbeit, Rest zurück (Art. 377 OR).
+- **Falsche Grösse bestellt:** Differenz bezahlen oder Auflösung mit voller Rückerstattung (AGB 5.4).
+- **Formspree entfällt**; Bestellangaben erfasst Stripe (Datenschutzerklärung angepasst). Die Datenschutz-
+  hinweise zu Formspree in Abschnitt 3.7 und Fehler 10 sind damit gegenstandslos.
+- **Werbeaussagen** geprüft: keine Garantie für Fehlerfreiheit, keine Aussage «vollständig automatisch»;
+  die FAQ sagt ausdrücklich, dass keine Garantie gegeben wird.

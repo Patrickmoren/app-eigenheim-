@@ -5,7 +5,7 @@
 
 Prüft: alle Seiten erreichbar, HTTPS, keine offenen Platzhalter, Pflichtangaben im Impressum,
 Links auf Impressum/Datenschutz/Bedingungen, keine Cookies, keine Inhalte von Drittanbietern,
-Formular zeigt auf Formspree, Sicherheits-Header. Exit-Code 1 bei einem Fehler.
+Zahlungslinks auf Stripe, Sicherheits-Header. Exit-Code 1 bei einem Fehler.
 """
 import re
 import sys
@@ -18,7 +18,7 @@ import os
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"), encoding="utf-8") as _f:
     EIGENE = json.load(_f)["WEBSITE"].rstrip("/")
 
-SEITEN = ["", "impressum.html", "datenschutz.html", "agb.html", "beispiel-abrechnung.pdf", "robots.txt"]
+SEITEN = ["", "unterlagen.html", "impressum.html", "datenschutz.html", "agb.html", "beispiel-abrechnung.pdf", "robots.txt"]
 
 
 def hole(url):
@@ -63,7 +63,7 @@ def main():
         text = inhalte[s][1].decode("utf-8", "replace")
         name = s or "Startseite"
         pruefe("{{" not in text, f"{name}: keine offenen {{{{Platzhalter}}}}")
-        pruefe(not re.search(r"\[(Strasse|Vorname|079|abrechnung@|https://formspree\.io/f/…)", text),
+        pruefe(not re.search(r"\[(Strasse|Vorname|079 000|abrechnung@…|https://buy\.stripe\.com/…)", text),
                f"{name}: keine [Platzhalter] aus config.json")
         fremd = [u for u in re.findall(r'<(?:script|link|img)[^>]+(?:src|href)="(https?://[^"]+)"', text)
                  if not u.startswith((EIGENE, basis))]
@@ -74,9 +74,9 @@ def main():
     if "" in inhalte:
         kopf, daten = inhalte[""]
         text = daten.decode("utf-8", "replace")
-        pruefe(re.search(r'action="https://formspree\.io/f/\w+"', text) is not None,
-               "Startseite: Formular sendet an Formspree")
-        pruefe('name="zustimmung"' in text and "required" in text, "Startseite: Zustimmung zu AGB/Datenschutz Pflicht")
+        links = set(re.findall(r'href="(https://buy\.stripe\.com/\w+)"', text))
+        pruefe(len(links) == 2, f"Startseite: zwei Stripe-Zahlungslinks (390/490) gefunden: {len(links)}")
+        pruefe("CHF 390" in text, "Startseite: Preis CHF 390 sichtbar")
         for h in ["X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options"]:
             pruefe(any(k.lower() == h.lower() for k in kopf), f"Header {h}")
     if "impressum.html" in inhalte:
