@@ -88,7 +88,8 @@ Unterlagen im Postfach
   → Prompt 2 mit Uebersicht.pdf + pruefbericht.txt    → «LIEFERBAR»            (KI)
   → Sichtkontrolle Übersicht + 1 Abrechnung                                   (du, 10 Min.)
   → Entwurf-Mail mit Uebersicht.pdf + Zahlungslink                            (du, 3 Min.)
-  → Zahlung eingegangen → Lieferungs-Mail mit allen PDFs                       (du, 3 Min.)
+  → python3 engine/nk.py kunden/<x>/eingabe.json --out kunden/<x>/ausgabe --paket
+  → Zahlung eingegangen → Lieferungs-Mail mit dem ZIP                          (du, 3 Min.)
 ```
 
 `nk.py` rechnet deterministisch (keine KI-Zahlen): Verteilschlüssel, Heizgradtage bei Mieterwechsel

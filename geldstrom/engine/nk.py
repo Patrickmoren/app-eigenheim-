@@ -497,17 +497,76 @@ def schreibe(erg, befund, out, pdf=False):
     return dateien
 
 
+def begleitblatt_html(erg):
+    d = erg["daten"]
+    mvs = erg["mietverhaeltnisse"]
+    zeilen = "".join(
+        f"<tr><td>{e(mv['einheit'])}</td><td>{e(mv['mieter'])}</td>"
+        f"<td class='z'>{'Nachzahlung' if mv['_saldo'] > 0 else 'Guthaben' if mv['_saldo'] < 0 else 'ausgeglichen'}</td>"
+        f"<td class='z'>{chf(abs(mv['_saldo']))}</td>"
+        f"<td>{e(mv['adresse']) if mv.get('adresse') else 'in der Liegenschaft'}</td></tr>" for mv in mvs)
+    inhalt = f"""
+<h1>Ihre Nebenkostenabrechnung – so geht es weiter</h1>
+<div class='sub'>{e(d['liegenschaft']['bezeichnung'])} · Periode {datum_ch(erg['p_von'])} – {datum_ch(erg['p_bis'])}</div>
+<h2>Inhalt dieses Pakets</h2>
+<ul><li><b>{len(mvs)} Abrechnungen</b> – eine je Mietpartei, versandbereit</li>
+<li><b>Uebersicht.pdf</b> – alle Kosten, die Verteilung und die Kontrollrechnung, für Ihre Unterlagen und die Steuererklärung</li></ul>
+<h2>Versand an die Mietparteien</h2>
+<table><tr><th>Objekt</th><th>Mietpartei</th><th class='z'>Ergebnis</th><th class='z'>CHF</th><th>Versandadresse</th></tr>{zeilen}</table>
+<ol>
+<li>Jede Abrechnung kurz durchsehen und unterschreiben (eine Unterschrift ist nicht vorgeschrieben, wirkt aber verbindlicher).</li>
+<li>Per Post oder E-Mail zustellen – ausgezogene Mietparteien an die neue Adresse.</li>
+<li>Guthaben innert 30 Tagen überweisen; Nachzahlungen sind ebenfalls innert 30 Tagen fällig.</li>
+<li>Die empfohlenen neuen Akontobeträge können Sie den Mietparteien mit der Abrechnung mitteilen. Eine Erhöhung der
+Akontozahlungen gegen den Willen der Mieterschaft braucht das amtliche Formular (Art. 269d OR).</li>
+<li>Mieter dürfen die Originalbelege einsehen (Art. 257b Abs. 2 OR). Bewahren Sie die Rechnungen deshalb griffbereit auf.</li>
+</ol>
+<h2>Fragen oder Fehler?</h2>
+<p>Antworten Sie einfach auf die Liefer-E-Mail. Fehler, die auf unserer Berechnung beruhen, korrigieren wir kostenlos –
+bitte innert 30 Tagen melden.</p>
+"""
+    return seite("So geht es weiter", inhalt)
+
+
+def paket(erg, befund, out):
+    """Lieferpaket für die Kundschaft: Begleitblatt, alle Abrechnungen, Übersicht (PDF) als ZIP."""
+    import zipfile
+    if befund.hat_fehler:
+        raise SystemExit("Prüfbericht enthält FEHLER – kein Lieferpaket erstellt.")
+    if not chromium():
+        raise SystemExit("Für das Lieferpaket wird Chromium gebraucht (PDF).")
+    dateien = schreibe(erg, befund, out, pdf=True)
+    begleit = os.path.join(out, "00_So_geht_es_weiter.html")
+    with open(begleit, "w", encoding="utf-8") as f:
+        f.write(begleitblatt_html(erg))
+    dateien.insert(0, als_pdf(begleit))
+    name = "Nebenkostenabrechnung_" + dateiname(erg["daten"]["liegenschaft"]["bezeichnung"]) + \
+           f"_{erg['p_bis'].year}.zip"
+    ziel = os.path.join(out, name)
+    ordner = name[:-4] + "/"
+    with zipfile.ZipFile(ziel, "w", zipfile.ZIP_DEFLATED) as z:
+        for p in dateien:
+            z.write(p, ordner + os.path.basename(p))
+    return ziel
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Heiz- und Nebenkostenabrechnung berechnen")
     ap.add_argument("eingabe", help="JSON-Datei der Liegenschaft")
     ap.add_argument("--out", default="ausgabe", help="Ausgabeordner")
     ap.add_argument("--pdf", action="store_true", help="zusätzlich PDF erzeugen (braucht Chromium)")
+    ap.add_argument("--paket", action="store_true", help="Lieferpaket (ZIP mit PDFs und Begleitblatt) für die Kundschaft")
     args = ap.parse_args(argv)
     with open(args.eingabe, encoding="utf-8") as f:
         daten = json.load(f)
     global MUSTER
     MUSTER = bool(daten.get("muster"))
     erg, befund = rechne(daten)
+    if args.paket:
+        ziel = paket(erg, befund, args.out)
+        print(befund.text(), end="")
+        print(f"Lieferpaket: {ziel}")
+        return 0
     dateien = schreibe(erg, befund, args.out, args.pdf)
     print(befund.text(), end="")
     print(f"{len(erg['mietverhaeltnisse'])} Abrechnungen, Gesamtkosten CHF {chf(erg['total_kosten'])} → {args.out}/")
