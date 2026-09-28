@@ -74,3 +74,12 @@ Jede Figur hat: Wunsch · Angst · Geheimnis · blinden Fleck · Widerspruch · 
 - **Agnes:** Schuld des Schweigens („neunundzwanzig Jahre lang gedacht, dass ich alt werde“).
 - **Sepp:** gibt aus Loyalität zum Gelübde nach, als seine Schwester die Wahrheit ausspricht.
 - **Inês:** keine Entschuldigung, kein Trotz; sagt Zahlen, wie man Daten aufsagt. Das Unheimliche und das Zärtliche liegen im selben Satz: „Ich kenne Sie seit vier Jahren.“
+
+## Nachträge Kapitel 20–27
+- **Nora:** Erster echter Vertrauensakt (K20): Sie sagt Aurel, was er hören wird, *bevor* er es hört, und schliesst die Augen statt ihn zu lesen. Tiefpunkt (K26/27): Sie glaubt, ihre Mutter sei eine Mörderin, und bricht die Botschaft ihrer Mutter ab, aus Angst vor dem Geständnis. Versuchung: Marthas „Komm heim“.
+- **Aurel:** Er verliert seinen Vater genau in dem Moment, in dem der ihm die Wahrheit zurückgibt („Du hast nicht geträumt“). Sein Vorwurf „Du hast ihn gebraucht“ ist nicht fair, aber auch nicht falsch; er nimmt ihn zurück (K24). „Ich weiss nicht mehr, was Schutz ist.“
+- **Martha:** Trauer um Leni ist echt (K21). Ihre Loyalität zu Bruno (Donnerstage) ist echt. Ihre Offenheit über Firn wirkt wie Ehrlichkeit – ein Teilgeständnis, das das Wesentliche verbirgt. Ihre Liebe zu Nora ist Besitz und Fürsorge zugleich („Du hattest nie ein Zuhause“).
+- **Reto:** kein Täter, sondern ein Mann, der seiner Mutter glaubte. „Dann hass sie wie ich.“
+- **Mia:** macht das Foto aus Sorge, nicht aus Verrat; ihre Frage „Oder?“ ist die Angst einer Tochter.
+- **Fabienne:** stellt nicht gegen ihr Gewissen ein, sondern ruft an, um es zu sagen.
+- **Inês:** gibt die Entwürfe her, die sie nicht löschen konnte; fliegt nicht mit nach Porto.

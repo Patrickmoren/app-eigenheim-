@@ -84,3 +84,17 @@ Alles, was im Text steht, ist hier festgehalten. Neue Fakten werden beim Schreib
 - **Inês Carvalho:** Ende fünfzig, schmales Gesicht, dunkle Augen, grauer Schal; weicher portugiesischer Akzent; Tablet in abgestossener Hülle. Foto: Mama im Rollstuhl mit Augensteuerung am Fenster über dem Douro.
 - **Brief (Frühjahr 2021):** „Für Nora. Wenn das Eis sie zurückgibt.“ Kugelschreiber, zittrige Schrift, Z mit Querstrich.
 - **Andante-Karte** (Porto) in der letzten Bank (K14).
+
+## Nachträge Kapitel 20–27
+- **Aurel:** wohnt im ersten Stock über der alten Sennerei. Bruno wird am Mittwoch, 23.9., in Stalden beerdigt („wollte nicht hier liegen“). Erster Kuss am So 20.9. um 19 Uhr beim Speicher.
+- **Reto:** fährt einen alten dunkelblauen Volvo mit einer Beule an der hinteren Tür; „Iss etwas“.
+- **Mia:** Freundin **Lara** wohnt gegenüber dem alten Imseng-Haus.
+- **Imseng-Haus:** im oberen Dorf, leer; Firn-Ordner lag im Estrich unter den Bodenbrettern.
+- **Firn-Ordner:** grauer Bundesordner mit durchgestrichener Jahreszahl auf dem Rücken; Schreibmaschine mit halb ausgebrochenem *e*; Stempel FIRN blau.
+- **Heim Stalden:** Die Pflegerin sagt „ein guter Tag“; Bruno liest die Todesanzeigen; die Nachtschwester findet ihn um 4 Uhr, der Heimarzt kommt um 6.
+- **Messstation:** Kabelsabotage in der Nacht auf Di 22.9.; 18 Stunden Reparatur.
+- **Empfehlung:** Evakuierung der oberen Dorfteile innerhalb von 14 Tagen, Dringlichkeit hoch; kantonaler Entscheid nach einer zweiten Begutachtung (≈ eine Woche).
+- **Inês:** wohnt seit etwa 15.9. bei Agnes; der Entwurfs-Stick ist weiss, mit einem Herz; der Schlüssel zur Wohnung in Porto hängt an einem Band mit einer blauen Kachel.
+- **Nora:** Schuhgrösse 37; fliegt am Fr 25.9. von Genf nach Porto.
+- **Porto-Wohnung:** Ribeira, 4. Stock, Holztreppe, drei Schlösser.
+- **Ruth:** arbeitet mit Anthamatten am Band; schickt Stufe 4 am Mi 23.9. über eine gesicherte Verbindung der Kantonspolizei („Hör es allein.“).

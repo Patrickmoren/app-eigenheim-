@@ -137,3 +137,28 @@ Zwischen den Enthüllungen liegen Verarbeitungsszenen, die zugleich handeln: die
 - **Neue Auflage:** Der Stimmwechsel im Januar 2022 muss in K20 plausibel gezeigt werden (Matrix §9). Ohne diesen Nachweis wäre die KI-Wendung unglaubwürdig: Nora hätte einen abrupten Wechsel gehört.
 - **Sprache:** Leitmotive wiederholen sich an der Grenze („wie ein Vogel auf einer Leitung“ viermal, „Lidschlag“ dreimal). Im Lektorat auf die tragenden Stellen reduzieren.
 - **Umfang:** 11.500 Wörter statt der geschätzten 15.000–17.000. Der 20-Seiten-Test ergibt keine Streichkandidaten; das Tempo ist gewollt. Band 1 liegt damit auf Kurs für etwa 58.000–64.000 Wörter.
+
+### Blockprüfung 3 – Kapitel 20–27 (29.09.2026)
+**Test „Was ist nach diesem Kapitel unwiderruflich anders?“**
+| K | Unwiderruflich anders |
+|---|---|
+| 20 | Nora weiss, dass sie ihrer Mutter von Wiegenliedern erzählt hat, während diese starb. Sie hat Aurel zum ersten Mal etwas anvertraut, bevor sie ihn prüfte. |
+| 21 | Reto ist offiziell Beschuldigter. Martha weiss, dass Leni tot ist, und damit schützt kein lebender Zeuge mehr ihr Geheimnis. |
+| 22 | Aurels Kindheitsbild ist bestätigt („nicht geträumt“). Die Nacht hat einen neuen Ort, Brunos Küche. |
+| 23 | Bruno ist tot. Die Beziehung zu Aurel ist gebrochen. Martha ist als Firn-Gründerin enttarnt (M.W.). |
+| 24 | Martha hat Mama vor Nora belastet. Nora und Aurel haben sich geküsst. Die 19-Uhr-Bedeutung ist gefallen. |
+| 25 | Die Evakuierung ist empfohlen, das Dorf gespalten. Mamas „ich habe sie gehen lassen“ liegt schriftlich vor. |
+| 26 | Nora hat Kathi sterben hören und hält Mama für die Täterin. |
+| 27 | Der Fall ist amtlich geschlossen. Nora hat den Ort ihrer Mutter gesehen und eine Botschaft abgebrochen. Martha hat ihr ein Zuhause angeboten. |
+
+Keine Szene besteht nur aus „noch etwas mehr wissen“.
+
+- **Zerstörung des Mutterbildes:** Sie verläuft stufenweise. Erst die sterbende Mutter, die nicht mehr antworten kann (K20). Dann die Lügnerin, die zum Polizisten ging (K22). Die Schmugglerin, die „gestritten hat“ (K23/24). Die Frau, die „gehen liess“ (K25). Die Frau, nach der Kathi schrie (K26). Am Ende die Frau, deren letzte Botschaft Nora nicht zu Ende hören kann (K27). ✅
+- **Martha:** Ihr Bild bricht in K23/24, aber in Richtung „harte Beschützerin und Firn-Gründerin“, nicht in Richtung Täterin. Ihre Trauer um Leni (K21) und die Donnerstage mit Bruno (K22) sind echt. **Entfernt**, weil zu verdächtig: Brunos flüchtiger Blick beim Kuchen (K22) und Martha, die die Fingerhüte mit Handschuhen schneidet (K24, jetzt Kartoffeln). Die Kombination Kuchen, Tod am nächsten Tag und Fingerhut hätte die Lesart „die war offensichtlich böse“ erzeugt.
+- **Reto:** Jede Spur hat eine plausible Alternative: Nachtfahrt = Ordner holen; Alibi durch Mia; Befragung = Urkundendelikte. Seine Version ist Marthas Version, die er glaubt. ✅
+- **Kuss (K24):** Er entsteht aus Brunos Tod, Aurels Rücknahme des Vorwurfs, der gemeinsamen Erkenntnis „Ich weiss nicht mehr, was Schutz ist“ und der Glocke. Nora versucht nicht, ihn zu lesen. Verdient. ✅
+- **„LENI!“ (K26):** Die Szene arbeitet mit dem Raumwechsel beim Sturz (offener Himmel → Eiskammer). Das Durchbrechen ist körperlich (Brustbein, Zähne, Hände), das Verstehen kommt danach. ✅
+- **Porto (K27):** eine Eskalationsstufe, kein Ortswechsel. Nora sucht ein Geständnis, findet den leeren Rollstuhl und bricht die Botschaft ab. Die Stadt ist nur Klangkontrast (echte Möwen, gestimmte Tram). Der Fall wird amtlich geschlossen, und Martha bietet ein Zuhause an. ✅
+- **Korrigiert:** Die Bandstruktur hat jetzt zwei Knitterschäden, damit Lenis Schrei mit Marthas Namen für K34 bleibt. „Gestern“ ist in „letzte Woche“ korrigiert (Schule). Ein „plötzlich“ ist ersetzt.
+- **Umfang (Hinweis an den Autor):** K20–27 ≈ 9.350 Wörter, einige Kapitel sind sehr kurz (K21, K25 ≈ 900). Band 1 läuft auf **≈ 51.000–54.000 Wörter** zu, also unter dem Zielkorridor von 55.000–75.000. Das Finale (K28–35) bekommt den Raum, den es dramaturgisch braucht (Richtwert 13.000–15.000); künstlich gestreckt wird nicht. Kandidaten für echte Vertiefung im Gesamtlektorat (kein Füllstoff): Mias eigener Bogen, Retos Innensicht nach der Befragung, Inês’ Nächte bei Agnes.
+- **Sprache:** Satzmuster „Ich hörte …“ und „wie man …“ bleiben häufig. „Ich weiss nicht“ taucht mehrfach als Stilmittel auf (bewusst in K24 beim Kuss); im Lektorat prüfen.

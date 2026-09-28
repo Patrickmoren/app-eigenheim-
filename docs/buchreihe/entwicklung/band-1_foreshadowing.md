@@ -102,3 +102,22 @@ Regel: Jedes Wiederauftauchen verschiebt die Bedeutung, es wiederholt sie nicht.
 | N-Angst-Eis | K17 Leni zu Kathi: „Du hast doch Angst vor dem Eis“ | bestätigt Martha K4 | Prologfrau = Kathi, nachgewiesen | – |
 | N-Mann-in-Genf | K10 → K13 | – | – | Epilog |
 | N-Wassermelone | K19 Inês weiss Dinge über Nora | das Unheimliche | Nähe einer Fremden | K35 |
+
+## H. Kapitel 20–27 (Status)
+✅ A-Atem (K20), A-Regen/Möwen (K20), A-Pfeifen-konstant (K20), A-Sterbeanruf (K20), A-Video (K20), B2-Bruno (K23/25), M-Werlen → M.W. = Martha (K23, ohne Namen), M-Fingerhut/Donnerstag (K22, nur als Gewohnheit), M-Liebe (K27 „Komm heim“), N-Traum (K22 „Du hast nicht geträumt“), M5 „Singt man in Lomm noch das Lied?“ (K27), M4 „Gesang“ (K25), G1 Stufe 4 (K26), A-Präzision/Glocke (K24).
+
+| ID | Neu in | Oberfläche | Wahre Bedeutung | Auflösung |
+|---|---|---|---|---|
+| N-Wiegenlied | K20 „Hast du mir früher etwas vorgesungen?“ | Frage an eine Sterbende | Band 3: Leni sang ihr als Tante vor? (Motiv „Lied“) | K35 / Band 3 |
+| N-Leni-Flüstern | K20 Inês flüstert „Leni“ | der richtige Name im Todesmoment | – | erledigt |
+| N-Iss-etwas | K21 Reto „Iss etwas“ – „Von der hat er’s“ | Familienmuster | Fürsorge als Kontrolle (Martha) | K32 |
+| N-Rotes-Licht | K22 Alois sah das rote Lämpchen | Firn wusste von der Aufnahme | Martha wusste vom Gerät | K32 |
+| N-Kuchen | K22 Martha füttert Bruno | Freundschaft | Band 2: Digitalis | Band 2 |
+| N-Nicht-dabei | K24 Martha: „Ich war nicht dabei“ | Ehrlichkeit | Lüge | K31/32 |
+| N-Kartoffeln | K24 Martha gräbt die letzten Kartoffeln vor dem Frost | Alltag | Sie bereitet ihren Abschied vor | K30 |
+| N-37 | K25 Schuhgrösse 37 | Mia? | Martha | K34 |
+| N-verzeih | K25 Mamas Entwurf | Schuld | Versäumnis und Erpressung, keine Tat | K34 |
+| N-Du | K26 „Du?“ | Leni kehrt zurück (Noras Lesart) | Martha | K31/34 |
+| N-Kathi-oben | K26 „Kathi?“ von oben | Kontrolle | Leni kommt zurück, um zu retten | K34 |
+| N-Löcher | K27 Fabienne | Zweifel | Stufe 5 | K29 |
+| N-Botschaft | K27 „Nora. Wenn du das hörst –“ | Angst vor dem Geständnis | „weisst du, wer ich war. Nicht alles. Aber genug.“ | K35 / Band 3 |

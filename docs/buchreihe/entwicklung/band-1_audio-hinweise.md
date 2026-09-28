@@ -52,3 +52,16 @@ Prinzip: Jedes Motiv durchläuft **Atmosphäre → Hinweis → Beweis**. Im Hör
 | Pausen 2023 | K17 1,1 / 1,9 / 3,4 s | echte Pausen im Hörbuch |
 | Lied in der Halle | K18 „bliib“ gegen „gang heim“, H gegen B | Chor der Laien, Reibung hörbar |
 | Tablet-Stimme | K19 durch das Läuten | Anrufstimme aus einem kleinen Lautsprecher, dazu die Glocke voll |
+
+## Nachträge Kapitel 20–27
+| Motiv | Stelle | Regie |
+|---|---|---|
+| 41 Sekunden | K20 | echte 41 Sekunden, darunter echte Möwen; „Leni“ als Flüstern bei −35 dB |
+| Wiegenlied | K20 „Schlaf, Kindlein, schlaf“ von einer Nachtschwester, bricht ab | ein Summfetzen, abgebrochen, Schritte weg (Echo des Prologs) |
+| Möwe 0:47 | K20 | exakt dieselbe Aufnahme wie unter K1 |
+| Pfeifen konstant | K20 | Hörbeispiel: synthetisch (konstant) gegen 2020 (schwankend) |
+| Echte Stimme 2022 | K20 Übergang | im Hörbuch zwei Sätze vorher und nachher |
+| Glocke zu zweit | K24 | Glocke voll, zwei Atem darunter |
+| Stufe 4 | K26 | Raumwechsel beim Sturz: offener Himmel → enge Eiskammer (kurzer, nasser Hall); „LENI!“ ohne Musik, voller Pegel, Nachhall von allen Seiten; darüber leise das „Pfeifen im Eis“ = Marthas Summen, stark bandbegrenzt, **mit dem H**, nicht erkennbar |
+| Porto | K27 | Dutzende echte Möwen, alle verschieden; eine Strassenbahnglocke, richtig gestimmt (Kontrast zur Tram 9 in Bern) |
+| Botschaft 2021 | K27 | echte Stimme der Mama-Sprecherin, Dialekt, leicht verwaschen; bricht nach vier Wörtern ab |

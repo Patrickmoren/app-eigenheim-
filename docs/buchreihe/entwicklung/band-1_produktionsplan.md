@@ -98,7 +98,7 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 | ✅ | Prolog–K10 | `band-1_prolog-kapitel-01-03.md`, `band-1_kapitel-04-10.md` | Blockprüfung 1 ✅ |
 | ✅ | K11–19 „Firnlinie“ | `band-1_kapitel-11-19.md` | W2 zwingend; Midpoint menschlich, nicht technisch; Firn nicht vor K16 |
 | 9 | Blockprüfung 2 | Gesamtprüfung | 20-Seiten-Test; Romance hat zwei echte Stufen |
-| 10 | K20–27 „Spalte“ | `band-1_kapitel-20-27.md` | T5 überzeugend; alle Gegenhinweise gesehen |
+| ✅ | K20–27 „Spalte“ | `band-1_kapitel-20-27.md` | T5 überzeugend; alle Gegenhinweise gesehen |
 | 11 | Blockprüfung 3 | | 20-Seiten-Test |
 | 12–13 | K28–35 „Kalben“ + Epilog | `band-1_kapitel-28-35.md`, `band-1_epilog.md` | Beweiskette gegen Martha vollständig; Band 1 geschlossen; E2-Spiegelung nicht erklärt |
 | 14–19 | Gesamtlektorat; Tests auf Fairness, Foreshadowing, Kontinuität, Sprache, Hörbuch; 20-Seiten-Test für den ganzen Band | alle | Protokoll |
@@ -107,4 +107,11 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 **Umfang:** Es gibt keine Wortzielvorgabe. Erwartung für Band 1: 62.000–68.000 Wörter (siehe `reihen-architektur.md` §7).
 **Stand:** Prolog–K10 ≈ 18.000 Wörter · K11–19 ≈ 11.500 Wörter (✅, Blockprüfung 2 ✅) · gesamt ≈ 29.500.
 
-**Auflage für K20:** Stimmwechsel Januar 2022 im Archiv zeigen (siehe Matrix §9).
+**Auflage für K20:** ✅ erfüllt.
+
+**Stand nach K27:** ≈ 38.900 Wörter. Hochrechnung: K28–35 + Epilog ≈ 12.000–15.000 → Band 1 ≈ 51.000–54.000 Wörter. Siehe Blockprüfung 3 (Umfang).
+
+**Anpassungen für K28–35 aus Block 3:**
+- K29: Stufe 5 = Knitterschaden 1 (das Summen, H statt B).
+- K34: Knitterschaden 2 = Lenis Schrei mit Marthas Namen; ausserdem wird nebenbei geklärt, wer die Kabel durchschnitt (Martha) und wer in Noras Zimmer war (Reto, von Martha geschickt).
+- K35: Die 19-Uhr-Einsicht ist bereits in K24 gefallen. K35 vertieft: Beide Schwestern starben an einem Sonntag. Nora hört die ganze Botschaft vom Dezember 2021.
