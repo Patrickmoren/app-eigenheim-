@@ -1,0 +1,4 @@
+# Kundendaten nie ins Repository
+kunden/
+ausgabe/
+__pycache__/
