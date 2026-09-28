@@ -116,3 +116,24 @@ Ja, wenn E1 und E2 entschieden sind und die Beweiskette aus der Mystery-Matrix b
 
 ### Architekturprüfung (29.09.2026)
 Die ganze Geschichte wurde neu betrachtet (siehe `reihen-architektur.md`). Ergebnis: **3 Hauptbände**. Band 1 wird von 44 auf 35 Kapitel verdichtet. Grund sind Funktionsdopplungen im alten Plan: zwei Dokumentenszenen mit Reto, zwei Portugal-Bestätigungen, ein Laptopdiebstahl, der nur Zugang herstellt, ein separates Geständniskapitel, eine Instagram-Szene ohne eigene Wirkung. Kapitel 1–10 bleiben inhaltlich unverändert. Die Kapitelnummern ≥ 11 in den Entwicklungsdateien sind umgestellt; frühere Nummern in dieser Datei beziehen sich auf die alte Zählung.
+
+### Blockprüfung 2 – Kapitel 11–19 (29.09.2026)
+**Die Enthüllungsspirale:** Jede Enthüllung zerstört eine Gewissheit und öffnet eine Frage.
+- K12 Kathi: „Die Tote ist doch meine Mutter.“ → Wer hat mich grossgezogen?
+- K13 Leni: „Die Frau, die mich grossgezogen hat, hat mir ihr Leben lang ihren eigenen Namen verschwiegen.“ → Warum?
+- K15 Bruno: „Aurel ist betroffen.“ → Was war in der Festung?
+- K16 Firn: „Es ist grösser als die Familie.“ → Wer sind *sie*?
+- K17 Eis: „Mama war dort.“ → Was hat sie getan?
+- K19 Maschine: „Die Stimme war nie Mama.“ → Bleibt ein Brief, der lügt.
+
+Zwischen den Enthüllungen liegen Verarbeitungsszenen, die zugleich handeln: die Nacht mit der Kerze in Basel, Agnes und die Jacke, der Turm, die Treppe mit dem kalten Wasser, der Arm auf dem vereisten Weg.
+
+- **Reto:** verdächtig (Schloss, Zigaretten, Keller, „wusste, dass sie nicht zurückkommt“), aber als Vater menschlich (Mia, das Foto). Nicht als Bösewicht festgelegt. ✅
+- **Martha:** Zuflucht (Grab, Versammlung, Hand). Ihre Hinweise sind nur beiläufig oder zeigen auf andere: Das Z weist auf Mama, das H bringt Nora zum Lächeln, der Kerzensatz stammt von einem Dementen. ✅ *Risiko:* Brunos Kerzensatz (K13) und das Kerzenbuch (K14) liegen zwei Kapitel auseinander; eine aufmerksame Leserin kann Martha verdächtigen. Das ist fair und bleibt so, weil K14 die Spur deutlich auf Mama lenkt.
+- **Romance:** Seil und Hand (K12), Bruch durch Noras Test (K15), öffentliche Solidarität und Arm auf dem Eis (K18). Kein Kuss. Die Nähe entsteht aus Risiko und Vertrauen. ✅
+- **K19:** Emotionaler Kern ist „Vier Jahre lang nicht mit meiner Mutter gesprochen“ und das „Erzähl du“ als Lähmung, nicht Geduld. Das Erschreckende ist menschlich („Ich kenne Sie seit vier Jahren“). Die Technik steht in drei Sätzen. ✅
+- **Informationsdialoge:** Das Kritischste waren Reto über Firn (K16) und Inês über Voice Banking (K19). Beide sind in Konflikt und Gegenstände gebettet (verbrannte Finger, Foto; Tablet, Rollstuhlfoto, Brief) und kurz gehalten.
+- **Korrigiert:** Die Kerzenbuch-Zeit der grossen Kerze gab Martha ein Alibi, das der Wahrheit widersprach (jetzt 21.00 durch Sepp). Inês’ Jahre stimmen jetzt (3 Jahre zusammen, 4 Jahre Nora gekannt). „Dritte Zeile“ wurde zu „vierter Zeile“. Ein „plötzlich“ ist ersetzt.
+- **Neue Auflage:** Der Stimmwechsel im Januar 2022 muss in K20 plausibel gezeigt werden (Matrix §9). Ohne diesen Nachweis wäre die KI-Wendung unglaubwürdig: Nora hätte einen abrupten Wechsel gehört.
+- **Sprache:** Leitmotive wiederholen sich an der Grenze („wie ein Vogel auf einer Leitung“ viermal, „Lidschlag“ dreimal). Im Lektorat auf die tragenden Stellen reduzieren.
+- **Umfang:** 11.500 Wörter statt der geschätzten 15.000–17.000. Der 20-Seiten-Test ergibt keine Streichkandidaten; das Tempo ist gewollt. Band 1 liegt damit auf Kurs für etwa 58.000–64.000 Wörter.

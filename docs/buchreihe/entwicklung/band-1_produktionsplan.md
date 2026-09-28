@@ -96,7 +96,7 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 | Phase | Inhalt | Datei | Qualitätstor |
 |---|---|---|---|
 | ✅ | Prolog–K10 | `band-1_prolog-kapitel-01-03.md`, `band-1_kapitel-04-10.md` | Blockprüfung 1 ✅ |
-| 8 | K11–19 „Firnlinie“ | `band-1_kapitel-11-19.md` | W2 zwingend; Midpoint menschlich, nicht technisch; Firn nicht vor K16 |
+| ✅ | K11–19 „Firnlinie“ | `band-1_kapitel-11-19.md` | W2 zwingend; Midpoint menschlich, nicht technisch; Firn nicht vor K16 |
 | 9 | Blockprüfung 2 | Gesamtprüfung | 20-Seiten-Test; Romance hat zwei echte Stufen |
 | 10 | K20–27 „Spalte“ | `band-1_kapitel-20-27.md` | T5 überzeugend; alle Gegenhinweise gesehen |
 | 11 | Blockprüfung 3 | | 20-Seiten-Test |
@@ -105,4 +105,6 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 | 20–22 | BoD, Cover, Texte, Metadaten | `publikation/` | aktuelle Anforderungen recherchiert und belegt |
 
 **Umfang:** Es gibt keine Wortzielvorgabe. Erwartung für Band 1: 62.000–68.000 Wörter (siehe `reihen-architektur.md` §7).
-**Stand:** Prolog–K10 ≈ 18.000 Wörter.
+**Stand:** Prolog–K10 ≈ 18.000 Wörter · K11–19 ≈ 11.500 Wörter (✅, Blockprüfung 2 ✅) · gesamt ≈ 29.500.
+
+**Auflage für K20:** Stimmwechsel Januar 2022 im Archiv zeigen (siehe Matrix §9).

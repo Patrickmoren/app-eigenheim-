@@ -38,3 +38,17 @@ Prinzip: Jedes Motiv durchläuft **Atmosphäre → Hinweis → Beweis**. Im Hör
 | Stadtschuhe | K9 Kies, dünne Sohlen | Schrittgeräusch klar anders als die Bergschuhe |
 | Portugiesische Ansage | K10 „não está atribuído“ | echte Ansage |
 | Eis als Saite | K10 kurze, gedämpfte Töne | Spannungsrisse im nächtlichen Eis |
+
+## Nachträge Kapitel 11–19
+| Motiv | Stelle | Regie |
+|---|---|---|
+| Taschenrechner-Piepen | K11 Reto drückt ständig C | kleiner, nervöser Ton, wiederholt |
+| Eis unter Steigeisen | K12 hohl / glasig, Wasser darunter | Hohlklang wechselt mit Knirschen |
+| Festungstür | K12 tiefer Raumton, Luftzug | Infraschall-artiges Brummen, kaum hörbar |
+| Felsstufe | K12 Reissen wie Stoff, Knall, Güterzug, Prasseln | 20 s ohne Musik |
+| Glocke von innen | K14 durch Knochen, Zähne; geflickte Naht | Nahaufnahme der Glocke im Turm; die Schwebung deutlich |
+| Hall der Festung | K15 fast zwei Sekunden, „wie im Schwimmbad“ | Stufe 2 mit echtem Betonhall |
+| Stufe 3 | K17 zwei identische Stimmen, walliserdeutsch, nur eine pfeift | **dieselbe Sprecherin** für Kathi und Leni; einziger Unterschied: der S-Pfiff |
+| Pausen 2023 | K17 1,1 / 1,9 / 3,4 s | echte Pausen im Hörbuch |
+| Lied in der Halle | K18 „bliib“ gegen „gang heim“, H gegen B | Chor der Laien, Reibung hörbar |
+| Tablet-Stimme | K19 durch das Läuten | Anrufstimme aus einem kleinen Lautsprecher, dazu die Glocke voll |

@@ -67,3 +67,20 @@ Alles, was im Text steht, ist hier festgehalten. Neue Fakten werden beim Schreib
 - **Portugal-Nummer:** Festnetz über einen Internetanbieter (VoIP); Anfrage läuft.
 - **Band Stufe 1** (K8): 00:00:04 / 00:00:13 / 00:00:19 / 00:00:38; drei S ohne Pfeifen; Geisterton markiert.
 - **Ruth:** weiss seit K10 von Stick und Band.
+
+## Nachträge Kapitel 11–19
+- **Reto:** Briefe von Buchungsplattformen, Taschenrechner, eine abschliessbare Schublade; setzt nur für das Firn-Formular die Brille auf (K16); geht täglich zu A7; hat Nora das Foto von 1997 gegeben. Zu Mia: „Zieh den Stecker und steck ihn wieder ein.“
+- **Friedhof:** unter der Kapelle, schiefe Eisenkreuze; Alois Zuber (Stein mit Edelweiss); Holzkreuz *Josef und Rosa Walpen* mit leerem Streifen daneben. Martha geht donnerstags hin.
+- **Weg zu A7:** Militärweg auf der linken Seitenmoräne, an zwei Stellen weggeschmolzen → Eisquerung; Steigeisen, Seil 8 m (rot/blau). Portal unter einer Felsstirn, Stahltür, Betonwand bis halbe Höhe, Kette, neues Messingschloss, drei Parisienne-Stummel. Luftzug im Innern („zweites Loch“).
+- **Felsstufe:** Verschiebung am 4.9. (keine Kalbung), Eisschlag 20–30 m neben Nora und Aurel; Sensoralarm.
+- **Zahnakte Leni:** Zahnarzt Visp (Sohn), Bananenschachtel; 1975 Fraktur Zahn 21, Versorgung aus Kostengründen abgelehnt; Einträge bis 1994.
+- **Nora:** Mama biss ihr als Kind leicht in den Finger (Badewanne, Zahngeschichte). In Basel brannte jedes Jahr am 2.2. eine weisse Kerze. Nora verbrennt sich in K16 die Finger (verbunden bis mindestens K19).
+- **Heim:** Stalden, Siebzigerjahrebau, Geranien. Bruno: gross, weisses Haar, Wolldecke, Blick auf den Parkplatz.
+- **Kapelle:** Die Sakristei ist abschliessbar (Schlüssel an Sepps Rosenkranz), die Kapelle selbst nie. Glocke im Turm, erreichbar über eine Leiter, Taubendreck; Sepp läutet von Hand am Seil. Lehrerin Imboden (Z-Querstrich).
+- **Kantonspolizei Visp:** Erdgeschoss eines Verwaltungsgebäudes, Glastür mit Klingel. Beamter **Anthamatten**, etwa 25, protokolliert jede Handlung.
+- **Phonothek:** Bandofen (50 °C, 8 h), Mikrokassettenmaschine mit von Hand einstellbarem Kopfwinkel, neue Andruckrolle.
+- **Gemeindeversammlung:** Turnhalle, Bänke aus dem Geräteraum, Basketballkörbe; Pius’ Frau **Rosmarie** (Daunenweste); ein Gemeindepräsident; Schlusslied stehend („bliib“ die Jungen, „gang heim“ die Alten). Erster Nachtfrost am 12.9.
+- **Speicher hinter der Kapelle:** Treppe zur Tür, Heu zwischen den Stelzen.
+- **Inês Carvalho:** Ende fünfzig, schmales Gesicht, dunkle Augen, grauer Schal; weicher portugiesischer Akzent; Tablet in abgestossener Hülle. Foto: Mama im Rollstuhl mit Augensteuerung am Fenster über dem Douro.
+- **Brief (Frühjahr 2021):** „Für Nora. Wenn das Eis sie zurückgibt.“ Kugelschreiber, zittrige Schrift, Z mit Querstrich.
+- **Andante-Karte** (Porto) in der letzten Bank (K14).

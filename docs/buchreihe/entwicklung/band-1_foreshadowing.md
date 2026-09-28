@@ -86,3 +86,19 @@ Regel: Jedes Wiederauftauchen verschiebt die Bedeutung, es wiederholt sie nicht.
 | N-Sie? | K10 ✅ Fabienne: „Sie?“ | Nachfrage | Wer hat die Nummer abgemeldet? | K19 |
 | N-Ruth | K10 ✅ „nicht gefunden werden – oder dass du aufhörst zu suchen“ | Rat | Inês/Mamas Verfügung | K19 |
 | N-Genf | K10 ✅ Aurels Mutter „nach Genf, mit einem Mann“, hat nie geschrieben | Parallele | Band 2: Montreal als „Leni“ | Epilog |
+
+## G. Kapitel 11–19 (Status)
+✅ gesetzt: M-Band (K11 „Kann man da … noch etwas hören?“), I-Zahn-Umkehr (K12), I-Adieu (K9 → K13 erklärt), Agnes/Jacke (K13), M-Kerzen (Bruno K13), M-Z (Kerzenbuch K14, Fehlfährte zu Mama), N-Tafel, B2-Ferraris (K15), B2-Husten (K15), I-Foto97 (K16), B2-Schloss (K12, K16 „nicht meins“), A-Erzähl-du/Pausen (K17), B3-10 (K17, Kassette), M-H (K18), N-Parfüm → Inês (K19), A-Drehbuch (K19 Verfügung), A-Postfach (K19), B3-11 „Ich bin deine Mutter“ (K19).
+
+| ID | Neu in | Oberfläche | Wahre Bedeutung | Auflösung |
+|---|---|---|---|---|
+| N-Grab | K11 | Martha giesst den leeren Platz | Trauer um Kathi, nicht um Leni | K32 |
+| N-Geduld | K11 „Das hast du von –“ / „Von niemandem hier“ | Familienähnlichkeit | Band 3: von Leni | Band 3 |
+| N-Schreibmaschine | K13 Agnes | seltsamer Brief | Leni verbarg ihre Handschrift | K13 (verstanden) |
+| N-Traum | K13 (implizit: Aurel, Bruno) | – | Aurel sah Leni an die eigene Haustür kommen | K24 |
+| N-Kerze-21Uhr | K14 grosse Kerze 21.00 durch S.K. | Buchhaltung | Martha war ab 21 Uhr frei | K32 |
+| N-Glocke-1869 | K14 geflickte Glocke „singt ein bisschen falsch; die Leute hören es nicht mehr“ | Atmosphäre | Das Dorf hört Falsches nicht mehr (Martha, H) | K31 |
+| N-Italiener | K17 „deinen Italiener“ | Leni hatte einen Geliebten | Dario = Noras Vater | Band 2 |
+| N-Angst-Eis | K17 Leni zu Kathi: „Du hast doch Angst vor dem Eis“ | bestätigt Martha K4 | Prologfrau = Kathi, nachgewiesen | – |
+| N-Mann-in-Genf | K10 → K13 | – | – | Epilog |
+| N-Wassermelone | K19 Inês weiss Dinge über Nora | das Unheimliche | Nähe einer Fremden | K35 |

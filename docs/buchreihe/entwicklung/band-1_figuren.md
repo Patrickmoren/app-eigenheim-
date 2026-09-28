@@ -65,3 +65,12 @@ Jede Figur hat: Wunsch · Angst · Geheimnis · blinden Fleck · Widerspruch · 
 
 ## Bruno Imseng
 - Demenz: Er springt zwischen 1997 und heute; Wahrheiten kommen verschoben. Er verwechselt Nora mit Leni. Hustet dreimal. Stirbt am 18.9.
+
+## Nachträge Kapitel 11–19
+- **Nora:** Ihr blinder Fleck wird zur Handlung: Sie testet Aurel mit dem Husten (K15), statt ihm zu vertrauen. Ihr erster bewusster Verzicht aufs Lesen folgt in K18. In K17 misst sie Mamas Pausen und schliesst den Ordner – „Es gibt Dinge, die man nicht misst, solange man sie noch braucht.“
+- **Aurel:** Zorn als Verletzung, nicht als Distanz („Was von beidem wolltest du messen?“). Seine Moral kommt vom Vater (Stein durch Pius’ Fenster) – und genau der Vater hat sie gebrochen.
+- **Reto:** Angst statt Bosheit; als Vater zärtlich (Mia). Er gibt Nora das Foto, das er nicht verbrennen kann.
+- **Mia:** schützt ihren Vater und holt Nora; bringt kaltes Wasser für die Finger. Die Schwesternbindung ist gesetzt.
+- **Agnes:** Schuld des Schweigens („neunundzwanzig Jahre lang gedacht, dass ich alt werde“).
+- **Sepp:** gibt aus Loyalität zum Gelübde nach, als seine Schwester die Wahrheit ausspricht.
+- **Inês:** keine Entschuldigung, kein Trotz; sagt Zahlen, wie man Daten aufsagt. Das Unheimliche und das Zärtliche liegen im selben Satz: „Ich kenne Sie seit vier Jahren.“
