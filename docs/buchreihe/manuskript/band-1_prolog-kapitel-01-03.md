@@ -571,7 +571,9 @@ Ich ging die Reihe entlang, Stufe für Stufe, Jahrzehnt für Jahrzehnt, bis ich 
 
 *Kathi Zuber, Lichtmess 1995.*
 
-Eine junge Frau in einem roten Skianorak. Schnee im Haar, Schnee auf den Schultern, das Gesicht vom Blitz überbelichtet und trotzdem deutlicher als jedes Foto, das ich von ihr besass. Sie hielt die Kerze in beiden Armen, und sie lachte, mit offenem Mund, mit dem ganzen Gesicht, schmal wie ein Docht in dieser weiten Jacke.
+Eine junge Frau in einem roten Skianorak. Schnee im Haar, Schnee auf den Schultern, das Gesicht vom Blitz überbelichtet und trotzdem deutlicher als jedes Foto, das ich von ihr besass. Sie hielt die Kerze in beiden Armen, und sie lachte, mit offenem Mund, mit dem ganzen Gesicht: das Gesicht schmal, die Jacke zu weit, die Kerze vor dem Bauch wie ein zweiter Körper.
+
+Lichtmess 1995. Fünf Wochen später war ich auf der Welt. Irgendwo hinter dieser Kerze war ich gewesen.
 
 Meine Mutter mit siebenundzwanzig. Ich hatte sie nie so lachen sehen. Nicht einmal auf Fotos, denn es gab kaum Fotos von ihr, und auf denen, die es gab, sah sie aus wie jemand, der gleich aus dem Bild treten will.
 

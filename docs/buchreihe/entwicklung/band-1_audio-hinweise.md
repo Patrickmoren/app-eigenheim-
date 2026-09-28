@@ -21,3 +21,18 @@ Prinzip: Jedes Motiv durchläuft **Atmosphäre → Hinweis → Beweis**. Im Hör
 | **Stille in Studio 3** | K1 | K25: Nora sucht die Stille, findet sie nicht | K44 | 3 Sekunden echte Stille in K1 nach dem Auflegen |
 
 **Hörbuch-Grundsatz:** Kein Geräusch wird eingefügt, das im Text keine Quelle hat. Die Tonband-Transkripte werden als Tondokumente produziert (gleiche Sprecherin für Kathi und Leni mit minimalen Unterschieden, Pfiff als einziges Unterscheidungsmerkmal).
+
+## Nachträge Kapitel 4–10
+| Motiv | Stelle | Regie |
+|---|---|---|
+| Lied in F, H statt B | K4 Martha singt; Nora summt später unbewusst mit B | Sprecherin singt die Stelle tatsächlich; Martha H, Nora B – hörbarer Kontrast |
+| Retos Halbton | K4 „Das Glas ist gesprungen“ | Die Lüge liegt einen Halbton höher als die Umgebung |
+| Gletschermühle | K6 Ton D, etwas zu tief | echter Moulin-Ton, leicht unter D |
+| Glocke als Stillstand | K7 drei Minuten, kein Klingeln | Glocke volle 20–30 s ausspielen, darunter kein Telefon |
+| Aufnahme 2020 | K7 Dialekt, Unterbrechungen, Husten im Wort, Basler Glocke „nicht die richtige Viertelstunde“ | Mama-Sprecherin im Dialekt, lebendig, ungleichmässig. Direkter Hörkontrast zur Anrufstimme aus K1, **ohne** dass der Text vergleicht |
+| Reto: 3 s / 7 Wörter | K8 | echte 3 Sekunden Pause |
+| Band Stufe 1 | K8 Flüstern, Zittern, S ohne Pfiff, Lidschlag-Klicks, Geisterlachen | Klicks am Anfang jedes Einsatzes; ein Kinderlachen tief im Rauschen (−40 dB) |
+| Dorfsatz | K9 „Hat nie geschrieben“ mit gleicher Pause, dreimal | drei verschiedene Sprecher, identische Pausenlänge |
+| Stadtschuhe | K9 Kies, dünne Sohlen | Schrittgeräusch klar anders als die Bergschuhe |
+| Portugiesische Ansage | K10 „não está atribuído“ | echte Ansage |
+| Eis als Saite | K10 kurze, gedämpfte Töne | Spannungsrisse im nächtlichen Eis |

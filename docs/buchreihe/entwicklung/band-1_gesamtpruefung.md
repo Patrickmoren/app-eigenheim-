@@ -101,3 +101,15 @@ Ja, wenn E1 und E2 entschieden sind und die Beweiskette aus der Mystery-Matrix b
 
 ## Blockprüfungen
 *(werden nach jedem Kapitelblock ergänzt)*
+
+### Blockprüfung 1 – Kapitel 4–10 (29.09.2026)
+- **Plot:** Keine Lücke gefunden. Korrigiert: Die Zeitangabe „neunundzwanzig“ Tage bis Monatsende war falsch (jetzt „dreissig“). Der Stick steckte in der Tasche „wo die Tote ihre Kerze trug“ – das war die falsche Jacke (korrigiert).
+- **Theorie A:** Acht unabhängige, echte Belege, und keiner davon ist gelogen: Zähne, Zwillinge, DNA, Bandstimme, Martha, Reto, Agnes, Rückrechnung. Die Leserin hat allen Grund, A zu glauben.
+- **Theorie B:** Sie wirkt über Stimmungen, nicht über Beweise: „ohne Adieu“, „hat man gesagt“, der auswendig gelernte Satz, der Nagel, Agnes und die Jacke, das Zittern, die abgeschaltete Nummer. **Risiko:** Noras letzter Satz in K10 („Sie glaubte es nicht“) ist die deutlichste Einladung zu B. Das bleibt so, weil es ein Gefühl ist und kein Hinweis, und weil K12 es einlösen muss.
+- **Neue Hinweise:** Keiner ist spektakulär, alle sind in der Matrix verankert (Abschnitte 7/8, Foreshadowing F).
+- **Figuren:** Martha ist warm und lenkt zugleich (drei Stellen). Reto lügt zweimal hörbar. Mia ist eigenständig (Lausanne). Aurel hat eine eigene Wunde (Mutter). Fabienne bricht aus Motiv (Chef, Frist) eine Regel. Ruth wird Verbündete.
+- **Spannung:** Jedes Kapitel verschiebt die Arbeitshypothese oder eine Beziehung. Schwächstes Kapitel: **K10**. Die erste Hälfte (Telefonate) ist statisch; sie trägt nur dank Ruths Satz und der Abschaltung der Nummer. Bei der Überarbeitung (Phase 14) die Telefonate straffen.
+- **Sprache:** Wiederkehrende Muster, die in Phase 18 ausgedünnt werden: „sagte X, als …“, „so wie man …“, „Ich hörte …“ am Satzanfang. Keine Verstösse gegen die Verbotsliste.
+- **Umfang:** K6 und K10 sind kurz (rund 1.250 Wörter). Das ist beabsichtigt; das Umfangsziel ist angepasst (Produktionsplan).
+- **Audio:** Der Kontrast Mama 2020 und Anrufstimme 2026 funktioniert im Hörbuch, ohne dass der Text vergleicht. Das ist die stärkste Hörbuchstelle bisher.
+- **Informationssperren:** eingehalten (Firn, Werlen, ALS/Inês, Zahnakte, Reto).

@@ -75,3 +75,18 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 - „Werlen“ ausgeschrieben: Kapitel 41
 - „Firn“: ab Kapitel 18
 - Reto als Nicht-Vater: in Band 1 nie ausgesprochen
+
+## 7. Nachträge aus Kapitel 4–10
+- **Herkunft der Dorfversion:** „Nach Kanada, hat nie geschrieben“ stammt von Martha (beim Bäcker, Februar 1997). *(K9, Agnes)*
+- **Offizielle Aosta-Version (plausibel, E1):** Kathi fuhr Ende Februar 1995 wegen einer schweren Schwangerschaft in eine Klinik nach Aosta, über einen Arzt, den Alois kannte. Im April kam sie mit dem Kind zurück. Mamas Lawinenversion gegenüber Nora ist eine vereinfachte Lüge. *(K9)*
+- **Kathi fürchtete das Eis** (Martha K4, wahr). Die Frau im Prolog fürchtete als Kind das Singen des Eises → stützt B, klingt aber wie A („Leni war die vom Eis“).
+- **Lenis Jacke:** Martha hat sie 29 Jahre aufbewahrt („Grosi gibt nie was her“, Mia K7). Agnes erkennt die Jacke (K9, reibt den Ärmel) und schweigt.
+- **Mamas Anekdote „erstes Wort: Nein“** (K5): Band 3 – Leni war beim ersten Wort nicht dabei (sie war die Tante). Die Anekdote ist erfunden.
+- **Kanada-Anfrage** (K8): Die Antwort kommt erst in **K44**: „Magdalena Walpen, eingereist 3.2.1997, wohnhaft Montreal.“ Das bereitet den Epilog fair vor.
+- **Portugal-Anfrage zum Anschluss** (K5): Antwort frühestens in K26 (VoIP-Anschluss auf Inês Carvalho).
+- **Retos Lüge** (K8): „Sie hat ihn verloren. In dem Winter.“ Er stützt Theorie A auf Marthas Linie.
+- **Fabiennes Stick** (K8): Noras erster Regelverstoss. Die Frist ist Ende September (Chef).
+
+## 8. Stand der Theorien nach Kapitel 10
+- **A (dominant):** Die Tote ist Leni. Belege: Zähne, Zwillinge, DNA, Bandstimme ohne Pfeifen, Martha („nie in Kanada angekommen“), Reto (Ring verloren), Agnes („die Leni hab ich nicht gehen sehen“), Aurel (Sturzort bei der Festung, Leni war Bergführerin).
+- **B (unterschwellig):** Mit der Familiengeschichte stimmt etwas nicht. Signale: „ohne Adieu“, „hat man gesagt“, das auswendig gelernte Dorf, Retos Pause, der frische Nagel, Agnes und die Jacke, Mamas Lawinenlüge, das Zittern einer Stimme, die keine Angst vor dem Eis haben sollte, die abgeschaltete Nummer, Noras eigenes „Sie glaubte es nicht“.

@@ -1,6 +1,11 @@
 # Band 1 – Offene und getroffene Entscheidungen
 
-## OFFEN – Entscheidung des Autors nötig
+## ENTSCHIEDEN DURCH DEN AUTOR
+
+- **E1 angenommen (29.09.2026)** mit Präzisierung: Das Foto beweist *nicht*, dass Kathi nicht schwanger war; es ist nur rückblickend ein Warnsignal. Keine Erklärung im Text, warum das Dorf nichts hinterfragte. Die offizielle Aosta-Geschichte (Klinik, schwere Schwangerschaft, Kontakt des alten Zuber) bleibt in Band 1 plausibel. Umgesetzt in K3 und K9.
+- **E2 angenommen (29.09.2026):** Martha vergiftet Nora nicht. Der Kuchen ist für Martha selbst; „Nicht du. Davon nicht.“ bleibt wörtlich; Nora rettet Martha. Die Spiegelung zu 1997 wird **nicht erklärt**, sie wird erlebt.
+
+## (Archiv) Vorlagen zu E1/E2
 
 ### E1 · KONTINUITÄTSPROBLEM – Das Lichtmess-Foto 1995
 **Problem:** Kapitel 3 zeigt „Kathi Zuber, Lichtmess 1995“, schmal, fünf Wochen vor Noras Geburt. Wenn Kathi sichtbar nicht schwanger war, wusste 1995 das ganze Dorf, dass Nora nicht ihr leibliches Kind ist. Damit ist das Band-3-Geheimnis (Leni ist die leibliche Mutter) nicht mehr zu halten, oder das Dorf hätte Nora längst eingeweiht.

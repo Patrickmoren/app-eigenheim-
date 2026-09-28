@@ -10,7 +10,7 @@ Format je Eintrag: **Problem → Lösung → konkrete Änderung → Kapitel → 
 | Hinweis-Cluster Martha | Fingerhut aus K3 entfernen | Karte nur noch Enzian, Edelweiss, Männertreu; Fingerhut im Garten in K4 | 3 → 4 | Hinweise entzerren | ✅ |
 | Frequenz-Tick | höchstens eine Zahl pro Kapitel | „hundert Hertz“ in K2 gestrichen | 2 | Glaubwürdigkeit der Stimme | ✅ |
 | Notiz im Manuskript | Trennung Manuskript / Entwicklung | Entwicklungsnotiz aus der Manuskriptdatei entfernt, Inhalt in `entwicklung/` | – | eine Wahrheit | ✅ |
-| Foto 1995 unlogisch | E1 | ein Halbsatz in K3 | 3 | Band-3-Hinweis retten | ⏳ wartet auf Autor |
+| Foto 1995 unlogisch | E1 | ein Halbsatz in K3 | 3 | Band-3-Hinweis retten | ✅ (E1 angenommen) |
 | Vergleichsdichte K3 | später straffen | Sprachlektorat | 3 | Rhythmus | Phase 18 |
 
 ## B. Kapitel 4–10 (Phase 5/6) – neuer Plan
@@ -43,7 +43,7 @@ Format je Eintrag: **Problem → Lösung → konkrete Änderung → Kapitel → 
 | 25 | Möwenschleife; das identische Pfeifen; der Anruf vom 17.11.2024 mit wechselndem Latenzmuster. | D4, A-Pfeifen |
 | 25/31 | Nora analysiert Aurels Stimme, statt ihm zu glauben; er merkt es. | Romance-Leitsatz |
 | 36 | Porto: Inês’ Rechner, das Protokoll vom 17.11.2024 | D4 |
-| 40–43 | Finale nach E2 (falls angenommen) | E2 |
+| 40–43 | Finale nach E2 (angenommen): Kuchen für Martha selbst, „Nicht du. Davon nicht.“, Nora rettet sie, Spiegelung nicht erklärt | E2 |
 | 43 | Das Band: „Lass mich los, Martha – sie lebt noch!“ | D5 |
 | 44 | Zum ersten Mal ausgesprochen: „Zuhören ist nicht dasselbe wie Vertrauen“ | Leitsatz |
 
@@ -61,4 +61,6 @@ Format je Eintrag: **Problem → Lösung → konkrete Änderung → Kapitel → 
 | 14–19 | Gesamtlektorat; Fairness-, Foreshadowing-, Kontinuitäts-, Sprach- und Hörbuchtest | alle | Protokoll in der Gesamtprüfung |
 | 20–22 | BoD, Cover, Klappentext, Metadaten, Veröffentlichungsprüfung | `publikation/` | aktuelle BoD-Anforderungen **recherchiert und mit Quelle belegt**, nicht aus dem Gedächtnis |
 
-**Umfangsziel:** 44 Kapitel à 1.800–2.600 Wörter, insgesamt ≈ 95.000 Wörter (Prolog bis Kapitel 3: rund 7.800).
+**Umfangsziel (angepasst nach Block 1):** Kapitel von 1.200 bis 2.600 Wörtern; kurze Kapitel sind im Genre ein Vorteil. Gesamt ≈ 80.000–90.000 Wörter. Mittlere Kapitel (Midpoint, Finale) dürfen länger sein.
+
+**Stand:** Prolog–K3 ≈ 7.800 · K4–10 ≈ 10.700 (✅ geschrieben, Blockprüfung 1 ✅).
