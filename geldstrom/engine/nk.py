@@ -37,11 +37,13 @@ HGT_MIT_WW = [13.6, 12.1, 11.5, 9.3, 5.6, 3.7, 3.7, 3.6, 3.7, 9.5, 10.7, 13.0]
 
 # Positionen, die in der Regel keine Nebenkosten sind (Art. 257b OR, Art. 5 VMWG):
 # Unterhalt, Reparaturen, Erneuerung, Kapitalkosten, Gebäudeversicherung, Steuern.
-UNZULAESSIG = [
-    "reparatur", "ersatz", "erneuerung", "sanierung", "renovation", "neuanschaffung",
-    "gebäudeversicherung", "gebaeudeversicherung", "liegenschaftssteuer",
-    "hypothek", "zins", "abschreibung", "amortisation", "unterhalt", "instandstellung",
-]
+UNZULAESSIG = re.compile(
+    r"reparatur|\bersatz|erneuerung|sanierung|renovation|neuanschaffung|gebäudeversicherung|gebaeudeversicherung|"
+    r"liegenschaftssteuer|hypothek|\bzins|abschreibung|amortisation|\bunterhalt|instandstellung",
+    re.IGNORECASE)
+
+# Bezeichnungen, unter denen ein Mietvertrag Verwaltungskosten als Nebenkosten vorsieht
+VERWALTUNG_VEREINBART = ("Verwaltungsaufwand", "Verwaltungskosten", "Verwaltungshonorar")
 
 MONATE = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",
           "September", "Oktober", "November", "Dezember"]
@@ -162,6 +164,9 @@ def rechne(daten):
         if eid not in einheiten:
             befund.fehler(f"Mietverhältnis {mv.get('mieter')}: Einheit «{eid}» existiert nicht.")
             continue
+        if mv.get("nebenkosten_art") == "pauschal":
+            befund.info(f"{mv.get('mieter')} ({eid}): Nebenkostenpauschale – keine Abrechnung, Anteil trägt die Vermieterschaft.")
+            continue
         von = max(datum(mv["von"]), p_von)
         bis = min(datum(mv["bis"]) if mv.get("bis") else p_bis, p_bis)
         if bis < von:
@@ -186,8 +191,7 @@ def rechne(daten):
             betrag, detail = heizoel_verbrauch(pos["lager"], befund, name)
         else:
             betrag = round(float(pos["betrag"]), 2)
-        tief = name.lower()
-        if any(w in tief for w in UNZULAESSIG) and not pos.get("zulaessig_bestaetigt"):
+        if UNZULAESSIG.search(name) and not pos.get("zulaessig_bestaetigt"):
             befund.warnung(f"Position «{name}»: klingt nach Unterhalt/Kapitalkosten – in der Regel keine Nebenkosten. "
                            "Prüfen oder mit \"zulaessig_bestaetigt\": true freigeben.")
         if betrag < 0:
@@ -198,6 +202,9 @@ def rechne(daten):
 
         if schluessel == "direkt":
             anteile = {eid: float(v) for eid, v in pos["direkt"].items()}
+            for eid in anteile:
+                if eid not in einheiten:
+                    befund.fehler(f"Position «{name}»: Einheit «{eid}» existiert nicht.")
             summe = sum(anteile.values())
             if abs(summe - betrag) > 0.05:
                 befund.fehler(f"Position «{name}»: direkte Beträge ({chf(summe)}) ≠ Gesamtbetrag ({chf(betrag)}).")
@@ -252,7 +259,15 @@ def rechne(daten):
             befund.warnung(f"{mv['mieter']} ({mv['einheit']}): «{name}» ist im Mietvertrag nicht vereinbart – "
                            f"CHF {chf(anteil)} gehen zulasten Vermieterschaft.")
         kosten = sum(z["betrag"] for z in mv["_zeilen"])
-        honorar = kosten * honorar_pct / 100
+        vereinbart = mv.get("vereinbarte_positionen")
+        voll_honorar = vereinbart is None or any(v in vereinbart for v in VERWALTUNG_VEREINBART)
+        basis = kosten if voll_honorar else sum(z["betrag"] for z in mv["_zeilen"] if z["kategorie"] == "heizung")
+        honorar = basis * honorar_pct / 100
+        mv["_honorar_nur_heizung"] = not voll_honorar
+        if honorar_pct and not voll_honorar:
+            befund.info(f"{mv['mieter']} ({mv['einheit']}): Mietvertrag nennt keine Verwaltungskosten – "
+                        "Verwaltungsaufwand nur auf Heiz- und Warmwasserkosten berechnet.")
+        mv["_kosten_roh"] = kosten
         mv["_kosten"] = round(kosten, 2)
         mv["_honorar"] = round(honorar, 2)
         mv["_total"] = round(kosten + honorar, 2)
@@ -268,7 +283,7 @@ def rechne(daten):
         mv["_saldo"] = auf_5_rappen(mv["_total"] - mv["_akonto"])
         jahr = mv["_total"] / (tage(mv["_von"], mv["_bis"]) / periodentage)
         # Empfehlung nur für Mietverhältnisse, die über das Periodenende hinaus laufen
-        laeuft_weiter = mv["_bis"] == p_bis
+        laeuft_weiter = not mv.get("bis") or datum(mv["bis"]) > p_bis
         mv["_akonto_empfehlung"] = math.ceil(jahr * 1.05 / 12 / 5) * 5 if laeuft_weiter else None
         if mv["_akonto"] > 0 and abs(mv["_saldo"]) > 0.5 * mv["_akonto"]:
             befund.warnung(f"{mv['mieter']} ({mv['einheit']}): Saldo CHF {chf(mv['_saldo'])} ist mehr als die Hälfte "
@@ -284,9 +299,9 @@ def rechne(daten):
 
     # Kontrollsumme: alles Verteilte + Vermieteranteil = Gesamtkosten
     total_kosten = sum(p["betrag"] for p in positionen)
-    verteilt = sum(mv["_kosten"] for mv in mv_liste)
+    verteilt = sum(mv["_kosten_roh"] for mv in mv_liste)
     differenz = total_kosten - verteilt - vermieter["leerstand"] - vermieter["nicht_vereinbart"]
-    if abs(differenz) > 0.05:
+    if abs(differenz) > 0.01:
         befund.fehler(f"Kontrollsumme: Differenz von CHF {chf(differenz)} zwischen Gesamtkosten und Verteilung.")
 
     ergebnis = {"daten": daten, "positionen": positionen, "mietverhaeltnisse": mv_liste,
@@ -314,6 +329,8 @@ tr.summe td { font-weight: bold; border-top: 0.8pt solid #333; border-bottom: no
 tr.saldo td { font-weight: bold; font-size: 11pt; border-top: 1.2pt solid #111; }
 .klein { font-size: 8pt; color: #555; line-height: 1.35; }
 .box { border: 0.6pt solid #999; padding: 3mm 4mm; margin: 4mm 0; }
+.muster { position: fixed; top: 40%; left: 0; right: 0; text-align: center; font-size: 60pt; font-weight: bold;
+  color: rgba(0,0,0,.07); transform: rotate(-30deg); pointer-events: none; }
 .fehler { color: #b00020; } .warnung { color: #8a5a00; }
 h2 { font-size: 11pt; margin: 7mm 0 1mm; }
 """
@@ -335,7 +352,12 @@ def schluessel_text(z):
     return f"{z['basis']:g} / {z['basis_total']:g} {z['schluessel']}"
 
 
+MUSTER = False
+
+
 def seite(titel, inhalt):
+    if MUSTER:
+        inhalt = "<div class='muster'>MUSTER – fiktive Daten</div>" + inhalt
     return (f"<!doctype html><html lang='de-CH'><head><meta charset='utf-8'>"
             f"<title>{e(titel)}</title><style>{CSS}</style></head><body><div class='blatt'>{inhalt}</div></body></html>")
 
@@ -350,8 +372,9 @@ def abrechnung_html(erg, mv):
         zeit = f"{z['zeitanteil'] * 100:.2f} % ({zeitart_text[z['zeitart']]})"
         zeilen.append(f"<tr><td>{e(z['position'])}</td><td class='z'>{chf(z['gesamt'])}</td>"
                       f"<td>{e(schluessel_text(z))}</td><td class='z'>{zeit}</td><td class='z'>{chf(z['betrag'])}</td></tr>")
-    if erg["honorar_pct"]:
-        zeilen.append(f"<tr><td>Verwaltungsaufwand ({erg['honorar_pct']:g} % der Nebenkosten)</td><td></td><td></td><td></td>"
+    if erg["honorar_pct"] and mv["_honorar"]:
+        basis_text = "der Heiz- und Warmwasserkosten" if mv["_honorar_nur_heizung"] else "der Heiz- und Nebenkosten"
+        zeilen.append(f"<tr><td>Verwaltungsaufwand ({erg['honorar_pct']:g} % {basis_text})</td><td></td><td></td><td></td>"
                       f"<td class='z'>{chf(mv['_honorar'])}</td></tr>")
     saldo = mv["_saldo"]
     frist = datum_ch(dt.date.fromisoformat(d.get("abrechnungsdatum", dt.date.today().isoformat())) + dt.timedelta(days=30))
@@ -482,6 +505,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
     with open(args.eingabe, encoding="utf-8") as f:
         daten = json.load(f)
+    global MUSTER
+    MUSTER = bool(daten.get("muster"))
     erg, befund = rechne(daten)
     dateien = schreibe(erg, befund, args.out, args.pdf)
     print(befund.text(), end="")

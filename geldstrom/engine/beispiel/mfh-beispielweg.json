@@ -1,4 +1,5 @@
 {
+  "muster": true,
   "abrechnungsdatum": "2026-09-30",
   "vermieter": {
     "name": "Ruth und Hans Muster",
@@ -12,57 +13,204 @@
     "bezeichnung": "MFH Beispielweg 5",
     "adresse": "Beispielweg 5, 8400 Winterthur"
   },
-  "periode": { "von": "2025-07-01", "bis": "2026-06-30" },
-  "heizung": { "mit_warmwasser": true },
+  "periode": {
+    "von": "2025-07-01",
+    "bis": "2026-06-30"
+  },
+  "heizung": {
+    "mit_warmwasser": true
+  },
   "verwaltungshonorar_prozent": 4,
   "einheiten": [
-    { "id": "EG links",  "zimmer": 3.5, "schluessel": { "m2": 78 } },
-    { "id": "EG rechts", "zimmer": 2.5, "schluessel": { "m2": 58 } },
-    { "id": "1. OG",     "zimmer": 4.5, "schluessel": { "m2": 102 } },
-    { "id": "2. OG",     "zimmer": 4.5, "schluessel": { "m2": 102 } }
+    {
+      "id": "EG links",
+      "zimmer": 3.5,
+      "schluessel": {
+        "m2": 78
+      }
+    },
+    {
+      "id": "EG rechts",
+      "zimmer": 2.5,
+      "schluessel": {
+        "m2": 58
+      }
+    },
+    {
+      "id": "1. OG",
+      "zimmer": 4.5,
+      "schluessel": {
+        "m2": 102
+      }
+    },
+    {
+      "id": "2. OG",
+      "zimmer": 4.5,
+      "schluessel": {
+        "m2": 102
+      }
+    }
   ],
   "mietverhaeltnisse": [
-    { "einheit": "EG links", "mieter": "Anna Keller", "von": "2019-04-01", "akonto_monatlich": 250,
-      "vereinbarte_positionen": ["Heizöl", "Heizungsservice und Kaminfeger", "Strom Heizung/Warmwasser",
-        "Wasser und Abwasser", "Allgemeinstrom", "Hauswartung", "Kehricht Grundgebühr", "Kabel-TV"] },
-    { "einheit": "EG rechts", "mieter": "Marco Rossi", "von": "2021-10-01", "bis": "2025-11-30", "akonto_monatlich": 190,
+    {
+      "einheit": "EG links",
+      "mieter": "Anna Keller",
+      "von": "2019-04-01",
+      "akonto_monatlich": 250,
+      "vereinbarte_positionen": [
+        "Heizöl",
+        "Heizungsservice und Kaminfeger",
+        "Strom Heizung/Warmwasser",
+        "Wasser und Abwasser",
+        "Allgemeinstrom",
+        "Hauswartung",
+        "Kehricht Grundgebühr",
+        "Kabel-TV",
+        "Verwaltungsaufwand"
+      ]
+    },
+    {
+      "einheit": "EG rechts",
+      "mieter": "Marco Rossi",
+      "von": "2021-10-01",
+      "bis": "2025-11-30",
+      "akonto_monatlich": 190,
       "adresse": "Neugasse 3, 8005 Zürich",
-      "vereinbarte_positionen": ["Heizöl", "Heizungsservice und Kaminfeger", "Strom Heizung/Warmwasser",
-        "Wasser und Abwasser", "Allgemeinstrom", "Hauswartung", "Kehricht Grundgebühr"] },
-    { "einheit": "EG rechts", "mieter": "Lea Brunner", "von": "2025-12-01", "akonto_monatlich": 200,
-      "vereinbarte_positionen": ["Heizöl", "Heizungsservice und Kaminfeger", "Strom Heizung/Warmwasser",
-        "Wasser und Abwasser", "Allgemeinstrom", "Hauswartung", "Kehricht Grundgebühr", "Kabel-TV"] },
-    { "einheit": "1. OG", "mieter": "Familie Meier", "von": "2016-07-01", "akonto_monatlich": 320,
-      "vereinbarte_positionen": ["Heizöl", "Heizungsservice und Kaminfeger", "Strom Heizung/Warmwasser",
-        "Wasser und Abwasser", "Allgemeinstrom", "Hauswartung", "Kehricht Grundgebühr", "Kabel-TV"] },
-    { "einheit": "2. OG", "mieter": "Thomas Weber", "von": "2025-09-01", "akonto_monatlich": 320,
-      "vereinbarte_positionen": ["Heizöl", "Heizungsservice und Kaminfeger", "Strom Heizung/Warmwasser",
-        "Wasser und Abwasser", "Allgemeinstrom", "Hauswartung", "Kehricht Grundgebühr", "Kabel-TV"] }
+      "vereinbarte_positionen": [
+        "Heizöl",
+        "Heizungsservice und Kaminfeger",
+        "Strom Heizung/Warmwasser",
+        "Wasser und Abwasser",
+        "Allgemeinstrom",
+        "Hauswartung",
+        "Kehricht Grundgebühr"
+      ]
+    },
+    {
+      "einheit": "EG rechts",
+      "mieter": "Lea Brunner",
+      "von": "2025-12-01",
+      "akonto_monatlich": 200,
+      "vereinbarte_positionen": [
+        "Heizöl",
+        "Heizungsservice und Kaminfeger",
+        "Strom Heizung/Warmwasser",
+        "Wasser und Abwasser",
+        "Allgemeinstrom",
+        "Hauswartung",
+        "Kehricht Grundgebühr",
+        "Kabel-TV",
+        "Verwaltungsaufwand"
+      ]
+    },
+    {
+      "einheit": "1. OG",
+      "mieter": "Familie Meier",
+      "von": "2016-07-01",
+      "akonto_monatlich": 320,
+      "vereinbarte_positionen": [
+        "Heizöl",
+        "Heizungsservice und Kaminfeger",
+        "Strom Heizung/Warmwasser",
+        "Wasser und Abwasser",
+        "Allgemeinstrom",
+        "Hauswartung",
+        "Kehricht Grundgebühr",
+        "Kabel-TV",
+        "Verwaltungsaufwand"
+      ]
+    },
+    {
+      "einheit": "2. OG",
+      "mieter": "Thomas Weber",
+      "von": "2025-09-01",
+      "akonto_monatlich": 320,
+      "vereinbarte_positionen": [
+        "Heizöl",
+        "Heizungsservice und Kaminfeger",
+        "Strom Heizung/Warmwasser",
+        "Wasser und Abwasser",
+        "Allgemeinstrom",
+        "Hauswartung",
+        "Kehricht Grundgebühr",
+        "Kabel-TV",
+        "Verwaltungsaufwand"
+      ]
+    }
   ],
   "kosten": [
-    { "position": "Heizöl", "kategorie": "heizung", "schluessel": "m2", "typ": "heizoel_lager",
+    {
+      "position": "Heizöl",
+      "kategorie": "heizung",
+      "schluessel": "m2",
+      "typ": "heizoel_lager",
       "beleg": "Lagerkontrolle 30.06.2026; Rechnungen Heizöl AG 14.10.2025, 20.02.2026",
       "lager": {
-        "anfangsbestand_liter": 2400, "anfangsbestand_chf": 2376.00,
+        "anfangsbestand_liter": 2400,
+        "anfangsbestand_chf": 2376.0,
         "einkaeufe": [
-          { "datum": "2025-10-14", "liter": 4000, "chf": 4120.00 },
-          { "datum": "2026-02-20", "liter": 3000, "chf": 3180.00 }
+          {
+            "datum": "2025-10-14",
+            "liter": 4000,
+            "chf": 4120.0
+          },
+          {
+            "datum": "2026-02-20",
+            "liter": 3000,
+            "chf": 3180.0
+          }
         ],
         "endbestand_liter": 2600
-      } },
-    { "position": "Heizungsservice und Kaminfeger", "kategorie": "heizung", "schluessel": "m2", "betrag": 612.40,
-      "beleg": "Service Wärmetechnik GmbH 03.11.2025; Kaminfeger 18.09.2025" },
-    { "position": "Strom Heizung/Warmwasser", "kategorie": "heizung", "schluessel": "m2", "betrag": 488.15,
-      "beleg": "Stadtwerk, Zähler Heizung, 4 Quartalsrechnungen" },
-    { "position": "Wasser und Abwasser", "kategorie": "nebenkosten", "schluessel": "m2", "betrag": 1864.30,
-      "beleg": "Stadtwerk Jahresrechnung 2025/26" },
-    { "position": "Allgemeinstrom", "kategorie": "nebenkosten", "schluessel": "gleich", "betrag": 402.75,
-      "beleg": "Stadtwerk, Zähler Allgemein" },
-    { "position": "Hauswartung", "kategorie": "nebenkosten", "schluessel": "m2", "betrag": 2160.00,
-      "beleg": "Hauswartvertrag, 12 × CHF 180.–" },
-    { "position": "Kehricht Grundgebühr", "kategorie": "nebenkosten", "schluessel": "gleich", "betrag": 520.00,
-      "beleg": "Stadt Winterthur Grundgebühr 2025/26" },
-    { "position": "Kabel-TV", "kategorie": "nebenkosten", "schluessel": "gleich", "betrag": 336.00,
-      "beleg": "Kabelnetz AG, 4 × CHF 7.– × 12" }
+      }
+    },
+    {
+      "position": "Heizungsservice und Kaminfeger",
+      "kategorie": "heizung",
+      "schluessel": "m2",
+      "betrag": 612.4,
+      "beleg": "Service Wärmetechnik GmbH 03.11.2025; Kaminfeger 18.09.2025"
+    },
+    {
+      "position": "Strom Heizung/Warmwasser",
+      "kategorie": "heizung",
+      "schluessel": "m2",
+      "betrag": 488.15,
+      "beleg": "Stadtwerk, Zähler Heizung, 4 Quartalsrechnungen"
+    },
+    {
+      "position": "Wasser und Abwasser",
+      "kategorie": "nebenkosten",
+      "schluessel": "m2",
+      "betrag": 1864.3,
+      "beleg": "Stadtwerk Jahresrechnung 2025/26"
+    },
+    {
+      "position": "Allgemeinstrom",
+      "kategorie": "nebenkosten",
+      "schluessel": "gleich",
+      "betrag": 402.75,
+      "beleg": "Stadtwerk, Zähler Allgemein"
+    },
+    {
+      "position": "Hauswartung",
+      "kategorie": "nebenkosten",
+      "schluessel": "m2",
+      "betrag": 2160.0,
+      "beleg": "Hauswartvertrag, 12 × CHF 180.–"
+    },
+    {
+      "position": "Kehricht Grundgebühr",
+      "kategorie": "nebenkosten",
+      "schluessel": "gleich",
+      "betrag": 520.0,
+      "beleg": "Stadt Winterthur Grundgebühr 2025/26"
+    },
+    {
+      "position": "Kabel-TV",
+      "kategorie": "nebenkosten",
+      "schluessel": "gleich",
+      "betrag": 336.0,
+      "beleg": "Kabelnetz AG, 4 × CHF 7.– × 12"
+    }
   ]
 }

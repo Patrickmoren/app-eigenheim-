@@ -17,7 +17,7 @@ import urllib.parse
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 
-BETREFF = "Nebenkostenabrechnungen Ihrer Vermieter-Kunden – CHF 60 pro vermitteltem Auftrag"
+BETREFF = "Nebenkostenabrechnungen Ihrer Vermieter-Kunden"
 
 TEXT = """{anrede}
 
@@ -25,20 +25,24 @@ Viele Ihrer Privatkunden mit Mietliegenschaften müssen jedes Jahr eine Heiz- un
 
 Ich komme aus der Immobilienbewirtschaftung und erstelle diese Abrechnungen als Fixpreis-Service (ab CHF 290 pro Liegenschaft, inkl. Mieterwechsel und Heizöl-Lager). Die Kundschaft sendet die Belege per E-Mail, nach 5 Arbeitstagen liegen versandbereite Abrechnungen für alle Mietparteien vor. Bezahlt wird erst nach Freigabe des Entwurfs.
 
-Für jeden vermittelten Auftrag erhalten Sie CHF 60. Sie geben nur den Kontakt weiter; Ihre Kundenbeziehung bleibt selbstverständlich unberührt, und ich biete keine Treuhand- oder Steuerleistungen an.
+Wenn Sie Kunden an mich verweisen möchten: Pro Auftrag erhalten Sie CHF 60 Vermittlungsprovision, die Sie Ihrer Kundschaft gegenüber offenlegen – oder, wenn Ihnen das lieber ist, erhält Ihre Kundschaft stattdessen CHF 60 Rabatt. Ich biete keine Treuhand- oder Steuerleistungen an; Ihre Kundenbeziehung bleibt unberührt.
 
-Ein Beispiel einer fertigen Abrechnung: {website}/beispiel-abrechnung.pdf
+Ein Beispiel (fiktive Daten): {website}/beispiel-abrechnung.pdf
 Angebot für Ihre Kundschaft: {website}
 
 Passt es, wenn ich Sie diese Woche kurz anrufe (5 Minuten)?
 
 Freundliche Grüsse
 {name}
-{telefon}"""
+Nebenkosten fixfertig · {telefon} · {website}
 
-LEITFADEN = """Guten Tag, {name} – ich erstelle Heiz- und Nebenkostenabrechnungen für Privatvermieter
+Falls kein Interesse besteht, genügt eine kurze Antwort – ich melde mich dann nicht mehr."""
+
+LEITFADEN = """VOR DEM ANRUF: Nummer auf local.ch prüfen – mit Stern (*) nicht anrufen (Art. 3 Abs. 1 lit. u UWG).
+
+Guten Tag, {name} – ich erstelle Heiz- und Nebenkostenabrechnungen für Privatvermieter
 zum Fixpreis. Haben Sie Kunden mit vermieteten Wohnungen, die das selbst machen?
-→ Ja: «Darf ich Ihnen ein Beispiel und das Angebot mailen? Für jeden vermittelten Auftrag gibt es CHF 60.»
+→ Ja: «Darf ich Ihnen ein Beispiel und das Angebot mailen? Pro Auftrag gibt es CHF 60 Provision, offen gegenüber Ihrer Kundschaft – oder CHF 60 Rabatt für sie.»
   E-Mail-Adresse notieren, danach Vorlage senden.
 → Nein / kein Interesse: bedanken, im Tracker «abgesagt» eintragen."""
 

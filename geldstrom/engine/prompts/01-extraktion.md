@@ -1,8 +1,11 @@
 # Prompt 1 – Unterlagen → Eingabe-JSON
 
-Verwendung: neue Unterhaltung in Claude (Projekt «Nebenkosten»), **alle Unterlagen der Kundschaft
-anhängen** (PDFs, Fotos, Excel, E-Mail-Text), dann den Block unten einfügen. Das Ergebnis als
-`kunden/<kunde>/<liegenschaft>.json` speichern und `python3 nk.py … --pdf` laufen lassen.
+**Standardweg (Kundendaten):** `python3 extrahiere.py kunden/<kunde>` – sendet die Belege aus
+`kunden/<kunde>/belege/` mit diesem Prompt über die Claude API (kommerzielle Bedingungen, kein
+Training, Auftragsbearbeitung geregelt) und schreibt `eingabe.json` und `rueckfragen.txt`.
+
+Nur für das fiktive Beispiel oder Tests: Block unten in claude.ai einfügen und Belege anhängen.
+Echte Kundenunterlagen **nicht** über ein privates claude.ai-Konto verarbeiten.
 
 Die KI **liest und ordnet nur**. Sie rechnet keine Anteile aus – das macht `nk.py`.
 
@@ -39,6 +42,13 @@ REGELN
    aus Mietvertrag oder letzter Mietzinsanpassung. Weicht die tatsächlich bezahlte Summe ab
    (laut Kontoauszug), "akonto_bezahlt" setzen.
 9. Adresse bei ausgezogenen Mietern: neue Adresse in "adresse", sonst weglassen.
+10. Vereinbart der Mietvertrag eine Nebenkosten-PAUSCHALE statt Akonto, setze
+    "nebenkosten_art": "pauschal" – für dieses Mietverhältnis wird nicht abgerechnet.
+11. Nennt der Mietvertrag Verwaltungskosten/Verwaltungshonorar als Nebenkosten, nimm
+    "Verwaltungsaufwand" in "vereinbarte_positionen" auf. Sonst NICHT – dann wird der
+    Verwaltungsaufwand nur auf die Heiz- und Warmwasserkosten berechnet.
+12. Datensparsamkeit: übernimm von Mietern nur Name, Wohnung, Mietdauer, Akonto, Adresse bei
+    Auszug. Keine Geburtsdaten, Telefonnummern, Kontodaten oder sonstigen Angaben.
 
 SCHEMA
 {
@@ -50,6 +60,7 @@ SCHEMA
   "verwaltungshonorar_prozent": 4,
   "einheiten": [{"id": "EG links", "zimmer": 3.5, "schluessel": {"m2": 78}}],
   "mietverhaeltnisse": [{"einheit": "EG links", "mieter": "", "von": "JJJJ-MM-TT", "bis": null,
+                         "nebenkosten_art": "akonto|pauschal",
                          "akonto_monatlich": 0, "vereinbarte_positionen": [""], "adresse": ""}],
   "kosten": [
     {"position": "", "kategorie": "heizung|nebenkosten", "schluessel": "m2|gleich|direkt|<eigener>",

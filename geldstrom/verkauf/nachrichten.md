@@ -3,8 +3,21 @@
 Kanäle in dieser Reihenfolge, weil der erste Franken am schnellsten aus dem eigenen Umfeld kommt:
 **A** eigenes Netzwerk → **B** Treuhänder als Vermittler → **C** Google Ads → **D** Inserate.
 
-Rechtlicher Rahmen: persönliche Einzelnachrichten an Bekannte und Geschäftsadressen sind in Ordnung.
-**Keine Massen-E-Mails an Privatpersonen ohne Einwilligung** (Art. 3 Abs. 1 lit. o UWG).
+### Rechtlicher Rahmen (vor dem ersten Versand lesen)
+
+- **E-Mail-Werbung (Art. 3 Abs. 1 lit. o UWG):** Massenwerbung per E-Mail ist ohne Einwilligung
+  unlauter – auch an Firmen. Deshalb: jede E-Mail **einzeln** und persönlich adressiert senden
+  (outreach.py öffnet jeden Entwurf einzeln), korrekter Absender, **Abmeldemöglichkeit im Text**,
+  wer ablehnt oder nicht reagiert, erhält höchstens noch einen Nachfass und dann nichts mehr.
+  Keine gekauften Adresslisten, kein Serienversand über ein Mail-Tool.
+- **Telefon (Art. 3 Abs. 1 lit. u UWG):** Vor jedem Anruf im Telefonbuch (local.ch/search.ch) prüfen,
+  ob die Nummer einen **Stern** (*) trägt – dann nicht anrufen.
+- **Vermittlungsprovision an Treuhänder (Art. 400 OR):** Treuhänder handeln im Auftrag ihrer Kunden
+  und müssen Provisionen Dritter offenlegen oder weitergeben. Die E-Mail sagt das offen und bietet
+  als Alternative einen Rabatt für deren Kunden an. Details: `../recht/vermittlungsvereinbarung.md`.
+- **Aussagen:** nur, was stimmt und belegbar ist (Art. 3 Abs. 1 lit. b UWG) – keine Garantien auf
+  Rechtssicherheit, keine Vergleiche mit namentlich genannten Mitbewerbern.
+- **WhatsApp an Bekannte** (Kanal A) ist persönliche Kommunikation und unproblematisch.
 
 ---
 
@@ -34,7 +47,7 @@ nach der Nebenkostenabrechnung gefragt – sie wollen sie nicht machen. 1 Partne
 
 Liste: local.ch / Google Maps «Treuhand [Ort]», nur Einzelfirmen und 1–5-Personen-Büros, 30 Adressen.
 
-**Betreff:** Nebenkostenabrechnungen Ihrer Vermieter-Kunden – CHF 60 Vermittlung pro Auftrag
+**Betreff:** Nebenkostenabrechnungen Ihrer Vermieter-Kunden
 
 > Guten Tag [Frau/Herr Name]
 >
@@ -45,16 +58,20 @@ Liste: local.ch / Google Maps «Treuhand [Ort]», nur Einzelfirmen und 1–5-Per
 > (ab CHF 290 pro Liegenschaft, inkl. Mieterwechsel und Heizöl-Lager). Die Kundschaft sendet die
 > Belege per E-Mail, nach 5 Arbeitstagen liegen versandbereite Abrechnungen vor.
 >
-> Für jeden vermittelten Auftrag erhalten Sie CHF 60. Sie müssen nichts tun ausser den Kontakt
-> weitergeben; Ihre Kundenbeziehung bleibt selbstverständlich unberührt.
+> Wenn Sie Kunden an mich verweisen möchten: Pro Auftrag erhalten Sie CHF 60 Vermittlungsprovision,
+> die Sie Ihrer Kundschaft gegenüber offenlegen – oder, wenn Ihnen das lieber ist, erhält Ihre
+> Kundschaft stattdessen CHF 60 Rabatt. Ich biete keine Treuhand- oder Steuerleistungen an;
+> Ihre Kundenbeziehung bleibt unberührt.
 >
-> Ein Beispiel einer fertigen Abrechnung finden Sie im Anhang. Passt es, wenn ich Sie am
+> Ein Beispiel (fiktive Daten): [Website]/beispiel-abrechnung.pdf. Passt es, wenn ich Sie am
 > [Wochentag] kurz anrufe (5 Minuten)?
 >
 > Freundliche Grüsse
-> [Vorname Name] · [Telefon] · [Website]
+> [Vorname Name] · Nebenkosten fixfertig · [Telefon] · [Website]
+>
+> Falls kein Interesse besteht, genügt eine kurze Antwort – ich melde mich dann nicht mehr.
 
-Anhang: `landingpage/src/beispiel-abrechnung.pdf`
+Kein Anhang nötig – der Link genügt (Anhänge landen bei Treuhändern oft im Spamfilter).
 
 ---
 
@@ -74,7 +91,9 @@ Anhang: `landingpage/src/beispiel-abrechnung.pdf`
   - Titel 3: `Bezahlung erst nach Entwurf`
   - Beschreibung 1: `Belege per Mail senden, nach 5 Tagen versandbereite Abrechnungen für alle Mieter.`
   - Beschreibung 2: `Inkl. Mieterwechsel, Heizöl-Lager und Akonto-Empfehlung. Fachperson aus der Bewirtschaftung.`
-- Conversion = Formular abgeschickt (Danke-Seite bzw. Formspree-Weiterleitung).
+- **Kein Conversion-Tag auf der Website** (würde Cookies und ein Einwilligungs-Banner erfordern).
+  Gemessen wird im Tracker: jede Anfrage mit der Frage «Wie haben Sie uns gefunden?» erfassen.
+- Google verlangt eine Werbetreibenden-Bestätigung (Ausweis) – 1–3 Tage einplanen.
 
 ---
 
@@ -91,7 +110,8 @@ Privatvermieter – Fixpreis ab CHF 290»**. Text = erster Absatz der Landingpag
 
 > Guten Tag [Name]
 >
-> Danke für Ihren Auftrag. Bitte senden Sie mir an diese Adresse (PDF, Scan oder Handyfoto genügt):
+> Danke für Ihre Anfrage – sie ist bei mir eingegangen. Bitte senden Sie mir an diese Adresse
+> (PDF, Scan oder Handyfoto genügt):
 >
 > 1. Alle Rechnungen der Periode [von–bis]: Heizung (Heizöl/Gas/Strom/Fernwärme), Heizungsservice,
 >    Kaminfeger, Wasser/Abwasser, Allgemeinstrom, Hauswart, Kehricht, Kabel-TV, Lift usw.
@@ -100,8 +120,14 @@ Privatvermieter – Fixpreis ab CHF 290»**. Text = erster Absatz der Landingpag
 > 4. Aus einem Mietvertrag die Seite mit den Nebenkosten (welche Positionen vereinbart sind).
 > 5. Falls vorhanden: die Abrechnung des Vorjahres.
 >
-> Sobald alles da ist, erhalten Sie innert 5 Arbeitstagen die Übersicht zur Kontrolle.
-> Den Preis von CHF [290/390/490] bezahlen Sie erst danach.
+> Bitte senden Sie nur, was für die Abrechnung nötig ist – keine Ausweise, Lohn- oder Bankunterlagen
+> Ihrer Mieter.
+>
+> Sobald alles da ist, erhalten Sie innert 5 Arbeitstagen die Übersicht zur Kontrolle. Bis zu Ihrer
+> Freigabe ist alles unverbindlich; der Preis beträgt CHF [290/390/490].
+> Es gelten die Auftragsbedingungen: [Website]/agb.html
+>
+> Wie haben Sie von mir erfahren? (Eine kurze Antwort hilft mir sehr.)
 >
 > Freundliche Grüsse
 > [Vorname Name]
@@ -115,8 +141,13 @@ Privatvermieter – Fixpreis ab CHF 290»**. Text = erster Absatz der Landingpag
 > Im Anhang die Übersicht: Gesamtkosten CHF [x], Nachzahlungen/Guthaben je Mietpartei und die
 > empfohlenen neuen Akontobeträge. [Ggf.: Hinweis zu Auffälligkeiten.]
 >
-> Stimmt alles, bezahlen Sie bitte hier: [Zahlungslink] (Karte oder TWINT). Direkt danach
-> erhalten Sie die versandbereiten Abrechnungen für alle Mietparteien.
+> Bitte prüfen Sie die Beträge mit Ihren Unterlagen. Fehlt etwas oder stimmt etwas nicht, antworten
+> Sie einfach auf diese E-Mail – eine Korrektur ist inbegriffen.
+>
+> Stimmt alles, geben Sie den Entwurf mit der Zahlung von CHF [Preis] frei: [Zahlungslink] (Karte
+> oder TWINT; auf Wunsch auch per Rechnung). Damit erteilen Sie den Auftrag gemäss den
+> Auftragsbedingungen ([Website]/agb.html). Direkt nach Zahlungseingang erhalten Sie die
+> versandbereiten Abrechnungen für alle Mietparteien.
 >
 > Freundliche Grüsse
 
@@ -126,8 +157,11 @@ Privatvermieter – Fixpreis ab CHF 290»**. Text = erster Absatz der Landingpag
 >
 > Vielen Dank! Im Anhang die Abrechnungen für alle Mietparteien – ausdrucken, unterschreiben, versenden.
 >
-> Soll ich Sie nächstes Jahr automatisch erinnern und die Abrechnung wieder erstellen?
-> Dann antworten Sie einfach mit «Ja» – Stammkunden zahlen CHF 40 weniger.
+> Bitte prüfen Sie die Abrechnungen vor dem Versand kurz. Allfällige Fehler melden Sie mir innert
+> 30 Tagen – ich korrigiere sie kostenlos.
+>
+> Soll ich Sie nächstes Jahr an die Abrechnung erinnern? Dann antworten Sie einfach mit «Ja» –
+> Stammkunden zahlen CHF 40 weniger. Ohne Ihr «Ja» erhalten Sie keine weiteren E-Mails von mir.
 >
 > Kennen Sie weitere Vermieter mit demselben Aufwand? Für jede Empfehlung, die zu einem Auftrag
 > führt, schreibe ich Ihnen CHF 50 gut.

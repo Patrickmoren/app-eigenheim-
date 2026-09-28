@@ -40,6 +40,21 @@ p{font-size:34px;margin:0;opacity:.9}</style></head><body>
 </body></html>"""
 
 
+def pruefe(cfg):
+    fehler = []
+    if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[a-z]{2,}", cfg["EMAIL"]):
+        fehler.append("EMAIL ist keine gültige Adresse")
+    if not cfg["WEBSITE"].startswith("https://"):
+        fehler.append("WEBSITE muss mit https:// beginnen")
+    if cfg["FORM_ENDPOINT"] and not re.fullmatch(r"https://formspree\.io/f/\w+", cfg["FORM_ENDPOINT"]):
+        fehler.append("FORM_ENDPOINT muss wie https://formspree.io/f/abcd1234 aussehen oder leer sein")
+    if not re.search(r"\d{4}\s+\S", cfg["ADRESSE"]):
+        fehler.append("ADRESSE braucht Strasse, PLZ und Ort (Impressumspflicht, Art. 3 Abs. 1 lit. s UWG)")
+    if not re.search(r"\d{3}", cfg["TELEFON"]):
+        fehler.append("TELEFON fehlt")
+    return fehler
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--entwurf", action="store_true", help="offene Platzhalter erlauben")
@@ -51,6 +66,13 @@ def main():
     offen = [k for k, v in cfg.items() if isinstance(v, str) and v.startswith("[")]
     if offen and not a.entwurf:
         sys.exit("Noch offen in config.json: " + ", ".join(offen) + "  (oder --entwurf für eine Vorschau)")
+    if not a.entwurf:
+        fehler = pruefe(cfg)
+        if fehler:
+            sys.exit("config.json:\n  " + "\n  ".join(fehler))
+    # Formular ohne JavaScript: direkt an Formspree, sonst als E-Mail
+    ep = cfg.get("FORM_ENDPOINT", "")
+    cfg["FORM_ACTION"] = ep if ep.startswith("https://") else "mailto:" + cfg["EMAIL"]
 
     shutil.rmtree(DIST, ignore_errors=True)
     shutil.copytree(SRC, DIST)
@@ -70,7 +92,11 @@ def main():
     with open(os.path.join(DIST, "_headers"), "w") as f:
         f.write(HEADERS)
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
-        f.write(f"User-agent: *\nAllow: /\n")
+        f.write(f"User-agent: *\nAllow: /\nSitemap: {cfg['WEBSITE']}/sitemap.xml\n")
+    with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n'
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                f"  <url><loc>{cfg['WEBSITE']}/</loc></url>\n</urlset>\n")
 
     exe = chromium()
     if exe:

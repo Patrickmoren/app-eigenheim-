@@ -45,6 +45,8 @@ nach den Anmeldungen schickst du mir die Angaben unten, und ich baue die fertige
 1. <https://formspree.io> → **Sign up** mit `abrechnung@nebenkosten-fixfertig.ch`, Adresse bestätigen.
 2. **+ New Form** → Name «Bestellung» → Formular-E-Mail = dieselbe Adresse.
 3. Die angezeigte Adresse kopieren, sie sieht so aus: `https://formspree.io/f/abcdwxyz`.
+4. Konto → **Two-Factor Authentication** einschalten.
+5. Monatlich die Einträge unter «Submissions» löschen (die Datenschutzerklärung sagt: spätestens nach 30 Tagen).
 
 ## Schritt 3 · Stripe: Zahlungslinks (25 Min., gratis)
 
@@ -60,10 +62,18 @@ nach den Anmeldungen schickst du mir die Angaben unten, und ich baue die fertige
    - «Nebenkostenabrechnung 9–12 Wohnungen» – CHF 490
    - «Express-Zuschlag» – CHF 90
 
-   Jeweils: «Kunden können Menge anpassen» aus, «Rechnungsadresse erfassen» an.
+   Jeweils: «Kunden können Menge anpassen» aus, «Rechnungsadresse erfassen» an,
+   **«Promotion-Codes zulassen» an**.
    Nach der Zahlung: Bestätigungsseite mit Text «Danke! Sie erhalten Ihre Abrechnungen innert
    eines Arbeitstags per E-Mail.»
-6. Die vier Links in `verkauf/zahlungslinks.txt` notieren (nicht ins Repository – ist ignoriert).
+6. **Produkte → Gutscheine:** «PARTNER60» (CHF 60 Rabatt, einmal je Kunde – für Treuhänder, die den
+   Rabatt statt der Provision wählen) und «STAMM40» (CHF 40 Rabatt für Stammkunden).
+7. **Einstellungen → Kunden-E-Mails:** «Erfolgreiche Zahlungen» einschalten – Stripe schickt dann
+   automatisch einen Zahlungsbeleg (gilt zugleich als elektronische Bestätigung, Art. 3 Abs. 1 lit. s UWG).
+8. **Einstellungen → Öffentliche Angaben:** Abrechnungsbezeichnung «NEBENKOSTEN FIX», Support-E-Mail
+   = neue Adresse, Links auf `…/agb.html` (Bedingungen) und `…/datenschutz.html`.
+9. Zwei-Faktor-Anmeldung einschalten (Stripe verlangt es ohnehin).
+10. Die Links in `verkauf/zahlungslinks.txt` notieren (nicht ins Repository – ist ignoriert).
 
 Freischaltung dauert bei Stripe manchmal 1–2 Tage. Bis dahin: QR-Rechnung.
 
@@ -80,12 +90,37 @@ Diesen Schritt mache ich mit dir, sobald ich die Angaben unten habe und das ZIP 
    **Die MX-Einträge für die E-Mail nicht anfassen**, sonst geht die Mail nicht mehr.
 4. Nach 15–60 Minuten erstellt Netlify das SSL-Zertifikat automatisch. Fertig.
 
-## Schritt 5 · Datenschutz bei Claude (2 Min.)
+## Schritt 5 · Claude API für Kundenbelege (10 Min., ca. CHF 5 Guthaben)
 
-claude.ai → Einstellungen → Datenschutz → Verwendung der Chats zur Modellverbesserung
-**ausschalten**. Die Datenschutzerklärung sagt der Kundschaft das zu.
+Echte Kundenunterlagen laufen **nicht** über ein privates claude.ai-Konto, sondern über die API
+(kommerzielle Bedingungen: keine Verwendung zum Training, Auftragsbearbeitung geregelt). So stimmt die
+Datenschutzerklärung.
+
+1. <https://console.anthropic.com> → Konto mit der neuen Adresse, Zwei-Faktor-Anmeldung einschalten.
+2. **Billing:** USD 10 Guthaben laden, automatisches Nachladen **aus** (Kostendeckel).
+   Ein Auftrag kostet erfahrungsgemäss unter CHF 1.
+3. **API Keys → Create Key** «nebenkosten». Den Schlüssel nur lokal speichern:
+   `export ANTHROPIC_API_KEY=…` in deiner Shell-Konfiguration – nie ins Repository, nie per Mail.
+4. `pip install anthropic` · Test: `python3 geldstrom/engine/extrahiere.py kunden/test --trocken`.
+
+## Schritt 6 · Sicherheit (10 Min., einmalig)
+
+- Laptop-Verschlüsselung an (Mac: FileVault, Windows: BitLocker/Geräteverschlüsselung).
+- Zwei-Faktor-Anmeldung bei Infomaniak, Netlify, Formspree, Stripe, Anthropic.
+- Kundenordner (`kunden/`) nur lokal, nicht in geteilten Cloud-Ordnern; das Repository ignoriert ihn.
+- Kein Arbeitgeber-Gerät, keine Arbeitgeber-Vorlagen, keine Arbeit während der Arbeitszeit.
 
 ---
+
+## Go-live-Checkliste (nach dem Aufschalten, 20 Min.)
+
+1. `python3 geldstrom/landingpage/golive_check.py https://nebenkosten-fixfertig.ch` → «bereit für Go-live».
+2. Testanfrage über das Formular mit deiner privaten Adresse → kommt im Postfach an?
+3. Testzahlung: Payment Link im **Testmodus** von Stripe durchspielen → Zahlungsbeleg kommt?
+4. Seite auf dem Handy öffnen: Formular, Impressum, Datenschutz, Beispiel-PDF.
+5. Link per WhatsApp an dich selbst schicken → Vorschaubild erscheint?
+6. Formspree-Testeintrag löschen.
+7. Erst dann: Google Ads starten und Treuhänder-E-Mails senden.
 
 ## Das brauche ich danach von dir
 
@@ -106,4 +141,5 @@ Dann baue ich das ZIP, prüfe es und schicke es dir zum Hochladen.
 | Domain inkl. E-Mail | ca. CHF 9–13 | ca. CHF 13/Jahr |
 | Hosting, Formular, Stripe-Konto | 0 | 0 |
 | Pro Auftrag (TWINT, CHF 290) | CHF 5.81 | CHF 5.81 |
+| Claude API pro Auftrag | unter CHF 1 | unter CHF 1 |
 | Google Ads Testwoche | CHF 140 (einmalig, optional) | nach Ergebnis |

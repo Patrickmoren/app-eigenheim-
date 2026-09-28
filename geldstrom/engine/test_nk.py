@@ -114,6 +114,61 @@ class Verteilung(unittest.TestCase):
             self.assertAlmostEqual(m["_saldo"] * 20, round(m["_saldo"] * 20), places=6)
 
 
+class Rechtliches(unittest.TestCase):
+    def test_wasserzins_ist_keine_warnung(self):
+        daten = minimal()
+        daten["kosten"][0]["position"] = "Wasserzins"
+        _, befund = nk.rechne(daten)
+        self.assertFalse(any("Wasserzins" in t for s, t in befund.eintraege if s == "WARNUNG"))
+
+    def test_hypothekarzins_ist_warnung(self):
+        daten = minimal()
+        daten["kosten"].append({"position": "Hypothekarzins", "schluessel": "gleich", "betrag": 100})
+        _, befund = nk.rechne(daten)
+        self.assertTrue(any("Hypothekarzins" in t for s, t in befund.eintraege if s == "WARNUNG"))
+
+    def test_verwaltungsaufwand_ohne_vereinbarung_nur_auf_heizung(self):
+        daten = minimal(verwaltungshonorar_prozent=4)
+        daten["kosten"].append({"position": "Heizung", "kategorie": "heizung", "schluessel": "m2", "betrag": 1000})
+        for mv in daten["mietverhaeltnisse"]:
+            mv["vereinbarte_positionen"] = ["Wasser", "Heizung"]
+        erg, _ = nk.rechne(daten)
+        a = erg["mietverhaeltnisse"][0]
+        self.assertAlmostEqual(a["_honorar"], 600 * 0.04, places=2)   # nur Heizanteil 600
+
+    def test_verwaltungsaufwand_mit_vereinbarung_auf_alles(self):
+        daten = minimal(verwaltungshonorar_prozent=4)
+        daten["kosten"].append({"position": "Heizung", "kategorie": "heizung", "schluessel": "m2", "betrag": 1000})
+        for mv in daten["mietverhaeltnisse"]:
+            mv["vereinbarte_positionen"] = ["Wasser", "Heizung", "Verwaltungsaufwand"]
+        erg, _ = nk.rechne(daten)
+        self.assertAlmostEqual(erg["mietverhaeltnisse"][0]["_honorar"], 1200 * 0.04, places=2)
+
+    def test_pauschale_wird_nicht_abgerechnet(self):
+        daten = minimal()
+        daten["mietverhaeltnisse"][1]["nebenkosten_art"] = "pauschal"
+        erg, _ = nk.rechne(daten)
+        self.assertEqual(len(erg["mietverhaeltnisse"]), 1)
+        self.assertAlmostEqual(erg["vermieter"]["leerstand"], 400.0, places=2)
+
+    def test_kontrollsumme_viele_mieter_ohne_rundungsfehler(self):
+        daten = minimal()
+        daten["einheiten"] = [{"id": f"E{i}", "schluessel": {"m2": 33 + i}} for i in range(12)]
+        daten["mietverhaeltnisse"] = [{"einheit": f"E{i}", "mieter": f"M{i}", "von": "2020-01-01",
+                                       "bis": "2025-10-17"} for i in range(12)] + \
+                                     [{"einheit": f"E{i}", "mieter": f"N{i}", "von": "2025-10-18"} for i in range(12)]
+        daten["kosten"][0]["betrag"] = 9999.99
+        _, befund = nk.rechne(daten)
+        self.assertFalse(befund.hat_fehler, befund.text())
+
+    def test_keine_akonto_empfehlung_bei_auszug_am_periodenende(self):
+        daten = minimal()
+        daten["mietverhaeltnisse"][0]["bis"] = "2026-06-30"
+        erg, _ = nk.rechne(daten)
+        self.assertIsNone(erg["mietverhaeltnisse"][0]["_akonto_empfehlung"])
+        self.assertIsNotNone(erg["mietverhaeltnisse"][1]["_akonto_empfehlung"])
+
+
 class Heizoel(unittest.TestCase):
     def test_fifo_bewertung(self):
         lager = {"anfangsbestand_liter": 1000, "anfangsbestand_chf": 900,
