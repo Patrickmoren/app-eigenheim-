@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel-Sicherheits-Check – Risiken in Ihrer Excel-Datei finden, bevor sie Geld kosten</title>
+<meta name="description" content="Laden Sie Ihre geschäftskritische Excel-Datei hoch und erhalten Sie innert 24 Stunden einen verständlichen PDF-Bericht: welche Formelfehler, Datenverlust-Risiken und stillen Fehlerquellen sie enthält.">
+<style>
+  :root{
+    --bg:#f7f7f5; --card:#ffffff; --ink:#1a1a2e; --ink-soft:#4a4a5a;
+    --line:#e6e6e2; --accent:#1f5c4c; --accent-ink:#ffffff;
+    --kritisch:#b3261e; --hoch:#c56a00; --mittel:#8a6d00; --hinweis:#4a5568;
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#15161a; --card:#1e2024; --ink:#f2f2f0; --ink-soft:#b7b8c0;
+      --line:#33353a; --accent:#3fae8c; --accent-ink:#0c0d0f;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#15161a; --card:#1e2024; --ink:#f2f2f0; --ink-soft:#b7b8c0;
+    --line:#33353a; --accent:#3fae8c; --accent-ink:#0c0d0f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 20px}
+  header.hero{padding:64px 0 40px}
+  .kicker{
+    display:inline-block; font-size:13px; font-weight:600; letter-spacing:.02em;
+    color:var(--accent); background:color-mix(in srgb, var(--accent) 12%, transparent);
+    padding:5px 12px; border-radius:999px; margin-bottom:18px;
+  }
+  h1{font-size:clamp(28px,4.5vw,44px); line-height:1.15; margin:0 0 18px; letter-spacing:-0.01em}
+  .lead{font-size:19px; color:var(--ink-soft); max-width:620px; margin:0 0 30px}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:16px;
+    padding:14px 26px; border-radius:10px; text-decoration:none; border:1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--accent); color:var(--accent-ink)}
+  .btn-primary:hover{filter:brightness(1.08)}
+  .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+  .price-note{font-size:14px; color:var(--ink-soft)}
+
+  section{padding:36px 0}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px;
+  }
+  h2{font-size:26px; margin:0 0 8px; letter-spacing:-0.01em}
+  .sub{color:var(--ink-soft); margin:0 0 28px; max-width:600px}
+
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+  @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr} }
+  .step{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:20px}
+  .step .n{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:999px; background:var(--accent); color:var(--accent-ink);
+    font-weight:700; font-size:13px; margin-bottom:12px;
+  }
+  .step h3{font-size:15.5px; margin:0 0 6px}
+  .step p{font-size:14px; color:var(--ink-soft); margin:0}
+
+  .findings{display:flex; flex-direction:column; gap:14px}
+  .finding{
+    border:1px solid var(--line); border-left-width:4px; border-radius:10px; padding:16px 18px;
+    background:var(--card);
+  }
+  .finding.kritisch{border-left-color:var(--kritisch)}
+  .finding.hoch{border-left-color:var(--hoch)}
+  .finding .tag{
+    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  }
+  .finding.kritisch .tag{color:var(--kritisch)}
+  .finding.hoch .tag{color:var(--hoch)}
+  .finding h4{margin:6px 0 4px; font-size:15.5px}
+  .finding p{margin:0; font-size:14px; color:var(--ink-soft)}
+
+  table.price{width:100%; border-collapse:collapse}
+  table.price td{padding:14px 0; border-bottom:1px solid var(--line); font-size:15px}
+  table.price tr:last-child td{border-bottom:none}
+  .big-price{font-size:40px; font-weight:700; letter-spacing:-0.02em}
+  .big-price span{font-size:17px; font-weight:500; color:var(--ink-soft)}
+
+  .faq details{border-bottom:1px solid var(--line); padding:16px 0}
+  .faq summary{cursor:pointer; font-weight:600; font-size:15.5px; list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::before{content:"+ "; color:var(--accent); font-weight:700}
+  .faq details[open] summary::before{content:"– "}
+  .faq p{color:var(--ink-soft); font-size:14.5px; margin:10px 0 0}
+
+  footer{padding:40px 0 60px; color:var(--ink-soft); font-size:13.5px; border-top:1px solid var(--line); margin-top:20px}
+  code.inline{background:color-mix(in srgb, var(--ink) 6%, transparent); padding:2px 6px; border-radius:5px; font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="kicker">Für Schweizer KMU · Verwaltungen · Treuhand · Handwerk</span>
+    <h1>Ihre wichtigste Excel-Datei hat wahrscheinlich einen Fehler, den niemand sieht.</h1>
+    <p class="lead">
+      Über 90 % aller geschäftskritischen Excel-Dateien enthalten mindestens einen ernsthaften
+      Formel- oder Strukturfehler. Meist fällt er erst auf, wenn ein Fall verschwunden, eine
+      Summe falsch oder eine Frist verpasst ist. Der Excel-Sicherheits-Check findet diese Fehler
+      automatisiert – Sie laden Ihre Datei hoch, wir liefern einen verständlichen Bericht.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#bestellen">Jetzt prüfen lassen – CHF 149</a>
+      <a class="btn btn-ghost" href="#beispiel">Beispielbericht ansehen</a>
+    </div>
+    <p class="price-note" style="margin-top:14px">Bericht innert 24 Stunden per E-Mail. Keine Vertragsbindung, keine Software-Installation.</p>
+  </header>
+
+  <section>
+    <h2>So funktioniert's</h2>
+    <p class="sub">Kein Consulting-Mandat, keine Wochen Wartezeit. Ein klar abgegrenzter, standardisierter Ablauf.</p>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3>Bezahlen</h3><p>Einmalzahlung CHF 149 über sichere Kreditkarten-/TWINT-Zahlung.</p></div>
+      <div class="step"><span class="n">2</span><h3>Hochladen</h3><p>Excel-Datei und E-Mail-Adresse über das Formular übermitteln.</p></div>
+      <div class="step"><span class="n">3</span><h3>Prüfen</h3><p>Automatisierte Analyse auf über 10 bekannte Risikomuster.</p></div>
+      <div class="step"><span class="n">4</span><h3>Bericht</h3><p>PDF mit Befund, Geschäftsrisiko und Empfehlung – innert 24h per E-Mail.</p></div>
+    </div>
+  </section>
+
+  <section id="beispiel">
+    <h2>Was der Check findet</h2>
+    <p class="sub">Auszug aus einem echten Testbericht. Jeder Befund wird in Klartext erklärt – nicht als Formel-Fehlermeldung, sondern als Geschäftsrisiko.</p>
+    <div class="findings">
+      <div class="finding kritisch">
+        <span class="tag">Kritisch · Datenverlust durch festen Bereich</span>
+        <h4>Formel bezieht sich nur bis Zeile 150, Daten reichen aber bis Zeile 301</h4>
+        <p>Neue Einträge fliessen in keine Auswertung, Summe oder Konsolidierung ein – ohne jede Fehlermeldung. Das Problem fällt erst auf, wenn ein konkreter Fall vermisst wird.</p>
+      </div>
+      <div class="finding hoch">
+        <span class="tag">Hoch · Datum als Text gespeichert</span>
+        <h4>Zellen sehen aus wie ein Datum, sind aber Text</h4>
+        <p>Vergleiche wie «liegt vor dem Stichtag» oder Berechnungen wie «Anzahl Tage» liefern falsche oder gar keine Ergebnisse – meist ohne Fehlermeldung.</p>
+      </div>
+      <div class="finding hoch">
+        <span class="tag">Hoch · Uneinheitliche Formel in einer Spalte</span>
+        <h4>Einzelne Zeilen verwenden eine andere Formel als der Rest</h4>
+        <p>Sehr häufige Fehlerquelle: eine Zeile wurde von Hand angepasst oder beim Kopieren übersprungen. Ergebnisse sind mit dem Rest der Tabelle nicht vergleichbar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fuer-wen">
+    <div class="card">
+      <h2 style="margin-top:0">Für wen ist das?</h2>
+      <p class="sub" style="margin-bottom:16px">Für jede Firma, die eine Excel-Datei führt, bei deren Fehler es wirklich um Geld, Fristen oder Vertrauen geht:</p>
+      <ul style="color:var(--ink-soft); font-size:15px; padding-left:20px; margin:0">
+        <li>Liegenschaftsverwaltungen – Leerstands-, Mieterwechsel- oder Pendenzenlisten</li>
+        <li>Treuhandbüros – Mandats-, Fristen- und Abrechnungsübersichten</li>
+        <li>Handwerksbetriebe – Offert-, Rapport- und Nachkalkulationslisten</li>
+        <li>Jede Firma, deren zentrales Steuerungs-Excel seit Jahren wächst und niemand mehr sagen kann, ob es noch stimmt</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="bestellen">
+    <div class="card">
+      <h2 style="margin-top:0">Preis</h2>
+      <table class="price">
+        <tr><td>Excel-Sicherheits-Check, 1 Arbeitsmappe (beliebig viele Blätter)</td>
+            <td style="text-align:right"><span class="big-price">CHF 149</span></td></tr>
+        <tr><td>Lieferung</td><td style="text-align:right">PDF-Bericht innert 24 Std. per E-Mail</td></tr>
+        <tr><td>Zahlungsarten</td><td style="text-align:right">Kreditkarte, TWINT, Rechnung auf Anfrage</td></tr>
+      </table>
+      <div class="cta-row" style="margin-top:22px">
+        <!-- ERSETZEN: durch den eigenen Stripe-Payment-Link (siehe README, Abschnitt "Stripe einrichten") -->
+        <a class="btn btn-primary" href="STRIPE_PAYMENT_LINK_HIER_EINSETZEN" target="_blank" rel="noopener">Jetzt bezahlen (CHF 149)</a>
+        <!-- ERSETZEN: durch den eigenen Google-Form-Link (siehe README, Abschnitt "Formular einrichten") -->
+        <a class="btn btn-ghost" href="GOOGLE_FORM_LINK_HIER_EINSETZEN" target="_blank" rel="noopener">Datei nach Zahlung hochladen</a>
+      </div>
+      <p class="price-note" style="margin-top:14px">Nach der Zahlung erhalten Sie eine Bestätigung mit dem Link zum Upload-Formular. Ihre Datei wird ausschliesslich zur Erstellung des Berichts verwendet und danach gelöscht.</p>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Häufige Fragen</h2>
+    <details>
+      <summary>Ist meine Excel-Datei danach sicher / bleibt sie vertraulich?</summary>
+      <p>Ja. Die Datei wird ausschliesslich zur automatisierten Analyse verwendet, nicht weitergegeben und nach Erstellung des Berichts gelöscht.</p>
+    </details>
+    <details>
+      <summary>Was genau wird geprüft?</summary>
+      <p>U.a.: Formelbezüge, die nicht mit wachsenden Daten mitwachsen (Hauptursache für stillen Datenverlust), Zirkelbezüge, uneinheitliche Formeln innerhalb einer Spalte, von Hand überschriebene Berechnungen, Datumsfelder ohne echtes Datumsformat, Lücken in der Eingabeprüfung, externe Verknüpfungen, ungeschützte Formelzellen trotz Blattschutz und mehr.</p>
+    </details>
+    <details>
+      <summary>Was, wenn keine Fehler gefunden werden?</summary>
+      <p>Dann steht das so im Bericht – das ist ebenfalls ein wertvolles Ergebnis: Gewissheit statt Vermutung.</p>
+    </details>
+    <details>
+      <summary>Ersetzt das eine IT-Beratung?</summary>
+      <p>Nein. Der Check prüft die technische Konstruktion der Datei, nicht die fachliche Richtigkeit der Zahlen und ist keine Rechts- oder Steuerberatung. Er zeigt Ihnen präzise, wo eine vertiefte Prüfung sich lohnt.</p>
+    </details>
+    <details>
+      <summary>Wie schnell erhalte ich den Bericht?</summary>
+      <p>In der Regel innert 24 Stunden nach Zahlungseingang und Upload der Datei.</p>
+    </details>
+  </section>
+
+  <footer>
+    Excel-Sicherheits-Check · Ein Angebot für Schweizer KMU · Kontakt: <code class="inline">IHRE_EMAIL_HIER</code>
+  </footer>
+
+</div>
+</body>
+</html>

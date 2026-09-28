@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+Bericht_*.pdf
+Bericht_*_email.txt
+Testdatei_kaputt.xlsx
