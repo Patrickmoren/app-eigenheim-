@@ -54,8 +54,8 @@ trotzdem verkaufbar (z. B. als Lizenz). Keine Kunden oder Daten des Arbeitgebers
 | Tag | Aufgabe | Zeit |
 |---|---|---|
 | Mo 29.9. | Schritt 0 · Einrichtung 1–3 · 20 Netzwerk-Nachrichten (Vorlage A) | 2 h |
-| Di 30.9. | 30 Treuhänder-Adressen sammeln, 15 E-Mails (Vorlage B) · Google Ads live · tutti-Inserat | 2 h |
-| Mi 1.10. | restliche 15 Treuhänder-Mails · Antworten bearbeiten | 1 h |
+| Di 30.9. | `python3 verkauf/outreach.py …` → 15 Prio-A/B-E-Mails per Klick (Liste mit 32 Treuhändern liegt bereit) · Google Ads live · tutti-Inserat | 1,5 h |
+| Mi 1.10. | restliche Treuhänder-Mails · Antworten bearbeiten | 1 h |
 | Do 2.10. | 10 Treuhänder anrufen (5 Min. je) · Netzwerk-Nachfass | 1 h |
 | Fr 3.10. | eingehende Unterlagen → Prompt 1 → `nk.py` → Prompt 2 → Entwurf an Kunde | 1 h |
 | Sa/So | Puffer, erste Lieferung nach Zahlung | 0–1 h |
@@ -155,5 +155,6 @@ geldstrom/
   engine/beispiel/       Beispielliegenschaft (4 Wohnungen, Mieterwechsel, Leerstand, Heizöl)
   engine/prompts/        Extraktions- und Prüfprompt
   landingpage/           Verkaufsseite + Beispiel-PDFs, direkt auf Netlify Drop ziehbar
-  verkauf/               Nachrichten, E-Mails, Google-Ads-Setup, Test-Tracker
+  verkauf/               Nachrichten, E-Mails, Google-Ads-Setup, Test-Tracker,
+                         treuhaender.csv (32 Büros Kt. ZH) + outreach.py (E-Mails per Klick)
 ```
