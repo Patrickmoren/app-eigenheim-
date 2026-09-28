@@ -5,61 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nebenkostenabrechnung für Privatvermieter – fixfertig ab CHF 290</title>
 <meta name="description" content="Wir erstellen Ihre Heiz- und Nebenkostenabrechnung: Unterlagen per E-Mail senden, in 5 Arbeitstagen fertige Abrechnungen für alle Mieter. Fixpreis ab CHF 290, inkl. Mieterwechsel und Heizöl-Lager.">
-<style>
-:root {
-  --bg: #fbfaf7; --fl: #ffffff; --tx: #1c1f1d; --mu: #5b625e; --li: #e3e1da;
-  --ak: #1f5c45; --ak-hell: #e6f0eb; --ak-tx: #ffffff;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #141715; --fl: #1c201e; --tx: #ecefed; --mu: #a4ada8; --li: #2e3431;
-    --ak: #5fb892; --ak-hell: #1f2d27; --ak-tx: #0f1512;
-  }
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--tx); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
-.w { max-width: 980px; margin: 0 auto; padding: 0 16px; }
-header { padding: 18px 0; border-bottom: 1px solid var(--li); }
-header .w { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.marke { font-weight: 700; letter-spacing: -.01em; }
-.marke span { color: var(--ak); }
-header a.klein { white-space: nowrap; color: var(--mu); text-decoration: none; font-size: 15px; }
-.held { padding-top: 56px; padding-bottom: 40px; }
-h1 { hyphens: auto; overflow-wrap: break-word; font-size: clamp(28px, 5vw, 46px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 18px; max-width: 16em; }
-.lead { font-size: 20px; color: var(--mu); max-width: 36em; margin: 0 0 28px; }
-.knopf { display: inline-block; background: var(--ak); color: var(--ak-tx); padding: 14px 22px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 0; font-size: 17px; cursor: pointer; }
-.knopf:hover { filter: brightness(1.08); }
-.nebenlink { margin-left: 14px; color: var(--ak); font-weight: 600; }
-.fakten { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; color: var(--mu); font-size: 15px; padding: 0; list-style: none; }
-.fakten li::before { content: "✓ "; color: var(--ak); font-weight: 700; }
-section { padding: 44px 0; border-top: 1px solid var(--li); }
-h2 { hyphens: auto; overflow-wrap: break-word; font-size: 28px; letter-spacing: -.01em; margin: 0 0 18px; }
-.raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
-.raster.vier { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-.karte { background: var(--fl); border: 1px solid var(--li); border-radius: 10px; padding: 20px; }
-.karte h3 { margin: 0 0 6px; font-size: 18px; }
-.karte p { margin: 0; color: var(--mu); }
-.nr { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ak-hell); color: var(--ak); font-weight: 700; margin-bottom: 10px; }
-.preis { font-size: 34px; font-weight: 700; letter-spacing: -.02em; margin: 6px 0 2px; }
-.preis small { font-size: 15px; font-weight: 400; color: var(--mu); }
-.hinweis { background: var(--ak-hell); border-radius: 10px; padding: 18px 20px; margin-top: 18px; }
-ul.haken { padding-left: 0; list-style: none; margin: 0; }
-ul.haken li { padding: 4px 0 4px 26px; position: relative; }
-ul.haken li::before { content: "✓"; position: absolute; left: 0; color: var(--ak); font-weight: 700; }
-details { background: var(--fl); border: 1px solid var(--li); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; }
-summary { cursor: pointer; font-weight: 600; }
-details p { color: var(--mu); margin: 10px 0 0; }
-form { background: var(--fl); border: 1px solid var(--li); border-radius: 12px; padding: 22px; display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
-form .ganz { grid-column: 1 / -1; }
-label { display: grid; gap: 5px; font-size: 15px; font-weight: 600; }
-input, select, textarea { font: inherit; font-weight: 400; padding: 10px 12px; border: 1px solid var(--li); border-radius: 7px; background: var(--bg); color: var(--tx); width: 100%; }
-textarea { min-height: 90px; }
-.klein { font-size: 14px; color: var(--mu); }
-.ok { display: none; background: var(--ak-hell); border-radius: 10px; padding: 20px; }
-footer { padding: 30px 0 50px; color: var(--mu); font-size: 14px; border-top: 1px solid var(--li); }
-@media (max-width: 640px) { form { grid-template-columns: 1fr; } .nebenlink { display: block; margin: 14px 0 0; } }
-</style>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nebenkostenabrechnung für Privatvermieter – fixfertig ab CHF 290">
+<meta property="og:description" content="Belege per E-Mail senden, nach 5 Arbeitstagen versandbereite Abrechnungen für alle Mieter. Bezahlung erst nach Entwurf.">
+<meta property="og:url" content="{{WEBSITE}}/">
+<meta property="og:image" content="{{WEBSITE}}/og-bild.png">
+<link rel="canonical" href="{{WEBSITE}}/">
 </head>
 <body>
 <header><div class="w">
@@ -141,8 +94,8 @@ footer { padding: 30px 0 50px; color: var(--mu); font-size: 14px; border-top: 1p
   <details><summary>Welche Unterlagen brauchen Sie?</summary><p>Alle Rechnungen der Periode (Heizung, Wasser, Strom Allgemein, Hauswart, Kehricht …), Mieterliste mit Akontobeträgen und Ein-/Auszugsdaten, die Nebenkostenklausel aus einem Mietvertrag und – falls vorhanden – die Vorjahresabrechnung. Handyfotos genügen.</p></details>
   <details><summary>Was, wenn Unterlagen fehlen?</summary><p>Wir melden uns mit einer kurzen, konkreten Liste. Die meisten Rückfragen sind in einer E-Mail erledigt.</p></details>
   <details><summary>Wann bezahle ich?</summary><p>Erst wenn Sie die Übersicht mit allen Beträgen gesehen haben. Danach erhalten Sie einen Zahlungslink (Karte oder TWINT) und nach Zahlung sofort alle Abrechnungen.</p></details>
-  <details><summary>Wer steht dahinter?</summary><p>Eine Fachperson aus der Schweizer Immobilienbewirtschaftung mit langjähriger Erfahrung in Nebenkostenabrechnungen. Die Berechnung folgt der gängigen Praxis (Heizgradtage bei Mieterwechsel, Verteilschlüssel nach Fläche oder Wohnung).</p></details>
-  <details><summary>Wie gehen Sie mit meinen Daten um?</summary><p>Ihre Unterlagen werden nur für Ihre Abrechnung verwendet, in der Schweiz bzw. EU gespeichert und 12 Monate nach der Lieferung gelöscht, sofern Sie keine Wiederholung für das Folgejahr wünschen.</p></details>
+  <details><summary>Wer steht dahinter?</summary><p>{{INHABER}}, Fachperson aus der Schweizer Immobilienbewirtschaftung mit Erfahrung in Nebenkostenabrechnungen. Die Berechnung folgt der gängigen Praxis (Heizgradtage bei Mieterwechsel, Verteilschlüssel nach Fläche oder Wohnung).</p></details>
+  <details><summary>Wie gehen Sie mit meinen Daten um?</summary><p>Ihre Unterlagen werden ausschliesslich für Ihre Abrechnung verwendet, nicht weitergegeben und 12 Monate nach der Lieferung gelöscht, sofern Sie keine Wiederholung für das Folgejahr wünschen. Die Website setzt keine Cookies und kein Tracking ein. Einzelheiten, auch zu den eingesetzten Dienstleistern, finden Sie in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p></details>
   <details><summary>Ist das eine Rechtsberatung?</summary><p>Nein. Wir erstellen die Abrechnung nach Ihren Unterlagen und weisen auf Auffälligkeiten hin. Bei Streitigkeiten mit Mietern wenden Sie sich an Ihren Hauseigentümerverband oder eine Anwältin.</p></details>
 </div></section>
 
@@ -168,47 +121,51 @@ footer { padding: 30px 0 50px; color: var(--mu); font-size: 14px; border-top: 1p
       </select></label>
     <label class="ganz">Bemerkungen (Mieterwechsel, Leerstand, Termin …) <textarea name="bemerkungen"></textarea></label>
     <label class="ganz" style="font-weight:400"><span><input type="checkbox" name="express" value="ja" style="width:auto"> Express (2 Arbeitstage, + CHF 90)</span></label>
+    <label class="ganz" style="font-weight:400"><span><input type="checkbox" name="zustimmung" value="ja" required style="width:auto"> Ich habe die <a href="agb.html" target="_blank">Auftragsbedingungen</a> und die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen.</span></label>
     <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
     <div class="ganz"><button class="knopf" type="submit">Unverbindlich bestellen</button></div>
   </form>
-  <div class="ok" id="danke"><b>Danke! Ihre Bestellung ist eingegangen.</b><br>Sie erhalten innert eines Arbeitstags eine E-Mail mit der Liste der benötigten Unterlagen.</div>
+  <div class="ok" id="danke">
+    <b>Danke! Ihre Bestellung ist eingegangen.</b> Sie können die Unterlagen gleich senden – an
+    <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>, als PDF, Scan oder Handyfoto:
+    <ol>
+      <li>Alle Rechnungen der Abrechnungsperiode: Heizung (Heizöl, Gas, Strom, Fernwärme), Heizungsservice, Kaminfeger,
+        Wasser/Abwasser, Allgemeinstrom, Hauswart, Kehricht, Kabel-TV, Lift usw.</li>
+      <li>Bei Heizöl: Tankstand in Litern am Anfang und am Ende der Periode (Foto der Anzeige genügt).</li>
+      <li>Mieterliste: Wohnung, Name, Fläche in m², monatliche Akontozahlung, Ein- und Auszugsdaten.</li>
+      <li>Aus einem Mietvertrag die Seite mit den Nebenkosten.</li>
+      <li>Falls vorhanden: die Abrechnung des Vorjahres.</li>
+    </ol>
+    <a class="knopf" id="unterlagen-senden" href="mailto:{{EMAIL}}">Unterlagen per E-Mail senden</a>
+    <p class="klein">Wir bestätigen den Eingang innert eines Arbeitstags. Bezahlt wird erst nach Ihrer Freigabe des Entwurfs.</p>
+  </div>
 </div></section>
 </main>
 
 <footer><div class="w">
-  <b>Impressum</b> · <span data-cfg="inhaber">[Vorname Name]</span>, <span data-cfg="adresse">[Adresse]</span> ·
-  <a data-cfg="email-link" href="#">[E-Mail]</a><br>
-  Keine Rechtsberatung. Berechnung nach Ihren Unterlagen und gängiger Schweizer Praxis.
+  {{INHABER}} · {{ADRESSE}} · <a href="mailto:{{EMAIL}}">{{EMAIL}}</a><br>
+  <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">Auftragsbedingungen</a> ·
+  Keine Cookies, kein Tracking. Keine Rechtsberatung.
 </div></footer>
 
 <script>
-// ===== Einstellungen – vor dem Aufschalten ausfüllen =====
-const CFG = {
-  inhaber: "[Vorname Name]",
-  adresse: "[Strasse Nr, PLZ Ort]",
-  email: "abrechnung@example.ch",
-  // Formspree (gratis bis 50 Einsendungen/Monat): https://formspree.io → neues Formular → Endpoint hier eintragen.
-  // Leer lassen = Bestellung öffnet ein vorausgefülltes E-Mail.
-  formEndpoint: ""
-};
-// =========================================================
-document.querySelector('[data-cfg="inhaber"]').textContent = CFG.inhaber;
-document.querySelector('[data-cfg="adresse"]').textContent = CFG.adresse;
-const mail = document.querySelector('[data-cfg="email-link"]');
-mail.textContent = CFG.email; mail.href = "mailto:" + CFG.email;
+const CFG = { email: "{{EMAIL}}", formEndpoint: "{{FORM_ENDPOINT}}" };
 
 document.getElementById("bestellung").addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const form = ev.target, daten = new FormData(form);
   if (daten.get("_gotcha")) return;
-  const fertig = () => { form.style.display = "none"; document.getElementById("danke").style.display = "block"; };
+  const fertig = () => {
+    form.style.display = "none"; document.getElementById("danke").style.display = "block";
+    document.getElementById("unterlagen-senden").href = `mailto:${CFG.email}?subject=${encodeURIComponent("Unterlagen Nebenkostenabrechnung " + daten.get("liegenschaft"))}`;
+  };
   if (CFG.formEndpoint) {
     try {
       const r = await fetch(CFG.formEndpoint, { method: "POST", body: daten, headers: { Accept: "application/json" } });
       if (r.ok) return fertig();
     } catch (e) { /* weiter zum E-Mail-Weg */ }
   }
-  const text = [...daten.entries()].filter(([k]) => k !== "_gotcha").map(([k, v]) => `${k}: ${v}`).join("\n");
+  const text = [...daten.entries()].filter(([k]) => !["_gotcha", "zustimmung"].includes(k)).map(([k, v]) => `${k}: ${v}`).join("\n");
   location.href = `mailto:${CFG.email}?subject=${encodeURIComponent("Bestellung Nebenkostenabrechnung")}&body=${encodeURIComponent(text)}`;
   fertig();
 });

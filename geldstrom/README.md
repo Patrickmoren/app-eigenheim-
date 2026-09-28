@@ -39,21 +39,38 @@ trotzdem verkaufbar (z. B. als Lizenz). Keine Kunden oder Daten des Arbeitgebers
 ## Einrichtung (einmalig, ~2 h)
 
 1. **E-Mail-Adresse** eigens dafür (z. B. Gmail/Proton) – Eingang aller Belege.
-2. **Zahlungslink:** Stripe-Konto (Karte + TWINT) → Payment Links für CHF 290 / 390 / 490 / 90.
-   Alternative ohne Stripe: QR-Rechnung aus dem E-Banking (Zahlung nach Entwurf).
-3. **Landingpage:** `landingpage/` auf [Netlify Drop](https://app.netlify.com/drop) ziehen
-   (Ordner inkl. PDFs) → Link sofort online. Im `<script>` von `index.html` Name, Adresse,
-   E-Mail und optional den Formspree-Endpoint eintragen. Domain (z. B. nebenkosten-fixfertig.ch)
-   ist für den Test **nicht nötig**.
-4. **Claude-Projekt «Nebenkosten»** anlegen, `engine/prompts/01-extraktion.md` und
-   `02-pruefung.md` als Projektwissen hinterlegen.
-5. **Google Ads** gemäss [`verkauf/nachrichten.md`](verkauf/nachrichten.md#c--google-ads-suchnetzwerk--ab-tag-2-läuft-ohne-dich).
+2. **Formspree** (gratis, 50 Bestellungen/Monat): formspree.io → «New Form» mit dieser E-Mail →
+   Endpoint-URL kopieren. Ohne Formspree öffnet das Formular ein vorausgefülltes E-Mail (funktioniert auch).
+3. **Website:** Werte in `landingpage/config.json` eintragen (Adresse, E-Mail, Telefon, E-Mail-Anbieter,
+   Formspree-Endpoint), dann `python3 landingpage/build.py` → `landingpage/nebenkosten-website.zip`.
+   Auf [Netlify Drop](https://app.netlify.com/drop) ziehen → Netlify-Konto erstellen →
+   *Site configuration → Change site name* auf `nebenkosten-fixfertig` (sonst `WEBSITE` in der
+   config anpassen und neu bauen). Enthält: Startseite, Bestellformular mit Unterlagen-Checkliste,
+   Impressum, Datenschutzerklärung, Auftragsbedingungen, Vorschaubild für WhatsApp, Sicherheits-Header.
+   **Keine Cookies, kein Tracking → kein Cookie-Banner nötig.** Eigene Domain für den Test nicht nötig.
+4. **Zahlungslink:** Stripe-Konto (Karte + TWINT) → Payment Links für CHF 290 / 390 / 490 / 90.
+   Die Links gehören in die Entwurf-Mail, nicht auf die Website. Alternative: QR-Rechnung aus dem E-Banking.
+5. **Claude-Projekt «Nebenkosten»** anlegen, `engine/prompts/01-extraktion.md` und
+   `02-pruefung.md` als Projektwissen hinterlegen. **Wichtig:** in den Claude-Einstellungen unter
+   Datenschutz die Verwendung von Chats zum Modelltraining ausschalten – die Datenschutzerklärung sagt
+   den Kunden zu, dass ihre Unterlagen nicht zum Training verwendet werden.
+6. **Google Ads** gemäss [`verkauf/nachrichten.md`](verkauf/nachrichten.md#c--google-ads-suchnetzwerk--ab-tag-2-läuft-ohne-dich).
+   Ohne Conversion-Tag auf der Website (sonst wären Cookies und ein Banner nötig); gemessen wird im Tracker.
+
+### Formelles (einmal lesen, nichts davon blockiert den Test)
+- **Handelsregister:** nicht nötig unter CHF 100'000 Umsatz/Jahr. Auftritt unter eigenem Namen (Impressum).
+- **MWST:** nicht pflichtig unter CHF 100'000 Umsatz – deshalb «keine MWST» in den Bedingungen.
+- **AHV:** Nebenerwerb bei der Ausgleichskasse anmelden, sobald Einnahmen fliessen; bis CHF 2'500
+  Reingewinn/Jahr sind Beiträge nur auf Verlangen geschuldet. Einnahmen in der Steuererklärung angeben.
+- **Rechtstexte:** Datenschutzerklärung und Auftragsbedingungen sind sorgfältige Vorlagen für diesen
+  Anwendungsfall, aber keine Anwaltsprüfung. Für den Test ausreichend; vor grösserem Volumen einmal
+  beim HEV-Rechtsdienst oder einer Anwältin gegenlesen lassen (~CHF 200–400).
 
 ## 7-Tage-Test
 
 | Tag | Aufgabe | Zeit |
 |---|---|---|
-| Mo 29.9. | Schritt 0 · Einrichtung 1–3 · 20 Netzwerk-Nachrichten (Vorlage A) | 2 h |
+| Mo 29.9. | Schritt 0 · Einrichtung 1–4 · 20 Netzwerk-Nachrichten (Vorlage A) | 2 h |
 | Di 30.9. | `python3 verkauf/outreach.py …` → 15 Prio-A/B-E-Mails per Klick (Liste mit 32 Treuhändern liegt bereit) · Google Ads live · tutti-Inserat | 1,5 h |
 | Mi 1.10. | restliche Treuhänder-Mails · Antworten bearbeiten | 1 h |
 | Do 2.10. | 10 Treuhänder anrufen (5 Min. je) · Netzwerk-Nachfass | 1 h |
@@ -154,7 +171,8 @@ geldstrom/
   engine/test_nk.py      15 Tests
   engine/beispiel/       Beispielliegenschaft (4 Wohnungen, Mieterwechsel, Leerstand, Heizöl)
   engine/prompts/        Extraktions- und Prüfprompt
-  landingpage/           Verkaufsseite + Beispiel-PDFs, direkt auf Netlify Drop ziehbar
+  landingpage/src/       Website: Startseite, Impressum, Datenschutz, Auftragsbedingungen, Beispiel-PDFs
+  landingpage/build.py   setzt config.json ein → nebenkosten-website.zip für Netlify Drop
   verkauf/               Nachrichten, E-Mails, Google-Ads-Setup, Test-Tracker,
                          treuhaender.csv (32 Büros Kt. ZH) + outreach.py (E-Mails per Klick)
 ```

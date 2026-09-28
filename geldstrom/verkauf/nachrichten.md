@@ -54,7 +54,7 @@ Liste: local.ch / Google Maps «Treuhand [Ort]», nur Einzelfirmen und 1–5-Per
 > Freundliche Grüsse
 > [Vorname Name] · [Telefon] · [Website]
 
-Anhang: `landingpage/beispiel-abrechnung.pdf`
+Anhang: `landingpage/src/beispiel-abrechnung.pdf`
 
 ---
 
