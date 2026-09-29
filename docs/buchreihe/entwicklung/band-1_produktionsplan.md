@@ -100,7 +100,7 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 | 9 | Blockprüfung 2 | Gesamtprüfung | 20-Seiten-Test; Romance hat zwei echte Stufen |
 | ✅ | K20–27 „Spalte“ | `band-1_kapitel-20-27.md` | T5 überzeugend; alle Gegenhinweise gesehen |
 | 11 | Blockprüfung 3 | | 20-Seiten-Test |
-| 12–13 | K28–35 „Kalben“ + Epilog | `band-1_kapitel-28-35.md`, `band-1_epilog.md` | Beweiskette gegen Martha vollständig; Band 1 geschlossen; E2-Spiegelung nicht erklärt |
+| ✅ | K28–35 „Kalben“ + Epilog | `band-1_kapitel-28-35.md`, `band-1_epilog.md` | Beweiskette gegen Martha vollständig; Band 1 geschlossen; E2-Spiegelung nicht erklärt |
 | 14–19 | Gesamtlektorat; Tests auf Fairness, Foreshadowing, Kontinuität, Sprache, Hörbuch; 20-Seiten-Test für den ganzen Band | alle | Protokoll |
 | 20–22 | BoD, Cover, Texte, Metadaten | `publikation/` | aktuelle Anforderungen recherchiert und belegt |
 
@@ -115,3 +115,22 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 - K29: Stufe 5 = Knitterschaden 1 (das Summen, H statt B).
 - K34: Knitterschaden 2 = Lenis Schrei mit Marthas Namen; ausserdem wird nebenbei geklärt, wer die Kabel durchschnitt (Martha) und wer in Noras Zimmer war (Reto, von Martha geschickt).
 - K35: Die 19-Uhr-Einsicht ist bereits in K24 gefallen. K35 vertieft: Beide Schwestern starben an einem Sonntag. Nora hört die ganze Botschaft vom Dezember 2021.
+
+
+## E. Rohfassung Band 1 abgeschlossen (29.09.2026)
+**Umfang:** Prolog–K35 + Epilog ≈ **48.300 Wörter**.
+
+**Vorgabe des Autors:** Ziel 52.000–58.000, nie über 60.000; keine Streckung.
+
+**Gesamtlektorat (Phasen 14–19) – beschlossene Vertiefungen, nur mit dramaturgischer Funktion:**
+1. **Mia – eigener kleiner Bogen.** K21 (Stufe, „Iss etwas“) → K30 (die Lehrstelle, die sie dem Vater verschweigt; „dann sag ich’s Aurel“) → K34/35: Sie sagt es Reto; Rückgriff auf K3: „Halbschwester?“ – „Wenn du meinst.“ wird zu „Schwester.“ – „Wenn du meinst.“ *Funktion:* Mia ist diejenige, die wählt zu bleiben und dann zu gehen, als Spiegel zu Nora.
+2. **Reto – dosiert.** Eine kurze Szene nach der Befragung (K21 nachts): Er deckt im leeren Speisesaal einen einzigen Tisch für zwei (für Mia und sich), stellt einen dritten Teller hin und räumt ihn wieder weg. Keine Gedanken, keine Geheimnisse. *Funktion:* Verdacht und Menschlichkeit zugleich; Vorbereitung auf Band 2.
+3. **Inês – organisch.** Eine Szene zwischen K24 und K26: Nora findet Inês um 19 Uhr am Speicher, wo sie der Glocke zuhört, zum ersten Mal in ihrem Leben, und sagt nichts. *Funktion:* Die KI-Geschichte bekommt die Trauer der Frau, die sie betrieben hat.
+**Erwartung nach dem Lektorat:** ≈ 51.000–53.000 Wörter.
+
+**Weitere Lektoratspunkte:**
+- Leitmotivdichte („Vogel auf einer Leitung“, „Lidschlag“, „wie man …“, „Ich hörte …“).
+- K10: Telefonate straffen.
+- K21, K25: Prüfen, ob die sehr kurzen Kapitel zusammengelegt werden sollten (21 an 20, 25 an 24).
+- Prüfen, ob die 19-Uhr-Einsicht dreimal fällt (K24 Aurel, K28 Inês, K35 Mama) – eventuell K24 zurücknehmen, damit K35 voll trägt.
+- Kontinuität: Kanada-Anfrage bleibt in Band 1 offen (bewusst, Epilog).

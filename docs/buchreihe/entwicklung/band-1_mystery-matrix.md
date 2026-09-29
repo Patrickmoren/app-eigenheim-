@@ -139,3 +139,27 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 - **T5 (Mama hat Kathi getötet oder sterben lassen):** dominant und offiziell (Einstellung). Gestützt durch Brunos „Du hast gesagt, sie ist gefallen“, Retos Version, Marthas „Ich habe deine Mutter geschützt“, Mamas Entwürfe, „Du?“ und „LENI!“ auf dem Band.
 - **Gegenhinweise, die die Leserin gesehen hat:** Warum geht eine Täterin nachts zum Polizisten (K22, Nora selbst)? „Ich hätte zurückgehen müssen“ ist das Bedauern eines Versäumnisses, keine Tat. „Kathi?“ von oben klingt wie Suche, nicht wie Kontrolle. Das „Pfeifen im Eis“ ist markiert. Martha sagt „Ich war nicht dabei“, obwohl sie laut Reto um zwei Uhr alles wusste. Brunos „Nach Lichtmess ist das erledigt“ betrifft Firn, nicht Leni. Fabiennes „Löcher“.
 - **Martha:** Firn-Gründerin, Beschützerin, trauernd. Nicht als Täterin gelesen.
+
+## 13. Finale (Kapitel 28–35, Epilog) – umgesetzte Wahrheit
+- **Reto (K28):** Noras erstes Wort war „Papa“ (im Speisesaal, auf seinem Arm); „Nein“ war das zweite. Mamas Anekdote war also halb falsch (Band 3: Leni war nicht dabei). „Es gibt Dinge, die ich dir nie sagen werde. Nicht, weil ich nicht will.“
+- **Martha (K28):** gibt Nora die Rezeptkarte und alte Fotos (Abschied, als Grosszügigkeit getarnt); weigert sich zu evakuieren.
+- **Inês (K28):** Mama schloss jeden Sonntag vor sieben die Augen – „sie hat die Glocke gehört. Nicht mit den Ohren.“
+- **Stufe 5 (K29):** Das „Pfeifen im Eis“ ist Summen; die Melodie ist das Gelübdelied (identifiziert niemanden, weil alle es beim Gehen summen). Nora fürchtet, Mama habe gesummt. Die Tonhöhe wird über das Motorbrummen des Rekorders zurückgerechnet (≈ 20 h).
+- **Küche (K30–32):** zwei Kuchen (gross für Nora; klein in einer Emailleform mit blauem Rand für Martha, „weniger Salz, wegen dem Herz“); die Gelübdekerze aus der Kapelle, von Sepp. 18:52 kommt die Datei; das H im Ohrhörer und live. **Marthas Geständnis:** Sie folgte Kathi summend, hörte den Streit hinter einem Stein, trat zu Kathi („Gib mir das Gerät“), Kathi sagte „Du?“ und wich zurück, Martha griff („Ich weiss nicht, ob ich sie halten wollte oder das Gerät“), Sturz. „**Ich hab gesummt, damit ich sie nicht höre.**“ Leni kam zurück, Martha hielt sie fest, Leni riss sich los und rannte zu Bruno; dort sprach Martha die Drohung aus. Motiv: Firn, Reto, das Hotel, das Dorf – „und du. Ich hab dich nicht hergeben können.“ **„Nicht du. Davon nicht.“** Fingerhutblätter, mit dem Lauch gehackt. Bruno: „Er wollte nicht vergessen werden. Wir hatten eine Abmachung.“ (Gnade? → Band 2). Nora trägt Martha hinaus; Symptome: Erbrechen, Gelbsehen („Die Lichter sind alle gelb“), langsamer, stolpernder Puls.
+- **Abbruch (K33):** Mia hat Aurel geschickt. Martha wird ausgeflogen. Die Front bricht; die Druckwelle trifft den Platz; das obere Dorf ist verschüttet (Marthas Haus weg, das Imseng-Haus teilweise). **Die Lomma verstummt** (gestaut). A7: Die Betonwand ist weg, die Stahltür hängt an einer Angel offen.
+- **Spital Visp (K34):** Digitalis-Antikörper; Martha überlebt, steht unter Bewachung, sagt drei Stunden aus und bestreitet nichts. Anklage: Aussetzung mit Todesfolge, Nötigung. Aurel beantragt die Exhumierung seines Vaters. Kabelschere im Schopf (Sabotage = Martha). Reto gesteht die Zimmerdurchsuchung (im Auftrag von Martha).
+- **Stufe 5b (K34):** „Kathi?“ – „Leni …“ – „Halt dich fest, ich komm –“ – „Lass mich los, Martha! Sie lebt noch!“ – „Ich hol ein Seil!“
+- **Beerdigung (K35):** Visp, vorläufig. Kathis Sarg und **Lenis Urne** (von Inês) im selben Grab. Kreuz: „Katharina Zuber-Walpen, 1968–1997 / Magdalena Walpen, 1968–2024“. Nora hört die ganze Botschaft von 2021 („Nicht alles. Aber genug … An den Sonntagen hab ich dir nur zugehört … Um sieben läutet bei uns die Glocke … Die Kathi ist an einem Sonntag gegangen … Erzähl du weiter.“).
+- **Epilog:** Bern, Studio 3, So 18.10., 19:00:00, +1 514 (Montreal). „Hier ist Leni Walpen. Jedenfalls steht das seit neunundzwanzig Jahren in meinem Pass … Die Tür von der Festung ist offen … bevor irgendjemand hineingeht – Sie oder der junge Imseng oder die Leute, die das Schloss dort hingehängt haben –, müssen Sie wissen, wer da drin liegt. Und wer ihn hineingelegt hat. Ich war dabei.“
+
+## 14. Offene Fäden am Ende von Band 1 (bewusst → Band 2/3)
+| Faden | Gesetzt in | Übergabe an |
+|---|---|---|
+| Wer ist „Leni Walpen“ in Montreal? (Heidi Imseng) | K10 (Aurels Mutter), K8 (Kanada-Anfrage), Epilog | Band 2 |
+| Wer liegt in A7 (Dario), wer hat ihn getötet? | Prolog („Ferraris“), K15, K17 („dein Italiener“), K22, Epilog | Band 2 |
+| Das Schloss an A7 – wer? (Claudine / Firn heute) | K12, K16 („nicht meins“), Epilog | Band 2 |
+| Brunos Tod – Gnade oder Schweigen? | K22, K32 („Abmachung“), K34 (Exhumierung) | Band 2 |
+| Kanada-Antwort der Polizei | K8 | Band 2, Anfang |
+| Aosta, „Du hast sie mir gegeben“, „NORA 1“, der Geisterton, „Nicht alles“, „Du stehst wie sie“ | K2, K3, K5, K8, K17, K35 | Band 3 |
+| Marthas Prozess; Noras Besuch bei Martha | K34, Epilog („morgen“) | Band 2/3 |
+| Retos „Dinge, die ich dir nie sagen werde“ | K28 | Band 2 (Vaterschaft) |

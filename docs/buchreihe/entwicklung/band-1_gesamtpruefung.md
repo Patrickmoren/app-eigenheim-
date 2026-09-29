@@ -162,3 +162,19 @@ Keine Szene besteht nur aus „noch etwas mehr wissen“.
 - **Korrigiert:** Die Bandstruktur hat jetzt zwei Knitterschäden, damit Lenis Schrei mit Marthas Namen für K34 bleibt. „Gestern“ ist in „letzte Woche“ korrigiert (Schule). Ein „plötzlich“ ist ersetzt.
 - **Umfang (Hinweis an den Autor):** K20–27 ≈ 9.350 Wörter, einige Kapitel sind sehr kurz (K21, K25 ≈ 900). Band 1 läuft auf **≈ 51.000–54.000 Wörter** zu, also unter dem Zielkorridor von 55.000–75.000. Das Finale (K28–35) bekommt den Raum, den es dramaturgisch braucht (Richtwert 13.000–15.000); künstlich gestreckt wird nicht. Kandidaten für echte Vertiefung im Gesamtlektorat (kein Füllstoff): Mias eigener Bogen, Retos Innensicht nach der Befragung, Inês’ Nächte bei Agnes.
 - **Sprache:** Satzmuster „Ich hörte …“ und „wie man …“ bleiben häufig. „Ich weiss nicht“ taucht mehrfach als Stilmittel auf (bewusst in K24 beim Kuss); im Lektorat prüfen.
+
+### Blockprüfung 4 – Finale K28–35 + Epilog (29.09.2026)
+- **Kette:** Summen (K29) → Martha (K31) → Küche (K30–32) → Fingerhut (K32) → „Nicht du. Davon nicht.“ (K32) → Entscheidung (K32) → Gletscher (K33) → Band (K34) → Wahrheit (K32/34) → Beerdigung (K35) → Montreal (Epilog). Alles läuft zusammen, ohne neue Nebenplots oder Figuren. ✅
+- **E2 geschützt:** Martha tötet nicht Nora; sie will sterben. Sie erzählt die Wahrheit, um Leni freizusprechen. Ihr „Ich weiss es nicht“ (gestossen?) und „Ich hab gesummt, damit ich sie nicht höre“ machen sie menschlich, nicht harmlos. ✅
+- **Noras Entscheidung** wird ausgespielt: Tür, Rahmen, Sirene, „Niemand würde es wissen“, Umdrehen, „Steh auf“, Tragen. Die Spiegelung zu 1997 wird nicht benannt; Nora denkt nur an das Summen „damit er sie nicht hört“. Das ist die Grenze zur Erklärung. Im Lektorat prüfen, ob der Satz bleibt. ✅
+- **Gletscherabbruch:** eigener Raum (≈ 700 Wörter), mit dem Verstummen der Lomma als stärkstem Akustikbild. ✅
+- **Band nicht nur Beweis:** Stufe 5b gibt Nora die lebendige Stimme ihrer Mutter zurück („das Pfeifen einer lebendigen Stimme … Zwanzig Sekunden. Sie reichten.“). ✅
+- **Beerdigung:** nicht übersprungen; die Urne macht sie zur Szene der Reihe. ✅
+- **Letztes Kapitel verkauft nichts:** K35 endet mit Brücke, Tee und Hand. Kein Kanada-Bescheid. Montreal steht allein im Epilog, als konkrete Bedrohung („bevor irgendjemand hineingeht“) mit einer persönlichen Ebene („Ich war dabei“). ✅
+- **Band 1 beantwortet:** die Tote, wer „Mama“ war, 1997 im Grundsatz, Marthas Rolle, die Sonntagsanrufe, die Stimme. **Offen und übergeben:** siehe Matrix §14. ✅
+- **Korrigiert beim Schreiben:** Nora konnte den Prolog nicht gehört haben (zwei Stellen umformuliert). Die Epilog-Tageszeit in Montreal (Mittag) ist korrigiert. „neunundzwanzig Jahre angerufen“ ist korrigiert (Anrufe erst, seit Nora von zu Hause fort war). Eine Formulierung Mamas, die das Leitmotiv ausbuchstabierte, ist gestrichen. Ein „plötzlich“ ist ersetzt.
+- **Risiken für das Lektorat:**
+  1. Marthas Geständnis (K32) enthält die Drohung aus Brunos Küche vollständig; Stufe 5b (K34) ist deshalb Bestätigung statt Enthüllung. Das ist bewusst so, weil die Wucht emotional ist (Mamas lebendige Stimme), nicht informativ. Beobachten.
+  2. Brunos „Abmachung“ legt die Gnadenlesart nahe. Band 2 muss sie mit der Exhumierung verkomplizieren, nicht bestätigen.
+  3. Die 19-Uhr-Bedeutung fällt dreimal (K24, K28, K35). Eine Stelle kürzen.
+- **Umfang:** ≈ 48.300 Wörter Rohfassung; nach den beschlossenen Vertiefungen ≈ 51.000–53.000.

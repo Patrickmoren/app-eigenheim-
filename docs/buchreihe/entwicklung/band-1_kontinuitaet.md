@@ -98,3 +98,14 @@ Alles, was im Text steht, ist hier festgehalten. Neue Fakten werden beim Schreib
 - **Nora:** Schuhgrösse 37; fliegt am Fr 25.9. von Genf nach Porto.
 - **Porto-Wohnung:** Ribeira, 4. Stock, Holztreppe, drei Schlösser.
 - **Ruth:** arbeitet mit Anthamatten am Band; schickt Stufe 4 am Mi 23.9. über eine gesicherte Verbindung der Kantonspolizei („Hör es allein.“).
+
+## Nachträge Finale
+- **Evakuierung:** Entscheid Mo 28.9. um 11 Uhr; obere Dorfteile und Dorfkern; So 4.10. 18 Uhr Strasse zu; 19 Uhr letzter Helikopter vom Dorfplatz. Absperrung am Eingang der Schlucht; Zivilschutz in orangen Westen; Sirene „Allgemeiner Alarm“.
+- **Reto:** Termin beim Staatsanwalt in Sitten im November. Wohnt mit Mia im Hotel in Visp.
+- **Mia:** hat die Lehrstelle in Lausanne bekommen (erzählt Nora am Mo 28.9.), Reto weiss es noch nicht.
+- **Martha:** Rezeptkarte Cholera („Lauch nicht zu dünn“), Fotos; Emailleform weiss mit blauem Rand (abgeplatzt); Gelübdekerze im Messinghalter. Ihr Haus ist unter dem Abbruch verschwunden.
+- **Ruth:** Glätten zwischen Glas in der Feuchtkammer (eine Woche), Vorspannband mit selbstgebauter Schiene; Tonhöhenkorrektur über das Motorbrummen (≈ 20 h).
+- **Sepp:** läutet am 4.10. um 19 Uhr die Glocke ein letztes Mal; hat kleine Kerzen aus der Nische mitgenommen.
+- **Abbruch am 4.10. nach ≈ 19:30:** Das obere Dorf ist erreicht (die drei obersten Häuser), der Dorfkern steht (Kapelle, Post, Hotel); die Lomma ist gestaut; A7 steht offen.
+- **Nora:** wohnt ab 5.10. in einem Hotel in Visp (Blick auf Chemiefabrik und Geleise); fährt am So 18.10. nach Bern; Studio 3.
+- **Grab:** Friedhof Visp, vorläufiges Holzkreuz mit zwei Namen.

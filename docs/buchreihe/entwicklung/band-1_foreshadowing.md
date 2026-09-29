@@ -121,3 +121,16 @@ Regel: Jedes Wiederauftauchen verschiebt die Bedeutung, es wiederholt sie nicht.
 | N-Kathi-oben | K26 „Kathi?“ von oben | Kontrolle | Leni kommt zurück, um zu retten | K34 |
 | N-Löcher | K27 Fabienne | Zweifel | Stufe 5 | K29 |
 | N-Botschaft | K27 „Nora. Wenn du das hörst –“ | Angst vor dem Geständnis | „weisst du, wer ich war. Nicht alles. Aber genug.“ | K35 / Band 3 |
+
+## I. Auflösungen im Finale (Status)
+✅ aufgelöst: M-Summen (K29/31), M-H (K31), M-Kerzen und M-Z (K32 Geständnis), M-Fingerhut (K32), M-Band (K32 „Das Band hat eine Frau gehört, die nicht dabei war“), M-Liebe (K32 „Ich hab dich nicht hergeben können“), N-Du (K32), N-Kathi-oben (K34), N-verzeih (K32/34), N-Nicht-dabei (K32), N-37 (K34), N-Rotes-Licht (K32), N-Kerze-21Uhr (K32), N-Kartoffeln (K28 Abschiedsgeschenke), N-Iss-etwas (K34 Mia), N-Botschaft (K35), A-Präzision/Glocke (K35 Mamas Stimme), N-Glocke-1869 (K35: niemand läutet), N-Tafel (K35 zwei Namen), N-Grab (K35).
+Weitergegeben: siehe Matrix §14.
+
+| ID | Neu im Finale | Bedeutung für später |
+|---|---|---|
+| F-Papa | K28 erstes Wort „Papa“ | Band 2/3: Reto war der Vater, der da war – nicht der biologische |
+| F-Abmachung | K32 Bruno | Band 2: Exhumierung |
+| F-Lomma | K33 die Lomma verstummt | Band 2: gestauter Gletschersee (neue Gefahr) |
+| F-Tür | K33 Stahltür offen | Band 2 |
+| F-Montreal | Epilog „Ich war dabei“ | Band 2 |
+| F-junger-Imseng | Epilog: Die Anruferin kennt Aurel | Band 2: Heidi |

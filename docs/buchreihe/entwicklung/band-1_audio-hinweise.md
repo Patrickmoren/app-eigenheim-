@@ -65,3 +65,18 @@ Prinzip: Jedes Motiv durchläuft **Atmosphäre → Hinweis → Beweis**. Im Hör
 | Stufe 4 | K26 | Raumwechsel beim Sturz: offener Himmel → enge Eiskammer (kurzer, nasser Hall); „LENI!“ ohne Musik, voller Pegel, Nachhall von allen Seiten; darüber leise das „Pfeifen im Eis“ = Marthas Summen, stark bandbegrenzt, **mit dem H**, nicht erkennbar |
 | Porto | K27 | Dutzende echte Möwen, alle verschieden; eine Strassenbahnglocke, richtig gestimmt (Kontrast zur Tram 9 in Bern) |
 | Botschaft 2021 | K27 | echte Stimme der Mama-Sprecherin, Dialekt, leicht verwaschen; bricht nach vier Wörtern ab |
+
+## Finale
+| Motiv | Stelle | Regie |
+|---|---|---|
+| Stufe 5 roh | K29 jaulend, Motorbrummen als dünne Linie | Wow & Flutter hörbar, danach korrigiert |
+| Zwei Summen | K31 links 1997, rechts 2026 | im Hörbuch Stereo: links das Band, rechts Martha; beide mit dem H, leicht versetzt |
+| Glocke letztes Mal | K32 durch das Küchenfenster, gedämpft | Sepp läutet von Hand; unter Marthas Geständnis |
+| Gabel | K32 | Klirren auf dem Tisch, Fall auf die Dielen |
+| Sirene | K30–32 | Allgemeiner Alarm (auf- und abschwellend, 1 min) |
+| Abbruch | K33 | Reissen → Kanonenschläge → Brüllen → Druckwelle (Zelt, Fenster, Türen) → Rieseln → **Stille ohne Lomma** (das Grundrauschen des ganzen Hörbuchs fällt weg) |
+| Stufe 5b | K34 Lenis Pfiff schwankend beim Rennen | lebendiges Pfeifen im Kontrast zum synthetischen |
+| Schnee auf Schirmen | K35 | kaum hörbares Flüstern auf Stoff |
+| Botschaft 2021 ganz | K35 | Atem mitten im Satz, Husten im Wort, echte Möwen |
+| Kirchenuhr Visp | K35 „eine Spur zu tief“ | kein Läuten aus Lomm |
+| Epilog | 19:00:00 +1 514 | Stille in Studio 3, Vibrieren auf Holz, Montrealer Stadtraum, dann die Stimme mit dem Walliser Fundament |

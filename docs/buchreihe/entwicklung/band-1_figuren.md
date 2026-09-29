@@ -83,3 +83,12 @@ Jede Figur hat: Wunsch · Angst · Geheimnis · blinden Fleck · Widerspruch · 
 - **Mia:** macht das Foto aus Sorge, nicht aus Verrat; ihre Frage „Oder?“ ist die Angst einer Tochter.
 - **Fabienne:** stellt nicht gegen ihr Gewissen ein, sondern ruft an, um es zu sagen.
 - **Inês:** gibt die Entwürfe her, die sie nicht löschen konnte; fliegt nicht mit nach Porto.
+
+## Bogenabschluss Band 1
+- **Nora:** Vom Aufnehmen zum Vertrauen. Ihre Entscheidung (K32) wird nicht erklärt, sondern getan. Am Ende nimmt sie nicht auf (K35) – und im Epilog doch, aus Reflex. Der Bogen ist geschlossen, die Figur bleibt sie selbst.
+- **Martha:** tragisch, nicht monströs. Sie tötete aus besitzender Liebe und aus Angst vor dem Verlust (Dorf, Sohn, Kind). Sie wollte sterben, um Nora die Wahrheit zu ersparen, und hat sie ihr am Ende doch gesagt – um Leni freizusprechen.
+- **Leni (Mama):** vollständig rehabilitiert, ohne verklärt zu werden. Sie war Schmugglerin, Lügnerin und wählte das Kind statt des Seils. Sie ist in Band 1 abgeschlossen; Band 3 öffnet sie neu.
+- **Aurel:** hat seinen Vater zurückbekommen und verloren und beantragt trotzdem die Exhumierung (Wahrheit vor Schonung).
+- **Reto:** gebrochen und doch Vater (Mia, „Papa“).
+- **Mia:** schickt Aurel (K33); „Iss etwas“ (K34).
+- **Inês:** bringt Leni zu Kathi (Urne).
