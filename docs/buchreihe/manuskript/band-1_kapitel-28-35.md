@@ -76,22 +76,6 @@ Ich nahm die Karte. Ich wollte etwas sagen und sagte nichts.
 
 „Die hab ich aufgehoben“, sagte Martha. „Jetzt hast du sie.“
 
-\*
-
-Agnes’ Tür war offen, wie immer. Ich ging hinauf, um Inês den Schlüssel mit der blauen Kachel zurückzugeben.
-
-Sie sass in Agnes’ Küche am Tisch, mit einer Tasse Kaffee, in die Agnes ihr bestimmt Kirsch gegossen hatte, und die Katze lag auf ihrem Schoss, als hätte sie immer dort gelegen. Agnes schlief im Sessel am Fenster, das Radio lief ohne Ton.
-
-Ich legte den Schlüssel auf den Tisch. Inês sah ihn an und nahm ihn nicht.
-
-„Haben Sie die Botschaft gehört?“, fragte sie.
-
-„Den Anfang.“
-
-Sie nickte, als verstünde sie das besser als alles andere.
-
-„Ich muss Ihnen etwas sagen“, sagte sie. „Es ist nichts Wichtiges.“ Sie strich der Katze über den Rücken. „Jeden Sonntag, kurz vor sieben, hat sie die Augen zugemacht. Bevor sie den ersten Satz getippt hat. Eine halbe Minute, manchmal eine ganze. Ich habe drei Jahre lang gedacht, sie betet.“ Sie sah zum Fenster, hinter dem es dunkel wurde, zur Kapelle, die man von hier aus sah. „Seit ich hier bin, weiss ich es. Sie hat die Glocke gehört. Nicht mit den Ohren.“
-
 ## KAPITEL 29
 
 Ruth hatte das zerknitterte Stück Band herausgeschnitten, drei Minuten und zwölf Sekunden, sieben Zentimeter Magnetband, und es zwischen zwei Glasplatten gelegt, in einer Kammer, in der die Luft so feucht war wie an einem Morgen im Nebel. Dort lag es seit einer Woche. Das Band musste sich erinnern, wie es flach gewesen war, und das Erinnern dauerte.
@@ -422,7 +406,13 @@ Martha antwortete nicht. Sie nahm das Stück von ihrem Teller und ass es, ruhig,
 
 „Seit wann?“
 
-„Seit einer halben Stunde.“ Sie sah auf die Uhr über dem Herd. „Es dauert ein bisschen. Dann wird es gelb. Alles wird gelb, hat der Bruno gesagt.“ Sie lächelte, schwach. „Er wollte nicht vergessen werden. Wir hatten eine Abmachung, er und ich. Schon lange.“
+„Seit einer halben Stunde.“ Sie sah auf die Uhr über dem Herd. „Es dauert ein bisschen. Dann wird alles gelb, sagt man.“
+
+„Und Bruno?“
+
+Martha sah mich lange an.
+
+„Ich hab dem Bruno zwanzig Jahre lang jeden Donnerstag einen Kuchen gebracht“, sagte sie. „Wir hatten eine Abmachung, er und ich. Schon lange.“ Sie sah auf ihre Hände. „Was für eine, geht niemanden etwas an.“
 
 Ich stand auf. Der Stuhl fiel um.
 
@@ -444,7 +434,7 @@ Ich stand an der Tür, mit der Hand am Rahmen, und hinter mir sass eine Frau an 
 
 Niemand würde es wissen. Das war wahr. Fabienne hatte den Fall geschlossen. Der Gletscher würde kommen oder nicht kommen. Eine alte Frau, die ihr Haus nicht verlassen wollte, das stand jedes Jahr irgendwo in der Zeitung. Ich musste nur gehen. Einen Schritt über die Schwelle, und dann den Weg hinunter, über die schrägen Steinplatten, zum Platz, zum Helikopter, zu Mia und Aurel und Fabienne.
 
-Ich hatte sechs Wochen lang zugehört. Ich hatte mein Leben lang zugehört. Ich hatte gehört, wie eine Frau in einer Spalte nach ihrer Schwester schrie, und wie über ihr jemand summte, damit er sie nicht hört.
+Ich hatte sechs Wochen lang zugehört. Ich hatte mein Leben lang zugehört.
 
 Ich drehte mich um.
 
@@ -538,7 +528,7 @@ Ich lag auf dem Pflaster. Aurel lag neben mir. Er atmete. Ich hörte ihn atmen. 
 
 Und ich hörte die Lomma nicht mehr.
 
-Zum ersten Mal, seit ich in Lomm war, hörte ich das Rauschen der Lomma nicht. Das Wasser in der Schlucht, das immer da gewesen war, das man nach zehn Minuten nicht mehr hörte und nach einer Stunde nicht mehr aus dem Kopf bekam, war weg. Irgendwo oben hatte der Berg es zugedeckt.
+Zum ersten Mal, seit ich in Lomm war, hörte ich das Rauschen der Lomma nicht. Das Wasser in der Schlucht, das immer da gewesen war, das man nach zehn Minuten nicht mehr hörte und nach einer Stunde nicht mehr aus dem Kopf bekam, war weg.
 
 \*
 
@@ -568,7 +558,7 @@ Ich ging nicht zu ihr. Noch nicht.
 
 Ruth schickte mir am Montag die letzten zwanzig Sekunden.
 
-Den zweiten Knitterschaden, der nach dem *Kathi?* von oben kam, kurz vor dem Ende des Bandes, dort, wo die Batterie in der Kälte starb. Sie hatte ihn behandelt wie den ersten, zwischen Glas, in der feuchten Kammer, mit dem Motor als Lineal, und sie hatte es fertig bekommen, in drei Tagen, ohne zu schlafen, und ohne mich zu fragen.
+Den zweiten Knitterschaden, der nach dem *Kathi?* von oben kam, kurz vor dem Ende des Bandes, dort, wo die Batterie in der Kälte starb. Sie hatte es fertig bekommen, in drei Tagen, ohne zu schlafen, und ohne mich zu fragen.
 
 *Das gehört dir*, schrieb sie. *Nicht der Polizei. Ich schicke es Fabienne morgen.*
 
@@ -598,7 +588,7 @@ Ich hörte es im Zimmer, das man mir in einem Hotel in Visp gegeben hatte, einem
 
 Zwanzig Sekunden.
 
-Meine Mutter, oben am Rand, den Namen ihrer Schwester rufend. Meine Mutter, die sich losreisst. Meine Mutter, die rennt. Das Pfeifen auf jedem S, *Sie lebt noch*, *Seil*, dünn und hoch, schwankend, einmal höher, einmal tiefer, weil sie rannte, weil sie weinte, weil sie keine Luft mehr hatte. Das Pfeifen einer lebendigen Stimme.
+Meine Mutter, oben am Rand, den Namen ihrer Schwester rufend. Meine Mutter, die sich losreisst. Meine Mutter, die rennt. Das Pfeifen auf jedem S, schwankend, weil sie rannte, weil sie weinte, weil sie keine Luft mehr hatte.
 
 *Ich hol ein Seil.*
 
@@ -634,7 +624,7 @@ Er lachte. Kurz, trocken, ein Lachen, das mehr wehtat als alles andere.
 
 „Und die Kabel an der Station“, sagte ich. „Das war auch sie?“
 
-„Die Polizistin hat im Schopf eine Kabelschere gefunden. Unter dem Schnee, im Haus, das noch halb steht.“ Er zuckte mit den Schultern. „Sie wollte nicht, dass jemand das Dorf leer macht. Sie wollte, dass alles bleibt, wie es war.“
+„Sie hat es der Polizistin selbst gesagt. Die Kabel auch.“ Er zuckte mit den Schultern. „Sie wollte nicht, dass jemand das Dorf leer macht. Sie wollte, dass alles bleibt, wie es war.“
 
 Mia kam an den Tisch, mit einem Teller, auf dem ein Gipfeli lag, und stellte ihn vor ihren Vater. Er sah es an. Sie setzte sich neben ihn und legte den Kopf an seine Schulter, und er legte den Arm um sie, und so sassen sie da, und ich sah weg, zum Fenster, zur Chemiefabrik, weil es ihnen gehörte.
 
@@ -644,7 +634,7 @@ Mia kam an den Tisch, mit einem Teller, auf dem ein Gipfeli lag, und stellte ihn
 
 Fabienne kam am Mittwoch, mit der Schachtel Zigaretten in der Hand, noch immer in der Folie.
 
-„Der Staatsanwalt hat das Verfahren wieder eröffnet“, sagte sie. „Gegen Martha Zuber. Aussetzung mit Todesfolge, Nötigung, möglicherweise mehr. Ihre Grossmutter hat gestern im Spital eine Aussage gemacht. Drei Stunden. Sie hat nichts bestritten.“
+„Der Staatsanwalt hat das Verfahren wieder eröffnet“, sagte sie. „Gegen Martha Zuber. Aussetzung mit Todesfolge, Nötigung, möglicherweise mehr. Ihre Grossmutter hat gestern im Spital eine Aussage gemacht. Drei Stunden. Sie hat nichts bestritten.“ Sie drehte die Schachtel in der Hand. „Auch nicht die Kerze. Zwanzig vor eins, im Kerzenbuch. Das war ihre Hand, nicht die Ihrer Mutter.“
 
 „Und Bruno?“
 
@@ -666,7 +656,7 @@ Es waren mehr Menschen gekommen, als ich gedacht hatte. Agnes, auf ihren Stock u
 
 Und Inês. Sie stand am Kopfende des Grabes und hielt etwas in beiden Händen, vor dem Bauch, wie man etwas hält, das man nicht fallen lassen darf. Eine Urne, schlicht, aus hellem Holz.
 
-Sie hatte mich am Donnerstag gefragt. In Agnes’ Küche, mit der Katze auf dem Schoss.
+Sie hatte mich am Donnerstag gefragt, in einem Café am Bahnhof von Visp, mit beiden Händen um eine Tasse, die sie nicht trank.
 
 *Sie wollte nie nach Lomm zurück*, hatte sie gesagt. *Aber sie wollte zu ihr.*
 
@@ -682,6 +672,30 @@ Auf dem vorläufigen Holzkreuz standen zwei Namen.
 Sepp gab mir eine Kerze. Eine kleine, aus der Nische in der Kapelle, die er vor der Evakuierung mitgenommen hatte, mit dem eingeprägten Kreuz. Ich zündete sie an, mit einem Streichholz, das dreimal ausging, weil der Schnee es löschte, und beim vierten Mal brannte es, und ich hielt die Hand um die Flamme, hohl, wie man es den Kindern in Lomm beibringt, bevor sie lesen können.
 
 Ich stellte die Kerze auf das Grab.
+
+\*
+
+Mia fand mich am Friedhofstor. Sie hatte die Hände in die Ärmel ihres Pullovers gezogen und die Nase rot vom Schnee.
+
+„Ich hab’s ihm gesagt“, sagte sie. „Lausanne.“
+
+„Und?“
+
+„Er hat gesagt: Iss etwas.“ Sie lachte, und diesmal war es ein echtes Lachen, kurz, mit Schnee darin. „Und dann hat er gesagt, er fährt mich hin. Im Januar. Mit dem Volvo.“
+
+Sie trat von einem Fuss auf den anderen und sah mich an, von oben bis unten, wie am ersten Abend hinter der Theke.
+
+„Kommst du mal? Nach Lausanne?“
+
+„Wenn du willst.“
+
+Sie nickte. Dann umarmte sie mich, schnell und fest, die kalten Hände in meinem Nacken, und liess wieder los, bevor ich zurückumarmen konnte.
+
+„Schwester“, sagte sie im Weggehen, über die Schulter. Nicht als Frage.
+
+„Wenn du meinst“, sagte ich.
+
+Sie drehte sich nicht um. Aber ich sah an ihren Schultern, dass sie lachte.
 
 \*
 
@@ -719,7 +733,7 @@ Dann nur noch die Möwen, eine Weile. Dann ein Klicken. Dann nichts.
 
 Draussen schlug die Kirchenuhr sieben, eine Spur zu tief, und im Tal fuhr ein Zug, und es schneite auf die Geleise. Irgendwo, dreissig Kilometer von hier, am Ende einer Strasse, die niemand mehr befuhr, hing eine Glocke in einem leeren Turm, und niemand läutete sie.
 
-Meine Mutter war an einem Sonntag gestorben, um sieben. Ihre Schwester an einem Sonntag, um Mitternacht, im Eis. Und dazwischen hatte eine Frau neunundzwanzig Jahre lang jeden Sonntag um sieben innegehalten, und seit ich von zu Hause fort war, hatte sie mich angerufen, damit wenigstens eine nicht stillsteht.
+Meine Mutter war an einem Sonntag gestorben, um sieben. Ihre Schwester an einem Sonntag, kurz vor Mitternacht, im Eis.
 
 \*
 

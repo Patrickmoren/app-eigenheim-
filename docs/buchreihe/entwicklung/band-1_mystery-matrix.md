@@ -126,7 +126,7 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 - **Brunos Tod (K23):** in der Nacht auf den 18.9. im Heim Stalden, „Herzversagen“. Am Nachmittag davor Marthas Donnerstagskuchen (Martha besucht ihn jeden Donnerstag, „seit seine Frau weg ist“). Aurel verzichtet auf eine Obduktion (K25). → Band 2: Exhumierung, Digitalis.
 - **Firn-Ordner (K23):** Buchhaltung; Gründungsliste vom 12.11.1961: A.Z., P.K., T.I., **M.W.**; von Hand ergänzt: B.I. 1978, L.W. 1991 (nur Transport). Nora erkennt über das Leinentuch (K8): **M.W. = Martha, vor der Heirat**. „Werlen“ bleibt unausgesprochen.
 - **Marthas Teilgeständnis (K24):** Firn seit sie 19 war; mit dem Geld wurden Hoteldach, Wasserleitung, Schule und Taufe bezahlt. „Ich habe deine Mutter geschützt. Neunundzwanzig Jahre.“ Ihre Version: Leni kam zu Bruno, „wir haben gestritten und sie ist gefallen“, Bruno holte Martha. **„Ich war nicht dabei.“ (Lüge.)** Sie droht nicht, sie *beschreibt* die Folgen („eine alte Frau, die im Gefängnis stirbt … die Mia hat niemanden mehr“). Das stützt T5.
-- **19-Uhr-Erkenntnis** vorgezogen in **K24** (Aurel: „Um genau diese Zeit“). K35 vertieft stattdessen: Kathi starb an einem Sonntag, Mama starb an einem Sonntag um sieben.
+- **19-Uhr-Erkenntnis** *(Stand Gesamtlektorat)*: nicht mehr in K24 (dort nur das gemeinsame Hören der Glocke). Hinweis in **K25** (Inês: Mama schloss vor sieben die Augen, „Ich habe drei Jahre lang gedacht, sie betet“), Wahrheit in **K35** (Botschaft 2021). Die Glocke bedeutet Erinnerung, nicht Mechanik.
 - **Sabotage (K25):** Kabel sauber geschnitten, Schuhgrösse 37/38, Verdacht in Richtung Mia (unausgesprochen). Wahrheit: Martha (Auflösung K34, beiläufig).
 - **Mamas Entwürfe (K25):** klein geschrieben, ohne Kommas. „ich habe sie gehen lassen / ich habe zu ihr gesagt geh und komm nie wieder … ich hätte zurückgehen müssen früher schneller“ (März 2023); „verzeih“; Oktober 2024: „wenn du den gesang hörst nora dann lauf“ (Nora deutet: das Dorf).
 - **Bandstruktur ab Stufe 3 (K26):** Wind, Kathis Weinen, darunter das „Pfeifen im Eis“ (Marthas Summen, verzerrt); Schritte; „Du?“; Ringen, Schrei, Sturz (Raumklang wechselt zu enger Eiskammer); Kathi ruft „Leni? … LENI!“; **Knitterschaden 1 (3:12)**; von oben „Kathi?“ (Leni kehrt zurück); **Knitterschaden 2 (20 s)**; Bandende (Batterie). → Stufe 5 (K29) restauriert Schaden 1: das Summen mit dem H. **K34** restauriert Schaden 2: „Lass mich los, Martha – sie lebt noch! Ich hol ein Seil!“
@@ -163,3 +163,11 @@ Legende: **W** = Wahrheit · **G** = was die Leserin zu diesem Zeitpunkt glaubt 
 | Aosta, „Du hast sie mir gegeben“, „NORA 1“, der Geisterton, „Nicht alles“, „Du stehst wie sie“ | K2, K3, K5, K8, K17, K35 | Band 3 |
 | Marthas Prozess; Noras Besuch bei Martha | K34, Epilog („morgen“) | Band 2/3 |
 | Retos „Dinge, die ich dir nie sagen werde“ | K28 | Band 2 (Vaterschaft) |
+
+## 15. Gesamtlektorat – Festlegungen (29.09.2026)
+- **Bruno (K32):** Marthas „Wir hatten eine Abmachung, er und ich. Schon lange.“ bleibt offen: Gnade, Mitwisserschaft oder Schweigegeld. Band 2 (Exhumierung) verkompliziert, bestätigt nicht.
+- **Kerzenbuch 00:40** = Marthas Hand (K34, Fabienne). Damit ist der frühe Hinweis auf „Mama um 00:40“ fair aufgelöst.
+- **Gletschersatz K1** („Wenn es dieses Jahr heiss bleibt …“) ist ein von Mama gespeicherter Satz (K27, Zählung „Eins“): Sie schrieb ihn, als sie wusste, dass eines Tages jemand anders ihn für sie sagen würde.
+- **Kabel:** Marthas eigenes Geständnis gegenüber der Polizistin (K34).
+- **Für Band 2 offen:** Woher weiss die Anruferin aus Montreal von den Anrufen um 19:00? (Heidi/Inês/Mamas Unterlagen – in Band 2 festlegen.)
+- **Für Band 3 offen:** Schichtung des Bandes „NORA 1“ (Gelübde 1995 vs. erste-Wörter-Aufnahmen) technisch definieren.

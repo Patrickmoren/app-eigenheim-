@@ -9,7 +9,7 @@ Regel: Jedes Wiederauftauchen verschiebt die Bedeutung, es wiederholt sie nicht.
 |---|---|---|---|---|---|
 | M-Summen | Prolog ✅ | das Eis „singt“ | K3 ✅ Küche, „Tonart, die sich nicht entscheiden kann“ → K4 ✅ Brauch beim Gehen (unschuldig) → K26 ⏳ „Pfeifen im Eis – Wind-Artefakt?“ | K29/31 | versteckt |
 | M-H | K4 ✅ beiläufig: H statt B bei „heim“, Nora findet es rührend | Macke | K18 ⏳ Gemeindeversammlung: nur sie singt so → K31 ⏳ im Ohrhörer und live gleichzeitig | K31 | sachlich + Audio |
-| M-Z | K3 ✅ Geburtstagskarten | Zärtlichkeit | K14 ⏳ Kerzenbuch „K.Z. 00:40“, Nora: „Mama schrieb es auch so“ (Fehlfährte) | K34 | sachlich |
+| M-Z | K3 ✅ Geburtstagskarten | Zärtlichkeit | K14 ⏳ Kerzenbuch „K.Z. 00:40“, Nora: „Mama schrieb es auch so“ (Fehlfährte) | K34 ✅ Fabienne: „Das war ihre Hand, nicht die Ihrer Mutter.“ | sachlich |
 | M-Werlen | K4 ✅ Leinen „M.W. 1961“ | Aussteuer | K23 ⏳ Firn-Liste „M.W.“ (als Magdalena gelesen) | K32 | versteckt |
 | M-Fingerhut | K4 ✅ Garten, „ihr ganzer Stolz“ | Blumen | K21/22 ⏳ Donnerstagskuchen für Bruno → K27 ⏳ bäckt weiter „aus Gewohnheit“ | K31/32 (+ Band 2) | versteckt |
 | M-Kerzen | K9 ✅ Sepp: „Die Martha hat die grosse Kerze seit 97 nicht mehr getragen … Ihre Arme sind nicht zu alt.“ | Alter | K13 ⏳ Bruno: „Martha hat gesagt, wir sollen die Kerzen zählen“ | K34 | emotional |
@@ -25,7 +25,7 @@ Regel: Jedes Wiederauftauchen verschiebt die Bedeutung, es wiederholt sie nicht.
 | A-Atem | K1 ✅ Ruths Regel, Mamas Atem „nie mitten im Satz“ | K20 ⏳ Nora gegen ihre eigene Regel | K20 |
 | A-Regen | K1 ✅ Regen behauptet, nicht hörbar | K20 ⏳ Möwenschleife | K20 |
 | A-Pfeifen-konstant | K1 ✅ Pfeifen „wie ein Vogel auf einer Leitung“ | – | K20 ⏳ immer exakt dieselbe Frequenz |
-| A-Drehbuch | K1 ✅ Gletschersatz, doppelte Pause | K25 ⏳ Mamas Liste der Auslöser | K19/25 |
+| A-Drehbuch | K1 ✅ Gletschersatz, doppelte Pause | K25 ✅ Mamas Liste der Auslöser | K19/25; K27 ✅ Gletschersatz als gespeicherter Satz („Eins“) |
 | A-Video | K1 ✅ „Telefon zu alt“ | K20 ⏳ Archivanalyse: in sechs Jahren kein einziges Videotelefonat, nie ein Foto | K19 |
 | A-Postfach | K2 ✅ | K10 ✅ Nummer abgeschaltet | K19 |
 | A-Sterbeanruf | – | K20 ⏳ Anruf vom 17.11.2024: das Latenzmuster wechselt mitten im Gespräch | K27 (Inês) |
@@ -104,7 +104,7 @@ Regel: Jedes Wiederauftauchen verschiebt die Bedeutung, es wiederholt sie nicht.
 | N-Wassermelone | K19 Inês weiss Dinge über Nora | das Unheimliche | Nähe einer Fremden | K35 |
 
 ## H. Kapitel 20–27 (Status)
-✅ A-Atem (K20), A-Regen/Möwen (K20), A-Pfeifen-konstant (K20), A-Sterbeanruf (K20), A-Video (K20), B2-Bruno (K23/25), M-Werlen → M.W. = Martha (K23, ohne Namen), M-Fingerhut/Donnerstag (K22, nur als Gewohnheit), M-Liebe (K27 „Komm heim“), N-Traum (K22 „Du hast nicht geträumt“), M5 „Singt man in Lomm noch das Lied?“ (K27), M4 „Gesang“ (K25), G1 Stufe 4 (K26), A-Präzision/Glocke (K24).
+✅ A-Atem (K20), A-Regen/Möwen (K20), A-Pfeifen-konstant (K20), A-Sterbeanruf (K20), A-Video (K20), B2-Bruno (K23/25), M-Werlen → M.W. = Martha (K23, ohne Namen), M-Fingerhut/Donnerstag (K22, nur als Gewohnheit), M-Liebe (K27 „Komm heim“), N-Traum (K22 „Du hast nicht geträumt“), M5 „Singt man in Lomm noch das Lied?“ (K27), M4 „Gesang“ (K25), G1 Stufe 4 (K26), A-Präzision/Glocke (K24 nur Hören; Hinweis K25 Inês, Auflösung K35).
 
 | ID | Neu in | Oberfläche | Wahre Bedeutung | Auflösung |
 |---|---|---|---|---|
@@ -134,3 +134,11 @@ Weitergegeben: siehe Matrix §14.
 | F-Tür | K33 Stahltür offen | Band 2 |
 | F-Montreal | Epilog „Ich war dabei“ | Band 2 |
 | F-junger-Imseng | Epilog: Die Anruferin kennt Aurel | Band 2: Heidi |
+
+## I-Lektorat. Status nach dem Gesamtlektorat (29.09.2026)
+- **Glocke 19:00:** drei Erklärungen auf zwei reduziert (K25 Hinweis, K35 Wahrheit). K24 und K28 erklären nicht mehr.
+- **Kerzenbuch 00:40:** Fehlfährte fair aufgelöst (K34).
+- **Gletschersatz K1:** aufgelöst in K27 (gespeicherter Satz).
+- **Kabel:** Auflösung über Marthas Aussage (K34), nicht über einen Zufallsfund.
+- **F-Abmachung (Bruno):** bewusst mehrdeutig, nicht aufgelöst.
+- **Leitmotivdichte:** „wie ein Vogel auf einer Leitung“ nur noch K1 und K17; „Lidschlag“ reduziert.

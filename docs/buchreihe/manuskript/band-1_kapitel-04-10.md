@@ -538,7 +538,7 @@ Ich hatte nicht die Möglichkeit durchgespielt, dass die Glocke drei Minuten lan
 
 Um 19:03 verstummte die Glocke. Pius stand auf. Die Frau zog den Vorhang zu. Die Kinder nahmen ihren Ball. Und der Platz, der eben noch stillgestanden hatte, ging weiter, als hätte man ihn wieder eingeschaltet, und nur ich sass noch da, auf dem Rand des Brunnens, mit einem Telefon, das nicht klingelte.
 
-Zum ersten Mal seit sechs Jahren und acht Monaten rief meine Mutter an einem Sonntag nicht an.
+Zum ersten Mal seit sechs Jahren und sieben Monaten rief meine Mutter an einem Sonntag nicht an.
 
 In der Tür des Hotels stand mein Vater. Ich weiss nicht, wie lange er dort schon gestanden hatte. Als ich zu ihm hinübersah, drehte er sich um und ging hinein.
 
@@ -702,7 +702,7 @@ Es war die Stimme meiner Mutter. Die Tonlage, die Farbe, die Art, wie das R hint
 
 Und dann hörte ich, was fehlte.
 
-*Sonntag.* *Sie sind drin.* Drei S am Anfang des Bandes, und keines davon pfiff. Ich öffnete das Spektrogramm und zoomte an die Stelle, an der jedes S meiner Mutter seit einunddreissig Jahren einen hellen, dünnen Strich hinterliess, um sechs Kilohertz, wie einen Vogel auf einer Leitung. Da war nichts. Rauschen, ja. Die Zischlaute, ja, verschmiert vom falschen Tonkopf, aber vorhanden. Kein Pfeifen.
+*Sonntag.* *Sie sind drin.* Drei S am Anfang des Bandes, und keines davon pfiff. Ich öffnete das Spektrogramm und zoomte an die Stelle, an der jedes S meiner Mutter seit einunddreissig Jahren einen hellen, dünnen Strich hinterliess, um sechs Kilohertz. Da war nichts. Rauschen, ja. Die Zischlaute, ja, verschmiert vom falschen Tonkopf, aber vorhanden. Kein Pfeifen.
 
 Nicht meine Mutter.
 

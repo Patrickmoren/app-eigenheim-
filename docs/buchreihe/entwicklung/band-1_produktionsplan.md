@@ -101,7 +101,7 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 | ✅ | K20–27 „Spalte“ | `band-1_kapitel-20-27.md` | T5 überzeugend; alle Gegenhinweise gesehen |
 | 11 | Blockprüfung 3 | | 20-Seiten-Test |
 | ✅ | K28–35 „Kalben“ + Epilog | `band-1_kapitel-28-35.md`, `band-1_epilog.md` | Beweiskette gegen Martha vollständig; Band 1 geschlossen; E2-Spiegelung nicht erklärt |
-| 14–19 | Gesamtlektorat; Tests auf Fairness, Foreshadowing, Kontinuität, Sprache, Hörbuch; 20-Seiten-Test für den ganzen Band | alle | Protokoll |
+| ✅ 14–19 | Gesamtlektorat; Tests auf Fairness, Foreshadowing, Kontinuität, Sprache, Hörbuch; 20-Seiten-Test für den ganzen Band | alle | Protokoll |
 | 20–22 | BoD, Cover, Texte, Metadaten | `publikation/` | aktuelle Anforderungen recherchiert und belegt |
 
 **Umfang:** Es gibt keine Wortzielvorgabe. Erwartung für Band 1: 62.000–68.000 Wörter (siehe `reihen-architektur.md` §7).
@@ -134,3 +134,14 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 - K21, K25: Prüfen, ob die sehr kurzen Kapitel zusammengelegt werden sollten (21 an 20, 25 an 24).
 - Prüfen, ob die 19-Uhr-Einsicht dreimal fällt (K24 Aurel, K28 Inês, K35 Mama) – eventuell K24 zurücknehmen, damit K35 voll trägt.
 - Kontinuität: Kanada-Anfrage bleibt in Band 1 offen (bewusst, Epilog).
+
+## F. Status nach dem Gesamtlektorat (29.09.2026)
+**BAND 1 IST STORYSEITIG FERTIG.** Umfang: 48.487 Wörter (vorher 48.286). Die Vertiefungen (Mia, Reto, Inês) sind umgesetzt, ohne zu strecken; die Erwartung von 51.000–53.000 ist bewusst nicht erreicht, weil die Szenen kurz bleiben und an anderer Stelle gekürzt wurde. Die Kapitel K21 und K25 bleiben eigenständig (sie tragen jetzt die Reto- bzw. die Inês-Szene).
+
+**Nächste Phase: Produktion (20–22)**
+1. Korrektorat (Rechtschreibung CH, Typografie, Einheitlichkeit von Zahlen und Zeitangaben)
+2. Satz (Print-Innenteil, E-Book)
+3. Cover
+4. BoD: Format, Papier, Beschnitt, Druck-PDF – **aktuelle Anforderungen recherchieren und mit Quellen belegen**
+5. Metadaten, Klappentext, Autorenprofil (`publikation/`)
+6. E-Book, Print, Vorbereitung Hörbuch (Regie: `band-1_audio-hinweise.md`)

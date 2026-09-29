@@ -5,7 +5,7 @@ Alles, was im Text steht, ist hier festgehalten. Neue Fakten werden beim Schreib
 ## Personen – feste Fakten
 | Figur | Fakten |
 |---|---|
-| Nora Zuber | 31, geb. 11.3.1995 „in Aosta“; Tonrestauratorin an der Schweizerischen Phonothek, Bern (2. UG, 18 °C, Studio 3); seit 9 Jahren dort; absolutes Gehör; hört die Tramglocke der Linie 9 einen Viertelton zu tief (seit neun, Schulausflug); Ex-Partner: zwei Winter zusammen („du hörst mir zu, als würdest du mich prüfen“); nimmt die Anrufe seit sechs Jahren und acht Monaten auf; Ordner *Sonntage*, 349 Dateien (K1); hat keine davon geöffnet (bis K7); bewahrt 30 Geburtstagskarten von Martha in einer Schuhschachtel auf (K3); kein Führerschein? *(offen – nicht festgelegt)* |
+| Nora Zuber | 31, geb. 11.3.1995 „in Aosta“; Tonrestauratorin an der Schweizerischen Phonothek, Bern (2. UG, 18 °C, Studio 3); seit 9 Jahren dort; absolutes Gehör; hört die Tramglocke der Linie 9 einen Viertelton zu tief (seit neun, Schulausflug); Ex-Partner: zwei Winter zusammen („du hörst mir zu, als würdest du mich prüfen“); nimmt die Anrufe seit sechs Jahren und sieben Monaten auf (K1, K7, Epilog); Ordner *Sonntage*, 344 Dateien vor dem Anruf in K1, danach 345 (K19: „Dreihundertfünfundvierzig“); hat keine davon geöffnet (bis K7); bewahrt 30 Geburtstagskarten von Martha in einer Schuhschachtel auf (K3); kein Führerschein? *(offen – nicht festgelegt)* |
 | Mama („Katharina Zuber, geb. Walpen“) | laut Nora 58, Porto seit sechs Jahren, Postfach „Apartado 1147, 4001 Porto“, +351 22…; Pfeifen beim S, linker Schneidezahn mit abgeschlagener Ecke, nie gerichtet, „Mein Andenken an Lomm“ (K1); Walliserdeutsch in Basel; am Telefon Hochdeutsch seit „ein paar Jahren“; „Erzähl du“; „Sonntag“ als Abschied seit Noras Kindheit; nannte Noras Arbeit früher „dein Knistern“; graues Haar ungefärbt; bestellte monatlich Roggenbrot aus Visp; Versprechen „nie nach Lomm“ (K2) |
 | Reto Zuber | 60, Hotel Firnblick; hinkt leicht links; Lesebrille an einer Schnur; raucht (Parisienne), seit Samstag zwei Päckli am Tag (Mia, K3); zuletzt gesehen bei Noras Matura (Nora 18); Stimme belegt |
 | Martha Zuber | 84, klein, weisses Haar als Kranz geflochten; Schürze; Mehlhände; bringt Cholera; trug die Kerze 1996; schickt seit 1997 Karten mit 20 Franken und gepresster Blume („Für Nora. Deine Grosi in Lomm.“), Z mit Querstrich; sagt: „Du stehst wie sie“, „Das Eis hat dich heimgebracht“ |
@@ -109,3 +109,12 @@ Alles, was im Text steht, ist hier festgehalten. Neue Fakten werden beim Schreib
 - **Abbruch am 4.10. nach ≈ 19:30:** Das obere Dorf ist erreicht (die drei obersten Häuser), der Dorfkern steht (Kapelle, Post, Hotel); die Lomma ist gestaut; A7 steht offen.
 - **Nora:** wohnt ab 5.10. in einem Hotel in Visp (Blick auf Chemiefabrik und Geleise); fährt am So 18.10. nach Bern; Studio 3.
 - **Grab:** Friedhof Visp, vorläufiges Holzkreuz mit zwei Namen.
+
+## Gesamtlektorat (29.09.2026) – festgezogene Fakten
+- **Dateien/Zeitraum:** 344 Dateien vor K1, 345 danach; „sechs Jahre und sieben Monate“ überall gleich.
+- **Kerzenbuch:** Der Eintrag „00:40“ stammt von Martha, nicht von Mama (Fabienne, K34). Marthas Alibi-Eintrag 21.00 ist von S.K. signiert.
+- **Kabel (Tonband-Kiste/Strom):** Martha hat es der Polizistin selbst gesagt (K34); kein Fund im zerstörten Haus.
+- **Agnes / Inês nach der Evakuierung:** in Visp, nicht mehr in Agnes’ Küche in Lomm (K35, Epilog).
+- **Lomm nach dem 4.10.:** evakuiert; niemand nutzt dort Häuser. Beerdigung/Urne entsprechend.
+- **Mia:** Lehrstelle in Lausanne; Reto fährt sie im Januar mit dem Volvo hin (K35).
+- **Glockenmotiv 19:00:** Hinweis K25 (Inês: Mama schloss vor sieben die Augen), Wahrheit K35 (Botschaft). K24 zeigt nur das gemeinsame Hören, ohne Erklärung.

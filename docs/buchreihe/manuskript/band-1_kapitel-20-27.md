@@ -180,6 +180,16 @@ Ich stand auf und ging um den Tisch herum und legte ihr die Hand auf die Schulte
 
 Mein Vater kam um zehn zurück. Ich hörte das Auto auf dem Platz, die Tür, die Schritte in der Halle, den linken Fuss, schwerer als der rechte. Er ging direkt die Treppe hinauf, zu Mias Zimmer, und ich hörte, wie er anklopfte und wie die Tür aufging und wie sie hinter ihm zufiel.
 
+Um elf ging ich hinunter, um Wasser zu holen. Im Speisesaal brannte eine einzige Lampe, über dem Tisch am Fenster, dem einzigen, auf dem keine Stühle standen. Mein Vater deckte ihn. Zwei Teller, zwei Gläser, Besteck, das er aus einer Schublade nahm und hinlegte, gerade, mit einem Fingerbreit Abstand zur Tischkante.
+
+Dann ging er noch einmal zur Anrichte und kam mit einem dritten Teller zurück. Er stellte ihn hin. Er rückte ihn zurecht. Er stand eine Weile davor, die Hände an den Seiten.
+
+Dann nahm er ihn wieder weg, trug ihn zur Anrichte, stellte ihn oben auf den Stapel und löschte das Licht.
+
+Ich ging ohne Wasser wieder hinauf.
+
+\*
+
 Um Mitternacht klingelte mein Telefon. Eine Festnetznummer aus Stalden.
 
 „Leni?“
@@ -260,7 +270,7 @@ Er hörte mitten im Satz auf. Er sah auf seine eigene Hand, die das Handgelenk s
 
 \*
 
-Martha stand in der Tür. Ich weiss nicht, wie lange sie dort schon stand. Sie trug ihren dunklen Mantel und einen Korb, und aus dem Korb roch es nach Lauch und Äpfeln und Butter.
+Martha stand in der Tür. Sie musste schon eine Weile dort gestanden haben. Sie trug ihren dunklen Mantel und einen Korb, und aus dem Korb roch es nach Lauch und Äpfeln und Butter.
 
 „Donnerstag“, sagte sie, als sie meinen Blick sah. „Ich komm jeden Donnerstag. Seit seine Frau weg ist.“ Sie trat ins Zimmer und stellte den Korb auf den Tisch, auf die Zeitung, und nahm einen Kuchen heraus, in ein kariertes Tuch gewickelt. „Er vergisst alles. Aber meinen Kuchen vergisst er nicht.“
 
@@ -512,13 +522,7 @@ Um sieben begann die Glocke.
 
 Wir sassen und hörten zu. Das Fis, ein wenig zu hoch, die geflickte Naht, das Wabern darunter. Unten im Dorf stand jetzt alles still. Hier oben sassen zwei Menschen auf einer Holztreppe, und keiner von uns bewegte sich, und zum ersten Mal hörte ich die Glocke, ohne auf ein Telefon zu warten.
 
-„Sie hat dich jeden Sonntag um sieben angerufen“, sagte Aurel leise, unter dem Läuten. „Um genau diese Zeit.“
-
-Ich sah ihn an.
-
-Ich hatte es nicht bemerkt. Sechs Jahre lang, jeden Sonntag, um 19:00:00, wenn die Sekundenanzeige auf null sprang. Und in Lomm, zur selben Sekunde, hatte diese Glocke angefangen zu läuten, und das Dorf war stehen geblieben, und meine Mutter hatte in Porto am Fenster gesessen, über einem anderen Wasser, und hatte angerufen.
-
-Ich weinte nicht. Ich merkte, dass meine Hand auf der Stufe lag, zwischen uns, und dass seine daneben lag, und dass sich unsere kleinen Finger berührten, und dass ich es nicht gewesen war, die sie dorthin gelegt hatte, und er auch nicht, sondern die Kälte, die uns beide näher an die Wand des Speichers gedrückt hatte.
+Ich merkte, dass meine Hand auf der Stufe lag, zwischen uns, und dass seine daneben lag, und dass sich unsere kleinen Finger berührten, und dass ich es nicht gewesen war, die sie dorthin gelegt hatte, und er auch nicht, sondern die Kälte, die uns beide näher an die Wand des Speichers gedrückt hatte.
 
 Ich sah ihn an, und er sah mich an, und ich versuchte nicht, sein Gesicht zu lesen.
 
@@ -561,6 +565,22 @@ Die Beerdigung war am Mittwoch, und Aurel sagte mir am Dienstagabend, dass er au
 \*
 
 Inês wohnte seit einer Woche bei Agnes. Ich hatte es erst am Sonntag erfahren, von Agnes selbst, die gesagt hatte: *Die Portugiesin hat bei mir geklopft, weil sie gehört hat, dass meine Tür immer offen ist. Und jetzt ist sie eben offen.*
+
+Am Montag, kurz vor sieben, ging ich zum Speicher hinter der Kapelle, weil ich die Glocke dort hören wollte, wo ich sie am Abend zuvor gehört hatte.
+
+Inês sass schon auf der untersten Stufe, den grauen Schal um die Schultern, die Hände im Schoss. Sie sah mich kommen und rückte nicht zur Seite, und ich setzte mich nicht neben sie, sondern auf die Steinplatte unter dem Speicher, zwei Meter weiter, mit dem Rücken an einer der Stelzen.
+
+Um sieben begann die Glocke.
+
+Inês schloss die Augen. Sie sass ganz still, den Kopf ein wenig gehoben, wie jemand, der einer fremden Sprache zuhört und nur den Klang versteht. Drei Minuten lang bewegte sie sich nicht. Unten im Dorf stand alles still, und hier oben sassen zwei Frauen, die vier Jahre lang an den beiden Enden derselben Leitung gesessen hatten.
+
+Als die Glocke verstummte, öffnete Inês die Augen.
+
+„Jeden Sonntag, kurz vor sieben, hat sie die Augen zugemacht“, sagte sie. „Bevor sie den ersten Buchstaben angesehen hat. Eine halbe Minute. Manchmal eine ganze.“ Sie sah zum Turm hinauf. „Ich habe drei Jahre lang gedacht, sie betet.“
+
+Sie stand auf, legte den Schal enger um den Hals und ging den Weg hinunter, ohne sich zu verabschieden. Ich blieb sitzen, bis es dunkel war.
+
+\*
 
 Am Dienstagabend kam Inês ins Hotel. Sie stand in der Tür von Zimmer einundzwanzig, den grauen Schal um die Schultern, und hielt mir einen USB-Stick hin. Weiss, mit einem kleinen aufgeklebten Herz, das jemand mit Kugelschreiber gemalt hatte.
 
@@ -752,7 +772,11 @@ Der Rechner stand auf einem Schreibtisch an der Wand. Ich schaltete ihn ein. Er 
 
 *Sonntag.*
 
-Neben jedem Satz stand eine Zahl. Wie oft er benutzt worden war. Ich las die Zahlen nicht. Ich las die Sätze, einen nach dem anderen, bis zum Ende der Leiste, und ganz am Ende, ohne Zahl, weil er nie benutzt worden war, stand einer, den ich nicht kannte.
+*Wenn es dieses Jahr heiss bleibt, Nora, dann hör nicht hin, was die Leute sagen.*
+
+Neben jedem Satz stand eine Zahl. Wie oft er benutzt worden war. Ich las die Zahlen nicht, bis auf eine: Neben dem Satz über den heissen Sommer stand eine Eins. Ich hatte ihn im August gehört, in Studio 3, nach einer Pause, die doppelt so lang war wie die anderen. Sie hatte ihn geschrieben, als sie wusste, dass eines Tages jemand anders ihn für sie sagen würde.
+
+Ich las weiter, bis zum Ende der Leiste, und ganz am Ende, ohne Zahl, weil er nie benutzt worden war, stand einer, den ich nicht kannte.
 
 *Singt man in Lomm noch das Lied?*
 

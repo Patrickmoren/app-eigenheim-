@@ -178,3 +178,27 @@ Keine Szene besteht nur aus „noch etwas mehr wissen“.
   2. Brunos „Abmachung“ legt die Gnadenlesart nahe. Band 2 muss sie mit der Exhumierung verkomplizieren, nicht bestätigen.
   3. Die 19-Uhr-Bedeutung fällt dreimal (K24, K28, K35). Eine Stelle kürzen.
 - **Umfang:** ≈ 48.300 Wörter Rohfassung; nach den beschlossenen Vertiefungen ≈ 51.000–53.000.
+
+### Lektoratsprotokoll – Gesamtlektorat / Final Cut (29.09.2026)
+**Wortzahl:** 48.286 → 48.487.
+
+**Umgesetzt**
+1. **Glocke 19:00:** Aurels Erklärung und Noras Deutung in K24 gestrichen; die Inês-Szene am Speicher (K25) gibt den Hinweis; die Wahrheit steht nur in K35. Die Glocke bedeutet Erinnerung.
+2. **Reto (K21):** Tisch-Szene ohne Innensicht (zwei Teller, ein dritter, zurück auf den Stapel, Licht aus).
+3. **Inês (K25):** eine Szene; keine zweite Hauptfigur. K28-Schlüsselrückgabe gestrichen.
+4. **Mia (K35):** „Schwester.“ – „Wenn du meinst.“; Lausanne, Volvo, Januar.
+5. **Martha (K32):** Bruno-Sätze mehrdeutig („Wir hatten eine Abmachung“). Ein erklärender Satz über das Summen an der Tür gestrichen.
+6. **K34:** Technik und Pfeifenanalyse gekürzt; die 20 Sekunden stehen als Rückkehr der Mutter, nicht als Beweis.
+7. **K33:** erklärender Satz nach dem Abbruch gestrichen; die Stille der Lomma bleibt.
+8. **K35:** Wiederholende Rekapitulation nach der Botschaft auf zwei Sätze gekürzt.
+9. **Sprache:** „Vogel auf einer Leitung“ (K8, K12), „Lidschlag um Lidschlag“ (K17), „Ich weinte nicht“ (K24) gestrichen.
+
+**Kontinuität korrigiert:** Dateienzahl (344/345), „sechs Jahre und sieben Monate“, Agnes’ Küche nach der Evakuierung (→ Visp), Kabel (Geständnis statt Fund), Prolog („seit der Kindheit kennt“).
+
+**Fairness korrigiert:** Kerzenbuch 00:40 (Marthas Hand, K34); Gletschersatz K1 (K27 gespeicherter Satz).
+
+**Bewusst belassen:** „Ich hörte …“ (≈ 49) als Noras Stimme; „für einen Moment“ (7); K21 und K25 bleiben eigene Kapitel; die Spiegelung 1997/2026 wird nicht benannt.
+
+**Übergaben:** Montreal-Anruferin und 19-Uhr-Wissen (Band 2); Schichtung „NORA 1“ (Band 3). Hörbuch: Namenscluster Mia/Martha/Mama und Reto/Ruth/Rey/Rosmarie in der Regie über Stimmfarbe trennen.
+
+**Ergebnis:** Band 1 ist storyseitig fertig.

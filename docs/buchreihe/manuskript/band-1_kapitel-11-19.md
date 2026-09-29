@@ -202,7 +202,7 @@ Aurel hatte sich umgedreht. Er stand vor seinem Bildschirm mit der Kurve, die si
 
 *Mein Andenken an Lomm.*
 
-Mit sieben beim Schlitteln. Die linke obere Ecke. Ein kleines Dreieck, durch das jedes S pfiff, hoch und dünn, wie ein Vogel auf einer Leitung. Meine Mutter hatte es mir erzählt, als ich klein war, auf dem Rand der Badewanne, während sie mir die Haare wusch, und ich hatte meinen Finger in das Dreieck gelegt, um zu fühlen, wie es sich anfühlt, und sie hatte gelacht und mir in den Finger gebissen, ganz leicht.
+Mit sieben beim Schlitteln. Die linke obere Ecke. Ein kleines Dreieck, durch das jedes S pfiff, hoch und dünn. Meine Mutter hatte es mir erzählt, als ich klein war, auf dem Rand der Badewanne, während sie mir die Haare wusch, und ich hatte meinen Finger in das Dreieck gelegt, um zu fühlen, wie es sich anfühlt, und sie hatte gelacht und mir in den Finger gebissen, ganz leicht.
 
 Sie hatte mich nie angelogen, als sie es erzählte. Es war nur nicht ihre Geschichte gewesen, die sie mir erzählte, sondern die einzige, die ihr gehörte.
 
@@ -726,7 +726,7 @@ Das Band lief. Ich drehte die kleine Schraube am Tonkopf, einen Hauch nach links
 
 Ruth nahm die Hände vom Pult. Wir hörten zu.
 
-Das Flüstern kam, klarer als je zuvor. *Sonntag, zweiter Februar.* Die Männer hinter der Tür, das Lachen, der Husten. Und dann, wo auf der Kopie der Polizei nur Rauschen gewesen war, kamen Schritte. Schnelle Schritte, auf hartem Schnee, auf Eis, das unter den Sohlen knirschte. Ein Atem, der rennt. Das Gerät nahm auf, setzte aus, nahm wieder auf, Lidschlag um Lidschlag, und zwischen den Lidschlägen lagen Sekunden, die niemand mehr hören würde.
+Das Flüstern kam, klarer als je zuvor. *Sonntag, zweiter Februar.* Die Männer hinter der Tür, das Lachen, der Husten. Und dann, wo auf der Kopie der Polizei nur Rauschen gewesen war, kamen Schritte. Schnelle Schritte, auf hartem Schnee, auf Eis, das unter den Sohlen knirschte. Ein Atem, der rennt. Das Gerät nahm auf, setzte aus, nahm wieder auf, und dazwischen lagen Sekunden, die niemand mehr hören würde.
 
 Dann eine zweite Stimme.
 
@@ -978,7 +978,7 @@ Sie sagte es ohne Entschuldigung und ohne Trotz. Sie sagte es, wie man eine Zahl
 
 „Ich kenne Sie“, sagte sie dann, und das war das Schlimmste, schlimmer als alles andere. „Ich habe neben ihr gesessen, zwei Jahre lang, jeden Sonntag, und habe zugehört. Und dann allein. Ich weiss, dass Sie im Sommer Wassermelone über der Spüle essen, weil es für alles andere zu heiss ist. Ich weiss, dass Ihr Freund gesagt hat, Sie hörten ihm zu, als würden Sie ihn prüfen. Ich weiss von der Frau aus dem Val Müstair, die elfmal den Namen ihres Sohnes gesagt hat.“ Sie schluckte. „Ich kenne Sie seit vier Jahren, Nora. Sie kennen mich seit zehn Minuten.“
 
-Ich stand da, auf der Wiese hinter der Kapelle, und irgendwo in mir sass eine Frau in einem Raum ohne Fenster, mit Kopfhörern auf den Ohren, und hörte Sonntag für Sonntag einer Stimme zu und nahm sie auf, damit sie nie verloren ging. Dreihundertneunundvierzig Dateien. Ich hatte sie aufbewahrt wie andere Leute eine Schuhschachtel. Ich hatte geglaubt, ich bewahre meine Mutter auf.
+Ich stand da, auf der Wiese hinter der Kapelle, und irgendwo in mir sass eine Frau in einem Raum ohne Fenster, mit Kopfhörern auf den Ohren, und hörte Sonntag für Sonntag einer Stimme zu und nahm sie auf, damit sie nie verloren ging. Dreihundertfünfundvierzig Dateien. Ich hatte sie aufbewahrt wie andere Leute eine Schuhschachtel. Ich hatte geglaubt, ich bewahre meine Mutter auf.
 
 Ich rechnete, weil mein Kopf rechnet, wenn der Rest nicht mehr kann.
 

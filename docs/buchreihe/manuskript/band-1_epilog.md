@@ -10,7 +10,7 @@ Und um halb sieben hatte ich meine Jacke angezogen, die grüne, und war durch di
 
 Studio 3 war, wie ich es verlassen hatte. Die Absorber an den Wänden, der schwimmende Boden, die Tür, die beim Schliessen ein Geräusch macht wie ein Kühlschrank, und danach nichts. Ich setzte mich an den Tisch. Ich stellte das Telefon nicht auf das Stativ. Ich schloss nichts an. Ich legte es vor mich hin, auf den Tisch, mit dem Display nach unten, und sass da und hörte, wie Studio 3 schwieg.
 
-Niemand würde anrufen. Ich wusste es. Ich war trotzdem gekommen, und ich wusste auch, warum: weil man einem Sonntag um sieben nicht einfach den Rücken kehrt, nach sechs Jahren und acht Monaten, so wie man einer Glocke nicht den Rücken kehrt, die dreihundert Jahre lang geläutet hat. Man muss einmal dabei sein, wenn sie nicht läutet.
+Niemand würde anrufen. Ich wusste es. Ich war trotzdem gekommen, und ich wusste auch, warum: weil man einem Sonntag um sieben nicht einfach den Rücken kehrt, nach sechs Jahren und sieben Monaten, so wie man einer Glocke nicht den Rücken kehrt, die dreihundert Jahre lang geläutet hat. Man muss einmal dabei sein, wenn sie nicht läutet.
 
 Die Uhr über der Tür zeigte 18:59. Die Sekundenanzeige lief.
 
@@ -24,7 +24,7 @@ Ich sah es an, wie es auf dem Tisch lag, mit dem Display nach unten, und auf der
 
 Eine Nummer, die ich nicht kannte. *+1 514.*
 
-Ich wusste nicht, wo das war. Ich wusste nur, dass es 19:00:00 war, auf die Sekunde, und dass es auf der ganzen Welt nur eine Frau gegeben hatte, die mich auf diese Sekunde anrief, und dass sie tot war, und dass die andere, die es wusste, in Agnes’ Küche in Lomm sass, wo es keine Vorwahl +1 gab.
+Ich wusste nicht, wo das war. Ich wusste nur, dass es 19:00:00 war, auf die Sekunde, und dass es auf der ganzen Welt nur eine Frau gegeben hatte, die mich auf diese Sekunde anrief, und dass sie tot war, und dass die andere, die es wusste, in Visp sass, wo es keine Vorwahl +1 gab.
 
 Ich griff nach dem Kabel, das neben dem Stativ lag. Meine Hände taten es, bevor ich es ihnen sagte. Ich steckte das Telefon an das Interface, öffnete die Software, und bevor ich abnahm, drückte ich auf Aufnahme.
 

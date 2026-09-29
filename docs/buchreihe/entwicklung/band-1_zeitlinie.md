@@ -40,7 +40,7 @@ Wochentage geprüft: 2.2.1997 = Sonntag · 17.11.2024 = Sonntag · alle unten ge
 | Datum | Tag | Kap. | Ereignis |
 |---|---|---|---|
 | 22.8. | Sa | – | Aurel findet die Tote |
-| 23.8. | So | 1 | letzter Anruf (Nr. 93, Datei 349) |
+| 23.8. | So | 1 | letzter Anruf (Nr. 93, Datei 345) |
 | 24.8. | Mo | – | Zeitungsmeldung; Reto identifiziert den Ring und nimmt nachts das Foto ab; Inês beendet die Anrufe |
 | 25.8. | Di | 1–3 | Fabiennes Anruf; Reise; Ankunft 19:00 |
 | 26.8. | Mi | 4 | Marthas Haus, Lenis Jacke |

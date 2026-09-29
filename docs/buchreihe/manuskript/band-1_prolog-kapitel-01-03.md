@@ -11,7 +11,7 @@ Die Kerze gibt sie als Erstes auf.
 
 Sie hat sie von der Kapelle heraufgetragen, die Hand hohl um die Flamme, so wie man es den Kindern in Lomm beibringt, bevor sie lesen können. Oberhalb der Moräne hat der Wind sie ausgedrückt, ohne Flackern, ohne Vorwarnung, einfach aus. Sie hat den Stumpen in die Innentasche gesteckt, das Wachs noch weich, und ist weitergegangen, ohne Licht.
 
-Man braucht kein Licht, wenn man einen Weg seit dreissig Jahren kennt. Man braucht die Füsse. Den Unterschied zwischen dem Knirschen von altem Schnee und dem hohlen Ton, den das Eis dort macht, wo darunter nichts ist.
+Man braucht kein Licht, wenn man einen Weg seit der Kindheit kennt. Man braucht die Füsse. Den Unterschied zwischen dem Knirschen von altem Schnee und dem hohlen Ton, den das Eis dort macht, wo darunter nichts ist.
 
 Unten im Tal singen sie noch. Nicht mehr das ganze Dorf, nur die Wache, die bis Mitternacht bei der Kapelle bleibt. Der Wind trägt das Lied in Fetzen herauf, drei Töne, dann nichts, dann wieder zwei. *Wiissi Frow, gang heim is Joch.* Sie kennt jede Zeile. Sie hat sie als Kind gesungen, ohne zu begreifen, dass man damit einem Berg befiehlt.
 
@@ -75,7 +75,7 @@ Das Gerät nimmt alles auf.
 
 Meine Mutter rief jeden Sonntag um sieben an, und jeden Sonntag um sieben drückte ich auf Aufnahme.
 
-Ich tat das seit sechs Jahren und acht Monaten, und niemand wusste davon. Nicht meine Mutter. Nicht Ruth, die mir alles beigebracht hatte, was ich über Stimmen weiss. Nicht der Mann, mit dem ich zwei Winter lang zusammengelebt hatte und der beim Auszug sagte, ich höre ihm zu, als würde ich ihn prüfen. Auf meinem Rechner gab es einen Ordner mit dem Namen *Sonntage*, darin 348 Dateien, jede nach ihrem Datum benannt, jede zwischen elf und neunzehn Minuten lang. Ich hatte keine davon je wieder geöffnet.
+Ich tat das seit sechs Jahren und sieben Monaten, und niemand wusste davon. Nicht meine Mutter. Nicht Ruth, die mir alles beigebracht hatte, was ich über Stimmen weiss. Nicht der Mann, mit dem ich zwei Winter lang zusammengelebt hatte und der beim Auszug sagte, ich höre ihm zu, als würde ich ihn prüfen. Auf meinem Rechner gab es einen Ordner mit dem Namen *Sonntage*, darin 344 Dateien, jede nach ihrem Datum benannt, jede zwischen elf und neunzehn Minuten lang. Ich hatte keine davon je wieder geöffnet.
 
 Ich weiss, wie das klingt.
 
@@ -187,7 +187,7 @@ Das letzte Mal hatte ich meine Mutter an Weihnachten 2019 gesehen, in ihrer Wohn
 
 So verabschiedeten wir uns, seit ich klein war. Als wäre der nächste Sonntag ein Ort, an dem man sich trifft.
 
-Die Anzeige stand bei 14:12. Ich stoppte die Aufnahme, benannte die Datei – *2026-08-23* – und zog sie in den Ordner. 349. Dann blieb ich noch eine Weile sitzen, die Kopfhörer auf, in denen nichts mehr war, und hörte zu, wie Studio 3 schwieg.
+Die Anzeige stand bei 14:12. Ich stoppte die Aufnahme, benannte die Datei – *2026-08-23* – und zog sie in den Ordner. 345. Dann blieb ich noch eine Weile sitzen, die Kopfhörer auf, in denen nichts mehr war, und hörte zu, wie Studio 3 schwieg.
 
 \*
 
