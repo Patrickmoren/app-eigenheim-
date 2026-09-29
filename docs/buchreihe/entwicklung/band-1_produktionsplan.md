@@ -145,3 +145,10 @@ Es gibt **keine inhaltlichen Änderungen.** Einzige spätere Kürzungskandidaten
 4. BoD: Format, Papier, Beschnitt, Druck-PDF – **aktuelle Anforderungen recherchieren und mit Quellen belegen**
 5. Metadaten, Klappentext, Autorenprofil (`publikation/`)
 6. E-Book, Print, Vorbereitung Hörbuch (Regie: `band-1_audio-hinweise.md`)
+
+## G. Produktionsprotokoll
+**P1 – BoD-Recherche (29.09.2026):** erledigt. Ergebnis: `publikation/bod-checkliste.md` mit 24 Quellen (bod.ch, bod.de-FAQ, Musterverträge 03-2025, AI Act Art. 50).
+- **Blockierender Befund:** BoD schliesst Bücher aus, die „ausschliesslich oder überwiegend mit KI erstellt“ wurden (FAQ KI). Entscheidung E-P1 ist offen; ohne sie gibt es keinen Upload.
+- **Weitere offene Entscheidungen:** Paket (E-P2), Hörbuchrechte exklusiv bei BoD (E-P3), Autorenname (E-P4), internationaler Vertrieb (E-P5).
+- **Unklar (nicht geraten):** Rückenbreitenformel (nur interaktiver Coverrechner), Druckkosten (Kalkulator braucht die Seitenzahl), Neuauflagepreis in CHF, Lieferzeit der Autorenexemplare, Pflichtexemplar Schweiz.
+- **Nächster Schritt:** P2 Korrektorat (nur echte Fehler) – oder zuerst E-P1, falls der Autor Option A wählt (dann Korrektorat erst nach der Überarbeitung).
