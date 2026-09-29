@@ -39,7 +39,7 @@ Sie hält das Gerät nah an den Mund. Sie flüstert, und sie gibt sich Mühe, de
 
 „Sonntag, zweiter Februar. Dreiundzwanzig Uhr zwölf.“
 
-Ihre Stimme klingt fremd hier draussen. Klein. Als gehöre sie jemandem, den sie nicht kennt.
+Hier draussen klingt ihre Stimme kleiner als in der Küche.
 
 „Ich bin bei der Festung. Sie sind drin.“
 
@@ -49,7 +49,7 @@ Sie wartet. Drinnen scharrt wieder der Stuhl. Einer der Männer sagt etwas, das 
 
 Sie hat diesen Satz in den letzten Wochen oft gedacht. Beim Abwaschen. Beim Wickeln. Nachts, wenn das Haus schlief und nur der Kühlschrank noch redete. Nie ist ihr eingefallen, wie er weitergeht. Wenn das jemand hört – was dann? Dann ist es zu spät. Oder dann ist alles gut gegangen, und niemand wird es je hören müssen.
 
-„Wenn das jemand hört“, sagt sie noch einmal, und diesmal hört sie selbst, dass ihre Stimme zittert, und es ist nicht die Kälte.
+„Wenn das jemand hört“, sagt sie noch einmal, und diesmal zittert die Stimme.
 
 Sie lässt den Satz, wie er ist.
 
@@ -63,7 +63,7 @@ Aber das hier ist eine Melodie.
 
 Drei Töne, dann nichts, dann wieder zwei.
 
-Unten bei der Kapelle hat die Wache aufgehört zu singen. Sie weiss es, weil sie seit einer Weile nichts mehr von dort hört. Nur den Wind. Nur die Männer hinter der Tür. Nur dieses Summen, das näher ist, als das Tal je sein könnte.
+Unten bei der Kapelle hat die Wache aufgehört zu singen. Sie weiss es, weil sie seit einer Weile nichts mehr von dort hört. Nur den Wind und die Männer hinter der Tür. Und dieses Summen, das nicht aus dem Tal kommt.
 
 Das rote Lämpchen leuchtet unter ihrer Hand.
 
@@ -121,7 +121,7 @@ Meine Mutter hatte ein kleines Pfeifen auf jedem S, hoch und dünn, irgendwo um 
 
 Und sie sprach Hochdeutsch mit mir.
 
-Auch das erst seit ein paar Jahren. In meiner Kindheit in Basel hatte sie ihr Walliserdeutsch behalten wie einen Koffer, den man nie auspackt. Sie sagte *Sunntag* mit einem langen, dunklen U, das aus dem Hals kam statt aus dem Mund, und alle Kinder in meiner Klasse machten es nach. Jetzt klang sie am Telefon wie eine Radiosprecherin mit leichtem Akzent. Ich hatte sie einmal danach gefragt. *In Porto verlernt man das Wallis*, hatte sie gesagt. *Man redet ja mit niemandem mehr so.*
+Auch das erst seit ein paar Jahren. In meiner Kindheit in Basel hatte sie ihr Walliserdeutsch behalten, beim Elternabend, am Postschalter, beim Arzt. Sie sagte *Sunntag* mit einem langen, dunklen U, das aus dem Hals kam statt aus dem Mund, und alle Kinder in meiner Klasse machten es nach. Jetzt klang sie am Telefon wie eine Radiosprecherin mit leichtem Akzent. Ich hatte sie einmal danach gefragt. *In Porto verlernt man das Wallis*, hatte sie gesagt. *Man redet ja mit niemandem mehr so.*
 
 Ich erzählte ihr von dem Tonbrief. Von der Frau, dem Riss, dem Sohn in Argentinien. Ich erzählte es besser, als ich es Ruth erzählt hätte, weil meine Mutter die Einzige war, der ich meine Arbeit nicht erklären musste. Früher hatte sie sie *dein Knistern* genannt, und ich hatte jedes Mal so getan, als fände ich das lustig. Seit einigen Jahren nannte sie es nicht mehr so.
 
@@ -179,7 +179,7 @@ Nur das.
 
 „Schon gut“, sagte ich. „Vergiss es.“
 
-Das letzte Mal hatte ich meine Mutter an Weihnachten 2019 gesehen, in ihrer Wohnung in Basel, am Abend des Vierundzwanzigsten, und wir hatten uns so gestritten, wie sich nur Menschen streiten, die sich zu ähnlich sind, um es zuzugeben. Worüber, weiss ich noch genau. Ich hatte nach Lomm gefragt. Nach meinem Vater, nach dem Dorf, nach dem Winter, in dem sie mit mir weggegangen war. Sie hatte gesagt, es gebe Fragen, die man nicht stellt, wenn man jemanden liebt, und ich hatte gesagt, genau diese Fragen stelle man, wenn man jemanden liebt, und dann hatte ich meinen Mantel genommen. Im Februar zog sie nach Porto. Im März schlossen die Grenzen. Als sie wieder offen waren, war aus dem Streit eine Gewohnheit geworden und aus der Gewohnheit eine Regel: Sie ruft an. Ich komme nicht. Einmal, im ersten Sommer, versuchte ich es mit einem Videoanruf. Sie drückte ihn weg und schrieb: *Mein Telefon ist zu alt für so was.* Ich schickte ihr zu Weihnachten ein neues. Sie bedankte sich. Wir sprachen nie wieder darüber.
+Das letzte Mal hatte ich meine Mutter an Weihnachten 2019 gesehen, in ihrer Wohnung in Basel, am Abend des Vierundzwanzigsten, und wir hatten uns gestritten, mit gedämpften Stimmen, wie man in Basler Altbauwohnungen streitet. Worüber, weiss ich noch genau. Ich hatte nach Lomm gefragt. Nach meinem Vater, nach dem Dorf, nach dem Winter, in dem sie mit mir weggegangen war. Sie hatte gesagt, es gebe Fragen, die man nicht stellt, wenn man jemanden liebt, und ich hatte gesagt, genau diese Fragen stelle man, wenn man jemanden liebt, und dann hatte ich meinen Mantel genommen. Im Februar zog sie nach Porto. Im März schlossen die Grenzen. Als sie wieder offen waren, war aus dem Streit eine Gewohnheit geworden und aus der Gewohnheit eine Regel: Sie ruft an. Ich komme nicht. Einmal, im ersten Sommer, versuchte ich es mit einem Videoanruf. Sie drückte ihn weg und schrieb: *Mein Telefon ist zu alt für so was.* Ich schickte ihr zu Weihnachten ein neues. Sie bedankte sich. Wir sprachen nie wieder darüber.
 
 „Sonntag“, sagte meine Mutter.
 
@@ -239,7 +239,7 @@ Sie erklärte es mir sachlich, in der Reihenfolge, in der man es in einen Berich
 
 „Herr Zuber hat den Ring gestern gesehen. Er sagt, es ist der Ring seiner Frau.“
 
-„Seiner geschiedenen Frau“, sagte ich, als ob das etwas ändern würde.
+„Seiner geschiedenen Frau“, sagte ich.
 
 „Seiner geschiedenen Frau“, sagte sie, ohne jede Ironie.
 
@@ -309,7 +309,7 @@ Ruth stand in der Tür, einen Becher aus der Kaffeemaschine im zweiten Stock in 
 
 „Warum schaust du ihn an wie ein Aquarium?“
 
-Ich erzählte es ihr. Ich brauchte dafür weniger Sätze, als ich gedacht hatte. Ruth stellte den Becher auf einen Transportkoffer für Bandmaschinen und setzte sich daneben, und sie unterbrach mich kein einziges Mal. Es ist das Seltenste, was ein Mensch können kann, und sie konnte es.
+Ich erzählte es ihr. Ich brauchte dafür weniger Sätze, als ich gedacht hatte. Ruth stellte den Becher auf einen Transportkoffer für Bandmaschinen und setzte sich daneben, und sie unterbrach mich kein einziges Mal. Das können nicht viele.
 
 „Und?“, sagte sie, als ich fertig war.
 
@@ -445,7 +445,7 @@ Es war Dienstag. Niemand würde anrufen.
 
 Das Display zeigte 19:00.
 
-Auf der anderen Seite des Platzes hatte ein Mann eine Hecke geschnitten. Er hatte aufgehört, die Schere halb offen in der Hand. Im ersten Stock des Hauses neben dem Brunnen stand eine Frau am Fenster. Ein Junge auf einem Fahrrad hatte angehalten, einen Fuss auf dem Boden. Keiner von ihnen sah zur Kapelle hinauf. Sie sahen mich an. Und solange die Glocke läutete, bewegte sich niemand auf diesem Platz, nicht der Mann, nicht die Frau, nicht der Junge, als hätte jemand die Zeit angehalten und nur vergessen, den Ton abzustellen.
+Auf der anderen Seite des Platzes hatte ein Mann eine Hecke geschnitten. Er hatte aufgehört, die Schere halb offen in der Hand. Im ersten Stock des Hauses neben dem Brunnen stand eine Frau am Fenster. Ein Junge auf einem Fahrrad hatte angehalten, einen Fuss auf dem Boden. Keiner von ihnen sah zur Kapelle hinauf. Sie sahen mich an. Und solange die Glocke läutete, bewegte sich niemand auf diesem Platz, nicht der Mann, nicht die Frau, nicht der Junge.
 
 Nach drei Minuten verstummte die Glocke. Der Mann schnitt weiter. Die Frau zog den Vorhang zu. Der Junge fuhr davon.
 
@@ -513,7 +513,7 @@ Er hörte auf, die Brille zu drehen.
 
 „Ich erreiche sie nicht.“
 
-Er atmete aus. Ich kenne das Geräusch, das ein Mensch macht, wenn er ausatmet, nachdem er die Luft zu lange angehalten hat. Ich habe es auf Hunderten von Bändern gehört, und ich kann an seiner Länge und seinem Klang meistens erkennen, was davor war. Bei ihm konnte ich es nicht. Es war Erleichterung, oder es war Angst, oder es war beides, und ich wusste nicht, was davon auf mich zielte.
+Er atmete aus. Ich kenne das Geräusch, das ein Mensch macht, wenn er ausatmet, nachdem er die Luft zu lange angehalten hat. Ich habe es auf Hunderten von Bändern gehört, und ich kann an seiner Länge und seinem Klang meistens erkennen, was davor war. Bei ihm konnte ich es nicht. Erleichterung vielleicht, oder Angst. Ich wusste nicht einmal, ob es mit mir zu tun hatte.
 
 „Wie klingt sie?“, fragte er.
 
@@ -609,7 +609,7 @@ Ihre Hände waren kühl und trocken und rochen nach Mehl.
 
 „Wie wer?“
 
-Sie lächelte und sagte es mir nicht. Sie sah mich nur an, sehr lange, als lese sie etwas in meinem Gesicht, das dort schon immer gestanden hatte und das ich selbst nicht lesen konnte.
+Sie lächelte und sagte es mir nicht. Sie sah mich nur an, sehr lange.
 
 Dann zog sie mich an sich. Sie reichte mir kaum bis zur Schulter, und sie hielt mich fester, als mich seit Jahren jemand gehalten hatte.
 

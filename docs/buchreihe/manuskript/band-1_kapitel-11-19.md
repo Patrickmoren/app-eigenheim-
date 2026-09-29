@@ -166,7 +166,7 @@ Aurel lag neben mir. Seine Hand hielt immer noch das Seil, und das Seil war um m
 
 „Ja.“
 
-Er setzte sich auf. In seiner Jackentasche piepte das Telefon, dreimal, ein hoher, aufdringlicher Ton, und er zog es heraus und sah darauf, und ich sah, wie sein Gesicht wurde.
+Er setzte sich auf. In seiner Jackentasche piepte das Telefon, dreimal, ein hoher, aufdringlicher Ton, und er zog es heraus und sah darauf und dann zur Felsstufe hinauf.
 
 „Die Sensoren“, sagte er. „Die an der Felsstufe.“ Er steckte das Telefon weg. „Das war kein Kalben. Das war eine Verschiebung.“
 
@@ -204,7 +204,7 @@ Aurel hatte sich umgedreht. Er stand vor seinem Bildschirm mit der Kurve, die si
 
 Mit sieben beim Schlitteln. Die linke obere Ecke. Ein kleines Dreieck, durch das jedes S pfiff, hoch und dünn. Meine Mutter hatte es mir erzählt, als ich klein war, auf dem Rand der Badewanne, während sie mir die Haare wusch, und ich hatte meinen Finger in das Dreieck gelegt, um zu fühlen, wie es sich anfühlt, und sie hatte gelacht und mir in den Finger gebissen, ganz leicht.
 
-Sie hatte mich nie angelogen, als sie es erzählte. Es war nur nicht ihre Geschichte gewesen, die sie mir erzählte, sondern die einzige, die ihr gehörte.
+Sie hatte mich nicht angelogen, als sie es erzählte. Es war die eine Geschichte, die ihr selbst gehörte.
 
 „Frau Zuber?“, sagte Fabienne noch einmal.
 
@@ -286,7 +286,7 @@ Bruno drehte den Kopf. Er sah Aurel an, freundlich, höflich, wie man einen Mann
 
 Sein Gesicht veränderte sich.
 
-Es ging nicht langsam. Es war, als hätte jemand einen Schalter umgelegt, und hinter den freundlichen, leeren Augen stand auf einmal ein anderer Mann, jünger, wach, und dieser Mann hatte Angst.
+Es ging nicht langsam. Hinter den freundlichen, leeren Augen stand auf einmal ein anderer Mann, jünger, wach, und dieser Mann hatte Angst.
 
 „Leni“, sagte er.
 
@@ -298,7 +298,7 @@ Es ging nicht langsam. Es war, als hätte jemand einen Schalter umgelegt, und hi
 
 „Geh weg vom Fenster. Sie sehen dich.“ Er beugte sich vor, die grossen Hände auf den Lehnen, als wolle er aufstehen und könne es nicht mehr. „Die Martha hat gesagt, wir sollen die Kerzen zählen. Alle. Zweimal. Hast du deine zurückgebracht? Hast du deine –“
 
-Er hustete. Dreimal, kurz hintereinander, hart, ein Husten, der aus der Brust kam und nicht aus dem Hals, und ich hörte ihn, und etwas in mir registrierte ihn, wie ich jedes Geräusch registriere, und legte ihn ab, dorthin, wo ich die Dinge ablege, die ich später brauche.
+Er hustete. Dreimal, kurz hintereinander, hart, ein Husten, der aus der Brust kam und nicht aus dem Hals, und ich legte ihn ab, dorthin, wo ich die Dinge ablege, die ich später brauche.
 
 Aurel kniete sich neben den Sessel. Er nahm die Hände seines Vaters in seine, beide, und hielt sie fest, bis der Husten vorbei war.
 
@@ -434,7 +434,7 @@ Darunter, kleiner: *Porto.*
 
 Um zwei Uhr morgens fand ich die Männer.
 
-Ich hatte die Datei seit dem Abend nicht mehr aus der Hand gelegt. Nach den Sätzen, die ich schon kannte, nach dem Flüstern und dem *Wenn das jemand hört*, kam eine lange Strecke, in der das Gerät immer wieder ansprang und wieder aussetzte, Lidschlag um Lidschlag im Spektrogramm, und dazwischen war nur Rauschen gewesen. Jetzt, mit einem anderen Filter, einem, der den Hall suchte statt die Stimme, fand ich in dem Rauschen einen Raum.
+Ich hatte die Datei seit dem Abend nicht mehr aus der Hand gelegt. Nach den Sätzen, die ich schon kannte, nach dem Flüstern und dem *Wenn das jemand hört*, kam eine lange Strecke, in der das Gerät immer wieder ansprang und wieder aussetzte, Klick um Klick im Spektrogramm, und dazwischen war nur Rauschen gewesen. Jetzt, mit einem anderen Filter, einem, der den Hall suchte statt die Stimme, fand ich in dem Rauschen einen Raum.
 
 Einen grossen, harten Raum, aus Beton, mit einer Nachhallzeit von fast zwei Sekunden, in dem Männer sprachen. Man hörte ihre Wörter nicht zuerst, man hörte, wie ihre Wörter von den Wänden zurückkamen, verwischt, übereinandergelegt, wie Stimmen in einem Schwimmbad. Ich zog den Hall heraus, so gut es ging, Schicht für Schicht, und darunter kamen die Stimmen zum Vorschein, flach und blechern, wie durch eine Tür.
 
@@ -462,7 +462,7 @@ Ich sass bis zum Morgen am Fenster und sah zu, wie das Licht auf die Vliese kam,
 
 \*
 
-Er war allein in der Messstation. Er sah auf, als ich hereinkam, und in seinem Gesicht war etwas Offenes, das am Samstag noch nicht da gewesen war, das seit dem Eis da war, seit dem Seil.
+Er war allein in der Messstation. Er sah auf, als ich hereinkam, und in seinem Gesicht war etwas Offenes, das seit dem Eis da war, seit dem Seil.
 
 „Hör dir das an“, sagte ich und gab ihm meine Kopfhörer.
 
@@ -560,7 +560,7 @@ Mia zuckte mit den Schultern, aber es war kein Schulterzucken wie sonst, es war 
 
 \*
 
-Die Treppe in den Keller war aus Stein, ausgetreten in der Mitte, und sie führte an einem Weinkeller vorbei, in dem keine Flaschen mehr lagen, und an einer Waschküche, in der ein Leintuch auf einer Leine hing, weiss und reglos wie ein Gespenst, das auf etwas wartet. Am Ende des Ganges war eine Eisentür, und hinter der Eisentür brannte Licht und ein Feuer.
+Die Treppe in den Keller war aus Stein, ausgetreten in der Mitte, und sie führte an einem Weinkeller vorbei, in dem keine Flaschen mehr lagen, und an einer Waschküche, in der ein Leintuch auf einer Leine hing. Am Ende des Ganges war eine Eisentür, und hinter der Eisentür brannte Licht und ein Feuer.
 
 Der Heizungskeller war niedrig und warm und roch nach Heizöl und nach etwas anderem, Scharfem, verbranntem Papier. Mein Vater stand vor dem alten Ölofen, dessen Klappe offen war, und in der Klappe brannte es orange. Neben ihm auf dem Boden standen zwei Kartonschachteln. Er nahm einen Aktenordner aus der einen, riss eine Handvoll Seiten heraus und schob sie in die Glut, und die Seiten krümmten sich und wurden schwarz, bevor sie brannten.
 
@@ -652,7 +652,7 @@ Als ich die Kellertreppe wieder hinaufstieg, die verkohlte Seite in der einen Ha
 
 Bern war laut.
 
-Ich hatte es nie laut gefunden. Ich hatte neun Jahre in dieser Stadt gelebt und sie für eine leise Stadt gehalten, eine Stadt aus Sandstein und Lauben, in der die Leute an roten Ampeln warten, auch wenn kein Auto kommt. Jetzt stand ich am Donnerstagmorgen am Bahnhof, und die Stadt war ein einziges Geräusch: Trams, Rollkoffer, Tauben, eine Durchsage in drei Sprachen, ein Mann, der in sein Telefon lachte. Nirgendwo lief Wasser. Nirgendwo knackte Eis. Niemand blieb stehen, wenn eine Glocke schlug.
+Ich hatte es nie laut gefunden. Ich hatte neun Jahre in dieser Stadt gelebt und sie für eine leise Stadt gehalten, eine Stadt aus Sandstein und Lauben, in der die Leute an roten Ampeln warten, auch wenn kein Auto kommt. Jetzt stand ich am Donnerstagmorgen am Bahnhof, und die Stadt war ein einziges Geräusch: Trams, Rollkoffer, Tauben, eine Durchsage in drei Sprachen, ein Mann, der in sein Telefon lachte. Nirgendwo lief Wasser. Niemand blieb stehen, wenn eine Glocke schlug.
 
 In der Phonothek roch es wie immer nach nichts. Ruth stand im Gang vor dem Labor, die Brille an der Kette aus Büroklammern, und sah mich an, von oben bis unten, die grüne Jacke, die verbundenen Finger.
 
@@ -780,7 +780,7 @@ Ich merkte, dass Ruth meine Hand hielt. Ich weiss nicht, seit wann. Ihre Hand wa
 
 „Die Kassette“, sagte ich. „Sie will die Kassette.“
 
-Ruth sagte nichts. Sie sah auf das Band, das sich im Sichtfenster weiterdrehte, und ich sah es auch, und wir fragten uns beide, jede für sich und ohne es auszusprechen, wann eine Schwester der anderen eine Kassette gegeben haben sollte und warum.
+Ruth sagte nichts. Sie sah auf das Band, das sich im Sichtfenster weiterdrehte. Ich fragte mich, wann eine Schwester der anderen eine Kassette gegeben haben sollte, und warum.
 
 In der Ecke schrieb Anthamatten die Uhrzeit auf.
 
@@ -870,7 +870,7 @@ Ein weicher Akzent. Die Vokale zu offen, das S zu weich, am Ende jedes Wortes ei
 
 „Wann?“
 
-Sie sah mich an, und in ihrem Blick war etwas, das ich nicht verstand, eine Traurigkeit, die zu gross war für eine Fremde.
+Sie sah mich an, zu lange für eine Fremde.
 
 „Um sieben“, sagte sie. „Ich weiss, dass Sie um sieben Zeit haben.“
 
@@ -910,13 +910,13 @@ Dann sprach meine Mutter.
 
 Aus dem Tablet, aus dem kleinen Lautsprecher an seiner Seite, durch das Läuten der Glocke hindurch. Die Stimme vom Telefon. Das Hochdeutsch. Das Pfeifen auf dem S, hoch und dünn, bei *Schatz*. Die Wärme. Alles, was ich sechs Jahre lang jeden Sonntag um sieben gehört hatte, in Studio 3, mit Kopfhörern, im stillsten Raum der Stadt.
 
-Es ist schwer zu beschreiben, was ein Körper tut, wenn er eine Stimme hört, die er kennt, aus einem Ding, das nicht sprechen sollte. Meiner tat nichts. Er stand. Die Glocke läutete, und mein Körper stand da, wie das Dorf unten stand, und wartete darauf, dass das Läuten aufhörte und die Welt wieder anfing, sich zu bewegen.
+Mein Körper tat nichts. Er stand. Die Glocke läutete, und ich stand da wie das Dorf unten und wartete, dass sie aufhörte.
 
 Sie hörte nicht auf. Drei Minuten lang läutete die Glocke, und drei Minuten lang stand ich vor einer Frau, die ich nicht kannte, und sah auf ein Tablet, und das Tablet sagte nichts mehr. Es wartete. So wie meine Mutter jeden Sonntag gewartet hatte, bis ich fertig war.
 
 Als die Glocke verstummte, war es so still, dass ich die Lomma unten in der Schlucht hörte.
 
-„Seit wann?“, fragte ich. Meine Stimme klang wie die von jemand anderem.
+„Seit wann?“, fragte ich. Meine Stimme sass zu hoch.
 
 Inês drehte das Tablet zu mir. Auf dem Bildschirm war ein Foto.
 
@@ -964,7 +964,7 @@ Die Lomma rauschte. Unten im Dorf bellte ein Hund.
 
 Sie sah mich an. Sie wich meinem Blick nicht aus.
 
-„Sie hatte es so gewollt. Sie hatte es aufgeschrieben, Monate vorher, als sie wusste, dass es nicht mehr lange geht. *Ruf sie weiter an. Jeden Sonntag. Bis das Eis Kathi zurückgibt. Dann gib ihr den Brief.* Sie hatte fast drei Jahre lang jeden Sonntag mit Ihnen geschrieben. Es gab Tausende von ihren Sätzen. Es gibt Programme, die aus Tausenden von Sätzen einen machen, der klingt wie sie.“ Inês’ Stimme wurde nicht leiser, sie wurde nur langsamer. „Das Programm hat mir vorgeschlagen, was sie sagen würde. Ich habe ausgewählt. Manchmal habe ich selbst geschrieben. Und die Stimme hat es gesagt.“
+„Sie hatte es so gewollt. Sie hatte es aufgeschrieben, Monate vorher, als sie wusste, dass es nicht mehr lange geht. *Ruf sie weiter an. Jeden Sonntag. Bis das Eis Kathi zurückgibt. Dann gib ihr den Brief.* Sie hatte fast drei Jahre lang jeden Sonntag mit Ihnen geschrieben. Es gab Tausende von ihren Sätzen. Es gibt Programme, die aus Tausenden von Sätzen einen machen, der klingt wie sie.“ Inês sprach jetzt langsamer. „Das Programm hat mir vorgeschlagen, was sie sagen würde. Ich habe ausgewählt. Manchmal habe ich selbst geschrieben. Und die Stimme hat es gesagt.“
 
 „Dreiundneunzig“, sagte ich.
 
@@ -976,7 +976,7 @@ Sie sah mich an. Sie wich meinem Blick nicht aus.
 
 Sie sagte es ohne Entschuldigung und ohne Trotz. Sie sagte es, wie man eine Zahl bestätigt.
 
-„Ich kenne Sie“, sagte sie dann, und das war das Schlimmste, schlimmer als alles andere. „Ich habe neben ihr gesessen, zwei Jahre lang, jeden Sonntag, und habe zugehört. Und dann allein. Ich weiss, dass Sie im Sommer Wassermelone über der Spüle essen, weil es für alles andere zu heiss ist. Ich weiss, dass Ihr Freund gesagt hat, Sie hörten ihm zu, als würden Sie ihn prüfen. Ich weiss von der Frau aus dem Val Müstair, die elfmal den Namen ihres Sohnes gesagt hat.“ Sie schluckte. „Ich kenne Sie seit vier Jahren, Nora. Sie kennen mich seit zehn Minuten.“
+„Ich kenne Sie“, sagte sie dann, und das war das Schlimmste. „Ich habe neben ihr gesessen, zwei Jahre lang, jeden Sonntag, und habe zugehört. Und dann allein. Ich weiss, dass Sie im Sommer Wassermelone über der Spüle essen, weil es für alles andere zu heiss ist. Ich weiss, dass Ihr Freund gesagt hat, Sie hörten ihm zu, als würden Sie ihn prüfen. Ich weiss von der Frau aus dem Val Müstair, die elfmal den Namen ihres Sohnes gesagt hat.“ Sie schluckte. „Ich kenne Sie seit vier Jahren, Nora. Sie kennen mich seit zehn Minuten.“
 
 Ich stand da, auf der Wiese hinter der Kapelle, und irgendwo in mir sass eine Frau in einem Raum ohne Fenster, mit Kopfhörern auf den Ohren, und hörte Sonntag für Sonntag einer Stimme zu und nahm sie auf, damit sie nie verloren ging. Dreihundertfünfundvierzig Dateien. Ich hatte sie aufbewahrt wie andere Leute eine Schuhschachtel. Ich hatte geglaubt, ich bewahre meine Mutter auf.
 
@@ -1011,7 +1011,7 @@ Eine Seite. Wenige Zeilen. Das Z mit dem Querstrich.
 
 Ich las es einmal. Ich las es ein zweites Mal.
 
-Die erste Zeile war eine Lüge. Ich wusste es seit einer Woche, seit einer Zahnakte aus einer Bananenschachtel in einem Keller in Visp. Die Frau im Eis war nicht Leni. Die Frau im Eis war Katharina Zuber, und Leni hatte diesen Brief geschrieben, mit dem Namen ihrer Schwester unter jeder Unterschrift ihres Lebens, und in der ersten Zeile ihres letzten Briefes an mich hatte sie gelogen.
+Die erste Zeile war eine Lüge. Ich wusste es seit einer Woche, seit einer Zahnakte aus einer Bananenschachtel in einem Keller in Visp.
 
 Die vierte Zeile hatte ich nicht befolgt.
 

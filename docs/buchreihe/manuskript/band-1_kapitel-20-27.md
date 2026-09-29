@@ -30,7 +30,7 @@ Und dann, sehr leise, unter den Möwen, so leise, dass ich es in jener Nacht vor
 
 *Leni.*
 
-Ich hielt die Stelle an. Ich spielte sie noch einmal ab. Ich spielte sie zehnmal ab, und jedes Mal war es dasselbe Wort, und jedes Mal war es Inês, die neben einem Rollstuhl am Fenster sass und den Namen sagte, den ich in einunddreissig Jahren nie in Verbindung mit meiner Mutter gehört hatte, den richtigen Namen, und sie sagte ihn in dem Moment, in dem es nichts mehr zu verbergen gab.
+Ich hielt die Stelle an. Ich spielte sie noch einmal ab. Ich spielte sie zehnmal ab. Es war jedes Mal dasselbe Wort. Inês, neben einem Rollstuhl am Fenster, sagte den richtigen Namen, als es nichts mehr zu verbergen gab.
 
 Dann kam die Antwort. Nach einundvierzig Sekunden.
 
@@ -100,7 +100,7 @@ Er nickte, langsam. Dann stand er auf und schloss das Fenster, weil ich es nicht
 
 ## KAPITEL 21
 
-Portugal bestätigte es am Dienstagmittag, mit einem Dokument, das Fabienne mir auf ihrem Telefon zeigte, weil sie es nicht ausdrucken wollte, als würde es dadurch weniger wahr.
+Portugal bestätigte es am Dienstagmittag, mit einem Dokument, das Fabienne mir auf ihrem Telefon zeigte, weil sie es nicht ausdrucken wollte.
 
 *Certidão de óbito.* Ein Stempel, eine Unterschrift, ein Name. *Katharina Zuber, nascida em 09-01-1968. Falecida em 17-11-2024, Porto.*
 
@@ -158,7 +158,7 @@ Martha drehte sich um.
 
 „Seit November 2024. In Porto. Sie hatte ALS.“ Die Wörter kamen, wie sie kamen, flach, ohne Reihenfolge. „Die Anrufe, jeden Sonntag. Das war sie nicht mehr. Die letzten zwei Jahre war es eine Frau, die mit ihr gelebt hat, und ein Programm.“
 
-Martha stand am Herd, den Holzlöffel in der Hand. Sie sah mich an, und ich sah, wie etwas in ihr zusammenfiel, lautlos, von innen nach aussen, wie ein Haus, dessen Balken nachgeben, bevor man es von aussen sieht.
+Martha stand am Herd, den Holzlöffel in der Hand. Sie sah mich an. Vom Löffel tropfte Suppe auf die Fliesen, und sie merkte es nicht.
 
 Sie legte den Löffel hin. Sie setzte sich mir gegenüber an den Tisch, langsam, mit einer Hand auf der Tischkante, und zum ersten Mal, seit ich sie kannte, sah sie aus wie eine Frau von vierundachtzig Jahren.
 
@@ -170,7 +170,7 @@ Nicht *deine Mutter*. Nicht *die Kathi*. Den Namen, den ich in Lomm nur im Zusam
 
 „Ich weiss es nicht.“ Ich dachte an das Foto, an den Rollstuhl am Fenster, an das schiefe Lachen. „Ich glaube, am Schluss hat sie gelacht.“
 
-Martha nickte. Sie sah auf ihre Hände, die auf dem Tisch lagen, grosse, rote, alte Hände, und dann tat sie etwas, das ich nicht erwartet hatte. Sie weinte. Nicht laut. Die Tränen liefen ihr einfach über das Gesicht, in die Falten, und sie wischte sie nicht weg.
+Martha nickte. Sie sah auf ihre Hände, die auf dem Tisch lagen, grosse, rote, alte Hände, und dann weinte sie. Nicht laut. Die Tränen liefen ihr einfach über das Gesicht, in die Falten, und sie wischte sie nicht weg.
 
 „Sie war die Beste von allen“, sagte sie. „Die Wildeste und die Beste. Ich hab ihr nie gesagt, dass ich das denke.“
 
@@ -200,7 +200,7 @@ Eine Männerstimme, rau, alt, und darunter der Husten, der kommen wollte und noc
 
 Eine Pause. Ich hörte ein Radio im Hintergrund, leise, und Schritte auf einem Gang.
 
-„Nora.“ Die Stimme veränderte sich. Sie wurde klarer, als hätte jemand ein Fenster geputzt. „Die Kleine. Die von der Kathi.“
+„Nora.“ Die Stimme veränderte sich. Sie wurde klarer. „Die Kleine. Die von der Kathi.“
 
 „Ja.“
 
@@ -240,7 +240,7 @@ Er sah auf seine Hände.
 
 „Und der Italiener?“, fragte ich.
 
-Brunos Gesicht veränderte sich. Nicht wie in der Woche davor, nicht ganz. Aber etwas darin zog sich zurück, wie eine Schnecke in ihr Haus.
+Brunos Gesicht veränderte sich. Nicht wie in der Woche davor, nicht ganz. Aber etwas darin zog sich zurück.
 
 „Der Italiener wollte aufhören“, sagte er. „Der wollte zu den Richtern in Mailand. Der hatte Angst. Und wer Angst hat, redet.“ Er schüttelte den Kopf, langsam. „Nach Lichtmess ist das erledigt, hat der Alois gesagt.“
 
@@ -412,7 +412,7 @@ Darunter, von Hand ergänzt, in späteren Jahren, mit anderen Stiften: *B.I. –
 
 M.W.
 
-Ich sass auf dem Bett und sah auf die zwei Buchstaben, und etwas in meinem Kopf, das ich nicht gerufen hatte, suchte in dem Ordner, den ich immer mit mir herumtrage, dem Ordner mit allem, was ich je gesehen und gehört habe, und fand ein Leinentuch. Weiss, so oft gewaschen, dass es sich anfühlte wie Haut. Um ein Brot gewickelt, auf einem Tisch im Speisesaal, an dem Morgen, an dem Fabienne Rey *Zwillinge* gesagt hatte. In der Ecke, in rotem Kreuzstich: *M.W. 1961.*
+Ich sass auf dem Bett und sah auf die zwei Buchstaben, und dann sah ich ein Leinentuch. Weiss, so oft gewaschen, dass es sich anfühlte wie Haut. Um ein Brot gewickelt, auf einem Tisch im Speisesaal, an dem Morgen, an dem Fabienne Rey *Zwillinge* gesagt hatte. In der Ecke, in rotem Kreuzstich: *M.W. 1961.*
 
 Aussteuerwäsche. Das Jahr, in dem eine junge Frau ihr Leinen bestickt, bevor sie heiratet. Bevor sie aufhört, so zu heissen, wie sie hiess.
 
@@ -554,7 +554,7 @@ Ich sah auf meine eigenen Schuhe. Siebenunddreissig.
 
 „Eine Frau“, sagte Aurel. „Oder ein Jugendlicher.“
 
-Wir sahen uns an, und keiner von uns sagte einen Namen, weil es in Lomm zu viele Namen gab, die passten, und weil wir beide an eine Siebzehnjährige dachten, die heimlich eine Lehrstelle in Lausanne suchte und nicht wollte, dass man ihren Vater mitnimmt.
+Wir sahen uns an, und keiner von uns sagte einen Namen. Ich dachte an eine Siebzehnjährige, die heimlich eine Lehrstelle in Lausanne suchte und nicht wollte, dass man ihren Vater mitnimmt.
 
 \*
 
@@ -662,7 +662,7 @@ Und dann ihre Stimme, ganz nah am Mikrofon, weil das Gerät in ihrer Jacke steck
 
 „*Du?*“
 
-Ein Wort. Überrascht. Nicht erschrocken, noch nicht. Überrascht, wie man überrascht ist, wenn jemand zurückkommt, den man nicht erwartet hat.
+Ein Wort. Überrascht. Nicht erschrocken, noch nicht.
 
 Dann ging alles sehr schnell.
 
@@ -692,7 +692,7 @@ Und dann schrie sie. Sie schrie den Namen, den ich mein Leben lang nur als den N
 
 „*LENI! LENI!*“
 
-Ich hatte die Kopfhörer auf und ich hörte es nicht mit den Ohren. Ich hörte es mit dem Brustbein, mit den Zähnen, mit den Händen, die sich an den Stuhl klammerten. Eine Stimme, die neunundzwanzig Jahre lang in einer Jackentasche im Eis gelegen hatte, schrie in den Container, in dem die Rechner summten, und sie schrie so, wie ich noch nie einen Menschen hatte schreien hören, und ich habe Tausende von Stimmen gehört. Sie schrie nicht um Hilfe. Sie schrie einen Namen. Den einzigen Menschen, der auf dem Eis gewesen war.
+Ich hatte die Kopfhörer auf und ich hörte es nicht mit den Ohren. Ich hörte es mit dem Brustbein, mit den Zähnen, mit den Händen, die sich an den Stuhl klammerten. Eine Stimme, die neunundzwanzig Jahre lang in einer Jackentasche im Eis gelegen hatte, schrie in den Container, in dem die Rechner summten, und sie schrie so, wie ich noch nie einen Menschen hatte schreien hören, und ich habe Tausende von Stimmen gehört. Sie schrie nicht um Hilfe. Sie schrie einen Namen. Den Namen des einzigen Menschen, von dem ich wusste, dass er in dieser Nacht auf dem Eis gewesen war.
 
 Die Frau, die gesagt hatte: *Komm nie wieder.*
 
@@ -816,7 +816,7 @@ Sie legte auf. Ich sass auf dem Balkon, und unten auf dem Fluss fuhren die Boote
 
 Um neun klingelte das Telefon noch einmal. Eine Festnetznummer aus Lomm.
 
-„Nora.“ Marthas Stimme. Durch das Telefon klang sie kleiner, älter, weiter weg, als sie war. „Die Agnes hat gesagt, du bist in Portugal.“
+„Nora.“ Marthas Stimme. Durch das Telefon klang sie kleiner, als sie war. „Die Agnes hat gesagt, du bist in Portugal.“
 
 „Ja.“
 

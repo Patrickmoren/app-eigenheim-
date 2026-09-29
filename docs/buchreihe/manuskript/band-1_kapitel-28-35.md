@@ -34,7 +34,7 @@ Mein Vater sah auf das Bild in seiner Hand. Dann drehte er sich zu mir um, zum e
 
 „Du hast *Papa* gesagt“, sagte er. „Im Speisesaal. Auf meinem Arm. Die Kathi ist mit ihrem Gerät gerannt gekommen, und du hast es nicht wieder gesagt, drei Tage lang, und sie hat jeden Abend neben deinem Bett gewartet.“ Er legte das Bild auf den Stapel. „Das Erste war *Papa*. Das zweite war *Nein*.“
 
-Ich sagte nichts. Ich konnte nichts sagen.
+Ich sagte nichts.
 
 „Es gibt Dinge, die ich dir nie sagen werde“, sagte mein Vater und nahm das nächste Bild von der Wand. „Nicht, weil ich nicht will.“
 
@@ -264,7 +264,7 @@ Martha erzählte. Nicht von Firn, nicht von der Nacht. Sie erzählte von mir. Wi
 
 „Das war der Januar, bevor sie dich mitgenommen hat“, sagte Martha. „Den hab ich behalten. Den ganzen Weg.“
 
-Ich ass. Ich hörte zu. Ich hörte ihre Stimme, die warm war und alt und ein wenig rau vom Herdrauch, und ich dachte, dass ich diese Stimme in sechs Wochen lieben gelernt hatte, auf eine Art, die ich nicht verstand, und dass ich sie nicht aufgenommen hatte. Kein einziges Mal. Ich hatte den Rekorder in Bern gelassen.
+Ich ass. Ich hörte zu. Ich hörte ihre Stimme, die warm war und alt und ein wenig rau vom Herdrauch, und ich dachte, dass ich diese Stimme in sechs Wochen lieben gelernt hatte und dass ich sie nicht aufgenommen hatte. Kein einziges Mal. Ich hatte den Rekorder in Bern gelassen.
 
 In meiner Jackentasche vibrierte das Telefon.
 
@@ -310,7 +310,7 @@ Und am Herd, drei Meter von mir entfernt, sang Martha ein H.
 
 Ich sass sehr still.
 
-Es war keine Erkenntnis, die kam. Es war keine Tür, die aufging. Es war, als hätte jemand in einem Raum, in dem ich sechs Wochen lang gewohnt hatte, das Licht angeschaltet, und alles stand da, wo es immer gestanden hatte, nur dass ich es jetzt sah. Die Frau, die mir am ersten Abend das Gesicht gehalten hatte. Die Karten mit dem Z. Die Kerzen. *Die Martha hat gesagt, wir sollen die Kerzen zählen.* Die Hand auf meiner Hand in der Turnhalle. *Kann man da nach so langer Zeit noch etwas hören?* *Ich war nicht dabei.* Das Summen am Rand einer Spalte, über einer Frau, die nach ihrer Schwester schrie, in einer Nacht, in der ich zwei Jahre alt war und allein in einem Bett schlief.
+Es kam keine Erkenntnis. Es stand nur alles da, wo es sechs Wochen lang gestanden hatte, und ich sah es. Die Karten mit dem Z. *Die Martha hat gesagt, wir sollen die Kerzen zählen.* *Kann man da nach so langer Zeit noch etwas hören?* *Ich war nicht dabei.* Das Summen am Rand einer Spalte, über einer Frau, die nach ihrer Schwester schrie, in einer Nacht, in der ich zwei Jahre alt war und allein in einem Bett schlief.
 
 Nicht meine Mutter.
 
@@ -386,7 +386,7 @@ Sie war zurückgegangen.
 
 Martha nahm ihre Gabel und ass das letzte Stück von ihrem Teller. Langsam. Mit kleinen Bissen. Dann schnitt sie sich noch eins aus der kleinen Emailleform ab und legte es auf ihren Teller.
 
-Ich sah ihr zu. Ich verstand nichts. Ich verstand nur, dass meine Hände etwas tun mussten, weil der Rest nicht mehr konnte, und ich nahm meine Gabel und griff über den Tisch, nach dem Nächstliegenden, nach der kleinen Form mit dem blauen Rand –
+Ich sah ihr zu. Meine Hände mussten etwas tun, und ich nahm meine Gabel und griff über den Tisch, nach dem Nächstliegenden, nach der kleinen Form mit dem blauen Rand –
 
 Martha schlug mir die Gabel aus der Hand.
 
@@ -446,7 +446,7 @@ Martha sass am Tisch und sah mich an. Sie sagte nichts. Sie hatte die Hände gef
 
 „Steh auf.“
 
-Sie stand nicht auf. Ich ging um den Tisch herum, schob den umgefallenen Stuhl mit dem Fuss beiseite, und nahm sie unter den Armen. Sie war leichter, als ich gedacht hatte. Viel leichter. Eine Frau, die sechzig Jahre lang Teig geknetet hatte und die ganze Welt getragen, wog nicht mehr als ein Kind.
+Sie stand nicht auf. Ich ging um den Tisch herum, schob den umgefallenen Stuhl mit dem Fuss beiseite, und nahm sie unter den Armen. Sie war leichter, als ich gedacht hatte. Viel leichter. Eine Frau, die sechzig Jahre lang Teig geknetet hatte, wog nicht mehr als ein Kind.
 
 „Lass mich“, sagte sie. „Nora. Lass mich hier.“
 
@@ -488,7 +488,7 @@ Der Helikopter stand mit laufenden Rotoren auf dem Platz, und der Wind, den er m
 
 Fabienne stand neben dem Zelt. Sie hatte gesagt, sie würde mich holen, und sie war gekommen, und sie sah mich an, und dann sah sie Aurel, der mit Martha auf den Armen über den Platz kam, und sie sagte nichts. Sie nahm das Funkgerät vom Gürtel und sprach hinein, schnell, auf Französisch, und ich verstand *Visp* und *Intoxikation* und *sofort*.
 
-Sie legten Martha auf die Trage. Sie schnallten sie fest. Der Mann im roten Overall kniete neben ihr und legte ihr Elektroden auf die Brust, durch den offenen Mantel, und sah auf einen kleinen Bildschirm, und sein Gesicht veränderte sich.
+Sie legten Martha auf die Trage. Sie schnallten sie fest. Der Mann im roten Overall kniete neben ihr und legte ihr Elektroden auf die Brust, durch den offenen Mantel, und sah auf einen kleinen Bildschirm und rief den anderen etwas zu.
 
 „Wie lange?“, schrie er mir zu, über den Lärm der Rotoren.
 
@@ -620,7 +620,7 @@ Er sah mich an.
 
 „Du hast geraucht, bevor du hineingegangen bist.“
 
-Er lachte. Kurz, trocken, ein Lachen, das mehr wehtat als alles andere.
+Er lachte, kurz und trocken.
 
 „Und die Kabel an der Station“, sagte ich. „Das war auch sie?“
 
@@ -640,7 +640,7 @@ Fabienne kam am Mittwoch, mit der Schachtel Zigaretten in der Hand, noch immer i
 
 Fabienne sah mich an.
 
-„Aurel Imseng hat heute Morgen einen Antrag unterschrieben. Auf Exhumierung seines Vaters.“ Sie drehte die Schachtel in der Hand. „Das wird dauern. Und es ist eine andere Akte.“
+„Aurel Imseng hat heute Morgen einen Antrag unterschrieben. Auf Exhumierung seines Vaters.“ Sie steckte die Schachtel ein. „Das wird dauern. Und es ist eine andere Akte.“
 
 Sie blieb noch eine Weile, an der Tür des Hotelzimmers, und sah an mir vorbei auf den Laptop auf dem Bett, auf die Kopfhörer.
 
@@ -760,8 +760,6 @@ Ich nickte. Wir tranken den Tee, der nach Karton schmeckte. Der Schnee fiel auf 
 Ich hatte den Rekorder in der Jackentasche. Den kleinen, den ich immer dabeihabe und fast nie brauche. Ich spürte ihn, durch den Stoff, am Körper.
 
 „Nein“, sagte ich.
-
-Ich hatte mein Leben lang zugehört. Ich hatte jedes Geräusch aufgehoben, jede Stimme, jede Pause, damit nichts verloren geht. Und ich hatte nie gewusst, dass Zuhören nicht dasselbe ist wie Vertrauen.
 
 Ich legte meine Hand in seine, in die Tasche seiner Jacke, wo es warm war. Er sah mich an und sagte nichts, und ich versuchte nicht, sein Gesicht zu lesen.
 

@@ -32,7 +32,7 @@ Dann nahm ich ab.
 
 Einen Moment lang war nur Rauschen in der Leitung. Ein fernes, breites Rauschen, das nicht nach Meer klang und nicht nach Wind, sondern nach einer grossen Stadt an einem Mittag, der hier Abend war. Nach Verkehr hinter einem geschlossenen Fenster, sechs Stunden entfernt.
 
-Dann eine Frauenstimme. Alt. Nicht so alt wie Martha. Mit einem Akzent, der aus dem Englischen kam und aus dem Französischen, und darunter, ganz unten, wie ein Fundament, auf das man ein fremdes Haus gebaut hat: das lange, dunkle U. Das R hinten im Hals. Walliserdeutsch, das dreissig Jahre lang niemand mehr gesprochen hatte.
+Dann eine Frauenstimme. Alt. Nicht so alt wie Martha. Mit einem Akzent, der aus dem Englischen kam und aus dem Französischen, und darunter, ganz unten, wie ein Fundament, auf das man ein fremdes Haus gebaut hat: das lange, dunkle U. Das R hinten im Hals. Walliserdeutsch, lange nicht mehr benutzt; man hörte es an den Rändern.
 
 „*Nora?*“
 
@@ -44,7 +44,7 @@ Eine Pause. Ich hörte sie atmen, ruhig, gleichmässig, eine Frau, die den Satz,
 
 „*Jedenfalls steht das seit neunundzwanzig Jahren in meinem Pass.*“
 
-Ich hielt das Telefon. Im Kopfhörer, den ich nicht aufgesetzt hatte, der auf dem Tisch lag, hörte ich meine eigene Stimme nicht, weil ich nichts sagte.
+Ich hielt das Telefon.
 
 „*Die Tür von der Festung ist offen*“, sagte die Frau. „*Ich hab es in der Zeitung gesehen. Und bevor irgendjemand hineingeht – Sie oder der junge Imseng oder die Leute, die das Schloss dort hingehängt haben –, müssen Sie wissen, wer da drin liegt.*“
 

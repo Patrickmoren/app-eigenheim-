@@ -94,7 +94,7 @@ Ich schnitt Ringe. Sie knetete. Eine Weile sprach keine von uns, und es war nich
 
 Sie sagte es, als stelle sie etwas fest, womit sie gerechnet hatte.
 
-„Die Leni war auf dem Eis, sobald sie laufen konnte“, fuhr sie fort. „Als eine der ersten Frauen im Tal hat sie das Bergführerpatent gemacht. Die Männer haben gelacht, bis sie mit ihr aufs Joch sind. Danach nicht mehr.“ Sie lächelte, und für einen Moment sah ich, dass sie die Leni gemocht hatte, auf eine Art, die sie sich selbst nicht erlaubte. „Die Kathi hat das Eis nie gemocht. Schon als Kind nicht. Wenn es in der Nacht gesungen hat, ist sie zu ihrem Vater ins Bett gekrochen.“
+„Die Leni war auf dem Eis, sobald sie laufen konnte“, fuhr sie fort. „Als eine der ersten Frauen im Tal hat sie das Bergführerpatent gemacht. Die Männer haben gelacht, bis sie mit ihr aufs Joch sind. Danach nicht mehr.“ Sie lächelte, kurz, als wäre es ihr herausgerutscht. „Die Kathi hat das Eis nie gemocht. Schon als Kind nicht. Wenn es in der Nacht gesungen hat, ist sie zu ihrem Vater ins Bett gekrochen.“
 
 „Gesungen?“
 
@@ -212,7 +212,7 @@ Die Rechtsmedizin lag im Untergeschoss des Spitals, hinter zwei Türen, die sich
 
 Ein Assistent nahm mir die Probe ab, bevor ich mich hingesetzt hatte. Ein Wattestäbchen, innen an der Wange gedreht, kalt und trocken. Dreissig Sekunden. Er steckte es in ein Röhrchen, beschriftete es mit meinem Namen und einem Strichcode, und ich sah ihm dabei zu und dachte, dass er mir gerade etwas genommen hatte, das ich nie vermisst hätte.
 
-Dr. Jeanne Salamin war um die fünfzig, hatte kurze, graue Locken und eine Lesebrille in die Stirn geschoben. Ihr Deutsch war präzise und leicht französisch gefärbt. Sie gab mir die Hand, als wäre ich eine Kollegin, und nicht wie jemandem, dem man gleich etwas Schlimmes zeigen muss.
+Dr. Jeanne Salamin war um die fünfzig, hatte kurze, graue Locken und eine Lesebrille in die Stirn geschoben. Ihr Deutsch war präzise und leicht französisch gefärbt. Sie gab mir die Hand wie einer Kollegin, nicht wie jemandem, dem man gleich etwas Schlimmes zeigen muss.
 
 „Angehörige sehen die Verstorbenen in solchen Fällen normalerweise nicht“, sagte sie. „Es ist nicht nötig für die Identifikation. Und es ist selten hilfreich.“
 
@@ -280,7 +280,7 @@ Und auf der Kassette klebte ein Etikett. Blauer Kugelschreiber, Druckbuchstaben,
 
 Darüber ein einzelner Strich, quer durch alle Buchstaben.
 
-Es gibt einen Moment, bevor man einen Namen liest, in dem man schon weiss, dass es der eigene ist. Das Auge ist schneller als das Verstehen. Ich stand in diesem Moment länger, als ich wollte.
+Es gibt einen Moment, bevor man einen Namen liest, in dem man schon weiss, dass es der eigene ist. Ich stand in diesem Moment länger, als ich wollte.
 
 Meine Mutter hatte mir erzählt, mein erstes Wort sei *Nein* gewesen. Sie hatte es als Witz erzählt, jedes Mal, wenn ich ihr widersprach, und ich hatte jedes Mal so getan, als fände ich es lustig.
 
@@ -322,7 +322,7 @@ Ich sah auf die Kassette, auf den Strich durch meinen Namen, auf das gewellte Ba
 
 Am Freitag ging ich zum Gletscher hinauf, in der grünen Jacke, weil es die einzige war, die ich hatte.
 
-Der Weg begann hinter der Kapelle, zuerst durch Lärchen, deren Nadeln am Boden eine weiche, rostrote Schicht bildeten, die jeden Schritt schluckte. Dann hörten die Bäume auf, nicht allmählich, sondern an einer Linie, als hätte jemand sie gezogen, und dahinter begann die Moräne. Grauer Schutt, lose, frisch, ohne einen Halm, als wäre der Berg eine Baustelle, die niemand aufräumt. An einem Pfosten hing ein neues Schild, gelb, in drei Sprachen: *Achtung. Gletscherabbruch. Lebensgefahr.* Das Schild war jünger als alles um es herum.
+Der Weg begann hinter der Kapelle, zuerst durch Lärchen, deren Nadeln am Boden eine weiche, rostrote Schicht bildeten, die jeden Schritt schluckte. Dann hörten die Bäume auf, nicht allmählich, sondern an einer scharfen Linie, und dahinter begann die Moräne. Grauer Schutt, lose, frisch, ohne einen Halm, als wäre der Berg eine Baustelle, die niemand aufräumt. An einem Pfosten hing ein neues Schild, gelb, in drei Sprachen: *Achtung. Gletscherabbruch. Lebensgefahr.* Das Schild war jünger als alles um es herum.
 
 Je höher ich kam, desto lauter wurde das Wasser. Es kam aus einem Maul am unteren Ende des Eises, einem Gewölbe aus blauem, schmutzigem Eis, und schoss grau und schäumend in ein Bett aus Geröll, das es jeden Tag neu grub. Darüber lagen die Vliese. Von hier aus sah man, dass sie nicht weiss waren, sondern grau, fleckig, an den Rändern zerfasert, und dass der Wind unter sie fuhr und sie heben wollte und die Sandsäcke sie festhielten. Sie klangen wie Segel, die sich nicht entscheiden können.
 
@@ -358,7 +358,7 @@ Er zeigte mir die Stelle. Wir gingen am Rand der Zunge entlang, auf dem festen G
 
 „Sie haben sie herausgeholt.“
 
-„Mit der Polizei. Bis zwei Uhr morgens. Man kann niemanden aus dem Eis ziehen. Man muss das Eis um ihn herum schmelzen. Mit warmem Wasser, Liter um Liter.“ Er sagte es ohne Pathos, so wie man eine Arbeitsanweisung beschreibt, und gerade deshalb konnte ich nicht hinsehen, als er es sagte.
+„Mit der Polizei. Bis zwei Uhr morgens. Man kann niemanden aus dem Eis ziehen. Man muss das Eis um ihn herum schmelzen. Mit warmem Wasser, Liter um Liter.“ Er sagte es ohne Pathos, so wie man eine Arbeitsanweisung beschreibt, und gerade deshalb konnte ich ihn dabei nicht ansehen.
 
 „Sie ist nicht hier gestorben“, sagte er dann.
 
@@ -412,7 +412,7 @@ Jetzt sah er auf.
 
 „Ein D. Ein bisschen zu tief.“
 
-Er sah mich an, als müsse er etwas neu vermessen. Dann lachte er, kurz, überrascht, als hätte ihn das Lachen selbst überrascht.
+Er sah mich an, als müsse er etwas neu vermessen. Dann lachte er, kurz, als wäre es ihm passiert.
 
 „Ich messe diesen Gletscher seit elf Jahren“, sagte er, „und noch nie hat mir jemand gesagt, in welcher Tonart er schmilzt.“
 
@@ -526,7 +526,7 @@ Um zehn vor sieben kam Pius aus seinem Haus und setzte sich auf die Bank vor sei
 
 Um sieben begann die Glocke.
 
-Das Fis, eine Spur zu hoch, und die Schwebung darunter, dieses langsame Wabern, das jetzt, wo ich es zum zweiten Mal hörte, klang wie ein Mensch, der beim Singen den Ton nicht ganz halten kann. Der Platz erstarrte. Pius auf seiner Bank, die Frau im Fenster, die Kinder auf den Stufen. Es war, als hätte das Dorf die Luft angehalten und würde sie erst wieder hergeben, wenn der Berg fertig war.
+Das Fis, eine Spur zu hoch, und die Schwebung darunter, dieses langsame Wabern, das jetzt, wo ich es zum zweiten Mal hörte, klang wie ein Mensch, der beim Singen den Ton nicht ganz halten kann. Der Platz erstarrte. Pius auf seiner Bank, die Frau im Fenster, die Kinder auf den Stufen.
 
 Ich sah auf das Telefon.
 
@@ -664,7 +664,7 @@ Ich sah auf den Stick in ihrer Hand und nahm ihn nicht.
 
 „Offiziell habe ich Ihnen eine Visitenkarte gegeben.“
 
-Ich nahm den Stick. Er war warm von ihrer Tasche. Ich wusste in dem Moment, als er in meiner Hand lag, dass ich einen Fehler machte, denn ich war die Tochter einer Frau, deren Ring an der Hand einer Toten gesteckt hatte, und eine Tochter hat an einem Beweisstück nichts zu suchen, auch nicht an seiner Kopie. Ich wusste es, und ich steckte den Stick in die Innentasche der grünen Jacke, so wie die Tote ihre Kerze getragen hatte: nah am Körper.
+Ich nahm den Stick. Er war warm von ihrer Tasche. Eine Tochter hat an einem Beweisstück nichts zu suchen, auch nicht an seiner Kopie. Ich steckte ihn in die Innentasche der grünen Jacke, so wie die Tote ihre Kerze getragen hatte: nah am Körper.
 
 „Ich brauche zwei Tage“, sagte ich. „Vielleicht drei.“
 
@@ -714,7 +714,7 @@ Ich spielte die Stelle noch einmal ab. Und noch einmal.
 
 *Wenn das jemand hört –*
 
-Sie hatte Angst gehabt. Die Frau, die als eine der ersten im Tal das Bergführerpatent gemacht hatte, über die die Männer gelacht hatten, bis sie mit ihr aufs Joch gegangen waren, hatte in dieser Nacht vor einer Festung gestanden, von der ich nicht wusste, was sie war, und hatte solche Angst gehabt, dass ihre Stimme zitterte.
+Sie hatte Angst gehabt. Die Frau, über die die Männer gelacht hatten, bis sie mit ihr aufs Joch gegangen waren, hatte in dieser Nacht vor einer Festung gestanden, von der ich nicht wusste, was sie war, und ihre Stimme hatte gezittert.
 
 Gegen drei, als ich die Stelle zum zwanzigsten Mal hörte, mit angehobenen Höhen und einem Filter, den ich sonst nie benutze, fiel mir unter dem Rauschen noch etwas auf. Sehr leise. Nicht zum übrigen Band passend, so wie ein Faden in einem Stoff eine andere Farbe haben kann, ohne dass man es sieht, bis das Licht schräg darauf fällt. Etwas wie ein Lachen, hoch und ganz kurz. Ein Kind, dachte ich, oder ein Vogel, oder das, was Bänder manchmal tun, wenn sie zu lange aufgewickelt lagen: Die Lagen drücken sich ineinander ab, und man hört Echos von Dingen, die gleich kommen oder gerade vorbei sind. Kopiereffekt. Ich markierte die Stelle und liess sie liegen.
 
@@ -732,7 +732,7 @@ Pius, auf seiner Bank vor dem Haus, den Hund zwischen den Knien, sagte: „Nach 
 
 Ein Mann am Postschalter, der mich nicht einmal ansah, während er Briefmarken abriss, sagte: „Kanada. Hat nie geschrieben.“
 
-Beim dritten Mal fing ich an, die Pause mitzuzählen, die vor *hat nie geschrieben* kam. Sie war jedes Mal gleich lang, eine kleine Atempause, die das Ende des Satzes hervorhob, wie man es mit einem Satz tut, den man oft gesagt hat und der gut klingt. Es war die Pause eines Satzes, den ein ganzes Dorf auswendig gelernt hatte.
+Beim dritten Mal fing ich an, die Pause mitzuzählen, die vor *hat nie geschrieben* kam. Sie war jedes Mal gleich lang. Es war die Pause eines Satzes, den ein ganzes Dorf auswendig gelernt hatte.
 
 „Gibt es hier eine Festung?“, fragte ich die Frau im Laden, als sie mir das Wechselgeld hinzählte.
 
@@ -792,11 +792,11 @@ Ich sass sehr still. Die Katze atmete. Das Radio auf dem Kühlschrank bewegte se
 
 „Warum erzählt sie mir dann von einer Lawine?“
 
-Agnes sah mich lange an, mit diesen milchigen Augen, die alles sahen.
+Agnes sah mich lange an.
 
 „Mütter erzählen Geschichten so, wie sie sie aushalten“, sagte sie. „Das wirst du auch noch.“
 
-Als ich ging, hielt sie mich an der Tür am Ärmel fest. Am Ärmel der grünen Jacke. Sie rieb die Wolle zwischen Daumen und Zeigefinger, und ihr Gesicht veränderte sich auf eine Weise, die ich nicht deuten konnte.
+Als ich ging, hielt sie mich an der Tür am Ärmel fest. Am Ärmel der grünen Jacke. Sie rieb die Wolle zwischen Daumen und Zeigefinger, wie man auf dem Markt einen Stoff prüft, und liess den Ärmel nicht gleich los.
 
 „Geh zu meinem Bruder“, sagte sie. „Zum Sepp. In die Kapelle. Er ist sowieso dort. Er ist immer dort.“
 
@@ -850,7 +850,7 @@ Als ich das Tor erreichte, war sie zwischen den schwarzen Häusern verschwunden,
 
 Am Mittwochmorgen war die Nummer meiner Mutter tot.
 
-Ich rief um sieben an, wie jeden Morgen seit einer Woche, und statt des Freizeichens, dieses Tons, der zu keiner Tonart gehört, sprach eine Frauenstimme etwas auf Portugiesisch, freundlich und endgültig. *O número que marcou não está atribuído.* Ich verstand nur das *não*. Ich rief ein zweites Mal an und hörte mir den Satz noch einmal an, von Anfang bis Ende, wie man einem Arzt zuhört, der eine Diagnose wiederholt, weil man sie beim ersten Mal nicht glauben wollte.
+Ich rief um sieben an, wie jeden Morgen seit einer Woche, und statt des Freizeichens, dieses Tons, der zu keiner Tonart gehört, sprach eine Frauenstimme etwas auf Portugiesisch, freundlich und endgültig. *O número que marcou não está atribuído.* Ich verstand nur das *não*. Ich rief ein zweites Mal an und hörte mir den Satz noch einmal an, von Anfang bis Ende. Die Sprecherin atmete nicht.
 
 In WhatsApp war ihr Profilbild verschwunden. Wo das Meer gewesen war, der Streifen Himmel, war jetzt ein grauer Kreis mit einer weissen Silhouette darin, die Silhouette, die das Programm allen gibt, die niemand mehr sind. Meine Nachricht vom Mittwoch hatte noch zwei graue Haken. Die neue, die ich jetzt schickte, bekam nur noch einen.
 
@@ -866,7 +866,7 @@ Eine kleine Pause. „Ich gebe es nach Portugal weiter“, sagte Fabienne. „He
 
 Dann rief ich Ruth an, weil ich nicht wusste, wen ich sonst anrufen sollte.
 
-Sie nahm nach dem zweiten Klingeln ab, und ich hörte im Hintergrund das Summen der Klimaanlage im zweiten Untergeschoss, den Ton meines eigenen Arbeitsplatzes, und etwas in mir, das seit einer Woche nicht mehr stillgestanden hatte, blieb für einen Moment stehen.
+Sie nahm nach dem zweiten Klingeln ab, und ich hörte im Hintergrund das Summen der Klimaanlage im zweiten Untergeschoss, den Ton meines eigenen Arbeitsplatzes, und ich setzte mich aufs Bett.
 
 Ich erzählte ihr alles. Die Zähne, die Zwillinge, die DNA, den Sonntag. Den Stick. Die Stimme ohne das Pfeifen.
 
@@ -970,7 +970,7 @@ Aurel sah mich an. Das Licht der Stirnlampe fiel auf mein Gesicht, und ich merkt
 
 „Nichts.“
 
-Er wartete. Er war, das lernte ich in diesem Moment, ein Mensch, der warten konnte, weil er es von einem Gletscher gelernt hatte.
+Er wartete. Er konnte das.
 
 „Sie war bei der Festung“, sagte ich schliesslich.
 
