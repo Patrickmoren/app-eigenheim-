@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "_quelle": "Ausschliesslich Angaben aus «Verkaufsdokumentation Neumattstrasse 15, 4227 Büsserach» (Schaeppi, 2026). Nicht dokumentierte Angaben (z. B. Baujahr, Wohnfläche total, Zone) bleiben leer.",
+  "meta": { "confidential": true, "docLabel": "Akquisitionsgelegenheit" },
+  "object": {
+    "street": "Neumattstrasse 15",
+    "zip": "4227",
+    "city": "Büsserach",
+    "type": "Zweifamilienhaus",
+    "designation": "",
+    "plotArea": 490,
+    "livingArea": "",
+    "usableArea": "",
+    "yearBuilt": "",
+    "condition": "Wohnung Erdgeschoss 2020 komplett renoviert; Wohnung 1. Obergeschoss in solidem und gepflegtem Zustand",
+    "heating": "Ölheizung (2001)",
+    "availableFrom": "Nach Vereinbarung",
+    "location": "Ruhige, gewachsene Wohnlage im Dorfgebiet von Büsserach (Bezirk Thierstein, Kanton Solothurn), ca. 2’400 Einwohner. Bushaltestelle, Kindergarten, Primarschule, Bäckerei und Spielplatz zu Fuss erreichbar. PostAuto-Linie 115 im Halbstundentakt; S-Bahn-Anschluss Richtung Basel via Laufen (4,5 km). Basel rund 20 km bzw. ca. 30 Fahrminuten entfernt, Autobahn A18 in rund 15 Minuten."
+  },
+  "units": [
+    { "count": 1, "kind": "Wohnung", "rooms": 4.5, "area": 100, "floor": "Erdgeschoss", "rent": "", "features": "2020 komplett renoviert, Echtholzparkett, Waschturm, privater Gartensitzplatz, vermietet" },
+    { "count": 1, "kind": "Wohnung", "rooms": 4.5, "area": 100, "floor": "1. Obergeschoss", "rent": "", "features": "solider, gepflegter Zustand" }
+  ],
+  "unitsExtra": { "annex": "" },
+  "parking": { "garage": 2, "outdoor": 2, "visitor": "", "other": "" },
+  "finance": {
+    "rentActual": 42600,
+    "rentTarget": "",
+    "occupancy": "",
+    "ancillary": "CHF 3’000 p.a. (pauschal)",
+    "priceLabel": "Verkaufsrichtpreis",
+    "price": 995000,
+    "insuranceValue": "",
+    "showGrossYield": false,
+    "kpis": []
+  },
+  "land": {
+    "ownership": "",
+    "zone": "",
+    "oereb": "",
+    "buildingLines": "",
+    "noiseLevel": "",
+    "encumbrances": "Keine",
+    "parcels": [ { "number": "1904", "area": 490, "ownership": "", "share": "", "note": "" } ]
+  },
+  "investments": [
+    { "year": 2020, "measure": "Komplettrenovation 4.5-Zimmer-Wohnung Erdgeschoss" }
+  ],
+  "marketing": {
+    "highlights": "Wohnung Erdgeschoss 2020 komplett renoviert: Echtholzparkett, hochwertige Oberflächen, Waschturm in der Wohnung\nPrivater Gartensitzplatz bei der Erdgeschosswohnung\nZwei gleich grosse 4.5-Zimmer-Wohnungen à ca. 100 m²\n4 Parkplätze (2 gedeckt, 2 ungedeckt), keine Grundlasten",
+    "potential": "Wohnung 1. Obergeschoss: gezielte Sanierung nach Mieterwechsel ermöglicht eine Mietzinsoptimierung"
+  },
+  "process": {
+    "situation": "",
+    "ndaRequired": false,
+    "stages": "",
+    "viewing": "",
+    "indicativeOffer": "",
+    "dueDiligence": "",
+    "bindingOffer": "",
+    "timeline": ""
+  },
+  "contacts": [
+    { "name": "Patrick Moren", "role": "Teamleiter Bewirtschaftung", "phone": "+41 61 225 20 40", "email": "p.moren@schaeppi.ch" }
+  ],
+  "nda": { "company": "", "address": "", "representative": "", "place": "Basel", "date": "", "durationYears": 2 }
+}

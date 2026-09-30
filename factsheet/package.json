@@ -1,0 +1,19 @@
+{
+  "name": "schaeppi-factsheet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "KI-gestützter Dokumentengenerator für Schaeppi Verkaufs-Factsheets und Geheimhaltungsverpflichtungen",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node --test \"test/*.test.js\"",
+    "beispiel": "node scripts/beispiel.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.129.0",
+    "docx": "^9.8.1"
+  }
+}

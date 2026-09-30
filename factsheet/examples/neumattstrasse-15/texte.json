@@ -1,0 +1,35 @@
+{
+  "_hinweis": "Redaktionelle Beispielfassung nach den Regeln des Systemprompts (server/ai/prompt.js), ausschliesslich aus objekt.json. Mit gesetztem ANTHROPIC_API_KEY erzeugt «KI-Inhalte erstellen» diese Texte automatisch.",
+  "provider": "beispiel",
+  "generatedAt": "2026-09-30T12:00:00.000Z",
+  "title": "Zweifamilienhaus in Büsserach",
+  "overview": {
+    "ausgangslage": "Zum Verkauf steht ein Zweifamilienhaus mit zwei 4.5-Zimmer-Wohnungen an der Neumattstrasse 15 in Büsserach. Die Liegenschaft erzielt einen Nettomietertrag von CHF 42’600 p.a.; der Verkaufsrichtpreis beträgt CHF 995’000. Die Übernahme erfolgt nach Vereinbarung.",
+    "objektLage": "Das Zweifamilienhaus steht auf einem Grundstück von 490 m² in einer ruhigen, gewachsenen Wohnlage im Dorfgebiet von Büsserach (Bezirk Thierstein, Kanton Solothurn). Bushaltestelle, Kindergarten, Primarschule und Bäckerei sind zu Fuss erreichbar. Die PostAuto-Linie 115 verkehrt im Halbstundentakt; via Laufen besteht S-Bahn-Anschluss Richtung Basel.",
+    "baujahrInvestitionen": "Die Erdgeschosswohnung wurde 2020 komplett renoviert. Die Wohnung im 1. Obergeschoss befindet sich in solidem und gepflegtem Zustand. Die Wärmeerzeugung erfolgt über eine Ölheizung aus dem Jahr 2001.",
+    "einheiten": "Die Liegenschaft umfasst zwei 4.5-Zimmer-Wohnungen mit je rund 100 m² im Erdgeschoss und im 1. Obergeschoss. Zur Erdgeschosswohnung gehört ein privater Gartensitzplatz. Zur Parkierung stehen zwei gedeckte und zwei Aussenparkplätze zur Verfügung."
+  },
+  "arguments": [
+    {
+      "title": "Renovierte Erdgeschosswohnung",
+      "text": "2020 komplett renoviert, mit Echtholzparkett, Waschturm in der Wohnung und privatem Gartensitzplatz; die Wohnung ist vermietet.",
+      "basis": ["zustand", "investitionen", "einheiten", "besonderheiten"]
+    },
+    {
+      "title": "Mietzinspotenzial im Obergeschoss",
+      "text": "Die Wohnung im 1. Obergeschoss ist in solidem und gepflegtem Zustand; eine gezielte Sanierung nach Mieterwechsel ermöglicht eine Mietzinsoptimierung.",
+      "basis": ["potenzial", "zustand"]
+    },
+    {
+      "title": "Wohnlage mit ÖV-Anschluss",
+      "text": "Ruhige Wohnlage im Dorfgebiet, Schule und Bushaltestelle zu Fuss erreichbar; S-Bahn Richtung Basel via Laufen, Autobahn A18 in rund 15 Minuten.",
+      "basis": ["lage"]
+    },
+    {
+      "title": "Vier Parkplätze, keine Grundlasten",
+      "text": "Zwei gedeckte und zwei Aussenparkplätze; auf dem Grundstück lasten keine Grundlasten.",
+      "basis": ["parkierung", "grundlasten"]
+    }
+  ],
+  "edited": {}
+}
