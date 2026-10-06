@@ -1,0 +1,53 @@
+id,name,kategorie,url,start_chf,umsatz_mt,user_h_mt,automation,skalierung,risiko,zuverl,ausschluss
+M01,Vermieter-Toolkit CH auf Gumroad,Digitales Produkt,gumroad.com,0,150,0.3,95,6,8,7,
+M02,Toolkit auf Digistore24 (Marktplatz + Affiliates verkaufen mit),Digitales Produkt,digistore24.com,0,60,0.2,95,7,7,7,
+M03,Toolkit auf Etsy (Marktplatz-Traffic),Digitales Produkt,etsy.com,1,40,0.2,90,5,7,7,
+M04,Gratis-Mietzinsrechner (Web) mit Upsell + Affiliate,Lead-Magnet,eigene Seite,0,60,0.1,95,6,8,6,
+M05,StWE-Kostenverteiler (Variante Toolkit),Digitales Produkt,gumroad.com,0,80,0.3,95,5,8,7,
+M06,Toolkit Französisch (Romandie),Digitales Produkt,gumroad.com,0,60,0.3,95,5,8,7,
+M07,Affiliate Mietkaution/Hausrat via Swissclick/Awin auf eigener Seite,Affiliate,swissclick.ch / awin.com,0,20,0.1,95,5,7,5,
+M08,Wise-Empfehlungsprogramm in Inhalten,Referral,wise.com,0,10,0.1,95,2,8,7,
+M09,Bank-Empfehlungscodes (neon/Yuh) in Inhalten,Referral,neon-free.ch / yuh.com,0,10,0.1,90,2,7,6,
+M10,Nischen-Website Nebenkosten CH (SEO + Affiliate),Nischenwebsite,eigene Domain,15,50,1,80,6,7,4,
+M11,Programmatic SEO (Rechner je Gemeinde/Kanton),Nischenwebsite,eigene Domain,15,60,1,85,7,6,4,
+M12,API Referenzzins/LIK-Rechner auf RapidAPI,API-Service,rapidapi.com,0,10,0.3,95,4,7,5,
+M13,SaaS-Affiliate wiederkehrend (Buchhaltung KMU Schweiz),Affiliate,bexio.com/partner (zu prüfen),0,30,1,70,6,7,5,
+M14,Amazon-Partnerprogramm Nischeninhalte,Affiliate,partnernet.amazon.de,0,10,2,70,5,6,6,
+M15,Gumroad-Affiliate für fremde Produkte,Affiliate,gumroad.com,0,5,1,70,3,7,5,
+M16,Hosting/Website-Builder-Affiliates,Affiliate,diverse,0,10,2,60,6,6,6,
+M17,Generische Notion-/Sheets-Vorlagen,Digitales Produkt,etsy.com,0,10,1,90,4,8,5,
+M18,KDP Low-Content-Bücher,Digitales Produkt,kdp.amazon.com,0,10,1,80,4,5,5,
+M19,KI-Stockbilder (gekennzeichnet),Digitales Produkt,stock.adobe.com,0,5,1,80,4,6,5,
+M20,Micro-SaaS Mieterwechsel-Tracker,SaaS,eigene App,30,200,6,70,8,5,5,
+M21,Wohnungsabnahme-App (PWA),SaaS,eigene App,0,80,2,85,7,6,5,
+M22,Newsletter CH-Vermieter mit Sponsoring,Media,beehiiv.com,0,20,2,70,7,8,4,
+M23,KI-Inseratstexte als Service,AI-Service,eigene Seite,0,30,4,60,4,7,5,
+M24,B2B Excel/Power-Apps-Beratung Verwaltungen,Dienstleistung,direkt,0,600,8,20,4,4,7,Arbeitgeberkonflikt + Arbeitszeit
+M25,Fiverr Excel-Automation-Gigs,Freelance,fiverr.com,0,200,10,40,3,6,6,ständige menschliche Arbeit
+M26,Upwork Datenanalyse,Freelance,upwork.com,0,300,12,30,3,6,6,ständige menschliche Arbeit
+M27,Malt / Swiss Freelance,Freelance,malt.ch,0,300,12,30,3,6,6,ständige menschliche Arbeit
+M28,Prolific Studien,Microtask,prolific.com,0,60,6,0,1,8,8,KI verboten - nur eigene Arbeit
+M29,DataAnnotation,AI-Training,dataannotation.tech,0,300,15,0,2,6,6,KI verboten - nur eigene Arbeit
+M30,Outlier,AI-Training,outlier.ai,0,200,12,0,2,4,4,KI verboten + Sperrwellen 2026
+M31,Mindrift / Toloka,AI-Training,mindrift.ai,0,100,8,0,2,5,5,KI verboten - nur eigene Arbeit
+M32,TELUS/Appen Rater,AI-Training,telusinternational.ai,0,200,15,0,2,6,6,KI verboten - nur eigene Arbeit
+M33,Remotasks,AI-Training,remotasks.com,0,50,8,0,2,4,4,KI verboten + schlechte Reputation
+M34,UserTesting,User Testing,usertesting.com,0,60,3,0,2,8,7,Tests erfordern echte Person
+M35,Testbirds,User Testing,testbirds.de,0,40,3,0,2,8,7,Tests erfordern echte Person
+M36,Userlytics,User Testing,userlytics.com,0,30,2,0,2,8,6,Tests erfordern echte Person
+M37,Amazon MTurk,Microtask,mturk.com,0,20,8,0,1,5,5,KI verboten + CH eingeschränkt
+M38,Clickworker,Microtask,clickworker.de,0,30,8,0,1,6,6,KI verboten - Stundenlohn tief
+M39,Transkription Rev/GoTranscript,Microtask,rev.com,0,40,8,0,1,6,6,KI-Nutzung untersagt/irrelevant
+M40,Übersetzung Gengo,Microtask,gengo.com,0,60,8,10,2,6,6,ständige menschliche Arbeit
+M41,Umfragepanels Schweiz,Microtask,swisspanel.ch,0,15,3,0,1,8,7,menschliche Arbeit + tiefer Ertrag
+M42,Mystery Shopping,Dienstleistung,diverse,0,50,6,0,1,7,6,physische Arbeit
+M43,Cashback-Portale,Bonus,diverse,0,5,1,30,1,7,6,erfordert eigene Ausgaben
+M44,Konto-Eröffnungsboni,Bonus,diverse,0,20,1,0,1,6,6,einmalig - kein Stream
+M45,Ricardo/Tutti Reselling-Arbitrage,Reselling,ricardo.ch,100,100,10,10,3,5,5,Kapital + physische Logistik
+M46,Dropshipping CH,E-Commerce,shopify.com,300,100,8,40,5,3,4,Kapital + Zoll/MWST + Werbekosten
+M47,Print-on-Demand,E-Commerce,printful.com,0,10,3,60,4,6,4,gesättigt - tiefe Marge
+M48,Domain-Flipping,Spekulation,sedo.com,50,10,2,30,3,3,3,spekulativ
+M49,YouTube/TikTok KI-Content-Kanäle,Media,youtube.com,0,20,4,60,6,3,3,Plattformrisiko (Monetarisierung massenhafter KI-Inhalte)
+M50,Lead-Gen Handwerker Region,Lead Gen,eigene Seite,50,100,4,50,6,5,4,Akquise der Handwerker nötig
+M51,Krypto Staking/Airdrops,Spekulation,diverse,50,10,2,40,3,1,2,Krypto ohne Freigabe verboten
+M52,Matched Betting,Glücksspiel,diverse,100,100,8,10,3,2,4,Glücksspiel ausgeschlossen

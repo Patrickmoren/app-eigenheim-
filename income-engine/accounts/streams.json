@@ -1,0 +1,19 @@
+{
+  "_hinweis": "Status: TEST | PROFITABLE | SCALE | WATCH | STOP. Konto-Zugangsdaten NIE hier speichern – nur als Umgebungsvariable/Secret.",
+  "streams": [
+    {"id": "M01", "name": "Toolkit Gumroad", "plattform": "gumroad.com", "status": "TEST", "konto": "nicht eröffnet", "secret": "GUMROAD_ACCESS_TOKEN",
+     "auszahlung": {"weg": "Bankkonto CH", "minimum_usd": 10, "rhythmus": "wöchentlich (gemäss Gumroad-Hilfe prüfen)"},
+     "kill": "0 Verkäufe nach 30 Tagen live UND < 100 Besuche → WATCH; 0 nach 60 Tagen → STOP"},
+    {"id": "M02", "name": "Toolkit Digistore24", "plattform": "digistore24.com", "status": "TEST", "konto": "nicht eröffnet", "secret": "DIGISTORE_API_KEY",
+     "auszahlung": {"weg": "Bank", "minimum_eur": 50, "rhythmus": "gemäss Digistore24 (prüfen)"},
+     "kill": "0 Verkäufe nach 60 Tagen → STOP"},
+    {"id": "M03", "name": "Toolkit Etsy", "plattform": "etsy.com", "status": "WATCH", "konto": "nicht eröffnet", "secret": null,
+     "auszahlung": {"weg": "Bank", "rhythmus": "gemäss Etsy Payments"}, "kill": "Listinggebühr > Umsatz nach 4 Monaten → STOP"},
+    {"id": "M04", "name": "Gratis-Mietzinsrechner (Traffic)", "plattform": "eigene Seite", "status": "TEST", "konto": "Hosting nicht eingerichtet", "secret": null,
+     "auszahlung": null, "kill": "< 5 Klicks auf Toolkit pro Monat nach 3 Monaten → STOP"},
+    {"id": "M05", "name": "StWE-Kostenverteiler", "plattform": "gumroad.com", "status": "WATCH", "konto": "über M01", "secret": null,
+     "auszahlung": null, "kill": "erst bauen, wenn M01 ≥ 3 Verkäufe"},
+    {"id": "M06", "name": "Toolkit Französisch", "plattform": "gumroad.com", "status": "WATCH", "konto": "über M01", "secret": null,
+     "auszahlung": null, "kill": "erst bauen, wenn M01 ≥ 3 Verkäufe"}
+  ]
+}

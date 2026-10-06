@@ -1,2 +1,2 @@
-datum,projekt,typ,betrag_chf,stunden,kanal,beschreibung
-2026-10-06,O01,zeit,0,0,intern,"Research, Scoring, Bau Toolkit v1.0, Tests, Landingpage (Agentenzeit, keine Kosten)"
+datum,projekt,typ,betrag_chf,stunden,kanal,beschreibung,ref
+2026-10-06,O01,zeit,0,0,intern,"Research, Scoring, Bau Toolkit v1.0, Tests, Landingpage (Agentenzeit, keine Kosten)",
