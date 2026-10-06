@@ -1,0 +1,51 @@
+id,name,kategorie,plattform,startkosten_chf,automation_pct,umsatz_monat_chf,human_min_woche,risiko_1_5,auszahlung_1_5,agent_darf_arbeiten,notiz
+1,Nebenkostenabrechnung Schweiz (Excel-Vorlage),digitales Produkt,payhip.com / digistore24.com / etsy.com,0,90,80,5,1,5,ja,"DE-Markt verkauft vergleichbare Vorlagen fuer EUR 15-39; CH-spezifische Vorlagen (VMWG, Leerstand, Heizgradtage) kaum vorhanden"
+2,Vermieter-Bundle CH (Referenzzins-Mietzinsrechner + Kaution + Uebergabe),digitales Produkt,payhip.com / digistore24.com,0,90,120,5,1,5,ja,Upsell zu #1; Bundle-Preis CHF 39-49
+3,Referenzzins- und Nebenkostenrechner als Website (SEO),Nischenwebsite,eigene Domain + GitHub Pages,15,85,60,5,2,4,ja,Traffic-Motor fuer #1/#2; Umsatz erst nach 3-6 Monaten
+4,Apify Store Actor (oeffentliche CH-Register z.B. Zefix-API),API/Datenprodukt,apify.com/store,0,90,60,5,2,4,ja,Pay-per-result; Zefix bietet offizielle REST-API; nur offiziell erlaubte Quellen
+5,Digistore24 Vendor fuer CH-Bundle (Affiliate-Reichweite),Affiliate-Vertrieb,digistore24.com,0,90,50,2,2,4,ja,Fremde Affiliates verkaufen das Produkt gegen Provision
+6,Open-Source-Bounties (Code durch Agent),Plattformarbeit,algora.io / github.com,0,70,150,45,3,4,bedingt,Mensch muss PR pruefen und unter eigenem Namen einreichen; manche Projekte lehnen KI-PRs ab
+7,Google-Sheets/Excel-Vorlagen Privatfinanzen CH (3a / Budget / Steuern),digitales Produkt,payhip.com / etsy.com,0,85,40,5,1,5,ja,Breiterer Markt aber mehr Konkurrenz
+8,SaaS-Affiliate mit wiederkehrender Provision (bexio / Make / Infomaniak),Affiliate,partner-Programme,0,85,40,5,2,4,ja,Braucht Traffic aus #3
+9,Notion-Vorlagen (Vermieter-CRM / Haushalt),digitales Produkt,gumroad.com / notion marketplace,0,80,30,5,1,4,ja,Gumroad 10%+0.50 + Payout-Schwelle USD 100 fuer unverifizierte Konten
+10,Chrome-Extension mit Bezahlfunktion,Micro-SaaS,chrome web store + extensionpay.com,5,80,30,10,2,4,ja,Entwickler-Konto USD 5
+11,Etsy Digital Downloads generisch (Planer),digitales Produkt,etsy.com,10,70,30,15,2,4,ja,stark gesaettigt; Listing USD 0.20 + 6.5% + Payment
+12,RapidAPI Marketplace API,API-Produkt,rapidapi.com,0,85,20,5,2,3,ja,kleiner als Apify; Abrechnung via Plattform
+13,Amazon KDP Low-Content-Buecher,digitales Produkt,kdp.amazon.com,0,70,25,15,2,4,ja,KI-Offenlegung Pflicht; Volumenlimits
+14,Print-on-Demand Designs,digitales Produkt,redbubble.com / spreadshirt.ch,0,75,15,10,2,3,ja,gesaettigt
+15,KI-Stockfotos (gekennzeichnet),digitales Produkt,stock.adobe.com,0,85,10,10,2,4,ja,sehr tiefe Erloese pro Bild
+16,Infomaniak Affiliate (CH Hosting),Affiliate,infomaniak.com/affiliation,0,90,10,2,1,4,ja,nur mit Traffic
+17,Neobank-/3a-Referral (Yuh / Neon / VIAC / finpension),Referral,jeweilige App,0,60,15,5,2,4,bedingt,nur echte Empfehlungen; kein Spam (UWG)
+18,Fiverr Gigs Excel/VBA-Automation,Freelance,fiverr.com,0,60,250,120,2,4,bedingt,Kundenkommunikation durch Kontoinhaber; Agent erstellt Lieferung
+19,Upwork Excel/Automation-Projekte,Freelance,upwork.com,10,50,300,180,2,4,bedingt,Connects kosten; viel Kommunikation
+20,Newsletter mit Sponsoring (beehiiv Boosts),Content,beehiiv.com,0,70,20,20,2,3,ja,langsamer Aufbau
+21,B2B-Liste Neugruendungen aus SHAB fuer Treuhaender,Lead-Generierung,eigener Versand,0,80,80,30,3,3,bedingt,DSG/UWG pruefen; Kaltakquise per E-Mail an Firmen heikel
+22,Bug-Bounty,Security,hackerone.com,0,40,50,120,4,4,bedingt,hohe Varianz; nur im erlaubten Scope
+23,Kaggle-Wettbewerbe,Wettbewerb,kaggle.com,0,60,10,120,3,4,ja,Gewinnwahrscheinlichkeit sehr tief
+24,Faceless YouTube,Content,youtube.com,0,60,10,60,3,4,ja,Monetarisierungsschwelle; Richtlinie gegen massenhafte KI-Inhalte
+25,WordPress-Plugin CodeCanyon,digitales Produkt,codecanyon.net,0,70,30,30,2,4,ja,strenge Reviews
+26,Prompt-Pakete,digitales Produkt,promptbase.com,0,85,5,10,2,3,ja,Markt ausgeduennt
+27,Micro-SaaS Leerstand/Mieterwechsel fuer kleine Verwaltungen,SaaS,eigene Website,20,70,300,60,4,4,nein,"Nahe an Arbeitgeber-Projekt (Leerstandsmanager) - IP-Konflikt, nicht ohne Klaerung"
+28,UserTesting,User Testing,usertesting.com,0,0,60,120,1,5,nein,Mensch muss selbst testen und sprechen
+29,Testbirds Crowdtesting,User Testing,testbirds.com,0,0,40,120,1,4,nein,Mensch muss testen
+30,Prolific Studien,Research,prolific.com,0,0,60,240,1,5,nein,KI-Antworten verboten und aktiv erkannt
+31,DataAnnotation.tech,AI-Evaluation,dataannotation.tech,0,0,300,600,2,4,nein,nur persoenliche Arbeit; Agent-Einsatz = Vertragsbruch
+32,Outlier / Scale AI,AI-Evaluation,outlier.ai,0,0,300,600,3,4,nein,nur persoenliche Arbeit
+33,TELUS / Appen Rater,AI-Evaluation,telusinternational.ai,0,0,200,600,2,4,nein,nur persoenliche Arbeit
+34,Clickworker / UHRS,Microtasks,clickworker.com,0,0,30,300,2,3,nein,Bots verboten
+35,Amazon MTurk,Microtasks,mturk.com,0,0,20,300,3,2,nein,Bots verboten; CH-Zugang eingeschraenkt
+36,Transkription (Rev / GoTranscript),Transkription,gotranscript.com,0,0,40,300,2,3,nein,Maschinentranskription untersagt; tiefe Saetze
+37,Uebersetzung (Gengo),Uebersetzung,gengo.com,0,0,60,300,2,3,nein,Maschinenuebersetzung untersagt
+38,Umfrageportale (Swagbucks / Toluna),Umfragen,toluna.com,0,0,10,180,2,2,nein,Bots verboten; CHF 1-3/h
+39,Ricardo-Reselling,Reselling,ricardo.ch,200,20,100,240,3,4,ja,Kapital + Versand = Handarbeit
+40,Eigene Gegenstaende verkaufen,Reselling,ricardo.ch / tutti.ch,0,40,50,60,1,5,ja,einmalig
+41,Cashback-Portale,Cashback,diverse,0,50,5,5,1,3,ja,nur auf eigene Ausgaben
+42,Bankkonto-Boni,Bonus,diverse Banken,0,10,10,30,2,4,ja,einmalig; KYC je Bank
+43,Domain-Flipping,Arbitrage,sedo.com,100,60,10,30,4,3,ja,spekulativ
+44,Amazon.de Partnerprogramm,Affiliate,partnernet.amazon.de,0,80,5,5,2,3,ja,CH-Traffic schlecht monetarisierbar
+45,Awin/Tradedoubler CH-Haendler,Affiliate,awin.com,0,80,10,5,2,3,ja,braucht Traffic
+46,Kursplattform (Udemy Excel fuer Vermieter),digitales Produkt,udemy.com,0,50,30,60,2,4,ja,Video-Aufnahme durch Mensch
+47,White-Label Excel-Dienstleistung fuer KMU,Dienstleistung,eigene Website,15,60,200,90,2,4,bedingt,Verkauf durch Mensch
+48,Matched Betting,Gluecksspiel,diverse,50,30,100,120,4,3,nein,vom Auftrag ausgeschlossen (Wetten)
+49,Krypto-Airdrops / Trading,Krypto,diverse,50,50,20,30,5,2,nein,vom Auftrag ausgeschlossen
+50,Paid-to-click / Ads-Ansehen,Microtasks,diverse,0,0,2,120,5,1,nein,Betrugsrisiko; Bot-Verbot
