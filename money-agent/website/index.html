@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kündigungstermin berechnen Schweiz · Excel-Vorlagen für Vermieter</title>
+<meta name="description" content="Kostenloser Kündigungstermin-Rechner nach Schweizer Mietrecht und geprüfte Excel-Vorlagen für private Vermieter: Nebenkostenabrechnung, Mieterwechsel, Fristen.">
+<link rel="canonical" href="https://DOMAIN/">
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1a1a1a; --muted: #5b6670; --line: #dde3e8;
+    --accent: #1f4e79; --accent-fg: #ffffff; --soft: #eef3f8; --warn: #fff6dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111518; --fg: #e8ecef; --muted: #9aa6b0; --line: #2a3238;
+            --accent: #7fb3e6; --accent-fg: #0d1a26; --soft: #182129; --warn: #2b2615; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 16px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+  header b { color: var(--accent); }
+  header nav a { margin-left: 18px; color: var(--fg); text-decoration: none; font-size: 15px; }
+  h1 { font-size: clamp(28px, 4.5vw, 42px); line-height: 1.15; margin: 48px 0 12px; }
+  h2 { font-size: 26px; margin: 56px 0 8px; }
+  h1, h2, h3 { hyphens: auto; overflow-wrap: break-word; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 680px; }
+  section { padding-bottom: 8px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: var(--bg); }
+  .tool { background: var(--soft); border-radius: 12px; padding: 24px; margin-top: 24px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 20px; }
+  .grid > *, .result > * { min-width: 0; }
+  label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+  input, select { width: 100%; padding: 10px; font-size: 16px; border: 1px solid var(--line);
+                  border-radius: 8px; background: var(--bg); color: var(--fg); }
+  .result { margin-top: 20px; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .result div { background: var(--bg); border-radius: 8px; padding: 12px 14px; border: 1px solid var(--line); }
+  .result small { display: block; color: var(--muted); font-size: 13px; }
+  .result strong { font-size: 20px; }
+  .price { font-size: 30px; font-weight: 700; margin: 8px 0; }
+  .price span { font-size: 15px; font-weight: 400; color: var(--muted); }
+  .card ul { padding-left: 18px; margin: 10px 0 18px; }
+  .btn { display: inline-block; background: var(--accent); color: var(--accent-fg); padding: 11px 18px;
+         border-radius: 8px; text-decoration: none; font-weight: 600; border: 0; cursor: pointer; }
+  .btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+  .featured { border: 2px solid var(--accent); }
+  .tag { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent);
+         text-transform: uppercase; letter-spacing: .04em; }
+  .note { font-size: 13px; color: var(--muted); }
+  details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  footer { margin-top: 64px; border-top: 1px solid var(--line); padding: 24px 0 40px; font-size: 14px; color: var(--muted); }
+  footer a { color: var(--muted); margin-right: 16px; }
+  .b2b { background: var(--warn); border-radius: 12px; padding: 24px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <b>Vermieter-Vorlagen Schweiz</b>
+  <nav><a href="#rechner">Rechner</a><a href="#vorlagen">Vorlagen</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Kündigungstermin berechnen – nach Schweizer Mietrecht</h1>
+  <p class="lead">Kostenlos: Eingang der Kündigung eintragen und sofort Mietende, Abnahme, Frist für die Mängelrüge und die Kautionsfrist sehen.</p>
+
+  <section id="rechner" class="tool">
+    <div class="grid" style="margin-top:0">
+      <div><label for="eingang">Kündigung eingegangen am</label><input type="date" id="eingang"></div>
+      <div><label for="frist">Kündigungsfrist</label>
+        <select id="frist"><option value="1">1 Monat (falls vertraglich vereinbart)</option><option value="3" selected>3 Monate (Wohnung)</option><option value="6">6 Monate (Geschäftsräume)</option></select></div>
+      <div><label for="termine">Kündigungstermine</label>
+        <select id="termine">
+          <option value="3,6,9" selected>Ende März, Juni, September</option>
+          <option value="1,2,3,4,5,6,7,8,9,10,11">Jedes Monatsende ausser Dezember</option>
+          <option value="">Jedes Monatsende</option>
+        </select></div>
+    </div>
+    <div class="result" id="ergebnis" aria-live="polite"></div>
+    <p class="note">Massgebend sind der Mietvertrag und die ortsüblichen Termine Ihrer Gemeinde (Art. 266c OR). Abnahme: Mietende oder nächster Werktag (Wochenenden berücksichtigt, Feiertage nicht). Keine Rechtsberatung.</p>
+  </section>
+
+  <section id="vorlagen">
+    <h2>Geprüfte Excel-Vorlagen für private Vermieter</h2>
+    <p class="lead">Für Eigentümer von Mehrfamilienhäusern, vermietete Stockwerkeigentumswohnungen und Erbengemeinschaften. Keine Makros, keine Cloud, läuft in Excel und LibreOffice.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Am häufigsten gebraucht</span>
+        <h3>Nebenkostenabrechnung Schweiz</h3>
+        <div class="price">CHF 24</div>
+        <ul>
+          <li>Verteilung nach Fläche, Wertquote oder Einheiten</li>
+          <li>Mieterwechsel taggenau, Heizung nach Monatsgewichten</li>
+          <li>Leerstand bleibt beim Eigentümer</li>
+          <li>Druckfertige Abrechnung pro Mieter</li>
+        </ul>
+        <a class="btn" data-shop="nebenkosten" href="#">Kaufen</a>
+      </div>
+      <div class="card featured">
+        <span class="tag">Paket · spart CHF 4</span>
+        <h3>Vermieter-Paket</h3>
+        <div class="price">CHF 39 <span>statt 43</span></div>
+        <ul>
+          <li>Nebenkostenabrechnung Schweiz</li>
+          <li>Mieterwechsel- und Fristenplaner</li>
+          <li>Künftige Vorlagen des Pakets inklusive</li>
+        </ul>
+        <a class="btn" data-shop="paket" href="#">Paket kaufen</a>
+      </div>
+      <div class="card">
+        <span class="tag">Nie mehr eine Frist verpassen</span>
+        <h3>Mieterwechsel- und Fristenplaner</h3>
+        <div class="price">CHF 19</div>
+        <ul>
+          <li>Mietende auf ortsübliche Termine</li>
+          <li>Vorabnahme, Abnahme, Mängelrüge, Kaution</li>
+          <li>Ampel für überfällige Schritte</li>
+          <li>Leerstandskosten in Franken</li>
+        </ul>
+        <a class="btn" data-shop="mieterwechsel" href="#">Kaufen</a>
+      </div>
+    </div>
+    <p class="note">Sofortiger Download nach Zahlung (Kreditkarte oder PayPal). Jede Vorlage enthält eine leere Datei und ein ausgefülltes Beispiel.</p>
+  </section>
+
+  <section class="b2b">
+    <h2 style="margin-top:0">Für Liegenschaftsverwaltungen</h2>
+    <p>Wir entwickeln eine Fristenüberwachung für Mieterwechsel: Kündigung, Abnahme, Wiedervermietung und Schlussabrechnung im Team, mit Ampel und Auswertung des Leerstands. Sie ergänzt Ihre bestehende Verwaltungssoftware, statt sie zu ersetzen.</p>
+    <a class="btn" data-mail="Interesse Fristenüberwachung für Verwaltungen" href="#">Interesse melden</a>
+    <span class="note" style="margin-left:10px">Pilotkunden erhalten das erste Jahr zum halben Preis.</span>
+  </section>
+
+  <section id="faq">
+    <h2>Häufige Fragen</h2>
+    <details><summary>Gilt das für die ganze Schweiz?</summary><p>Ja. Die Vorlagen folgen dem Obligationenrecht (OR) und der VMWG. Kantonale und kommunale Kündigungstermine sowie Ihr Mietvertrag lassen sich einstellen.</p></details>
+    <details><summary>Brauche ich Excel?</summary><p>Excel ab 2016 (Windows oder Mac) oder das kostenlose LibreOffice. Makros sind keine enthalten.</p></details>
+    <details><summary>Ersetzt das eine Rechtsberatung?</summary><p>Nein. Die Vorlagen rechnen korrekt nach den hinterlegten Regeln und sind gegen unabhängige Kontrollrechnungen geprüft. Bei Streitfällen hilft die Schlichtungsbehörde Ihres Kantons oder Ihr Verband.</p></details>
+    <details><summary>Kann ich Vorlagen zurückgeben?</summary><p>Digitale Downloads können nach dem Herunterladen nicht zurückgegeben werden. Bei einem Fehler in der Vorlage erhalten Sie eine korrigierte Version oder Ihr Geld zurück.</p></details>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a>
+  <span>© <span id="jahr"></span> Vermieter-Vorlagen Schweiz</span>
+</div></footer>
+
+<script src="config.js"></script>
+<script src="rechner.js"></script>
+<script>
+  const fmt = d => d.toLocaleDateString("de-CH", { timeZone: "UTC", weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" });
+  const el = id => document.getElementById(id);
+
+  function rechne() {
+    const v = el("eingang").value;
+    if (!v) { el("ergebnis").innerHTML = ""; return; }
+    const termine = el("termine").value ? el("termine").value.split(",").map(Number) : [];
+    const frist = Number(el("frist").value);
+    const r = fristen(new Date(v + "T00:00:00Z"), frist, termine);
+    const felder = [
+      ["Frühestes Mietende", r.ende], ["Abnahme / Übergabe", r.abnahme],
+      ["Mängelrüge spätestens (Praxis: 2 Werktage)", r.maengelruege], ["Kaution: Forderung anmelden bis", r.kaution],
+    ];
+    el("ergebnis").innerHTML = felder.map(([t, d]) => `<div><small>${t}</small><strong>${fmt(d)}</strong></div>`).join("")
+      + `<div style="grid-column:1/-1"><small>Für dieses Mietende musste die Kündigung spätestens am ${fmt(r.letzterEingang)} eingehen.
+         Alle Fristen pro Mieter im Blick: <a href="#vorlagen">Mieterwechsel-Planer</a></small></div>`;
+  }
+  ["eingang", "frist", "termine"].forEach(id => el(id).addEventListener("input", rechne));
+  el("eingang").value = new Date().toISOString().slice(0, 10);
+  rechne();
+
+  // Shop-Links aus config.js; ohne Link bleibt der Knopf deaktiviert
+  document.querySelectorAll("[data-shop]").forEach(a => {
+    const url = (window.SHOP || {})[a.dataset.shop];
+    if (url) { a.href = url; } else { a.setAttribute("aria-disabled", "true"); a.textContent = "Bald verfügbar"; }
+  });
+  document.querySelectorAll("[data-mail]").forEach(a => {
+    a.href = "mailto:" + (window.KONTAKT || "") + "?subject=" + encodeURIComponent(a.dataset.mail);
+  });
+  el("jahr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

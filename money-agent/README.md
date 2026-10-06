@@ -99,6 +99,12 @@ Daily Agent: Diese Sitzung läuft nicht dauerhaft. Für die tägliche Routine (V
 - KI-Arbeit auf Human-only-Plattformen unter deinem Namen.
 - Massen-E-Mails oder Kaltakquise (UWG).
 
+## Website (gebaut)
+
+[`website/`](website/): Shopseite mit den drei Angeboten (Nebenkosten CHF 24, Mieterwechsel CHF 19, Paket CHF 39), kostenlosem Kündigungstermin-Rechner als Besuchermagnet (gleiche Regeln wie der Excel-Planer, gegen dieselben Fälle geprüft), Interessenliste für Verwaltungen, Impressum und Datenschutz. Ohne Cookies und Tracking, auf Handy und Desktop getestet. Kaufknöpfe zeigen «Bald verfügbar», bis die Payhip-Links in `website/config.js` stehen.
+
+Marktgrösse und Entscheid: [`MARKT.md`](MARKT.md).
+
 ## Struktur
 
 ```
@@ -106,4 +112,5 @@ money-agent/
   opportunities/  opportunities.csv · score.py · ranking.md
   products/       nebenkosten-ch/ · mieterwechsel-ch/ (je build.py · pruefe.py · LISTING.md · .xlsx)
   finance/        cfo.py · ledger.sqlite
+  website/        index.html · rechner.js · config.js · impressum.html · datenschutz.html
 ```
