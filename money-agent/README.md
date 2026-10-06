@@ -54,6 +54,10 @@ Warum Vermieter-Vorlagen gewinnen: In Deutschland verkaufen sich vergleichbare E
   - `Nebenkostenabrechnung-CH.xlsx` (leer) und `…-Beispiel.xlsx`
   - Rechenprobe: LibreOffice-Ergebnis = unabhängige Python-Rechnung für alle Beispielmieter, Kontrollblatt «OK», leere Vorlage ohne Fehlerwerte (`./pruefe_alles.sh`)
   - Verkaufstext, Preis, Tags: [`LISTING.md`](products/nebenkosten-ch/LISTING.md)
+- **T2, Teil 1 gebaut und geprüft**: [`products/mieterwechsel-ch/`](products/mieterwechsel-ch/), der Mieterwechsel- und Fristenplaner
+  - neu geschrieben, ohne Code oder Unterlagen des Leerstandsmanagers (siehe unten)
+  - Rechenprobe: 24 Grenzfälle (Eingang am letzten zulässigen Tag oder einen Tag zu spät, Jahreswechsel, Feiertage, vereinbartes Ende) mit drei Termin-Einstellungen; LibreOffice-Ergebnis = Python-Rechnung (`python3 pruefe.py`)
+  - Verkaufstext: [`LISTING.md`](products/mieterwechsel-ch/LISTING.md), CHF 19 einzeln oder CHF 39 im Paket mit T1
 - **CFO-Ledger** eingerichtet: [`finance/cfo.py`](finance/cfo.py) mit SQLite, Status TEST/PROFITABLE/SCALE/WATCH/STOP und Sperre bei Überschreiten des Testbudgets CHF 50.
 - Ausgaben bisher: CHF 0.
 
@@ -63,10 +67,11 @@ Warum Vermieter-Vorlagen gewinnen: In Deutschland verkaufen sich vergleichbare E
 2. **Warum:** Konto mit Auszahlungsweg kann nur der Inhaber eröffnen (E-Mail-Bestätigung, PayPal/Stripe-Verknüpfung).
 3. **Was tun:**
    - Konto eröffnen, unter Settings → Payments PayPal oder Stripe verbinden
-   - «Add product → Digital product», beide `.xlsx` aus `money-agent/products/nebenkosten-ch/` hochladen
-   - Titel, Beschreibung, Preis 24 und Tags aus `LISTING.md` hineinkopieren → Publish
+   - «Add product → Digital product», beide `.xlsx` aus `money-agent/products/nebenkosten-ch/` hochladen; Titel, Beschreibung, Preis 24 und Tags aus dessen `LISTING.md` → Publish
+   - zweites Produkt gleich mit `money-agent/products/mieterwechsel-ch/` (Preis 19)
+   - optional ein Bundle aus beiden für CHF 39 anlegen
    - mir den Produktlink schicken
-4. **Dauer:** ca. 10 Minuten
+4. **Dauer:** ca. 15 Minuten
 5. **Danach übernehme ich:** Bundle T2, Rechner-Website mit Verlinkung auf den Shop, Digistore24-Unterlagen, Ledger.
 
 Ehrlicher Hinweis zum Zeitbudget: Ab dann ist der wiederkehrende Aufwand pro Woche nahe null, aber nicht null – neue Produkte muss jemand mit Kontozugang hochladen (ca. 5 Min. pro Produkt), solange Payhip keine Upload-API anbietet.
@@ -90,7 +95,7 @@ Daily Agent: Diese Sitzung läuft nicht dauerhaft. Für die tägliche Routine (V
 
 ## Was ich bewusst nicht tue
 
-- Den Leerstandsmanager in diesem Repository verkaufen: Er ist offensichtlich für deinen Arbeitgeber entstanden. Ohne Klärung der Rechte ist das ein IP-Risiko (Opportunity 27, K.O.).
+- Den Leerstandsmanager in diesem Repository verkaufen, auch nicht anonymisiert: Software, die im Rahmen des Arbeitsverhältnisses entsteht, gehört grundsätzlich dem Arbeitgeber (Art. 17 URG, Art. 332 OR). Das Entfernen der Namen ändert daran nichts. Verwendet wird nur allgemeines Fachwissen; die Vermieter-Produkte sind neu geschrieben. Mit schriftlicher Freigabe des Arbeitgebers ließe sich Opportunity 27 neu bewerten.
 - KI-Arbeit auf Human-only-Plattformen unter deinem Namen.
 - Massen-E-Mails oder Kaltakquise (UWG).
 
@@ -99,6 +104,6 @@ Daily Agent: Diese Sitzung läuft nicht dauerhaft. Für die tägliche Routine (V
 ```
 money-agent/
   opportunities/  opportunities.csv · score.py · ranking.md
-  products/       nebenkosten-ch/ (build.py · pruefe.py · pruefe_alles.sh · LISTING.md · .xlsx)
+  products/       nebenkosten-ch/ · mieterwechsel-ch/ (je build.py · pruefe.py · LISTING.md · .xlsx)
   finance/        cfo.py · ledger.sqlite
 ```
