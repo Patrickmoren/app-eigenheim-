@@ -1,0 +1,7 @@
+2026-10-06T21:20Z research   Markt-Recherche: Referenzzins 1.25 % (BWO), Konkurrenz WEKA CHF 150, Casafair CHF 5, captain.legal ab CHF 4.90, Fairwalter gratis/Abo; 45 % Mietwohnungen in Privatbesitz (BFS 2023)
+2026-10-06T21:23Z decision   22 Opportunities bewertet, O01 Vermieter-Toolkit Schweiz gewählt (Score 80)
+2026-10-06T21:26Z build      Toolkit v1.0 erzeugt (build.py), leer + Beispiel
+2026-10-06T21:27Z test       tests/pruefe.py: 23/23 Prüfungen gegen unabhängige Rechnung korrekt
+2026-10-06T21:30Z build      Landingpage, Gumroad-Listing, Community-Entwürfe, EXP-001, Finanz-Ledger, Dashboard
+2026-10-06T21:31Z blocked    Gumroad-Konto, Auszahlung, Hosting, Ads-Budget → Freigabe Inhaber erforderlich (APPROVALS.md)
+2026-10-06T21:31Z loop       daily_loop ausgeführt

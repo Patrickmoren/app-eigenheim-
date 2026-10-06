@@ -1,0 +1,8 @@
+{
+  "startkapital_freigegeben_chf": 0,
+  "verteilung_gewinn": {"reinvestition": 0.5, "reserve": 0.3, "entnahme": 0.2},
+  "max_anteil_neuer_test": 0.10,
+  "max_anteil_validiertes_modell": 0.25,
+  "stundensatz_eigenzeit_chf": 0,
+  "hinweis": "Startkapital erst nach expliziter Freigabe durch den Inhaber erhöhen. Alle Beträge in CHF, Gebühren als separate Ausgabe erfassen."
+}
