@@ -99,6 +99,12 @@ Daily Agent: Diese Sitzung läuft nicht dauerhaft. Für die tägliche Routine (V
 - KI-Arbeit auf Human-only-Plattformen unter deinem Namen.
 - Massen-E-Mails oder Kaltakquise (UWG).
 
+## Vermieter-Toolkit: Strategie und sechstes Modul (07.10.2026)
+
+[`toolkit/STRATEGIE.md`](toolkit/STRATEGIE.md): Marktanalyse, Bewertung der 5 Module, 20 Kandidaten, Sieger, Architektur, Preis und Prüfbericht (A–K).
+Sieger und gebaut: [`products/rueckgabe-ch/`](products/rueckgabe-ch/), «Wohnungsrückgabe: Schaden & Kaution» (11 Prüffälle grün).
+Nebenkosten: 2 Fehler in der Kontrolle gefunden und behoben (`pruefe_faelle.py`, 23 Prüffälle grün).
+
 ## Website (gebaut)
 
 [`website/`](website/): Shopseite mit den drei Angeboten (Nebenkosten CHF 24, Mieterwechsel CHF 19, Paket CHF 39), kostenlosem Kündigungstermin-Rechner als Besuchermagnet (gleiche Regeln wie der Excel-Planer, gegen dieselben Fälle geprüft), Interessenliste für Verwaltungen, Impressum und Datenschutz. Ohne Cookies und Tracking, auf Handy und Desktop getestet. Kaufknöpfe zeigen «Bald verfügbar», bis die Payhip-Links in `website/config.js` stehen.
@@ -110,7 +116,8 @@ Marktgrösse und Entscheid: [`MARKT.md`](MARKT.md).
 ```
 money-agent/
   opportunities/  opportunities.csv · score.py · ranking.md
-  products/       nebenkosten-ch/ · mieterwechsel-ch/ (je build.py · pruefe.py · LISTING.md · .xlsx)
+  products/       nebenkosten-ch/ · mieterwechsel-ch/ · rueckgabe-ch/ (je build.py · pruefe.py · .xlsx)
+  toolkit/        STRATEGIE.md · kandidaten.py · kandidaten.md
   finance/        cfo.py · ledger.sqlite
   website/        index.html · rechner.js · config.js · impressum.html · datenschutz.html
 ```

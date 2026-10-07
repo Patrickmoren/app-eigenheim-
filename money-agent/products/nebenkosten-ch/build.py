@@ -397,14 +397,19 @@ def baue(beispiel=True):
             ("Mieterzeilen mit unbekannter Einheit",
              f'=SUMPRODUCT((Mieter!C{M0}:C{ML}<>"")*(Mieter!L{M0}:L{ML}+Mieter!N{M0}:N{ML}=0))'),
             ("Überlappende Mietverhältnisse (Tage > Periode je Einheit)",
-             f'=SUMPRODUCT(--(SUMIF(Mieter!C{M0}:C{ML},Stammdaten!A{E0}:A{EL},Mieter!I{M0}:I{ML})>Stammdaten!B8))')]
+             f'=SUMPRODUCT(--(SUMIF(Mieter!C{M0}:C{ML},Stammdaten!A{E0}:A{EL},Mieter!I{M0}:I{ML})>Stammdaten!B8))'),
+            ("Mietende vor Mietbeginn",
+             f'=SUMPRODUCT((Mieter!C{M0}:C{ML}<>"")*(Mieter!D{M0}:D{ML}<>"")*(Mieter!E{M0}:E{ML}<>"")'
+             f'*(Mieter!E{M0}:E{ML}<Mieter!D{M0}:D{ML}))'),
+            ("Kostenarten mit Schlüssel-Total 0 (z.B. keine Anteile erfasst)",
+             f'=SUMPRODUCT((Kosten!B{K0}:B{KL}<>"")*(Kosten!C{K0}:C{KL}<>"")*(Kosten!E{K0}:E{KL}=0))')]
     for i, (lab, f) in enumerate(rows, 4):
         c.cell(i, 1, lab).font = schrift(10, True)
         formel(c.cell(i, 2), f, CHF if i <= 7 else "0")
-    c.cell(13, 1, "Status").font = schrift(11, True)
-    formel(c.cell(13, 2), '=IF(AND(B7=0,B8=1000,B9=0,B10=0,B11=0),"OK","Bitte prüfen")')
-    c.conditional_formatting.add("B13", FormulaRule(formula=['B13="OK"'], fill=PatternFill("solid", fgColor="C6EFCE")))
-    c.conditional_formatting.add("B13", FormulaRule(formula=['B13<>"OK"'], fill=PatternFill("solid", fgColor="F8CBAD")))
+    c.cell(15, 1, "Status").font = schrift(11, True)
+    formel(c.cell(15, 2), '=IF(AND(B7=0,B8=1000,B9=0,B10=0,B11=0,B12=0,B13=0),"OK","Bitte prüfen")')
+    c.conditional_formatting.add("B15", FormulaRule(formula=['B15="OK"'], fill=PatternFill("solid", fgColor="C6EFCE")))
+    c.conditional_formatting.add("B15", FormulaRule(formula=['B15<>"OK"'], fill=PatternFill("solid", fgColor="F8CBAD")))
     c.column_dimensions["A"].width = 52
     c.column_dimensions["B"].width = 18
     schuetzen(c)

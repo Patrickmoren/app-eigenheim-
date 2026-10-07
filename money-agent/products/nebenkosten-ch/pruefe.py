@@ -51,8 +51,8 @@ def main(pfad):
         fehler += not ok
         print(f"{'OK ' if ok else 'ERR'} {name:16} Excel {xl_total:10.2f} / Python {total:10.2f}  Saldo {xl_saldo:9.2f}")
     print("Kontrolle Total Kosten:", k["B4"].value, "erwartet", round(gesamt, 2))
-    print("Kontrolle Differenz:", k["B7"].value, "Status:", k["B13"].value)
-    fehler += k["B13"].value != "OK" or abs(k["B4"].value - gesamt) > 0.001
+    print("Kontrolle Differenz:", k["B7"].value, "Status:", k["B15"].value)
+    fehler += k["B15"].value != "OK" or abs(k["B4"].value - gesamt) > 0.001
     b = wb["Abrechnung"]
     print("Abrechnungsblatt Mieter 1:", b["B5"].value, "|", b["B6"].value, "|", b["B8"].value, "| Saldo", b["G39"].value, b["E39"].value)
     print("FEHLER:", fehler)
