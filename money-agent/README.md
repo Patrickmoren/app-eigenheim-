@@ -105,6 +105,8 @@ Daily Agent: Diese Sitzung läuft nicht dauerhaft. Für die tägliche Routine (V
 Sieger und gebaut: [`products/rueckgabe-ch/`](products/rueckgabe-ch/), «Wohnungsrückgabe: Schaden & Kaution» (11 Prüffälle grün).
 Nebenkosten: 2 Fehler in der Kontrolle gefunden und behoben (`pruefe_faelle.py`, 23 Prüffälle grün).
 
+**Produkt im Verkauf:** [`products/vermieter-ordner/`](products/vermieter-ordner/) – eine Arbeitsmappe mit allen sechs Teilen (34 Prüfungen grün, `pruefe.py`), Verkaufstext in `LISTING.md`. Die Einzelmodule unter `products/nebenkosten-ch`, `mieterwechsel-ch`, `rueckgabe-ch` sind Vorläufer und werden nicht mehr einzeln verkauft.
+
 ## Website (gebaut)
 
 [`website/`](website/): Shopseite mit den drei Angeboten (Nebenkosten CHF 24, Mieterwechsel CHF 19, Paket CHF 39), kostenlosem Kündigungstermin-Rechner als Besuchermagnet (gleiche Regeln wie der Excel-Planer, gegen dieselben Fälle geprüft), Interessenliste für Verwaltungen, Impressum und Datenschutz. Ohne Cookies und Tracking, auf Handy und Desktop getestet. Kaufknöpfe zeigen «Bald verfügbar», bis die Payhip-Links in `website/config.js` stehen.
@@ -116,7 +118,7 @@ Marktgrösse und Entscheid: [`MARKT.md`](MARKT.md).
 ```
 money-agent/
   opportunities/  opportunities.csv · score.py · ranking.md
-  products/       nebenkosten-ch/ · mieterwechsel-ch/ · rueckgabe-ch/ (je build.py · pruefe.py · .xlsx)
+  products/       vermieter-ordner/ (Verkaufsprodukt) · nebenkosten-ch/ · mieterwechsel-ch/ · rueckgabe-ch/ (Vorläufer)
   toolkit/        STRATEGIE.md · kandidaten.py · kandidaten.md
   finance/        cfo.py · ledger.sqlite
   website/        index.html · rechner.js · config.js · impressum.html · datenschutz.html

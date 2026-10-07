@@ -4,6 +4,19 @@
 
 Grundlage: Repository-Stand mit drei gebauten und geprüften Modulen (Nebenkosten, Mieterwechsel, Wohnungsrückgabe). **Mietzinsrechner, Checkliste und Abnahmeprotokoll liegen nicht im Repository.** Sie sind nach der Beschreibung bewertet und nicht getestet.
 
+## Umsetzung (Stand 07.10.2026)
+
+Umgesetzt in **einer** Arbeitsmappe: [`products/vermieter-ordner/`](../products/vermieter-ordner/) (`Vermieter-Ordner-CH.xlsx` leer, `…-Beispiel.xlsx` ausgefüllt).
+
+- **Mein Haus** als einzige Datenquelle: Einheiten und Mietverhältnisse (ID). Das wirksame Mietende kommt automatisch aus dem Mieterwechsel.
+- **Checkliste** im Mieterwechsel aufgegangen: zehn Schritte mit Datum. Blatt «Checkliste» zeigt einen Wechsel druckfertig mit Erklärung pro Schritt.
+- **Abnahmeprotokoll** und Schadenberechnung teilen dieselbe Mängelliste. «Protokoll», «Kautionsabrechnung» und «Freigabe Kaution» drucken den gewählten Auszug.
+- **Nebenkosten** übernehmen Mieter, Flächen und Akonto aus Mein Haus. Der Saldo eines ausziehenden Mieters fliesst automatisch in die Kautionsabrechnung.
+- **Mietzinsrechner** neu gebaut, weil die frühere Datei nicht im Repository lag: Basiswerte aus Mein Haus, frühester Erhöhungstermin.
+- **Start** zeigt die nächsten fünf Fristen, Kennzahlen und den Status des zentralen Kontrollblatts.
+- **Prüfstrecke** `pruefe.py`: 34 Prüfungen, alle grün. Geprüft werden jedes Modul gegen eine Python-Rechnung, die Datenflüsse zwischen den Modulen, eine Akonto-Abweichung, Senkung und Erhöhung im Mietzinsrechner, 7 provozierte Fehler (alle erkannt) und die leere Vorlage ohne Fehlerwerte.
+- **Offen:** Test in Apple Numbers auf einem Mac.
+
 ---
 
 ## A — Marktanalyse: die Probleme privater Vermieter
