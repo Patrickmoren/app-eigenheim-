@@ -73,17 +73,17 @@ Der Romantext von Band 1 wurde in diesem Projekt weitgehend von einem KI-System 
 | **Manuskript** | | | |
 | 1.1 | Storyfassung eingefroren (48.487 Wörter) | ERLEDIGT | `entwicklung/band-1_gesamtpruefung.md` (Lektoratsprotokoll) |
 | **Korrektorat** | | | |
-| 2.1 | Schweizer Orthografie (ss), Anführungszeichen „…“, Gedankenstriche, Leerzeichen, Zahlen/Zeiten | OFFEN | Nur echte Fehler; Grenzfälle kommen nach `entwicklung/`. BoD verlangt druckfertige, korrigierte Daten [Q7 Ziff. 3] |
-| 2.2 | Namens- und Schreibweisenprüfung (Nora, Aurel, Martha, Leni, Kathi, Mia, Reto, Ruth, Rey, Rosmarie, Inês, Agnes, Bruno, Sepp) | OFFEN | |
-| 2.3 | Korrektoratsprotokoll | OFFEN | `entwicklung/` |
+| 2.1 | Schweizer Orthografie (ss), Anführungszeichen „…“, Gedankenstriche, Leerzeichen, Zahlen/Zeiten | ERLEDIGT | Nur echte Fehler; Grenzfälle kommen nach `entwicklung/`. BoD verlangt druckfertige, korrigierte Daten [Q7 Ziff. 3] |
+| 2.2 | Namens- und Schreibweisenprüfung (Nora, Aurel, Martha, Leni, Kathi, Mia, Reto, Ruth, Rey, Rosmarie, Inês, Agnes, Bruno, Sepp) | ERLEDIGT | |
+| 2.3 | Korrektoratsprotokoll | ERLEDIGT | `entwicklung/band-1_korrektorat.md` (21.10.2026) |
 | **Satz** | | | |
-| 3.1 | Format wählen (Varianten A–C) | WARTET AUF ENTSCHEIDUNG | nächster Block; Formate laut [Q1] |
-| 3.2 | Satzkonzept: Schrift, Grad, Durchschuss, Satzspiegel, Kapitelanfänge | OFFEN | Serifenschrift auf Cremeweiss empfohlen [Q3]; Schriftlizenz muss Einbettung und Druck erlauben [Q7 Ziff. 4.6], [Q9] |
-| 3.3 | Titelei (Schmutztitel, Frontispiz, Titel, Impressum S. 4) | OFFEN | [Q3] |
-| 3.4 | Impressum mit FSC-Freiraum, DNB-Vermerk, ©, Verlag/Druck, ISBN, TDM-Vorbehalt | OFFEN | [Q3], [Q4]; ISBN erst nach Projektstart |
-| 3.5 | Druck-PDF Buchblock: Endformat, ohne Beschnitt, Schriften eingebettet, Seitenzahl gerade | OFFEN | [Q3], [Q4], [Q8], [Q9] |
-| 3.6 | Seitenumbrüche, Witwen/Waisen, Leerseiten prüfen | OFFEN | |
-| 3.7 | Endgültige Seitenzahl feststellen | OFFEN | Voraussetzung für Cover, Rücken und Preis [Q4] |
+| 3.1 | Format wählen | ERLEDIGT (Vorschlag umgesetzt: 12 × 19 cm, Paperback, cremeweiss 90 g, matt; Autor kann ändern) | nächster Block; Formate laut [Q1] |
+| 3.2 | Satzkonzept: Schrift, Grad, Durchschuss, Satzspiegel, Kapitelanfänge | ERLEDIGT | `print-spezifikation.md`; EB Garamond (OFL); Serifenschrift auf Cremeweiss empfohlen [Q3]; Schriftlizenz muss Einbettung und Druck erlauben [Q7 Ziff. 4.6], [Q9] |
+| 3.3 | Titelei (Schmutztitel, Frontispiz, Titel, Impressum S. 4) | ERLEDIGT | [Q3] |
+| 3.4 | Impressum mit FSC-Freiraum, DNB-Vermerk, ©, Verlag/Druck, ISBN, TDM-Vorbehalt | IN ARBEIT (Platzhalter AUTORNAME und ISBN) | [Q3], [Q4]; ISBN erst nach Projektstart |
+| 3.5 | Druck-PDF Buchblock: Endformat, ohne Beschnitt, Schriften eingebettet, Seitenzahl gerade | ERLEDIGT (`satz/band-1_buchblock.pdf`, geprüft) | [Q3], [Q4], [Q8], [Q9] |
+| 3.6 | Seitenumbrüche, Witwen/Waisen, Leerseiten prüfen | ERLEDIGT (am Bildschirm; endgültig am Probedruck) | |
+| 3.7 | Endgültige Seitenzahl feststellen | ERLEDIGT: **228 Seiten** | Voraussetzung für Cover, Rücken und Preis [Q4] |
 | **Cover** | | | |
 | 4.1 | Coverkonzept (3 Richtungen, eine Auswahl) | OFFEN | `cover-konzept.md` |
 | 4.2 | Covermasse mit dem BoD-Coverrechner ermitteln | OFFEN | bod.ch/hilfe/coverberechnung [Q4]; erst nach 3.7 |

@@ -1,0 +1,70 @@
+/* Buchblock Band 1 – Format 12 × 19 cm (BoD-Standardformat), ohne Beschnitt.
+   Satzspiegel: innen 18 mm, aussen 14 mm, oben 16 mm, unten 19 mm.
+   Grundschrift EB Garamond 10,5 pt auf 13,8 pt; Transkripte IBM Plex Mono. */
+
+@font-face { font-family: "EB Garamond"; src: url("fonts/EBGaramond-Regular-static.ttf"); font-style: normal; font-weight: 400; }
+@font-face { font-family: "EB Garamond"; src: url("fonts/EBGaramond-Italic-static.ttf"); font-style: italic; font-weight: 400; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/IBMPlexMono-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/IBMPlexMono-Medium.ttf"); font-weight: 500; }
+
+@page {
+  size: 120mm 190mm;
+  margin: 16mm 14mm 19mm 18mm;
+  @bottom-center {
+    content: counter(page);
+    font-family: "EB Garamond", serif;
+    font-size: 9pt;
+    vertical-align: top;
+    padding-top: 5mm;
+  }
+}
+@page :left  { margin-left: 14mm; margin-right: 18mm; }
+@page :right { margin-left: 18mm; margin-right: 14mm; }
+@page titelei { @bottom-center { content: none; } }
+
+html { font-family: "EB Garamond", serif; font-size: 10.5pt; line-height: 13.8pt; color: #000; }
+body { margin: 0; font-kerning: normal; font-variant-ligatures: common-ligatures; font-feature-settings: "kern", "liga", "onum"; }
+
+p { margin: 0; text-align: justify; hyphens: manual; widows: 2; orphans: 2; }
+p + p { text-indent: 1.1em; }
+em { font-style: italic; }
+
+/* Titelei */
+.titelei { page: titelei; break-after: page; height: 155mm; }
+.titelei p { text-align: center; text-indent: 0; }
+.schmutztitel p { padding-top: 38mm; font-size: 12pt; letter-spacing: .02em; }
+.reihe p { padding-top: 38mm; font-size: 9pt; font-variant: small-caps; letter-spacing: .08em; line-height: 13pt; }
+.titelblatt .autor { padding-top: 30mm; font-size: 11pt; font-variant: small-caps; letter-spacing: .1em; }
+.titelblatt h1 { margin: 14mm 0 0; font-weight: 400; font-size: 21pt; line-height: 25pt; text-align: center; }
+.titelblatt .gattung { margin-top: 9mm; font-style: italic; font-size: 11pt; }
+.impressum { font-size: 8pt; line-height: 11pt; display: flex; flex-direction: column; gap: 3.2mm; }
+.impressum p { text-align: left; }
+.impressum .fsc-frei { height: 26mm; flex: none; }
+
+/* Kapitel */
+.kapitel { break-before: page; }
+.kapitel h2 {
+  margin: 30mm 0 13mm;
+  text-align: center;
+  font-weight: 400;
+  break-after: avoid;
+}
+.kapitel h2 .wort { display: block; font-size: 9pt; font-variant: small-caps; letter-spacing: .22em; }
+.kapitel h2 .nr { display: block; margin-top: 2.5mm; font-size: 20pt; line-height: 22pt; font-feature-settings: "lnum"; }
+.kapitel h2 + p, .trenner + p, .ortsmarke + p, .band + p { text-indent: 0; }
+
+.trenner { text-align: center; text-indent: 0; margin: 13.8pt 0; break-after: avoid; }
+.ortsmarke { text-align: center; text-indent: 0; font-style: italic; margin-bottom: 13.8pt; }
+
+/* Tonband-Transkripte */
+.band {
+  margin: 9pt 0 9pt 4mm;
+  font-family: "Plex Mono", monospace;
+  font-size: 7.4pt;
+  line-height: 10.6pt;
+  break-inside: avoid;
+}
+.band p { text-align: left; text-indent: 0; padding-left: 15mm; text-indent: -15mm; }
+.band .band-kopf { font-weight: 500; letter-spacing: .08em; margin-bottom: 4pt; padding-left: 0; text-indent: 0; }
+.band .tc { display: inline-block; width: 15mm; text-indent: 0; }
+.band em { font-style: normal; }
