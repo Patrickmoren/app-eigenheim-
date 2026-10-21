@@ -453,7 +453,7 @@ Das Postauto wendete auf dem Platz und fuhr zurück ins Tal, und ich stand da mi
 
 \*
 
-Das Hotel Firnblick war vier Stockwerke hoch und so gelb, wie ein Haus nur ist, wenn es lange nicht gestrichen worden ist. Über dem Eingang stand der Name in Buchstaben, die einmal vergoldet gewesen waren. Balkone mit geschmiedeten Geländern, an einem hing ein Handtuch zum Trocknen. Über der Tür eine Jahreszahl in den Stein gehauen: 1904.
+Das Hotel Firnblick war vier Stockwerke hoch und so gelb, wie ein Haus nur ist, wenn es lange nicht gestrichen worden ist. Über dem Eingang stand der Name in Buchstaben, die einmal vergoldet gewesen waren. Balkone mit geschmiedeten Geländern; an einem hing ein Handtuch zum Trocknen. Über der Tür eine Jahreszahl in den Stein gehauen: 1904.
 
 In der Halle roch es nach Bohnerwachs, nach altem Holz und nach kaltem Zigarettenrauch, der sich über Jahrzehnte in die Vorhänge gesetzt hatte. An der Wand gegenüber dem Eingang stand eine Standuhr, gross wie ein Schrank, und ihr Pendel schlug so laut, dass ich es im ganzen Raum hörte. Ich sah auf mein Telefon. Die Uhr ging sieben Minuten nach.
 
@@ -565,7 +565,7 @@ Um halb neun ging ich hinunter, weil der Hunger stärker wurde als der Wunsch, n
 
 Die Halle war leer. Hinter der Theke brannte eine einzelne Lampe, und die Standuhr ging immer noch sieben Minuten nach. Entlang der Treppe, die ich vorhin mit dem Koffer hinaufgestiegen war, ohne hinzusehen, hingen Fotos. Zwei Reihen, in schmalen schwarzen Rahmen, von der Halle bis hinauf zum ersten Absatz.
 
-Auf jedem Bild dasselbe Motiv. Ein Mensch im Schnee, nachts, im Licht einer Fackel oder eines Blitzes, und in den Armen eine Kerze, so gross wie ein Kind im ersten Schuljahr, mit einem eingeprägten Kreuz. Auf dem Passepartout stand in weisser Tinte jeweils ein Name und eine Jahreszahl. *Lichtmess 1951. Lichtmess 1952.* Männer mit Schnurrbart und Hüten. Eine junge Frau mit Zöpfen. Ein Junge, der die Kerze kaum halten konnte und so ernst in die Kamera sah, als trüge er etwas Lebendiges.
+Auf jedem Bild dasselbe Motiv. Ein Mensch im Schnee, nachts, im Licht einer Fackel oder eines Blitzes, und in den Armen eine Kerze, so gross wie ein Kind im ersten Schuljahr, mit einem eingeprägten Kreuz. Auf dem Passepartout standen in weisser Tinte jeweils ein Name und eine Jahreszahl. *Lichtmess 1951. Lichtmess 1952.* Männer mit Schnurrbart und Hüten. Eine junge Frau mit Zöpfen. Ein Junge, der die Kerze kaum halten konnte und so ernst in die Kamera sah, als trüge er etwas Lebendiges.
 
 Ich ging die Reihe entlang, Stufe für Stufe, Jahrzehnt für Jahrzehnt, bis ich stehen blieb.
 

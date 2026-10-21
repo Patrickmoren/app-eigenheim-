@@ -168,7 +168,7 @@ Ich sah auf den Bildschirm. Die Zahl der Berechnung stand bei elf Stunden. Neun 
 
 Am Eingang der Schlucht stand eine Absperrung. Zwei Polizeiwagen quer über der Strasse, ein Zelt des Zivilschutzes, Männer in orangen Westen, die die Autos zählten, die herunterkamen. Es kamen viele. Kombis mit Matratzen auf dem Dach, ein Traktor mit einem Anhänger voller Möbel, ein Postauto, das nicht nach Fahrplan fuhr und dessen Fenster beschlagen waren von den Menschen darin. Hinauf fuhr niemand.
 
-Fabienne Rey stand neben dem Zelt, in einer Jacke der Kantonspolizei, und sah mich aus dem Postauto steigen, mit dem ich bis hierher gekommen war, und kam nicht auf mich zu. Sie wartete, bis ich bei ihr war.
+Fabienne Rey stand neben dem Zelt, in einer Jacke der Kantonspolizei, und sah mich aus dem Postauto steigen, mit dem ich bis hierhergekommen war, und kam nicht auf mich zu. Sie wartete, bis ich bei ihr war.
 
 „Nein“, sagte sie.
 
@@ -566,25 +566,25 @@ Ich hörte es im Zimmer, das man mir in einem Hotel in Visp gegeben hatte, einem
 
 > BAND · STUFE 5 (aus dem Walliserdeutschen)
 >
-> 00:08:41 — Stimme B, von oben, entfernt: *Kathi?*
+> 00:08:41 – Stimme B, von oben, entfernt: *Kathi?*
 >
-> 00:08:44 — Stimme A, sehr schwach, nah: *Leni …*
+> 00:08:44 – Stimme A, sehr schwach, nah: *Leni …*
 >
-> 00:08:46 — Stimme B: *Kathi! Halt dich fest. Halt dich fest, ich komm –*
+> 00:08:46 – Stimme B: *Kathi! Halt dich fest. Halt dich fest, ich komm –*
 >
-> 00:08:49 — [Schritte auf Eis, ein Ringen]
+> 00:08:49 – [Schritte auf Eis, ein Ringen]
 >
-> 00:08:51 — Stimme B, schreiend: *Lass mich los, Martha! Sie lebt noch! Lass mich los!*
+> 00:08:51 – Stimme B, schreiend: *Lass mich los, Martha! Sie lebt noch! Lass mich los!*
 >
-> 00:08:55 — [Ringen, Schnee]
+> 00:08:55 – [Ringen, Schnee]
 >
-> 00:08:57 — Stimme B, weiter weg, im Laufen: *Ich hol ein Seil! Kathi! Ich hol ein Seil!*
+> 00:08:57 – Stimme B, weiter weg, im Laufen: *Ich hol ein Seil! Kathi! Ich hol ein Seil!*
 >
-> 00:09:01 — [Schritte, sich schnell entfernend]
+> 00:09:01 – [Schritte, sich schnell entfernend]
 >
-> 00:09:03 — [Wind]
+> 00:09:03 – [Wind]
 >
-> 00:09:04 — [Ende]
+> 00:09:04 – [Ende]
 
 Zwanzig Sekunden.
 

@@ -116,7 +116,7 @@ Ich ging links herum. Genau hinter ihm. Das Seil zwischen uns spannte sich und w
 
 Die Festung sah man erst, als man davorstand.
 
-Der Fels wölbte sich hier über den Rand des Gletschers wie eine Stirn, und darunter, im Schatten, war eine Fläche aus Beton, grau wie der Fels, mit Flechten darauf, als hätte der Berg versucht, sie sich einzuverleiben. Ein Portal, niedriger als ich gedacht hatte. Eine Stahltür, braun vor Rost, und davor, quer über der Tür, eine Wand aus Beton, grob gegossen, die die untere Hälfte verschloss.
+Der Fels wölbte sich hier über den Rand des Gletschers wie eine Stirn, und darunter, im Schatten, war eine Fläche aus Beton, grau wie der Fels, mit Flechten darauf, als hätte der Berg versucht, sie sich einzuverleiben. Ein Portal, niedriger, als ich gedacht hatte. Eine Stahltür, braun vor Rost, und davor, quer über der Tür, eine Wand aus Beton, grob gegossen, die die untere Hälfte verschloss.
 
 „Neunzehnhundertfünfundneunzig“, sagte Aurel. „Als die Armee sie aufgegeben hat. Zubetoniert und verkauft.“
 
@@ -440,19 +440,19 @@ Einen grossen, harten Raum, aus Beton, mit einer Nachhallzeit von fast zwei Seku
 
 > BAND · STUFE 2
 >
-> 00:00:52 — Männerstimme 1: *… kommt nicht mehr. Der Italiener kommt nicht mehr.*
+> 00:00:52 – Männerstimme 1: *… kommt nicht mehr. Der Italiener kommt nicht mehr.*
 >
-> 00:00:57 — Männerstimme 2: [unverständlich] *… und die Kisten?*
+> 00:00:57 – Männerstimme 2: [unverständlich] *… und die Kisten?*
 >
-> 00:01:01 — Männerstimme 1: *Die bleiben, wo sie sind. Ferraris hat [unverständlich]*
+> 00:01:01 – Männerstimme 1: *Die bleiben, wo sie sind. Ferraris hat [unverständlich]*
 >
-> 00:01:06 — [Lachen, kurz]
+> 00:01:06 – [Lachen, kurz]
 >
-> 00:01:09 — Männerstimme 2: *Nach Lichtmess ist das erledigt.*
+> 00:01:09 – Männerstimme 2: *Nach Lichtmess ist das erledigt.*
 >
-> 00:01:12 — [Husten, dreimal]
+> 00:01:12 – [Husten, dreimal]
 >
-> 00:01:15 — [Stuhl über Steinboden]
+> 00:01:15 – [Stuhl über Steinboden]
 
 Ich spielte den Husten ab. Dreimal, kurz hintereinander, aus der Brust, nicht aus dem Hals. Ich spielte ihn noch einmal ab, und noch einmal, und ich hatte ihn nicht aufgenommen, am Samstag in Stalden, ich hatte kein Gerät dabeigehabt, zum ersten Mal seit Jahren. Ich brauchte keins. Ich hörte ihn noch. Die grossen Hände auf der Wolldecke, der Oberkörper, der sich vorbeugt, und dann der Husten, der kommt, bevor der Satz zu Ende ist.
 
@@ -666,7 +666,7 @@ Der Beamte, den Fabienne geschickt hatte, hiess Anthamatten, war vielleicht fün
 
 Ruth übernahm. Sie öffnete den Beutel mit Handschuhen, nahm die Kassette heraus und hielt sie gegen das Licht, lange, drehte sie, besah das gewellte Band durch das Sichtfenster, wie ein Arzt ein Röntgenbild besieht.
 
-„Hydrolyse“, sagte sie. „Und Frostschaden. Und jemand hat es schon einmal durch ein Gerät gezogen, das ihm nicht gut getan hat.“ Sie sah mich an. „Backen. Acht Stunden. Dann sehen wir.“
+„Hydrolyse“, sagte sie. „Und Frostschaden. Und jemand hat es schon einmal durch ein Gerät gezogen, das ihm nicht gutgetan hat.“ Sie sah mich an. „Backen. Acht Stunden. Dann sehen wir.“
 
 Wir legten die Kassette in den Bandofen, einen unscheinbaren Kasten, der aussah wie ein Dörrgerät für Äpfel, und stellten ihn auf fünfzig Grad. Das Bindemittel, das die magnetischen Partikel auf dem Band hält, zieht über die Jahre Feuchtigkeit und wird klebrig; bei fünfzig Grad gibt es die Feuchtigkeit wieder her, für ein paar Tage, lange genug für einen einzigen, guten Durchgang. Danach verliert man es endgültig. Man hat einen Versuch.
 
@@ -734,37 +734,37 @@ Ruth sah auf die Anzeige. Ich sah auf nichts. Ich hatte die Augen zu.
 
 > BAND · STUFE 3 (aus dem Walliserdeutschen)
 >
-> 00:03:12 — [Schritte auf Eis, schnell. Atem.]
+> 00:03:12 – [Schritte auf Eis, schnell. Atem.]
 >
-> 00:03:19 — Stimme B: *Kathi! Kathi, bleib stehen!*
+> 00:03:19 – Stimme B: *Kathi! Kathi, bleib stehen!*
 >
-> 00:03:23 — Stimme A: *Lass mich.*
+> 00:03:23 – Stimme A: *Lass mich.*
 >
-> 00:03:25 — Stimme B: *Was machst du hier oben? Du hast doch Angst vor dem Eis.*
+> 00:03:25 – Stimme B: *Was machst du hier oben? Du hast doch Angst vor dem Eis.*
 >
-> 00:03:30 — Stimme A: *Sie haben über deinen Italiener geredet, Leni. Wie über eine Kiste.*
+> 00:03:30 – Stimme A: *Sie haben über deinen Italiener geredet, Leni. Wie über eine Kiste.*
 >
-> 00:03:36 — [Wind]
+> 00:03:36 – [Wind]
 >
-> 00:03:40 — Stimme B: *Geh heim. Bitte. Denk an die Kleine.*
+> 00:03:40 – Stimme B: *Geh heim. Bitte. Denk an die Kleine.*
 >
-> 00:03:43 — Stimme A: *Ich denk an nichts anderes. Ich geh morgen nach Sitten. Zur Polizei. Nicht zum Bruno.*
+> 00:03:43 – Stimme A: *Ich denk an nichts anderes. Ich geh morgen nach Sitten. Zur Polizei. Nicht zum Bruno.*
 >
-> 00:03:50 — Stimme B: *Du nimmst das auf? Kathi. Gib mir das. Gib mir die Kassette.*
+> 00:03:50 – Stimme B: *Du nimmst das auf? Kathi. Gib mir das. Gib mir die Kassette.*
 >
-> 00:03:55 — Stimme A: *Du hast sie mir gegeben, Leni. Jetzt ist sie meine.*
+> 00:03:55 – Stimme A: *Du hast sie mir gegeben, Leni. Jetzt ist sie meine.*
 >
-> 00:04:01 — [Wind, 4 Sekunden]
+> 00:04:01 – [Wind, 4 Sekunden]
 >
-> 00:04:05 — Stimme B: *Dann geh doch. Geh und komm nie wieder.*
+> 00:04:05 – Stimme B: *Dann geh doch. Geh und komm nie wieder.*
 >
-> 00:04:09 — [Schritte, sich entfernend]
+> 00:04:09 – [Schritte, sich entfernend]
 
 Zwei Frauenstimmen. Dieselbe Stimme, zweimal. Dieselbe Tonlage, dieselbe Farbe, dasselbe R hinten im Hals, dasselbe Walliserdeutsch, das ich kannte, bevor ich laufen konnte. Wer nicht wusste, dass es zwei waren, hätte eine Frau gehört, die mit sich selbst streitet.
 
 Aber ich wusste es. Und ich hörte, wie die eine auf jedem S pfiff.
 
-*Kathi, bleib stehen. Was machst du hier oben. Du hast doch Angst vor dem Eis.* Hoch und dünn, bei *stehen*, bei *hast*, bei *Eis*. Wie ein Vogel auf einer Leitung.
+*Kathi, bleib stehen. Was machst du hier oben? Du hast doch Angst vor dem Eis.* Hoch und dünn, bei *stehen*, bei *hast*, bei *Eis*. Wie ein Vogel auf einer Leitung.
 
 Die andere nicht.
 
@@ -920,7 +920,7 @@ Als die Glocke verstummte, war es so still, dass ich die Lomma unten in der Schl
 
 Inês drehte das Tablet zu mir. Auf dem Bildschirm war ein Foto.
 
-Eine Frau in einem Rollstuhl, vor einem Fenster, hinter dem ein Fluss lag, breit und braun, und auf dem Fluss ein Boot mit einem Segel. Die Frau war dünn, dünner als ich sie je gesehen hatte, die Hände lagen verdreht auf einer Decke in ihrem Schoss, und am Rollstuhl war ein Arm befestigt, an dem ein Bildschirm hing, auf Höhe ihres Gesichts. Ihr Haar war grau, nicht gefärbt, kurz. Sie lachte. Schief, mit einer Hälfte des Mundes, aber sie lachte, und ihre Augen lachten mit, und es waren ihre Augen.
+Eine Frau in einem Rollstuhl, vor einem Fenster, hinter dem ein Fluss lag, breit und braun, und auf dem Fluss ein Boot mit einem Segel. Die Frau war dünn, dünner, als ich sie je gesehen hatte, die Hände lagen verdreht auf einer Decke in ihrem Schoss, und am Rollstuhl war ein Arm befestigt, an dem ein Bildschirm hing, auf Höhe ihres Gesichts. Ihr Haar war grau, nicht gefärbt, kurz. Sie lachte. Schief, mit einer Hälfte des Mundes, aber sie lachte, und ihre Augen lachten mit, und es waren ihre Augen.
 
 „Amyotrophe Lateralsklerose“, sagte Inês. „Die Diagnose war am 2. Februar 2021. Ich war ihre Logopädin. So haben wir uns kennengelernt.“
 

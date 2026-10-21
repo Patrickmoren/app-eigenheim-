@@ -338,7 +338,7 @@ Er drehte sich um.
 
 Aurel Imseng war Ende dreissig, sonnenverbrannt am Hals und an den Händen, die voller kleiner Risse waren, wie Hände, die zu oft kalt und nass gewesen sind. Eine Gletscherbrille steckte in seinem Haar, das länger hätte geschnitten werden müssen. Er stand auf und wischte die Hände an der Hose ab, und dann wusste er nicht, was er mit ihnen tun sollte.
 
-„Das mit Ihrer Mutter —“, begann er.
+„Das mit Ihrer Mutter –“, begann er.
 
 „Es ist nicht meine Mutter.“
 
@@ -464,7 +464,7 @@ Ich zog das Bild mit zwei Fingern auseinander, bis die Gesichter körnig wurden.
 
 *Eine Schwester*, hatte meine Mutter gesagt. Zwei-, dreimal in meinem Leben. *Leni ist gegangen. Mehr gibt es dazu nicht zu sagen.* Nie hatte sie gesagt, dass es jemanden auf der Welt gab, der ihr Gesicht trug. Einunddreissig Jahre lang hatte ich eine Tante in Kanada gehabt, die ich mir vorstellte, wie man sich Tanten in Kanada vorstellt, irgendwie grösser, lauter, in einer Holzhütte, und in Wirklichkeit hatte meine Mutter jeden Tag in den Spiegel geschaut und sie gesehen.
 
-„Okay“, sagte Mia langsam. „Also wenn die Tote aussieht wie deine Mutter. Und die Jacke von deiner Mutter trägt und den Ring —“
+„Okay“, sagte Mia langsam. „Also wenn die Tote aussieht wie deine Mutter. Und die Jacke von deiner Mutter trägt und den Ring –“
 
 „Woher weisst du das mit der Jacke?“
 
@@ -636,7 +636,7 @@ Ich hatte nicht vorgehabt, es zu sagen. Es kam heraus wie etwas, das man zu lang
 
 Martha nahm die Hand vom Tuch. Mein Vater sah zum ersten Mal an diesem Morgen zu mir herüber.
 
-„Vielleicht hat sie die Zeitung gelesen“, sagte Fabienne ruhig. „Wenn man neunundzwanzig Jahre glaubt, dass die eigene Schwester in Kanada lebt, und dann liest man das —“
+„Vielleicht hat sie die Zeitung gelesen“, sagte Fabienne ruhig. „Wenn man neunundzwanzig Jahre glaubt, dass die eigene Schwester in Kanada lebt, und dann liest man das –“
 
 „Und was sagt sie?“, fragte mein Vater.
 
@@ -684,17 +684,17 @@ Um zwei Uhr sechzehn hörte ich sie.
 
 > BAND · STUFE 1
 >
-> 00:00:04 — *Sonntag, zweiter Februar. Dreiundzwanzig Uhr zwölf.*
+> 00:00:04 – *Sonntag, zweiter Februar. Dreiundzwanzig Uhr zwölf.*
 >
-> 00:00:11 — [Wind]
+> 00:00:11 – [Wind]
 >
-> 00:00:13 — *Ich bin bei der Festung. Sie sind drin.*
+> 00:00:13 – *Ich bin bei der Festung. Sie sind drin.*
 >
-> 00:00:19 — [Stimmen, entfernt, gedämpft, unverständlich]
+> 00:00:19 – [Stimmen, entfernt, gedämpft, unverständlich]
 >
-> 00:00:38 — *Wenn das jemand hört –*
+> 00:00:38 – *Wenn das jemand hört –*
 >
-> 00:00:41 — [Rauschen]
+> 00:00:41 – [Rauschen]
 
 Ein Flüstern. Eine Frauenstimme, die sich Mühe gab, deutlich zu flüstern, wie jemand, der im Radio gelernt hat, wie man spricht, wenn man verstanden werden will. Sie zitterte, und es war nicht das Zittern der Geschwindigkeitsschwankung, das hätte ich herausrechnen können. Es war ihres.
 
@@ -884,7 +884,7 @@ Ruth unterbrach mich nicht. Als ich fertig war, hörte ich, wie sie die Brille a
 
 \*
 
-Aurel Imseng kam am Abend ins Hotel, als die Sonne schon hinter dem Grat war. Er stand in der Halle, unter der Standuhr, in derselben ausgebleichten Jacke wie auf dem Foto in der Zeitung, und er sah sich die Lichtmess-Fotos an der Treppe nicht an. Er sah absichtlich an ihnen vorbei, so wie man an jemandem vorbeisieht, dem man nicht begegnen will.
+Aurel Imseng kam am Abend ins Hotel, als die Sonne schon hinter dem Grat war. Er stand in der Halle, unter der Standuhr, in derselben ausgebleichten Jacke wie auf dem Foto in der Zeitung, und er sah sich die Lichtmessfotos an der Treppe nicht an. Er sah absichtlich an ihnen vorbei, so wie man an jemandem vorbeisieht, dem man nicht begegnen will.
 
 „Ich brauche Ihr Jahr“, sagte er.
 

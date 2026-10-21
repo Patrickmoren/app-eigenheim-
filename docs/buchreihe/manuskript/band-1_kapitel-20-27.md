@@ -308,7 +308,7 @@ Aurel sah mich an. Er sagte nichts. Er hatte keine Antwort, und ich hatte keine,
 
 Bruno Imseng starb in der Nacht auf Freitag, im Schlaf, im Heim in Stalden. Die Nachtschwester fand ihn um vier, als sie ihre Runde machte. Er lag auf dem Rücken, die Hände auf der Decke, und sein Gesicht, sagte sie später zu Aurel, sei ruhig gewesen. Der Heimarzt kam um sechs und schrieb auf das Formular, was man auf Formulare schreibt, wenn ein zweiundsiebzigjähriger Mann mit Demenz und einem schwachen Herzen nachts stirbt. *Herzversagen.*
 
-Aurel erfuhr es um halb sieben. Ich erfuhr es um sieben, von Mia, die es auf ihrem Telefon gelesen hatte, in der Facebookgruppe, in der die Alten schon kondolierten, bevor der Sohn es wusste.
+Aurel erfuhr es um halb sieben. Ich erfuhr es um sieben, von Mia, die es auf ihrem Telefon gelesen hatte, in der Facebook-Gruppe, in der die Alten schon kondolierten, bevor der Sohn es wusste.
 
 Ich ging zur Messstation. Er war nicht dort. Ich ging zu dem Haus, in dem er wohnte, einer Wohnung im ersten Stock über der alten Sennerei, und klopfte, und er öffnete nicht, und ich hörte ihn drinnen, hörte seine Schritte, die zur Tür kamen und stehen blieben und wieder weggingen.
 
@@ -452,7 +452,7 @@ Sie sah auf die Liste. Sie sah lange darauf, und ich hörte das Feuer im Herd un
 
 „Und Leni hat es getragen.“
 
-„Die Leni hat es getragen, weil sie die Beste war, und weil sie es wollte. Niemand hat sie gezwungen.“
+„Die Leni hat es getragen, weil sie die Beste war und weil sie es wollte. Niemand hat sie gezwungen.“
 
 Ich sah Martha an. Ich suchte in ihrem Gesicht, in ihrer Stimme, in ihren Händen etwas, das mir sagte, was ich denken sollte, und ich fand eine alte Frau, die mir die Wahrheit sagte, mit geradem Rücken, ohne sich zu entschuldigen.
 
