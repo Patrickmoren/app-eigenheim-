@@ -1,6 +1,6 @@
 # Print-Spezifikation – Band 1 „Die Tote, die sonntags anruft“
 
-**Stand:** 21.10.2026 · Druckdatei: `publikation/satz/band-1_buchblock.pdf`
+**Stand:** 22.10.2026 · **Ausgabe: Privatdruck** (BoD Print, nur Eigenbedarf) · Druckdatei: `publikation/satz/band-1_buchblock.pdf`
 Technische BoD-Vorgaben mit Quellen: `bod-checkliste.md` (§1).
 
 ## Ausstattung (Produktionsvorschlag, umgesetzt)
@@ -26,13 +26,10 @@ Format, Papier und Einband entscheidet der Autor. Der Satz lässt sich mit dense
 - **Schriften:** im PDF vollständig eingebettet (geprüft mit `pruefen_pdf.py`) [Q9]. Lizenz: SIL Open Font License, Lizenztexte liegen unter `satz/fonts/`.
 - **Endformat:** exakt 120,00 × 190,00 mm, geprüft.
 
-## Platzhalter vor dem Upload (nicht vergessen)
-| Platzhalter | Wo | Ersetzen durch |
-|---|---|---|
-| `AUTORNAME` | Titelblatt, ©-Vermerk | Name oder Pseudonym (E-P4) |
-| `978-3-XXXX-XXXX-X` | Impressum | ISBN aus myBoD nach Projektstart (90-Tage-Frist [Q18]) |
+## Ausgabe: Privatdruck
+Der Autor will das Buch nur für sich. Gedruckt wird deshalb über **BoD Print**: CHF 0 Grundgebühr, Druck ab 1 Exemplar, keine ISBN, kein Handel [Q1]. Im Impressum entfallen bei Titeln ohne ISBN der Verlagsvermerk [Q3] und der DNB-Vermerk. Der Buchblock trägt „Privatdruck 2026“ und „Nicht für den Handel bestimmt“.
 
-Die Werte stehen in `satz/build_buchblock.py` unter `KONFIG`. Danach neu erzeugen:
+Für eine spätere Handelsausgabe trägt man Autor und ISBN in `satz/build_buchblock.py` (`KONFIG`) ein und erzeugt neu:
 ```
 cd publikation/satz
 python3 build_buchblock.py
@@ -42,5 +39,4 @@ python3 pruefen_pdf.py
 
 ## Noch offen
 - **Cover:** Die Rückenbreite liefert erst der BoD-Coverrechner mit 228 Seiten und cremeweissem 90-g-Papier.
-- **E-Book:** BoD konvertiert kostenlos aus der Druckdatei [Q1]. Eine eigene EPUB-Prüfung bleibt offen.
-- **Probedruck:** Pflicht vor der Freigabe (CHF 69 bei Publish [Q1]). Erst dort prüfbar: Papierwirkung, Bindung und Lesbarkeit der 7,4-pt-Transkripte.
+- **Erstes Exemplar = Probedruck:** Bei BoD Print ist das erste bestellte Exemplar zugleich der Probedruck. Erst dort prüfbar: Papierwirkung, Bindung und Lesbarkeit der 7,4-pt-Transkripte.

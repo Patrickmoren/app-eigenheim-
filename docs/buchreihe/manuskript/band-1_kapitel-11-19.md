@@ -14,7 +14,7 @@ Er hörte auf zu tippen.
 
 „Welcher?“
 
-Er sah auf den Rechner. Er drückte *C*. Das Piepen.
+Er drückte *C*. Das Piepen.
 
 „Nora.“ Er legte beide Hände flach auf die Theke, als müsse er sie festhalten. „Ich zahle dir das Zugbillett. Und ein Hotel in Visp, bis die Polizei fertig ist. Ein gutes. Mit Frühstück.“
 
@@ -130,7 +130,7 @@ Ich ging näher heran. Das Schloss war aus Messing und glänzte. Kein Rost. Kein
 
 Im Schatten des Portals, dort, wo der Wind nicht hinkam, lagen Zigarettenstummel. Drei. Weiss, mit einem braunen Filter, und auf einem konnte man noch die Schrift lesen. *Parisienne.* Sie waren nicht ausgebleicht. Sie waren nicht einmal feucht.
 
-Aurel sah sie an und sagte nichts. Ich sah sie an und sagte auch nichts, und wir wussten beide, wer in Lomm Parisienne rauchte, zwei Päckli am Tag.
+Aurel sagte nichts. Ich auch nicht. In Lomm rauchte einer Parisienne, zwei Päckli am Tag.
 
 Ich legte die Hand an die Stahltür, dort, wo der Beton aufhörte.
 
@@ -256,7 +256,7 @@ Agnes legte die Hand auf die Wolle. Sie strich darüber, einmal, mit der ganzen 
 
 „Wem hätte ich es sagen sollen?“ Sie hob die Schultern. „Dem Bruno? Der war die Polizei. Und der Bruno hat beim Bäcker gesagt, die Leni sei nach Kanada, er habe die Abmeldung selbst gemacht.“
 
-Ich sah sie an. Sie hielt meinen Blick aus, mit ihren milchigen Augen, und dann sah sie weg, zum Fenster, zur Katze, die sich im Schlaf streckte.
+Sie hielt meinen Blick aus und sah dann weg, zum Fenster, zur Katze, die sich im Schlaf streckte.
 
 „Ich bin achtundachtzig“, sagte sie. „Ich habe neunundzwanzig Jahre lang gedacht, dass ich alt werde. Das ist eine lange Zeit, um alt zu werden.“
 
@@ -476,8 +476,6 @@ Er hörte bis zum Ende, bis zum Stuhl auf dem Steinboden, und dann nahm er die K
 
 „Ich weiss.“
 
-Er sah mich an.
-
 „Seit wann?“
 
 „Seit heute Nacht. Seit zwei.“
@@ -508,7 +506,7 @@ Er stand eine Weile mit der Jacke in der Hand da. Draussen flatterten die Vliese
 
 Der Posten der Kantonspolizei in Visp lag im Erdgeschoss eines Verwaltungsgebäudes, hinter einer Glastür mit einer Klingel, und Fabienne Rey sass in einem Büro, in dem es nach Kaffee roch und in dem die Klimaanlage brummte, genau wie am Telefon. Auf ihrem Schreibtisch lag die ungeöffnete Schachtel Zigaretten.
 
-Sie hörte sich die Aufnahme zweimal an, mit meinen Kopfhörern, die Augen geschlossen. Aurel sass neben mir und sah auf seine Hände.
+Sie hörte sich die Aufnahme zweimal an, mit meinen Kopfhörern, die Augen geschlossen. Aurel sass neben mir, die Hände zwischen den Knien.
 
 „Ihr Vater“, sagte Fabienne zu ihm, als sie die Kopfhörer abnahm.
 
@@ -602,7 +600,7 @@ Er zuckte zusammen, als hätte ich ihn angefasst.
 
 „Wo hast du das Wort her?“
 
-Ich hielt die Seite hoch. Er sah sie an. Dann nahm er die Brille von der Schnur und setzte sie auf, zum ersten Mal, seit ich ihn kannte, und sah das Wort durch die Gläser an, als müsse er sich vergewissern, dass es wirklich da stand.
+Ich hielt die Seite hoch. Dann nahm er die Brille von der Schnur und setzte sie auf, zum ersten Mal, seit ich ihn kannte, und sah das Wort durch die Gläser an, als müsse er sich vergewissern, dass es wirklich da stand.
 
 „Firn ist älter als ich“, sagte er. „Mein Vater. Noch vor mir. Das ist alles, was ich dir sage.“
 
@@ -666,7 +664,7 @@ Der Beamte, den Fabienne geschickt hatte, hiess Anthamatten, war vielleicht fün
 
 Ruth übernahm. Sie öffnete den Beutel mit Handschuhen, nahm die Kassette heraus und hielt sie gegen das Licht, lange, drehte sie, besah das gewellte Band durch das Sichtfenster, wie ein Arzt ein Röntgenbild besieht.
 
-„Hydrolyse“, sagte sie. „Und Frostschaden. Und jemand hat es schon einmal durch ein Gerät gezogen, das ihm nicht gutgetan hat.“ Sie sah mich an. „Backen. Acht Stunden. Dann sehen wir.“
+„Hydrolyse“, sagte sie. „Und Frostschaden. Und jemand hat es schon einmal durch ein Gerät gezogen, das ihm nicht gutgetan hat.“ „Backen. Acht Stunden. Dann sehen wir.“
 
 Wir legten die Kassette in den Bandofen, einen unscheinbaren Kasten, der aussah wie ein Dörrgerät für Äpfel, und stellten ihn auf fünfzig Grad. Das Bindemittel, das die magnetischen Partikel auf dem Band hält, zieht über die Jahre Feuchtigkeit und wird klebrig; bei fünfzig Grad gibt es die Feuchtigkeit wieder her, für ein paar Tage, lange genug für einen einzigen, guten Durchgang. Danach verliert man es endgültig. Man hat einen Versuch.
 
@@ -926,7 +924,7 @@ Eine Frau in einem Rollstuhl, vor einem Fenster, hinter dem ein Fluss lag, breit
 
 Sie sagte es nicht wie eine Erklärung. Sie sagte es wie jemand, der ein Datum aufsagt, das er zu oft aufgesagt hat.
 
-„Wir haben ihre Stimme aufgenommen. Das macht man, bevor sie verschwindet. Man nennt es Voice Banking. Man liest Hunderte von Sätzen vor, Stunden, Tage, und aus den Aufnahmen baut ein Programm eine Stimme, die man später benutzen kann, wenn man selbst nicht mehr sprechen kann.“ Sie sah auf das Foto. „Sie hat die Sätze auf Hochdeutsch gelesen. Das Programm kannte kein Walliserdeutsch. Sie hat gesagt, das sei gut so. Es sei ohnehin nicht mehr ihre Sprache.“
+„Wir haben ihre Stimme aufgenommen. Das macht man, bevor sie verschwindet. Man nennt es Voice Banking. Man liest Hunderte von Sätzen vor, Stunden, Tage, und aus den Aufnahmen baut ein Programm eine Stimme, die man später benutzen kann, wenn man selbst nicht mehr sprechen kann.“ „Sie hat die Sätze auf Hochdeutsch gelesen. Das Programm kannte kein Walliserdeutsch. Sie hat gesagt, das sei gut so. Es sei ohnehin nicht mehr ihre Sprache.“
 
 *In Porto verlernt man das Wallis.*
 
@@ -962,7 +960,7 @@ Die Lomma rauschte. Unten im Dorf bellte ein Hund.
 
 „Dann habe ich weitergemacht.“
 
-Sie sah mich an. Sie wich meinem Blick nicht aus.
+Sie wich meinem Blick nicht aus.
 
 „Sie hatte es so gewollt. Sie hatte es aufgeschrieben, Monate vorher, als sie wusste, dass es nicht mehr lange geht. *Ruf sie weiter an. Jeden Sonntag. Bis das Eis Kathi zurückgibt. Dann gib ihr den Brief.* Sie hatte fast drei Jahre lang jeden Sonntag mit Ihnen geschrieben. Es gab Tausende von ihren Sätzen. Es gibt Programme, die aus Tausenden von Sätzen einen machen, der klingt wie sie.“ Inês sprach jetzt langsamer. „Das Programm hat mir vorgeschlagen, was sie sagen würde. Ich habe ausgewählt. Manchmal habe ich selbst geschrieben. Und die Stimme hat es gesagt.“
 

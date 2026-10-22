@@ -302,7 +302,7 @@ Ich hörte sie kaum. Ich sah auf die Spulen. Die Kassette stand nicht am Anfang 
 
 „Dann spielt man es zum letzten Mal ab.“
 
-Dr. Salamin sah auf den Boden. Fabienne sah mich an, und zum ersten Mal nahm sie die Sonnenbrille ab. Ihre Augen waren grauer als ihr Haar und müder als ihre Stimme.
+Dr. Salamin sah auf den Boden. Fabienne nahm die Sonnenbrille ab. Ihre Augen waren grauer als ihr Haar und müder als ihre Stimme.
 
 „Es ist ein Beweisstück, Frau Zuber. Kein Museumsstück.“
 
@@ -354,7 +354,7 @@ Er sah mich an, als wäre das die erste Antwort seit Tagen, mit der er etwas anf
 
 Er zeigte mir die Stelle. Wir gingen am Rand der Zunge entlang, auf dem festen Geröll, und er ging vor mir und sah sich alle paar Schritte um, ob ich folgte. An einer Stelle unterhalb des Gletschertors blieb er stehen. Da war nichts. Eine Mulde im grauen Eis, ein paar Absperrbänder, die der Wind zerrissen hatte, Stiefelspuren im Schlamm.
 
-„Ein roter Ärmel“, sagte er. „Im Eis sieht man sonst kein Rot. Das Eis nimmt alle Farben weg, ausser Blau. Ich dachte zuerst, es sei eine Jacke, die jemand verloren hat. Das kommt vor. Handschuhe, Stöcke, einmal ein Rucksack aus den Sechzigerjahren mit einem Brot darin.“ Er sah auf die Mulde. „Dann sah ich die Hand.“
+„Ein roter Ärmel“, sagte er. „Im Eis sieht man sonst kein Rot. Das Eis nimmt alle Farben weg, ausser Blau. Ich dachte zuerst, es sei eine Jacke, die jemand verloren hat. Das kommt vor. Handschuhe, Stöcke, einmal ein Rucksack aus den Sechzigerjahren mit einem Brot darin.“ „Dann sah ich die Hand.“
 
 „Sie haben sie herausgeholt.“
 
@@ -468,7 +468,7 @@ Ich zog das Bild mit zwei Fingern auseinander, bis die Gesichter körnig wurden.
 
 „Woher weisst du das mit der Jacke?“
 
-„Das ganze Dorf weiss das mit der Jacke. Die Frau vom Pius putzt im Spital in Sitten.“ Sie sah mich an. „Dann ist das die andere. Die Tante. Oder?“
+„Das ganze Dorf weiss das mit der Jacke. Die Frau vom Pius putzt im Spital in Sitten.“ „Dann ist das die andere. Die Tante. Oder?“
 
 Ich antwortete nicht. Aber ich merkte, wie etwas in mir, das seit Dienstag gespannt war, nachgab, nicht ganz, nur um eine Windung. Wenn es eine zweite Frau gab mit dem Gesicht meiner Mutter, dann gab es eine Erklärung, und wenn es eine Erklärung gab, dann lebte meine Mutter in Porto und würde morgen um sieben anrufen.
 
@@ -608,7 +608,7 @@ Mein Vater zog die Zigaretten aus der Brusttasche und zündete sich eine an, im 
 
 „Warum haben Sie das gewusst, Frau Zuber?“, fragte Fabienne.
 
-„Weil sie nie geschrieben hat. Die Walpens schreiben. Die Mutter von den zwei hat jedem Verwandten bis nach Amerika zu Weihnachten geschrieben, mit Füller, auf Papier mit Rand.“ Martha sah auf. „Und weil die Leni immer genommen hat, was der Kathi gehörte. Die Jacke hätte sie genommen. Den Ring auch, wenn er irgendwo herumlag.“
+„Weil sie nie geschrieben hat. Die Walpens schreiben. Die Mutter von den zwei hat jedem Verwandten bis nach Amerika zu Weihnachten geschrieben, mit Füller, auf Papier mit Rand.“ „Und weil die Leni immer genommen hat, was der Kathi gehörte. Die Jacke hätte sie genommen. Den Ring auch, wenn er irgendwo herumlag.“
 
 „Den Ehering ihrer Schwester?“
 
@@ -768,7 +768,7 @@ Agnes Kalbermatten war achtundachtzig, und ihre Küche war so klein, dass wir be
 
 „Das Pfeifen“, sagte ich.
 
-Agnes sah mich an und nickte langsam.
+Agnes nickte langsam.
 
 „Ja“, sagte sie. „Das Pfeifen.“
 
@@ -808,7 +808,7 @@ Die Kapelle war innen kleiner, als sie von aussen aussah, und kälter. Weiss gek
 
 Sepp Kalbermatten war neunundsiebzig, klein und breit, in einer Strickjacke mit Lederknöpfen, und er hielt einen Rosenkranz in der Hand, den er nicht betete, sondern nur hielt, wie andere Leute einen Schlüsselbund. Er hatte die Augen seiner Schwester, nur klarer.
 
-„Seit 2011 singen wir *bliib* statt *gang heim*“, sagte er. „Der Bischof hat’s erlaubt. Die Jungen singen es so.“ Er zuckte mit den Schultern. „Die Alten singen noch das alte. Man kann einem Mund nach sechzig Jahren nicht mehr beibringen, was er singen soll.“
+„Seit 2011 singen wir *bliib* statt *gang heim*“, sagte er. „Der Bischof hat’s erlaubt. Die Jungen singen es so.“ „Die Alten singen noch das alte. Man kann einem Mund nach sechzig Jahren nicht mehr beibringen, was er singen soll.“
 
 Er zeigte mir alles, weil ich die Nichte von jemandem war, den er kannte, und weil man in Lomm, wie ich lernte, Fremden alles zeigt, was nichts bedeutet. Die Votivbilder. Die Glocke, im Turm, zu der eine Leiter hinaufführte. Die Nische, in der an Lichtmess die grossen Kerzen standen.
 

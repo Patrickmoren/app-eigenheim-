@@ -4,8 +4,8 @@
 Aufruf:  python3 build_buchblock.py   →  buchblock.html
 Danach:  node render_pdf.js           →  band-1_buchblock.pdf
 
-Platzhalter (AUTORNAME, ISBN) stehen oben in KONFIG und werden vor dem
-Upload durch die echten Werte ersetzt.
+Autor und ISBN stehen oben in KONFIG. Leer gelassen entsteht ein Privatdruck
+(BoD Print) ohne Verlagsvermerk; mit ISBN die Handelsausgabe.
 """
 import html
 import pathlib
@@ -18,8 +18,8 @@ KONFIG = {
     "reihe": "Was das Eis zurückgibt",
     "band": "Band 1",
     "gattung": "Roman",
-    "autor": "AUTORNAME",            # E-P4: bürgerlicher Name oder Pseudonym
-    "isbn": "978-3-XXXX-XXXX-X",     # erst nach Projektstart in myBoD
+    "autor": "",                     # leer = ohne Autorzeile (Privatdruck); sonst Name/Pseudonym
+    "isbn": "",                      # leer = Privatdruck (BoD Print, ohne ISBN und ohne Handel)
     "jahr": "2026",
 }
 
@@ -119,22 +119,33 @@ def kapitel_html() -> str:
 
 def titelei() -> str:
     k = KONFIG
+    autor = f'<p class="autor">{k["autor"]}</p>' if k["autor"] else '<p class="autor">&nbsp;</p>'
+    rechte = f"© {k['jahr']} {k['autor']}" if k["autor"] else f"Privatdruck {k['jahr']}"
+    if k["isbn"]:
+        handel = (
+            "<p>Bibliografische Information der Deutschen Nationalbibliothek: Die Deutsche Nationalbibliothek "
+            "verzeichnet diese Publikation in der Deutschen Nationalbibliografie; detaillierte bibliografische "
+            "Daten sind im Internet über dnb.dnb.de abrufbar.</p>"
+        )
+        verlag = "Verlag: BoD · Books on Demand GmbH, Überseering 33, 22297 Hamburg, bod@bod.ch<br>"
+        isbn = f"<p>ISBN {k['isbn']}</p>"
+    else:  # BoD: ohne ISBN entfällt der Verlagsvermerk
+        handel, verlag, isbn = "", "", "<p>Nicht für den Handel bestimmt.</p>"
     return f"""
 <section class="titelei schmutztitel"><p>{k['titel']}</p></section>
 <section class="titelei reihe"><p>{k['reihe']}<br>{k['band']}</p></section>
 <section class="titelei titelblatt">
-  <p class="autor">{k['autor']}</p>
+  {autor}
   <h1>{k['titel']}</h1>
   <p class="gattung">{k['gattung']}</p>
 </section>
 <section class="titelei impressum">
   <div class="fsc-frei"></div>
-  <p>Bibliografische Information der Deutschen Nationalbibliothek: Die Deutsche Nationalbibliothek verzeichnet diese Publikation in der Deutschen Nationalbibliografie; detaillierte bibliografische Daten sind im Internet über dnb.dnb.de abrufbar.</p>
-  <p>© {k['jahr']} {k['autor']}</p>
-  <p>Die automatisierte Analyse des Werkes, um daraus Informationen insbesondere über Muster, Trends und Korrelationen gemäss §44b UrhG („Text und Data Mining“) zu gewinnen, ist untersagt.</p>
+  {handel}
+  <p>{rechte}</p>
   <p>Die Handlung und alle Figuren dieses Romans sind frei erfunden. Ähnlichkeiten mit lebenden oder verstorbenen Personen wären zufällig. Das Dorf Lomm und der Lommgletscher existieren nicht.</p>
-  <p>Verlag: BoD · Books on Demand GmbH, Überseering 33, 22297 Hamburg, bod@bod.ch<br>Druck: Libri Plureos GmbH, Friedensallee 273, 22763 Hamburg</p>
-  <p>ISBN {k['isbn']}</p>
+  <p>{verlag}Druck: Libri Plureos GmbH, Friedensallee 273, 22763 Hamburg</p>
+  {isbn}
 </section>
 """
 

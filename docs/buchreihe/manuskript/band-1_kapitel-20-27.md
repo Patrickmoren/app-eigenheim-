@@ -96,7 +96,7 @@ Draussen wurde es grau. Auf der Moräne lag Schnee, dünn, wie Mehl auf einem Br
 
 „Ja.“
 
-Er nickte, langsam. Dann stand er auf und schloss das Fenster, weil ich es nicht getan hatte, und das Rauschen der Lomma wurde leiser, und in der neuen Stille des Zimmers hörte ich zum ersten Mal in dieser Nacht mein eigenes Atmen.
+Er nickte, langsam. Dann stand er auf und schloss das Fenster, weil ich es nicht getan hatte, und das Rauschen der Lomma wurde leiser, und in der neuen Stille des Zimmers hörte ich mein eigenes Atmen.
 
 ## KAPITEL 21
 
@@ -382,8 +382,6 @@ Ich setzte mich auf den Stuhl vor seinem Schreibtisch.
 
 „Sie hat gesagt, die Leni hat sie hinaufgelockt. Die Leni hat Streit mit ihr gehabt, wegen dem Geld, wegen dem Italiener, und die Kathi ist ihr nach, und dann ist sie gefallen. Die Leni ist allein heruntergekommen. Zum Bruno.“ Er schluckte. „Meine Mutter hat gesagt: Wenn die Polizei aus Sitten kommt, wegen der Kathi, dann kommen sie auch in die Festung. Dann finden sie alles. Dann verlieren wir das Hotel und du gehst ins Gefängnis und das Kind kommt ins Heim.“
 
-Er sah mich an.
-
 „Also ist die Leni die Kathi geworden. Noch in derselben Nacht. Und hat dich am Morgen genommen und ist ins Postauto gestiegen. Und ich hab sie gelassen.“
 
 „Du hast sie gelassen“, sagte ich.
@@ -442,19 +440,19 @@ In der Küche brannte das Feuer im Herd. Sie setzte Wasser auf, ohne zu fragen, 
 
 Ich schlug den Ordner auf, bei der ersten Seite, und drehte ihn zu ihr.
 
-Sie sah auf die Liste. Sie sah lange darauf, und ich hörte das Feuer im Herd und das Ticken einer Uhr irgendwo im Haus und meinen eigenen Atem.
+Sie sah lange auf die Liste, und ich hörte das Feuer im Herd und das Ticken einer Uhr irgendwo im Haus und meinen eigenen Atem.
 
 „Neunzehnhunderteinundsechzig“, sagte sie. „Ich war neunzehn. Der Alois hat mich gefragt, ob ich schreiben kann, sauber, ohne Fehler, und ob ich schweigen kann. Ich konnte beides.“ Sie legte den Finger auf die zwei Buchstaben. „Wir dachten, wir retten das Land. Das musst du verstehen. Wir dachten, wenn die Russen kommen, sind wir die, die bleiben.“
 
 „Und dann kamen sie nicht.“
 
-„Dann kamen sie nicht. Und das Dorf hatte kein Geld. Keine Strasse im Winter, kein Doktor, die Jungen gingen weg. Und da war die Festung, und da war der Pass, und da waren Leute in Italien, die bezahlt haben.“ Sie sah auf. „Mit dem Geld haben wir das Dach vom Hotel gemacht. Die Wasserleitung ins obere Dorf. Die Schule, in der du letzte Woche gesessen bist. Deine Taufe.“
+„Dann kamen sie nicht. Und das Dorf hatte kein Geld. Keine Strasse im Winter, kein Doktor, die Jungen gingen weg. Und da war die Festung, und da war der Pass, und da waren Leute in Italien, die bezahlt haben.“ „Mit dem Geld haben wir das Dach vom Hotel gemacht. Die Wasserleitung ins obere Dorf. Die Schule, in der du letzte Woche gesessen bist. Deine Taufe.“
 
 „Und Leni hat es getragen.“
 
 „Die Leni hat es getragen, weil sie die Beste war und weil sie es wollte. Niemand hat sie gezwungen.“
 
-Ich sah Martha an. Ich suchte in ihrem Gesicht, in ihrer Stimme, in ihren Händen etwas, das mir sagte, was ich denken sollte, und ich fand eine alte Frau, die mir die Wahrheit sagte, mit geradem Rücken, ohne sich zu entschuldigen.
+Ich suchte in ihrem Gesicht, in ihrer Stimme, in ihren Händen etwas, das mir sagte, was ich denken sollte, und ich fand eine alte Frau, die mir die Wahrheit sagte, mit geradem Rücken, ohne sich zu entschuldigen.
 
 „Du hast es gewusst“, sagte ich. „Die ganze Zeit. Dass Kathi im Eis ist. Dass Mama Leni war.“
 
@@ -467,8 +465,6 @@ Ich sah Martha an. Ich suchte in ihrem Gesicht, in ihrer Stimme, in ihren Hände
 Sie nahm ihre Tasse in beide Hände. Der Tee dampfte.
 
 „Hör mir zu, Nora. In jener Nacht ist die Leni zum Bruno gerannt, nicht zu mir. Sie hat an seine Tür geschlagen und gesagt, die Kathi ist gefallen. Und ich bin hingegangen, weil der Bruno mich geholt hat. Und da sass sie in seiner Küche, die Leni, voller Schnee, und hat gezittert, und hat nichts gesagt als: Sie ist gefallen. Ich hab gestritten mit ihr, oben, und sie ist gefallen.“
-
-Sie sah mich an.
 
 „Wenn die Polizei aus Sitten gekommen wäre, hätten sie gefragt, wer bei ihr war, als sie fiel. Und die Antwort wäre gewesen: ihre Schwester. Die Schmugglerin. Die mit ihr gestritten hat. Mitten in der Nacht, auf dem Eis, wo niemand hinsieht.“ Marthas Stimme wurde nicht laut. Sie wurde fest. „Ich habe deine Mutter geschützt. Neunundzwanzig Jahre lang. Ich habe ihr einen Namen gegeben und ein Leben und ein Kind, damit niemand je diese Frage stellt. Glaubst du, das war leicht?“
 
@@ -486,7 +482,7 @@ An der Tür drehte ich mich um.
 
 „Hat sie gelogen?“, fragte ich. „Als sie gesagt hat, sie ist gefallen?“
 
-Martha sah auf ihre Hände.
+Martha strich das Tischtuch glatt.
 
 „Ich war nicht dabei“, sagte sie.
 
@@ -514,7 +510,7 @@ Wir gingen hinauf zum Speicher hinter der Kapelle, wo ich eine Woche zuvor Inês
 
 Ich erzählte ihm von Martha. Vom Ordner, von der Liste, von *M.W.* Von dem Satz: *Ich habe deine Mutter geschützt.* Er hörte zu, ohne mich zu unterbrechen, und als ich fertig war, sagte er lange nichts.
 
-„Mein Vater hat mich angelogen, um jemanden zu schützen“, sagte er dann. „Deine Grossmutter hat dich angelogen, um jemanden zu schützen. Deine Mutter hat dich angelogen, um dich zu schützen.“ Er sah auf seine Hände. „Ich weiss nicht mehr, was Schutz ist.“
+„Mein Vater hat mich angelogen, um jemanden zu schützen“, sagte er dann. „Deine Grossmutter hat dich angelogen, um jemanden zu schützen. Deine Mutter hat dich angelogen, um dich zu schützen.“ „Ich weiss nicht mehr, was Schutz ist.“
 
 „Ich auch nicht.“
 

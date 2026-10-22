@@ -1,5 +1,7 @@
 # BoD-Checkliste – Band 1 „Die Tote, die sonntags anruft“
 
+> **Entscheidung des Autors (22.10.2026): nur Privatdruck für den Eigenbedarf** über BoD Print (ohne ISBN, ohne Handel). Die KI-Regel von BoD (§0) betrifft die Veröffentlichung; für BoD Print nennt die Quelle keine eigene Regel (**UNKLAR**, aber ohne Vertrieb). Die Schritte zu ISBN, Metadaten, Preis und Vertrieb unten entfallen, solange keine Handelsausgabe geplant ist.
+
 **Reihe:** Was das Eis zurückgibt · Band 1
 **Stand:** 29.09.2026 · Recherche direkt bei BoD (bod.ch / bod.de) und in den dort veröffentlichten Musterverträgen
 **Grundsatz:** Jede technische Angabe hat eine Quelle (Kürzel [Q…], Liste am Ende). Was nicht eindeutig belegt ist, steht als **UNKLAR** da und wird nicht geraten.
@@ -151,6 +153,11 @@ Bürgerlicher Name oder Pseudonym [Q2]. Das betrifft Cover, Metadaten und Autore
 - **Nein:** nur DACH und die europaweite E-Book-Distribution.
 
 ---
+
+## 3a. Andere Anbieter (Stand 22.10.2026, nur zur Information)
+- **Amazon KDP:** erlaubt KI-generierte Inhalte, verlangt aber eine Angabe dazu gegenüber Amazon. KI-generiert ist Text, der mit einem KI-Werkzeug erstellt wurde, „auch wenn Sie anschliessend umfangreiche Änderungen vorgenommen haben“. https://kdp.amazon.com/de_DE/help/topic/G200672390
+- **tolino media:** „Grundsätzlich ja“; KI-Content ist im Impressum zu kennzeichnen. https://www.tolino-media.de/faq_category/ki/
+- **tredition:** „KI als alleinige Quelle der inhaltlichen Schöpfung – nein.“ Werke müssen die „persönliche geistige Schöpfung“ sein. https://tredition.com/umgang-mit-ki-generierten-inhalten/
 
 ## 4. Quellen (abgerufen am 29.09.2026)
 

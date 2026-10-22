@@ -51,3 +51,8 @@ Mystery-Matrix, Zeitlinie, Figuren, Foreshadowing, Kontinuität, Audio-Hinweise 
 - **Hörbuchtauglichkeit:** Keine der Änderungen fügt Regieanweisungen in den Text ein. Gekürzte Sätze erleichtern das Vorlesen.
 - **Schweizer Rechtschreibung:** in allen neuen Passagen eingehalten (ss).
 - **Umfang:** leicht gekürzt (wenige hundert Wörter). Nicht gestreckt.
+
+## 9. Feinschliff 22.10.2026 (Privatdruck)
+- **Blickregie:** 204 Stellen mit „sah … an“, „sah auf …“, „zuckte mit den Schultern“ und „zum ersten Mal“ einzeln gesichtet. Rund 35 davon waren Füllregie und sind gestrichen oder durch eine konkrete Handlung ersetzt (Martha streicht das Tischtuch glatt, Reto dreht die Tasse, Aurel mit den Händen zwischen den Knien). Bedeutungstragende Blicke bleiben.
+- **POV:** K12 „wir wussten beide“ ist korrigiert (Nora kennt Aurels Gedanken nicht).
+- **Gehäufte Wiederholungen:** Die verbliebenen Häufungen sind bewusste Anaphern (K18, K33, K35) und bleiben.

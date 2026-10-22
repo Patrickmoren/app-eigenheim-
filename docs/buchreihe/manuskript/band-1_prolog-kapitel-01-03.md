@@ -469,7 +469,7 @@ Hinter der Empfangstheke sass ein Mädchen, vielleicht siebzehn, mit blondierten
 
 Sie zuckte mit den Schultern. „Wenn du meinst.“
 
-Sie drehte sich halb um und rief in eine offene Tür hinter der Theke: „Papa! Sie ist da.“ Dann sah sie wieder mich an und sagte leiser: „Er raucht seit Samstag zwei Päckli am Tag. Nur damit du’s weisst.“
+Sie drehte sich halb um und rief in eine offene Tür hinter der Theke: „Papa! Sie ist da.“ Dann sagte sie leiser: „Er raucht seit Samstag zwei Päckli am Tag. Nur damit du’s weisst.“
 
 Sie steckte den Kopfhörer wieder ein und verschwand über die Treppe nach oben, bevor ich etwas sagen konnte.
 

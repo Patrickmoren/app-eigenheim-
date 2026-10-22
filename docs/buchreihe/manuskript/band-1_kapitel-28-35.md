@@ -30,7 +30,7 @@ Er hielt inne.
 
 „Jedes Mal, wenn ich ihr widersprochen habe.“
 
-Mein Vater sah auf das Bild in seiner Hand. Dann drehte er sich zu mir um, zum ersten Mal, seit ich in die Halle gekommen war, und in seinem Gesicht war etwas, das ich an ihm noch nie gesehen hatte. Es sah aus wie ein Lächeln, das nicht weiss, ob es darf.
+Mein Vater sah auf das Bild in seiner Hand. Dann drehte er sich zu mir um, und in seinem Gesicht war etwas, das ich an ihm noch nie gesehen hatte. Es sah aus wie ein Lächeln, das nicht weiss, ob es darf.
 
 „Du hast *Papa* gesagt“, sagte er. „Im Speisesaal. Auf meinem Arm. Die Kathi ist mit ihrem Gerät gerannt gekommen, und du hast es nicht wieder gesagt, drei Tage lang, und sie hat jeden Abend neben deinem Bett gewartet.“ Er legte das Bild auf den Stapel. „Das Erste war *Papa*. Das zweite war *Nein*.“
 
@@ -178,7 +178,7 @@ Fabienne Rey stand neben dem Zelt, in einer Jacke der Kantonspolizei, und sah mi
 
 „Mir schon.“
 
-Fabienne sah auf ihre Uhr. Es war vier. Sie sah hinauf, die Schlucht entlang, zu dem Himmel über dem Tal, der grau war und tief und nach Schnee roch. Dann sah sie mich an, lange, mit diesen grauen, müden Augen, die sie im Spital in Sitten zum ersten Mal hinter der Sonnenbrille hervorgeholt hatte.
+Fabienne sah auf ihre Uhr. Es war vier. Sie sah hinauf, die Schlucht entlang, zu dem Himmel über dem Tal, der grau war und tief und nach Schnee roch. Dann sah sie mich an, lange, mit ihren grauen, müden Augen.
 
 „Um sechs ist die Strasse zu“, sagte sie. „Um sieben fliegt der letzte Helikopter vom Dorfplatz. Wenn Sie um sieben nicht auf dem Dorfplatz sind, komme ich Sie persönlich holen, und dann nehme ich Sie fest, damit ich einen Grund habe.“
 
@@ -212,7 +212,7 @@ Ich sah Mia an. Sie stand da mit ihrer Reisetasche, in der wahrscheinlich alles 
 
 „Ich hole sie. Und dann komme ich.“
 
-Mia sah mich an. Dann nahm sie ihr Telefon aus der Tasche und hielt es mir hin, als wolle sie mir etwas zeigen, und steckte es wieder ein.
+Dann nahm sie ihr Telefon aus der Tasche und hielt es mir hin, als wolle sie mir etwas zeigen, und steckte es wieder ein.
 
 „Wenn du um sieben nicht auf dem Platz bist“, sagte sie, „dann sag ich’s Aurel.“
 
@@ -344,7 +344,7 @@ Sie sagte es nicht zu mir. Sie sagte es zur Kerze.
 
 Die Glocke läutete.
 
-„Oben hat sie gestanden, an der Festung, mit ihrem kleinen Gerät. Und dann ist sie gerannt. Und die Leni war da, auf dem Weg zum Joch, die hat auf ihren Italiener gewartet, der nicht mehr gekommen ist. Die zwei haben gestritten. Ich hab es gehört, hinter einem Stein. Dann ist die Leni gegangen.“ Martha sah auf ihre Hände. „Und die Kathi stand allein am Rand und hat geweint. Und ich bin zu ihr hin.“
+„Oben hat sie gestanden, an der Festung, mit ihrem kleinen Gerät. Und dann ist sie gerannt. Und die Leni war da, auf dem Weg zum Joch, die hat auf ihren Italiener gewartet, der nicht mehr gekommen ist. Die zwei haben gestritten. Ich hab es gehört, hinter einem Stein. Dann ist die Leni gegangen.“ „Und die Kathi stand allein am Rand und hat geweint. Und ich bin zu ihr hin.“
 
 „*Du?*“, sagte ich.
 
@@ -394,7 +394,7 @@ Nicht fest. Schnell. Die Gabel fiel klirrend auf den Tisch, rutschte über die K
 
 „Nicht du“, sagte Martha. „Davon nicht.“
 
-Ich sah sie an. Ich sah die kleine Emailleform. Den Kuchen darin, der aussah wie der andere, golden, mit Lauch und Äpfeln. *Weniger Salz. Wegen dem Herz.*
+Ich sah die kleine Emailleform. Den Kuchen darin, der aussah wie der andere, golden, mit Lauch und Äpfeln. *Weniger Salz. Wegen dem Herz.*
 
 Ich sah den Garten vor mir, die oberste Mauer, wo die Sonne am längsten hinkam. Die Glocken, violett, innen gefleckt wie Kehlen. *Dreissig Jahre hab ich gebraucht. Mein ganzer Stolz.* Ich sah einen Teller auf einem kleinen Tisch in einem Heim in Stalden, und eine Gabel, die in eine alte Hand gelegt wurde. *Donnerstag.*
 
@@ -412,13 +412,13 @@ Martha antwortete nicht. Sie nahm das Stück von ihrem Teller und ass es, ruhig,
 
 Martha sah mich lange an.
 
-„Ich hab dem Bruno zwanzig Jahre lang jeden Donnerstag einen Kuchen gebracht“, sagte sie. „Wir hatten eine Abmachung, er und ich. Schon lange.“ Sie sah auf ihre Hände. „Was für eine, geht niemanden etwas an.“
+„Ich hab dem Bruno zwanzig Jahre lang jeden Donnerstag einen Kuchen gebracht“, sagte sie. „Wir hatten eine Abmachung, er und ich. Schon lange.“ Sie wischte einen Krümel vom Tisch. „Was für eine, geht niemanden etwas an.“
 
 Ich stand auf. Der Stuhl fiel um.
 
 „Du musst ins Spital.“
 
-„Nein.“ Martha legte beide Hände flach auf den Tisch. „Hör mir zu, Nora. Geh. Der Helikopter wartet. Sag ihnen, ich wollte nicht mitkommen. Das ist wahr. Sag ihnen, ich bin bei meinem Haus geblieben, wie eine alte Frau, die nicht gehen will. Das ist auch wahr.“ Sie sah mich an. „Morgen, übermorgen, kommt die Weisse Frau herunter, oder sie kommt nicht. Und niemand muss je wissen, was auf deinem Band ist. Die Leni ist tot. Die Kathi ist tot. Ich bin bald tot. Und du bist frei.“
+„Nein.“ Martha legte beide Hände flach auf den Tisch. „Hör mir zu, Nora. Geh. Der Helikopter wartet. Sag ihnen, ich wollte nicht mitkommen. Das ist wahr. Sag ihnen, ich bin bei meinem Haus geblieben, wie eine alte Frau, die nicht gehen will. Das ist auch wahr. Morgen, übermorgen, kommt die Weisse Frau herunter, oder sie kommt nicht. Und niemand muss je wissen, was auf deinem Band ist. Die Leni ist tot. Die Kathi ist tot. Ich bin bald tot. Und du bist frei.“
 
 „Und das Band?“
 
@@ -520,7 +520,7 @@ Ein Wind, der nicht aus der Luft kam, sondern von der Masse, die fiel, und die d
 
 Dann war es vorbei.
 
-Nicht auf einmal. Das Brüllen wurde leiser, es rollte weiter, den Hang hinunter, aber nicht bis zu uns, es hielt irgendwo über uns an, und dann kam nur noch ein Rieseln, lange, sehr lange, wie in der Nacht, als ich zum ersten Mal in Zimmer einundzwanzig gelegen hatte, nur hundertmal lauter und hundertmal länger.
+Nicht auf einmal. Das Brüllen wurde leiser, es rollte weiter, den Hang hinunter, aber nicht bis zu uns, es hielt irgendwo über uns an, und dann kam nur noch ein Rieseln, lange, sehr lange, wie in der ersten Nacht in Zimmer einundzwanzig, nur hundertmal lauter und hundertmal länger.
 
 Und dann, zum ersten Mal an diesem Abend, war es wirklich still.
 
@@ -624,7 +624,7 @@ Er lachte, kurz und trocken.
 
 „Und die Kabel an der Station“, sagte ich. „Das war auch sie?“
 
-„Sie hat es der Polizistin selbst gesagt. Die Kabel auch.“ Er zuckte mit den Schultern. „Sie wollte nicht, dass jemand das Dorf leer macht. Sie wollte, dass alles bleibt, wie es war.“
+„Sie hat es der Polizistin selbst gesagt. Die Kabel auch.“ Er drehte die Tasse auf der Untertasse. „Sie wollte nicht, dass jemand das Dorf leer macht. Sie wollte, dass alles bleibt, wie es war.“
 
 Mia kam an den Tisch, mit einem Teller, auf dem ein Gipfeli lag, und stellte ihn vor ihren Vater. Er sah es an. Sie setzte sich neben ihn und legte den Kopf an seine Schulter, und er legte den Arm um sie, und so sassen sie da, und ich sah weg, zum Fenster, zur Chemiefabrik, weil es ihnen gehörte.
 
