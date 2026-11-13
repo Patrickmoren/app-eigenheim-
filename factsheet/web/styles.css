@@ -199,3 +199,12 @@ h1, h2, h3, h4 { font-family: 'IBM Plex Sans', Arial, sans-serif; font-weight: 4
   .ohead { position: static; }
   .content, .ohead { padding-left: 16px; padding-right: 16px; }
 }
+
+/* Finanzierungsdossier */
+.dos-h { font-family: 'IBM Plex Sans', Arial, sans-serif !important; font-weight: 400 !important; color: var(--navy); font-size: 17px !important; border-bottom: 1px solid var(--navy); padding-bottom: 3px; margin: 22px 0 8px !important; }
+.dossier table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.dossier td { border-bottom: 1px solid var(--line); vertical-align: top; padding: 4px 8px 4px 0; }
+.dos-grid th { background: var(--navy); color: #fff; text-align: left; padding: 4px 6px; font-weight: 700; }
+.dos-grid td { padding: 4px 6px; }
+.dos-grid tr:nth-child(odd) td { background: var(--cream); }
+.st-vorhanden { color: var(--navy); font-weight: 700; } .st-fehlt { color: var(--error); font-weight: 700; } .st-angefordert { color: var(--warn); font-weight: 700; }

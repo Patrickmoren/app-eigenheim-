@@ -18,7 +18,7 @@ const VIEWS = [
   { id: 'dokumente', label: 'Dokumente' },
 ];
 const DOCS = Object.entries(svc.core.DOCUMENT_TYPES).map(([id, d]) => ({ id, ...d }));
-const ORDER = ['factsheet', 'expose', 'teaser', 'nda', 'inserat'];
+const ORDER = ['factsheet', 'expose', 'dossier', 'teaser', 'nda', 'inserat'];
 DOCS.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
 
 const state = {
@@ -288,6 +288,7 @@ function viewDocs() {
     teaser: btn('teaser', 'Word', 'navy'),
     nda: btn('nda', 'Word', 'navy'),
     inserat: btn('inserat', 'Word', 'navy') + btn('inserat-txt', 'Text'),
+    dossier: btn('dossier', 'Word', 'navy'),
   };
   const cards = DOCS.map((d) => {
     const st = docState(d.id);

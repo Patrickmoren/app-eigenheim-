@@ -1,0 +1,32 @@
+PRÜFBERICHT VERKAUFSUNTERLAGEN
+Objekt:    Neumattstrasse 15, 4227 Büsserach
+Erstellt:  13.11.2026, 23:14:15
+Texte:     beispiel
+
+DOKUMENTE
+  ✓ Factsheet_Neumattstrasse-15-Busserach.docx  (2 Seiten, geprüft: LibreOffice)
+  ✓ Verkaufsdokumentation_Neumattstrasse-15-Busserach.pdf  (11 Seiten)
+  ✓ Verkaufsdokumentation_Neumattstrasse-15-Busserach.docx  (11 Seiten)
+  ✓ Finanzierungsdossier_Neumattstrasse-15-Busserach.docx
+  ✓ Teaser_Region-Schwarzbubenland-SO.docx  (1 Seite, geprüft: LibreOffice)
+  ✓ Geheimhaltungsverpflichtung_Neumattstrasse-15-Busserach.docx
+  ✓ Inserat_Neumattstrasse-15-Busserach.docx
+
+FÜR DIE BANK NOCH OFFEN
+  Angaben: Baujahr, Wohnfläche total, Gebäudevolumen (SIA 416), Gebäudeversicherungswert, Grundbuch, Zone, Kataster belasteter Standorte, Energieausweis
+  Unterlage fehlt: Grundbuchauszug
+  Unterlage fehlt: Katasterplan / Situationsplan
+  Unterlage fehlt: ÖREB-Katasterauszug
+  Unterlage fehlt: Gebäudeversicherungsausweis
+  Unterlage fehlt: Baubeschrieb / Kubaturberechnung SIA 416
+  Unterlage fehlt: Aufstellung Investitionen / Renovationen
+  Unterlage fehlt: Energieausweis (GEAK) / Heizungsangaben
+  Unterlage fehlt: Mieterspiegel (Mietzinseinnahmen nur als Total CHF 42’600 p.a. dokumentiert)
+  Unterlage fehlt: Mietverträge
+  Unterlage fehlt: Nebenkostenabrechnungen (2 Jahre)
+  Unterlage fehlt: Liegenschaftsabrechnungen / Betriebskosten (2–3 Jahre)
+  Unterlage fehlt: Kataster belasteter Standorte
+
+HINWEISE ZUR GESTALTUNG
+  - Factsheet: Verdichtet: Titelbild verkleinert.
+  - Facts & Figures: aus Platzgründen weggelassen – Zustand.

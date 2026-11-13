@@ -115,5 +115,25 @@
     "place": "Basel",
     "date": "",
     "durationYears": 2
-  }
+  },
+  "documents": [
+    {
+      "name": "Fotos",
+      "status": "vorhanden",
+      "date": "2026",
+      "note": "aus Verkaufsdokumentation"
+    },
+    {
+      "name": "Pläne (Grundrisse Erdgeschoss, Obergeschoss, Untergeschoss)",
+      "status": "vorhanden",
+      "date": "",
+      "note": "aus Verkaufsdokumentation"
+    },
+    {
+      "name": "Mieterspiegel",
+      "status": "fehlt",
+      "date": "",
+      "note": "Mietzinseinnahmen nur als Total CHF 42’600 p.a. dokumentiert"
+    }
+  ]
 }

@@ -51,3 +51,8 @@ export async function exportExposePdf(raw, texts) {
   const pdf = await htmlToPdf(doc.html);
   return pdf ? { ...doc, buffer: Buffer.from(pdf) } : null;
 }
+
+export async function exportDossier(raw, texts, opts) {
+  await ready;
+  return toBuffer(await core.exportDossier(raw, texts, opts));
+}

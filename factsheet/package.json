@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "node --test \"test/*.test.js\"",
-    "beispiel": "node scripts/beispiel.js",
+    "erstellen": "node scripts/erstellen.js",
+    "beispiel": "node scripts/erstellen.js examples/neumattstrasse-15",
     "desktop": "node scripts/desktop.js",
     "paket": "node scripts/paket.js"
   },

@@ -31,7 +31,7 @@ test('Excel: Hin- und Rückweg erhält alle Angaben', async () => {
   const p = normalizeProperty(maximalObject());
   const { property, options } = await readWorkbook(await buildWorkbook(p));
   const q = normalizeProperty(property);
-  assert.deepEqual(options, { dokumentation: true, teaser: false, inserat: false, nda: false });
+  assert.deepEqual(options, { dokumentation: true, dossier: true, teaser: false, inserat: false, nda: false });
   assert.equal(q.object.street, p.object.street);
   assert.equal(q.object.plotArea, 2100);
   assert.equal(q.units.length, 5);
@@ -135,5 +135,5 @@ test('Ordner: JSON mit Optionen erzeugt Teaser und Inserat, ohne Dokumentation',
   const r = await processEntry(base, 'objekt.json', { provider });
   assert.ok(r.ok);
   const out = (await fs.readdir(r.outDir)).sort();
-  assert.deepEqual(out, ['Factsheet_Neumattstrasse-15-Busserach.docx', 'Inserat_Neumattstrasse-15-Busserach.docx', 'Inserat_Neumattstrasse-15-Busserach.txt', 'Pruefbericht.txt', 'Teaser_Region-Schwarzbubenland-SO.docx']);
+  assert.deepEqual(out, ['Factsheet_Neumattstrasse-15-Busserach.docx', 'Finanzierungsdossier_Neumattstrasse-15-Busserach.docx', 'Inserat_Neumattstrasse-15-Busserach.docx', 'Inserat_Neumattstrasse-15-Busserach.txt', 'Pruefbericht.txt', 'Teaser_Region-Schwarzbubenland-SO.docx']);
 });

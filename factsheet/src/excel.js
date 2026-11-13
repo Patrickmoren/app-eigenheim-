@@ -8,7 +8,7 @@ import { SECTIONS, NDA_FIELDS, isEmpty } from './model/schema.js';
 import { COLORS } from './layout/design.js';
 
 // Welche Dokumente der Eingangsordner erzeugt (Factsheet immer)
-export const DEFAULT_OPTIONS = { dokumentation: true, teaser: false, inserat: false, nda: false };
+export const DEFAULT_OPTIONS = { dokumentation: true, dossier: true, teaser: false, inserat: false, nda: false };
 
 async function excel() {
   if (globalThis.ExcelJS) return globalThis.ExcelJS;
@@ -47,6 +47,7 @@ function objectRows() {
   rows.push({ section: 'Dokumente erstellen', key: 'optionen.dokumentation', f: { label: 'Verkaufsdokumentation (PDF und Word)', type: 'bool', default: true } });
   rows.push({ section: 'Dokumente erstellen', key: 'optionen.teaser', f: { label: 'Anonymer Teaser', type: 'bool', default: false } });
   rows.push({ section: 'Dokumente erstellen', key: 'optionen.inserat', f: { label: 'Inserattexte', type: 'bool', default: false } });
+  rows.push({ section: 'Dokumente erstellen', key: 'optionen.dossier', f: { label: 'Finanzierungsdossier für Banken', type: 'bool', default: true } });
   rows.push({ section: 'Dokumente erstellen', key: 'optionen.nda', f: { label: 'Geheimhaltungsverpflichtung', type: 'bool', default: false } });
   for (const f of NDA_FIELDS) rows.push({ section: 'Geheimhaltungsverpflichtung', key: `nda.${f.key}`, f });
   return rows;

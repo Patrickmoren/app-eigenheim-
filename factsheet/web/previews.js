@@ -9,6 +9,9 @@ import { NDA_TEMPLATE, fillPlaceholders } from '../src/content/nda-template.js';
 import { ndaValues } from '../src/docx/nda-docx.js';
 import { inseratFacts } from '../src/docx/inserat-docx.js';
 import { checkDocument } from '../src/layout/check.js';
+import { dossierSections } from '../src/docx/dossier-docx.js';
+import { addressLine, designation, bankGaps } from '../src/model/facts.js';
+import { fmtChf } from '../src/model/format.js';
 import { assetUrl } from './services.js';
 import { esc } from './forms.js';
 
@@ -71,4 +74,27 @@ export function previewInserat(p, texts) {
   return { html, pages: null, info: `${i.text.length} Zeichen Beschrieb`, format: 'doc' };
 }
 
-export const PREVIEWS = { factsheet: previewFactsheet, expose: previewExpose, teaser: previewTeaser, nda: previewNda, inserat: previewInserat };
+export function previewDossier(property) {
+  const p = normalizeProperty(property);
+  const s = dossierSections(p);
+  const kv = (rows) => `<table class="ins-facts dossier">${rows.map((r) => `<tr><td>${esc(r.label)}</td><td>${esc(r.value).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table>`;
+  const tbl = (t) => `<table class="dos-grid"><tr>${t.header.map((h) => `<th>${esc(h)}</th>`).join('')}</tr>${t.rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</table>`;
+  const sec = (title, html) => (html ? `<h3 class="dos-h">${esc(title)}</h3>${html}` : '');
+  const t = s.rentRoll && s.rentRoll.totals;
+  const html = `<div class="doc-page dossier">
+    <img src="${LOGO}" alt="Schaeppi Grundstücke" class="nda-logo"><h1>Finanzierungsdossier</h1>
+    <p class="muted">${esc(addressLine(p))} · ${esc(designation(p))}</p>
+    ${sec('Objekt', s.object.length ? kv(s.object) : '')}
+    ${sec('Grundstück & Rechtliches', (s.legal.length ? kv(s.legal) : '') + (s.parcels ? tbl(s.parcels) : ''))}
+    ${sec('Gebäude & Zustand', s.building.length ? kv(s.building) : '')}
+    ${sec('Investitionen', s.investments.length ? tbl({ header: ['Jahr', 'Massnahme'], rows: s.investments.map((i) => [String(i.year), i.measure]) }) : '')}
+    ${sec('Mieterspiegel', s.rentRoll ? tbl(s.rentRoll) + (t ? `<p class="muted">Total vermietet: ${esc(fmtChf(t.netMonthly))} / Mt. · ${esc(fmtChf(t.netYearly))} p.a.</p>` : '') : '')}
+    ${sec('Erträge, Kosten & Werte', s.finance.length ? kv(s.finance) : '')}
+    ${sec('Kennzahlen (berechnet)', s.figures.length ? kv(s.figures) : '')}
+    ${sec('Unterlagen', `<table class="dos-grid"><tr><th>Unterlage</th><th>Status</th><th>Stand</th></tr>${s.checklist.map((r) => `<tr><td>${esc(r.name)}</td><td class="st-${esc(r.status.replace(/\s/g, '-'))}">${esc(r.status)}</td><td>${esc(r.date || '–')}</td></tr>`).join('')}</table>`)}
+  </div>`;
+  const gaps = bankGaps(p);
+  return { html, pages: null, info: 'nur Fakten, keine Werbetexte', notes: gaps.length ? [`Für die Bank fehlen noch: ${gaps.join(', ')}`] : [], format: 'doc' };
+}
+
+export const PREVIEWS = { factsheet: previewFactsheet, expose: previewExpose, teaser: previewTeaser, nda: previewNda, inserat: previewInserat, dossier: previewDossier };

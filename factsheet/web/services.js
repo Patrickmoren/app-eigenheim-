@@ -106,6 +106,7 @@ export async function exportDocument(kind, property, texts) {
     case 'expose-docx': r = await core.exportExposeDocx(property, texts); break;
     case 'nda': r = await core.exportNda(property, texts); break;
     case 'inserat': r = await core.exportInserat(property, texts); break;
+    case 'dossier': r = await core.exportDossier(property, texts); break;
     case 'inserat-txt': {
       const x = await core.exportInserat(property, texts);
       saveBlob(new Blob([x.text], { type: 'text/plain;charset=utf-8' }), x.fileName.replace(/\.docx$/, '.txt'));

@@ -6,6 +6,7 @@ Ein Objekt einmal erfassen – daraus entstehen alle Verkaufsunterlagen im Schae
 |---|---|---|
 | **Verkaufs-Factsheet** | Word | 2 Seiten: Transaktionsübersicht, Investorenargumente, Facts & Figures, Erträge, Grundstück |
 | **Verkaufsdokumentation** | PDF + Word | A4 quer im Stil der InDesign-Dokumentation: Deckblatt, Facts & Figures, Objekt, Lage, Region, Einheiten, Galerie, Grundrisse, Zahlen, Nächste Schritte, Kontakt |
+| **Finanzierungsdossier** | Word | alle Angaben für Banken: Grundbuch, Rechtliches, Gebäude & Zustand, Mieterspiegel, Erträge/Kosten/Werte, berechnete Kennzahlen, Unterlagen-Checkliste, Quellen |
 | **Anonymer Teaser** | Word | 1 Seite ohne Strasse, PLZ und Parzelle für die Erstansprache |
 | **Geheimhaltungsverpflichtung** | Word | feste Vorlage, nur Objekt und Interessent werden eingesetzt |
 | **Inserattexte** | Word + Text | Titel, Kurzbeschrieb, Beschrieb und Eckdaten für Homegate, ImmoScout24, Website |
@@ -15,6 +16,25 @@ Tabellen, keine Platzhalter, keine leeren Bildrahmen. Das Design ist für jedes 
 
 Beispiel mit allen Dokumenten (Neumattstrasse 15, Büsserach, nur Angaben aus der Verkaufsdokumentation):
 [`examples/neumattstrasse-15/ausgabe/`](examples/neumattstrasse-15/ausgabe/).
+
+## Hauptweg: Unterlagen schicken, Dokumente erhalten
+
+Unterlagen (Grundbuchauszug, Mieterspiegel, Pläne, Fotos, Policen, Abrechnungen, bestehende Dokumentationen)
+in der Claude-Sitzung schicken. Claude liest sie, erfasst nur belegte Fakten mit Quellenangabe, schreibt die
+Texte und erzeugt alle Dokumente mit `node scripts/erstellen.js objekte/<ordner> --pdf`. Der Prüfbericht nennt,
+was für die Bank noch fehlt. Das genaue Vorgehen steht in [`../CLAUDE.md`](../CLAUDE.md).
+Objektdaten liegen in `objekte/` und sind vom Repository ausgeschlossen (vertraulich).
+
+### Was Banken verlangen
+
+Das Finanzierungsdossier und seine Checkliste decken die üblichen Anforderungen Schweizer Banken ab:
+Grundbuchauszug (< 3 Monate), Katasterplan, ÖREB-Auszug, Gebäudeversicherungsausweis, Pläne,
+Baubeschrieb/Kubatur SIA 416, Investitionsaufstellung, Energieausweis/Heizung, Fotos, Mieterspiegel,
+Mietverträge, Nebenkosten- und Liegenschaftsabrechnungen, Dienstbarkeitsverträge, Kataster belasteter
+Standorte, bei Stockwerkeigentum Begründungsakt/Reglement/Wertquoten/Erneuerungsfonds, bei Baurecht den
+Baurechtsvertrag, optional eine Verkehrswertschätzung. Bedingte Positionen erscheinen nur, wenn sie zutreffen.
+Berechnete Kennzahlen (Bruttorendite IST/SOLL, Preis und Ertrag pro m², Preis zu Versicherungswert,
+Kostenquote, Leerstand) sind als «berechnet» bezeichnet.
 
 ## Drei Betriebsarten, ein Programm
 
@@ -123,9 +143,10 @@ src/                      Kern – läuft im Browser und in Node
   excel.js                Excel-Erfassung lesen/schreiben
 web/                      Oberfläche (ohne Build-Schritt): Objekte, Erfassung, Bilder, Texte, Dokumente
 server/                   Server, KI-Anbindung, LibreOffice-Prüfung, PDF, Eingangsordner
-scripts/                  desktop.js (Arbeitsplatz), beispiel.js (alle Dokumente ohne Oberfläche), paket.js (Browser-Fassung)
+scripts/                  erstellen.js (alle Dokumente eines Objektordners + Prüfbericht), desktop.js (Arbeitsplatz), paket.js (Browser-Fassung)
+objekte/                  vertrauliche Objektordner (nicht im Repository)
 desktop/                  Windows-Einrichtung und Starter, macOS-Starter
-test/                     59 Tests: Modell, Wächter, Layout, Word, PDF, Excel, Eingangsordner, KI-Anbindung
+test/                     61 Tests: Modell, Wächter, Layout, Word, PDF, Excel, Eingangsordner, KI-Anbindung
 ```
 
 ## Offene Punkte

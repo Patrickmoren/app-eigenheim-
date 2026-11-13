@@ -7,6 +7,7 @@
 //   teaser     anonymer Kurzbeschrieb, 1 Seite                      DOCX
 //   nda        Geheimhaltungsverpflichtung, feste Vorlage           DOCX
 //   inserat    Inserattexte für Immobilienportale                   DOCX + Text
+//   dossier    Finanzierungsdossier für Banken (nur Fakten)         DOCX
 import { normalizeProperty } from './model/schema.js';
 import { validateProperty, hasErrors } from './model/validate.js';
 import { factBase } from './model/facts.js';
@@ -22,6 +23,8 @@ import { renderFactsheetDocx } from './docx/factsheet-docx.js';
 import { renderNdaDocx } from './docx/nda-docx.js';
 import { renderExposeDocx } from './docx/expose-docx.js';
 import { renderInseratDocx, inseratText } from './docx/inserat-docx.js';
+import { renderDossierDocx } from './docx/dossier-docx.js';
+import { bankGaps } from './model/facts.js';
 
 export const DOCUMENT_TYPES = {
   factsheet: { label: 'Verkaufs-Factsheet', short: 'Factsheet', formats: ['docx'], description: 'Zwei Seiten im Schaeppi-Design: Transaktionsübersicht, Investorenargumente, Facts & Figures.' },
@@ -29,6 +32,7 @@ export const DOCUMENT_TYPES = {
   teaser: { label: 'Anonymer Teaser', short: 'Teaser', formats: ['docx'], description: 'Eine Seite ohne Adresse für die Erstansprache von Investoren.' },
   nda: { label: 'Geheimhaltungsverpflichtung', short: 'NDA', formats: ['docx'], description: 'Standardvorlage mit Objekt und Interessent, kein KI-Text.' },
   inserat: { label: 'Inserattexte', short: 'Inserat', formats: ['docx', 'txt'], description: 'Titel, Kurzbeschrieb und Beschrieb für Homegate, ImmoScout24 und die Website.' },
+  dossier: { label: 'Finanzierungsdossier', short: 'Bankdossier', formats: ['docx'], description: 'Alle finanzierungsrelevanten Fakten für Banken: Grundbuch, Gebäude, Mieterspiegel, Kennzahlen, Unterlagen-Checkliste.' },
 };
 
 export class ExportError extends Error {
@@ -39,7 +43,7 @@ function slug(s) {
   return String(s || 'objekt').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 }
 
-const FILE_PREFIX = { factsheet: 'Factsheet', expose: 'Verkaufsdokumentation', teaser: 'Teaser', nda: 'Geheimhaltungsverpflichtung', inserat: 'Inserat' };
+const FILE_PREFIX = { factsheet: 'Factsheet', expose: 'Verkaufsdokumentation', teaser: 'Teaser', nda: 'Geheimhaltungsverpflichtung', inserat: 'Inserat', dossier: 'Finanzierungsdossier' };
 
 export function fileName(kind, p, ext = 'docx') {
   const o = p.object || {};
@@ -142,4 +146,12 @@ export async function exportInserat(rawProperty, rawTexts) {
   const { p, texts, issues } = prepare(rawProperty, rawTexts, { ignore: [onlyTeaser] });
   const buffer = await renderInseratDocx(p, texts);
   return { buffer, text: inseratText(p, texts), fileName: fileName('inserat', p), issues };
+}
+
+// Finanzierungsdossier: nur Fakten. sources = { Bezeichnung: Quelle } für das Quellenverzeichnis.
+export async function exportDossier(rawProperty, rawTexts, { sources = null } = {}) {
+  const { p, issues } = prepare(rawProperty, rawTexts, { ignore: [(i) => i.section === 'KI-Text' || i.section === 'Text (bearbeitet)'] });
+  const buffer = await renderDossierDocx(p, { sources });
+  const gaps = bankGaps(p);
+  return { buffer, fileName: fileName('dossier', p), issues, gaps, notes: gaps.length ? [`Für die Bank fehlen noch: ${gaps.join(', ')}.`] : [] };
 }

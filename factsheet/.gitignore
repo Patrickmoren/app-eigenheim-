@@ -1,3 +1,6 @@
 node_modules/
 .env
 dist/
+# Vertrauliche Objektdaten: nie ins Repository
+objekte/*
+!objekte/LIESMICH.md

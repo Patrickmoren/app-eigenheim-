@@ -112,7 +112,7 @@ export async function readInput(entryPath) {
   const files = stat.isDirectory() ? (await fs.readdir(dir)).filter((n) => !ignored(n)) : [path.basename(entryPath)];
   const warnings = [];
 
-  const dataFile = files.find((n) => /\.xlsx$/i.test(n)) || files.find((n) => /\.json$/i.test(n) && !/^texte\.json$/i.test(n));
+  const dataFile = files.find((n) => /\.xlsx$/i.test(n)) || files.find((n) => /\.json$/i.test(n) && !/^(texte|quellen)\.json$/i.test(n));
   if (!dataFile) throw new ExportError('Keine Objektdaten gefunden (.xlsx-Erfassung oder .json).');
   const buf = await fs.readFile(path.join(dir, dataFile));
 
@@ -133,7 +133,13 @@ export async function readInput(entryPath) {
   if (stat.isDirectory() && textFile) {
     try { texts = JSON.parse(await fs.readFile(path.join(dir, textFile), 'utf8')); } catch { warnings.push('texte.json ist ungültig und wurde ignoriert.'); }
   }
-  return { raw, texts, options, dataFile, warnings };
+  // Quellenverzeichnis für das Finanzierungsdossier (optional): quellen.json { "Bezeichnung": "Quelle" }
+  let sources = null;
+  const srcFile = files.find((n) => /^quellen\.json$/i.test(n));
+  if (stat.isDirectory() && srcFile) {
+    try { sources = JSON.parse(await fs.readFile(path.join(dir, srcFile), 'utf8')); } catch { warnings.push('quellen.json ist ungültig und wurde ignoriert.'); }
+  }
+  return { raw, texts, options, dataFile, warnings, sources };
 }
 
 function report({ name, p, results = [], warnings, error, textsSource }) {
@@ -185,6 +191,7 @@ export async function processEntry(base, name, { provider, log = () => {} } = {}
       if (pdf) results.push(pdf); else input.warnings.push('Kein Chrome/Edge gefunden – Verkaufsdokumentation nur als Word-Datei.');
       results.push(await docs.exportExposeDocx(input.raw, texts));
     }
+    if (o.dossier) results.push(await docs.exportDossier(input.raw, texts, { sources: input.sources }));
     if (o.teaser) results.push(await docs.exportTeaser(input.raw, texts));
     if (o.inserat) {
       const ins = await docs.exportInserat(input.raw, texts);

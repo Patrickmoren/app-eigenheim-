@@ -142,6 +142,7 @@ async function exportDocument(kind, body) {
     }
     case 'nda': { const r = await docs.exportNda(property, texts); return [r.buffer, r.fileName, {}]; }
     case 'inserat': { const r = await docs.exportInserat(property, texts); return [r.buffer, r.fileName, {}]; }
+    case 'dossier': { const r = await docs.exportDossier(property, texts); return [r.buffer, r.fileName, {}]; }
     case 'inserat-txt': { const r = await docs.exportInserat(property, texts); return [Buffer.from(r.text, 'utf8'), r.fileName.replace(/\.docx$/, '.txt'), {}]; }
     default: return null;
   }

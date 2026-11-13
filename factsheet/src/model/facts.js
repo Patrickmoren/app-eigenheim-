@@ -45,7 +45,9 @@ export function unitTotals(p) {
     byKind[k] = (byKind[k] || 0) + c;
     const a = toNumber(u.area);
     if (a === null) areaComplete = false; else if (k === 'Wohnung') area += a * c;
+    // IST-Miete: nur vermietete Einheiten (leer/Eigennutzung zählen nicht)
     const r = toNumber(u.rent);
+    if (u.status === 'leer' || u.status === 'Eigennutzung') continue;
     if (r === null) rentComplete = false; else rentMonthly += r * c;
   }
   return { units, total, byKind, livingAreaSum: area, areaComplete, rentMonthly, rentComplete };
@@ -284,3 +286,137 @@ export function factBase(p) {
 }
 
 export { fmtNumber };
+
+// ---------- Bankangaben ----------
+
+const rows = (list) => list.filter((r) => r && !isEmpty(r.value)).map((r) => ({ source: SOURCE.FACT, ...r, value: String(r.value) }));
+
+export function bankObjectRows(p) {
+  const o = p.object, b = p.building || {};
+  return rows([
+    { label: 'Adresse', value: addressLine(p) },
+    { label: 'Objektart', value: o.type },
+    { label: 'Baujahr', value: o.yearBuilt },
+    { label: 'Gebäudevolumen (SIA 416)', value: isEmpty(b.volume) ? '' : `${fmtNumber(b.volume)} m³` },
+    { label: 'Grundstücksfläche', value: isEmpty(o.plotArea) ? '' : fmtArea(o.plotArea) },
+    { label: 'Wohnfläche', value: isEmpty(o.livingArea) ? '' : `ca. ${fmtArea(o.livingArea)}` },
+    { label: 'Nutzfläche Gewerbe', value: isEmpty(o.usableArea) ? '' : `ca. ${fmtArea(o.usableArea)}` },
+    { label: 'Einheiten', value: unitLines(p, { features: false }).join('\n') },
+    { label: 'Nebenräume', value: p.unitsExtra && p.unitsExtra.annex },
+    { label: 'Parkierung', value: parkingSummary(p) },
+    { label: 'Verfügbar ab', value: o.availableFrom },
+  ]);
+}
+
+export function bankLegalRows(p) {
+  const l = p.land || {};
+  const parcels = (l.parcels || []).filter((x) => !isEmpty(x.number));
+  return rows([
+    { label: 'Grundbuch', value: l.landRegister },
+    { label: parcels.length > 1 ? 'Parzellen' : 'Parzelle', value: parcels.map((x) => `${x.number}${isEmpty(x.area) ? '' : ` (${fmtArea(x.area)})`}`).join(', ') },
+    { label: 'E-GRID', value: l.egrid },
+    { label: 'Eigentum', value: l.ownership },
+    { label: 'Wertquote (Stockwerkeigentum)', value: l.condoQuota },
+    { label: 'Erneuerungsfonds', value: l.renewalFund },
+    { label: 'Baurecht', value: l.buildingRight },
+    { label: 'Grundlasten / Dienstbarkeiten', value: l.encumbrances },
+    { label: 'Zone', value: l.zone },
+    { label: 'ÖREB', value: l.oereb },
+    { label: 'Baulinien', value: l.buildingLines },
+    { label: 'Lärmempfindlichkeit', value: l.noiseLevel },
+    { label: 'Kataster belasteter Standorte', value: l.contaminated },
+  ]);
+}
+
+export function bankBuildingRows(p) {
+  const o = p.object, b = p.building || {};
+  return rows([
+    { label: 'Bauweise', value: b.construction },
+    { label: 'Zustand', value: o.condition },
+    { label: 'Dach', value: b.roof },
+    { label: 'Fassade', value: b.facade },
+    { label: 'Fenster', value: b.windows },
+    { label: 'Sanitär / Elektro', value: b.installations },
+    { label: 'Wärmeerzeugung', value: o.heating },
+    { label: 'Energieausweis', value: b.energyCertificate },
+    { label: 'Schadstoffe', value: b.pollutants },
+    { label: 'Bekannter Sanierungsbedarf', value: b.renovationNeeds },
+  ]);
+}
+
+export function bankFinanceRows(p) {
+  const f = p.finance || {};
+  const price = priceText(p);
+  return rows([
+    { label: 'Mietertrag IST netto p.a.', value: isEmpty(f.rentActual) ? '' : fmtChf(f.rentActual) },
+    { label: 'Mietertrag SOLL netto p.a.', value: isEmpty(f.rentTarget) ? '' : fmtChf(f.rentTarget) },
+    { label: 'Vermietungsstand', value: isEmpty(f.occupancy) ? '' : fmtPercent(f.occupancy) },
+    { label: 'Nebenkosten', value: f.ancillary },
+    { label: 'Betriebs- und Unterhaltskosten p.a.', value: isEmpty(f.operatingCosts) ? '' : fmtChf(f.operatingCosts) },
+    { label: 'Gebäudeversicherungswert', value: isEmpty(f.insuranceValue) ? '' : `${fmtChf(f.insuranceValue)}${isEmpty(f.insuranceIndex) ? '' : ` (${f.insuranceIndex})`}` },
+    { label: 'Verkehrswert gemäss Schätzung', value: isEmpty(f.marketValue) ? '' : `${fmtChf(f.marketValue)}${isEmpty(f.valuation) ? '' : ` (${f.valuation})`}` },
+    ...(f.kpis || []).map((k) => ({ label: k.label, value: k.value })),
+    price ? { label: price.label, value: price.value } : null,
+  ]);
+}
+
+// Rein rechnerische Kennzahlen aus erfassten Werten – im Dokument als «berechnet» bezeichnet.
+export function bankFigures(p) {
+  const f = p.finance || {};
+  const price = f.priceLabel === 'Preis auf Anfrage' ? null : toNumber(f.price);
+  const ist = toNumber(f.rentActual), soll = toNumber(f.rentTarget);
+  const t = unitTotals(p);
+  const livingGiven = toNumber(p.object.livingArea);
+  const living = livingGiven || (t.areaComplete && t.livingAreaSum ? t.livingAreaSum : null);
+  const per = livingGiven ? 'Wohnfläche' : 'Wohnfläche (Summe der Einheiten)';
+  const gva = toNumber(f.insuranceValue), costs = toNumber(f.operatingCosts);
+  const vacant = t.units.filter((u) => u.status === 'leer').reduce((a, u) => a + (toNumber(u.count) || 0), 0);
+  const out = [];
+  const add = (label, value) => out.push({ label, value, source: SOURCE.DERIVED });
+  if (price && ist) add('Bruttorendite IST', `${((ist / price) * 100).toFixed(2)} %`);
+  if (price && soll) add('Bruttorendite SOLL', `${((soll / price) * 100).toFixed(2)} %`);
+  if (price && living) add(`Preis pro m² ${per}`, fmtChf(Math.round(price / living)));
+  if (ist && living) add(`IST-Mietertrag pro m² ${per} und Jahr`, fmtChf(Math.round(ist / living)));
+  if (price && gva) add('Preis im Verhältnis zum Versicherungswert', `${((price / gva) * 100).toFixed(0)} %`);
+  if (ist && costs) add('Betriebs- und Unterhaltskosten in % des IST-Ertrags', `${((costs / ist) * 100).toFixed(1)} %`);
+  if (t.units.some((u) => !isEmpty(u.status))) add('Leerstand (Einheiten)', `${vacant} von ${t.total}`);
+  if (t.rentComplete && t.rentMonthly) add('Summe Mieterspiegel netto p.a.', fmtChf(t.rentMonthly * 12));
+  return out;
+}
+
+// Mieterspiegel: eine Zeile je erfasster Einheit, mit Summen
+export function rentRoll(p) {
+  const units = filledUnits(p);
+  if (!units.some((u) => !isEmpty(u.rent) || !isEmpty(u.status) || !isEmpty(u.leaseStart))) return null;
+  let net = 0, anc = 0;
+  const body = units.map((u) => {
+    const c = toNumber(u.count) || 1;
+    const r = toNumber(u.rent), a = toNumber(u.ancillary);
+    if (r !== null && u.status !== 'leer' && u.status !== 'Eigennutzung') net += r * c;
+    if (a !== null && u.status !== 'leer' && u.status !== 'Eigennutzung') anc += a * c;
+    return [
+      `${c > 1 ? `${c} × ` : ''}${unitLabel(u)}`, u.floor || '–', isEmpty(u.area) ? '–' : fmtArea(u.area),
+      r === null ? '–' : fmtChf(r), a === null ? '–' : fmtChf(a), u.status || '–', u.leaseStart || '–',
+    ];
+  });
+  return {
+    header: ['Einheit', 'Geschoss', 'Fläche', 'Netto/Mt.', 'NK/Mt.', 'Status', 'Mietbeginn'],
+    weights: [2.3, 1.3, 1, 1.15, 1, 1.1, 1.15],
+    rows: body,
+    totals: net ? { netMonthly: net, netYearly: net * 12, ancillaryMonthly: anc } : null,
+  };
+}
+
+// Für die Bank wichtige Angaben, die noch fehlen (Prüfbericht, nie im Dokument)
+export function bankGaps(p) {
+  const need = [
+    ['object.yearBuilt', 'Baujahr'], ['object.livingArea', 'Wohnfläche total'], ['building.volume', 'Gebäudevolumen (SIA 416)'],
+    ['finance.insuranceValue', 'Gebäudeversicherungswert'], ['land.landRegister', 'Grundbuch'], ['land.zone', 'Zone'],
+    ['land.contaminated', 'Kataster belasteter Standorte'], ['building.energyCertificate', 'Energieausweis'], ['object.heating', 'Wärmeerzeugung'],
+  ];
+  if (p.object.type !== 'Grundstück' && filledUnits(p).length) need.push(['finance.rentActual', 'IST-Mietertrag']);
+  const get = (path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), p);
+  const out = need.filter(([path]) => isEmpty(get(path))).map(([, label]) => label);
+  if (!(p.land.parcels || []).some((x) => !isEmpty(x.number))) out.push('Parzellennummer');
+  return out;
+}

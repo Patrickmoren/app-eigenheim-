@@ -103,3 +103,27 @@ test('Teaser bleibt auch im Belastungstest bei einer Seite', { skip: !hasLO && '
   const r = await docs.exportTeaser(maximalObject(), completeTexts(longTexts(), normalizeProperty(maximalObject())));
   assert.equal(r.pages, 1);
 });
+
+test('Finanzierungsdossier: Mieterspiegel, berechnete Kennzahlen, Checkliste, Quellen', async () => {
+  const raw = example({ images: false });
+  Object.assign(raw.units[0], { status: 'vermietet', rent: 1850, ancillary: 180, leaseStart: '01.04.2021' });
+  Object.assign(raw.units[1], { status: 'vermietet', rent: 1700, ancillary: 170 });
+  raw.finance.insuranceValue = 1150000;
+  raw.land.buildingRight = 'Baurecht bis 2085';
+  raw.documents = [{ name: 'Grundbuchauszug vom 12.02.2026', status: 'vorhanden', date: '02.2026', note: '' }];
+  const r = await docs.exportDossier(raw, null, { sources: { Grundstücksfläche: 'Grundbuchauszug vom 12.02.2026' } });
+  const xml = zipEntry(r.buffer, 'word/document.xml');
+  for (const s of ['Finanzierungsdossier', 'Mieterspiegel', 'CHF 3’550', 'CHF 42’600', 'Bruttorendite IST', '4.28 %', 'Kennzahlen (berechnet)', 'Grundbuchauszug', 'vorhanden', 'Baurechtsvertrag', 'Quellen der Angaben']) assert.ok(xml.includes(s), s);
+  assert.ok(!xml.includes('Stockwerkeigentum: Begründungsakt'), 'STWE-Unterlagen nur bei Stockwerkeigentum');
+  assert.ok(r.gaps.includes('Baujahr'));
+  for (const bad of ['undefined', 'NaN', '[object']) assert.ok(!xml.includes(bad), bad);
+});
+
+test('Finanzierungsdossier: leere Einheit zählt nicht zum IST-Ertrag', async () => {
+  const { rentRoll, unitTotals } = await import('../src/model/facts.js');
+  const p = normalizeProperty(example({ images: false }));
+  Object.assign(p.units[0], { status: 'vermietet', rent: 1850 });
+  Object.assign(p.units[1], { status: 'leer', rent: 1700 });
+  assert.equal(unitTotals(p).rentMonthly, 1850);
+  assert.equal(rentRoll(p).totals.netYearly, 22200);
+});

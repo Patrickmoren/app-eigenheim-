@@ -77,6 +77,10 @@ export function validateProperty(p, { now = new Date() } = {}) {
   }
   const occ = toNumber(f.occupancy);
   if (occ !== null && ist && soll && occ === 100 && ist < soll * 0.9) warn('Finanzen', 'Vermietungsstand', 'Vermietungsstand 100 %, aber IST deutlich unter SOLL – Angaben prüfen.');
+  const vacantUnits = t.units.filter((u) => u.status === 'leer').length;
+  if (vacantUnits && occ === 100) warn('Finanzen', 'Vermietungsstand', 'Vermietungsstand 100 %, aber mindestens eine Einheit ist als leer erfasst.');
+  const tv = toNumber(f.marketValue), pr = toNumber(f.price);
+  if (tv && pr && (pr > tv * 1.5 || pr < tv * 0.5)) warn('Finanzen', 'Verkehrswert', 'Preis und Verkehrswert weichen um mehr als 50 % voneinander ab – Angaben prüfen.');
   if (f.priceLabel === 'Preis auf Anfrage' && !isEmpty(f.price)) warn('Finanzen', 'Preis', 'Preis ist erfasst, wird wegen «Preis auf Anfrage» aber nicht ausgewiesen.');
   if (f.showGrossYield && (!ist || !toNumber(f.price) || f.priceLabel === 'Preis auf Anfrage')) warn('Finanzen', 'Bruttorendite', 'Bruttorendite kann ohne IST-Mietertrag und Preis nicht berechnet werden.');
 
