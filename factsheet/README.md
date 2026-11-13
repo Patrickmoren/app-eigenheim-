@@ -29,6 +29,44 @@ Ohne Oberfläche: `npm run beispiel -- examples/neumattstrasse-15 --pdf` erzeugt
 und PDF-Kontrollansichten in `ausgabe/`. Tests: `npm test` (42 Tests, inkl. LibreOffice-Seitenprüfung,
 falls installiert).
 
+## Arbeitsplatz-Installation: automatischer Ablauf über den Desktop
+
+Für den täglichen Einsatz ohne Bedienung der Weboberfläche: Daten ablegen – Dokumente kommen heraus.
+
+**Einrichten (Windows, einmalig):** `desktop/windows/Installieren.cmd` doppelklicken. Das Skript prüft
+Node.js (installiert es auf Wunsch über winget), installiert die Komponenten, legt die
+Desktop-Verknüpfung **«Factsheet-Generator»** an und richtet auf Wunsch den **Autostart mit Windows**
+ein (minimiert, ohne Browser) sowie den KI-Schlüssel für das Benutzerkonto. macOS:
+`desktop/mac/Factsheet-Generator.command`.
+
+**Beim Start** entsteht auf dem Desktop (auch OneDrive-Desktop) der Arbeitsordner:
+
+```
+Factsheet-Generator/
+  1_Eingang/                    hier Daten ablegen
+  2_Ausgang/                    je Objekt: Factsheet.docx, ggf. Geheimhaltungsverpflichtung.docx, Pruefbericht.txt
+  3_Archiv/                     verarbeitete Eingaben mit Zeitstempel
+  Vorlage_Objekterfassung.xlsx  Excel-Erfassung (aus dem Datenmodell erzeugt)
+  LIESMICH.txt, protokoll.txt
+```
+
+**Eingabe** in `1_Eingang`:
+- eine ausgefüllte Excel-Erfassung (`.xlsx`) – Blatt «Objekt» plus Blätter für Einheiten, Investitionen,
+  Parzellen, Kennzahlen, Ansprechpartner; Ja/Nein und Objektart als Auswahlliste;
+  «Geheimhaltungsverpflichtung erstellen = Ja» erzeugt zusätzlich die NDA,
+- oder eine `.json`-Datei (Datenmodell bzw. gespeichertes Projekt) – z. B. als Export aus einem anderen System,
+- oder ein **Ordner** mit einer dieser Dateien plus `titelbild.jpg`, `objektfoto.jpg`, `lagefoto.jpg`,
+  `grundriss.jpg` (alle optional) und optional `texte.json` (fertige Texte statt Neuerstellung).
+
+Wenige Sekunden nach dem Ablegen (sobald die Datei unverändert und in Excel geschlossen ist) liegen die
+Dokumente im Ausgang. Es gelten dieselben Prüfungen wie in der Oberfläche; bei Fehlern entsteht statt
+eines Dokuments `FEHLER_….txt` mit den Gründen. Der Ordner wird abgefragt statt beobachtet und funktioniert
+deshalb auch auf Netzlaufwerken und OneDrive; ein anderer Ort lässt sich mit `FACTSHEET_ORDNER` oder
+`--ordner=PFAD` wählen (z. B. ein gemeinsamer Teams-/SharePoint-Ordner).
+
+Die Weboberfläche läuft parallel weiter (Browser öffnet sich beim Start) und kann Excel-Erfassungen
+importieren («Excel importieren») sowie ein Objekt als Excel-Erfassung speichern («Als Excel»).
+
 ## Ablauf für den Anwender
 
 1. **Neues Objekt** (oder «Beispiel laden» / «Projekt öffnen»)
@@ -93,6 +131,10 @@ server/
   docx/                   DOCX-Renderer Factsheet und NDA, gemeinsame Bausteine
   images.js               Bildprüfung (Signatur, Grösse), Zuschnitt statt Verzerrung
   render-check.js         Gegenprüfung der Seitenzahl mit LibreOffice
+  excel.js                Excel-Erfassung: Vorlage erzeugen, ausgefüllte Mappen einlesen
+  hotfolder.js            automatischer Ablauf Eingang → Ausgang/Archiv
+scripts/desktop.js        Desktop-Start: Oberfläche + Ordnerüberwachung
+desktop/                  Windows-Einrichtung und Starter, macOS-Starter
 templates/nda.js          fester Wortlaut der Geheimhaltungsverpflichtung mit Platzhaltern
 web/                      Oberfläche (HTML/CSS/JS ohne Build-Schritt)
 ```

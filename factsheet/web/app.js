@@ -570,6 +570,22 @@ function bind() {
     try { loadProject(JSON.parse(await f.text())); toast('Projekt geladen.'); } catch { toast('Datei ist kein gültiges Projekt.', true); }
     e.target.value = '';
   });
+  $('#import-excel').addEventListener('change', async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try {
+      const buf = new Uint8Array(await f.arrayBuffer());
+      let bin = '';
+      for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
+      const res = await api('/api/excel/import', { data: btoa(bin) });
+      const { property, options } = await res.json();
+      property.images = state.property.images; // Bilder des aktuellen Objekts bleiben erhalten
+      loadProject({ property });
+      state.ndaOpen = !!options.nda;
+      toast('Excel-Erfassung eingelesen.');
+    } catch (err) { toast(err.message, true); }
+    e.target.value = '';
+  });
   $('#mark-ai').addEventListener('change', (e) => $('#pages').classList.toggle('mark-ai', e.target.checked));
   window.addEventListener('resize', fitZoom);
 }
@@ -598,6 +614,16 @@ async function action(name, el) {
       const name = `Projekt_${(state.property.object.street || 'Objekt').replace(/[^A-Za-z0-9äöüÄÖÜ]+/g, '-')}.json`;
       Object.assign(document.createElement('a'), { href: url, download: name }).click();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
+      return;
+    }
+    case 'excel-export': {
+      try {
+        const res = await api('/api/excel/export', { property: { ...state.property, images: {} } });
+        const url = URL.createObjectURL(await res.blob());
+        const name = `Objekterfassung_${(state.property.object.street || 'Vorlage').replace(/[^A-Za-z0-9äöüÄÖÜ]+/g, '-')}.xlsx`;
+        Object.assign(document.createElement('a'), { href: url, download: name }).click();
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+      } catch (e) { toast(e.message, true); }
       return;
     }
     case 'add-item': {
@@ -649,7 +675,8 @@ async function loadStatus() {
     state.status = await res.json();
     const s = state.status;
     $('#status').innerHTML = `<span class="chip">Texte: ${esc(s.providerLabel)}${s.model ? ' · ' + esc(s.model) : ''}</span>`
-      + `<span class="chip">Seitenprüfung: ${s.renderer ? 'LibreOffice + Berechnung' : 'Berechnung'}</span>`;
+      + `<span class="chip">Seitenprüfung: ${s.renderer ? 'LibreOffice + Berechnung' : 'Berechnung'}</span>`
+      + (s.hotfolder ? `<span class="chip" title="${esc(s.hotfolder)}">Eingangsordner aktiv</span>` : '');
   } catch {
     $('#status').innerHTML = '<span class="chip">Server nicht erreichbar</span>';
   }

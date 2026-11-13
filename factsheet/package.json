@@ -7,13 +7,15 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "node --test \"test/*.test.js\"",
-    "beispiel": "node scripts/beispiel.js"
+    "beispiel": "node scripts/beispiel.js",
+    "desktop": "node scripts/desktop.js"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.129.0",
-    "docx": "^9.8.1"
+    "docx": "^9.8.1",
+    "exceljs": "^4.4.0"
   }
 }

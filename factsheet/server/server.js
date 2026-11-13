@@ -12,7 +12,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
 import { normalizeProperty } from '../src/model/schema.js';
 import { factBase } from '../src/model/facts.js';
@@ -21,10 +21,12 @@ import { normalizeTexts } from '../src/content/texts.js';
 import { createProvider, ProviderError } from './ai/providers.js';
 import { DOCUMENT_TYPES, ExportError, exportFactsheet, exportNda, inspect } from './documents.js';
 import { rendererAvailable } from './render-check.js';
+import { buildWorkbook, readWorkbook } from './excel.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '127.0.0.1';
+let hotfolderBase = null; // gesetzt, wenn der Desktop-Start die Ordnerüberwachung betreibt
 const MAX_BODY = 40 * 1024 * 1024;
 const provider = createProvider();
 
@@ -114,10 +116,18 @@ async function handleApi(req, res, pathname) {
     return json(res, 200, {
       provider: provider.name, providerLabel: provider.label, model: provider.model || null,
       renderer: await rendererAvailable(),
+      hotfolder: hotfolderBase,
       documentTypes: Object.fromEntries(Object.entries(DOCUMENT_TYPES).map(([k, v]) => [k, { label: v.label, available: v.available }])),
     });
   }
   if (req.method === 'GET' && pathname === '/api/example') return json(res, 200, exampleData());
+  if (req.method === 'GET' && pathname === '/api/vorlage') {
+    return send(res, 200, await buildWorkbook(), {
+      'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'Content-Disposition': 'attachment; filename="Vorlage_Objekterfassung.xlsx"',
+      'Cache-Control': 'no-store',
+    });
+  }
   if (req.method !== 'POST') return json(res, 405, { message: 'Methode nicht erlaubt.' });
 
   const body = await readJson(req);
@@ -135,6 +145,21 @@ async function handleApi(req, res, pathname) {
         if (msg) return json(res, 502, { message: msg });
         throw e;
       }
+    }
+    case '/api/excel/import': {
+      if (typeof body.data !== 'string') return json(res, 400, { message: 'Keine Datei übermittelt.' });
+      try {
+        const { property, options } = await readWorkbook(Buffer.from(body.data, 'base64'));
+        return json(res, 200, { property: normalizeProperty(property), options });
+      } catch (e) { return json(res, 422, { message: e.message }); }
+    }
+    case '/api/excel/export': {
+      const buf = await buildWorkbook(normalizeProperty(body.property));
+      return send(res, 200, buf, {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Disposition': 'attachment; filename="Objekterfassung.xlsx"',
+        'Cache-Control': 'no-store',
+      });
     }
     case '/api/check': {
       const { issues, guard } = inspect(body.property, body.texts);
@@ -165,6 +190,19 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, HOST, () => {
-  console.log(`Schaeppi Factsheet-Generator: http://${HOST}:${PORT}  (Texte: ${provider.label}${provider.model ? ', ' + provider.model : ''})`);
-});
+export { provider };
+
+export function startServer({ port = PORT, host = HOST, hotfolder = null } = {}) {
+  hotfolderBase = hotfolder;
+  return new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(port, host, () => {
+      const url = `http://${host}:${server.address().port}`;
+      console.log(`Schaeppi Factsheet-Generator: ${url}  (Texte: ${provider.label}${provider.model ? ', ' + provider.model : ''})`);
+      resolve({ url, server });
+    });
+  });
+}
+
+// Direkt gestartet (npm start): nur Server, ohne Ordnerüberwachung
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) startServer();
