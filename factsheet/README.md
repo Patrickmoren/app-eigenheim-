@@ -26,7 +26,7 @@ npm start                      # http://127.0.0.1:3000
 | `SOFFICE_PATH`, `RENDER_CHECK=off` | Pfad zu LibreOffice bzw. Gegenprüfung abschalten |
 
 Ohne Oberfläche: `npm run beispiel -- examples/neumattstrasse-15 --pdf` erzeugt Factsheet, NDA
-und PDF-Kontrollansichten in `ausgabe/`. Tests: `npm test` (42 Tests, inkl. LibreOffice-Seitenprüfung,
+und PDF-Kontrollansichten in `ausgabe/`. Tests: `npm test` (49 Tests, inkl. LibreOffice-Seitenprüfung,
 falls installiert).
 
 ## Arbeitsplatz-Installation: automatischer Ablauf über den Desktop
