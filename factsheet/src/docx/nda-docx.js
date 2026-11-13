@@ -2,10 +2,10 @@
 import {
   Document, Packer, Paragraph, Table, TableRow, TableCell, WidthType, BorderStyle, TableLayoutType, LineRuleType,
 } from 'docx';
-import { COLORS, PAGE, COMPANY } from '../../src/layout/design.js';
-import { toNumber } from '../../src/model/schema.js';
-import { addressLine, designation } from '../../src/model/facts.js';
-import { NDA_TEMPLATE, fillPlaceholders } from '../../templates/nda.js';
+import { COLORS, PAGE, COMPANY } from '../layout/design.js';
+import { toNumber } from '../model/schema.js';
+import { addressLine, designation } from '../model/facts.js';
+import { NDA_TEMPLATE, fillPlaceholders } from '../content/nda-template.js';
 import {
   tw, runs, spacer, schaeppiHeader, schaeppiFooter, pageProperties, embeddedFonts, documentStyles,
 } from './common.js';
@@ -109,5 +109,5 @@ export async function renderNdaDocx(property, texts) {
       children,
     }],
   });
-  return Packer.toBuffer(doc);
+  return new Uint8Array(await Packer.toArrayBuffer(doc));
 }

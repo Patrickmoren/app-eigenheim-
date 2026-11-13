@@ -13,23 +13,60 @@
     {
       "title": "Renovierte Erdgeschosswohnung",
       "text": "2020 komplett renoviert, mit Echtholzparkett, Waschturm in der Wohnung und privatem Gartensitzplatz; die Wohnung ist vermietet.",
-      "basis": ["zustand", "investitionen", "einheiten", "besonderheiten"]
+      "basis": [
+        "zustand",
+        "investitionen",
+        "einheiten",
+        "besonderheiten"
+      ]
     },
     {
       "title": "Mietzinspotenzial im Obergeschoss",
       "text": "Die Wohnung im 1. Obergeschoss ist in solidem und gepflegtem Zustand; eine gezielte Sanierung nach Mieterwechsel ermöglicht eine Mietzinsoptimierung.",
-      "basis": ["potenzial", "zustand"]
+      "basis": [
+        "potenzial",
+        "zustand"
+      ]
     },
     {
       "title": "Wohnlage mit ÖV-Anschluss",
       "text": "Ruhige Wohnlage im Dorfgebiet, Schule und Bushaltestelle zu Fuss erreichbar; S-Bahn Richtung Basel via Laufen, Autobahn A18 in rund 15 Minuten.",
-      "basis": ["lage"]
+      "basis": [
+        "lage"
+      ]
     },
     {
       "title": "Vier Parkplätze, keine Grundlasten",
       "text": "Zwei gedeckte und zwei Aussenparkplätze; auf dem Grundstück lasten keine Grundlasten.",
-      "basis": ["parkierung", "grundlasten"]
+      "basis": [
+        "parkierung",
+        "grundlasten"
+      ]
     }
   ],
-  "edited": {}
+  "edited": {},
+  "expose": {
+    "objekt": "Zum Verkauf steht ein Zweifamilienhaus mit zwei gleich grossen 4.5-Zimmer-Wohnungen von je rund 100 m² an der Neumattstrasse 15 in Büsserach. Das Grundstück umfasst 490 m². Die Erdgeschosswohnung wurde 2020 komplett renoviert, die Wohnung im 1. Obergeschoss befindet sich in solidem und gepflegtem Zustand. Zur Liegenschaft gehören zwei gedeckte und zwei Aussenparkplätze. Die Wärmeerzeugung erfolgt über eine Ölheizung aus dem Jahr 2001; Grundlasten bestehen keine.",
+    "region": "Büsserach liegt im Lüsseltal auf 420 m ü. M. und gehört zum Bezirk Thierstein im Kanton Solothurn. Die Gemeinde zählt rund 2’400 Einwohner und ist Teil der Agglomerationszone der Nordwestschweiz. Basel ist rund 20 km beziehungsweise etwa 30 Fahrminuten entfernt, das regionale Zentrum Laufen 4,5 km. Die PostAuto-Linie 115 verkehrt im Halbstundentakt; via Laufen besteht direkter S-Bahn-Anschluss Richtung Basel, die Autobahn A18 ist in rund 15 Minuten erreichbar.",
+    "lage": "Die Neumattstrasse liegt in einer ruhigen, gewachsenen Wohnlage im Dorfgebiet von Büsserach. Bushaltestelle, Kindergarten, Primarschule, Bäckerei und Spielplatz sind zu Fuss erreichbar; für weiterführende Schulen bestehen gute ÖV-Verbindungen in die umliegenden Zentren. Die naturnahe Umgebung des Lüsseltals bietet Wander- und Velowege.",
+    "units": [
+      {
+        "title": "4.5-Zimmer-Wohnung im Erdgeschoss, ca. 100 m²",
+        "text": "Die Erdgeschosswohnung wurde 2020 komplett renoviert und ist mit Echtholzparkett und hochwertigen Oberflächen ausgestattet. Ein Waschturm in der Wohnung und der private Gartensitzplatz ergänzen das Angebot. Die Wohnung ist vermietet."
+      },
+      {
+        "title": "4.5-Zimmer-Wohnung im 1. Obergeschoss, ca. 100 m²",
+        "text": "Die Wohnung im 1. Obergeschoss befindet sich in solidem und gepflegtem Zustand. Eine gezielte Sanierung nach Mieterwechsel ermöglicht eine Mietzinsoptimierung."
+      }
+    ]
+  },
+  "teaser": {
+    "title": "Zweifamilienhaus in der Region Schwarzbubenland (SO)",
+    "text": "Zum Verkauf steht ein Zweifamilienhaus mit zwei 4.5-Zimmer-Wohnungen von je rund 100 m² auf einem Grundstück von 490 m². Eine Wohnung wurde 2020 komplett renoviert und verfügt über einen privaten Gartensitzplatz; bei der zweiten ermöglicht eine Sanierung nach Mieterwechsel eine Mietzinsoptimierung. Vier Parkplätze, keine Grundlasten. Basel ist rund 20 km entfernt."
+  },
+  "inserat": {
+    "title": "Zweifamilienhaus mit zwei 4.5-Zimmer-Wohnungen in Büsserach",
+    "short": "Zwei 4.5-Zimmer-Wohnungen à ca. 100 m², eine davon 2020 komplett renoviert, mit Gartensitzplatz und vier Parkplätzen.",
+    "text": "Zum Verkauf steht ein Zweifamilienhaus mit zwei gleich grossen 4.5-Zimmer-Wohnungen von je rund 100 m² auf einem Grundstück von 490 m².\n\nDie Liegenschaft liegt in einer ruhigen, gewachsenen Wohnlage im Dorfgebiet von Büsserach. Bushaltestelle, Kindergarten, Primarschule und Bäckerei sind zu Fuss erreichbar. Basel ist rund 20 km beziehungsweise etwa 30 Fahrminuten entfernt; via Laufen besteht direkter S-Bahn-Anschluss.\n\nDie Erdgeschosswohnung wurde 2020 komplett renoviert und verfügt über Echtholzparkett, einen Waschturm in der Wohnung und einen privaten Gartensitzplatz. Die Wohnung im 1. Obergeschoss befindet sich in solidem und gepflegtem Zustand.\n\nZur Liegenschaft gehören zwei gedeckte und zwei Aussenparkplätze. Wärmeerzeugung über eine Ölheizung (2001). Übernahme nach Vereinbarung."
+  }
 }

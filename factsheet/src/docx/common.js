@@ -1,24 +1,15 @@
 // Gemeinsame DOCX-Bausteine (Schaeppi-Design): Absätze, Kopf-/Fusszeile, Schrifteinbettung.
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import {
   Paragraph, TextRun, ImageRun, Header, Footer, PageNumber, TabStopType, BorderStyle,
   LineRuleType, AlignmentType, CharacterSet,
 } from 'docx';
-import { COLORS, FONTS, TYPE, PAGE, COMPANY, LOGO } from '../../src/layout/design.js';
-
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-export const ASSETS = path.join(ROOT, 'assets');
+import { COLORS, FONTS, TYPE, PAGE, COMPANY, LOGO } from '../layout/design.js';
+import { asset, pngSize } from '../assets.js';
 
 export const tw = (pt) => Math.round(pt * 20);     // Punkt -> Twips
 export const px = (pt) => Math.round(pt * 96 / 72); // Punkt -> Pixel (docx-Bildmasse)
 
-const cache = {};
-export function asset(rel) {
-  if (!cache[rel]) cache[rel] = fs.readFileSync(path.join(ASSETS, rel));
-  return cache[rel];
-}
+export { asset };
 
 export function runs(text, styleName, over = {}) {
   const st = { ...TYPE[styleName], ...over };
@@ -69,7 +60,7 @@ export function headingRule() {
 
 export function logoRun(file, widthPt) {
   const data = asset(`logo/${file}`);
-  const w = data.readUInt32BE(16), h = data.readUInt32BE(20);
+  const { width: w, height: h } = pngSize(data);
   return new ImageRun({
     type: 'png',
     data,

@@ -6,10 +6,13 @@ import os from 'node:os';
 import path from 'node:path';
 import ExcelJS from 'exceljs';
 import { normalizeProperty } from '../src/model/schema.js';
-import { buildWorkbook, readWorkbook } from '../server/excel.js';
+import { buildWorkbook, readWorkbook } from '../src/excel.js';
 import { prepareFolders, processEntry, startHotfolder, DIRS } from '../server/hotfolder.js';
 import { OfflineProvider } from '../server/ai/providers.js';
 import { example, EXAMPLE_DIR, maximalObject } from './helpers.js';
+import { closePdf } from '../server/pdf.js';
+
+test.after(() => closePdf());
 
 const provider = new OfflineProvider();
 const tmp = () => fs.mkdtemp(path.join(os.tmpdir(), 'hotfolder-test-'));
@@ -28,7 +31,7 @@ test('Excel: Hin- und Rückweg erhält alle Angaben', async () => {
   const p = normalizeProperty(maximalObject());
   const { property, options } = await readWorkbook(await buildWorkbook(p));
   const q = normalizeProperty(property);
-  assert.equal(options.nda, false);
+  assert.deepEqual(options, { dokumentation: true, teaser: false, inserat: false, nda: false });
   assert.equal(q.object.street, p.object.street);
   assert.equal(q.object.plotArea, 2100);
   assert.equal(q.units.length, 5);
@@ -83,9 +86,10 @@ test('Ordner: Excel mit Bildern -> Factsheet, NDA und Prüfbericht im Ausgang, E
   const r = await processEntry(base, 'Neumattstrasse 15', { provider });
   assert.ok(r.ok);
   const out = (await fs.readdir(r.outDir)).sort();
-  assert.deepEqual(out, ['Factsheet_Neumattstrasse-15-Busserach.docx', 'Geheimhaltungsverpflichtung_Neumattstrasse-15-Busserach.docx', 'Pruefbericht.txt']);
+  for (const f of ['Factsheet_Neumattstrasse-15-Busserach.docx', 'Geheimhaltungsverpflichtung_Neumattstrasse-15-Busserach.docx', 'Verkaufsdokumentation_Neumattstrasse-15-Busserach.docx', 'Pruefbericht.txt']) assert.ok(out.includes(f), f);
+  assert.ok(!out.some((f) => f.startsWith('Teaser') || f.startsWith('Inserat')), 'Teaser/Inserat nur auf Wunsch');
   const bericht = await fs.readFile(path.join(r.outDir, 'Pruefbericht.txt'), 'utf8');
-  assert.match(bericht, /ERGEBNIS: Factsheet_Neumattstrasse-15-Busserach\.docx – 2 Seiten/);
+  assert.match(bericht, /Factsheet_Neumattstrasse-15-Busserach\.docx – 2 Seiten/);
   assert.match(bericht, /regelbasiert/);
   assert.deepEqual(await fs.readdir(path.join(base, DIRS.inbox)), []);
   assert.match((await fs.readdir(path.join(base, DIRS.archive)))[0], /_Neumattstrasse 15$/);
@@ -121,4 +125,15 @@ test('Ordner: Überwachung wartet, bis Datei fertig geschrieben und in Excel ges
   await assert.rejects(fs.access(file));
   assert.ok(lines.some((l) => /OK\s+objekt\.json/.test(l)), lines.join('\n'));
   assert.match(await fs.readFile(path.join(base, 'protokoll.txt'), 'utf8'), /OK\s+objekt\.json/);
+});
+
+test('Ordner: JSON mit Optionen erzeugt Teaser und Inserat, ohne Dokumentation', async () => {
+  const base = await tmp();
+  await prepareFolders(base);
+  const p = example({ images: false });
+  await fs.writeFile(path.join(base, DIRS.inbox, 'objekt.json'), JSON.stringify({ property: p, optionen: { dokumentation: false, teaser: true, inserat: true } }));
+  const r = await processEntry(base, 'objekt.json', { provider });
+  assert.ok(r.ok);
+  const out = (await fs.readdir(r.outDir)).sort();
+  assert.deepEqual(out, ['Factsheet_Neumattstrasse-15-Busserach.docx', 'Inserat_Neumattstrasse-15-Busserach.docx', 'Inserat_Neumattstrasse-15-Busserach.txt', 'Pruefbericht.txt', 'Teaser_Region-Schwarzbubenland-SO.docx']);
 });

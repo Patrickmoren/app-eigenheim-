@@ -1,14 +1,15 @@
 {
-  "name": "schaeppi-factsheet",
-  "version": "1.0.0",
+  "name": "schaeppi-verkaufsunterlagen",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "KI-gestützter Dokumentengenerator für Schaeppi Verkaufs-Factsheets und Geheimhaltungsverpflichtungen",
+  "description": "Schaeppi Verkaufsunterlagen: Factsheet, Verkaufsdokumentation, Teaser, Inserat und Geheimhaltungsverpflichtung aus einer Erfassung",
   "scripts": {
     "start": "node server/server.js",
     "test": "node --test \"test/*.test.js\"",
     "beispiel": "node scripts/beispiel.js",
-    "desktop": "node scripts/desktop.js"
+    "desktop": "node scripts/desktop.js",
+    "paket": "node scripts/paket.js"
   },
   "engines": {
     "node": ">=20"
@@ -17,5 +18,8 @@
     "@anthropic-ai/sdk": "^0.129.0",
     "docx": "^9.8.1",
     "exceljs": "^4.4.0"
+  },
+  "optionalDependencies": {
+    "playwright-core": "^1.65.1"
   }
 }

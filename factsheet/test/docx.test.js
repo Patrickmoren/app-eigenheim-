@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { inflateRawSync } from 'node:zlib';
 import { exportFactsheet, exportNda, ExportError } from '../server/documents.js';
 import { renderPdf, rendererAvailable } from '../server/render-check.js';
-import { imageInfo, coverCrop } from '../server/images.js';
+import { imageInfo, coverCrop } from '../src/media/images.js';
 import { example, exampleTexts, maximalObject, longTexts } from './helpers.js';
 
 // Minimaler ZIP-Leser für einen Eintrag (DOCX = ZIP)

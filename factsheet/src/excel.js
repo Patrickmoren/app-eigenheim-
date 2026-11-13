@@ -3,9 +3,18 @@
 // Die Vorlage wird aus dem Datenmodell (schema.js) erzeugt – neue Felder erscheinen automatisch.
 // Jede Tabelle trägt in einer ausgeblendeten Spalte bzw. Zeile die technischen Feldschlüssel;
 // Beschriftungen dürfen sich also ändern, ohne dass das Einlesen bricht.
-import ExcelJS from 'exceljs';
-import { SECTIONS, NDA_FIELDS, isEmpty } from '../src/model/schema.js';
-import { COLORS } from '../src/layout/design.js';
+// Läuft im Browser (ExcelJS als globales Skript geladen) und in Node (Paket «exceljs»).
+import { SECTIONS, NDA_FIELDS, isEmpty } from './model/schema.js';
+import { COLORS } from './layout/design.js';
+
+// Welche Dokumente der Eingangsordner erzeugt (Factsheet immer)
+export const DEFAULT_OPTIONS = { dokumentation: true, teaser: false, inserat: false, nda: false };
+
+async function excel() {
+  if (globalThis.ExcelJS) return globalThis.ExcelJS;
+  const m = await import('exceljs');
+  return m.default || m;
+}
 
 const NAVY = `FF${COLORS.navy}`;
 const CREAM = `FF${COLORS.cream}`;
@@ -35,7 +44,10 @@ function objectRows() {
   }
   rows.push({ section: 'Dokument', key: 'meta.docLabel', f: { label: 'Kennzeichnung im Titel', type: 'text', default: 'Akquisitionsgelegenheit' } });
   rows.push({ section: 'Dokument', key: 'meta.confidential', f: { label: 'Als VERTRAULICH kennzeichnen', type: 'bool', default: true } });
-  rows.push({ section: 'Dokument', key: 'optionen.nda', f: { label: 'Geheimhaltungsverpflichtung erstellen', type: 'bool', default: false } });
+  rows.push({ section: 'Dokumente erstellen', key: 'optionen.dokumentation', f: { label: 'Verkaufsdokumentation (PDF und Word)', type: 'bool', default: true } });
+  rows.push({ section: 'Dokumente erstellen', key: 'optionen.teaser', f: { label: 'Anonymer Teaser', type: 'bool', default: false } });
+  rows.push({ section: 'Dokumente erstellen', key: 'optionen.inserat', f: { label: 'Inserattexte', type: 'bool', default: false } });
+  rows.push({ section: 'Dokumente erstellen', key: 'optionen.nda', f: { label: 'Geheimhaltungsverpflichtung', type: 'bool', default: false } });
   for (const f of NDA_FIELDS) rows.push({ section: 'Geheimhaltungsverpflichtung', key: `nda.${f.key}`, f });
   return rows;
 }
@@ -74,6 +86,7 @@ function excelValue(f, v) {
 
 // Erzeugt die Erfassungsvorlage, optional vorausgefüllt mit einem Objekt.
 export async function buildWorkbook(property = null) {
+  const ExcelJS = await excel();
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Schaeppi Grundstücke AG';
   const head = (row) => row.eachCell((c) => {
@@ -139,20 +152,20 @@ export async function buildWorkbook(property = null) {
   const info = wb.addWorksheet('Anleitung');
   info.getColumn(1).width = 110;
   [
-    'Schaeppi Factsheet-Generator – Excel-Erfassung',
+    'Schaeppi Verkaufsunterlagen – Excel-Erfassung',
     '',
     '1. Diese Datei kopieren und im Blatt «Objekt» die Spalte «Wert» ausfüllen (Pflichtfelder mit *).',
     '2. Einheiten, Investitionen, Parzellen, Kennzahlen und Ansprechpartner in den gleichnamigen Blättern erfassen – eine Zeile je Eintrag.',
     '3. Datei (allein oder zusammen mit Bildern in einem Ordner) in den Ordner «1_Eingang» legen.',
     '   Bilder im selben Ordner: titelbild.jpg, objektfoto.jpg, lagefoto.jpg, grundriss.jpg (JPEG oder PNG).',
-    '4. Nach wenigen Sekunden liegen Factsheet (und auf Wunsch die Geheimhaltungsverpflichtung) als Word-Datei',
+    '4. Nach wenigen Sekunden liegen die gewählten Dokumente (Factsheet, Verkaufsdokumentation, Teaser, Inserat, NDA)',
     '   im Ordner «2_Ausgang», zusammen mit einem Prüfbericht. Die Eingabe wird nach «3_Archiv» verschoben.',
     '',
     'Es werden nur erfasste Angaben verwendet. Leere Felder erscheinen im Dokument nicht.',
     'Zahlen dürfen mit Apostroph erfasst werden (42\'600). Ja/Nein-Felder über die Auswahlliste.',
   ].forEach((t, i) => { const c = info.getCell(`A${i + 1}`); c.value = t; if (i === 0) c.font = { bold: true, size: 14, color: { argb: NAVY } }; });
 
-  return Buffer.from(await wb.xlsx.writeBuffer());
+  return new Uint8Array(await wb.xlsx.writeBuffer());
 }
 
 function cellText(v) {
@@ -176,21 +189,22 @@ function fromExcel(f, v) {
 
 // Liest eine ausgefüllte Arbeitsmappe. Rückgabe: { property, options }.
 export async function readWorkbook(buffer) {
+  const ExcelJS = await excel();
   const wb = new ExcelJS.Workbook();
   try { await wb.xlsx.load(buffer); } catch { throw new Error('Die Excel-Datei kann nicht gelesen werden (nur .xlsx).'); }
   const ws = wb.getWorksheet('Objekt');
-  if (!ws) throw new Error('Arbeitsblatt «Objekt» fehlt – bitte die Excel-Vorlage des Factsheet-Generators verwenden.');
+  if (!ws) throw new Error('Arbeitsblatt «Objekt» fehlt – bitte die Excel-Vorlage der Verkaufsunterlagen verwenden.');
 
   const defs = new Map(objectRows().map((r) => [r.key, r.f]));
   const property = {};
-  const options = { nda: false };
+  const options = { ...DEFAULT_OPTIONS };
   ws.eachRow((row, i) => {
     if (i === 1) return;
     const key = String(cellText(row.getCell(1).value)).trim();
     const f = defs.get(key);
     if (!f) return;
     const value = fromExcel(f, row.getCell(4).value);
-    if (key === 'optionen.nda') options.nda = value === true;
+    if (key.startsWith('optionen.')) options[key.slice(9)] = value === true;
     else set(property, key, value);
   });
 

@@ -48,8 +48,10 @@ export const SECTIONS = [
         help: 'Nur Tatsachen, z. B. «EG-Wohnung 2020 renoviert, OG-Wohnung im Originalzustand».' },
       { key: 'heating', label: 'Wärmeerzeugung', type: 'text', placeholder: 'Ölheizung (2001)' },
       { key: 'availableFrom', label: 'Verfügbar ab', type: 'text', placeholder: 'Nach Vereinbarung' },
-      { key: 'location', label: 'Lage (Fakten)', type: 'textarea', rows: 3,
+      { key: 'location', label: 'Lage / Umgebung (Fakten)', type: 'textarea', rows: 3,
         help: 'Distanzen, ÖV, Schulen, Einkauf – nur belegbare Angaben. Die KI übernimmt nur, was hier steht.' },
+      { key: 'macroLocation', label: 'Region / Gemeinde (Fakten)', type: 'textarea', rows: 3,
+        help: 'Für die Verkaufsdokumentation: Gemeinde, Bezirk, Einwohner, Distanzen zu Zentren, Verkehrsanbindung.' },
     ],
   },
   {
@@ -150,6 +152,8 @@ export const SECTIONS = [
         help: 'Stichworte genügen. Die KI formuliert daraus die Investorenargumente – sie ergänzt nichts.' },
       { key: 'potential', label: 'Potenzial (Ausbau, Miete, Entwicklung)', type: 'textarea', rows: 3,
         help: 'Nur erfasstes Potenzial wird erwähnt.' },
+      { key: 'tagline', label: 'Leitsatz für die Verkaufsdokumentation (optional)', type: 'text', placeholder: 'Wurzeln. Wachsen. Wohlfühlen.',
+        help: 'Wird unverändert übernommen, nicht von der KI erfunden.' },
     ],
   },
   {
@@ -166,6 +170,10 @@ export const SECTIONS = [
       { key: 'dueDiligence', label: 'Due Diligence', type: 'text', placeholder: 'Datenraum ab November 2026' },
       { key: 'bindingOffer', label: 'Bindende Offerte bis', type: 'text' },
       { key: 'timeline', label: 'Gewünschter Zeitplan / Vollzug', type: 'text', placeholder: 'Eigentumsübertragung Q1 2027' },
+      { key: 'teaserLocation', label: 'Ortsangabe im anonymen Teaser', type: 'text', placeholder: 'Region Laufental (SO)',
+        help: 'Ohne Strasse und Hausnummer. Leer = Ort aus der Adresse.' },
+      { key: 'teaserImage', label: 'Titelbild im anonymen Teaser zeigen', type: 'bool', default: false,
+        help: 'Nur wenn das Bild keine Rückschlüsse auf die Adresse zulässt.' },
     ],
   },
   {
@@ -191,7 +199,12 @@ export const IMAGE_SLOTS = [
   { key: 'object', label: 'Objektfoto', aspect: 85 / 56 },
   { key: 'location', label: 'Lagefoto / Situationsplan', aspect: 85 / 56 },
   { key: 'floorplan', label: 'Grundriss', aspect: 85 / 56 },
+  { key: 'portrait', label: 'Porträt Ansprechpartner', aspect: 3 / 4 },
 ];
+
+// Weitere Bilder für die Verkaufsdokumentation (Galerie, Grundrisse je Geschoss)
+export const GALLERY_KINDS = ['Aussen', 'Innen', 'Grundriss', 'Umgebung'];
+export const GALLERY_MAX = 16;
 
 export const NDA_FIELDS = [
   { key: 'company', label: 'Unternehmen (Interessent)', type: 'text' },
@@ -272,6 +285,12 @@ export function normalizeProperty(input) {
     for (const slot of IMAGE_SLOTS) {
       const v = input.images[slot.key];
       if (typeof v === 'string' && /^data:image\/(jpeg|png);base64,/.test(v)) base.images[slot.key] = v;
+    }
+    if (Array.isArray(input.images.gallery)) {
+      base.images.gallery = input.images.gallery
+        .filter((g) => g && typeof g.src === 'string' && /^data:image\/(jpeg|png);base64,/.test(g.src))
+        .slice(0, GALLERY_MAX)
+        .map((g) => ({ src: g.src, caption: String(g.caption || '').slice(0, 120), kind: GALLERY_KINDS.includes(g.kind) ? g.kind : 'Innen', unit: Number.isInteger(g.unit) ? g.unit : null }));
     }
   }
   return base;

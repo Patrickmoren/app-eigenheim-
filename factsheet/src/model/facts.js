@@ -257,6 +257,7 @@ export function factBase(p) {
     waermeerzeugung: o.heating,
     verfuegbar_ab: o.availableFrom,
     lage: o.location,
+    region: o.macroLocation,
     einheiten: unitLines(p).join('; '),
     einheiten_total: unitSummary(p),
     nebenraeume: p.unitsExtra && p.unitsExtra.annex,
@@ -273,6 +274,7 @@ export function factBase(p) {
     besonderheiten: m.highlights,
     potenzial: m.potential,
     ausgangslage: r.situation,
+    teaser_ort: r.teaserLocation,
   };
   const facts = {}, missing = [];
   for (const [k, v] of Object.entries(base)) {

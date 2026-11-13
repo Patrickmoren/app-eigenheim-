@@ -14,12 +14,59 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { normalizeProperty } from '../src/model/schema.js';
 import { normalizeTexts, offlineTexts } from '../src/content/texts.js';
-import { readWorkbook, buildWorkbook } from './excel.js';
-import { exportFactsheet, exportNda, ExportError } from './documents.js';
+import { readWorkbook, buildWorkbook, DEFAULT_OPTIONS } from '../src/excel.js';
+import * as docs from './documents.js';
+
+const { ExportError } = docs;
 
 export const DIRS = { inbox: '1_Eingang', outbox: '2_Ausgang', archive: '3_Archiv' };
-const IMAGE_NAMES = { cover: 'titelbild', object: 'objektfoto', location: 'lagefoto', floorplan: 'grundriss' };
+const IMAGE_NAMES = { cover: 'titelbild', object: 'objektfoto', location: 'lagefoto', floorplan: 'grundriss', portrait: 'portrait' };
 const MAX_IMAGE = 8 * 1024 * 1024;
+const IMG_RE = /\.(jpe?g|png)$/i;
+
+function galleryKind(name) {
+  const n = name.toLowerCase();
+  if (n.includes('grundriss')) return 'Grundriss';
+  if (/innen|wohnen|küche|kueche|bad|zimmer|interior/.test(n)) return 'Innen';
+  if (/umgebung|lage|luftbild|situation|region/.test(n)) return 'Umgebung';
+  return 'Aussen';
+}
+
+const toDataUrl = (buf, file) => `data:image/${/png$/i.test(file) ? 'png' : 'jpeg'};base64,${buf.toString('base64')}`;
+
+// Bilder eines Objektordners: feste Namen (titelbild, objektfoto, lagefoto, grundriss, portrait) und
+// alle weiteren Bilder – im Ordner selbst oder im Unterordner «galerie» – als Galerie.
+// Die Bildlegende ist der Dateiname («Grundriss Obergeschoss.jpg» -> Grundriss, «Obergeschoss»).
+export async function readImageFolder(dir, warnings = []) {
+  const images = {};
+  const gallery = [];
+  const add = async (file, full) => {
+    const st = await fs.stat(full);
+    if (st.size > MAX_IMAGE) { warnings.push(`${file} ist grösser als 8 MB und wurde weggelassen.`); return null; }
+    return toDataUrl(await fs.readFile(full), file);
+  };
+  const files = (await fs.readdir(dir).catch(() => [])).filter((n) => !ignored(n) && IMG_RE.test(n)).sort();
+  for (const file of files) {
+    const base = file.replace(IMG_RE, '').toLowerCase();
+    const slot = Object.entries(IMAGE_NAMES).find(([, n]) => n === base);
+    const src = await add(file, path.join(dir, file));
+    if (!src) continue;
+    if (slot) images[slot[0]] = src;
+    else gallery.push({ src, caption: file.replace(IMG_RE, ''), kind: galleryKind(file) });
+  }
+  const sub = path.join(dir, 'galerie');
+  for (const file of (await fs.readdir(sub).catch(() => [])).filter((n) => !ignored(n) && IMG_RE.test(n)).sort()) {
+    const src = await add(file, path.join(sub, file));
+    if (src) gallery.push({ src, caption: file.replace(IMG_RE, ''), kind: galleryKind(file) });
+  }
+  for (const g of gallery) {
+    // «Grundriss Erdgeschoss» -> Legende «Erdgeschoss»
+    if (g.kind === 'Grundriss') g.caption = g.caption.replace(/^grundriss[\s_-]*/i, '') || 'Grundriss';
+    else g.caption = g.caption.replace(/^(innen|aussen|umgebung)[\s_-]*/i, '');
+  }
+  if (gallery.length) images.gallery = gallery.slice(0, 16);
+  return images;
+}
 
 const stamp = (d = new Date()) => {
   const p = (n) => String(n).padStart(2, '0');
@@ -38,18 +85,21 @@ export async function prepareFolders(base) {
   const readme = path.join(base, 'LIESMICH.txt');
   if (!(await exists(readme))) {
     await fs.writeFile(readme, [
-      'Schaeppi Factsheet-Generator – automatischer Ablauf',
+      'Schaeppi Verkaufsunterlagen – automatischer Ablauf',
       '',
-      '1. «Vorlage_Objekterfassung.xlsx» kopieren und ausfüllen.',
+      '1. «Vorlage_Objekterfassung.xlsx» kopieren und ausfüllen. Unter «Dokumente erstellen» wählen, was entstehen soll:',
+      '   Factsheet immer; Verkaufsdokumentation (Standard: Ja), anonymer Teaser, Inserattexte, Geheimhaltungsverpflichtung.',
       '2. Die Excel-Datei in «1_Eingang» legen. Mit Bildern: einen Ordner anlegen, darin die Excel-Datei und',
-      '   titelbild.jpg, objektfoto.jpg, lagefoto.jpg, grundriss.jpg (alle optional).',
-      '3. Nach wenigen Sekunden liegt in «2_Ausgang» ein Ordner mit Factsheet (Word), auf Wunsch der',
-      '   Geheimhaltungsverpflichtung und dem Prüfbericht. Die Eingabe wandert nach «3_Archiv».',
+      '   titelbild.jpg, objektfoto.jpg, lagefoto.jpg, grundriss.jpg, portrait.jpg (alle optional).',
+      '   Weitere Bilder für die Verkaufsdokumentation in den Unterordner «galerie»; der Dateiname ist die Legende:',
+      '   «Grundriss Obergeschoss.jpg», «Innen Wohnzimmer.jpg», «Umgebung Luftbild.jpg».',
+      '3. Nach wenigen Sekunden liegt in «2_Ausgang» ein Ordner mit allen Dokumenten und dem Prüfbericht.',
+      '   Die Eingabe wandert nach «3_Archiv».',
       '',
       'Bei Fehlern (z. B. fehlende Pflichtangaben) steht im Ausgang nur ein Prüfbericht mit den Gründen.',
       'Korrigierte Datei einfach erneut in «1_Eingang» legen.',
       '',
-      'Der Generator muss dafür laufen (Desktop-Verknüpfung «Factsheet-Generator»).',
+      'Das Programm muss dafür laufen (Desktop-Verknüpfung «Verkaufsunterlagen»).',
       '',
     ].join('\r\n'), 'utf8');
   }
@@ -66,24 +116,16 @@ export async function readInput(entryPath) {
   if (!dataFile) throw new ExportError('Keine Objektdaten gefunden (.xlsx-Erfassung oder .json).');
   const buf = await fs.readFile(path.join(dir, dataFile));
 
-  let raw, options = { nda: false };
+  let raw, options = { ...DEFAULT_OPTIONS };
   if (/\.xlsx$/i.test(dataFile)) ({ property: raw, options } = await readWorkbook(buf));
   else {
     try { raw = JSON.parse(buf.toString('utf8')); } catch { throw new ExportError(`${dataFile} ist kein gültiges JSON.`); }
-    if (raw.property) { options.nda = !!(raw.optionen && raw.optionen.nda); raw = { ...raw.property, texts: raw.texts }; }
-    if (raw.optionen) options.nda = !!raw.optionen.nda;
+    const opt = raw.optionen;
+    if (raw.property) raw = { ...raw.property, texts: raw.texts };
+    if (opt && typeof opt === 'object') for (const k of Object.keys(DEFAULT_OPTIONS)) if (k in opt) options[k] = !!opt[k];
   }
 
-  raw.images = { ...(raw.images || {}) };
-  if (stat.isDirectory()) {
-    for (const [slot, name] of Object.entries(IMAGE_NAMES)) {
-      const file = files.find((n) => new RegExp(`^${name}\\.(jpe?g|png)$`, 'i').test(n));
-      if (!file) continue;
-      const img = await fs.readFile(path.join(dir, file));
-      if (img.length > MAX_IMAGE) { warnings.push(`${file} ist grösser als 8 MB und wurde weggelassen.`); continue; }
-      raw.images[slot] = `data:image/${/png$/i.test(file) ? 'png' : 'jpeg'};base64,${img.toString('base64')}`;
-    }
-  }
+  raw.images = { ...(raw.images || {}), ...(stat.isDirectory() ? await readImageFolder(dir, warnings) : {}) };
 
   let texts = raw.texts || null;
   delete raw.texts;
@@ -94,8 +136,8 @@ export async function readInput(entryPath) {
   return { raw, texts, options, dataFile, warnings };
 }
 
-function report({ name, p, result, nda, warnings, error, textsSource }) {
-  const lines = ['Prüfbericht Factsheet-Generator', `Eingabe:   ${name}`, `Zeitpunkt: ${new Date().toLocaleString('de-CH')}`];
+function report({ name, p, results = [], warnings, error, textsSource }) {
+  const lines = ['Prüfbericht Verkaufsunterlagen', `Eingabe:   ${name}`, `Zeitpunkt: ${new Date().toLocaleString('de-CH')}`];
   if (p) lines.push(`Objekt:    ${[p.object.street, [p.object.zip, p.object.city].filter(Boolean).join(' ')].filter(Boolean).join(', ')}`);
   lines.push('');
   if (error) {
@@ -103,10 +145,12 @@ function report({ name, p, result, nda, warnings, error, textsSource }) {
     for (const i of error.issues || []) if (i.level === 'error') lines.push(`  - ${i.section}${i.field ? ' · ' + i.field : ''}: ${i.message}`);
     lines.push('', 'Bitte korrigieren und die Datei erneut in «1_Eingang» legen.');
   } else {
-    lines.push(`ERGEBNIS: ${result.fileName} – ${result.pages} Seiten (geprüft: ${result.verifiedBy})`);
-    if (nda) lines.push(`          ${nda.fileName}`);
+    lines.push('ERGEBNIS:');
+    for (const r of results) lines.push(`  ${r.fileName}${r.pages ? ` – ${r.pages} Seite${r.pages === 1 ? '' : 'n'}` : ''}${r.verifiedBy ? ` (geprüft: ${r.verifiedBy})` : ''}`);
     lines.push(`Texte:    ${textsSource}`);
-    const notes = result.issues.filter((i) => i.level !== 'error');
+    const seen = new Set();
+    const notes = results.flatMap((r) => [...(r.issues || []), ...(r.notes || []).map((n) => ({ level: 'info', section: r.fileName.split('_')[0], field: '', message: n }))])
+      .filter((i) => i.level !== 'error' && !seen.has(i.message) && seen.add(i.message));
     if (notes.length || warnings.length) {
       lines.push('', 'Hinweise zur Prüfung:');
       for (const w of warnings) lines.push(`  - ${w}`);
@@ -134,14 +178,24 @@ export async function processEntry(base, name, { provider, log = () => {} } = {}
         texts = offlineTexts(p);
       }
     }
-    const result = await exportFactsheet({ ...input.raw, images: input.raw.images }, texts);
-    const nda = input.options.nda ? await exportNda(input.raw, texts) : null;
+    const o = input.options;
+    const results = [await docs.exportFactsheet(input.raw, texts)];
+    if (o.dokumentation) {
+      const pdf = await docs.exportExposePdf(input.raw, texts);
+      if (pdf) results.push(pdf); else input.warnings.push('Kein Chrome/Edge gefunden – Verkaufsdokumentation nur als Word-Datei.');
+      results.push(await docs.exportExposeDocx(input.raw, texts));
+    }
+    if (o.teaser) results.push(await docs.exportTeaser(input.raw, texts));
+    if (o.inserat) {
+      const ins = await docs.exportInserat(input.raw, texts);
+      results.push(ins, { fileName: ins.fileName.replace(/\.docx$/, '.txt'), buffer: Buffer.from(ins.text, 'utf8') });
+    }
+    if (o.nda) results.push(await docs.exportNda(input.raw, texts));
     const objName = safeName([p.object.street, p.object.city].filter(Boolean).join(' ')) || label;
     outDir = path.join(base, DIRS.outbox, `${objName}_${stamp()}`);
     await fs.mkdir(outDir, { recursive: true });
-    await fs.writeFile(path.join(outDir, result.fileName), result.buffer);
-    if (nda) await fs.writeFile(path.join(outDir, nda.fileName), nda.buffer);
-    await fs.writeFile(path.join(outDir, 'Pruefbericht.txt'), report({ name, p, result, nda, warnings: input.warnings, textsSource: TEXT_SOURCE[texts.provider] || texts.provider }), 'utf8');
+    for (const r of results) await fs.writeFile(path.join(outDir, r.fileName), r.buffer);
+    await fs.writeFile(path.join(outDir, 'Pruefbericht.txt'), report({ name, p, results, warnings: input.warnings, textsSource: TEXT_SOURCE[texts.provider] || texts.provider }), 'utf8');
     await fs.rename(entryPath, path.join(base, DIRS.archive, `${stamp()}_${name}`));
     log(`OK     ${name} -> ${path.relative(base, outDir)}`);
     return { ok: true, outDir };

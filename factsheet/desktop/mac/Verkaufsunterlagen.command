@@ -1,5 +1,5 @@
 #!/bin/bash
-# Startet den Schaeppi Factsheet-Generator (Oberfläche + automatischer Eingangsordner).
+# Startet den Schaeppi Verkaufsunterlagen (Oberfläche + automatischer Eingangsordner).
 cd "$(dirname "$0")/../.." || exit 1
 if ! command -v node >/dev/null; then
   echo "Node.js ist nicht installiert (https://nodejs.org)."; read -r; exit 1

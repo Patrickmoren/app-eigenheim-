@@ -1,13 +1,13 @@
-# Einrichtung des Schaeppi Factsheet-Generators unter Windows
+# Einrichtung des Schaeppi Verkaufsunterlagens unter Windows
 #  - prueft Node.js und installiert die Komponenten
-#  - legt die Desktop-Verknuepfung "Factsheet-Generator" an
+#  - legt die Desktop-Verknuepfung "Verkaufsunterlagen" an
 #  - optional: Start mit Windows (ohne Browserfenster) und KI-Schluessel
 $ErrorActionPreference = 'Stop'
 $App = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
-$Starter = Join-Path $PSScriptRoot 'Factsheet-Generator.cmd'
+$Starter = Join-Path $PSScriptRoot 'Verkaufsunterlagen.cmd'
 
 Write-Host ''
-Write-Host 'Schaeppi Factsheet-Generator - Einrichtung' -ForegroundColor Cyan
+Write-Host 'Schaeppi Verkaufsunterlagen - Einrichtung' -ForegroundColor Cyan
 Write-Host "Programmordner: $App"
 
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
@@ -33,17 +33,17 @@ try { npm install --omit=dev --no-audit --no-fund } finally { Pop-Location }
 $Shell = New-Object -ComObject WScript.Shell
 $Desktop = [Environment]::GetFolderPath('Desktop')
 
-$lnk = $Shell.CreateShortcut((Join-Path $Desktop 'Factsheet-Generator.lnk'))
+$lnk = $Shell.CreateShortcut((Join-Path $Desktop 'Verkaufsunterlagen.lnk'))
 $lnk.TargetPath = $Starter
 $lnk.WorkingDirectory = $App
-$lnk.Description = 'Schaeppi Factsheet-Generator starten'
+$lnk.Description = 'Schaeppi Verkaufsunterlagen starten'
 $lnk.Save()
-Write-Host 'Desktop-Verknuepfung "Factsheet-Generator" angelegt.' -ForegroundColor Green
+Write-Host 'Desktop-Verknuepfung "Verkaufsunterlagen" angelegt.' -ForegroundColor Green
 
 $a = Read-Host 'Mit Windows automatisch starten, damit der Eingangsordner immer verarbeitet wird? (j/n)'
 if ($a -eq 'j') {
   $Startup = [Environment]::GetFolderPath('Startup')
-  $auto = $Shell.CreateShortcut((Join-Path $Startup 'Factsheet-Generator.lnk'))
+  $auto = $Shell.CreateShortcut((Join-Path $Startup 'Verkaufsunterlagen.lnk'))
   $auto.TargetPath = $Starter
   $auto.Arguments = '--kein-browser'
   $auto.WorkingDirectory = $App
@@ -67,5 +67,5 @@ if (-not (Test-Path $soffice)) {
 }
 
 Write-Host ''
-Write-Host 'Fertig. Doppelklick auf "Factsheet-Generator" auf dem Desktop startet das Programm.' -ForegroundColor Cyan
-Write-Host 'Der Arbeitsordner "Factsheet-Generator" (Eingang/Ausgang/Archiv) erscheint beim ersten Start auf dem Desktop.'
+Write-Host 'Fertig. Doppelklick auf "Verkaufsunterlagen" auf dem Desktop startet das Programm.' -ForegroundColor Cyan
+Write-Host 'Der Arbeitsordner "Verkaufsunterlagen" (Eingang/Ausgang/Archiv) erscheint beim ersten Start auf dem Desktop.'

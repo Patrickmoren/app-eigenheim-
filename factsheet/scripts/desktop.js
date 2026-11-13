@@ -2,7 +2,7 @@
 //
 //   node scripts/desktop.js [--ordner=PFAD] [--kein-browser] [--port=3000]
 //
-// Ohne --ordner liegt der Arbeitsordner «Factsheet-Generator» auf dem Desktop
+// Ohne --ordner liegt der Arbeitsordner «Verkaufsunterlagen» auf dem Desktop
 // (auch bei OneDrive-umgeleitetem Desktop). Alternativ: Umgebungsvariable FACTSHEET_ORDNER.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -31,7 +31,7 @@ function openBrowser(url) {
   try { spawn(cmd[0], cmd[1], { detached: true, stdio: 'ignore' }).unref(); } catch { /* Browser manuell öffnen */ }
 }
 
-const base = path.resolve(arg('ordner') || process.env.FACTSHEET_ORDNER || path.join(desktopDir(), 'Factsheet-Generator'));
+const base = path.resolve(arg('ordner') || process.env.FACTSHEET_ORDNER || path.join(desktopDir(), 'Verkaufsunterlagen'));
 await prepareFolders(base);
 
 let url;
@@ -41,7 +41,7 @@ try {
   if (e.code === 'EADDRINUSE') {
     // Läuft bereits (z. B. über Autostart): nur die Oberfläche öffnen.
     const port = Number(arg('port')) || Number(process.env.PORT) || 3000;
-    console.log(`Der Factsheet-Generator läuft bereits auf Port ${port}.`);
+    console.log(`Die Verkaufsunterlagen laufen bereits auf Port ${port}.`);
     if (!flag('kein-browser')) openBrowser(`http://127.0.0.1:${port}`);
     process.exit(0);
   }

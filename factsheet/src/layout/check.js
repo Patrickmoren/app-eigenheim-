@@ -23,7 +23,7 @@ export function checkDocument(model) {
   const issues = [];
   model.pages.forEach((pg, i) => {
     if (!pg.fits) issues.push({ level: 'error', section: 'Dokument', field: `Seite ${i + 1}`, message: `Inhalt passt auch nach maximaler Verdichtung nicht auf Seite ${i + 1}. Bitte längste Texte bzw. Angaben kürzen.` });
-    else if (pg.level > 0) issues.push({ level: 'info', section: 'Dokument', field: `Seite ${i + 1}`, message: `Verdichtet: ${describeLevel(i, pg.level)}.` });
+    else if (pg.level > 0) issues.push({ level: 'info', section: 'Dokument', field: `Seite ${i + 1}`, message: `Verdichtet: ${model.template === 'factsheet' ? describeLevel(i, pg.level) : `Stufe ${pg.level}`}.` });
     const walk = (b) => {
       if ((b.type === 'kv' || b.type === 'table') && (!b.rows || b.rows.length === 0)) issues.push({ level: 'error', section: 'Dokument', field: `Seite ${i + 1}`, message: 'Leere Tabelle.' });
       if (b.left) b.left.forEach(walk);

@@ -107,9 +107,54 @@ export const BUDGET = {
   argumentText: 190,
   argumentsMax: 5,
   argumentsMin: 3,
+  // Verkaufsdokumentation
+  exposeObjekt: 650,
+  exposeRegion: 620,
+  exposeLage: 560,
+  unitTitle: 60,
+  unitText: 520,
+  // Anonymer Teaser
+  teaserTitle: 70,
+  teaserText: 520,
+  // Inserat für Immobilienportale
+  inseratTitle: 70,
+  inseratShort: 160,
+  inseratText: 1800,
 };
 
 export const LOGO = {
   header: { file: 'schaeppi-1zeilig-navy.png', widthPt: 150 },
   nda: { file: 'schaeppi-2zeilig-navy.png', widthPt: 110 },
+};
+
+// Verkaufsdokumentation: A4 quer, im Stil der InDesign-Dokumentation (Doppelseiten-Wirkung:
+// Bild- und Textflächen je halbe Seite, Navy/Crème, vollflächige Bilder).
+export const EXPOSE = {
+  page: { width: 841.9, height: 595.3 },
+  pad: 46,            // Innenabstand der Textflächen
+  titleTop: 52,       // Oberkante Seitentitel
+  textTop: 160,       // Oberkante Fliesstext unter Titel/Untertitel
+  bottom: 52,         // Freiraum unten (Seitenzahl)
+  type: {
+    coverTitle: { font: 'heading', size: 30, line: 36 },
+    coverSub: { font: 'heading', size: 15, line: 20 },
+    coverLabel: { font: 'body', size: 8, line: 11, bold: true, caps: true, spacing: 1.6 },
+    title: { font: 'heading', size: 28, line: 32 },
+    sub: { font: 'heading', size: 13, line: 17 },
+    body: { font: 'body', size: 10, line: 15.5 },
+    unitHead: { font: 'body', size: 10, line: 14, bold: true },
+    label: { font: 'body', size: 9.5, line: 14 },
+    value: { font: 'body', size: 9.5, line: 14 },
+    price: { font: 'heading', size: 17, line: 22 },
+    tagline: { font: 'heading', size: 14, line: 18 },
+    caption: { font: 'body', size: 8, line: 11 },
+    small: { font: 'body', size: 7, line: 9.5 },
+    tableHead: { font: 'body', size: 8.5, line: 12, bold: true },
+    table: { font: 'body', size: 8.5, line: 12 },
+    contactName: { font: 'body', size: 10, line: 14, bold: true },
+    contact: { font: 'body', size: 9.5, line: 14 },
+    stepNo: { font: 'heading', size: 18, line: 22 },
+    stepTitle: { font: 'body', size: 9.5, line: 13, bold: true },
+    stepText: { font: 'body', size: 8.5, line: 12 },
+  },
 };

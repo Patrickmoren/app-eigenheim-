@@ -3,41 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Factsheet-Generator · Schaeppi</title>
-  <link rel="icon" href="/assets/logo/schaeppi-2zeilig-blau.png">
-  <link rel="stylesheet" href="/web/styles.css">
+  <title>Verkaufsunterlagen · Schaeppi</title>
+  <link rel="icon" href="assets/logo/schaeppi-2zeilig-blau.png">
+  <link rel="stylesheet" href="web/styles.css">
+  <script type="importmap">{ "imports": { "docx": "./vendor/docx.mjs" } }</script>
+  <script src="vendor/exceljs.min.js" defer></script>
 </head>
 <body>
-  <header class="top">
-    <img class="top-logo" src="/assets/logo/schaeppi-1zeilig-weiss.png" alt="Schaeppi Grundstücke">
-    <div class="top-title">Factsheet-Generator</div>
-    <div class="top-status" id="status"></div>
-    <div class="top-actions">
-      <button type="button" class="btn ghost" data-action="new">Neues Objekt</button>
-      <button type="button" class="btn ghost" data-action="example">Beispiel laden</button>
-      <label class="btn ghost">Projekt öffnen<input type="file" accept="application/json,.json" id="open-file" hidden></label>
-      <button type="button" class="btn ghost" data-action="save">Projekt speichern</button>
-      <label class="btn ghost" title="Ausgefüllte Excel-Erfassung einlesen">Excel importieren<input type="file" accept=".xlsx" id="import-excel" hidden></label>
-      <button type="button" class="btn ghost" data-action="excel-export" title="Aktuelles Objekt als Excel-Erfassung speichern (leer = Vorlage)">Als Excel</button>
-    </div>
-  </header>
-
-  <nav class="steps" id="steps" aria-label="Arbeitsschritte"></nav>
-
-  <main class="layout">
-    <section class="panel" id="panel" aria-live="polite"></section>
-    <section class="preview">
-      <div class="preview-bar">
-        <strong>Vorschau</strong>
-        <span id="page-info" class="muted"></span>
-        <label class="check"><input type="checkbox" id="mark-ai"> KI-Texte markieren</label>
+  <div class="app">
+    <aside class="side" aria-label="Objekte">
+      <div class="brand">
+        <img src="assets/logo/schaeppi-2zeilig-weiss.png" alt="Schaeppi Grundstücke">
+        <span>Verkaufsunterlagen</span>
       </div>
-      <div class="pages" id="pages"></div>
-      <div class="issues" id="issues"></div>
-    </section>
-  </main>
+      <button type="button" class="btn primary block" data-action="new">+ Neues Objekt</button>
+      <input type="search" id="search" class="search" placeholder="Objekte durchsuchen" aria-label="Objekte durchsuchen">
+      <nav class="objlist" id="objlist"></nav>
+      <div class="side-foot">
+        <button type="button" class="btn side-btn" data-action="example">Beispiel laden</button>
+        <label class="btn side-btn">Importieren<input type="file" id="import" accept=".json,.xlsx" hidden></label>
+        <div class="mode" id="mode"></div>
+      </div>
+    </aside>
 
+    <main class="main" id="main"></main>
+  </div>
   <div class="toast" id="toast" role="status" hidden></div>
-  <script type="module" src="/web/app.js"></script>
+  <script type="module" src="web/app.js"></script>
 </body>
 </html>

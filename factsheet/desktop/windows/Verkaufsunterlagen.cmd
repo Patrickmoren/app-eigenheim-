@@ -1,6 +1,6 @@
 @echo off
-rem Startet den Schaeppi Factsheet-Generator (Oberflaeche + automatischer Eingangsordner).
-title Schaeppi Factsheet-Generator
+rem Startet den Schaeppi Verkaufsunterlagen (Oberflaeche + automatischer Eingangsordner).
+title Schaeppi Verkaufsunterlagen
 cd /d "%~dp0..\.."
 where node >nul 2>nul
 if errorlevel 1 (

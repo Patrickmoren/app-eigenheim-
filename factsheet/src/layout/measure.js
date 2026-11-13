@@ -135,6 +135,13 @@ export function measureBlock(b, width, scale = 1) {
   }
 }
 
+// Grösste Schrift (höchstens die Vorgabe, mindestens min), bei der der Text einzeilig in die Breite passt
+export function fitFontSize(text, style, width, min = 18) {
+  let size = style.size;
+  while (size > min && textWidth(text, { ...style, size }) > width) size -= 1;
+  return { ...style, size, line: Math.round(size * 1.2) };
+}
+
 export function measurePage(blocks, scale = 1) {
   return blocks.reduce((a, b) => a + measureBlock(b, PAGE.contentWidth, scale), 0);
 }

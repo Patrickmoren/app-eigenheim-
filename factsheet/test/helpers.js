@@ -9,9 +9,9 @@ export function example({ images = true } = {}) {
   const p = JSON.parse(fs.readFileSync(path.join(EXAMPLE_DIR, 'objekt.json'), 'utf8'));
   p.images = {};
   if (images) {
-    for (const [slot, name] of Object.entries({ cover: 'titelbild', object: 'objektfoto', location: 'lagefoto', floorplan: 'grundriss' })) {
-      p.images[slot] = `data:image/jpeg;base64,${fs.readFileSync(path.join(EXAMPLE_DIR, `${name}.jpg`)).toString('base64')}`;
-    }
+    const url = (f) => `data:image/jpeg;base64,${fs.readFileSync(path.join(EXAMPLE_DIR, f)).toString('base64')}`;
+    for (const [slot, name] of Object.entries({ cover: 'titelbild', object: 'objektfoto', location: 'lagefoto' })) p.images[slot] = url(`${name}.jpg`);
+    p.images.gallery = [{ src: url('galerie/Grundriss Erdgeschoss.jpg'), caption: 'Erdgeschoss', kind: 'Grundriss' }];
   }
   return p;
 }

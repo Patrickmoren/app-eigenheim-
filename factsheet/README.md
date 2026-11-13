@@ -1,217 +1,142 @@
-# Schaeppi Factsheet-Generator
+# Schaeppi Verkaufsunterlagen
 
-KI-gestützter Dokumentengenerator: Aus wenigen erfassten Immobilienfakten entsteht ein
-**maximal zweiseitiges Verkaufs-Factsheet im Schaeppi-Design als bearbeitbare Word-Datei (.docx)** –
-optional mit einer standardisierten **Geheimhaltungsverpflichtung (.docx)**. Das Tool ist kein
-Chatbot: Der Benutzer liefert Daten, das System erstellt die Unterlage.
+Ein Objekt einmal erfassen – daraus entstehen alle Verkaufsunterlagen im Schaeppi-Design:
 
-Beispiel-Ergebnis (Neumattstrasse 15, 4227 Büsserach, nur Angaben aus der Verkaufsdokumentation):
-[`examples/neumattstrasse-15/ausgabe/`](examples/neumattstrasse-15/ausgabe/) – Factsheet und NDA je als DOCX und PDF.
+| Dokument | Format | Inhalt |
+|---|---|---|
+| **Verkaufs-Factsheet** | Word | 2 Seiten: Transaktionsübersicht, Investorenargumente, Facts & Figures, Erträge, Grundstück |
+| **Verkaufsdokumentation** | PDF + Word | A4 quer im Stil der InDesign-Dokumentation: Deckblatt, Facts & Figures, Objekt, Lage, Region, Einheiten, Galerie, Grundrisse, Zahlen, Nächste Schritte, Kontakt |
+| **Anonymer Teaser** | Word | 1 Seite ohne Strasse, PLZ und Parzelle für die Erstansprache |
+| **Geheimhaltungsverpflichtung** | Word | feste Vorlage, nur Objekt und Interessent werden eingesetzt |
+| **Inserattexte** | Word + Text | Titel, Kurzbeschrieb, Beschrieb und Eckdaten für Homegate, ImmoScout24, Website |
 
-## Starten
+Es werden **nur erfasste Angaben** verwendet. Fehlende Angaben erscheinen nicht – keine leeren
+Tabellen, keine Platzhalter, keine leeren Bildrahmen. Das Design ist für jedes Objekt gleich.
 
-```bash
-cd factsheet
-npm install
-npm start                      # http://127.0.0.1:3000
-```
+Beispiel mit allen Dokumenten (Neumattstrasse 15, Büsserach, nur Angaben aus der Verkaufsdokumentation):
+[`examples/neumattstrasse-15/ausgabe/`](examples/neumattstrasse-15/ausgabe/).
+
+## Drei Betriebsarten, ein Programm
+
+| | Browser (z. B. claude.ai) | Arbeitsplatz | Zentral |
+|---|---|---|---|
+| Start | Link öffnen | Desktop-Verknüpfung «Verkaufsunterlagen» | Server bei Schaeppi/Azure |
+| Installation | keine | Node.js (Einrichtung per Doppelklick) | einmalig durch die IT |
+| Word-Dateien | im Browser erzeugt | ✓ | ✓ |
+| PDF Verkaufsdokumentation | Drucken → Als PDF speichern | direkt (über Edge/Chrome) | direkt |
+| 2-Seiten-Prüfung | Berechnung | Berechnung + LibreOffice (falls installiert) | Berechnung + LibreOffice |
+| KI-Texte | über die Browser-Anbindung, falls verfügbar | mit API-Schlüssel | mit API-Schlüssel |
+| Eingangsordner (Automatik) | – | ✓ Desktop-Ordner | ✓ z. B. Teams-/SharePoint-Ordner |
+
+Der Kern (`src/`) ist in allen drei Fällen derselbe; die Oberfläche erkennt selbst, ob ein Server da ist.
+
+### Arbeitsplatz (Windows)
+
+`desktop/windows/Installieren.cmd` doppelklicken: prüft Node.js (installiert es auf Wunsch über winget),
+legt die Desktop-Verknüpfung **«Verkaufsunterlagen»** an, auf Wunsch Autostart mit Windows und den
+KI-Schlüssel. macOS: `desktop/mac/Verkaufsunterlagen.command`. Von Hand: `npm install` und `npm run desktop`.
+
+### Browser-Fassung
+
+`npm run paket` legt in `dist/` die reine Browser-Fassung ab (index.html, Programmdateien, Beispiel).
+Sie läuft auf jedem Webserver bzw. als Artifact auf claude.ai, ohne Installation. Objekte werden im
+jeweiligen Browser gespeichert; zum Weitergeben «Als Datei» speichern und beim Kollegen «Importieren».
+
+### Zentraler Betrieb
+
+`npm start` (Oberfläche + API) bzw. `npm run desktop -- --ordner=PFAD --kein-browser` (zusätzlich
+Eingangsordner, z. B. auf einem Teams-Ordner). Hinter einem Reverse-Proxy mit Anmeldung betreiben.
 
 | Variable | Wirkung |
 |---|---|
-| `ANTHROPIC_API_KEY` | aktiviert KI-Texte (Claude). Ohne Schlüssel: regelbasierte, sachliche Texte aus den Fakten |
-| `AI_MODEL` | Modell, Standard `claude-opus-5-5` |
-| `AI_EFFORT` | Denktiefe `low` … `max`, Standard `medium` |
-| `AI_PROVIDER` | `anthropic` oder `offline` (erzwingt die regelbasierten Texte) |
-| `PORT`, `HOST` | Standard `3000`, `127.0.0.1` (nur lokal erreichbar) |
-| `SOFFICE_PATH`, `RENDER_CHECK=off` | Pfad zu LibreOffice bzw. Gegenprüfung abschalten |
+| `ANTHROPIC_API_KEY` | KI-Texte (Claude). Ohne Schlüssel: regelbasierte, sachliche Texte aus den Fakten |
+| `AI_MODEL`, `AI_EFFORT` | Modell (Standard `claude-opus-5-5`), Denktiefe (Standard `medium`) |
+| `PORT`, `HOST` | Standard `3000`, `127.0.0.1` |
+| `FACTSHEET_ORDNER` | Arbeitsordner des Eingangsordners |
+| `CHROMIUM_PATH` | Browser für die PDF-Erzeugung (sonst Edge/Chrome/Chromium automatisch) |
+| `SOFFICE_PATH`, `RENDER_CHECK=off` | LibreOffice für die Seitenprüfung |
 
-Ohne Oberfläche: `npm run beispiel -- examples/neumattstrasse-15 --pdf` erzeugt Factsheet, NDA
-und PDF-Kontrollansichten in `ausgabe/`. Tests: `npm test` (49 Tests, inkl. LibreOffice-Seitenprüfung,
-falls installiert).
+## Bedienung
 
-## Arbeitsplatz-Installation: automatischer Ablauf über den Desktop
+Links die Objektliste (Suche, neues Objekt, Beispiel, Import von Excel oder Datei). Je Objekt vier Bereiche:
 
-Für den täglichen Einsatz ohne Bedienung der Weboberfläche: Daten ablegen – Dokumente kommen heraus.
+1. **Erfassung** – Basisangaben (Pflicht mit \*) und optionale Details; rechts laufend die Prüfung.
+2. **Bilder** – feste Positionen (Titelbild, Objekt, Lage, Grundriss, Porträt) und bis 16 weitere Bilder
+   für die Verkaufsdokumentation; Art (Aussen/Innen/Grundriss/Umgebung), Legende, Reihenfolge,
+   Innenaufnahmen einer Einheit zuordnen. Bilder werden verkleinert und zugeschnitten, nie verzerrt.
+3. **Texte** – «KI-Texte erstellen» erzeugt in einem Durchgang die Texte aller Dokumente. Jeder Text ist
+   bearbeitbar, mit Zeichenbudget und Prüfhinweisen; «Ursprüngliche Fassung» stellt die KI-Fassung wieder her.
+4. **Dokumente** – Vorschau jedes Dokuments (Klick auf einen Text springt zum Textfeld) und Download.
 
-**Einrichten (Windows, einmalig):** `desktop/windows/Installieren.cmd` doppelklicken. Das Skript prüft
-Node.js (installiert es auf Wunsch über winget), installiert die Komponenten, legt die
-Desktop-Verknüpfung **«Factsheet-Generator»** an und richtet auf Wunsch den **Autostart mit Windows**
-ein (minimiert, ohne Browser) sowie den KI-Schlüssel für das Benutzerkonto. macOS:
-`desktop/mac/Factsheet-Generator.command`.
-
-**Beim Start** entsteht auf dem Desktop (auch OneDrive-Desktop) der Arbeitsordner:
+## Automatik über den Eingangsordner
 
 ```
-Factsheet-Generator/
-  1_Eingang/                    hier Daten ablegen
-  2_Ausgang/                    je Objekt: Factsheet.docx, ggf. Geheimhaltungsverpflichtung.docx, Pruefbericht.txt
-  3_Archiv/                     verarbeitete Eingaben mit Zeitstempel
-  Vorlage_Objekterfassung.xlsx  Excel-Erfassung (aus dem Datenmodell erzeugt)
-  LIESMICH.txt, protokoll.txt
+Verkaufsunterlagen/            (auf dem Desktop bzw. frei wählbar)
+  1_Eingang/   Excel-Erfassung oder Objektdatei ablegen – allein oder als Ordner mit Bildern
+  2_Ausgang/   je Objekt ein Ordner mit den Dokumenten und Pruefbericht.txt
+  3_Archiv/    verarbeitete Eingaben
+  Vorlage_Objekterfassung.xlsx, LIESMICH.txt, protokoll.txt
 ```
 
-**Eingabe** in `1_Eingang`:
-- eine ausgefüllte Excel-Erfassung (`.xlsx`) – Blatt «Objekt» plus Blätter für Einheiten, Investitionen,
-  Parzellen, Kennzahlen, Ansprechpartner; Ja/Nein und Objektart als Auswahlliste;
-  «Geheimhaltungsverpflichtung erstellen = Ja» erzeugt zusätzlich die NDA,
-- oder eine `.json`-Datei (Datenmodell bzw. gespeichertes Projekt) – z. B. als Export aus einem anderen System,
-- oder ein **Ordner** mit einer dieser Dateien plus `titelbild.jpg`, `objektfoto.jpg`, `lagefoto.jpg`,
-  `grundriss.jpg` (alle optional) und optional `texte.json` (fertige Texte statt Neuerstellung).
+In der Excel-Erfassung steuert der Abschnitt **«Dokumente erstellen»**, was entsteht (Factsheet immer;
+Verkaufsdokumentation standardmässig Ja; Teaser, Inserat, Geheimhaltungsverpflichtung auf Wunsch).
+Bilder im Objektordner: `titelbild.jpg`, `objektfoto.jpg`, `lagefoto.jpg`, `grundriss.jpg`, `portrait.jpg`;
+weitere im Unterordner `galerie/` – der Dateiname ist die Legende («Grundriss Obergeschoss.jpg»,
+«Innen Wohnzimmer.jpg», «Umgebung Luftbild.jpg»). Für JSON-Eingaben: `{ "property": …, "optionen": { "teaser": true } }`.
+Bei Fehlern entsteht `FEHLER_….txt` mit den Gründen.
 
-Wenige Sekunden nach dem Ablegen (sobald die Datei unverändert und in Excel geschlossen ist) liegen die
-Dokumente im Ausgang. Es gelten dieselben Prüfungen wie in der Oberfläche; bei Fehlern entsteht statt
-eines Dokuments `FEHLER_….txt` mit den Gründen. Der Ordner wird abgefragt statt beobachtet und funktioniert
-deshalb auch auf Netzlaufwerken und OneDrive; ein anderer Ort lässt sich mit `FACTSHEET_ORDNER` oder
-`--ordner=PFAD` wählen (z. B. ein gemeinsamer Teams-/SharePoint-Ordner).
+## Faktentreue
 
-Die Weboberfläche läuft parallel weiter (Browser öffnet sich beim Start) und kann Excel-Erfassungen
-importieren («Excel importieren») sowie ein Objekt als Excel-Erfassung speichern («Als Excel»).
+- **FACT** – erfasst; Tabellen und Kennzahlen bestehen nur daraus.
+- **DERIVED** – reine Rechnung (z. B. Bruttorendite) nur auf Wunsch und als «berechnet» bezeichnet.
+- **AI TEXT** – die KI erhält nur vorhandene Fakten und die Liste der fehlenden Angaben; als Grundlage
+  eines Arguments sind nur erfasste Faktenfelder zulässig (Antwortschema).
+- **MISSING** – erscheint nie im Dokument.
 
-## Ablauf für den Anwender
+Der **Faktenwächter** prüft jeden Text aller Dokumente: Zahlen, die nicht in den Fakten stehen, unbelegte
+Behauptungen («renoviert», «zentral», «Seesicht», «Mietpotenzial»), Superlative ohne Faktenbasis und
+Argumente ohne Faktenbezug. Im **Teaser** zusätzlich: Strasse, PLZ oder Parzellennummer sperren den
+Export. Hinweise erscheinen am Text und in der Prüfung; bearbeitete Texte werden ebenfalls geprüft.
 
-1. **Neues Objekt** (oder «Beispiel laden» / «Projekt öffnen»)
-2. **Basisdaten** – Objekt, Einheiten, Parkierung, Ansprechpartner (Pflichtfelder mit *)
-3. **Details** – alles optional: Finanzen, Grundstück/Rechtliches, Investitionen, Vermarktungsargumente, Verkaufsprozess
-4. **Bilder** – Titelbild, Objektfoto, Lagefoto, Grundriss (optional, feste Positionen)
-5. **Texte** – «KI-Inhalte erstellen»; jeder Text ist bearbeitbar, die Vorschau aktualisiert sich sofort.
-   Ein Klick auf einen Text in der Vorschau springt ins zugehörige Feld.
-6. **Export** – «Factsheet erstellen (.docx)», optional «NDA erstellen»
+## Seitenlayout
 
-Die Vorschau zeigt laufend Seite 1/2 und 2/2 und darunter den Prüfbericht (Fehler, Hinweise,
-angewandte Verdichtung). Projekte lassen sich als JSON speichern und wieder öffnen (inkl. Bilder
-und bearbeiteter Texte); der Browser sichert den Stand zusätzlich automatisch.
+- **Factsheet** max. 2 Seiten, **Teaser** genau 1 Seite: Höhe wird mit den echten Zeichenbreiten von Arial
+  und IBM Plex Sans berechnet (im Test stets 1–8 pt zur sicheren Seite gegenüber LibreOffice); passt es
+  nicht, wird stufenweise verdichtet (Abstände, Bilder, optionale Inhalte, Kürzen an Satzgrenzen).
+  Schriftgrössen ändern sich nie. Mit LibreOffice wird das fertige Word-Dokument zusätzlich geprüft.
+- **Verkaufsdokumentation**: feste Flächen je Seitentyp; Texte werden gegen ihre Fläche vermessen und
+  nötigenfalls an Satzgrenzen gekürzt; Seiten ohne Daten entfallen. Der Titel passt seine Grösse an.
+- Design-System (`src/layout/design.js`): Navy `#1B3F64`, Logo-Blau `#1A9EDA`, Crème `#F9F9F1`;
+  IBM Plex Sans (eingebettet) für Titel, Arial für Text. Logos aus den Vektoren der Referenz.
 
-## Phase 1 – Analyse der Referenz und Design-System
-
-Grundlage: «Verkaufsdokumentation Neumattstrasse 15, 4227 Büsserach» (InDesign, 12 Seiten).
-
-| Element | Befund in der Referenz | Umsetzung im Factsheet |
-|---|---|---|
-| Farben | Navy `#1B3F64` (Flächen, Titel), Crème `#F9F9F1` (helle Flächen), Logo-Blau `#1A9EDA`, Text `#231F20`, Grau `#585857` | identisch, als Tokens in `src/layout/design.js` |
-| Schriften | IBM Plex Sans Regular (Titel 32/24/18 pt), Arial (Fliesstext 9–10 pt, Tabellen) | IBM Plex Sans für Titel/Überschriften (in das DOCX eingebettet), Arial für Text und Tabellen |
-| Logo | «SCHAEPPI GRUNDSTÜCKE» ein- und zweizeilig, weiss auf Navy bzw. blau auf Crème | aus den Vektoren der Referenz extrahiert (`assets/logo/`), Navy-Variante in der Kopfzeile |
-| Titel | «Verkaufsdokumentation» + Adresse auf Navy-Fläche | Navy-Titelband: Kennzeichnung («Akquisitionsgelegenheit»), Objektbezeichnung, Adresse |
-| Facts & Figures | zweispaltige Liste Bezeichnung/Wert, Arial 9–10 pt | Tabelle Bezeichnung (grau) / Wert, feine Trennlinien |
-| Bilder | grossformatige Objekt-, Lage- und Innenaufnahmen | Titelbild volle Breite; auf Seite 2 bis zu zwei Bilder nebeneinander |
-| Kontakt | «Wir sind für Sie da», Name fett, Funktion, Telefon, E-Mail, Firmenadresse | Kasten «Ansprechpartner»; Firmenadresse in der Fusszeile |
-
-Designentscheide über die Referenz hinaus (zurückhaltend, im Stil der Referenz): Kennzahlen-Leiste
-auf Crème unter dem Titel (max. 4 Werte, nur vorhandene), Investorenargumente im Crème-Kasten,
-Kopfzeile mit Logo und «VERTRAULICH», Fusszeile mit Adresse und «Seite x / y».
-
-**Struktur (fix, für jedes Objekt gleich):**
-
-- *Seite 1:* Titelband · Kennzahlen · Titelbild · Transaktionsübersicht (Ausgangslage, Objekt & Lage,
-  Baujahr & Investitionen, Einheiten & Nebenräume) | Investorenargument · Ansprechpartner
-- *Seite 2:* Facts & Figures · Einheiten · Grundstücke & Miteigentum / Zonenordnung · Erträge & Kennzahlen ·
-  Investitionen · Bilder · Nächste Schritte · Allgemeine Angaben
-
-Rubriken ohne Daten entfallen vollständig – keine leeren Tabellen, keine Platzhalter, kein leerer Bildrahmen.
-
-## Architektur
+## Aufbau
 
 ```
-src/                      läuft identisch im Browser und in Node (reine ES-Module)
-  model/schema.js         Datenmodell: Abschnitte, Felder, Pflicht/optional, Normalisierung
-  model/facts.js          Faktenaufbereitung (FACT), rechnerische Ableitungen (DERIVED), fehlende Angaben (MISSING)
-  model/validate.js       Faktenprüfung: Pflicht, Typen, Widersprüche (Flächen, Mieten, Jahre, Anteile, Objektart)
-  content/texts.js        Textstruktur, regelbasierte Fassung, Kürzen an Satzgrenzen
-  content/guard.js        Faktenwächter für KI-Texte (Zahlen, Behauptungen, Superlative, Faktenbezug)
-  layout/design.js        Design-Tokens (Farben, Schriften, Abstände, Bildhöhen, Textbudgets)
-  layout/factsheet.js     Template «Factsheet»: Block-Modell + 2-Seiten-Verdichtung
-  layout/measure.js       Seitenberechnung mit echten Zeichenbreiten der Schriften
-  layout/check.js         Dokumentprüfung (Seiten, leere Tabellen, Platzhalter, undefined …)
-  layout/expose.js        vorbereitete Gliederung «Verkaufsexposé»
-  render/html.js          Vorschau aus dem Block-Modell
-server/
-  server.js               HTTP-Server (ohne Framework), API, Sicherheitsheader
-  documents.js            Dokumenttypen-Registry (factsheet, nda, expose), Ablauf Prüfung → DOCX
-  ai/providers.js         austauschbare KI-Schnittstelle (Claude, regelbasiert)
-  ai/prompt.js            Systemprompt, Zeichenbudgets, JSON-Schema der Antwort
-  docx/                   DOCX-Renderer Factsheet und NDA, gemeinsame Bausteine
-  images.js               Bildprüfung (Signatur, Grösse), Zuschnitt statt Verzerrung
-  render-check.js         Gegenprüfung der Seitenzahl mit LibreOffice
-  excel.js                Excel-Erfassung: Vorlage erzeugen, ausgefüllte Mappen einlesen
-  hotfolder.js            automatischer Ablauf Eingang → Ausgang/Archiv
-scripts/desktop.js        Desktop-Start: Oberfläche + Ordnerüberwachung
+src/                      Kern – läuft im Browser und in Node
+  model/                  Datenmodell, Fakten, Prüfung
+  content/                Texte (regelbasiert), KI-Prompt und -Schema, Faktenwächter, NDA-Vorlage
+  layout/                 Design-System, Seitenberechnung, Factsheet und Teaser, Dokumentprüfung
+  expose/                 Verkaufsdokumentation: Seitenmodell, HTML/PDF-Druckvorlage
+  docx/                   Word-Ausgabe aller Dokumente
+  render/html.js          Vorschau Factsheet/Teaser
+  documents.js            Dokument-Registry: Prüfen → Erzeugen
+  excel.js                Excel-Erfassung lesen/schreiben
+web/                      Oberfläche (ohne Build-Schritt): Objekte, Erfassung, Bilder, Texte, Dokumente
+server/                   Server, KI-Anbindung, LibreOffice-Prüfung, PDF, Eingangsordner
+scripts/                  desktop.js (Arbeitsplatz), beispiel.js (alle Dokumente ohne Oberfläche), paket.js (Browser-Fassung)
 desktop/                  Windows-Einrichtung und Starter, macOS-Starter
-templates/nda.js          fester Wortlaut der Geheimhaltungsverpflichtung mit Platzhaltern
-web/                      Oberfläche (HTML/CSS/JS ohne Build-Schritt)
+test/                     59 Tests: Modell, Wächter, Layout, Word, PDF, Excel, Eingangsordner, KI-Anbindung
 ```
-
-**Ein Template, viele Objekte:** Layout und Designwerte hängen an keinem Objekt. Dieselben
-Daten, dasselbe Block-Modell und dieselben Tokens erzeugen Vorschau und DOCX; getestet für
-Mehrfamilienhaus, Zweifamilienhaus, Einfamilienhaus, Eigentumswohnung, Gewerbeobjekt und Grundstück.
-
-## Datenqualität: FACT · AI TEXT · MISSING
-
-- **FACT** – vom Benutzer erfasst. Facts & Figures, Tabellen und Kennzahlen bestehen nur daraus, ohne KI-Prosa.
-- **DERIVED** – reine Rechnung aus erfassten Werten (z. B. Bruttorendite) nur auf ausdrücklichen Wunsch
-  und im Dokument als «berechnet» bezeichnet.
-- **AI TEXT** – Titel, Transaktionsübersicht und Investorenargumente. Die KI erhält nur die
-  vorhandenen Fakten und die Liste der fehlenden Angaben. Das Antwortschema lässt als Grundlage eines
-  Arguments nur tatsächlich erfasste Faktenfelder zu.
-- **MISSING** – erscheint nie im Dokument, nur als Füllstand in der Eingabemaske.
-
-Der **Faktenwächter** prüft jeden KI-Text: Zahlen, die nicht in den Fakten stehen («1955», «240 m²»),
-unbelegte Behauptungen («renoviert», «zentral», «Seesicht», «Mietsteigerungspotenzial» ohne Grundlage),
-Superlative ohne Faktenbasis («absolute Toplage», «einmalig») und Argumente ohne Faktenbezug.
-Treffer erscheinen am Text und im Prüfbericht; auch von Hand bearbeitete Texte werden geprüft.
-
-## Zwei Seiten – harte Grenze
-
-1. Die KI erhält Zeichenbudgets je Textbaustein.
-2. Die Seitenhöhe wird mit den echten Zeichenbreiten von Arial und IBM Plex Sans und exakten
-   Zeilenabständen berechnet (Abweichung zu LibreOffice im Test: < 10 pt, stets zur sicheren Seite).
-3. Passt eine Seite nicht, wird stufenweise verdichtet – je Seite unabhängig:
-   Abstände → Bildgrössen → optionale Inhalte (Einheitentabelle, Bilder, ältere Investitionen,
-   Nebeneinander-Darstellung, «Nächste Schritte» auf Seite 1) → Texte an ganzen Satzgrenzen kürzen
-   (nur weglassen, nie umformulieren). Mit KI-Zugang: «Mit KI verdichten» statt kürzen.
-4. **Schriftgrössen werden nie verändert** (Fliesstext 9 pt, Tabellen 8.5 pt).
-5. Vor der Auslieferung rendert der Server das DOCX mit LibreOffice (falls installiert) und verdichtet
-   weiter, falls wider Erwarten mehr als zwei Seiten entstehen. Passt es gar nicht, wird der Export
-   mit einem klaren Hinweis verweigert.
-
-## Geheimhaltungsverpflichtung
-
-Fester Wortlaut in `templates/nda.js` – **nicht KI-generiert**. Eingesetzt werden nur Objekt, Adresse,
-Unternehmen, Adresse des Interessenten, Vertreter, Ort, Datum und Laufzeit; leere Felder bleiben als
-Ausfülllinie stehen. Geregelt: Gegenstand, Definition, Ausnahmen, Geheimhaltung, Verwendung,
-Weitergabe an Mitarbeitende und Berater, Rückgabe/Vernichtung, Beendigung der Gespräche, Laufzeit,
-Schweizer Recht, Gerichtsstand Basel.
-
-## Verkaufsexposé (vorbereitet)
-
-`layout/expose.js` enthält die Gliederung (Titelblatt, Objekt, Mikro-/Makrolage, Gebäude, Wohnungen &
-Grundrisse, Aussenbereich & Parkierung, Investitionen, Kennzahlen & Mieter, Grundstück, Potenzial,
-Verkaufsprozess, Kontakt) mit Zuordnung zu den bestehenden Datenfeldern. Datenmodell, Faktenaufbereitung,
-Design-Tokens, Block-Renderer und KI-Schnittstelle werden unverändert weiterverwendet – die Daten werden
-nur einmal erfasst. In der Oberfläche ist der Button bereits sichtbar (deaktiviert).
-
-## Sicherheit und Betrieb
-
-- Keine Speicherung von Objektdaten auf dem Server; jede Anfrage enthält alle Daten.
-- API-Schlüssel nur serverseitig. Standardmässig nur lokal erreichbar (`HOST=127.0.0.1`).
-  Für den Betrieb im Netz hinter einem Reverse-Proxy mit Anmeldung (z. B. Microsoft Entra ID) betreiben.
-- Eingaben werden gegen das Schema normalisiert (unbekannte Felder verworfen, Längen begrenzt),
-  Bilder per Dateisignatur geprüft (nur JPEG/PNG, max. 8 MB), Anfragen max. 40 MB,
-  restriktive Content-Security-Policy, kein Zugriff auf Dateien ausserhalb von `web/`, `src/`, `assets/`.
-- DOCX-Struktur geprüft: jede Tabellenzelle endet mit einem Absatz, Tabellen sind nie direkt aneinander
-  (Word würde sie verschmelzen), Seite 2 beginnt über «Seitenumbruch oberhalb» (keine Leerseiten).
 
 ## Offene Punkte
 
-- **Bestehende Geheimhaltungsverpflichtung und Factsheet Baselstrasse 69, Arlesheim:** Beide lagen bei
-  der Entwicklung nicht als Datei vor (hochgeladen war nur die Verkaufsdokumentation Neumattstrasse 15).
-  Der Test erfolgte daher mit Neumattstrasse 15 – ausschliesslich mit dort dokumentierten Angaben.
-  Sobald die Unterlagen vorliegen: Arlesheim als zweites Beispiel erfassen und den NDA-Wortlaut in
-  `templates/nda.js` 1:1 durch die freigegebene Vorlage ersetzen (nur diese Datei). Die NDA-Laufzeit
-  ist mit 2 Jahren vorbelegt und pro Objekt änderbar.
-- **KI-Texte live:** In der Entwicklungsumgebung stand kein API-Schlüssel zur Verfügung. Die
-  Anbindung ist mit einem simulierten Client getestet (Anfrage, Schema, Ablehnung, Fehler);
-  `examples/neumattstrasse-15/texte.json` ist eine redaktionelle Fassung nach den Regeln des
-  Systemprompts und besteht den Faktenwächter. Vor dem Produktiveinsatz einige Objekte mit echtem
-  Schlüssel erzeugen und die Texte fachlich abnehmen.
-- **Word-Darstellung:** Die Seitenprüfung erfolgt mit LibreOffice und der internen Berechnung. Arial ist
-  metrisch identisch mit der verwendeten Prüfschrift; IBM Plex Sans ist eingebettet. Eine Sichtprüfung in
-  Microsoft Word (Windows und Mac) gehört zur Abnahme.
+- **NDA-Wortlaut**: `src/content/nda-template.js` deckt die Punkte Ihrer Vorlage ab, ist aber nicht der
+  freigegebene Schaeppi-Text (lag nicht als Datei vor). Vor dem Einsatz 1:1 ersetzen – nur diese Datei.
+- **Factsheet Baselstrasse 69, Arlesheim**: lag nicht vor; getestet wurde mit Neumattstrasse 15.
+- **KI-Texte live**: Die Claude-Anbindung ist mit einem simulierten Client getestet (kein Schlüssel in der
+  Entwicklungsumgebung). `examples/neumattstrasse-15/texte.json` ist eine redaktionelle Fassung nach den
+  Prompt-Regeln. Vor dem Einsatz einige Objekte mit echtem Schlüssel erzeugen und fachlich abnehmen.
+- **Microsoft Word**: Geprüft mit LibreOffice. In der Word-Fassung der Verkaufsdokumentation werden Bilder
+  per Zuschnitt (OOXML `srcRect`) eingepasst; LibreOffice stellt den seitlichen Zuschnitt nicht dar, Word schon.
+  Sichtprüfung in Word (Windows/Mac) gehört zur Abnahme.
+- **Windows-Einrichtung** ungetestet (Entwicklung unter Linux); Node.js-Installation braucht ggf. die IT.

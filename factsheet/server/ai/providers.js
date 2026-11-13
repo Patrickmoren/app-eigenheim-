@@ -3,9 +3,8 @@
 // Jeder Provider implementiert: async generate(property, { factor, previous }) -> texts
 // Neue Anbieter werden hier registriert; der Rest der Anwendung kennt nur die Schnittstelle.
 import Anthropic from '@anthropic-ai/sdk';
-import { factBase } from '../../src/model/facts.js';
-import { offlineTexts, normalizeTexts } from '../../src/content/texts.js';
-import { SYSTEM_PROMPT, userMessage, responseSchema } from './prompt.js';
+import { offlineTexts, completeTexts } from '../../src/content/texts.js';
+import { buildRequest, parseResponse } from '../../src/content/prompt.js';
 
 export class OfflineProvider {
   name = 'offline';
@@ -25,29 +24,27 @@ export class AnthropicProvider {
   }
 
   async generate(p, { factor = 1, previous = null } = {}) {
-    const fb = factBase(p);
+    const req = buildRequest(p, { factor, previous });
     const response = await this.client.beta.messages.create({
       model: this.model,
       max_tokens: 16000,
       // Lehnt ein Sicherheitsfilter die Anfrage ab, beantwortet ein Ersatzmodell sie serverseitig.
       betas: ['server-side-fallback-2026-07-01'],
       fallbacks: 'default',
-      system: SYSTEM_PROMPT,
-      output_config: {
-        effort: this.effort,
-        format: { type: 'json_schema', schema: responseSchema(Object.keys(fb.facts)) },
-      },
-      messages: [{ role: 'user', content: userMessage(fb, { factor, previous }) }],
+      system: req.system,
+      output_config: { effort: this.effort, format: { type: 'json_schema', schema: req.schema } },
+      messages: [{ role: 'user', content: req.message }],
     });
     if (response.stop_reason === 'refusal') throw new ProviderError('Die KI hat die Anfrage abgelehnt. Bitte Eingaben prüfen oder regelbasierte Texte verwenden.');
     if (response.stop_reason === 'max_tokens') throw new ProviderError('Die KI-Antwort war unvollständig. Bitte erneut versuchen.');
     const text = response.content.filter((b) => b.type === 'text').map((b) => b.text).join('');
-    let data;
-    try { data = JSON.parse(text); } catch { throw new ProviderError('Die KI-Antwort war kein gültiges JSON.'); }
-    const texts = normalizeTexts(data);
-    texts.provider = 'anthropic';
-    texts.generatedAt = new Date().toISOString();
-    return texts;
+    let texts;
+    try { texts = parseResponse(text, 'anthropic'); } catch (e) { throw new ProviderError(e.message); }
+    // Fehlt der KI-Antwort ein Baustein (z. B. eine Einheit), wird er regelbasiert ergänzt.
+    const done = completeTexts(texts, p);
+    done.provider = 'anthropic';
+    done.generatedAt = texts.generatedAt;
+    return done;
   }
 }
 

@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeProperty } from '../src/model/schema.js';
 import { AnthropicProvider, OfflineProvider, ProviderError, createProvider } from '../server/ai/providers.js';
-import { SYSTEM_PROMPT, userMessage } from '../server/ai/prompt.js';
+import { SYSTEM_PROMPT, userMessage } from '../src/content/prompt.js';
 import { factBase } from '../src/model/facts.js';
 import { example, exampleTexts } from './helpers.js';
 

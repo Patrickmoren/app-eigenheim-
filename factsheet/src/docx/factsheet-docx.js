@@ -5,11 +5,11 @@ import {
   Document, Packer, Paragraph, ImageRun, Table, TableRow, TableCell, WidthType, ShadingType,
   BorderStyle, TableLayoutType, LineRuleType,
 } from 'docx';
-import { COLORS, BOX, PAGE, TYPE, COMPANY } from '../../src/layout/design.js';
+import { COLORS, BOX, PAGE, TYPE, COMPANY } from '../layout/design.js';
 import {
   tw, px, runs, para, spacer, headingRule, schaeppiHeader, schaeppiFooter, pageProperties, embeddedFonts, documentStyles,
 } from './common.js';
-import { coverCrop } from '../images.js';
+import { coverCrop } from '../media/images.js';
 
 const NONE = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
 const NO_BORDERS = { top: NONE, bottom: NONE, left: NONE, right: NONE, insideHorizontal: NONE, insideVertical: NONE };
@@ -222,7 +222,7 @@ function renderBlock(b, width, scale, images, out, ctx) {
   }
 }
 
-export async function renderFactsheetDocx(model, images) {
+export async function renderFactsheetDocx(model, images, { docTitle = `Factsheet – ${model.title}` } = {}) {
   const children = [];
   model.pages.forEach((page, pi) => {
     page.blocks.forEach((b, bi) => {
@@ -234,7 +234,7 @@ export async function renderFactsheetDocx(model, images) {
   });
   const doc = new Document({
     creator: COMPANY.name,
-    title: `Factsheet – ${model.title}`,
+    title: docTitle,
     description: model.address,
     styles: documentStyles(),
     fonts: embeddedFonts(),
@@ -245,5 +245,5 @@ export async function renderFactsheetDocx(model, images) {
       children,
     }],
   });
-  return Packer.toBuffer(doc);
+  return new Uint8Array(await Packer.toArrayBuffer(doc));
 }

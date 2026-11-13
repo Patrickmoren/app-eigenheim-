@@ -8,7 +8,7 @@
 //   4. Investorenargumente müssen auf vorhandene Faktenfelder verweisen.
 // Treffer sind Hinweise zur Prüfung (keine automatische Änderung); der Benutzer entscheidet.
 import { toNumber } from '../model/schema.js';
-import { OVERVIEW_PARTS } from './texts.js';
+import { textFields } from './texts.js';
 
 const NUMBER_WORDS = { ein: 1, eine: 1, zwei: 2, drei: 3, vier: 4, fünf: 5, sechs: 6, sieben: 7, acht: 8, neun: 9, zehn: 10, elf: 11, zwölf: 12 };
 
@@ -22,7 +22,7 @@ const CLAIMS = {
   neuwertig: ['neuwertig', 'neubau'],
   gepflegt: ['gepflegt', 'unterhalten'],
   ruhig: ['ruhig'],
-  zentral: ['zentral', 'zentrum'],
+  zentral: ['zentral', 'zentrumslage', 'im zentrum', 'ortszentrum'],
   aussicht: ['aussicht', 'blick', 'weitsicht'],
   weitsicht: ['aussicht', 'blick', 'weitsicht'],
   sonnig: ['sonnig', 'besonnt', 'sonne'],
@@ -123,12 +123,34 @@ export function checkText(text, index) {
 }
 
 // Prüft alle KI-Texte. Rückgabe: { [pfad]: findings[] } nur für Texte mit Treffern.
-export function guardTexts(texts, factBaseResult) {
+// Teaser: keine Hinweise auf die genaue Adresse (Strasse, Hausnummer, PLZ, Parzellen).
+export function anonymityFindings(text, p) {
+  if (!p || !text) return [];
+  const out = [];
+  const lower = text.toLowerCase();
+  const streetName = String(p.object.street || '').replace(/\s*\d+\w?\s*$/, '').trim();
+  if (streetName.length > 3 && lower.includes(streetName.toLowerCase())) out.push({ kind: 'anonym', term: streetName, message: `Teaser nennt die Strasse «${streetName}».` });
+  if (p.object.zip && new RegExp(`\\b${p.object.zip}\\b`).test(text)) out.push({ kind: 'anonym', term: p.object.zip, message: `Teaser nennt die Postleitzahl ${p.object.zip}.` });
+  for (const parcel of (p.land && p.land.parcels) || []) {
+    if (parcel.number && new RegExp(`\\b${String(parcel.number).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(text)) out.push({ kind: 'anonym', term: parcel.number, message: `Teaser nennt die Parzelle ${parcel.number}.` });
+  }
+  return out;
+}
+
+// Prüft alle Texte aller Dokumente. p (optional) aktiviert die Anonymitätsprüfung des Teasers.
+export function guardTexts(texts, factBaseResult, p = null) {
   const index = buildFactIndex(factBaseResult);
   const out = {};
-  const put = (path, f) => { if (f.length) out[path] = f; };
-  put('title', checkText(texts.title, index));
-  for (const { key } of OVERVIEW_PARTS) put(`overview.${key}`, checkText(texts.overview[key], index));
+  const put = (path, f) => { if (f.length) out[path] = [...(out[path] || []), ...f]; };
+  const get = (path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), texts);
+  for (const f of textFields(texts)) {
+    const value = get(f.path);
+    const key = f.group || f.path;
+    put(key, checkText(value, index));
+    if (f.doc === 'Teaser') put(key, anonymityFindings(value, p));
+  }
+  // Doppelte Meldungen (z. B. Titel und Text einer Einheit) zusammenfassen
+  for (const k of Object.keys(out)) out[k] = out[k].filter((x, i, a) => a.findIndex((y) => y.message === x.message) === i);
   texts.arguments.forEach((a, i) => {
     const f = checkText(`${a.title}. ${a.text}`, index);
     const unknown = (a.basis || []).filter((k) => !index.keys.has(k));
